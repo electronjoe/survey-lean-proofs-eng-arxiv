@@ -25,6 +25,9 @@ jobs:
       - name: Run unit tests
         run: uv run pytest -v
 
+      - name: Audit BibTeX hygiene and LaTeX citations
+        run: uv run python scripts/audit_bib.py
+
       - name: Verify zero tracked PDFs and clean blind artifact export
         run: |
           set -euo pipefail

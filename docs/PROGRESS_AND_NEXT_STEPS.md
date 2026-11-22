@@ -48,10 +48,13 @@
 
 ## 3. Prioritized Remaining Next Steps
 
+*(Detailed pre-submission verification tracker and ground-truth audit ledger: [`docs/audit_plan.md`](audit_plan.md).)*
+
 1. **Sandboxed Lean Kernel Verification in Docker (`lake build` + `#print axioms`):**
    - Execute isolated clean-room builds under [`sandbox/`](../sandbox/README.md) on compact engineering repos (`<5k` LoC: `Lean-SysID`, `bic-public`, `CoprimeFrobenius`, `discrete-modified-gradient-lean`, `trustbound`, `ExactShortestPathsAndFlowsOnPlanarGraphs`, `zenodo/24127514`, `Ku-PATP-code-supplement`, `qanary-k-stage-composition`) and archive JSON results in [`artifacts/sandbox_builds/`](../artifacts/sandbox_builds/README.md).
-2. **Human IRR & Commit-SHA Verification:**
-   - Record human IRR calibration labels and pinned commit SHAs under [`artifacts/human_annotations/`](../artifacts/human_annotations/README.md) and audit placeholder BibTeX entries in [`papers/shared/references.bib`](../papers/shared/references.bib).
+2. **Human IRR & Named-Finding Verification (Automated Pillar 1 + Provenance Pinning Done):**
+   - [x] Audited & fixed all 54 BibTeX entries in [`papers/shared/references.bib`](../papers/shared/references.bib) against live arXiv API (`scripts/audit_bib.py --live` in CI), corrected `proofbridge2025` citation framing in `main.tex`, and pinned commit SHAs / arXiv versions / `file:line` checks for all 20 Layer-A repos in [`artifacts/phase2_provenance.json`](../artifacts/phase2_provenance.json).
+   - [ ] Record independent human IRR calibration labels and human sign-off on named findings (+ clean-cohort false-negative spot-checks) under [`artifacts/human_annotations/`](../artifacts/human_annotations/README.md).
 3. **Scoped Machine Learning Theory Arm (`cs.LG` / `stat.ML`):**
    - Run a 1-week window or stratified 1,000-paper sample of `cs.LG`/`stat.ML` to benchmark ML theory against `math.OC` and `cs.IT`.
 4. **Standalone Periodic Runner (`agy -p`):**
