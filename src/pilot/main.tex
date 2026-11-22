@@ -27,6 +27,9 @@
 }
 \date{November 22, 2026 \quad (Pilot Report v0.4 --- 9,837-Paper Longitudinal Inflection Curve, Recall Calibration \& 20-Paper Layer-A Audit)}
 
+\renewcommand{\topfraction}{0.88}
+\renewcommand{\textfraction}{0.10}
+
 \begin{document}
 \sloppy
 \maketitle
@@ -41,7 +44,7 @@ Across the 12-month longitudinal curve, contemporaneous (\texttt{v1}) Lean adopt
 \section{Introduction and Motivation}
 \label{sec:intro}
 
-Interactive theorem proving in Lean~4~\cite{demoura2021lean4} has historically been concentrated in formal mathematics and programming-languages communities. Throughout 2026, however, autonomous LLM proving agents have lowered the barrier to generating large Lean~4 formalizations alongside research manuscripts. At the same time, high-profile audits of bulk AI-generated mathematical releases have demonstrated that a compiling Lean build is a weak proxy for trustworthy scholarship~\cite{bastounis2026navier,paglieri2026swarms,leanatlas2026}. In particular, Bastounis et al.~\cite{bastounis2026navier} distinguish \emph{Type~(i) autoformalization} (producing some compiling Lean proof inspired by a manuscript) from \emph{Type~(ii) autoformalization} (faithfully translating every definition, hypothesis, and lemma of the natural-language paper), documenting silent hypothesis strengthening and intermediate lemma drift when agents optimize for compiler closure.
+Interactive theorem proving in Lean~4~\cite{demoura2021lean4} has historically been concentrated in formal mathematics and programming-languages communities. Throughout 2026, however, autonomous LLM proving agents have lowered the barrier to generating large Lean~4 formalizations alongside research manuscripts. At the same time, high-profile audits of bulk AI-generated mathematical releases have demonstrated that a compiling Lean build is a weak proxy for trustworthy scholarship: semantic audits document silent hypothesis strengthening and intermediate lemma drift~\cite{bastounis2026navier,leanatlas2026}, multi-agent studies uncover emergent notation hijacking and verification-harness exploits~\cite{paglieri2026swarms}, and multi-million-line machine-generated codebases expose severe human-intelligibility and checker-scalability bottlenecks~\cite{axle2026}. In particular, Bastounis et al.~\cite{bastounis2026navier} distinguish \emph{Type~(i) autoformalization} (producing some compiling Lean proof inspired by a manuscript) from \emph{Type~(ii) autoformalization} (faithfully translating every definition, hypothesis, and lemma of the natural-language paper), showing that compiler-driven agents routinely mutate hypotheses or proof strategies to achieve a green build.
 
 In this study, we ask five empirical questions about \emph{cutting-edge engineering, optimization, and systems research}:
 \begin{enumerate}
@@ -55,27 +58,79 @@ In this study, we ask five empirical questions about \emph{cutting-edge engineer
 To ground domain selection in a concrete engineering lab profile, Pilot~v1 anchored its initial six categories to USC's Autonomous Networks Research Group (ANRG; 100 journal and 270 conference papers across IEEE/ACM venues such as ToN, TMC, JSAC, IoT-J, INFOCOM, MobiCom, SenSys, ISIT, WiOpt, IPDPS, and IROS): \texttt{cs.DC}, \texttt{cs.NI}, \texttt{cs.IT}, \texttt{eess.SY}, \texttt{cs.CR}, and \texttt{cs.RO}. Pilot~v2 expanded the exact same three-week window to \textbf{Signal Processing (\texttt{eess.SP})} and \textbf{Optimization and Control (\texttt{math.OC})}, added Zenodo and GitLab profiling plus Stage-2 negative recall calibration, and audited 17 Nov~2026 \texttt{engineering\_math\_proof} repos. Pilot~v0.4 adds two matched historical baseline slices---\textbf{T0 (Nov~1--19, 2025; $n=2{,}435$)} and \textbf{T1 (May~1--19, 2026; $n=3{,}298$)}---bringing the total screened corpus to \textbf{9,837 unique preprints} and expanding our Phase~2 Layer-A audit cohort to \textbf{20} repositories.
 
 % -----------------------------------------------------------------------------
-\section{Taxonomy of Authoring Paradigms and Observable Risk Modes}
+\section{Background: Failure Modes, Solutions, and Authoring Paradigms}
 \label{sec:taxonomy}
 
-Our classification schema operationalizes the framework synthesized in our companion taxonomy document (\texttt{proof-methods.md}), which draws on recent formal-verification postmortems~\cite{bastounis2026navier,zhu2026leanarchitect,paglieri2026swarms,leanatlas2026,axle2026,proofbridge2025}.
+Because Lean's kernel only certifies that a formal proof term derives a formal proposition under a specific environment, a clean \texttt{lake build} leaves three distinct layers of scholarly trust exposed: \textbf{Layer~A} (\emph{semantic and statement-level fidelity}---``what was actually proved?''), \textbf{Layer~B} (\emph{adversarial and kernel-level integrity}---``was it legitimately proved?''), and \textbf{Layer~C} (\emph{structural, cognitive, and operational utility}---``is the artifact usable, auditable science?''). Synthesizing documented 2025--2026 formal-verification postmortems and tooling proposals~\cite{bastounis2026navier,zhu2026leanarchitect,paglieri2026swarms,leanatlas2026,axle2026,proofbridge2025}, Table~\ref{tab:taxonomy} organizes twelve failure modes across these three layers alongside their community defense-in-depth remedies and specifies which modes are observable in our survey.
 
-\subsection{Lean\texorpdfstring{$\leftrightarrow$\LaTeX{}}{<->LaTeX} Authoring Paradigms}
-Every confirmed Lean-contributing paper is assigned to one of five workflow paradigms:
+\begin{table}[!tbp]
+\centering
+\caption{Three-layer taxonomy of twelve failure modes in AI-assisted Lean~4 formalizations, corresponding community defense-in-depth remedies, and observability in this survey (\textbf{P1} = Phase~1 static artifact profiling; \textbf{P2} = Phase~2 adversarial \LaTeX{}$\leftrightarrow$Lean audit; \textbf{Dyn.} = requires dynamic kernel/runtime execution, out of scope for static screening).}
+\label{tab:taxonomy}
+\scriptsize
+\setlength{\tabcolsep}{2.8pt}
+\renewcommand{\arraystretch}{1.04}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{2.35cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}p{1.25cm}@{}}
+\toprule
+\textbf{Failure Mode} & \textbf{Mechanism \& Scholarly Risk} & \textbf{Defense-in-Depth Remedy} & \textbf{Scope} \\
+\midrule
+\multicolumn{4}{@{}l}{\textit{\textbf{Layer A: Semantic \& Statement-Level Fidelity (``What Was Actually Proved?'')}}} \\
+\textbf{\#1 Statement / Proof Drift} & Type~(i) compilation silently strengthens hypotheses, weakens bounds, or alters intermediate lemmas relative to prose~\cite{bastounis2026navier}. & Bidirectional blueprints~\cite{zhu2026leanarchitect}; hostile cross-LLM back-translation diffs~\cite{proofbridge2025} + human review. & \textbf{P2} \\
+\textbf{\#2 Scope Downgrading} & Headline claims outstrip the Lean certificate (e.g., special cases, omitted complexity/asymptotics, or ``scope-note erasure''). & Explicit claim-level scope notes and verification manifests placed directly beside paper claims. & \textbf{P1 + P2} \\
+\textbf{\#3 Definition Smuggling} & Custom definitions unanchored to Mathlib subtly distort standard mathematical objects, making target theorems artificially weak~\cite{leanatlas2026}. & Mathlib-first specification boundary; dependency-graph pruning of non-Mathlib defs (\texttt{Lean Atlas}~\cite{leanatlas2026}). & \textbf{P1 + P2} \\
+\textbf{\#4 Junk Values \& Vacuity} & Totalized Lean operations (e.g., $1/0 = 0$, \texttt{Nat} subtraction $3-5=0$) or inconsistent/empty hypotheses yield vacuously true theorems. & Compilable non-vacuity witnesses (\texttt{example : $\exists x$, ...}), edge-case tests, and \texttt{EReal}/\texttt{ENNReal} anti-junk lifting. & \textbf{P2} \\
+\midrule
+\multicolumn{4}{@{}l}{\textit{\textbf{Layer B: Adversarial \& Kernel-Level Integrity (``Was It Legitimately Proved?'')}}} \\
+\textbf{\#5 Reward Hacking / Notation} & Autonomous provers override notation, shadow identifiers, or tamper with targets to pass checks with zero \texttt{sorry}~\cite{paglieri2026swarms}. & Freeze trusted spec (\texttt{Challenge.lean}) vs.\ untrusted \texttt{Solution.lean} via sandboxed \texttt{lake comparator}; independent auditor agents. & \textbf{P1} (\texttt{P4} proxy) / Dyn. \\
+\textbf{\#6 \texttt{sorry}, Custom \texttt{axiom}, \texttt{native\_decide}} & Transitive \texttt{sorryAx}, unproved \texttt{axiom}s, or \texttt{native\_decide} (\texttt{Lean.ofReduceBool}) bypass kernel reduction and expand the TCB to the compiler. & Programmatic \texttt{\#print axioms} restricted to \{\texttt{propext}, \texttt{Classical.choice}, \texttt{Quot.sound}\}; CI bans on \texttt{native\_decide}. & \textbf{P1} (static) \\
+\textbf{\#7 Metaprog.\ \& Side Effects} & Elaborator/\texttt{.olean} tampering can bypass kernel checks; compile-time \texttt{\#eval} executes arbitrary host OS actions. & Network-isolated read-only sandboxes; static bans on \texttt{unsafe}, \texttt{implemented\_by}, and solution metaprogramming. & \textbf{P1} (static) \\
+\textbf{\#8 Kernel Soundness Bugs} & Rare implementation bugs in Lean's C++ kernel (especially via metaprogramming) create a single-checker monoculture risk. & Multi-kernel replay (\texttt{lake check --paranoid}) across independent/verified checkers (e.g., \texttt{nanoda}, \texttt{lean4lean}). & Out of scope (Dyn.) \\
+\textbf{\#9 Foundational Drift} & Lean's dependent type theory with an infinite universe hierarchy is proof-theoretically stronger than first-order ZFC. & Audit universe polymorphism and disclose extra foundational assumptions for logic/set-theory claims. & Out of scope (Dyn.) \\
+\midrule
+\multicolumn{4}{@{}l}{\textit{\textbf{Layer C: Structural, Cognitive, and Operational Utility (``Is It Usable, Auditable Science?'')}}} \\
+\textbf{\#10 Proof Bloat / Tech.\ Debt} & Multi-10k to multi-million-LoC AI codebases produce truth certificates faster than recoverable conceptual structure. & Mandatory conceptual distillation/refactoring pass; separate statement interfaces from proof modules. & \textbf{P1} ($>20\text{k}$ LoC) \\
+\textbf{\#11 Checker Timeouts} & External verification (\texttt{comparator}) hits high latency and timeouts at repo scale ($\approx 96\text{s}$ median, 6.2\% timeouts~\cite{axle2026}). & Tiered verification: fast inner-loop checkers (\texttt{Axle}~\cite{axle2026}) during search; incremental \texttt{comparator} at release. & Out of scope (Dyn.) \\
+\textbf{\#12 Process Opacity} & Missing/broken repos, unpinned toolchains, silent revisions, or mixed formalized/unformalized claims without clear provenance. & Standardized verification manifests (tier badge per claim, toolchain/Mathlib SHA, immutable releases). & \textbf{P1} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Two technical distinctions in Table~\ref{tab:taxonomy} are especially relevant for engineering readers unfamiliar with Lean~4 internals. First, \textbf{Mode~\#6 groups \texttt{native\_decide} with \texttt{sorry} and custom \texttt{axiom}s} because \texttt{native\_decide} delegates finite checks to compiled native code rather than kernel reduction: this expands the trusted computing base (TCB) to the entire Lean compiler/runtime and prevents external checkers from verifying the proof, whereas pure kernel-checked classical Lean proofs depend exclusively on Lean's three standard axioms (\texttt{propext}, \texttt{Classical.choice}, \texttt{Quot.sound}). Second, \textbf{pinned specification checking via \texttt{lake comparator}} defeats Mode~\#5 and Mode~\#7 tampering by exporting proof terms from an untrusted \texttt{Solution.lean} inside a sandbox and matching them against a frozen \texttt{Challenge.lean}---yet it remains ``garbage-in, garbage-out'' if the specification itself omits hypotheses or conclusions, making independent Layer-A spec auditing indispensable (as we directly observe in Section~\ref{sec:phase2}).
+
+\subsection{Lean\texorpdfstring{$\leftrightarrow$\LaTeX{}}{<->LaTeX} Authoring Paradigms and Trade-Offs}
+How authors organize the interplay between natural-language exposition and Lean code strongly shapes which Layer-A and Layer-C failures arise. We classify every confirmed Lean-contributing paper into one of five authoring paradigms, whose structural trade-offs are summarized in Table~\ref{tab:paradigms}:
 \begin{description}
-  \item[\texttt{P1} (Paper-First, Post-Hoc Autoformalization):] Informal proofs and the \LaTeX{} manuscript are written first; Lean code is created afterward (often by AI agents) and linked via footnotes, manual tables, SHA-256 hash locks, or post-hoc correspondence maps without bidirectional sync tooling.
-  \item[\texttt{P2} (Raw Lean-First / Auto-Informalization):] The kernel-checked Lean proof is built first, and the human manuscript is authored or decompiled directly against the Lean dependency graph.
-  \item[\texttt{P3} (Spec-Pinned Synchronized Co-Development):] Bidirectional literate tooling such as \texttt{LeanArchitect} (\texttt{@[blueprint]}, \texttt{\textbackslash inputleannode})~\cite{zhu2026leanarchitect}, \texttt{leanblueprint}, or \texttt{Verso Blueprints} keeps the \LaTeX{} theorem DAG and Lean declarations structurally synchronized.
-  \item[\texttt{P4} (Spec-Lock $\rightarrow$ AI-Solve $\rightarrow$ Distill):] Target statements or formal optimization setups are frozen in a read-only specification module (e.g., \texttt{Challenge.lean}, \texttt{ReferenceClaims}, or \texttt{LongTails/Setups}) checked against untrusted proofs via \texttt{lake comparator} and external kernels (e.g., \texttt{nanoda}), decoupling unconstrained AI proof search from specification integrity.
+  \item[\texttt{P1} (Paper-First, Post-Hoc Autoformalization):] Informal proofs and the \LaTeX{} manuscript are written first; Lean code is created afterward (often by AI agents) and linked via footnotes, manual tables, SHA-256 hash locks, or post-hoc correspondence maps without bidirectional sync tooling. \emph{Trade-off:} preserves natural mathematical discovery, but risks silent Type~(i) drift whenever a formalizer patches Lean hypotheses without updating the manuscript.
+  \item[\texttt{P2} (Raw Lean-First / Auto-Informalization):] The kernel-checked Lean proof is built first, and the human manuscript is authored or decompiled directly against the Lean dependency graph. \emph{Trade-off:} prevents downward lemma drift by construction, but does not guard against an erroneous initial top-level specification and risks propagating machine-generated proof bloat and type-theoretic plumbing into prose.
+  \item[\texttt{P3} (Spec-Pinned Synchronized Co-Development):] Bidirectional literate tooling such as \texttt{LeanArchitect} (\texttt{@[blueprint]}, \texttt{\textbackslash inputleannode})~\cite{zhu2026leanarchitect}, \texttt{leanblueprint}, or \texttt{Verso Blueprints} keeps the \LaTeX{} theorem DAG and Lean declarations structurally synchronized, automatically inferring dependencies and \texttt{sorry}-free status while encapsulating low-level tactic plumbing inside each node.
+  \item[\texttt{P4} (Spec-Lock $\rightarrow$ AI-Solve $\rightarrow$ Distill):] Target statements or formal optimization setups are frozen in a read-only specification module (e.g., \texttt{Challenge.lean}, \texttt{ReferenceClaims}, or \texttt{LongTails/Setups}) checked against untrusted proofs via \texttt{lake comparator} and external kernels (e.g., \texttt{nanoda}). Separating the spec owner from the solver prevents self-grading and reward hacking during unconstrained AI search, followed by conceptual distillation into clean exposition.
   \item[\texttt{P0} (Opaque / Unspecified):] The paper claims Lean verification of its results but supplies neither inspectable Lean artifacts nor sufficient workflow description to classify the paradigm.
 \end{description}
 
-\subsection{Observed Verification Tiers, Domain Roles, and Risk Modes}
-To track verification maturity strictly via static inspection (without executing untrusted build scripts), we assign each Lean paper:
+\begin{table}[!tbp]
+\centering
+\caption{Head-to-head trade-offs of the four inspectable Lean$\leftrightarrow$\LaTeX{} authoring paradigms (\texttt{P0} denotes opaque/unspecified workflows).}
+\label{tab:paradigms}
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{3.0cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
+\toprule
+\textbf{Paradigm} & \textbf{Top-Level Spec Fidelity} & \textbf{Intermediate Lemma Sync} & \textbf{Readability / Low Debt} & \textbf{Tooling \& Workflow Overhead} \\
+\midrule
+\texttt{P1} Paper-First (Post-Hoc) & Low--Moderate (drift risk) & Poor (Type~(i) drift prone) & High prose quality (unverified) & Low upfront; high post-hoc audit cost \\
+\texttt{P2} Raw Lean-First & Moderate (bad initial spec risk) & Very High (1-to-1 by construction) & Poor--Moderate (plumbing/bloat) & Moderate (early formal rigidity) \\
+\texttt{P3} Synchronized Blueprint & High (pinned theorem DAG) & Very High (auto-inferred DAG) & Very High (tactics encapsulated) & Moderate--High (blueprint tooling) \\
+\texttt{P4} Spec-Lock + Solve + Distill & Very High (frozen \texttt{Challenge}) & Very High (if distilled to prose) & High (with distillation pass) & High (spec audit + \texttt{comparator} CI) \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Observed Static Verification Tiers, Domain Roles, and Risk Flags}
+In a full publication-grade verification pipeline, gold-standard certification requires human-audited specifications, sandboxed \texttt{comparator} plus multi-kernel replay, and synchronized blueprints. Because our survey strictly avoids executing untrusted build scripts or compile-time metaprograms (Mode~\#7), we operationalize verification maturity via \emph{statically observed} tiers---treating them as an observable proxy that Phase~2 then stress-tests semantically on Layer~A:
 \begin{itemize}
   \item \textbf{Domain Role:} \texttt{engineering\_math\_proof} (Lean verifies mathematical theorems in optimization, control, system ID, coding/information theory, signal processing, statistical learning, or cryptographic math), \texttt{software\_or\_system\_fv} (Lean verifies an implementation, policy engine, CDC pipeline, or security calculus), or \texttt{pure\_tcs\_or\_math} (theoretical CS or pure math cross-listed into engineering).
-  \item \textbf{Observed Verification Tier:} \texttt{Tier3\_Gold} (main results publicly formalized, zero \texttt{sorry}/custom \texttt{axiom}/\texttt{native\_decide} in proved endpoints, plus explicit audit evidence such as \texttt{\#print axioms}, \texttt{comparator}, hash-locks, or external-kernel replay); \texttt{Tier2\_Silver} (public compiling-looking Lean repo covering supporting lemmas/partial scope or lacking formal audit evidence); \texttt{Tier1\_Bronze} (no inspectable public repo, unresolved external axioms, or opaque process).
-  \item \textbf{Static Risk Flags (Phase~1) \& Semantic Layer-A Modes (Phase~2):} Phase~1 tracks \texttt{Mode2\_ScopeDowngrade}, \texttt{Mode3\_CustomDefs}, \texttt{Mode6\_SorryOrAxiomOrNativeDecide}, \texttt{Mode7\_MetaprogOrUnsafe}, \texttt{Mode10\_ProofBloat} ($>20\text{k}$ LoC), and \texttt{Mode12\_ProcessOpacity}. Phase~2 executes theorem-by-theorem \LaTeX{}$\leftrightarrow$Lean comparison across Modes~\#1--\#4 (statement/hypothesis drift, headline-to-certificate scope downgrade, definition smuggling, and junk values/vacuity; Section~\ref{sec:phase2}).
+  \item \textbf{Observed Verification Tier (Static):} \texttt{Tier3\_Gold} (main results publicly formalized, zero \texttt{sorry}/custom \texttt{axiom}/\texttt{native\_decide} in proved endpoints, plus explicit author-supplied audit evidence such as \texttt{\#print axioms}, \texttt{comparator} scripts, hash-locks, or external-kernel replay); \texttt{Tier2\_Silver} (public compiling-looking Lean repo covering supporting lemmas/partial scope or lacking formal audit evidence); \texttt{Tier1\_Bronze} (no inspectable public repo, unresolved external axioms, or opaque process).
+  \item \textbf{Static Risk Flags (Phase~1) \& Semantic Layer-A Modes (Phase~2):} Phase~1 tracks the six statically detectable modes from Table~\ref{tab:taxonomy}: \texttt{Mode2\_ScopeDowngrade}, \texttt{Mode3\_CustomDefs}, \texttt{Mode6\_SorryOrAxiomOrNativeDecide}, \texttt{Mode7\_MetaprogOrUnsafe}, \texttt{Mode10\_ProofBloat} ($>20\text{k}$ LoC), and \texttt{Mode12\_ProcessOpacity}. Phase~2 executes theorem-by-theorem \LaTeX{}$\leftrightarrow$Lean comparison across all four Layer-A modes (Modes~\#1--\#4; Section~\ref{sec:phase2}).
 \end{itemize}
 
 % -----------------------------------------------------------------------------
