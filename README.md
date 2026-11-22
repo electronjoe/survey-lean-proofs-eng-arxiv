@@ -13,6 +13,7 @@ Binary PDFs are **not committed to Git**. Every push to `main` regenerates all v
 ## Key Artifacts
 
 - **Working Empirical Paper (LaTeX v0.4):** [`papers/arxiv-empirical/main.tex`](papers/arxiv-empirical/main.tex) ([`papers/shared/references.bib`](papers/shared/references.bib), [`papers/arxiv-empirical/Makefile`](papers/arxiv-empirical/Makefile))
+- **Pre-Submission Audit Plan & Ground-Truth Ledger:** [`docs/audit_plan.md`](docs/audit_plan.md)
 - **Progress Log & Next Steps:** [`docs/PROGRESS_AND_NEXT_STEPS.md`](docs/PROGRESS_AND_NEXT_STEPS.md)
 - **Domain Scope Notes (Bhaskar Krishnamachari & Scott Moeller):** [`docs/research_notes_and_todo.md`](docs/research_notes_and_todo.md)
 - **Publication Strategy Roadmap:** [`docs/publication_strategy.html`](docs/publication_strategy.html)
@@ -40,13 +41,13 @@ survey-lean-proofs-eng-arxiv/
   .github/workflows/
     build-papers.yml              # Regenerates figures from artifacts/, compiles papers/*/main.tex,
                                   # uploads GH Actions PDFs + rolling `papers-latest` release
-    ci.yml                        # Runs pytest, zero-PDF check, and blind artifact verification
+    ci.yml                        # Runs pytest, BibTeX audit, numeric consistency gate, zero-PDF & blind checks
   src/                            # Strictly static/deterministic Python pipeline & figures
     db.py                         # SQLite schema & idempotent upserts
     patterns.py                   # Deterministic Lean, Beyond-Lean, LaTeX, and static .lean scanners
     ingest_arxiv.py               # Stage 1: Bias-free multi-slice arXiv OAI-PMH (arXivRaw) ingest
     fetch_and_screen.py           # Stage 2: Polite HTML5/PDF full-text pre-screen
-    profile_artifacts.py          # Stage 3: Strictly static LaTeX + GitHub/GitLab/Zenodo profiler
+    profile_artifacts.py          # Stage 3: Strictly static LaTeX + GitHub/GitLab/Zenodo/arXiv-ancillary profiler
     calibrate_recall.py           # Stage-2 negative recall calibration via gh api
     export_workflow_inputs.py     # Export candidate bundles for parallel LLM classification
     prepare_phase2_audit.py       # Extract math-preserving Markdown & prep Layer-A audit bundles
@@ -61,11 +62,17 @@ survey-lean-proofs-eng-arxiv/
     audit_layer_a.py              # Stage 5: Adversarial Layer-A auditor (pro)
   sandbox/                        # Isolated Docker execution boundary (lake build / #print axioms)
   scripts/
+    audit_bib.py                  # BibTeX hygiene, citation sync & --live arXiv API metadata audit
+    check_paper_numbers.py        # Numeric consistency gate verifying main.tex against artifacts/
+    pin_phase2_provenance.py      # Pins commit SHAs, toolchains & file:line checks for Phase-2 repos
     export_blind_artifact.py      # Builds verified double-blind review zip (dist/blind_artifact.zip)
   tests/
     test_patterns.py              # Unit tests for regex detectors, Lean lexer, and LaTeX scanners
+    test_audit_bib.py             # Unit tests for BibTeX parser and hygiene checks
+    test_check_paper_numbers.py   # Unit tests for numeric consistency gate and archive unpackers
   artifacts/                      # Git-tracked small structured outputs (<2 MB, license-safe)
     longitudinal_summary.json
+    phase2_provenance.json        # Pinned commit SHAs, toolchains & 196/196 file:line provenance checks
     slices/
       manifest.json               # Declarative slice registry
       2025-11/                    # T0 classifications
@@ -87,8 +94,10 @@ survey-lean-proofs-eng-arxiv/
 # Install dependencies (including pytest dev group)
 uv sync --dev
 
-# Run unit tests
+# Run unit tests and CI hygiene gates (BibTeX + paper-to-artifact numeric consistency)
 uv run pytest
+uv run python scripts/audit_bib.py
+uv run python scripts/check_paper_numbers.py
 
 # Regenerate all 5 vector PDF figures directly from git-tracked artifacts/ (no SQLite DB needed)
 uv run python -m src.generate_figures

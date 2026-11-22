@@ -10,9 +10,9 @@
 | Pillar | Scope | Status | Key Artifact / Gate |
 | :--- | :--- | :--- | :--- |
 | **Pillar 1** | Deterministic + Semantic Bibliography Audit (all 54 entries) | **DONE** | [`scripts/audit_bib.py`](../scripts/audit_bib.py) (CI + `--live`), [`tests/test_audit_bib.py`](../tests/test_audit_bib.py) |
-| **Pillar 2 (Automated)** | Commit-SHA / Zenodo Pinning (20 repos) + Automated `file:line` & Named-Critique Verification | **DONE** | [`scripts/pin_phase2_provenance.py`](../scripts/pin_phase2_provenance.py), [`artifacts/phase2_provenance.json`](../artifacts/phase2_provenance.json) |
+| **Pillar 2 (Automated)** | Commit-SHA / Zenodo Pinning (20 repos) + Automated `file:line` (`196/196`) & Named-Critique Verification | **DONE** | [`scripts/pin_phase2_provenance.py`](../scripts/pin_phase2_provenance.py), [`artifacts/phase2_provenance.json`](../artifacts/phase2_provenance.json) |
 | **Pillar 2 (Human)** | Independent Human Verification of Named Findings + Clean-Cohort False-Negative Check | **OPEN** | [`artifacts/human_annotations/`](../artifacts/human_annotations/README.md) |
-| **Pillar 3** | Closing Core Methodological Weaknesses (IRR, Docker Builds, Scope/ML Arm, Numeric Sync) | **OPEN** | [`artifacts/sandbox_builds/`](../artifacts/sandbox_builds/README.md), `scripts/check_paper_numbers.py` |
+| **Pillar 3** | Closing Core Methodological Weaknesses (Automated Numeric Sync & Stage-3 Ancillary/Zip Unpacking **DONE**; Human IRR, Docker Builds, ML Arm **OPEN**) | **PARTIAL** | [`scripts/check_paper_numbers.py`](../scripts/check_paper_numbers.py) (CI), [`artifacts/sandbox_builds/`](../artifacts/sandbox_builds/README.md) |
 | **Pillar 4** | Pre-Submission Policy & Framing Gates (arXiv Non-Survey Retitle + AI Disclosure + Double-Blind Gate) | **DONE (arXiv)**; venue-tailored templates open | [`papers/arxiv-empirical/main.tex`](../papers/arxiv-empirical/main.tex), [`docs/publication_strategy.html`](publication_strategy.html) |
 
 ---
@@ -58,14 +58,15 @@ All **54 entries** in [`papers/shared/references.bib`](../papers/shared/referenc
    - **`2611.04876` (*MatrixRefresh* / `sdziembowski/MatrixRefresh`, `v1`, commit `7da3e1162e0f`, 2026-11-16):** Verified `version-1.0/lean/Compiler.lean:1936-1978` defines `Compiler.main_theorem` solely over four statistical-distance privacy conjuncts; updated path/line citation in `main.tex`.
    - **`2605.14610` (*Ku-PATP* / `SZabolotnii/Ku-PATP-code-supplement`, `v5`, commit `69788a926f22`):** Verified `Lean/PATP/Entropy.lean:166-174` proves `Real.exp 1 / Real.sqrt 2` ($\approx 1.9221$, docstring L164 writes `1.9230`) vs. paper §2.5 table `1.9300`.
    - **`2605.02856` (*Qanary* / `rayiskander2406/qanary-k-stage-composition-arXiv-2605.02856`, `v2`, commit `915da15f64a1`):** Verified `QanaryPaper7/MontgomeryPFPINI.lean:47-48` directly postulates the closed-form two-branch map and `QanaryPaper7/KStageComposition.lean:168-190` uses a non-recursive two-case `match k` without induction.
-3. **Automated `file:line` Reference Audit Across All 20 `layer_a_audits.json` Entries:**
-   - **194 / 196** `*.lean:line` citations in `theorems_compared` resolve to existing files with in-bounds line numbers.
-   - **2 out-of-bounds line citations flagged in raw LLM audit JSON** (neither is cited in `main.tex`, but both should be corrected during human review):
-     - `2611.05136`: `ActualConstructiveSampler.lean:130-149` (file has `88` lines).
-     - `2611.15128`: `AffineCombinerChart.lean:310-401` (file has `322` lines).
+3. **Automated `file:line` Reference Audit Across All 20 `layer_a_audits.json` Entries (`196 / 196` Clean):**
+   - Initially caught **2 out-of-bounds line citations** in raw LLM audit JSON (194/196). Both were verified against the cloned repos and corrected in `data/survey.db`, [`artifacts/slices/2026-11/layer_a_audits.json`](../artifacts/slices/2026-11/layer_a_audits.json), [`reports/slices/2026-11/phase2_layer_a_audit.md`](../reports/slices/2026-11/phase2_layer_a_audit.md), and [`artifacts/phase2_provenance.json`](../artifacts/phase2_provenance.json):
+     - `2611.05136`: `ActualConstructiveSampler.lean:130-149` (88 lines) → `ActualConstructiveProgram.lean:130-149` (152 lines; namespace `CurrentAFT.ActualConstructiveSampler`, defining `public_matrix_error_independent` and `ideal_response_preserved`).
+     - `2611.15128`: `AffineCombinerChart.lean:310-401` / `310-315` (322 lines) → `AffineCombinerFactor.lean:310-401` / `310-315` (406 lines; defining `hatP_eq`).
+   - Re-running [`scripts/pin_phase2_provenance.py`](../scripts/pin_phase2_provenance.py) now verifies **196 / 196 (100%)** resolved & in-bounds (enforced by [`scripts/check_paper_numbers.py`](../scripts/check_paper_numbers.py)).
 
 ### Pillar 2 Checklist
 - [x] Generate [`artifacts/phase2_provenance.json`](../artifacts/phase2_provenance.json) with full 40-char commit SHAs, arXiv versions, toolchains, and automated `file:line` checks for all 20 audited repos.
+- [x] Fix both out-of-bounds `file:line` citations (`2611.05136`, `2611.15128`) in SQLite, `layer_a_audits.json`, and `phase2_layer_a_audit.md` → **196/196** resolved & in-bounds.
 - [x] Tighten named-finding prose and exact `file:line` / commit citations in [`papers/arxiv-empirical/main.tex`](../papers/arxiv-empirical/main.tex) and verify clean LaTeX + blind-artifact builds.
 - [ ] **Human verification of the 4 named critiques** (`2611.26272`, `2611.04876`, `2605.14610`, `2605.02856`) + check whether any of those 4 GitHub repos pushed newer commits fixing the issues after our snapshot dates; record in [`artifacts/human_annotations/layer_a_human_verification.json`](../artifacts/human_annotations/README.md).
 - [ ] **False-negative spot-check on "clean" author-owned repos:** Independently human-audit 4–5 of the 16/17 "clean" author-owned repos (prioritizing the largest codebases: `2611.08172`, `2611.13872`, `2605.09552`, `2611.11713`) to test whether the LLM auditor missed undisclosed drift in the positive cohort.
@@ -82,12 +83,17 @@ All **54 entries** in [`papers/shared/references.bib`](../papers/shared/referenc
 - [ ] **Sandboxed Docker Dynamic Kernel Verification (`lake build` + `#print axioms`):**
   - Execute clean-room isolated builds under [`sandbox/`](../sandbox/README.md) on compact engineering repos (`<15k` LoC: `Lean-SysID`, `bic-public`, `CoprimeFrobenius`, `discrete-modified-gradient-lean`, `trustbound`, `ExactShortestPathsAndFlowsOnPlanarGraphs`, `zenodo/24127514`, `Ku-PATP-code-supplement`, `qanary-k-stage-composition`, `AltOMD-Lean`, `wmfki_lean`).
   - Archive machine-readable pass/fail, exact `#print axioms`, and `comparator` results in [`artifacts/sandbox_builds/`](../artifacts/sandbox_builds/README.md) to ground-truth static `Tier3_Gold` labels.
-- [ ] **Unprofiled Artifacts, ML-Theory Arm & Scope Hygiene:**
-  - Unpack the 3 arXiv ancillary/zipped artifacts (`2611.26140`, `2611.16781`, `2611.12585`) and retry `2611.22732` (`gitlab.mpi-sws.org`) to close remaining Stage-3 blind spots.
+- [x] **Close Stage-3 Unprofiled Ancillary/Zip Artifacts & Retry `gitlab.mpi-sws.org`:**
+  - Extended [`src/profile_artifacts.py`](../src/profile_artifacts.py) to unpack arXiv `/src/` ancillary Lean trees/nested tarballs and GitHub zipped Lean archives statically (with SHA-256 deduplication).
+  - Unpacked & profiled **3 of 4** remaining blind spots — all **0 `sorry`**, **0 custom `axiom`**, **0 `native_decide`**: `2611.26140` (`28,043` LoC, 53 files, Lean `v4.15.0`), `2611.16781` (`34,579` LoC, 121 files, 1,192 `#print axioms`, Lean `v4.33.0-rc1`), and `2611.12585` (`60,664` LoC, 341 files, 2,715 `#print axioms`, Lean `v4.35.0`). T2 scanned confirmed papers rose `25 → 28` (`27` unique primary artifacts), median owned LoC rose `23,932 → 29,005` (`38.7×` over T1), total owned LoC rose `2.98M → 3.10M` (`4.30M` raw).
+  - Retried `2611.22732` (`gitlab.mpi-sws.org/FCS/mixnets-sync-public`): DNS resolves (`139.19.205.205`), but ports 443 and 80 persistently time out from this host; documented in `main.tex`.
+- [x] **Automated Paper-to-Artifact Numeric Consistency Gate ([`scripts/check_paper_numbers.py`](../scripts/check_paper_numbers.py)):**
+  - Programmatically verifies every bolded count, percentage, CI, multiplier, LoC aggregate, table cell (`tab:categories`, `tab:distributions`, all 39 rows of `tab:inventory`, `tab:longitudinal`), cross-artifact parity (`longitudinal_summary.json` vs. `artifacts/slices/*/figure_inputs.json`), recall calibration, and `phase2_provenance.json` (`196/196`).
+  - Wired into [`.github/workflows/ci.yml`](../.github/workflows/ci.yml) with drift-detection unit tests in [`tests/test_check_paper_numbers.py`](../tests/test_check_paper_numbers.py). Caught and fixed a pre-existing rounding inconsistency on the YoY Stage-2 Lean candidate rate multiplier (`11.2×` from rounded `1.34/0.12` → exact `10.9×`).
+- [ ] **ML-Theory Arm, Pending Phase-2 Audits & Scope Hygiene:**
+  - Queue Phase-2 Layer-A semantic audits for the 3 newly unpacked `engineering_math_proof` packages (`2611.26140`, `2611.16781`, `2611.12585`).
   - Run a scoped `cs.LG` / `stat.ML` arm (1-week window or stratified 1,000-paper sample) to benchmark ML theory against `math.OC` and `cs.IT`.
   - Audit calendar/conference-deadline confounders around Nov 1–19 and May 1–19, and replace USC ANRG lab-anchor rationale with an external IEEE/ACM disciplinary framing for archival variants.
-- [ ] **Automated Paper-to-Artifact Numeric Consistency Check (`scripts/check_paper_numbers.py`):**
-  - Programmatically verify every headline count, percentage, CI, and LoC figure in [`papers/arxiv-empirical/main.tex`](../papers/arxiv-empirical/main.tex) against [`artifacts/longitudinal_summary.json`](../artifacts/longitudinal_summary.json) and `artifacts/slices/*/figure_inputs.json` in CI.
 
 ---
 
@@ -100,7 +106,7 @@ All **54 entries** in [`papers/shared/references.bib`](../papers/shared/referenc
   - Stage 4 Pilot v1 Beyond-Lean baseline (`flash_lite`, 34 runs): **Gemini 3.5 Flash-Lite** (`gemini-3.5-flash-lite`) via Google Antigravity `run_workflow`
   - Stage 5 Layer-A semantic audits (`pro`, 20 runs): **Gemini 4 Hydrogen (Extra High)** (`gemini-4-hydrogen-tiered-xhigh`) via Google Antigravity `run_workflow`
   - All code writing & manuscript drafting (Abstract + Sections 1–7): **Gemini 4 Neon (High)** (`gemini-4-neon-high`) via Google Antigravity CLI harness (with auxiliary interactive sessions on Gemini 4 Neon Medium and Gemini 4 Carbon High).
-- [x] **Verified double-blind review packaging** via `uv run python scripts/export_blind_artifact.py` (`36 files`, `0 leaks`, enforced in CI).
+- [x] **Verified double-blind review packaging** via `uv run python scripts/export_blind_artifact.py` (`37 files`, `0 leaks`, enforced in CI).
 
 ### Downstream Venue-Specific Adaptations (Once Target Peer-Reviewed Venue Is Chosen)
 - [ ] **Select primary downstream venue** (e.g., CACM / IEEE Software vs. ITP 2027 vs. EMSE / ACM TOSEM vs. NeurIPS 2027 D&B) and fork a venue-specific manuscript under `papers/<venue>/`.

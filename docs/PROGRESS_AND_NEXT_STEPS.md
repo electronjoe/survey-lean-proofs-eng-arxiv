@@ -13,7 +13,7 @@
 - [x] **Phase 0 (v1 + v2): Zero-Token Deterministic Pipeline**
   - Upgraded [`src/ingest_arxiv.py`](../src/ingest_arxiv.py) to arXiv's official OAI-PMH `arXivRaw` harvester (`oaipmh.arxiv.org/oai`) and updated [`src/db.py`](../src/db.py) to set-union `matched_target_cats_json` on conflict (`4,104` unique papers, Nov 1 – Nov 19, 2026; `4,060` excluding pure-TCS primary categories).
   - [`src/fetch_and_screen.py`](../src/fetch_and_screen.py) — **99.83% full-text coverage** (3,849 HTML5, 248 PDF, 7 HTTP 404s; 98.7% corpus reduction; **3.4×** recall over metadata-only: 55 Lean candidates vs 16 metadata-only).
-  - [`src/profile_artifacts.py`](../src/profile_artifacts.py) — strictly static LaTeX + **GitHub** (up to 600 MB, including `leanEthereum/leanVM`), **GitLab** (including self-hosted hosts), and **Zenodo** REST API static archive profiler (`24` unique primary Lean repos scanned, **4.17M LoC**).
+  - [`src/profile_artifacts.py`](../src/profile_artifacts.py) — strictly static LaTeX + **GitHub** (up to 600 MB, including `leanEthereum/leanVM` and zipped Lean archives), **GitLab** (including self-hosted hosts), **Zenodo** REST API static archive profiler, and **arXiv `/src/` ancillary Lean tree/archive** unpacker (`27` unique primary Lean artifacts covering `28` T2 papers, **4.30M raw LoC** / **3.10M paper-owned LoC**).
   - [`src/calibrate_recall.py`](../src/calibrate_recall.py) — Stage-2 recall calibration across **200** random GitHub-linked negatives (`333` unique GitHub repos via `gh api` recursive trees) + **100** non-GitHub negatives → **0 / 200** missed Lean repos (**1.49%** 95% Clopper–Pearson upper bound; [`reports/slices/2026-11/recall_calibration.md`](../reports/slices/2026-11/recall_calibration.md)).
 - [x] **Phase 1 (v1 + v2): Parallel `run_workflow` Classification & Unified SQLite Reporting**
   - Classified all 55 Lean candidates (`flash` read-only `research` agents; Lean-only in v2, skipping Beyond-Lean LLM spend) + re-classified Zenodo/`leanVM` upgrades (`2611.15201`, `2611.15128`, `2611.10810` → all upgraded to `Tier3_Gold`).
@@ -28,6 +28,11 @@
   - Built [`src/report_longitudinal.py`](../src/report_longitudinal.py) → [`reports/longitudinal_analysis.md`](../reports/longitudinal_analysis.md) + [`artifacts/longitudinal_summary.json`](../artifacts/longitudinal_summary.json), decoupled [`src/generate_figures.py`](../src/generate_figures.py) from SQLite using git-tracked `artifacts/`, and promoted the manuscript to [`papers/arxiv-empirical/main.tex`](../papers/arxiv-empirical/main.tex) (compiled PDFs published automatically via [`build-papers.yml`](../.github/workflows/build-papers.yml) and the [`papers-latest` release](https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/releases/download/papers-latest/arxiv-empirical.pdf)).
 - [x] **Clean Multi-Variant Repository Reorganization & CI/Open-Science Scaffolding**
   - Executed [`docs/reorg_plan.md`](reorg_plan.md): promoted `papers/shared/` & `papers/arxiv-empirical/` with zero PDFs in Git, added [`src/export_artifacts.py`](../src/export_artifacts.py) + [`artifacts/slices/manifest.json`](../artifacts/slices/manifest.json), normalized `reports/slices/{2025-11,2026-05,2026-11}/`, added [`scripts/export_blind_artifact.py`](../scripts/export_blind_artifact.py), [`sandbox/README.md`](../sandbox/README.md), [`tests/test_patterns.py`](../tests/test_patterns.py), `LICENSE`, `CITATION.cff`, and GitHub Actions workflows ([`build-papers.yml`](../.github/workflows/build-papers.yml), [`ci.yml`](../.github/workflows/ci.yml)).
+- [x] **Pre-Submission Automated Audit & Hygiene Pass ([`docs/audit_plan.md`](audit_plan.md))**
+  - **Pillar 1 (BibTeX & Live arXiv Audit):** Fixed all 6 background entries + `proofbridge2025` citation framing; added [`scripts/audit_bib.py`](../scripts/audit_bib.py) (offline CI + `--live` across all 53 arXiv eprints) and [`tests/test_audit_bib.py`](../tests/test_audit_bib.py).
+  - **Pillar 2 (Immutable Provenance):** Pinned all 20 Layer-A repos (19 Git SHAs + 1 Zenodo record) in [`artifacts/phase2_provenance.json`](../artifacts/phase2_provenance.json) and fixed both out-of-bounds `file:line` citations (`2611.05136`, `2611.15128`) → **`196/196` (100%) resolved & in-bounds**.
+  - **Pillar 3 (Stage-3 Blind-Spot Closure & Numeric Consistency Gate):** Unpacked & profiled `2611.26140` (28.0k LoC), `2611.16781` (34.6k LoC), and `2611.12585` (60.7k LoC) — all zero `sorry`/custom `axiom`/`native_decide` — and retried `2611.22732` (`gitlab.mpi-sws.org`, persistent port-443/80 timeout). Added [`scripts/check_paper_numbers.py`](../scripts/check_paper_numbers.py) (CI gate + [`tests/test_check_paper_numbers.py`](../tests/test_check_paper_numbers.py)), verifying every bolded count, %, CI, multiplier, LoC, and table cell in `main.tex` against `artifacts/` (also catching and fixing `11.2× → 10.9×` exact YoY Stage-2 candidate ratio).
+  - **Pillar 4 (arXiv Framing & AI Provenance):** Retitled away from "Survey" and added transcript-verified Table 7 AI provenance disclosure in [`papers/arxiv-empirical/main.tex`](../papers/arxiv-empirical/main.tex).
 
 ---
 
@@ -39,7 +44,7 @@
 | **Lean 4 adoption curve (`v1` contemp.)** | **0 / 2,435 (0.00%, 95% UB 0.12%)** → **5 / 3,298 (0.15%)** → **39 / 4,104 (0.95%)** — **6.3×** jump in 6 months (non-overlapping 95% CIs) |
 | **Lean 4 adoption (`v_latest`)** | **1 (0.04%)** → **7 (0.21%)** → **39 (0.95%)** (**23.1×** YoY; **4.5×** in 6 mo), capturing 3 retroactive `v2` formalizations (`2511.15517`, `2605.09552`, `2605.19531`) |
 | **Flat Beyond-Lean FV control (Stage 2)** | **1.52% (37)** → **1.33% (44)** → **1.17% (48)** — Lean 4 candidates (`3 → 19 → 55`) overtook all other FV tools combined in Nov 2026 |
-| **Scale, AI & Tier shift (T1→T2 `v1`)** | Median owned LoC **749 → 23,932 (32.0×)**; explicit AI disclosure **40% → 76.9%** (sole `explicitly_no` paper is May 2026 `2605.14610`); `Tier3_Gold` **0% → 48.7%** |
+| **Scale, AI & Tier shift (T1→T2 `v1`)** | Median owned LoC **749 → 29,005 (38.7×)** (total **3.10M** owned / **4.30M** raw across 28 scanned T2 papers); explicit AI disclosure **40% → 76.9%** (sole `explicitly_no` paper is May 2026 `2605.14610`); `Tier3_Gold` **0% → 48.7%** |
 | **Stage-2 recall calibration (T2)** | **0 / 200** GitHub-linked negatives (333 repos checked; **1.49%** 95% Clopper–Pearson upper bound); **0 / 100** non-GitHub broad metadata hits |
 | **T2 Engineering Math Proof slice** | **28 / 39 (71.8%)** — led by **`math.OC` (19/724 = 2.62%, 17 eng-math)**, `cs.DC` (1.79%), `cs.IT` (1.78%), `cs.CR` (1.11%), `eess.SY` (0.41%); `cs.NI` (0/559 across 3 slices) and `cs.RO` (0/2,431 across 3 slices) stay 0.00% |
 | **Phase 2 Layer-A Audit (`n = 20` total)** | May 2026 `v1` repos (`2605.14610`, `2605.02856`) scored `partial` with `moderate` Mode #3 abstractions; **17/17 Oct–Nov 2026 author-owned repos** (16 T2 + Oct 2026 `v2` `2605.09552`) have **0** moderate/severe M1 drift or M3 smuggling; **sole `material_undisclosed_drift_or_risk`** is bulk pipeline **`2611.26272` (*Paper2Lean*)**. |
@@ -52,9 +57,10 @@
 
 1. **Sandboxed Lean Kernel Verification in Docker (`lake build` + `#print axioms`):**
    - Execute isolated clean-room builds under [`sandbox/`](../sandbox/README.md) on compact engineering repos (`<5k` LoC: `Lean-SysID`, `bic-public`, `CoprimeFrobenius`, `discrete-modified-gradient-lean`, `trustbound`, `ExactShortestPathsAndFlowsOnPlanarGraphs`, `zenodo/24127514`, `Ku-PATP-code-supplement`, `qanary-k-stage-composition`) and archive JSON results in [`artifacts/sandbox_builds/`](../artifacts/sandbox_builds/README.md).
-2. **Human IRR & Named-Finding Verification (Automated Pillar 1 + Provenance Pinning Done):**
-   - [x] Audited & fixed all 54 BibTeX entries in [`papers/shared/references.bib`](../papers/shared/references.bib) against live arXiv API (`scripts/audit_bib.py --live` in CI), corrected `proofbridge2025` citation framing in `main.tex`, and pinned commit SHAs / arXiv versions / `file:line` checks for all 20 Layer-A repos in [`artifacts/phase2_provenance.json`](../artifacts/phase2_provenance.json).
+2. **Human IRR, Named-Finding Verification & Newly Unpacked Phase-2 Audits:**
+   - [x] Audited & fixed all 54 BibTeX entries (`scripts/audit_bib.py --live` in CI), pinned commit SHAs / arXiv versions / `196/196` clean `file:line` checks in [`artifacts/phase2_provenance.json`](../artifacts/phase2_provenance.json), unpacked `2611.26140`/`2611.16781`/`2611.12585`, and added the CI numeric consistency gate [`scripts/check_paper_numbers.py`](../scripts/check_paper_numbers.py).
    - [ ] Record independent human IRR calibration labels and human sign-off on named findings (+ clean-cohort false-negative spot-checks) under [`artifacts/human_annotations/`](../artifacts/human_annotations/README.md).
+   - [ ] Run Phase-2 Layer-A semantic fidelity audits on the 3 newly unpacked `engineering_math_proof` packages (`2611.26140`, `2611.16781`, `2611.12585`).
 3. **Scoped Machine Learning Theory Arm (`cs.LG` / `stat.ML`):**
    - Run a 1-week window or stratified 1,000-paper sample of `cs.LG`/`stat.ML` to benchmark ML theory against `math.OC` and `cs.IT`.
 4. **Standalone Periodic Runner (`agy -p`):**
@@ -98,6 +104,8 @@ uv run python -m src.report_longitudinal
 uv run python -m src.generate_figures
 make -C papers/arxiv-empirical
 
-# 8. Build verified anonymized double-blind review archive
+# 8. Run CI audit gates & build verified anonymized double-blind review archive
+uv run python scripts/audit_bib.py
+uv run python scripts/check_paper_numbers.py
 uv run python scripts/export_blind_artifact.py
 ```
