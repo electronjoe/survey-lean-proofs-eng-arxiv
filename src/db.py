@@ -105,6 +105,16 @@ def connect(db_path: Path = DEFAULT_DB_PATH) -> sqlite3.Connection:
 
 
 def upsert_paper(conn: sqlite3.Connection, paper: dict[str, Any]) -> None:
+    existing = conn.execute(
+        "SELECT all_categories_json, matched_target_cats_json FROM papers WHERE arxiv_id = ?",
+        (paper["arxiv_id"],),
+    ).fetchone()
+    all_cats = set(paper["all_categories"])
+    matched_cats = set(paper["matched_target_cats"])
+    if existing is not None:
+        all_cats |= set(json.loads(existing["all_categories_json"] or "[]"))
+        matched_cats |= set(json.loads(existing["matched_target_cats_json"] or "[]"))
+
     conn.execute(
         """
         INSERT INTO papers (
@@ -134,8 +144,8 @@ def upsert_paper(conn: sqlite3.Connection, paper: dict[str, Any]) -> None:
             paper["abstract"],
             json.dumps(paper["authors"]),
             paper["primary_category"],
-            json.dumps(paper["all_categories"]),
-            json.dumps(paper["matched_target_cats"]),
+            json.dumps(sorted(all_cats)),
+            json.dumps(sorted(matched_cats)),
             paper["submitted_date"],
             paper["updated_date"],
             paper.get("comment"),

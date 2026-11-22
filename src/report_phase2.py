@@ -1,7 +1,8 @@
-"""Import Phase 2 Layer-A audit outputs into SQLite and generate reports/phase2_layer_a_audit.md."""
+"""Import Phase 2 Layer-A audit outputs into SQLite and generate reports/phase2_layer_a_audit.md from SQLite."""
 
 from __future__ import annotations
 
+import argparse
 import json
 from collections import Counter
 from pathlib import Path
@@ -11,28 +12,32 @@ from src.db import DEFAULT_DB_PATH, connect, upsert_layer_a_audit
 
 def import_and_report(
     db_path: Path = DEFAULT_DB_PATH,
-    outputs_path: Path = Path("data/phase2_outputs.json"),
+    outputs_path: Path | None = Path("data/phase2_outputs.json"),
     report_path: Path = Path("reports/phase2_layer_a_audit.md"),
 ) -> None:
-    data = json.loads(outputs_path.read_text())
-    model_tier = data.get("audit_model", "pro")
-    audits = data.get("audits", [])
-
     conn = connect(db_path)
-    with conn:
-        for r in audits:
-            upsert_layer_a_audit(conn, r["arxiv_id"], model_tier, r)
 
-    papers = {
-        r["arxiv_id"]: dict(r)
-        for r in conn.execute(
-            """
-            SELECT p.arxiv_id, p.title, p.primary_category, c.authoring_paradigm, c.verification_tier
-            FROM papers p
-            LEFT JOIN classifications c ON p.arxiv_id = c.arxiv_id
-            """
-        ).fetchall()
-    }
+    if outputs_path is not None and outputs_path.exists():
+        data = json.loads(outputs_path.read_text())
+        model_tier = data.get("audit_model", "pro")
+        with conn:
+            for r in data.get("audits", []):
+                upsert_layer_a_audit(conn, r["arxiv_id"], model_tier, r)
+
+    rows = conn.execute(
+        """
+        SELECT l.raw_json, l.model_tier, p.title, p.primary_category, p.matched_target_cats_json,
+               c.authoring_paradigm, c.verification_tier
+        FROM layer_a_audits l
+        JOIN papers p ON l.arxiv_id = p.arxiv_id
+        LEFT JOIN classifications c ON l.arxiv_id = c.arxiv_id
+        ORDER BY p.submitted_date DESC, p.arxiv_id DESC
+        """
+    ).fetchall()
+
+    audits = [json.loads(r["raw_json"]) for r in rows]
+    meta_by_id = {json.loads(r["raw_json"])["arxiv_id"]: dict(r) for r in rows}
+    model_tiers = sorted({r["model_tier"] for r in rows})
 
     overall_counts = Counter(r["overall_fidelity"] for r in audits)
     m1_counts = Counter(r["mode1_statement_drift"]["severity"] for r in audits)
@@ -45,8 +50,8 @@ def import_and_report(
     lines = [
         "# Phase 2 Report: Layer-A Semantic Fidelity Audit (`engineering_math_proof` Papers)",
         "",
-        f"- **Audited cohort:** {len(audits)} confirmed `engineering_math_proof` papers with locally cloned Lean 4 repos",
-        f"- **Auditor model tier:** `{model_tier}` (read-only adversarial LaTeX ↔ Lean comparison)",
+        f"- **Audited cohort:** {len(audits)} confirmed `engineering_math_proof` papers with locally inspected Lean 4 repos",
+        f"- **Auditor model tier(s):** `{', '.join(model_tiers)}` (read-only adversarial LaTeX ↔ Lean comparison)",
         f"- **Overall Fidelity:** {dict(overall_counts)}",
         f"- **Mode #1 (Statement/Hypothesis Drift):** {dict(m1_counts)}",
         f"- **Mode #2 (Scope Downgrade):** {dict(m2_counts)}",
@@ -62,7 +67,7 @@ def import_and_report(
     ]
 
     for r in audits:
-        p = papers.get(r["arxiv_id"], {})
+        p = meta_by_id.get(r["arxiv_id"], {})
         par = (p.get("authoring_paradigm") or "?").split("_")[0]
         lines.append(
             f"| [{r['arxiv_id']}](https://arxiv.org/abs/{r['arxiv_id']}) | `{p.get('primary_category', '?')}` | `{par}` | "
@@ -74,7 +79,7 @@ def import_and_report(
 
     lines += ["", "## Detailed Per-Paper Audit Findings", ""]
     for r in audits:
-        p = papers.get(r["arxiv_id"], {})
+        p = meta_by_id.get(r["arxiv_id"], {})
         lines.append(f"### [{r['arxiv_id']}](https://arxiv.org/abs/{r['arxiv_id']}) — {p.get('title', '')}")
         lines.append(
             f"- **Repo audited:** `{r['primary_repo_audited']}` | **Overall:** `{r['overall_fidelity']}` | "
@@ -108,8 +113,22 @@ def import_and_report(
     report_path.parent.mkdir(parents=True, exist_ok=True)
     report_path.write_text("\n".join(lines))
     conn.close()
-    print(f"Imported {len(audits)} Layer-A audits and wrote {report_path}")
+    print(f"Wrote {report_path} with {len(audits)} Layer-A audits.")
+
+
+def main() -> None:
+    ap = argparse.ArgumentParser(description="Import Layer-A audit outputs and generate Phase 2 report from SQLite.")
+    ap.add_argument("--db", type=Path, default=DEFAULT_DB_PATH)
+    ap.add_argument("--outputs", type=Path, default=Path("data/phase2_outputs.json"))
+    ap.add_argument("--no-import", action="store_true")
+    ap.add_argument("--report", type=Path, default=Path("reports/phase2_layer_a_audit.md"))
+    args = ap.parse_args()
+    import_and_report(
+        db_path=args.db,
+        outputs_path=None if args.no_import else args.outputs,
+        report_path=args.report,
+    )
 
 
 if __name__ == "__main__":
-    import_and_report()
+    main()

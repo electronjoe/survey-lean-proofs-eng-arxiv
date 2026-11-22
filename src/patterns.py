@@ -99,8 +99,10 @@ SMT_SAT_PATTERNS: dict[str, re.Pattern[str]] = {
 
 # --- 4. Repository / Artifact URLs ---
 REPO_URL_RE = re.compile(
-    r"https?://(?:www\.)?(?:github\.com|gitlab\.com|codeberg\.org|bitbucket\.org|"
-    r"zenodo\.org|osf\.io|huggingface\.co)/[A-Za-z0-9_.\-/]+",
+    r"https?://(?:www\.)?(?:"
+    r"github\.com|gitlab\.[A-Za-z0-9.\-]+|codeberg\.org|bitbucket\.org|"
+    r"zenodo\.org|osf\.io|huggingface\.co|(?:dx\.)?doi\.org/10\.5281/zenodo\.\d+"
+    r")(?:/[A-Za-z0-9_.\-/]*)?",
     re.IGNORECASE,
 )
 

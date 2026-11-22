@@ -1,11 +1,14 @@
-"""Prepare low-bandwidth Phase 2 Layer-A audit bundles for cloned engineering_math_proof papers.
+"""Prepare Phase 2 Layer-A audit bundles for cloned engineering_math_proof papers.
 
-Fetches ONLY lightweight arXiv HTML5 pages (preserving exact LaTeX equations from <math alttext="...">)
-for the 8 engineering_math_proof papers that already have cloned public Lean repos in data/repos/.
+Fetches lightweight arXiv HTML5 pages (preserving exact LaTeX equations from <math alttext="...">),
+falling back to PDF text extraction when HTML5 is unavailable, for confirmed `engineering_math_proof`
+papers with locally cloned/extracted Lean repos (GitHub, GitLab, or Zenodo).
 """
 
 from __future__ import annotations
 
+import argparse
+import io
 import json
 import re
 import time
@@ -13,10 +16,11 @@ from html.parser import HTMLParser
 from pathlib import Path
 
 import httpx
+from pypdf import PdfReader
 
 from src.db import DEFAULT_DB_PATH, connect
 
-USER_AGENT = "survey-lean-proofs-eng-arxiv/0.1 (academic research survey; low-bandwidth phase2)"
+USER_AGENT = "survey-lean-proofs-eng-arxiv/0.2 (academic research survey; phase2 audit prep)"
 
 
 class _MathPreservingHTMLParser(HTMLParser):
@@ -63,13 +67,25 @@ def html_to_math_markdown(raw_html: str) -> str:
     return txt.strip()
 
 
+def pdf_to_markdown(raw_pdf: bytes) -> str:
+    reader = PdfReader(io.BytesIO(raw_pdf))
+    parts = []
+    for i, page in enumerate(reader.pages, 1):
+        txt = page.extract_text() or ""
+        parts.append(f"<!-- Page {i} -->\n{txt}")
+    return "\n\n".join(parts)
+
+
 def prepare(
     db_path: Path = DEFAULT_DB_PATH,
     clone_root: Path = Path("data/repos"),
     papers_dir: Path = Path("data/phase2_papers"),
     out_path: Path = Path("data/phase2_inputs.json"),
+    unaudited_only: bool = False,
+    only_ids: list[str] | None = None,
 ) -> None:
     conn = connect(db_path)
+    audited_ids = {r["arxiv_id"] for r in conn.execute("SELECT arxiv_id FROM layer_a_audits").fetchall()}
     rows = conn.execute(
         """
         SELECT p.*, a.repos_json, c.raw_json AS cls_json
@@ -84,22 +100,32 @@ def prepare(
     papers_dir.mkdir(parents=True, exist_ok=True)
     targets = []
     total_bytes = 0
+    only_id_set = set(only_ids) if only_ids else None
 
-    with httpx.Client(headers={"User-Agent": USER_AGENT}, timeout=30.0) as client:
+    with httpx.Client(headers={"User-Agent": USER_AGENT}, timeout=45.0) as client:
         for r in rows:
+            aid = r["arxiv_id"]
+            if only_id_set is not None and aid not in only_id_set:
+                continue
+            if unaudited_only and aid in audited_ids and only_id_set is None:
+                continue
             cls = json.loads(r["cls_json"])
-            if cls.get("paper_domain_role") != "engineering_math_proof":
+            if cls.get("paper_domain_role") != "engineering_math_proof" and only_id_set is None:
                 continue
             repos = json.loads(r["repos_json"] or "[]")
             cloned_repos = []
             for rp in repos:
                 if rp.get("lean_file_count", 0) > 0 and not rp.get("clone_skipped"):
-                    slug = rp["repo"].replace("/", "__")
-                    d = (clone_root / slug).resolve()
+                    if rp.get("local_dir") and Path(rp["local_dir"]).exists():
+                        d = Path(rp["local_dir"]).resolve()
+                    else:
+                        slug = rp["repo"].replace("/", "__")
+                        d = (clone_root / slug).resolve()
                     if d.exists():
                         cloned_repos.append(
                             {
                                 "repo": rp["repo"],
+                                "host": rp.get("host", "github"),
                                 "local_dir": str(d),
                                 "lean_file_count": rp.get("lean_file_count"),
                                 "loc_nonempty": rp.get("lean_static_counts", {}).get("loc_nonempty", 0),
@@ -110,20 +136,27 @@ def prepare(
             if not cloned_repos:
                 continue
 
-            aid = r["arxiv_id"]
             ver = r["version"]
             md_path = (papers_dir / f"{aid}.md").resolve()
             if not md_path.exists():
                 url = f"https://arxiv.org/html/{aid}v{ver}"
                 resp = client.get(url, follow_redirects=True)
                 total_bytes += len(resp.content)
-                if resp.status_code == 200 and "html" in resp.headers.get("content-type", "").lower():
+                if resp.status_code == 200 and "html" in resp.headers.get("content-type", "").lower() and "No HTML for" not in resp.text[:1000]:
                     md_text = html_to_math_markdown(resp.text)
                     md_path.write_text(md_text)
                     print(f"  Fetched {aid} HTML: {len(resp.content)/1024:.1f} KB -> {len(md_text)} chars", flush=True)
                 else:
-                    print(f"  WARN: {aid} HTML status={resp.status_code}", flush=True)
-                    md_path.write_text(f"# {r['title']}\n\n{r['abstract']}\n")
+                    pdf_url = f"https://arxiv.org/pdf/{aid}v{ver}"
+                    r_pdf = client.get(pdf_url, follow_redirects=True)
+                    total_bytes += len(r_pdf.content)
+                    if r_pdf.status_code == 200 and r_pdf.content[:4] == b"%PDF":
+                        md_text = pdf_to_markdown(r_pdf.content)
+                        md_path.write_text(md_text)
+                        print(f"  Fetched {aid} PDF fallback: {len(r_pdf.content)/1024:.1f} KB -> {len(md_text)} chars", flush=True)
+                    else:
+                        print(f"  WARN: {aid} HTML={resp.status_code} PDF={r_pdf.status_code}", flush=True)
+                        md_path.write_text(f"# {r['title']}\n\n{r['abstract']}\n")
                 time.sleep(0.5)
             else:
                 print(f"  Cached {aid}: {md_path}", flush=True)
@@ -149,5 +182,24 @@ def prepare(
     print(f"\nPrepared {len(targets)} engineering_math_proof targets for Phase 2 audit (total downloaded: {total_bytes/1024/1024:.2f} MB).")
 
 
+def main() -> None:
+    ap = argparse.ArgumentParser(description="Prepare Phase 2 Layer-A audit bundles.")
+    ap.add_argument("--db", type=Path, default=DEFAULT_DB_PATH)
+    ap.add_argument("--clone-root", type=Path, default=Path("data/repos"))
+    ap.add_argument("--papers-dir", type=Path, default=Path("data/phase2_papers"))
+    ap.add_argument("--out", type=Path, default=Path("data/phase2_inputs.json"))
+    ap.add_argument("--unaudited-only", action="store_true")
+    ap.add_argument("--only-ids", nargs="+", default=None)
+    args = ap.parse_args()
+    prepare(
+        db_path=args.db,
+        clone_root=args.clone_root,
+        papers_dir=args.papers_dir,
+        out_path=args.out,
+        unaudited_only=args.unaudited_only,
+        only_ids=args.only_ids,
+    )
+
+
 if __name__ == "__main__":
-    prepare()
+    main()
