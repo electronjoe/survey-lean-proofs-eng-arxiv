@@ -12,6 +12,7 @@ import argparse
 import email.utils
 import re
 import time
+import urllib.error
 import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
@@ -21,7 +22,7 @@ from pathlib import Path
 from src.db import DEFAULT_DB_PATH, connect, upsert_paper
 from src.patterns import scan_text
 
-DEFAULT_CATEGORIES = ["cs.DC", "cs.NI", "cs.IT", "eess.SY", "cs.CR", "cs.RO"]
+DEFAULT_CATEGORIES = ["cs.DC", "cs.NI", "cs.IT", "eess.SY", "cs.CR", "cs.RO", "eess.SP", "math.OC"]
 ARXIV_API = "https://export.arxiv.org/api/query"
 OAI_API = "https://oaipmh.arxiv.org/oai"
 USER_AGENT = "survey-lean-proofs-eng-arxiv/0.2 (academic research survey; polite rate limit)"
@@ -49,12 +50,17 @@ def _cat_to_oai_set(cat: str) -> str:
     return cat
 
 
-def _http_get_with_retry(url: str, timeout: int = 45, max_attempts: int = 5) -> bytes:
+def _http_get_with_retry(url: str, timeout: int = 60, max_attempts: int = 8) -> bytes:
     for attempt in range(max_attempts):
         req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
         try:
             with urllib.request.urlopen(req, timeout=timeout) as resp:
                 return resp.read()
+        except urllib.error.HTTPError as exc:
+            ra = exc.headers.get("Retry-After") if exc.headers else None
+            wait = float(ra) + 1.0 if (ra and ra.isdigit()) else 5 * (attempt + 1)
+            print(f"  [retry {attempt+1}/{max_attempts}] HTTP {exc.code}; sleeping {wait:.1f}s", flush=True)
+            time.sleep(wait)
         except Exception as exc:
             wait = 5 * (attempt + 1)
             print(f"  [retry {attempt+1}/{max_attempts}] error={exc}; sleeping {wait}s", flush=True)
@@ -75,40 +81,66 @@ def _split_raw_authors(authors_text: str) -> list[str]:
     return parts
 
 
-def ingest_oai(
+def ingest_oai_slices(
     categories: list[str],
-    since: str,
-    until: str,
-    db_path: Path = DEFAULT_DB_PATH,
+    slices: list[tuple[str, str, Path]],
     delay_sec: float = 3.1,
-) -> dict[str, int]:
-    conn = connect(db_path)
-    target_set = set(categories)
-    # Pad OAI `until` by +3 days to catch announcement datestamp lag, then filter strictly on v1 date
-    until_dt = datetime.strptime(until, "%Y-%m-%d") + timedelta(days=3)
-    oai_until = min(until_dt.date(), datetime.now(timezone.utc).date()).isoformat()
+    unbounded_until: bool | None = None,
+) -> dict[str, dict[str, int]]:
+    """Single-pass OAI-PMH arXivRaw harvester supporting one or more (since, until, db_path) slices.
 
-    seen_ids: dict[str, dict] = {}
-    per_cat_counts: dict[str, int] = {}
+    CRITICAL: OAI-PMH `from`/`until` filters by latest `datestamp` (revision date), NOT v1 submission date.
+    For historical slices (where `until` is >7 days before today), we MUST omit `until` from the OAI-PMH
+    request so papers submitted in the historical window and revised later are NOT silently dropped.
+    """
+    target_set = set(categories)
+    earliest_since = min(s[0] for s in slices)
+    latest_until = max(s[1] for s in slices)
+    today_utc = datetime.now(timezone.utc).date()
+    latest_until_date = datetime.strptime(latest_until, "%Y-%m-%d").date()
+
+    if unbounded_until is None:
+        use_unbounded = (today_utc - latest_until_date).days > 7
+    else:
+        use_unbounded = unbounded_until
+
+    oai_until: str | None = None
+    if not use_unbounded:
+        until_dt = datetime.strptime(latest_until, "%Y-%m-%d") + timedelta(days=3)
+        oai_until = min(until_dt.date(), today_utc).isoformat()
+
+    print(
+        f"OAI-PMH multi-slice ingest: categories={categories}, oai_from={earliest_since}, "
+        f"oai_until={oai_until or 'UNBOUNDED (bias-free)'}, slices={[(a, b, str(p)) for a, b, p in slices]}",
+        flush=True,
+    )
+
+    # Per-slice buffers: index -> {arxiv_id -> paper_dict}
+    slice_seen: list[dict[str, dict]] = [{} for _ in slices]
+    per_cat_counts: dict[str, dict[str, int]] = {str(p): {} for _, _, p in slices}
 
     for cat in categories:
         oai_set = _cat_to_oai_set(cat)
         resumption: str | None = None
-        kept = 0
         scanned = 0
+        page_num = 0
+        cat_kept = [0 for _ in slices]
+
         while True:
+            page_num += 1
             if resumption:
                 params = urllib.parse.urlencode({"verb": "ListRecords", "resumptionToken": resumption})
             else:
-                params = urllib.parse.urlencode(
-                    {
-                        "verb": "ListRecords",
-                        "metadataPrefix": "arXivRaw",
-                        "set": oai_set,
-                        "from": since,
-                        "until": oai_until,
-                    }
-                )
+                q_params: dict[str, str] = {
+                    "verb": "ListRecords",
+                    "metadataPrefix": "arXivRaw",
+                    "set": oai_set,
+                    "from": earliest_since,
+                }
+                if oai_until is not None:
+                    q_params["until"] = oai_until
+                params = urllib.parse.urlencode(q_params)
+
             raw = _http_get_with_retry(f"{OAI_API}?{params}")
             root = ET.fromstring(raw)
             err = root.find("oai:error", OAI_NS)
@@ -142,7 +174,11 @@ def ingest_oai(
                 except Exception:
                     continue
                 sub_day = submitted_iso[:10]
-                if not (since <= sub_day <= until):
+
+                matched_slice_idxs = [
+                    idx for idx, (s_since, s_until, _) in enumerate(slices) if s_since <= sub_day <= s_until
+                ]
+                if not matched_slice_idxs:
                     continue
 
                 ver_attr = versions[-1].attrib.get("version", "v1")
@@ -164,42 +200,77 @@ def ingest_oai(
                 doi = md.findtext("raw:doi", default=None, namespaces=OAI_NS)
                 doi = doi.strip() if doi else None
 
-                kept += 1
-                if arxiv_id in seen_ids:
-                    prev = seen_ids[arxiv_id]
-                    prev["matched_target_cats"] = sorted(
-                        set(prev["matched_target_cats"]) | set(matched_targets)
-                    )
-                else:
-                    seen_ids[arxiv_id] = {
-                        "arxiv_id": arxiv_id,
-                        "version": version,
-                        "title": title,
-                        "abstract": abstract,
-                        "authors": authors,
-                        "primary_category": primary_cat,
-                        "all_categories": sorted(set(all_cats)),
-                        "matched_target_cats": matched_targets,
-                        "submitted_date": submitted_iso,
-                        "updated_date": updated_iso,
-                        "comment": comment,
-                        "journal_ref": journal_ref,
-                        "doi": doi,
-                    }
+                for idx in matched_slice_idxs:
+                    cat_kept[idx] += 1
+                    seen_ids = slice_seen[idx]
+                    if arxiv_id in seen_ids:
+                        prev = seen_ids[arxiv_id]
+                        prev["matched_target_cats"] = sorted(
+                            set(prev["matched_target_cats"]) | set(matched_targets)
+                        )
+                    else:
+                        seen_ids[arxiv_id] = {
+                            "arxiv_id": arxiv_id,
+                            "version": version,
+                            "title": title,
+                            "abstract": abstract,
+                            "authors": authors,
+                            "primary_category": primary_cat,
+                            "all_categories": sorted(set(all_cats)),
+                            "matched_target_cats": matched_targets,
+                            "submitted_date": submitted_iso,
+                            "updated_date": updated_iso,
+                            "comment": comment,
+                            "journal_ref": journal_ref,
+                            "doi": doi,
+                        }
 
             rt_el = root.find(".//oai:resumptionToken", OAI_NS)
             resumption = rt_el.text.strip() if (rt_el is not None and rt_el.text and rt_el.text.strip()) else None
-            print(f"  [{cat}] scanned={scanned}, in_window={kept}, has_more={bool(resumption)}", flush=True)
+            kept_str = ", ".join(f"{slices[i][0][:7]}={cat_kept[i]}" for i in range(len(slices)))
+            if page_num == 1 or page_num % 5 == 0 or not resumption:
+                print(
+                    f"  [{cat}] page={page_num} scanned={scanned} kept=({kept_str}) has_more={bool(resumption)}",
+                    flush=True,
+                )
             if not resumption:
                 break
             time.sleep(delay_sec)
 
-        per_cat_counts[cat] = kept
+        for idx, (_, _, db_p) in enumerate(slices):
+            per_cat_counts[str(db_p)][cat] = cat_kept[idx]
+        # Persist incrementally after each category so progress is checkpointed!
+        for idx, (s_since, s_until, db_p) in enumerate(slices):
+            conn = connect(db_p)
+            with conn:
+                for p in slice_seen[idx].values():
+                    upsert_paper(conn, p)
+            conn.close()
         time.sleep(delay_sec)
 
-    _persist_and_preview(conn, seen_ids, categories, since, until)
-    conn.close()
+    for idx, (s_since, s_until, db_p) in enumerate(slices):
+        conn = connect(db_p)
+        _persist_and_preview(conn, slice_seen[idx], categories, s_since, s_until)
+        conn.close()
+
     return per_cat_counts
+
+
+def ingest_oai(
+    categories: list[str],
+    since: str,
+    until: str,
+    db_path: Path = DEFAULT_DB_PATH,
+    delay_sec: float = 3.1,
+    unbounded_until: bool | None = None,
+) -> dict[str, int]:
+    res = ingest_oai_slices(
+        categories=categories,
+        slices=[(since, until, db_path)],
+        delay_sec=delay_sec,
+        unbounded_until=unbounded_until,
+    )
+    return res[str(db_path)]
 
 
 def ingest_atom(
@@ -345,15 +416,36 @@ def main() -> None:
     ap.add_argument("--source", choices=["oai", "atom"], default="oai")
     ap.add_argument("--db", type=Path, default=DEFAULT_DB_PATH)
     ap.add_argument("--delay", type=float, default=3.1)
+    ap.add_argument(
+        "--slices",
+        nargs="+",
+        default=None,
+        help="Multi-slice OAI mode: one or more START:END:DB_PATH specs (e.g. 2025-11-01:2025-11-19:data/slice_2025_11.db)",
+    )
+    ap.add_argument("--no-oai-until", action="store_true", help="Force omitting OAI-PMH until parameter")
     args = ap.parse_args()
 
-    if args.source == "oai":
+    if args.slices:
+        parsed_slices: list[tuple[str, str, Path]] = []
+        for spec in args.slices:
+            parts = spec.split(":")
+            if len(parts) != 3:
+                raise SystemExit(f"Invalid --slices spec (expected START:END:DB_PATH): {spec}")
+            parsed_slices.append((parts[0], parts[1], Path(parts[2])))
+        ingest_oai_slices(
+            categories=args.categories,
+            slices=parsed_slices,
+            delay_sec=args.delay,
+            unbounded_until=True if args.no_oai_until else None,
+        )
+    elif args.source == "oai":
         ingest_oai(
             categories=args.categories,
             since=args.since,
             until=args.until,
             db_path=args.db,
             delay_sec=args.delay,
+            unbounded_until=True if args.no_oai_until else None,
         )
     else:
         ingest_atom(

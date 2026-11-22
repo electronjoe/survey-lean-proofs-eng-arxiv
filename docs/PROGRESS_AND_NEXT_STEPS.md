@@ -1,7 +1,7 @@
 # Survey Progress & Next Steps
 
 **Last updated:** 2026-11-22  
-**Status:** **Pilot v2 Scope Expansion + Referee-Proofing COMPLETE** (`eess.SP` + `math.OC` added → 4,104 papers; GitLab/Zenodo/`leanVM` artifact profiling; 200-paper Stage-2 recall calibration; 39 confirmed Lean papers; 17-paper Phase 2 Layer-A adversarial audit; compiled LaTeX Pilot Paper v0.3).
+**Status:** **Longitudinal Baseline Slices (T0 Nov 2025 & T1 May 2026) + Pilot Paper v0.4 COMPLETE** (**9,837** preprints across 3 matched 19-day 8-category slices; 99.68% full-text coverage; contemporaneous `v1` adoption **0.00% → 0.15% → 0.95%** vs. flat Beyond-Lean control **1.52% → 1.33% → 1.17%**; 3 retroactive `v2` Lean additions identified; 20 total Layer-A audited repos; compiled LaTeX Pilot Paper v0.4).
 
 ---
 
@@ -22,34 +22,38 @@
   - Expanded [`src/prepare_phase2_audit.py`](../src/prepare_phase2_audit.py) (with PDF fallback + `--unaudited-only`) and ran 9 new parallel `pro` adversarial referee audits alongside the original 8 → **17 audited `engineering_math_proof` repos** ([`reports/phase2_layer_a_audit.md`](../reports/phase2_layer_a_audit.md)).
   - Compiled Pilot Paper v0.3: [`src/pilot/main.tex`](../src/pilot/main.tex) → [`src/pilot/main.pdf`](../src/pilot/main.pdf).
 
+- [x] **Longitudinal Baseline Slices (T0: Nov 1–19, 2025 & T1: May 1–19, 2026) & Pilot Paper v0.4**
+  - Upgraded [`src/ingest_arxiv.py`](../src/ingest_arxiv.py) with single-pass bias-free multi-slice OAI-PMH harvesting (omitting `until` for historical windows so later-revised preprints are never dropped — rescuing **35.4%** of Nov 2025 and **31.8%** of May 2026 papers) and verified counts against `arxiv.org/list`.
+  - Screened, statically profiled, and `flash`-classified **T0 (`data/slice_2025_11.db`, 2,435 papers, 99.43% coverage)** and **T1 (`data/slice_2026_05.db`, 3,298 papers, 99.70% coverage)** without modifying `data/survey.db`.
+  - Verified `v1` vs. `v_latest` on all revised historical Lean papers, uncovering **3 retroactive post-hoc autoformalizations** (`2511.15517`, `2605.09552`, `2605.19531`) totaling 374.6k LoC added 5–7 months after initial posting.
+  - Audited all **3** cloned T1 `engineering_math_proof` repos (`pro` tier) → [`reports/slice_2026_05_phase2_audit.md`](../reports/slice_2026_05_phase2_audit.md) (total audited cohort: **20 repos**).
+  - Built [`src/report_longitudinal.py`](../src/report_longitudinal.py) → [`reports/longitudinal_analysis.md`](../reports/longitudinal_analysis.md), generated [`src/pilot/figures/fig_longitudinal_curve.pdf`](../src/pilot/figures/fig_longitudinal_curve.pdf), and compiled Pilot Paper v0.4 ([`src/pilot/main.tex`](../src/pilot/main.tex) → [`src/pilot/main.pdf`](../src/pilot/main.pdf)).
+
 ---
 
-## 2. Pilot v2 Headline Results
+## 2. Headline Results (Longitudinal T0 / T1 / T2 & Pilot v0.4)
 
-| Finding | Pilot v2 Result (8 Categories) |
+| Finding | Longitudinal / Pilot v0.4 Result (8 Categories) |
 | :--- | :--- |
-| **Corpus screened** | **4,104** unique papers (**4,097** full-text screened = **99.83%**; **4,060** non-TCS primary) |
-| **Stage-2 recall calibration** | **0 / 200** GitHub-linked negatives (333 repos checked; **1.49%** 95% Clopper–Pearson upper bound); **0 / 100** non-GitHub broad metadata hits |
-| **Confirmed Lean-contributing papers** | **39** (**0.95%** overall; **36 / 4,060 = 0.89%** non-TCS primary) |
-| **Engineering Math Proof slice (Bhaskar's lens)** | **28 / 39 (71.8%)** — led by **`math.OC` (19/724 = 2.62%, 17 eng-math)**, `cs.IT` (6/338 = 1.78%), `cs.DC` (6/335 = 1.79%), `cs.CR` (7/629 = 1.11%), `eess.SY` (3/738 = 0.41%) |
-| **Zero-adoption engineering categories** | **`eess.SP` (0/462)**, **`cs.NI` (0/196)**, **`cs.RO` (0/1,159)** — 0 / 1,817 papers |
-| **Authoring Paradigms (`proof-methods.md`)** | `P1` Post-Hoc: **28 (71.8%)** · `P0` Opaque: **8 (20.5%)** · `P4` Spec-Lock (`comparator`): **3 (7.7%)** · `P2` Lean-First: **0** · `P3` Blueprint Sync: **0** |
-| **Explicit AI/Agent Disclosure** | **30 / 39 (76.9%)** explicitly yes · 9 unclear · **0 explicitly human-only** |
-| **Static Hygiene & Scale** | **4.17M LoC** across 24 unique scanned primary repos; `Tier3_Gold`: **19**, `Tier2_Silver`: **7**, `Tier1_Bronze`: **13**; `Mode12` Opacity: **17**, `Mode10` Bloat: **12**, `Mode2` Scope: **10**, `Mode6` Axiom/Sorry: **3** |
-| **Phase 2 Layer-A Audit (`n = 17` `engineering_math_proof` repos)** | **16/16 independent author-owned repos** have **0** moderate/severe Mode #1 drift & **0** undisclosed Mode #3 smuggling (6 `high_faithful`, 8 `mostly_faithful_with_disclosed_gaps`, 2 `partial`); **sole `material_undisclosed_drift_or_risk` hit** is bulk automated pipeline **`2611.26272` (*Paper2Lean* / `OptPaper-20`)**! Non-vacuity witnesses: **10 / 17 (58.8%)**. |
+| **Total longitudinal corpus** | **9,837** unique preprints (**9,806** full-text screened = **99.68%**): T0 `2,435` (99.43%), T1 `3,298` (99.70%), T2 `4,104` (99.83%) |
+| **Lean 4 adoption curve (`v1` contemp.)** | **0 / 2,435 (0.00%, 95% UB 0.12%)** → **5 / 3,298 (0.15%)** → **39 / 4,104 (0.95%)** — **6.3×** jump in 6 months (non-overlapping 95% CIs) |
+| **Lean 4 adoption (`v_latest`)** | **1 (0.04%)** → **7 (0.21%)** → **39 (0.95%)** (**23.1×** YoY; **4.5×** in 6 mo), capturing 3 retroactive `v2` formalizations (`2511.15517`, `2605.09552`, `2605.19531`) |
+| **Flat Beyond-Lean FV control (Stage 2)** | **1.52% (37)** → **1.33% (44)** → **1.17% (48)** — Lean 4 candidates (`3 → 19 → 55`) overtook all other FV tools combined in Nov 2026 |
+| **Scale, AI & Tier shift (T1→T2 `v1`)** | Median owned LoC **749 → 23,932 (32.0×)**; explicit AI disclosure **40% → 76.9%** (sole `explicitly_no` paper is May 2026 `2605.14610`); `Tier3_Gold` **0% → 48.7%** |
+| **Stage-2 recall calibration (T2)** | **0 / 200** GitHub-linked negatives (333 repos checked; **1.49%** 95% Clopper–Pearson upper bound); **0 / 100** non-GitHub broad metadata hits |
+| **T2 Engineering Math Proof slice** | **28 / 39 (71.8%)** — led by **`math.OC` (19/724 = 2.62%, 17 eng-math)**, `cs.DC` (1.79%), `cs.IT` (1.78%), `cs.CR` (1.11%), `eess.SY` (0.41%); `cs.NI` (0/559 across 3 slices) and `cs.RO` (0/2,431 across 3 slices) stay 0.00% |
+| **Phase 2 Layer-A Audit (`n = 20` total)** | May 2026 `v1` repos (`2605.14610`, `2605.02856`) scored `partial` with `moderate` Mode #3 abstractions; **17/17 Oct–Nov 2026 author-owned repos** (16 T2 + Oct 2026 `v2` `2605.09552`) have **0** moderate/severe M1 drift or M3 smuggling; **sole `material_undisclosed_drift_or_risk`** is bulk pipeline **`2611.26272` (*Paper2Lean*)**. |
 
 ---
 
 ## 3. Prioritized Remaining Next Steps
 
-1. **Longitudinal Baseline Slices (Nov 2025 & May 2026):**
-   - Run the exact same 8-category OAI-PMH pipeline on 3-week slices from **Nov 2025** and **May 2026** to quantify the 2026 AI-Lean adoption inflection curve (into separate DBs or date-sliced queries).
-2. **Sandboxed Lean Kernel Verification in Docker (`lake build` + `#print axioms`):**
-   - Execute isolated clean-room builds on compact engineering repos (`<5k` LoC: `Lean-SysID`, `bic-public`, `CoprimeFrobenius`, `discrete-modified-gradient-lean`, `trustbound`, `ExactShortestPathsAndFlowsOnPlanarGraphs`, `zenodo/24127514`) to measure out-of-the-box reproducibility.
-3. **Scoped Machine Learning Theory Arm (`cs.LG` / `stat.ML`):**
+1. **Sandboxed Lean Kernel Verification in Docker (`lake build` + `#print axioms`):**
+   - Execute isolated clean-room builds on compact engineering repos (`<5k` LoC: `Lean-SysID`, `bic-public`, `CoprimeFrobenius`, `discrete-modified-gradient-lean`, `trustbound`, `ExactShortestPathsAndFlowsOnPlanarGraphs`, `zenodo/24127514`, `Ku-PATP-code-supplement`, `qanary-k-stage-composition`) to measure out-of-the-box reproducibility.
+2. **Scoped Machine Learning Theory Arm (`cs.LG` / `stat.ML`):**
    - Run a 1-week window or stratified 1,000-paper sample of `cs.LG`/`stat.ML` to benchmark ML theory against `math.OC` and `cs.IT`.
-4. **Standalone Periodic Runner (`agy -p`):**
-   - Wrap the classifier prompt + JSON schema in `src/classify_cli.py` for unattended quarterly snapshots.
+3. **Standalone Periodic Runner (`agy -p`):**
+   - Wrap the classifier prompt + JSON schema in `src/classify_cli.py` for unattended quarterly longitudinal snapshots.
 
 ---
 

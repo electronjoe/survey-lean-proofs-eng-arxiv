@@ -577,14 +577,172 @@ def make_phase2_heatmap(conn: sqlite3.Connection) -> None:
     _save(fig, "fig_phase2_heatmap")
 
 
+def make_longitudinal_curve(summary_path: Path = Path("data/longitudinal_summary.json")) -> None:
+    if not summary_path.exists():
+        print(f"Skipping fig_longitudinal_curve ({summary_path} not found)")
+        return
+    data = json.loads(summary_path.read_text())
+    slices = data["slices"]
+    t0, t1, t2 = slices[0], slices[1], slices[2]
+
+    x = np.array([0, 1, 2], dtype=float)
+    x_labels = [
+        f"T0: Nov 1–19, 2025\n(n = {t0['total_papers']:,})",
+        f"T1: May 1–19, 2026\n(n = {t1['total_papers']:,})",
+        f"T2: Nov 1–19, 2026\n(n = {t2['total_papers']:,})",
+    ]
+
+    v1_pct = np.array([s["v1"]["pct"] for s in slices])
+    vl_pct = np.array([s["v_latest"]["pct"] for s in slices])
+    cand_pct = np.array([s["stage2_lean_cand_pct"] for s in slices])
+    bey_pct = np.array([s["stage2_beyond_any_pct"] for s in slices])
+
+    # 95% error bars for v1 (Clopper-Pearson upper bound at k=0; Wilson CI otherwise)
+    yerr_lo = []
+    yerr_hi = []
+    for s in slices:
+        p = s["v1"]["pct"]
+        if s["v1"]["count"] == 0:
+            lo = 0.0
+            hi = 100.0 * (1.0 - 0.05 ** (1.0 / s["total_papers"]))
+        else:
+            lo, hi = s["v1"]["wilson_95"]
+        yerr_lo.append(max(0.0, p - lo))
+        yerr_hi.append(max(0.0, hi - p))
+
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(11.6, 4.45), gridspec_kw={"width_ratios": [1.05, 1.12]})
+
+    # --- Panel A: Aggregate Inflection vs Beyond-Lean Control ---
+    ax1.plot(
+        x, bey_pct,
+        color="#64748B", linestyle="-.", marker="D", markersize=6.2, linewidth=1.8,
+        label="Stage-2 Beyond-Lean FV control (all other tools)", zorder=3,
+    )
+    ax1.plot(
+        x, cand_pct,
+        color="#7C3AED", linestyle=":", marker="^", markersize=6.5, linewidth=1.9,
+        label="Stage-2 Lean 4 candidates (full-text)", zorder=4,
+    )
+    ax1.plot(
+        x, vl_pct,
+        color="#0284C7", linestyle="--", marker="s", markersize=5.8, linewidth=1.6,
+        label="Confirmed Lean (incl. retroactive v2 revisions)", zorder=4,
+    )
+    ax1.errorbar(
+        x, v1_pct, yerr=[yerr_lo, yerr_hi],
+        color="#1D4ED8", linestyle="-", marker="o", markersize=7.2, linewidth=2.6,
+        capsize=4, capthick=1.3, elinewidth=1.3,
+        label="Confirmed Lean (contemporaneous v1, 95% CI)", zorder=5,
+    )
+
+    # Direct annotations with carefully separated vertical offsets (zero overlap)
+    # Beyond-Lean control
+    ax1.text(0.0, bey_pct[0] - 0.10, f"{bey_pct[0]:.2f}% (n={t0['stage2_beyond_any']})", ha="left", va="top", fontsize=7.6, color="#475569")
+    ax1.text(1.0, bey_pct[1] + 0.07, f"{bey_pct[1]:.2f}% (n={t1['stage2_beyond_any']})", ha="center", va="bottom", fontsize=7.6, color="#475569")
+    ax1.text(2.05, bey_pct[2] - 0.05, f"{bey_pct[2]:.2f}%\n(n={t2['stage2_beyond_any']})", ha="left", va="center", fontsize=7.6, color="#475569")
+
+    # Stage-2 Lean candidates
+    ax1.text(-0.02, cand_pct[0] + 0.14, f"{cand_pct[0]:.2f}% (n={t0['stage2_lean_candidates']})", ha="left", va="bottom", fontsize=7.5, color="#6D28D9")
+    ax1.text(0.95, cand_pct[1] + 0.06, f"{cand_pct[1]:.2f}% (n={t1['stage2_lean_candidates']})", ha="right", va="bottom", fontsize=7.6, color="#6D28D9")
+    ax1.text(2.05, cand_pct[2] + 0.08, f"{cand_pct[2]:.2f}%\n(n={t2['stage2_lean_candidates']})", ha="left", va="center", fontsize=7.6, fontweight="bold", color="#6D28D9")
+
+    # Confirmed Lean v1
+    ax1.text(0.0, -0.08, "0.00% (0 v1)\n[0.04% latest]", ha="center", va="top", fontsize=7.4, fontweight="bold", color="#1E3A8A")
+    ax1.text(1.0, -0.08, "0.15% (5 v1)\n[0.21% latest]", ha="center", va="top", fontsize=7.4, fontweight="bold", color="#1D4ED8")
+    ax1.text(2.05, v1_pct[2] - 0.04, "0.95%\n(n=39)", ha="left", va="center", fontsize=8.0, fontweight="bold", color="#1D4ED8")
+
+    # Inflection callout badge (placed in open upper-middle band, arrow pointing cleanly to steep T1->T2 slope)
+    ax1.annotate(
+        "6.3× jump in 6 mo\n(median LoC: 749 → 23.9k;\nAI discl.: 40% → 76.9%)",
+        xy=(1.58, 0.59),
+        xytext=(0.56, 1.00),
+        ha="center",
+        va="center",
+        fontsize=7.3,
+        fontweight="bold",
+        color="#1E3A8A",
+        bbox=dict(boxstyle="round,pad=0.32", facecolor="#EFF6FF", edgecolor="#93C5FD", lw=1.0),
+        arrowprops=dict(arrowstyle="->", color="#2563EB", lw=1.25, connectionstyle="arc3,rad=-0.16"),
+    )
+
+    ax1.set_xticks(x)
+    ax1.set_xticklabels(x_labels, fontsize=8.1)
+    ax1.set_xlim(-0.28, 2.48)
+    ax1.set_ylim(-0.30, 2.26)
+    ax1.set_ylabel("Share of 8-Category Corpus (%)")
+    ax1.set_title("(a) Lean 4 Inflection vs. Flat Beyond-Lean FV Control", pad=9)
+    ax1.grid(axis="y", linestyle=":", alpha=0.6)
+    ax1.spines["top"].set_visible(False)
+    ax1.spines["right"].set_visible(False)
+    ax1.legend(loc="upper left", frameon=True, facecolor="white", edgecolor="#D1D5DB", fontsize=7.1)
+
+    # --- Panel B: Per-Category Contemporaneous v1 Trajectories ---
+    cat_styles = [
+        ("math.OC", "#1D4ED8", "o", "-", 2.4, "math.OC (2.62%)"),
+        ("cs.DC",   "#0F766E", "s", "-", 2.0, "cs.DC (1.79%)"),
+        ("cs.IT",   "#D97706", "^", "-", 2.0, "cs.IT (1.78%)"),
+        ("cs.CR",   "#DC2626", "D", "-", 1.9, "cs.CR (1.11%)"),
+        ("eess.SY", "#7C3AED", "v", "--", 1.7, "eess.SY (0.41%)"),
+        ("eess.SP", "#6B7280", "P", ":", 1.5, "eess.SP (0.24%→0%)"),
+    ]
+    # Explicit right-hand y positions to prevent any collision between cs.DC (1.79%) and cs.IT (1.78%)
+    label_y_override = {
+        "math.OC": 2.62,
+        "cs.DC":   1.91,
+        "cs.IT":   1.65,
+        "cs.CR":   1.11,
+        "eess.SY": 0.45,
+        "eess.SP": 0.14,
+    }
+
+    for cat, col, mk, ls, lw, lbl in cat_styles:
+        vals = [100.0 * s["v1"]["cat_lean"].get(cat, 0) / max(s["cat_total"].get(cat, 1), 1) for s in slices]
+        ax2.plot(x, vals, color=col, marker=mk, linestyle=ls, linewidth=lw, markersize=6.0, zorder=4)
+        ly = label_y_override[cat]
+        ax2.text(2.06, ly, lbl, ha="left", va="center", fontsize=7.8, fontweight="bold" if vals[2] > 0 else "normal", color=col)
+        if abs(ly - vals[2]) > 0.05:
+            ax2.plot([2.01, 2.05], [vals[2], ly], color=col, lw=0.8, alpha=0.7)
+
+    # Highlight cs.NI & cs.RO flat zero line
+    ax2.plot(x, [0.0, 0.0, 0.0], color="#9CA3AF", linestyle="-", linewidth=1.6, zorder=2)
+    ax2.text(2.06, -0.05, "cs.NI & cs.RO (0.00%)", ha="left", va="center", fontsize=7.6, color="#6B7280")
+
+    # Small note for T1 early-adopter peak
+    ax2.annotate(
+        "Earliest v1 adopters\nin May 2026: cs.CR (0.44%),\ncs.DC (0.32%), eess.SP (0.24%)",
+        xy=(1.0, 0.44),
+        xytext=(0.72, 1.38),
+        ha="center",
+        va="center",
+        fontsize=7.2,
+        color="#374151",
+        bbox=dict(boxstyle="round,pad=0.28", facecolor="#F9FAFB", edgecolor="#D1D5DB", lw=0.9),
+        arrowprops=dict(arrowstyle="->", color="#6B7280", lw=1.0, connectionstyle="arc3,rad=-0.12"),
+    )
+
+    ax2.set_xticks(x)
+    ax2.set_xticklabels(x_labels, fontsize=8.1)
+    ax2.set_xlim(-0.18, 2.78)
+    ax2.set_ylim(-0.20, 2.95)
+    ax2.set_ylabel("Confirmed Lean v1 Adoption (%)")
+    ax2.set_title("(b) Disciplinary Divergence Across Eight Categories (v1)", pad=9)
+    ax2.grid(axis="y", linestyle=":", alpha=0.6)
+    ax2.spines["top"].set_visible(False)
+    ax2.spines["right"].set_visible(False)
+
+    plt.tight_layout(w_pad=1.8)
+    _save(fig, "fig_longitudinal_curve")
+
+
 def main() -> None:
     conn = connect(DEFAULT_DB_PATH)
     make_pipeline_funnel(conn)
     make_category_bifurcation(conn)
     make_paradigms_and_loc(conn)
     make_phase2_heatmap(conn)
+    make_longitudinal_curve()
     conn.close()
-    print("All 4 figures generated successfully.")
+    print("All 5 figures generated successfully.")
 
 
 if __name__ == "__main__":
