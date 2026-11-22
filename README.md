@@ -12,7 +12,7 @@ Binary PDFs are **not committed to Git**. Every push to `main` regenerates all v
 
 ## Key Artifacts
 
-- **Working Empirical Paper (LaTeX v0.4):** [`papers/arxiv-empirical/main.tex`](papers/arxiv-empirical/main.tex) ([`papers/shared/references.bib`](papers/shared/references.bib), [`papers/arxiv-empirical/Makefile`](papers/arxiv-empirical/Makefile))
+- **Working Empirical Paper (LaTeX v0.5):** [`papers/arxiv-empirical/main.tex`](papers/arxiv-empirical/main.tex) ([`papers/shared/references.bib`](papers/shared/references.bib), [`papers/arxiv-empirical/Makefile`](papers/arxiv-empirical/Makefile))
 - **Pre-Submission Audit Plan & Ground-Truth Ledger:** [`docs/audit_plan.md`](docs/audit_plan.md)
 - **Progress Log & Next Steps:** [`docs/PROGRESS_AND_NEXT_STEPS.md`](docs/PROGRESS_AND_NEXT_STEPS.md)
 - **Domain Scope Notes (Bhaskar Krishnamachari & Scott Moeller):** [`docs/research_notes_and_todo.md`](docs/research_notes_and_todo.md)
@@ -23,6 +23,7 @@ Binary PDFs are **not committed to Git**. Every push to `main` regenerates all v
   - [`artifacts/longitudinal_summary.json`](artifacts/longitudinal_summary.json) — Aggregate cross-slice longitudinal metrics (`9,837` preprints, `0 → 5 → 39` contemporaneous `v1`, `1 → 7 → 39` `v_latest`)
   - [`artifacts/slices/2026-11/figure_inputs.json`](artifacts/slices/2026-11/figure_inputs.json), [`classifications.json`](artifacts/slices/2026-11/classifications.json), [`layer_a_audits.json`](artifacts/slices/2026-11/layer_a_audits.json), [`recall_calibration.json`](artifacts/slices/2026-11/recall_calibration.json)
   - [`artifacts/slices/2026-05/classifications.json`](artifacts/slices/2026-05/classifications.json), [`layer_a_audits.json`](artifacts/slices/2026-05/layer_a_audits.json) & [`artifacts/slices/2025-11/classifications.json`](artifacts/slices/2025-11/classifications.json)
+  - [`artifacts/sandbox_builds/summary.json`](artifacts/sandbox_builds/summary.json), [`results_2026-11.json`](artifacts/sandbox_builds/results_2026-11.json), & [`results_2026-05.json`](artifacts/sandbox_builds/results_2026-05.json) — Isolated `--network=none` Docker `lake build` + programmatic `#print axioms` (`Lean.collectAxioms`) verification logs across all 14 standalone compact (`<15k` LoC) repositories (`11/14` OOTB pass, `3,190` OOTB / `3,254` total theorems audited, `7/7` OOTB `Tier3_Gold` axiom-clean, `0/14` `Lean.ofReduceBool`)
 - **Rendered Survey Reports (`reports/`):**
   - [`reports/longitudinal_analysis.md`](reports/longitudinal_analysis.md) — **12-month longitudinal inflection analysis** across **9,837** preprints (T0: Nov 1–19, 2025; T1: May 1–19, 2026; T2: Nov 1–19, 2026; `v1` vs `v_latest` retroactive autoformalization + flat Beyond-Lean FV control)
   - [`reports/slices/2026-11/phase2_layer_a_audit.md`](reports/slices/2026-11/phase2_layer_a_audit.md) & [`reports/slices/2026-05/phase2_layer_a_audit.md`](reports/slices/2026-05/phase2_layer_a_audit.md) — Deep Layer-A semantic fidelity audits (Modes #1–#4) of **20** locally inspected `engineering_math_proof` Lean 4 repos (17 in T2 + 3 in T1)
@@ -99,11 +100,15 @@ uv run pytest
 uv run python scripts/audit_bib.py
 uv run python scripts/check_paper_numbers.py
 
-# Regenerate all 5 vector PDF figures directly from git-tracked artifacts/ (no SQLite DB needed)
+# Regenerate all 6 vector PDF figures directly from git-tracked artifacts/ (no SQLite DB needed)
 uv run python -m src.generate_figures
 
 # Build the empirical paper PDF locally (auto-generates figures if missing)
 make -C papers/arxiv-empirical
+
+# Re-run isolated Docker lake build + #print axioms verification on compact repos (<15k LoC)
+docker build -t lean-survey-sandbox:v1 sandbox/
+uv run python sandbox/run_sandbox_audit.py
 
 # Export a clean, verified double-blind review archive to dist/blind_artifact.zip
 uv run python scripts/export_blind_artifact.py

@@ -1,0 +1,782 @@
+{
+  "schema_version": "1.0",
+  "slice_id": "2026-05",
+  "runner_image": "lean-survey-sandbox:v1",
+  "generated_at": "2026-11-22T21:12:06Z",
+  "security_invariants": {
+    "network_mode": "none",
+    "user": "65534:65534",
+    "cap_drop": "ALL",
+    "no_new_privileges": true,
+    "readonly_source_mount": true,
+    "cpus": 4,
+    "memory": "10g",
+    "pids_limit": 512
+  },
+  "records": [
+    {
+      "slice_id": "2026-05",
+      "arxiv_id": "2605.14610",
+      "repo": "SZabolotnii/Ku-PATP-code-supplement",
+      "commit_sha": "69788a926f22aa1e493753200de85d302f3d9d11",
+      "zenodo_record_id": null,
+      "lean_tree_sha256": "7f21276c2b81f31669ccea2d66bdc017bb68ab5336a8d438abd0acdd753e56de",
+      "static_verification_tier": "Tier2_Silver",
+      "paper_domain_role": "engineering_math_proof",
+      "owned_loc": 473,
+      "lean_toolchain": "leanprover/lean4:v4.26.0",
+      "project_subdir": ".",
+      "build_mode": "lake",
+      "executed_at": "2026-11-22T20:59:04Z",
+      "network_mode": "none",
+      "security_flags": [
+        "--network=none",
+        "--user=65534:65534",
+        "--cap-drop=ALL",
+        "--security-opt=no-new-privileges:true",
+        "--cpus=4",
+        "--memory=10g",
+        "--pids-limit=512"
+      ],
+      "timeout_sec": 1800,
+      "notes": "",
+      "exit_code": 0,
+      "build_status": "pass",
+      "wall_time_sec": 28.39,
+      "axiom_check_wall_time_sec": 19.18,
+      "target_modules_count": 7,
+      "total_theorems_checked": 25,
+      "standard_axioms_used": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "nonstandard_axioms_detected": [],
+      "sorry_ax_detected": false,
+      "of_reduce_bool_detected": false,
+      "trust_compiler_detected": false,
+      "axioms_by_theorem": {
+        "PATP.entropyCoefficient_gaussian": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PATP.entropyCoefficient_laplace": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PATP.entropyCoefficient_pos": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PATP.entropyCoefficient_scale_invariant": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PATP.entropyCoefficient_uniform": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PATP.entropyCoefficient_via_error": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PATP.exp_half_log": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PATP.exponentCollisionFactor_at_half": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PATP.exponentCollisionFactor_at_second_root": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PATP.g2Formula_eq_from_bFb": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PATP.inv_c_mul_div_eq": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PATP.patpBasis_at_half": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PATP.patpBasis_at_one": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PATP.patpBasis_at_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PATP.patpBasis_at_zero_input": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PATP.patpBasis_collinear_with_linear_at_half": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PATP.patpBasis_odd": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PATP.patpBasis_pair_eq_at_half": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PATP.patpBasis_pair_sub_eq_zero_at_half": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PATP.piAlpha_at_half": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PATP.piAlpha_at_one": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PATP.piAlpha_at_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PATP.piAlpha_sub_at_half_eq_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PATP.piAlpha_sub_eq_factor": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PATP.sign_mul_abs_eq_self": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      "error_summary": ""
+    },
+    {
+      "slice_id": "2026-05",
+      "arxiv_id": "2605.02856",
+      "repo": "rayiskander2406/qanary-k-stage-composition-arXiv-2605.02856",
+      "commit_sha": "915da15f64a1539988ba816be027cb4421a53c96",
+      "zenodo_record_id": null,
+      "lean_tree_sha256": "0c6af7e24ab18b4612bfd890ef8d2122ad0b7ff22ea8f1be4ef24c7f3b7e7678",
+      "static_verification_tier": "Tier2_Silver",
+      "paper_domain_role": "engineering_math_proof",
+      "owned_loc": 749,
+      "lean_toolchain": "leanprover/lean4:v4.30.0-rc1",
+      "project_subdir": ".",
+      "build_mode": "lake",
+      "executed_at": "2026-11-22T21:11:43Z",
+      "network_mode": "none",
+      "security_flags": [
+        "--network=none",
+        "--user=65534:65534",
+        "--cap-drop=ALL",
+        "--security-opt=no-new-privileges:true",
+        "--cpus=4",
+        "--memory=10g",
+        "--pids-limit=512"
+      ],
+      "timeout_sec": 1800,
+      "notes": "lakefile.lean hardcodes 4 relative sibling paths (../qanary-*) absent from this repository.",
+      "unbundled_path_deps": [
+        "../qanary-paper6",
+        "../qanary-paper5",
+        "../qanary-paper4",
+        "../qanary-universal"
+      ],
+      "exit_code": 1,
+      "build_status": "fail_missing_local_dep",
+      "wall_time_sec": 0.86,
+      "axiom_check_wall_time_sec": null,
+      "target_modules_count": 0,
+      "total_theorems_checked": 0,
+      "standard_axioms_used": [],
+      "nonstandard_axioms_detected": [],
+      "sorry_ax_detected": false,
+      "of_reduce_bool_detected": false,
+      "trust_compiler_detected": false,
+      "axioms_by_theorem": {},
+      "error_summary": "error: qanaryPaper6: package directory not found: /work/repo/../qanary-paper6"
+    },
+    {
+      "slice_id": "2026-05",
+      "arxiv_id": "2605.16407",
+      "repo": "gkoomullil/proof-carrying-certificates",
+      "commit_sha": "8e5b718c4fc1a53678f1da9a94499df3b311d065",
+      "zenodo_record_id": null,
+      "lean_tree_sha256": "e814d53c0e2384324124c27ffb6c09785242f04a169ac2e739d308d410543cb6",
+      "static_verification_tier": "Tier1_Bronze",
+      "paper_domain_role": "software_or_system_fv",
+      "owned_loc": 2381,
+      "lean_toolchain": "leanprover/lean4:v4.30.0-rc2",
+      "project_subdir": "lean_artifact",
+      "build_mode": "lake",
+      "executed_at": "2026-11-22T21:06:24Z",
+      "network_mode": "none",
+      "security_flags": [
+        "--network=none",
+        "--user=65534:65534",
+        "--cap-drop=ALL",
+        "--security-opt=no-new-privileges:true",
+        "--cpus=4",
+        "--memory=10g",
+        "--pids-limit=512"
+      ],
+      "timeout_sec": 1800,
+      "notes": "",
+      "exit_code": 0,
+      "build_status": "pass",
+      "wall_time_sec": 24.5,
+      "axiom_check_wall_time_sec": 5.23,
+      "target_modules_count": 25,
+      "total_theorems_checked": 139,
+      "standard_axioms_used": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "nonstandard_axioms_detected": [
+        "VerifiedEmbedding.ParaphraseOracle",
+        "VerifiedEmbedding.cauchy_schwarz_sq",
+        "VerifiedEmbedding.innerProd_sub",
+        "VerifiedEmbedding.Grounding.DecompositionOracle",
+        "VerifiedEmbedding.Grounding.SignedSupportOracle",
+        "VerifiedEmbedding.Concentration.HoeffdingInequality",
+        "VerifiedEmbedding.Concentration.IIDSamples",
+        "VerifiedEmbedding.CoT.StepConfidenceOracle",
+        "VerifiedEmbedding.ProofOfSampling.DecodeAlgorithmDeterministic",
+        "VerifiedEmbedding.ProofOfSampling.Hash",
+        "VerifiedEmbedding.ProofOfSampling.HashCollisionResistant"
+      ],
+      "sorry_ax_detected": false,
+      "of_reduce_bool_detected": false,
+      "trust_compiler_detected": false,
+      "axioms_by_theorem": {
+        "VerifiedEmbedding.Action.ActionCertificate.p_execution": [],
+        "VerifiedEmbedding.Action.ActionCertificate.p_post_holds": [],
+        "VerifiedEmbedding.Action.ActionCertificate.p_pre_holds": [],
+        "VerifiedEmbedding.Action.Example.CounterAction.ofNat_ctorIdx": [],
+        "VerifiedEmbedding.Action.TrajectoryCertificate.p_chain": [],
+        "VerifiedEmbedding.Action.step_executor_matches": [],
+        "VerifiedEmbedding.Action.step_post_holds": [],
+        "VerifiedEmbedding.Action.trajectory_all_steps_safe": [],
+        "VerifiedEmbedding.Additional.BudgetCompositionCertificate.p_costs_nonneg": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "VerifiedEmbedding.Additional.BudgetCompositionCertificate.p_cumul_correct": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "VerifiedEmbedding.Additional.BudgetCompositionCertificate.p_under_budget": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "VerifiedEmbedding.Additional.CalibratedAbstentionCertificate.p_aligned_lengths": [],
+        "VerifiedEmbedding.Additional.CalibratedAbstentionCertificate.p_at_least_one": [],
+        "VerifiedEmbedding.Additional.CalibrationCertificate.p_calibrated": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "VerifiedEmbedding.Additional.CalibrationCertificate.p_eps_nonneg": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "VerifiedEmbedding.Additional.CounterfactualCertificate.p_bounded_change": [
+          "propext",
+          "Quot.sound"
+        ],
+        "VerifiedEmbedding.Additional.CounterfactualCertificate.p_delta_nonneg": [
+          "propext",
+          "Quot.sound"
+        ],
+        "VerifiedEmbedding.Additional.DiffCertificate.p_indices_valid": [],
+        "VerifiedEmbedding.Additional.DiffCertificate.p_lengths_match": [],
+        "VerifiedEmbedding.Additional.MetaCertificate.p_approved_signer": [],
+        "VerifiedEmbedding.Additional.MetaCertificate.p_kernel_nonempty": [],
+        "VerifiedEmbedding.Additional.MultiHopReasoningCertificate.p_conf_correct": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "VerifiedEmbedding.Additional.NegativeGuaranteeCertificate.p_absent": [],
+        "VerifiedEmbedding.Additional.ProvenanceCertificate.p_corpus_nonempty": [],
+        "VerifiedEmbedding.Additional.ProvenanceCertificate.p_model_nonempty": [],
+        "VerifiedEmbedding.Additional.ProvenanceCertificate.p_prompt_nonempty": [],
+        "VerifiedEmbedding.Additional.ReasoningNode.brecOn.eq": [],
+        "VerifiedEmbedding.Additional.ReasoningNode.brecOn_1.eq": [],
+        "VerifiedEmbedding.Additional.TemporalValidityCertificate.p_within_window": [],
+        "VerifiedEmbedding.Additional.budget_respected": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "VerifiedEmbedding.Additional.intervention_bounded_change": [
+          "propext",
+          "Quot.sound"
+        ],
+        "VerifiedEmbedding.Additional.kernel_signer_approved": [],
+        "VerifiedEmbedding.Additional.output_avoids_forbidden": [],
+        "VerifiedEmbedding.Additional.temporal_still_valid": [],
+        "VerifiedEmbedding.CoT.CoTCertificate.h_confidences": [
+          "propext",
+          "Quot.sound",
+          "VerifiedEmbedding.CoT.StepConfidenceOracle"
+        ],
+        "VerifiedEmbedding.CoT.CoTCertificate.p_answer_match": [
+          "propext",
+          "Quot.sound",
+          "VerifiedEmbedding.CoT.StepConfidenceOracle"
+        ],
+        "VerifiedEmbedding.CoT.CoTCertificate.p_bounded": [
+          "propext",
+          "Quot.sound",
+          "VerifiedEmbedding.CoT.StepConfidenceOracle"
+        ],
+        "VerifiedEmbedding.CoT.CoTCertificate.p_conf_nonneg": [
+          "propext",
+          "Quot.sound",
+          "VerifiedEmbedding.CoT.StepConfidenceOracle"
+        ],
+        "VerifiedEmbedding.CoT.CoTCertificate.p_conf_weakest_link": [
+          "propext",
+          "Quot.sound",
+          "VerifiedEmbedding.CoT.StepConfidenceOracle"
+        ],
+        "VerifiedEmbedding.CoT.CoTCertificate.p_transitive_from_steps": [
+          "propext",
+          "Quot.sound",
+          "VerifiedEmbedding.CoT.StepConfidenceOracle"
+        ],
+        "VerifiedEmbedding.CoT.certified_answer_from_step": [
+          "propext",
+          "Quot.sound",
+          "VerifiedEmbedding.CoT.StepConfidenceOracle"
+        ],
+        "VerifiedEmbedding.CoT.certified_conf_le_one": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "VerifiedEmbedding.CoT.StepConfidenceOracle"
+        ],
+        "VerifiedEmbedding.CoT.transitive_conf_from_step": [
+          "propext",
+          "Quot.sound",
+          "VerifiedEmbedding.CoT.StepConfidenceOracle"
+        ],
+        "VerifiedEmbedding.CoT.weakest_link_bound": [
+          "propext",
+          "Quot.sound",
+          "VerifiedEmbedding.CoT.StepConfidenceOracle"
+        ],
+        "VerifiedEmbedding.Composition.pipeline_conditioning_number": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "VerifiedEmbedding.Concentration.HoeffdingCertificate.h_hoeffding_valid": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "VerifiedEmbedding.Concentration.HoeffdingInequality",
+          "VerifiedEmbedding.Concentration.IIDSamples"
+        ],
+        "VerifiedEmbedding.Concentration.HoeffdingCertificate.h_iid": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "VerifiedEmbedding.Concentration.HoeffdingInequality",
+          "VerifiedEmbedding.Concentration.IIDSamples"
+        ],
+        "VerifiedEmbedding.Concentration.HoeffdingCertificate.p_bound_le_one": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "VerifiedEmbedding.Concentration.HoeffdingInequality",
+          "VerifiedEmbedding.Concentration.IIDSamples"
+        ],
+        "VerifiedEmbedding.Concentration.HoeffdingCertificate.p_bound_nonneg": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "VerifiedEmbedding.Concentration.HoeffdingInequality",
+          "VerifiedEmbedding.Concentration.IIDSamples"
+        ],
+        "VerifiedEmbedding.Concentration.HoeffdingCertificate.p_eps_le_one": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "VerifiedEmbedding.Concentration.HoeffdingInequality",
+          "VerifiedEmbedding.Concentration.IIDSamples"
+        ],
+        "VerifiedEmbedding.Concentration.HoeffdingCertificate.p_eps_pos": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "VerifiedEmbedding.Concentration.HoeffdingInequality",
+          "VerifiedEmbedding.Concentration.IIDSamples"
+        ],
+        "VerifiedEmbedding.Concentration.HoeffdingCertificate.p_k_correct": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "VerifiedEmbedding.Concentration.HoeffdingInequality",
+          "VerifiedEmbedding.Concentration.IIDSamples"
+        ],
+        "VerifiedEmbedding.Concentration.HoeffdingCertificate.p_phat_correct": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "VerifiedEmbedding.Concentration.HoeffdingInequality",
+          "VerifiedEmbedding.Concentration.IIDSamples"
+        ],
+        "VerifiedEmbedding.Concentration.bound_nonneg_and_in_01": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "VerifiedEmbedding.Concentration.HoeffdingInequality",
+          "VerifiedEmbedding.Concentration.IIDSamples"
+        ],
+        "VerifiedEmbedding.Concentration.empiricalMean_le_one": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "VerifiedEmbedding.Concentration.empiricalMean_nonneg": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "VerifiedEmbedding.Concentration.hoeffding_confidence_interval": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "VerifiedEmbedding.Concentration.HoeffdingInequality",
+          "VerifiedEmbedding.Concentration.IIDSamples"
+        ],
+        "VerifiedEmbedding.Concentration.phat_in_unit_interval": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "VerifiedEmbedding.Concentration.HoeffdingInequality",
+          "VerifiedEmbedding.Concentration.IIDSamples"
+        ],
+        "VerifiedEmbedding.Consistency.ConsistencyCertificate.p_candidate_sound": [],
+        "VerifiedEmbedding.Consistency.ConsistencyCertificate.p_canonical_correct": [],
+        "VerifiedEmbedding.Consistency.ConsistencyCertificate.p_k_eq": [],
+        "VerifiedEmbedding.Consistency.ConsistencyCertificate.p_tiebreak_sound": [],
+        "VerifiedEmbedding.Consistency.Example.Label.ofNat_ctorIdx": [],
+        "VerifiedEmbedding.Consistency.abstain_below_threshold": [],
+        "VerifiedEmbedding.Consistency.canonical_samples_length": [
+          "propext"
+        ],
+        "VerifiedEmbedding.Consistency.threshold_ladder_monotone": [],
+        "VerifiedEmbedding.Consistency.winner_meets_threshold": [],
+        "VerifiedEmbedding.CurryHoward.BalancedParens.p_balanced": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "VerifiedEmbedding.CurryHoward.DistinctList.p_distinct": [],
+        "VerifiedEmbedding.CurryHoward.GroundedQuote.p_quoted": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "VerifiedEmbedding.CurryHoward.SortedList.p_sorted": [],
+        "VerifiedEmbedding.CurryHoward.isDistinct.congr_simp": [
+          "Quot.sound"
+        ],
+        "VerifiedEmbedding.CurryHoward.isSorted.eq_3": [],
+        "VerifiedEmbedding.CurryHoward.sortedList_of_decide": [],
+        "VerifiedEmbedding.EmbeddingSensitivityCertificate.h_paraphrase_valid": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "VerifiedEmbedding.ParaphraseOracle"
+        ],
+        "VerifiedEmbedding.EmbeddingSensitivityCertificate.p_R_inv_nonneg": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "VerifiedEmbedding.ParaphraseOracle"
+        ],
+        "VerifiedEmbedding.EmbeddingSensitivityCertificate.p_R_inv_sound": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "VerifiedEmbedding.ParaphraseOracle"
+        ],
+        "VerifiedEmbedding.EmbeddingSensitivityCertificate.p_R_sig_nonneg": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "VerifiedEmbedding.ParaphraseOracle"
+        ],
+        "VerifiedEmbedding.EmbeddingSensitivityCertificate.p_R_sig_sound": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "VerifiedEmbedding.ParaphraseOracle"
+        ],
+        "VerifiedEmbedding.EmbeddingSensitivityCertificate.p_bounded_inv": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "VerifiedEmbedding.ParaphraseOracle"
+        ],
+        "VerifiedEmbedding.EmbeddingSensitivityCertificate.p_bounded_orig": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "VerifiedEmbedding.ParaphraseOracle"
+        ],
+        "VerifiedEmbedding.EmbeddingSensitivityCertificate.p_bounded_sig": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "VerifiedEmbedding.ParaphraseOracle"
+        ],
+        "VerifiedEmbedding.EmbeddingSensitivityCertificate.p_delta_correct": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "VerifiedEmbedding.ParaphraseOracle"
+        ],
+        "VerifiedEmbedding.EmbeddingSensitivityCertificate.p_inv_length": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "VerifiedEmbedding.ParaphraseOracle"
+        ],
+        "VerifiedEmbedding.EmbeddingSensitivityCertificate.p_sig_length": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "VerifiedEmbedding.ParaphraseOracle"
+        ],
+        "VerifiedEmbedding.Grounding.ConflictAwareGroundingCertificate.h_decomp_faithful": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "VerifiedEmbedding.Grounding.DecompositionOracle",
+          "VerifiedEmbedding.Grounding.SignedSupportOracle"
+        ],
+        "VerifiedEmbedding.Grounding.ConflictAwareGroundingCertificate.h_nli_oracle": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "VerifiedEmbedding.Grounding.DecompositionOracle",
+          "VerifiedEmbedding.Grounding.SignedSupportOracle"
+        ],
+        "VerifiedEmbedding.Grounding.ConflictAwareGroundingCertificate.p_W_contested_correct": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "VerifiedEmbedding.Grounding.DecompositionOracle",
+          "VerifiedEmbedding.Grounding.SignedSupportOracle"
+        ],
+        "VerifiedEmbedding.Grounding.ConflictAwareGroundingCertificate.p_W_contradicted_correct": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "VerifiedEmbedding.Grounding.DecompositionOracle",
+          "VerifiedEmbedding.Grounding.SignedSupportOracle"
+        ],
+        "VerifiedEmbedding.Grounding.ConflictAwareGroundingCertificate.p_W_nonneg": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "VerifiedEmbedding.Grounding.DecompositionOracle",
+          "VerifiedEmbedding.Grounding.SignedSupportOracle"
+        ],
+        "VerifiedEmbedding.Grounding.ConflictAwareGroundingCertificate.p_W_sum_unit": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "VerifiedEmbedding.Grounding.DecompositionOracle",
+          "VerifiedEmbedding.Grounding.SignedSupportOracle"
+        ],
+        "VerifiedEmbedding.Grounding.ConflictAwareGroundingCertificate.p_W_supported_correct": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "VerifiedEmbedding.Grounding.DecompositionOracle",
+          "VerifiedEmbedding.Grounding.SignedSupportOracle"
+        ],
+        "VerifiedEmbedding.Grounding.ConflictAwareGroundingCertificate.p_W_unknown_correct": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "VerifiedEmbedding.Grounding.DecompositionOracle",
+          "VerifiedEmbedding.Grounding.SignedSupportOracle"
+        ],
+        "VerifiedEmbedding.Grounding.ConflictAwareGroundingCertificate.p_claims_valid": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "VerifiedEmbedding.Grounding.DecompositionOracle",
+          "VerifiedEmbedding.Grounding.SignedSupportOracle"
+        ],
+        "VerifiedEmbedding.Grounding.ConflictAwareGroundingCertificate.p_emission_rule": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "VerifiedEmbedding.Grounding.DecompositionOracle",
+          "VerifiedEmbedding.Grounding.SignedSupportOracle"
+        ],
+        "VerifiedEmbedding.Grounding.ConflictAwareGroundingCertificate.p_thresh_ranges": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "VerifiedEmbedding.Grounding.DecompositionOracle",
+          "VerifiedEmbedding.Grounding.SignedSupportOracle"
+        ],
+        "VerifiedEmbedding.Grounding.ConflictAwareGroundingCertificate.p_total_weight_pos": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "VerifiedEmbedding.Grounding.DecompositionOracle",
+          "VerifiedEmbedding.Grounding.SignedSupportOracle"
+        ],
+        "VerifiedEmbedding.Grounding.EpistemicStatus.ofNat_ctorIdx": [],
+        "VerifiedEmbedding.Grounding.Example.classify_claim1": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "VerifiedEmbedding.Grounding.Example.classify_claim2": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "VerifiedEmbedding.Grounding.Example.classify_claim3": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "VerifiedEmbedding.Grounding.abstention_reason": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "VerifiedEmbedding.Grounding.DecompositionOracle",
+          "VerifiedEmbedding.Grounding.SignedSupportOracle"
+        ],
+        "VerifiedEmbedding.Grounding.emit_when_all_supported": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "VerifiedEmbedding.Grounding.DecompositionOracle",
+          "VerifiedEmbedding.Grounding.SignedSupportOracle"
+        ],
+        "VerifiedEmbedding.Grounding.no_silent_contradictions": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "VerifiedEmbedding.Grounding.DecompositionOracle",
+          "VerifiedEmbedding.Grounding.SignedSupportOracle"
+        ],
+        "VerifiedEmbedding.ProofOfSampling.ProofOfSamplingCertificate.h_decode_det": [
+          "VerifiedEmbedding.ProofOfSampling.DecodeAlgorithmDeterministic",
+          "VerifiedEmbedding.ProofOfSampling.Hash"
+        ],
+        "VerifiedEmbedding.ProofOfSampling.ProofOfSamplingCertificate.p_commitment_open": [
+          "VerifiedEmbedding.ProofOfSampling.DecodeAlgorithmDeterministic",
+          "VerifiedEmbedding.ProofOfSampling.Hash"
+        ],
+        "VerifiedEmbedding.ProofOfSampling.ProofOfSamplingCertificate.p_k_match": [
+          "VerifiedEmbedding.ProofOfSampling.DecodeAlgorithmDeterministic",
+          "VerifiedEmbedding.ProofOfSampling.Hash"
+        ],
+        "VerifiedEmbedding.ProofOfSampling.ProofOfSamplingCertificate.p_reproducible": [
+          "VerifiedEmbedding.ProofOfSampling.DecodeAlgorithmDeterministic",
+          "VerifiedEmbedding.ProofOfSampling.Hash"
+        ],
+        "VerifiedEmbedding.ProofOfSampling.samples_reproducible_from_commitment": [
+          "VerifiedEmbedding.ProofOfSampling.DecodeAlgorithmDeterministic",
+          "VerifiedEmbedding.ProofOfSampling.Hash",
+          "VerifiedEmbedding.ProofOfSampling.HashCollisionResistant"
+        ],
+        "VerifiedEmbedding.ProofOfSampling.seed_unique_per_commitment": [
+          "VerifiedEmbedding.ProofOfSampling.DecodeAlgorithmDeterministic",
+          "VerifiedEmbedding.ProofOfSampling.Hash",
+          "VerifiedEmbedding.ProofOfSampling.HashCollisionResistant"
+        ],
+        "VerifiedEmbedding.R_inv_sq_monotone": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "VerifiedEmbedding.l2DistSq_nonneg": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "VerifiedEmbedding.l2NormSq_nonneg": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "VerifiedEmbedding.robust_similarity_sq": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "VerifiedEmbedding.ParaphraseOracle",
+          "VerifiedEmbedding.cauchy_schwarz_sq",
+          "VerifiedEmbedding.innerProd_sub"
+        ],
+        "VerifiedEmbedding.selective_gap_positive_iff": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "VerifiedEmbedding.ParaphraseOracle"
+        ],
+        "VerifiedEmbedding.similarity_diff_sq_bound": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "VerifiedEmbedding.cauchy_schwarz_sq",
+          "VerifiedEmbedding.innerProd_sub"
+        ]
+      },
+      "error_summary": ""
+    }
+  ]
+}

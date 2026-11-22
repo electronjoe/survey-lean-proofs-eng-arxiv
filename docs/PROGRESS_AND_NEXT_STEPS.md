@@ -1,7 +1,7 @@
 # Survey Progress & Next Steps
 
 **Last updated:** 2026-11-22  
-**Status:** **Clean Multi-Variant Repository Layout + Longitudinal Baseline Slices (T0 Nov 2025 & T1 May 2026) + Pilot Paper v0.4 COMPLETE** (**9,837** preprints across 3 matched 19-day 8-category slices; 99.68% full-text coverage; contemporaneous `v1` adoption **0.00% → 0.15% → 0.95%** vs. flat Beyond-Lean control **1.52% → 1.33% → 1.17%**; 3 retroactive `v2` Lean additions identified; 20 total Layer-A audited repos; zero-PDF Git layout with automated CI figure & LaTeX builds).
+**Status:** **Clean Multi-Variant Repository Layout + Longitudinal Baseline Slices (T0 Nov 2025 & T1 May 2026) + Sandboxed Docker Dynamic Kernel Verification ($n = 14$) + Pilot Paper v0.5 COMPLETE** (**9,837** preprints across 3 matched 19-day 8-category slices; 99.68% full-text coverage; contemporaneous `v1` adoption **0.00% → 0.15% → 0.95%** vs. flat Beyond-Lean control **1.52% → 1.33% → 1.17%**; 20 total Layer-A audited repos; **14/14 compact repos dynamically audited in `--network=none` Docker**, `11/14 = 78.6%` OOTB pass, `3,190` OOTB theorems, `7/7` OOTB `Tier3_Gold` axiom-clean, `0/14` `Lean.ofReduceBool`; zero-PDF Git layout with automated CI figure & LaTeX builds).
 
 ---
 
@@ -34,9 +34,14 @@
   - **Pillar 3 (Stage-3 Blind-Spot Closure & Numeric Consistency Gate):** Unpacked & profiled `2611.26140` (28.0k LoC), `2611.16781` (34.6k LoC), and `2611.12585` (60.7k LoC) — all zero `sorry`/custom `axiom`/`native_decide` — and retried `2611.22732` (`gitlab.mpi-sws.org`, persistent port-443/80 timeout). Added [`scripts/check_paper_numbers.py`](../scripts/check_paper_numbers.py) (CI gate + [`tests/test_check_paper_numbers.py`](../tests/test_check_paper_numbers.py)), verifying every bolded count, %, CI, multiplier, LoC, and table cell in `main.tex` against `artifacts/` (also catching and fixing `11.2× → 10.9×` exact YoY Stage-2 candidate ratio).
   - **Pillar 4 (arXiv Framing & AI Provenance):** Retitled away from "Survey" and added transcript-verified Table 7 AI provenance disclosure in [`papers/arxiv-empirical/main.tex`](../papers/arxiv-empirical/main.tex).
 
+- [x] **Sandboxed Docker Dynamic Kernel Verification (`n = 14` Compact Repos `<15k` LoC):**
+  - Implemented strict two-phase clean-room harness under [`sandbox/`](../sandbox/README.md) (`Dockerfile`, `check_axioms.lean`, `container_entry.py`, `run_sandbox_audit.py`) with `--network=none`, `--user 65534:65534`, `--cap-drop=ALL`, `--security-opt=no-new-privileges:true`, and read-only source/toolchain/Mathlib-cache mounts.
+  - Evaluated the exhaustive cohort of all **14** standalone primary Lean 4 repos `<15k` LoC across T2 (`n = 11`) and T1 (`n = 3`) and archived JSON logs in [`artifacts/sandbox_builds/`](../artifacts/sandbox_builds/README.md): **11/14 (78.6%)** OOTB pass (**3,190** theorems audited; median `28.4s`), **0/14** proof compile errors, **0/14** `Lean.ofReduceBool`, **7/8 (87.5%)** compact `Tier3_Gold` OOTB pass & **7/7 (100%)** axiom-clean (`2,263` theorems), `2/2` packaging-fail repos (`2611.18220`, `2611.23762`) pass axiom-clean in synthetic documented envs (`3,254` total theorems), `1/14` (`2605.02856`) fails due to missing `../qanary-*` local path deps, and `2/2` Mode #6 repos dynamically corroborated (`sorryAx` in 9/570 theorems of `2611.16690`; 11 custom axioms in `2605.16407`).
+  - Added Figure 6 (`fig_sandbox_builds.pdf`), Section 7 + Table 7 in [`papers/arxiv-empirical/main.tex`](../papers/arxiv-empirical/main.tex) (Pilot v0.5), CI numeric checks in [`scripts/check_paper_numbers.py`](../scripts/check_paper_numbers.py), and [`tests/test_sandbox_builds.py`](../tests/test_sandbox_builds.py).
+
 ---
 
-## 2. Headline Results (Longitudinal T0 / T1 / T2 & Pilot v0.4)
+## 2. Headline Results (Longitudinal T0 / T1 / T2 & Pilot v0.5)
 
 | Finding | Longitudinal / Pilot v0.4 Result (8 Categories) |
 | :--- | :--- |
@@ -48,6 +53,7 @@
 | **Stage-2 recall calibration (T2)** | **0 / 200** GitHub-linked negatives (333 repos checked; **1.49%** 95% Clopper–Pearson upper bound); **0 / 100** non-GitHub broad metadata hits |
 | **T2 Engineering Math Proof slice** | **28 / 39 (71.8%)** — led by **`math.OC` (19/724 = 2.62%, 17 eng-math)**, `cs.DC` (1.79%), `cs.IT` (1.78%), `cs.CR` (1.11%), `eess.SY` (0.41%); `cs.NI` (0/559 across 3 slices) and `cs.RO` (0/2,431 across 3 slices) stay 0.00% |
 | **Phase 2 Layer-A Audit (`n = 20` total)** | May 2026 `v1` repos (`2605.14610`, `2605.02856`) scored `partial` with `moderate` Mode #3 abstractions; **17/17 Oct–Nov 2026 author-owned repos** (16 T2 + Oct 2026 `v2` `2605.09552`) have **0** moderate/severe M1 drift or M3 smuggling; **sole `material_undisclosed_drift_or_risk`** is bulk pipeline **`2611.26272` (*Paper2Lean*)**. |
+| **Sandboxed Kernel Verification (`n = 14`, `<15k` LoC)** | **11/14 (78.6%)** OOTB pass in `--network=none` Docker (**3,190** OOTB theorems; **3,254** incl. synthetic; median `28.4s`), **0/14** compile errors, **0/14** `Lean.ofReduceBool`; **7/8** compact `Tier3_Gold` OOTB pass (**7/7 = 100%** axiom-clean); **2/2** Mode #6 flags dynamically corroborated (`sorryAx` in `2611.16690`, 11 custom axioms in `2605.16407`); all 3 OOTB fails are Mode #12 packaging/local-dep omissions (`2611.18220`, `2611.23762`, `2605.02856`). |
 
 ---
 
@@ -55,12 +61,12 @@
 
 *(Detailed pre-submission verification tracker and ground-truth audit ledger: [`docs/audit_plan.md`](audit_plan.md).)*
 
-1. **Sandboxed Lean Kernel Verification in Docker (`lake build` + `#print axioms`):**
-   - Execute isolated clean-room builds under [`sandbox/`](../sandbox/README.md) on compact engineering repos (`<5k` LoC: `Lean-SysID`, `bic-public`, `CoprimeFrobenius`, `discrete-modified-gradient-lean`, `trustbound`, `ExactShortestPathsAndFlowsOnPlanarGraphs`, `zenodo/24127514`, `Ku-PATP-code-supplement`, `qanary-k-stage-composition`) and archive JSON results in [`artifacts/sandbox_builds/`](../artifacts/sandbox_builds/README.md).
-2. **Human IRR, Named-Finding Verification & Newly Unpacked Phase-2 Audits:**
-   - [x] Audited & fixed all 54 BibTeX entries (`scripts/audit_bib.py --live` in CI), pinned commit SHAs / arXiv versions / `196/196` clean `file:line` checks in [`artifacts/phase2_provenance.json`](../artifacts/phase2_provenance.json), unpacked `2611.26140`/`2611.16781`/`2611.12585`, and added the CI numeric consistency gate [`scripts/check_paper_numbers.py`](../scripts/check_paper_numbers.py).
+1. **Human IRR, Named-Finding Verification & Newly Unpacked Phase-2 Audits:**
+   - [x] Audited & fixed all 54 BibTeX entries (`scripts/audit_bib.py --live` in CI), pinned commit SHAs / arXiv versions / `196/196` clean `file:line` checks in [`artifacts/phase2_provenance.json`](../artifacts/phase2_provenance.json), unpacked `2611.26140`/`2611.16781`/`2611.12585`, added the CI numeric consistency gate [`scripts/check_paper_numbers.py`](../scripts/check_paper_numbers.py), and completed isolated Docker `lake build` + `#print axioms` verification on all 14 compact repos (`<15k` LoC) in [`artifacts/sandbox_builds/`](../artifacts/sandbox_builds/README.md).
    - [ ] Record independent human IRR calibration labels and human sign-off on named findings (+ clean-cohort false-negative spot-checks) under [`artifacts/human_annotations/`](../artifacts/human_annotations/README.md).
    - [ ] Run Phase-2 Layer-A semantic fidelity audits on the 3 newly unpacked `engineering_math_proof` packages (`2611.26140`, `2611.16781`, `2611.12585`).
+2. **Extend Sandboxed Dynamic Verification to Medium/Large Repos (`>15k` LoC) & `lake comparator` Replay:**
+   - Extend `sandbox/run_sandbox_audit.py` to multi-10k LoC repos (`2611.12680`, `2611.14475`, `2611.26140`, `2611.16781`, `2611.12585`) and `comparator` replay on `P4` repos (`2611.15201`, `2611.14475`, `2611.04876`, `2611.13872`).
 3. **Scoped Machine Learning Theory Arm (`cs.LG` / `stat.ML`):**
    - Run a 1-week window or stratified 1,000-paper sample of `cs.LG`/`stat.ML` to benchmark ML theory against `math.OC` and `cs.IT`.
 4. **Standalone Periodic Runner (`agy -p`):**

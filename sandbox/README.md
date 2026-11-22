@@ -17,12 +17,28 @@ Therefore, **no script under `src/` ever invokes `lake` or `lean`**. All dynamic
 4. **Hard resource limits:** Enforce explicit `--cpus`, `--memory`, `--pids-limit`, and wall-clock timeouts (e.g., 30 minutes per repository) to bound proof-search/compilation DoS.
 5. **Structured output only:** The sandbox emits only compact, license-safe JSON logs conforming to [`artifacts/sandbox_builds/README.md`](../artifacts/sandbox_builds/README.md)—never committing third-party source trees or `.olean` artifacts.
 
-## Planned Layout
+## Implemented Layout
 
 ```text
 sandbox/
   README.md                 # This security boundary specification
-  Dockerfile                # (Planned) Minimal elan + Lean 4 toolchain runner image
-  run_sandbox_audit.py      # (Planned) Orchestrator invoking docker run --network=none
-  check_axioms.lean         # (Planned) Harness invoking #print axioms on exported theorems
+  Dockerfile                # Minimal Debian + elan runner image (`lean-survey-sandbox:v1`)
+  check_axioms.lean         # Lean 4 kernel `Lean.collectAxioms` auditor across all project theorems
+  container_entry.py        # In-container `--network=none` build + axiom audit runner
+  run_sandbox_audit.py      # Two-phase host orchestrator (Phase A cache prep -> Phase B isolated build)
 ```
+
+## Usage
+
+```bash
+# 1. Build the isolated runner image
+docker build -t lean-survey-sandbox:v1 sandbox/
+
+# 2. Run the full 14-repository compact (<15k LoC) benchmark across T2 and T1
+uv run python sandbox/run_sandbox_audit.py
+
+# Or run a subset of arXiv IDs
+uv run python sandbox/run_sandbox_audit.py --only 2611.14756 2611.19551
+```
+
+Results are written to [`artifacts/sandbox_builds/`](../artifacts/sandbox_builds/README.md) (`results_2026-11.json`, `results_2026-05.json`, `summary.json`).

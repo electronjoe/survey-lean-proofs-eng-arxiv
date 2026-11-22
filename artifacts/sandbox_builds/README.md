@@ -2,7 +2,11 @@
 
 This directory stores structured, license-safe JSON logs produced by isolated Docker builds executed under [`sandbox/`](../../sandbox/README.md).
 
-## Planned File & Schema
+## Archived Files & Schema
+
+- `results_2026-11.json` — Isolated build & programmatic `Lean.collectAxioms` logs for all **11** standalone compact (`<15k` LoC) T2 repositories (`9/11` OOTB pass, `3,026` theorems audited OOTB + `64` synthetic).
+- `results_2026-05.json` — Isolated build & programmatic `Lean.collectAxioms` logs for all **3** contemporaneous T1 scanned repositories (`2/3` OOTB pass, `164` theorems audited OOTB).
+- `summary.json` — Aggregate cross-slice ground-truth metrics consumed by `src/generate_figures.py` and `scripts/check_paper_numbers.py`.
 
 ### `results_<slice_id>.json`
 One compact record per attempted Lean 4 repository build (strictly metadata and verifier summaries—never third-party source code or `.olean` build caches):

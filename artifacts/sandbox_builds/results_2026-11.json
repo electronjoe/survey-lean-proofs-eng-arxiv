@@ -1,0 +1,3296 @@
+{
+  "schema_version": "1.0",
+  "slice_id": "2026-11",
+  "runner_image": "lean-survey-sandbox:v1",
+  "generated_at": "2026-11-22T21:12:06Z",
+  "security_invariants": {
+    "network_mode": "none",
+    "user": "65534:65534",
+    "cap_drop": "ALL",
+    "no_new_privileges": true,
+    "readonly_source_mount": true,
+    "cpus": 4,
+    "memory": "10g",
+    "pids_limit": 512
+  },
+  "records": [
+    {
+      "slice_id": "2026-11",
+      "arxiv_id": "2611.18220",
+      "repo": "manasdm/Lean-SysID",
+      "commit_sha": "8e6dede4bf7f8b2377125f2d4c33f74d06ead779",
+      "zenodo_record_id": null,
+      "lean_tree_sha256": "3e10ce467410bbe37f23247f2f4a9aa9f7f5b77f49d0de89a445e7e3c67a597e",
+      "static_verification_tier": "Tier3_Gold",
+      "paper_domain_role": "engineering_math_proof",
+      "owned_loc": 528,
+      "lean_toolchain": null,
+      "project_subdir": ".",
+      "build_mode": "packaging_only",
+      "executed_at": "2026-11-22T20:02:56Z",
+      "network_mode": "none",
+      "security_flags": [
+        "--network=none",
+        "--user=65534:65534",
+        "--cap-drop=ALL",
+        "--security-opt=no-new-privileges:true",
+        "--cpus=4",
+        "--memory=10g",
+        "--pids-limit=512"
+      ],
+      "timeout_sec": 1800,
+      "notes": "No lakefile or lean-toolchain in repository; README states Lean v4.35.0 + Mathlib.",
+      "exit_code": 2,
+      "build_status": "fail_packaging",
+      "wall_time_sec": 0.0,
+      "total_theorems_checked": 0,
+      "standard_axioms_used": [],
+      "nonstandard_axioms_detected": [],
+      "sorry_ax_detected": false,
+      "of_reduce_bool_detected": false,
+      "trust_compiler_detected": false,
+      "axioms_by_theorem": {},
+      "error_summary": "Repository omits both lakefile.{toml,lean} and lean-toolchain; clean-room `lake build` cannot execute out of the box.",
+      "synthetic_env_check": {
+        "toolchain_used": "leanprover/lean4:v4.35.0",
+        "mathlib_rev_used": "v4.35.0",
+        "exit_code": 0,
+        "build_status": "pass",
+        "wall_time_sec": 80.36,
+        "files_checked": [
+          {
+            "exit_code": 0,
+            "file": "Tutorial.lean",
+            "wall_time_sec": 13.92
+          },
+          {
+            "exit_code": 0,
+            "file": "Identification.lean",
+            "wall_time_sec": 8.53
+          },
+          {
+            "exit_code": 0,
+            "file": "Lemma_3_1_Ljung.lean",
+            "wall_time_sec": 9.86
+          },
+          {
+            "exit_code": 0,
+            "file": "Template.lean",
+            "wall_time_sec": 9.11
+          }
+        ],
+        "total_theorems_checked": 27,
+        "standard_axioms_used": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "nonstandard_axioms_detected": [],
+        "sorry_ax_detected": false,
+        "of_reduce_bool_detected": false,
+        "trust_compiler_detected": false,
+        "axioms_by_theorem": {
+          "Identification.Identification.estimator_exact": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "Identification.Identification.identifiable_iff_PE": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "Lemma_3_1_Ljung.Ljung31.IsWhiteNoise.indep": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "Lemma_3_1_Ljung.Ljung31.IsWhiteNoise.lintegral_enorm_le": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "Lemma_3_1_Ljung.Ljung31.IsWhiteNoise.memLp": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "Lemma_3_1_Ljung.Ljung31.IsWhiteNoise.variance": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "Lemma_3_1_Ljung.Ljung31.IsWhiteNoise.zero_mean": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "Lemma_3_1_Ljung.Ljung31.ae_absConv": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "Lemma_3_1_Ljung.Ljung31.ae_filt_summable": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "Lemma_3_1_Ljung.Ljung31.ae_summable_weighted": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "Lemma_3_1_Ljung.Ljung31.coeff_unique": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "Lemma_3_1_Ljung.Ljung31.conv_comm": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "Lemma_3_1_Ljung.Ljung31.eq_3_10": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "Lemma_3_1_Ljung.Ljung31.inverse_filter_core": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "Lemma_3_1_Ljung.Ljung31.inverse_filter_hasSum": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "Lemma_3_1_Ljung.Ljung31.lemma_3_1": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "Lemma_3_1_Ljung.Ljung31.remark_inverse_stable": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "Lemma_3_1_Ljung.Ljung31.tsum_prod_eq_tsum_antidiagonal": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "Lemma_3_1_Ljung.Ljung31.whiteNoise_A3": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "Lemma_3_1_Ljung.Ljung31.zT_mul_zT": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "Template.SysId.ARXParams.ext": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "Template.SysId.ARXParams.ext_iff": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "Template.SysId.VN_min_at_true": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "Template.SysId.arx_isIdentifiable": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "Template.SysId.simulate_zero_input": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "Tutorial.Tutorial.interval_invariant": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "Tutorial.Tutorial.traj_bounded": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        "error_summary": ""
+      }
+    },
+    {
+      "slice_id": "2026-11",
+      "arxiv_id": "2611.23762",
+      "repo": "guanyuzhu2014/Uniform-product-expansion---theory-and-Lean-certification",
+      "commit_sha": "5e07f3a004d5c941971f20bc708098304819a7fb",
+      "zenodo_record_id": null,
+      "lean_tree_sha256": "affd7257264524b93169b5bb3af430f12da6be86dd08bed6f06288dd7060e151",
+      "static_verification_tier": "Tier2_Silver",
+      "paper_domain_role": "engineering_math_proof",
+      "owned_loc": 589,
+      "lean_toolchain": null,
+      "project_subdir": ".",
+      "build_mode": "packaging_only",
+      "executed_at": "2026-11-22T20:06:13Z",
+      "network_mode": "none",
+      "security_flags": [
+        "--network=none",
+        "--user=65534:65534",
+        "--cap-drop=ALL",
+        "--security-opt=no-new-privileges:true",
+        "--cpus=4",
+        "--memory=10g",
+        "--pids-limit=512"
+      ],
+      "timeout_sec": 1800,
+      "notes": "Single standalone .lean file with no lakefile or lean-toolchain; header cites Lean v4.36.0-rc2 + Mathlib.",
+      "exit_code": 2,
+      "build_status": "fail_packaging",
+      "wall_time_sec": 0.0,
+      "total_theorems_checked": 0,
+      "standard_axioms_used": [],
+      "nonstandard_axioms_detected": [],
+      "sorry_ax_detected": false,
+      "of_reduce_bool_detected": false,
+      "trust_compiler_detected": false,
+      "axioms_by_theorem": {},
+      "error_summary": "Repository omits both lakefile.{toml,lean} and lean-toolchain; clean-room `lake build` cannot execute out of the box.",
+      "synthetic_env_check": {
+        "toolchain_used": "leanprover/lean4:v4.36.0-rc2",
+        "mathlib_rev_used": "v4.36.0-rc2",
+        "exit_code": 0,
+        "build_status": "pass",
+        "wall_time_sec": 27.18,
+        "files_checked": [
+          {
+            "exit_code": 0,
+            "file": "CoprimeFrobenius.lean",
+            "wall_time_sec": 16.49
+          }
+        ],
+        "total_theorems_checked": 37,
+        "standard_axioms_used": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "nonstandard_axioms_detected": [],
+        "sorry_ax_detected": false,
+        "of_reduce_bool_detected": false,
+        "trust_compiler_detected": false,
+        "axioms_by_theorem": {
+          "CoprimeFrobenius.CoprimeFrobenius.coeff_scaleSub_scale": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CoprimeFrobenius.CoprimeFrobenius.coord_identity": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CoprimeFrobenius.CoprimeFrobenius.degreeOf_pderiv_le": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CoprimeFrobenius.CoprimeFrobenius.degreeOf_scaleSub": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CoprimeFrobenius.CoprimeFrobenius.degreeOf_scaleSub_le": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CoprimeFrobenius.CoprimeFrobenius.degreeOf_twist": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CoprimeFrobenius.CoprimeFrobenius.eval_scaleSub": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CoprimeFrobenius.CoprimeFrobenius.eval_scaleSub_map": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CoprimeFrobenius.CoprimeFrobenius.exists_selector": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CoprimeFrobenius.CoprimeFrobenius.exists_selector_mul": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CoprimeFrobenius.CoprimeFrobenius.exists_twist_exponents": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CoprimeFrobenius.CoprimeFrobenius.exists_v": [
+            "propext",
+            "Quot.sound"
+          ],
+          "CoprimeFrobenius.CoprimeFrobenius.invFrob_apply": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CoprimeFrobenius.CoprimeFrobenius.invFrob_apply_pow": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CoprimeFrobenius.CoprimeFrobenius.invFrob_injective": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CoprimeFrobenius.CoprimeFrobenius.le_degreeOf_scaleSub": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CoprimeFrobenius.CoprimeFrobenius.lemma_4_1": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CoprimeFrobenius.CoprimeFrobenius.mem_support_pderiv": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CoprimeFrobenius.CoprimeFrobenius.not_dvd_tw": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CoprimeFrobenius.CoprimeFrobenius.pderiv_X_pow_two_pow": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CoprimeFrobenius.CoprimeFrobenius.pderiv_scaleSub_of_eq_zero": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CoprimeFrobenius.CoprimeFrobenius.pderiv_scaleSub_of_ne_zero": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CoprimeFrobenius.CoprimeFrobenius.pderiv_twist_of_eq_zero": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CoprimeFrobenius.CoprimeFrobenius.pderiv_twist_of_ne_zero": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CoprimeFrobenius.CoprimeFrobenius.pow_char_pow_eq_expand": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CoprimeFrobenius.CoprimeFrobenius.pow_pow_congr": [
+            "propext"
+          ],
+          "CoprimeFrobenius.CoprimeFrobenius.pow_pow_mod": [
+            "propext"
+          ],
+          "CoprimeFrobenius.CoprimeFrobenius.scaleSub_X": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CoprimeFrobenius.CoprimeFrobenius.scaleSub_eq_sum": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CoprimeFrobenius.CoprimeFrobenius.scaleSub_eq_zero_iff": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CoprimeFrobenius.CoprimeFrobenius.scaleSub_monomial": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CoprimeFrobenius.CoprimeFrobenius.scale_apply": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CoprimeFrobenius.CoprimeFrobenius.scale_injective": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CoprimeFrobenius.CoprimeFrobenius.scale_support_subset": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CoprimeFrobenius.CoprimeFrobenius.support_scaleSub_subset": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CoprimeFrobenius.CoprimeFrobenius.totalDegree_scaleSub_pderiv_lt": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CoprimeFrobenius.CoprimeFrobenius.twist_eval": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        "error_summary": ""
+      }
+    },
+    {
+      "slice_id": "2026-11",
+      "arxiv_id": "2611.14756",
+      "repo": "magbenji/discrete-modified-gradient-lean",
+      "commit_sha": "5e25ee8c92fe392236c4831559f23b709af33e40",
+      "zenodo_record_id": null,
+      "lean_tree_sha256": "709568067dba7921158453762475fe2544491a84de8acef773203f077502ff57",
+      "static_verification_tier": "Tier3_Gold",
+      "paper_domain_role": "engineering_math_proof",
+      "owned_loc": 670,
+      "lean_toolchain": "leanprover/lean4:v4.35.0",
+      "project_subdir": ".",
+      "build_mode": "lake",
+      "executed_at": "2026-11-22T20:01:03Z",
+      "network_mode": "none",
+      "security_flags": [
+        "--network=none",
+        "--user=65534:65534",
+        "--cap-drop=ALL",
+        "--security-opt=no-new-privileges:true",
+        "--cpus=4",
+        "--memory=10g",
+        "--pids-limit=512"
+      ],
+      "timeout_sec": 1800,
+      "notes": "",
+      "exit_code": 0,
+      "build_status": "pass",
+      "wall_time_sec": 22.92,
+      "axiom_check_wall_time_sec": 6.74,
+      "target_modules_count": 5,
+      "total_theorems_checked": 32,
+      "standard_axioms_used": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "nonstandard_axioms_detected": [],
+      "sorry_ax_detected": false,
+      "of_reduce_bool_detected": false,
+      "trust_compiler_detected": false,
+      "axioms_by_theorem": {
+        "DiscreteStability.LocalHyp.L_nonneg": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DiscreteStability.LocalHyp.continuousOn": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DiscreteStability.LocalHyp.continuousOn_grad": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DiscreteStability.LocalHyp.grad": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DiscreteStability.LocalHyp.grad_xbar_eq_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DiscreteStability.LocalHyp.lip": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DiscreteStability.LocalHyp.r\u2080_pos": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DiscreteStability.StepBound.hi_mul_inner_nonneg": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DiscreteStability.StepBound.hi_nonneg": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DiscreteStability.StepBound.inner_sq_le": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DiscreteStability.StepBound.lo_le_hi": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DiscreteStability.StepBound.lo_nonneg": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DiscreteStability.StepBound.lower": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DiscreteStability.StepBound.norm_le": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DiscreteStability.StepBound.norm_sq_le": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DiscreteStability.StepBound.psd": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DiscreteStability.StepBound.symm": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DiscreteStability.StepBound.upper": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DiscreteStability.ascent": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DiscreteStability.ascent_step": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DiscreteStability.asympStable": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DiscreteStability.asympStable_weighted": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DiscreteStability.basin": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DiscreteStability.continuousOn_of_lip": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DiscreteStability.exists_pos_lower_bound": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DiscreteStability.segment_ge": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DiscreteStability.stable": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DiscreteStability.step_mono": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DiscreteStability.step_strict": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DiscreteStability.step_weighted": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DiscreteStability.tendsto_of_weighted_ascent": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DiscreteStability.trap": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      "error_summary": ""
+    },
+    {
+      "slice_id": "2026-11",
+      "arxiv_id": "2611.19551",
+      "repo": "tokencraftdata/trustbound",
+      "commit_sha": "f2121df317570b83a8e1eaa3151d5a7f1edb2b5f",
+      "zenodo_record_id": null,
+      "lean_tree_sha256": "d9675e94142d67f8de88b743d02bc141fa6e17947e92ba678418b4363fb6a628",
+      "static_verification_tier": "Tier3_Gold",
+      "paper_domain_role": "software_or_system_fv",
+      "owned_loc": 1332,
+      "lean_toolchain": "leanprover/lean4:v4.19.0",
+      "project_subdir": "formal",
+      "build_mode": "lean_files",
+      "executed_at": "2026-11-22T20:01:46Z",
+      "network_mode": "none",
+      "security_flags": [
+        "--network=none",
+        "--user=65534:65534",
+        "--cap-drop=ALL",
+        "--security-opt=no-new-privileges:true",
+        "--cpus=4",
+        "--memory=10g",
+        "--pids-limit=512"
+      ],
+      "timeout_sec": 1800,
+      "notes": "Std-only Lean v4.19.0 files with pinned formal/lean-toolchain; verified via direct `lean` invocation per formal/README.md.",
+      "exit_code": 0,
+      "build_status": "pass",
+      "wall_time_sec": 15.78,
+      "axiom_check_wall_time_sec": null,
+      "target_modules_count": 7,
+      "total_theorems_checked": 68,
+      "standard_axioms_used": [
+        "propext",
+        "Quot.sound",
+        "Classical.choice"
+      ],
+      "nonstandard_axioms_detected": [],
+      "sorry_ax_detected": false,
+      "of_reduce_bool_detected": false,
+      "trust_compiler_detected": false,
+      "axioms_by_theorem": {
+        "Admission.TrustBoundAdmission.bypass_breaks_coverage": [
+          "propext"
+        ],
+        "Admission.TrustBoundAdmission.closed_step": [
+          "propext"
+        ],
+        "Admission.TrustBoundAdmission.drained_fence_effects_stable": [
+          "propext"
+        ],
+        "Admission.TrustBoundAdmission.drained_step": [
+          "propext"
+        ],
+        "Admission.TrustBoundAdmission.fence_without_drain": [
+          "propext"
+        ],
+        "Admission.TrustBoundAdmission.fenced_population_immutable": [
+          "propext"
+        ],
+        "Admission.TrustBoundAdmission.post_fence_coverage": [
+          "propext",
+          "Quot.sound"
+        ],
+        "Admission.TrustBoundAdmission.reachable_coverage": [
+          "propext",
+          "Quot.sound"
+        ],
+        "Admission.TrustBoundAdmission.reconciled_fence_complete": [
+          "propext",
+          "Quot.sound"
+        ],
+        "Admission.TrustBoundAdmission.refinement_transfers_coverage": [
+          "propext",
+          "Quot.sound"
+        ],
+        "Admission.TrustBoundAdmission.runs_preserve_coverage": [
+          "propext"
+        ],
+        "Admission.TrustBoundAdmission.runs_trans": [],
+        "Admission.TrustBoundAdmission.simulate_runs": [],
+        "Admission.TrustBoundAdmission.step_preserves_coverage": [
+          "propext"
+        ],
+        "Closure.TrustBound.actual_le_liability": [],
+        "Closure.TrustBound.cell_preserves": [
+          "propext"
+        ],
+        "Closure.TrustBound.certificate_possible_iff": [],
+        "Closure.TrustBound.closed_future_bound": [
+          "propext",
+          "Quot.sound"
+        ],
+        "Closure.TrustBound.closed_runs": [
+          "propext",
+          "Quot.sound"
+        ],
+        "Closure.TrustBound.closed_step": [
+          "propext",
+          "Quot.sound"
+        ],
+        "Closure.TrustBound.closed_terminal_exact_future": [
+          "propext"
+        ],
+        "Closure.TrustBound.closed_terminal_runs": [
+          "propext"
+        ],
+        "Closure.TrustBound.closed_terminal_step": [
+          "propext"
+        ],
+        "Closure.TrustBound.exposure_eq": [],
+        "Closure.TrustBound.honest_observer_intersection": [],
+        "Closure.TrustBound.indistinguishable_no_sound_accept": [],
+        "Closure.TrustBound.local_preserves": [
+          "propext",
+          "Quot.sound"
+        ],
+        "Closure.TrustBound.local_requires_pending": [
+          "propext"
+        ],
+        "Closure.TrustBound.path_sum_bound": [
+          "propext",
+          "Quot.sound"
+        ],
+        "Closure.TrustBound.runs_wf": [
+          "propext",
+          "Quot.sound"
+        ],
+        "Closure.TrustBound.step_wf": [
+          "propext",
+          "Quot.sound"
+        ],
+        "Closure.TrustBound.terminal_exact": [
+          "propext"
+        ],
+        "Closure.TrustBound.total_bound": [
+          "propext",
+          "Quot.sound"
+        ],
+        "Closure.TrustBound.view_exposure": [],
+        "Closure.TrustBound.witnesses_preserve_indistinguishability": [],
+        "Dispatch.TrustBoundDispatch.closed_step": [
+          "propext"
+        ],
+        "Dispatch.TrustBoundDispatch.crash_can_abandon_unsent_command": [
+          "propext"
+        ],
+        "Dispatch.TrustBoundDispatch.credential_holder_bypasses_fence": [
+          "propext"
+        ],
+        "Dispatch.TrustBoundDispatch.dispatch_at_most_once": [
+          "propext",
+          "Quot.sound"
+        ],
+        "Dispatch.TrustBoundDispatch.dispatch_has_durable_claim": [
+          "propext",
+          "Quot.sound"
+        ],
+        "Dispatch.TrustBoundDispatch.fence_survives_crashes": [
+          "propext"
+        ],
+        "Dispatch.TrustBoundDispatch.identical_recovery_state_can_hide_send": [
+          "propext"
+        ],
+        "Dispatch.TrustBoundDispatch.reachable_safe": [
+          "propext",
+          "Quot.sound"
+        ],
+        "Dispatch.TrustBoundDispatch.runs_safe": [
+          "propext"
+        ],
+        "Dispatch.TrustBoundDispatch.step_safe": [
+          "propext"
+        ],
+        "ExposureOptimality.TrustBoundExposureOptimality.advances_run": [],
+        "ExposureOptimality.TrustBoundExposureOptimality.attain_cells": [
+          "propext",
+          "Quot.sound"
+        ],
+        "ExposureOptimality.TrustBoundExposureOptimality.future_bound_iff": [
+          "propext",
+          "Quot.sound"
+        ],
+        "ExposureOptimality.TrustBoundExposureOptimality.future_exposure_attained": [
+          "propext",
+          "Quot.sound"
+        ],
+        "ExposureOptimality.TrustBoundExposureOptimality.prepend_advances": [],
+        "ExposureOptimality.TrustBoundExposureOptimality.safe_extra_spend_iff": [
+          "propext",
+          "Quot.sound"
+        ],
+        "ExposureOptimality.TrustBoundExposureOptimality.travel_wf": [
+          "propext"
+        ],
+        "Observers.TrustBoundObservers.coalition_policy_iff": [
+          "Classical.choice",
+          "propext",
+          "Quot.sound"
+        ],
+        "Observers.TrustBoundObservers.delayed_arrival_instance": [
+          "propext",
+          "Quot.sound"
+        ],
+        "Observers.TrustBoundObservers.derived_evidence_same": [],
+        "Observers.TrustBoundObservers.no_finite_closure_under_delayed_shadow": [],
+        "Observers.TrustBoundObservers.robust_iff_coverage": [
+          "Classical.choice",
+          "propext",
+          "Quot.sound"
+        ],
+        "StaggeredClosure.TrustBoundStaggeredClosure.accumulate_stable_observations": [],
+        "StaggeredClosure.TrustBoundStaggeredClosure.staggered_terminal_closure": [
+          "propext",
+          "Quot.sound"
+        ],
+        "StaggeredClosure.TrustBoundStaggeredClosure.terminal_persists": [
+          "propext"
+        ],
+        "StripeGate.TrustBoundStripeGate.fenced_provider_coverage": [
+          "propext",
+          "Quot.sound"
+        ],
+        "StripeGate.TrustBoundStripeGate.provider_runs_refine": [],
+        "StripeGate.TrustBoundStripeGate.provider_step_refines": [],
+        "StripeGate.TrustBoundStripeGate.runs_discharged": [
+          "propext",
+          "Quot.sound"
+        ],
+        "StripeGate.TrustBoundStripeGate.step_discharged": [
+          "propext",
+          "Quot.sound"
+        ],
+        "StripeGate.TrustBoundStripeGate.terminal_cut_stable": [
+          "propext",
+          "Quot.sound"
+        ],
+        "StripeGate.TrustBoundStripeGate.terminal_manifest_drains": [
+          "propext",
+          "Quot.sound"
+        ],
+        "StripeGate.TrustBoundStripeGate.unregistered_objects_inert": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      "error_summary": ""
+    },
+    {
+      "slice_id": "2026-11",
+      "arxiv_id": "2611.10902",
+      "repo": "canberksaner/bic-public",
+      "commit_sha": "fb87e637089479698beee31fbc26654075441dcc",
+      "zenodo_record_id": null,
+      "lean_tree_sha256": "db83483f2d438e0dac898aa3d4a0a9c8235cd4be8789c20ca85a29742f45fb81",
+      "static_verification_tier": "Tier3_Gold",
+      "paper_domain_role": "engineering_math_proof",
+      "owned_loc": 2068,
+      "lean_toolchain": "leanprover/lean4:v4.36.0-rc2",
+      "project_subdir": "lean",
+      "build_mode": "lake",
+      "executed_at": "2026-11-22T20:09:02Z",
+      "network_mode": "none",
+      "security_flags": [
+        "--network=none",
+        "--user=65534:65534",
+        "--cap-drop=ALL",
+        "--security-opt=no-new-privileges:true",
+        "--cpus=4",
+        "--memory=10g",
+        "--pids-limit=512"
+      ],
+      "timeout_sec": 1800,
+      "notes": "",
+      "exit_code": 0,
+      "build_status": "pass",
+      "wall_time_sec": 60.29,
+      "axiom_check_wall_time_sec": 8.49,
+      "target_modules_count": 10,
+      "total_theorems_checked": 113,
+      "standard_axioms_used": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "nonstandard_axioms_detected": [],
+      "sorry_ax_detected": false,
+      "of_reduce_bool_detected": false,
+      "trust_compiler_detected": false,
+      "axioms_by_theorem": {
+        "BIC.Regular.conc": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.Regular.contOn": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.Regular.deriv": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.Regular.deriv_antitone": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.Regular.deriv_nonneg": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.Regular.mono": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.Regular.xmin_lt": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.Regular.xmin_pos": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.V_le_Lag": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.bdd_V": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.bdd_phi": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.card_evals_le": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.card_innerEvals": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.card_pass": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.card_runC": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.choose_correct": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.clamp_foc": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.closed_form": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.count_prefixSet": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.dominate": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.exists_inv": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.exists_opt": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.exists_partner": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.feasible_of_card": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.foc_left": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.foc_max": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.foc_right": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.group.congr_simp": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.image_rank": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.inC_update_mono": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.inner_eq": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.inner_le": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.lambda_th_gt": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.le_V": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.le_mul_lambda_th": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.le_nmax_iff": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.le_phi": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.mem_innerEvals": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.multiplier_bracket": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.phi_anti": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.phi_le": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.prefixSet_downClosed": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.prefix_theorem": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.proj_max": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.rank.congr_simp": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.rank_injOn": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.rank_lt_card": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.rank_lt_rank": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.runC_succ": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.runC_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.selector_max": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.strong_duality": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.submod": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.submod_aux": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.sum_one_point": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.sum_two_point": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.swap_step": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.theorem3a": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.value_le_Lag": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BIC.xmin_unique_max": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      "error_summary": ""
+    },
+    {
+      "slice_id": "2026-11",
+      "arxiv_id": "2611.02256",
+      "repo": "ssenge/ExactShortestPathsAndFlowsOnPlanarGraphs",
+      "commit_sha": "1f9e89b9cf5cdc6f9b20a5bfc7ce3242cf4a69a4",
+      "zenodo_record_id": null,
+      "lean_tree_sha256": "c9462559d0eaa2fc4009a29cbaa21c5b0d3120ee5b2c7c1bcd5f8ddd847db76e",
+      "static_verification_tier": "Tier2_Silver",
+      "paper_domain_role": "pure_tcs_or_math",
+      "owned_loc": 2191,
+      "lean_toolchain": "leanprover/lean4:v4.36.0-rc1",
+      "project_subdir": "lean",
+      "build_mode": "lake",
+      "executed_at": "2026-11-22T20:12:32Z",
+      "network_mode": "none",
+      "security_flags": [
+        "--network=none",
+        "--user=65534:65534",
+        "--cap-drop=ALL",
+        "--security-opt=no-new-privileges:true",
+        "--cpus=4",
+        "--memory=10g",
+        "--pids-limit=512"
+      ],
+      "timeout_sec": 1800,
+      "notes": "",
+      "exit_code": 0,
+      "build_status": "pass",
+      "wall_time_sec": 20.97,
+      "axiom_check_wall_time_sec": 6.6,
+      "target_modules_count": 13,
+      "total_theorems_checked": 193,
+      "standard_axioms_used": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "nonstandard_axioms_detected": [],
+      "sorry_ax_detected": false,
+      "of_reduce_bool_detected": false,
+      "trust_compiler_detected": false,
+      "axioms_by_theorem": {
+        "SsspFlow.Arborescence.halving": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SsspFlow.Arborescence.lower_step": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SsspFlow.Arborescence.reduced_le": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SsspFlow.Arborescence.reduced_nonneg_in": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SsspFlow.Arborescence.reduced_nonneg_out": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SsspFlow.Arborescence.removed_ge": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SsspFlow.Arborescence.tight": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SsspFlow.Arborescence.upper_step": [
+          "propext"
+        ],
+        "SsspFlow.Boost.Run.dist_nat": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SsspFlow.Boost.Run.dist_nonneg": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SsspFlow.Boost.Run.exact": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SsspFlow.Boost.Run.init": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SsspFlow.Boost.Run.one_le": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SsspFlow.Boost.Run.reach": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SsspFlow.Boost.Run.step": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SsspFlow.Boost.Run.step_upper": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SsspFlow.Boost.dist_le": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SsspFlow.Boost.le_dist": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SsspFlow.FaceDisjoint.Setup.Arc.out.congr_simp": [],
+        "SsspFlow.FaceDisjoint.Setup.Arc.ring.congr_simp": [],
+        "SsspFlow.FaceDisjoint.Setup.arc_ge": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SsspFlow.FaceDisjoint.Setup.dst_face": [],
+        "SsspFlow.FaceDisjoint.Setup.from_star": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SsspFlow.FaceDisjoint.Setup.lemmaD": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SsspFlow.FaceDisjoint.Setup.lift": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SsspFlow.FaceDisjoint.Setup.mk.congr_simp": [],
+        "SsspFlow.FaceDisjoint.Setup.negCycle_iff": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SsspFlow.FaceDisjoint.Setup.project": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SsspFlow.FaceDisjoint.Setup.ring_conn": [],
+        "SsspFlow.FaceDisjoint.Setup.ring_face": [],
+        "SsspFlow.FaceDisjoint.Setup.ring_walk": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SsspFlow.FaceDisjoint.Setup.src_face": [],
+        "SsspFlow.FaceDisjoint.Setup.star_closed": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SsspFlow.FaceDisjoint.Setup.to_star": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SsspFlow.FaceDisjoint.Setup.via_star": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SsspFlow.FaceDisjoint.Setup.w.eq_3": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SsspFlow.FaceDisjoint.Setup.w.eq_4": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SsspFlow.FaceDisjoint.Setup.walks": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SsspFlow.FaceDisjoint.Walk.brecOn.eq": [],
+        "SsspFlow.FaceDisjoint.Walk.cons_append": [],
+        "SsspFlow.FaceDisjoint.Walk.dup_split": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SsspFlow.FaceDisjoint.Walk.le_wt": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SsspFlow.FaceDisjoint.Walk.len_append": [
+          "propext",
+          "Quot.sound"
+        ],
+        "SsspFlow.FaceDisjoint.Walk.len_cons": [],
+        "SsspFlow.FaceDisjoint.Walk.len_lt_of_nodup": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SsspFlow.FaceDisjoint.Walk.len_nil": [],
+        "SsspFlow.FaceDisjoint.Walk.length_support": [
+          "propext"
+        ],
+        "SsspFlow.FaceDisjoint.Walk.neg_short": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SsspFlow.FaceDisjoint.Walk.nil_append": [],
+        "SsspFlow.FaceDisjoint.Walk.short": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SsspFlow.FaceDisjoint.Walk.split": [
+          "propext"
+        ],
+        "SsspFlow.FaceDisjoint.Walk.start_mem": [
+          "propext"
+        ],
+        "SsspFlow.FaceDisjoint.Walk.support_cons": [],
+        "SsspFlow.FaceDisjoint.Walk.support_nil": [],
+        "SsspFlow.FaceDisjoint.Walk.wt_append": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SsspFlow.FaceDisjoint.Walk.wt_cons": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SsspFlow.FaceDisjoint.Walk.wt_le": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SsspFlow.FaceDisjoint.Walk.wt_nil": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SsspFlow.FaceDisjoint.rot_lemmaD": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SsspFlow.FaceDisjoint.rot_pair": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      "error_summary": ""
+    },
+    {
+      "slice_id": "2026-11",
+      "arxiv_id": "2611.15201",
+      "repo": "zenodo/24127514",
+      "commit_sha": null,
+      "zenodo_record_id": "24127514",
+      "lean_tree_sha256": "d39d475f1099e8e30757a3cb0d7fcc3789b3ca4aa23114796bd56e7d89968569",
+      "static_verification_tier": "Tier3_Gold",
+      "paper_domain_role": "pure_tcs_or_math",
+      "owned_loc": 5307,
+      "lean_toolchain": "leanprover/lean4:v4.35.0-rc2",
+      "project_subdir": "lean-sparse-mm-v1.0.1/HnVahidi-lean-sparse-mm-136a0bb",
+      "build_mode": "lake",
+      "executed_at": "2026-11-22T21:10:23Z",
+      "network_mode": "none",
+      "security_flags": [
+        "--network=none",
+        "--user=65534:65534",
+        "--cap-drop=ALL",
+        "--security-opt=no-new-privileges:true",
+        "--cpus=4",
+        "--memory=10g",
+        "--pids-limit=512"
+      ],
+      "timeout_sec": 1800,
+      "notes": "Comparator Challenge/Solution layout: builds all targets and audits axioms on proved SparseMM + Solution modules (excluding Challenge spec stubs).",
+      "exit_code": 0,
+      "build_status": "pass",
+      "wall_time_sec": 43.8,
+      "axiom_check_wall_time_sec": 10.54,
+      "target_modules_count": 35,
+      "total_theorems_checked": 274,
+      "standard_axioms_used": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "nonstandard_axioms_detected": [],
+      "sorry_ax_detected": false,
+      "of_reduce_bool_detected": false,
+      "trust_compiler_detected": false,
+      "axioms_by_theorem": {
+        "SparseMM.Balancing.add_to_min_preserves_spread": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.Balancing.binLoad_snoc": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.Balancing.binLoad_sum": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.Balancing.cluster_helper_assignment": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.Balancing.exists_assignment_le_average_add": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.Balancing.exists_assignment_spread": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.Balancing.exists_bounded_assignment": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.Balancing.scaled_load_le_total_add_slack": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.Clustering.accounting": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.Clustering.cluster_card": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.Clustering.cluster_count_bound": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.Clustering.cluster_rectangle": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.Clustering.cluster_sub": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.Clustering.cluster_teams_fit": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.Clustering.cover": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.Clustering.get_disjoint": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.Clustering.pairwise_disjoint": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.Clustering.residual_disjoint": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.Clustering.residual_sub": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.Clustering.sparse": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.Clustering.unique_cluster_index": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.Counting.count.congr_simp": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.Counting.count_eq_card_fiber": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.Counting.count_eq_load": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.Counting.count_le_card_of_injective": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.Counting.count_le_load": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.Counting.load.congr_simp": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.Counting.load_comp_injective": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.Counting.sum_count": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.Counting.sum_load": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.HelperPlan.Request.left_row": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.HelperPlan.Request.right_col": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.HelperPlan.exists_helper_assignment": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.HelperPlan.exists_helper_placement": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.HelperPlan.helper_request_count": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.HelperPlan.input_request_count_le": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.HelperPlan.physical_helper_count_le": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.HelperPlan.total_requests_le": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.clusterCols_card_le": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.clusterInputCost_le": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.clusterRows_card_le": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.colClusters_card_le": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.colClusters_card_le_col": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.degree_le_teamSize_sq": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.degree_le_threshold": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.exists_clustering": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.mask_card_eq_sum_rows": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.mask_card_le": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.middleSet_card_le": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.residualProducts_eq_rectangle": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.residualWeight_le": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.residual_contributions_double_count": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.rowClusters_card_le": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.rowClusters_card_le_row": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.sum_clusterInputCost_le": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.sum_restricted_columns": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.sum_restricted_rows": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.teamSize_pos": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.threshold_le_two_mul_sqrt": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SparseMM.threshold_pos": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      "error_summary": ""
+    },
+    {
+      "slice_id": "2026-11",
+      "arxiv_id": "2611.16690",
+      "repo": "RobinSchabert/positive-sym-func-h17-undecidability-lean",
+      "commit_sha": "2318a73208a8ed5c5bc2435820e129264e17b926",
+      "zenodo_record_id": null,
+      "lean_tree_sha256": "1a37f1aeb29ad71137a23d3d05282b10aa5c28f50ee271b4f3619efe26c15382",
+      "static_verification_tier": "Tier2_Silver",
+      "paper_domain_role": "pure_tcs_or_math",
+      "owned_loc": 6592,
+      "lean_toolchain": "leanprover/lean4:v4.35.0-rc3",
+      "project_subdir": ".",
+      "build_mode": "lake",
+      "executed_at": "2026-11-22T20:19:40Z",
+      "network_mode": "none",
+      "security_flags": [
+        "--network=none",
+        "--user=65534:65534",
+        "--cap-drop=ALL",
+        "--security-opt=no-new-privileges:true",
+        "--cpus=4",
+        "--memory=10g",
+        "--pids-limit=512"
+      ],
+      "timeout_sec": 1800,
+      "notes": "",
+      "exit_code": 0,
+      "build_status": "pass",
+      "wall_time_sec": 59.83,
+      "axiom_check_wall_time_sec": 11.39,
+      "target_modules_count": 22,
+      "total_theorems_checked": 570,
+      "standard_axioms_used": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "nonstandard_axioms_detected": [
+        "sorryAx"
+      ],
+      "sorry_ax_detected": true,
+      "of_reduce_bool_detected": false,
+      "trust_compiler_detected": false,
+      "axioms_by_theorem": {
+        "AnyDim.Dval_eq": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.Dval_nonneg": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.F_anyDimPSD": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.F_wDegLE": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.F_wHomogeneous": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.Fexpr_half": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.Fexpr_rescale": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.IsWeightedHomogeneous.sub'": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.Paper.corollary_3_3": [
+          "propext",
+          "sorryAx",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.Paper.corollary_3_4": [
+          "propext",
+          "sorryAx",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.Paper.theorem_3_2": [
+          "propext",
+          "sorryAx",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.WHomogeneous.wDegLE": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.abs_cube_sub_one_le": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.abs_cube_sub_sigma_le": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.anyDimPD_iff": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.anyDimPSD_iff": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.corollary_3_3": [
+          "propext",
+          "sorryAx",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.corollary_3_4": [
+          "propext",
+          "sorryAx",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.corollary_3_4'": [
+          "propext",
+          "sorryAx",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.cubeNonneg_of_le": [
+          "propext",
+          "sorryAx",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.defect_eq_sum": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.eighth_le": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.evalAt_psi_p": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.evalAt_withTail_cube": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.evalTruncHom_apply": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.evalTrunc_F": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.evalTrunc_F_of_p1_eq_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.evalTrunc_eq_aeval": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.evalTrunc_fin_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.evalTrunc_p": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.eval_cubeShift": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.eval_powerSum": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.homogeneousComponent_two_mul_sq": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.isSOS_eval_nonneg": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.isSOS_map": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.isSOS_polynomial_eval_nonneg": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.isWeightedHomogeneous_Fexpr": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.isWeightedHomogeneous_ofNat": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.monomialWeight_eq_weight": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.psi_F_at_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.quarter_le_sq_int_sub_half": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.sixteen_mul_le_evalTrunc_F": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.sos_degree_bound": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.sos_degree_bound'": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.sq_p3_sub_kInt_le": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.tailEval_isSOS": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.theorem_3_1_1": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.theorem_3_1_2_via_corollary_3_4": [
+          "propext",
+          "sorryAx",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.theorem_3_2": [
+          "propext",
+          "sorryAx",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.totalDegree_aeval_le_of_le_one": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.totalDegree_aeval_le_of_wDegLE": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.totalDegree_cubeShift_le": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.totalDegree_le_of_sum_sq": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.totalDegree_le_of_sum_sq'": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.totalDegree_powerSum_le": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.totalDegree_sub_homogeneousComponent_lt": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.totalDegree_trunc_le": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.trunc_p": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.tuplePower_cube": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.tuplePower_div": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.tuplePower_zero_left": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.univariateTail_eval_half": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.usesFirst_mono": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.usesFirst_self": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.wHomogeneous_iff": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.wdeg_mono": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.wdeg_self": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.withTail_apply": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AnyDim.withTail_eq_comp": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      "error_summary": ""
+    },
+    {
+      "slice_id": "2026-11",
+      "arxiv_id": "2611.10810",
+      "repo": "zenodo/24035424",
+      "commit_sha": null,
+      "zenodo_record_id": "24035424",
+      "lean_tree_sha256": "affb3fafeb89bba3cfe76994942973458784ef8cd352d4a07dff32559d8e55d0",
+      "static_verification_tier": "Tier3_Gold",
+      "paper_domain_role": "software_or_system_fv",
+      "owned_loc": 10862,
+      "lean_toolchain": "leanprover/lean4:v4.32.2",
+      "project_subdir": "DBLog_Orphan_Absence_artifact-1.0/DBLog_Orphan_Absence_artifact-1.0/lean",
+      "build_mode": "lake",
+      "executed_at": "2026-11-22T20:23:35Z",
+      "network_mode": "none",
+      "security_flags": [
+        "--network=none",
+        "--user=65534:65534",
+        "--cap-drop=ALL",
+        "--security-opt=no-new-privileges:true",
+        "--cpus=4",
+        "--memory=10g",
+        "--pids-limit=512"
+      ],
+      "timeout_sec": 1800,
+      "notes": "",
+      "exit_code": 0,
+      "build_status": "pass",
+      "wall_time_sec": 11.15,
+      "axiom_check_wall_time_sec": 1.46,
+      "target_modules_count": 24,
+      "total_theorems_checked": 507,
+      "standard_axioms_used": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "nonstandard_axioms_detected": [],
+      "sorry_ax_detected": false,
+      "of_reduce_bool_detected": false,
+      "trust_compiler_detected": false,
+      "axioms_by_theorem": {
+        "DBLogContract.CaptureContract.O1_cover": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DBLogContract.CaptureContract.O1_disjoint": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DBLogContract.CaptureContract.O2_honest": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DBLogContract.CaptureContract.bracket_hi_f": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DBLogContract.CaptureContract.bracket_lo_hi": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DBLogContract.CaptureContract.continuation": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DBLogContract.CaptureContract.contract_cut": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DBLogContract.CaptureContract.contract_cut_at": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DBLogContract.CaptureContract.contract_cut_scope": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DBLogContract.CaptureContract.covering_unit_unique": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DBLogContract.CaptureContract.dom_sub_scope": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DBLogContract.CaptureContract.shared_witness_trajectory": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DBLogContract.CaptureContract.shared_witness_trajectory_at": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DBLogContract.CaptureContract.the_unit_eq": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DBLogContract.CaptureContract.the_unit_position_unique": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DBLogContract.CaptureContract.the_unit_props": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DBLogContract.CaptureContract.titems_close_block": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DBLogContract.CaptureContract.window_discard_replay": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DBLogContract.CoordinateSpace.cle_iff_prefix": [
+          "propext"
+        ],
+        "DBLogContract.CoordinateSpace.cle_refl": [],
+        "DBLogContract.CoordinateSpace.cle_trans": [],
+        "DBLogContract.CoordinateSpace.den_le_len": [],
+        "DBLogContract.CoordinateSpace.den_nested": [
+          "propext"
+        ],
+        "DBLogContract.CoordinateSpace.evs_for_pfx_split": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DBLogContract.CoordinateSpace.evs_for_win_split": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DBLogContract.CoordinateSpace.oracle_set_reading": [
+          "propext",
+          "Quot.sound"
+        ],
+        "DBLogContract.CoordinateSpace.pfx_length": [
+          "propext"
+        ],
+        "DBLogContract.CoordinateSpace.pfx_split": [
+          "propext"
+        ],
+        "DBLogContract.CoordinateSpace.win_empty_iff": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DBLogContract.CoordinateSpace.win_invariant_state": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DBLogContract.CoordinateSpace.win_invariant_state2": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DBLogContract.CoordinateSpace.win_length": [
+          "propext"
+        ],
+        "DBLogContract.CoordinateSpace.win_nth": [
+          "propext",
+          "Quot.sound"
+        ],
+        "DBLogContract.CoordinateSpace.win_split": [
+          "propext"
+        ],
+        "DBLogContract.evs_for_append": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DBLogContract.evs_for_cons": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DBLogContract.evs_for_nil": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DBLogContract.flatMap_congr": [
+          "propext"
+        ],
+        "DBLogContract.getLast_eq_of_eq": [],
+        "DBLogContract.mem_tagged_seg_bounds": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DBLogContract.mixing_shared_honesty_lift": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DBLogContract.mixing_shared_witness_lift": [
+          "propext"
+        ],
+        "DBLogContract.mixing_union": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DBLogContract.nodup_filter_eq": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DBLogContract.nodup_zipIdx": [
+          "propext",
+          "Quot.sound"
+        ],
+        "DBLogContract.pairwise_zipIdx_lt": [
+          "propext",
+          "Quot.sound"
+        ],
+        "DBLogContract.seg_length": [
+          "propext"
+        ],
+        "DBLogContract.sink_at_case_events": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DBLogContract.state_after_append": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DBLogContract.state_after_append_no_k": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DBLogContract.state_after_cons": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DBLogContract.state_after_key": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DBLogContract.state_after_last_event": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DBLogContract.state_after_nil": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DBLogContract.state_after_no_events": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DBLogContract.state_after_snoc": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DBLogContract.tagged_seg_self": [
+          "propext",
+          "Quot.sound"
+        ],
+        "DBLogContract.take_prefix_take": [
+          "propext"
+        ],
+        "DBLogContract.titems_cons": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "DBLogContract.titems_flatMap": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      "error_summary": ""
+    },
+    {
+      "slice_id": "2026-11",
+      "arxiv_id": "2611.05243",
+      "repo": "CoffeeAndConvexity/AltOMD-Lean",
+      "commit_sha": "49ade84f42e7d4fd862a3bd48d6a0c039904849a",
+      "zenodo_record_id": null,
+      "lean_tree_sha256": "c6a01c269e58b1b7838880dccc603ceda61b9726986bd0bf30701cee07948f45",
+      "static_verification_tier": "Tier3_Gold",
+      "paper_domain_role": "engineering_math_proof",
+      "owned_loc": 11204,
+      "lean_toolchain": "leanprover/lean4:v4.33.1",
+      "project_subdir": ".",
+      "build_mode": "lake",
+      "executed_at": "2026-11-22T20:24:05Z",
+      "network_mode": "none",
+      "security_flags": [
+        "--network=none",
+        "--user=65534:65534",
+        "--cap-drop=ALL",
+        "--security-opt=no-new-privileges:true",
+        "--cpus=4",
+        "--memory=10g",
+        "--pids-limit=512"
+      ],
+      "timeout_sec": 1800,
+      "notes": "",
+      "exit_code": 0,
+      "build_status": "pass",
+      "wall_time_sec": 129.73,
+      "axiom_check_wall_time_sec": 8.52,
+      "target_modules_count": 78,
+      "total_theorems_checked": 715,
+      "standard_axioms_used": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "nonstandard_axioms_detected": [],
+      "sorry_ax_detected": false,
+      "of_reduce_bool_detected": false,
+      "trust_compiler_detected": false,
+      "axioms_by_theorem": {
+        "AltOMD.BCHLieCriterion.coefficient_pos": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AltOMD.BCHLieCriterion.mem_of_four_term": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AltOMD.NoncommutativeSeries.Admissible.add": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AltOMD.NoncommutativeSeries.Admissible.pow": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AltOMD.NoncommutativeSeries.bchCoefficient_mem_of_four_term": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AltOMD.NoncommutativeSeries.bchCoefficient_self": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AltOMD.NoncommutativeSeries.bchCoefficient_smul": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AltOMD.NoncommutativeSeries.bchCoefficient_swap": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AltOMD.NoncommutativeSeries.bch_associative": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AltOMD.NoncommutativeSeries.bch_neg": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AltOMD.NoncommutativeSeries.bch_self": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AltOMD.NoncommutativeSeries.coeff_aeval_trunc": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AltOMD.NoncommutativeSeries.coeff_eval": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AltOMD.NoncommutativeSeries.coeff_eval_congr": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AltOMD.NoncommutativeSeries.coeff_eval_eq_sum": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AltOMD.NoncommutativeSeries.coeff_eval_of_le": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AltOMD.NoncommutativeSeries.coeff_expOf": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AltOMD.NoncommutativeSeries.coeff_logOf": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AltOMD.NoncommutativeSeries.coeff_pow_eq_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AltOMD.NoncommutativeSeries.coeff_rescale": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AltOMD.NoncommutativeSeries.constantCoeff_bch": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AltOMD.NoncommutativeSeries.constantCoeff_eval": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AltOMD.NoncommutativeSeries.constantCoeff_expOf": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AltOMD.NoncommutativeSeries.constantCoeff_logOf": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AltOMD.NoncommutativeSeries.constantCoeff_monomial_one": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AltOMD.NoncommutativeSeries.constantCoeff_rescale": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AltOMD.NoncommutativeSeries.diagonal_mul": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AltOMD.NoncommutativeSeries.diagonal_neg": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AltOMD.NoncommutativeSeries.diagonal_one": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AltOMD.NoncommutativeSeries.evalAlgHom.congr_simp": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AltOMD.NoncommutativeSeries.evalAlgHom_apply": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AltOMD.NoncommutativeSeries.eval_C": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AltOMD.NoncommutativeSeries.eval_X": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AltOMD.NoncommutativeSeries.eval_add": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AltOMD.NoncommutativeSeries.eval_aeval": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AltOMD.NoncommutativeSeries.eval_mul": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AltOMD.NoncommutativeSeries.eval_one": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AltOMD.NoncommutativeSeries.eval_polynomial": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AltOMD.NoncommutativeSeries.eval_pow": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AltOMD.NoncommutativeSeries.eval_rescale": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AltOMD.NoncommutativeSeries.eval_sub": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AltOMD.NoncommutativeSeries.eval_subst": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AltOMD.NoncommutativeSeries.eval_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AltOMD.NoncommutativeSeries.expOf_add_smul": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AltOMD.NoncommutativeSeries.expOf_bch": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AltOMD.NoncommutativeSeries.expOf_injective": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AltOMD.NoncommutativeSeries.expOf_logOf": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AltOMD.NoncommutativeSeries.expOf_logOf_mul_expOf": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AltOMD.NoncommutativeSeries.expOf_mul_expOf_neg": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AltOMD.NoncommutativeSeries.expOf_neg_mul_expOf": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AltOMD.NoncommutativeSeries.expOf_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AltOMD.NoncommutativeSeries.logOf_expOf": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AltOMD.NoncommutativeSeries.rescale_bch": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AltOMD.NoncommutativeSeries.rescale_eval": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AltOMD.NoncommutativeSeries.rescale_expOf": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AltOMD.NoncommutativeSeries.rescale_logOf": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "AltOMD.NoncommutativeSeries.rescale_monomial": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PowerSeries.deriv_log_mul_one_add_X": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PowerSeries.exp_subst_log": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PowerSeries.log_subst_exp_sub_one": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      "error_summary": ""
+    },
+    {
+      "slice_id": "2026-11",
+      "arxiv_id": "2611.18455",
+      "repo": "inody/wmfki_lean",
+      "commit_sha": "e8efa5d0eb80854071adc5dd273af3d3e50cfa21",
+      "zenodo_record_id": null,
+      "lean_tree_sha256": "ca049522c38928a5ae8548058df83293c7ae34fa8ac1b7f784d4c5804c3fc528",
+      "static_verification_tier": "Tier3_Gold",
+      "paper_domain_role": "engineering_math_proof",
+      "owned_loc": 12236,
+      "lean_toolchain": "leanprover/lean4:v4.34.1",
+      "project_subdir": ".",
+      "build_mode": "lake",
+      "executed_at": "2026-11-22T20:29:41Z",
+      "network_mode": "none",
+      "security_flags": [
+        "--network=none",
+        "--user=65534:65534",
+        "--cap-drop=ALL",
+        "--security-opt=no-new-privileges:true",
+        "--cpus=4",
+        "--memory=10g",
+        "--pids-limit=512"
+      ],
+      "timeout_sec": 1800,
+      "notes": "",
+      "exit_code": 0,
+      "build_status": "pass",
+      "wall_time_sec": 1562.1,
+      "axiom_check_wall_time_sec": 10.78,
+      "target_modules_count": 156,
+      "total_theorems_checked": 554,
+      "standard_axioms_used": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "nonstandard_axioms_detected": [],
+      "sorry_ax_detected": false,
+      "of_reduce_bool_detected": false,
+      "trust_compiler_detected": false,
+      "axioms_by_theorem": {
+        "WMFKI.assembled_design_conditional_centered": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.assembled_design_direction_second_moment": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.assembled_design_second_moment": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.centered_draw_mean": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.centered_draw_variance": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.conditional_centered_inner_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.conditional_centered_second_moment": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.corrected_pair_average": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.draws_independent": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.finite_memLp_two": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.frobenius_eq_vector_norm": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.frobenius_restrict_columns": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.independentDraws.congr_simp": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.instIsProbabilityMeasureForallIndependentDraws": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.instIsProbabilityMeasureUniformPopulation": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.instMeasurableSingletonClassOrderedPair": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.instNonemptyOrderedPairOfFactLeNatOfNat": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.integrable_finite_fibers": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.integral_draw_eval": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.integral_uniformPopulation": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.l2_norm_sq_eq_integral": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.leastSquares_error_bound": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.leastSquares_orthogonal": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.leastSquares_prediction_sq_bound": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.lowerBound_perturb": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.matrixMap_apply": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.matrixMap_norm_le_frobenius": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.matrixMap_restrict_norm_le": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.matrixMap_sub": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.matrixMap_transpose": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.norm_add_sq_le_twice": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.orderedPair_card": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.pairCorrection_bounds": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.pairDesignError_direction_second_moment": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.pairDesignError_eq_difference": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.pairDesignError_mul_coefficients": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.pairDesignError_second_moment": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.pairFeature_second_moment": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.pairFeature_sq_bound": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.pairPrefactor_sq_le": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.pairRowError_conditional_mean": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.pairRowError_conditional_mean_of_moments": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.pairRowError_joint_memLp": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.pairRowError_joint_second_moment": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.pairRowError_mean": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.pairRowError_second_moment": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.populationMean_linear_combination": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.product_conditional_centered": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.refreshed_sampling_variance": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.samplingError_eq_sampled_sub_full": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.samplingError_joint_memLp": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.samplingError_joint_second_moment": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.samplingError_linear_combination": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.samplingError_mean": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.samplingError_observable": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.samplingError_observation_memLp": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.samplingError_second_moment": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.samplingError_second_moment_weighted": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.single_particle_no_pairs": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WMFKI.weighted_independent_variance": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      "error_summary": ""
+    }
+  ]
+}

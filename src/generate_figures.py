@@ -25,6 +25,7 @@ FIG_DIR = Path("papers/shared/figures")
 PREVIEW_DIR = Path("data/fig_previews")
 DEFAULT_FIGURE_INPUTS = Path("artifacts/slices/2026-11/figure_inputs.json")
 DEFAULT_LONGITUDINAL_SUMMARY = Path("artifacts/longitudinal_summary.json")
+DEFAULT_SANDBOX_DIR = Path("artifacts/sandbox_builds")
 
 # Paper-specific subpackage LoC overrides for multi-paper monorepos (verified in Phase 2 audits)
 SUBPACKAGE_LOC = {
@@ -732,12 +733,199 @@ def make_longitudinal_curve(
     _save(fig, "fig_longitudinal_curve", out_dir=out_dir, save_previews=save_previews)
 
 
+def make_sandbox_builds(
+    sandbox_dir: Path = DEFAULT_SANDBOX_DIR,
+    out_dir: Path = FIG_DIR,
+    save_previews: bool = False,
+) -> None:
+    """Two-panel figure summarizing isolated Docker lake build + #print axioms verification."""
+    summary_path = sandbox_dir / "summary.json"
+    if not summary_path.is_file():
+        print(f"Skipping fig_sandbox_builds (missing {summary_path})")
+        return
+
+    summary = json.loads(summary_path.read_text(encoding="utf-8"))
+    records: list[dict[str, Any]] = []
+    for sl in ("2026-11", "2026-05"):
+        rp = sandbox_dir / f"results_{sl}.json"
+        if rp.is_file():
+            records.extend(json.loads(rp.read_text(encoding="utf-8")).get("records", []))
+
+    if not records:
+        return
+
+    tier_short = {"Tier3_Gold": "T3", "Tier2_Silver": "T2", "Tier1_Bronze": "T1"}
+    slice_short = {"2026-11": "T2", "2026-05": "T1"}
+
+    def _outcome_cat(r: dict[str, Any]) -> str:
+        st = r["build_status"]
+        if st == "pass":
+            if r.get("nonstandard_axioms_detected") or r.get("sorry_ax_detected") or r.get("of_reduce_bool_detected"):
+                return "pass_nonstd"
+            return "pass_clean"
+        if st == "fail_packaging":
+            return "fail_packaging"
+        return "fail_local_dep"
+
+    cat_order = {"pass_clean": 0, "pass_nonstd": 1, "fail_packaging": 2, "fail_local_dep": 3}
+    cat_style = {
+        "pass_clean": ("#059669", None, "OOTB Pass + Standard Axioms Only"),
+        "pass_nonstd": ("#D97706", None, "OOTB Pass + Nonstandard Axioms"),
+        "fail_packaging": ("#64748B", "///", "OOTB Packaging Fail (Pass in Synth. Env.)"),
+        "fail_local_dep": ("#DC2626", None, "OOTB Fail: Missing Local Path Dep"),
+    }
+
+    # Sort so clean passes are grouped nicely on top (by build time desc), then nonstd, then packaging, then local dep
+    ordered = sorted(
+        records,
+        key=lambda r: (
+            cat_order[_outcome_cat(r)],
+            -(r.get("wall_time_sec") or 0.0) if r["build_status"] == "pass" else (r.get("owned_loc") or 0),
+            r["arxiv_id"],
+        ),
+    )
+    # Reverse for horizontal barh so top item appears at top
+    ordered_plot = list(reversed(ordered))
+
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(11.8, 5.2), gridspec_kw={"width_ratios": [1.55, 1.0]})
+
+    # --- Panel (a): Per-repo build wall time (log scale) & axiom outcome ---
+    y = np.arange(len(ordered_plot))
+    for i, r in enumerate(ordered_plot):
+        cat = _outcome_cat(r)
+        col, hatch, _ = cat_style[cat]
+        if r["build_status"] == "pass":
+            val = max(float(r.get("wall_time_sec") or 1.0), 1.0)
+            ax1.barh(i, val, height=0.68, color=col, alpha=0.92, edgecolor="white", linewidth=0.6, zorder=3)
+            thms = int(r.get("total_theorems_checked") or 0)
+            t_str = f"{val:,.0f}s" if val >= 100 else f"{val:.1f}s"
+            if cat == "pass_clean":
+                ann = f"{t_str}  |  {thms:,} thms (clean)"
+                txt_col = "#065F46"
+            else:
+                nonstd = r.get("nonstandard_axioms_detected", [])
+                if r.get("sorry_ax_detected"):
+                    ann = f"{t_str}  |  {thms:,} thms (sorryAx!)"
+                else:
+                    ann = f"{t_str}  |  {thms:,} thms ({len(nonstd)} custom axioms!)"
+                txt_col = "#92400E"
+            ax1.text(val * 1.14, i, ann, va="center", ha="left", fontsize=7.2, fontweight="bold" if cat == "pass_nonstd" else "normal", color=txt_col)
+        elif cat == "fail_packaging":
+            syn = r.get("synthetic_env_check") or {}
+            syn_t = float(syn.get("wall_time_sec") or 20.0)
+            syn_thms = int(syn.get("total_theorems_checked") or 0)
+            ax1.barh(
+                i, syn_t, height=0.68, color="#E2E8F0", edgecolor="#475569",
+                hatch="///", linewidth=0.9, zorder=3,
+            )
+            ax1.text(
+                syn_t * 1.14, i,
+                f"No lakefile  (synth: {syn_t:.1f}s, {syn_thms} thms clean)",
+                va="center", ha="left", fontsize=7.0, style="italic", color="#334155",
+            )
+        else:
+            raw_t = float(r.get("wall_time_sec") or 0.86)
+            val = max(raw_t, 0.65)
+            ax1.barh(i, val, height=0.68, color=col, alpha=0.92, edgecolor="white", linewidth=0.6, zorder=3)
+            ax1.text(
+                val * 1.25, i,
+                f"FAIL {raw_t:.2f}s  (missing ../qanary-* sibling deps)",
+                va="center", ha="left", fontsize=7.1, fontweight="bold", color="#991B1B",
+            )
+
+    y_labels = []
+    for r in ordered_plot:
+        sl_s = slice_short.get(r["slice_id"], r["slice_id"])
+        tr_s = tier_short.get(r.get("static_verification_tier") or "", "?")
+        loc = int(r.get("owned_loc") or 0)
+        loc_s = f"{loc/1000:.1f}k" if loc >= 10000 else f"{loc:,}"
+        y_labels.append(f"{r['arxiv_id']} ({sl_s}, {tr_s}, {loc_s})")
+
+    ax1.set_xscale("log")
+    ax1.set_xlim(0.5, 6.5e4)
+    ax1.set_yticks(y)
+    ax1.set_yticklabels(y_labels, fontsize=7.3, family="monospace")
+    ax1.set_xlabel("Isolated Container Wall Time (seconds, log scale; --network=none)")
+    ax1.set_title("(a) Sandboxed Build & Axiom Audit (All 14 Compact Repos <15k LoC)", pad=9)
+    ax1.grid(axis="x", which="major", linestyle=":", alpha=0.6, zorder=1)
+    ax1.spines["top"].set_visible(False)
+    ax1.spines["right"].set_visible(False)
+
+    # Subtle divider separating OOTB passes from OOTB failures
+    n_fails = sum(1 for r in ordered_plot if r["build_status"] != "pass")
+    if 0 < n_fails < len(ordered_plot):
+        ax1.axhline(n_fails - 0.5, color="#94A3B8", linestyle="--", linewidth=1.0, zorder=2)
+
+    # --- Panel (b): Static Verification Tier vs Dynamic Kernel Ground-Truth ---
+    groups = [
+        ("Tier 3: Gold\n(T2, n=8)", [r for r in records if r.get("static_verification_tier") == "Tier3_Gold"]),
+        ("Tier 2: Silver\n(T1+T2, n=5)", [r for r in records if r.get("static_verification_tier") == "Tier2_Silver"]),
+        ("Tier 1: Bronze\n(T1, n=1)", [r for r in records if r.get("static_verification_tier") == "Tier1_Bronze"]),
+        ("All Compact\n(<15k LoC, n=14)", records),
+    ]
+    gx = np.arange(len(groups))
+    counts = {k: [] for k in ("pass_clean", "pass_nonstd", "fail_packaging", "fail_local_dep")}
+    for _, grp in groups:
+        c = Counter(_outcome_cat(r) for r in grp)
+        for k in counts:
+            counts[k].append(c[k])
+
+    bottom = np.zeros(len(groups))
+    for k in ("pass_clean", "pass_nonstd", "fail_packaging", "fail_local_dep"):
+        vals = np.array(counts[k], dtype=float)
+        col, hatch, lbl = cat_style[k]
+        if k == "fail_packaging":
+            ax2.bar(gx, vals, bottom=bottom, width=0.56, color="#E2E8F0", edgecolor="#475569", hatch="///", linewidth=0.9, label=lbl, zorder=3)
+        else:
+            ax2.bar(gx, vals, bottom=bottom, width=0.56, color=col, edgecolor="white", linewidth=0.8, label=lbl, zorder=3)
+        for xi, v in enumerate(vals):
+            if v >= 1:
+                tc = "#1E293B" if k == "fail_packaging" else "white"
+                ax2.text(xi, bottom[xi] + v / 2.0, f"{int(v)}", ha="center", va="center", fontsize=8.3, fontweight="bold", color=tc, zorder=4)
+        bottom += vals
+
+    ax2.set_xticks(gx)
+    ax2.set_xticklabels([g[0] for g in groups], fontsize=7.8)
+    ax2.set_ylabel("Number of Repositories")
+    ax2.set_ylim(0, 19.2)
+    ax2.set_yticks(np.arange(0, 19, 2))
+    ax2.set_title("(b) Static Tier vs. Dynamic Kernel Ground Truth", pad=9)
+    ax2.grid(axis="y", linestyle=":", alpha=0.6, zorder=1)
+    ax2.spines["top"].set_visible(False)
+    ax2.spines["right"].set_visible(False)
+    ax2.legend(loc="upper left", frameon=True, facecolor="white", edgecolor="#D1D5DB", fontsize=7.1)
+
+    ov = summary["overall"]
+    callout = (
+        f"OOTB Pass: {ov['pass_out_of_box']}/{ov['total_attempted']} ({100.0*ov['pass_out_of_box']/ov['total_attempted']:.1f}%)\n"
+        f"Theorems audited: {ov['total_theorems_checked_ootb']:,} OOTB ({ov['total_theorems_checked_incl_synthetic']:,} incl. synth.)\n"
+        f"Tier3_Gold: {ov['tier3_gold_pass_out_of_box']}/{ov['tier3_gold_attempted']} OOTB ({ov['tier3_gold_clean_axioms']}/{ov['tier3_gold_pass_out_of_box']} axiom-clean)\n"
+        f"Lean.ofReduceBool: 0/{ov['total_attempted']}  |  Proof compile errors: 0/{ov['total_attempted']}"
+    )
+    ax2.text(
+        0.025,
+        0.625,
+        callout,
+        transform=ax2.transAxes,
+        ha="left",
+        va="center",
+        fontsize=6.7,
+        color="#1E293B",
+        linespacing=1.34,
+        bbox=dict(boxstyle="round,pad=0.34", facecolor="#F8FAFC", edgecolor="#94A3B8", lw=0.9),
+    )
+
+    plt.tight_layout(w_pad=1.8)
+    _save(fig, "fig_sandbox_builds", out_dir=out_dir, save_previews=save_previews)
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(
         description="Generate vector PDF figures from git-tracked artifacts/ (or optional --from-db)."
     )
     ap.add_argument("--figure-inputs", type=Path, default=DEFAULT_FIGURE_INPUTS)
     ap.add_argument("--longitudinal-summary", type=Path, default=DEFAULT_LONGITUDINAL_SUMMARY)
+    ap.add_argument("--sandbox-dir", type=Path, default=DEFAULT_SANDBOX_DIR)
     ap.add_argument(
         "--from-db",
         type=Path,
@@ -765,7 +953,8 @@ def main() -> None:
     make_paradigms_and_loc(fig_data, out_dir=args.out_dir, save_previews=args.save_previews)
     make_phase2_heatmap(fig_data, out_dir=args.out_dir, save_previews=args.save_previews)
     make_longitudinal_curve(args.longitudinal_summary, out_dir=args.out_dir, save_previews=args.save_previews)
-    print("All 5 figures generated successfully.")
+    make_sandbox_builds(args.sandbox_dir, out_dir=args.out_dir, save_previews=args.save_previews)
+    print("All 6 figures generated successfully.")
 
 
 if __name__ == "__main__":

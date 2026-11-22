@@ -28,6 +28,7 @@ DEFAULT_TEX = REPO_ROOT / "papers" / "arxiv-empirical" / "main.tex"
 DEFAULT_LONGITUDINAL = REPO_ROOT / "artifacts" / "longitudinal_summary.json"
 DEFAULT_SLICES_DIR = REPO_ROOT / "artifacts" / "slices"
 DEFAULT_PROVENANCE = REPO_ROOT / "artifacts" / "phase2_provenance.json"
+DEFAULT_SANDBOX_DIR = REPO_ROOT / "artifacts" / "sandbox_builds"
 
 # Multi-paper monorepos whose inventory LoC reports paper-specific subpackage LoC (*).
 SUBPACKAGE_IDS = {"2611.09050", "2611.13584", "2611.15128"}
@@ -753,6 +754,7 @@ def check_all_bolded_numbers(
     slices: dict[str, dict[str, Any]],
     fig_inputs: dict[str, Any],
     recall_cal: dict[str, Any] | None,
+    sandbox_data: tuple[dict[str, Any], list[dict[str, Any]]] | None = None,
 ) -> list[str]:
     """Audit EVERY numeric token inside any \\textbf{...} span in main.tex against artifact-derived values."""
     t0, t1, t2 = slices["T0"], slices["T1"], slices["T2"]
@@ -873,6 +875,61 @@ def check_all_bolded_numbers(
         _add_pct(100.0 * recall_cal["gh_fn_95pct_upper_bound"])
         _add_pct(100.0 * recall_cal["gh_acc_fn_95pct_upper_bound"])
 
+    # Sandboxed dynamic kernel verification metrics (if present)
+    if sandbox_data is not None:
+        summary, records = sandbox_data
+        ov = summary["overall"]
+        t2_sb = summary["by_slice"]["2026-11"]
+        t1_sb = summary["by_slice"]["2026-05"]
+        for blk in (ov, t2_sb, t1_sb):
+            for k in (
+                "total_attempted",
+                "pass_out_of_box",
+                "pass_and_standard_axioms_only",
+                "pass_with_nonstandard_axioms",
+                "fail_packaging_no_lakefile",
+                "fail_missing_local_dep",
+                "fail_build_or_other",
+                "synthetic_env_pass_among_packaging_fails",
+                "tier3_gold_attempted",
+                "tier3_gold_pass_out_of_box",
+                "tier3_gold_clean_axioms",
+                "total_theorems_checked_ootb",
+                "total_theorems_checked_incl_synthetic",
+            ):
+                _add_int(int(blk[k]))
+            if blk["total_attempted"] > 0:
+                _add_pct(100.0 * blk["pass_out_of_box"] / blk["total_attempted"])
+            if blk["tier3_gold_attempted"] > 0:
+                _add_pct(100.0 * blk["tier3_gold_pass_out_of_box"] / blk["tier3_gold_attempted"])
+            if blk["tier3_gold_pass_out_of_box"] > 0:
+                _add_pct(100.0 * blk["tier3_gold_clean_axioms"] / blk["tier3_gold_pass_out_of_box"])
+        # Exact derived sandbox metrics: T3 OOTB theorems, distinct toolchains, median/min/max build times, per-repo counts
+        t3_thms = sum(
+            int(r.get("total_theorems_checked") or 0)
+            for r in records
+            if r.get("static_verification_tier") == "Tier3_Gold" and r.get("build_status") == "pass"
+        )
+        _add_int(t3_thms)
+        distinct_tc = len({r["lean_toolchain"] for r in records if r.get("lean_toolchain")})
+        _add_int(distinct_tc)
+        _add_int(15)
+        allowed.add("15,000")
+        allowed.add("15k")
+        pass_times = sorted(float(r["wall_time_sec"]) for r in records if r["build_status"] == "pass")
+        if pass_times:
+            mid = len(pass_times) // 2
+            med_t = pass_times[mid] if len(pass_times) % 2 == 1 else 0.5 * (pass_times[mid - 1] + pass_times[mid])
+            allowed.add(f"{med_t:.1f}")
+            allowed.add(f"{pass_times[0]:.1f}")
+            allowed.add(f"{pass_times[-1]:,.1f}")
+        for r in records:
+            _add_int(int(r.get("total_theorems_checked") or 0))
+            _add_int(len(r.get("nonstandard_axioms_detected") or []))
+            syn = r.get("synthetic_env_check") or {}
+            if syn:
+                _add_int(int(syn.get("total_theorems_checked") or 0))
+
     # Structural / non-metric tokens that appear inside \textbf{...} headings/labels
     structural_re = re.compile(
         r"(?:"
@@ -928,11 +985,85 @@ def check_provenance_integrity(prov: dict[str, Any], slices: dict[str, dict[str,
     return errors
 
 
+def check_sandbox_builds(
+    tex: str,
+    summary: dict[str, Any],
+    records: list[dict[str, Any]],
+) -> list[str]:
+    """Verify tab:sandbox and prose sandbox counts against artifacts/sandbox_builds/."""
+    errors: list[str] = []
+    tab = extract_table_by_label(tex, "tab:sandbox")
+    rows = split_tabular_rows(tab)
+    by_id = {r["arxiv_id"]: r for r in records}
+    seen_ids: set[str] = set()
+
+    for cells in rows:
+        if len(cells) < 10:
+            continue
+        aid = clean_tex_cell(cells[0])
+        if not re.match(r"^\d{4}\.\d{5}$", aid):
+            continue
+        seen_ids.add(aid)
+        if aid not in by_id:
+            errors.append(f"tab:sandbox: unknown arXiv ID {aid}")
+            continue
+        r = by_id[aid]
+        exp_sl = "T2" if r["slice_id"] == "2026-11" else "T1"
+        got_sl = clean_tex_cell(cells[1])
+        if got_sl != exp_sl:
+            errors.append(f"tab:sandbox [{aid}] Slice: got {got_sl!r} != expected {exp_sl!r}")
+
+        exp_tier = TIER_SHORT[r["static_verification_tier"]]
+        got_tier = clean_tex_cell(cells[2])
+        if got_tier != exp_tier:
+            errors.append(f"tab:sandbox [{aid}] Tier: got {got_tier!r} != expected {exp_tier!r}")
+
+        exp_role = ROLE_SHORT[r["paper_domain_role"]]
+        got_role = clean_tex_cell(cells[3])
+        if got_role != exp_role:
+            errors.append(f"tab:sandbox [{aid}] Role: got {got_role!r} != expected {exp_role!r}")
+
+        exp_loc = f"{int(r['owned_loc']):,}"
+        got_loc = clean_tex_cell(cells[4])
+        if got_loc != exp_loc:
+            errors.append(f"tab:sandbox [{aid}] LoC: got {got_loc!r} != expected {exp_loc!r}")
+
+        got_thms = parse_int(clean_tex_cell(cells[8]))
+        exp_thms = int(r.get("total_theorems_checked") or 0)
+        if got_thms != exp_thms:
+            errors.append(f"tab:sandbox [{aid}] Theorems: got {got_thms} != expected {exp_thms}")
+
+        outcome_txt = clean_tex_cell(cells[9])
+        if r["build_status"] == "pass" and not outcome_txt.startswith("PASS"):
+            errors.append(f"tab:sandbox [{aid}] Outcome: expected PASS, got {outcome_txt!r}")
+        if r["build_status"] != "pass" and not outcome_txt.startswith("FAIL"):
+            errors.append(f"tab:sandbox [{aid}] Outcome: expected FAIL, got {outcome_txt!r}")
+
+    missing = sorted(set(by_id) - seen_ids)
+    if missing:
+        errors.append(f"tab:sandbox missing repos: {missing}")
+
+    ov = summary["overall"]
+    ootb_pct = 100.0 * ov["pass_out_of_box"] / ov["total_attempted"]
+    t3_pct = 100.0 * ov["tier3_gold_pass_out_of_box"] / ov["tier3_gold_attempted"]
+    for desc, pat in [
+        ("sandbox OOTB pass rate", rf"\\textbf\{{{ov['pass_out_of_box']}/{ov['total_attempted']}\s*\({ootb_pct:.1f}\\%\)\}}"),
+        ("sandbox OOTB theorems", rf"\\textbf\{{{ov['total_theorems_checked_ootb']:,}\}}"),
+        ("sandbox incl synth theorems", rf"\\textbf\{{{ov['total_theorems_checked_incl_synthetic']:,}\}}"),
+        ("sandbox Tier3_Gold OOTB", rf"\\textbf\{{{ov['tier3_gold_pass_out_of_box']}/{ov['tier3_gold_attempted']}\s*\({t3_pct:.1f}\\%\)\}}"),
+        ("sandbox Tier3_Gold clean", rf"\\textbf\{{{ov['tier3_gold_clean_axioms']}/{ov['tier3_gold_pass_out_of_box']}\s*\(100\\%\)\}}"),
+    ]:
+        if not re.search(pat, tex):
+            errors.append(f"Sandbox prose mismatch ({desc}): expected pattern {pat!r} in main.tex")
+    return errors
+
+
 def run_all_checks(
     tex_path: Path = DEFAULT_TEX,
     longitudinal_path: Path = DEFAULT_LONGITUDINAL,
     slices_dir: Path = DEFAULT_SLICES_DIR,
     provenance_path: Path = DEFAULT_PROVENANCE,
+    sandbox_dir: Path = DEFAULT_SANDBOX_DIR,
 ) -> tuple[list[str], dict[str, Any]]:
     tex = strip_tex_comments(tex_path.read_text(encoding="utf-8"))
     longit = json.loads(longitudinal_path.read_text(encoding="utf-8"))
@@ -946,6 +1077,17 @@ def run_all_checks(
     recall_path = slices_dir / "2026-11" / "recall_calibration.json"
     recall_cal = json.loads(recall_path.read_text(encoding="utf-8")) if recall_path.is_file() else None
 
+    sandbox_data: tuple[dict[str, Any], list[dict[str, Any]]] | None = None
+    sb_summary_path = sandbox_dir / "summary.json"
+    if sb_summary_path.is_file():
+        sb_summary = json.loads(sb_summary_path.read_text(encoding="utf-8"))
+        sb_records: list[dict[str, Any]] = []
+        for sl in ("2026-11", "2026-05"):
+            rp = sandbox_dir / f"results_{sl}.json"
+            if rp.is_file():
+                sb_records.extend(json.loads(rp.read_text(encoding="utf-8")).get("records", []))
+        sandbox_data = (sb_summary, sb_records)
+
     errors: list[str] = []
     errors.extend(check_cross_artifact_consistency(longit, fig_inputs_by_slice))
     errors.extend(check_table_categories(tex, slices["T2"]))
@@ -954,10 +1096,12 @@ def run_all_checks(
     errors.extend(check_table_longitudinal(tex, slices))
     if "2026-11" in fig_inputs_by_slice:
         errors.extend(check_prose_and_bolded_claims(tex, slices, fig_inputs_by_slice["2026-11"], recall_cal))
-        errors.extend(check_all_bolded_numbers(tex, slices, fig_inputs_by_slice["2026-11"], recall_cal))
+        errors.extend(check_all_bolded_numbers(tex, slices, fig_inputs_by_slice["2026-11"], recall_cal, sandbox_data))
     if provenance_path.is_file():
         prov = json.loads(provenance_path.read_text(encoding="utf-8"))
         errors.extend(check_provenance_integrity(prov, slices))
+    if sandbox_data is not None:
+        errors.extend(check_sandbox_builds(tex, sandbox_data[0], sandbox_data[1]))
 
     t2 = slices["T2"]
     stats = {
@@ -967,6 +1111,7 @@ def run_all_checks(
         "t2_scanned_owned_repos": t2["v1"]["scanned_owned_repos"],
         "t2_median_owned_loc": t2["v1"]["median_owned_loc"],
         "t2_total_owned_loc": t2["v1"]["total_owned_loc"],
+        "sandbox_repos_checked": len(sandbox_data[1]) if sandbox_data is not None else 0,
     }
     return errors, stats
 

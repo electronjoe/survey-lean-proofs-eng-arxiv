@@ -1,0 +1,116 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-11-22T21:12:06Z",
+  "runner_image": "lean-survey-sandbox:v1",
+  "selection_criterion": "All standalone primary Lean 4 repositories with < 15,000 non-empty LoC across T1 (May 2026) and T2 (Nov 2026).",
+  "overall": {
+    "total_attempted": 14,
+    "pass_out_of_box": 11,
+    "pass_and_standard_axioms_only": 9,
+    "pass_with_nonstandard_axioms": 2,
+    "fail_packaging_no_lakefile": 2,
+    "fail_missing_local_dep": 1,
+    "fail_build_or_other": 0,
+    "synthetic_env_pass_among_packaging_fails": 2,
+    "synthetic_env_clean_among_packaging_fails": 2,
+    "tier3_gold_attempted": 8,
+    "tier3_gold_pass_out_of_box": 7,
+    "tier3_gold_clean_axioms": 7,
+    "total_theorems_checked_ootb": 3190,
+    "total_theorems_checked_incl_synthetic": 3254,
+    "sorry_ax_repos_ootb": [
+      "2611.16690"
+    ],
+    "of_reduce_bool_repos_ootb": [],
+    "nonstandard_axiom_repos_ootb": [
+      {
+        "arxiv_id": "2611.16690",
+        "axioms": [
+          "sorryAx"
+        ]
+      },
+      {
+        "arxiv_id": "2605.16407",
+        "axioms": [
+          "VerifiedEmbedding.ParaphraseOracle",
+          "VerifiedEmbedding.cauchy_schwarz_sq",
+          "VerifiedEmbedding.innerProd_sub",
+          "VerifiedEmbedding.Grounding.DecompositionOracle",
+          "VerifiedEmbedding.Grounding.SignedSupportOracle",
+          "VerifiedEmbedding.Concentration.HoeffdingInequality",
+          "VerifiedEmbedding.Concentration.IIDSamples",
+          "VerifiedEmbedding.CoT.StepConfidenceOracle",
+          "VerifiedEmbedding.ProofOfSampling.DecodeAlgorithmDeterministic",
+          "VerifiedEmbedding.ProofOfSampling.Hash",
+          "VerifiedEmbedding.ProofOfSampling.HashCollisionResistant"
+        ]
+      }
+    ]
+  },
+  "by_slice": {
+    "2026-11": {
+      "total_attempted": 11,
+      "pass_out_of_box": 9,
+      "pass_and_standard_axioms_only": 8,
+      "pass_with_nonstandard_axioms": 1,
+      "fail_packaging_no_lakefile": 2,
+      "fail_missing_local_dep": 0,
+      "fail_build_or_other": 0,
+      "synthetic_env_pass_among_packaging_fails": 2,
+      "synthetic_env_clean_among_packaging_fails": 2,
+      "tier3_gold_attempted": 8,
+      "tier3_gold_pass_out_of_box": 7,
+      "tier3_gold_clean_axioms": 7,
+      "total_theorems_checked_ootb": 3026,
+      "total_theorems_checked_incl_synthetic": 3090,
+      "sorry_ax_repos_ootb": [
+        "2611.16690"
+      ],
+      "of_reduce_bool_repos_ootb": [],
+      "nonstandard_axiom_repos_ootb": [
+        {
+          "arxiv_id": "2611.16690",
+          "axioms": [
+            "sorryAx"
+          ]
+        }
+      ]
+    },
+    "2026-05": {
+      "total_attempted": 3,
+      "pass_out_of_box": 2,
+      "pass_and_standard_axioms_only": 1,
+      "pass_with_nonstandard_axioms": 1,
+      "fail_packaging_no_lakefile": 0,
+      "fail_missing_local_dep": 1,
+      "fail_build_or_other": 0,
+      "synthetic_env_pass_among_packaging_fails": 0,
+      "synthetic_env_clean_among_packaging_fails": 0,
+      "tier3_gold_attempted": 0,
+      "tier3_gold_pass_out_of_box": 0,
+      "tier3_gold_clean_axioms": 0,
+      "total_theorems_checked_ootb": 164,
+      "total_theorems_checked_incl_synthetic": 164,
+      "sorry_ax_repos_ootb": [],
+      "of_reduce_bool_repos_ootb": [],
+      "nonstandard_axiom_repos_ootb": [
+        {
+          "arxiv_id": "2605.16407",
+          "axioms": [
+            "VerifiedEmbedding.ParaphraseOracle",
+            "VerifiedEmbedding.cauchy_schwarz_sq",
+            "VerifiedEmbedding.innerProd_sub",
+            "VerifiedEmbedding.Grounding.DecompositionOracle",
+            "VerifiedEmbedding.Grounding.SignedSupportOracle",
+            "VerifiedEmbedding.Concentration.HoeffdingInequality",
+            "VerifiedEmbedding.Concentration.IIDSamples",
+            "VerifiedEmbedding.CoT.StepConfidenceOracle",
+            "VerifiedEmbedding.ProofOfSampling.DecodeAlgorithmDeterministic",
+            "VerifiedEmbedding.ProofOfSampling.Hash",
+            "VerifiedEmbedding.ProofOfSampling.HashCollisionResistant"
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -2,7 +2,7 @@
 
 ROOT_DIR := ../..
 FIG_DIR := ../shared/figures
-FIG_SENTINEL := $(FIG_DIR)/fig_pipeline_funnel.pdf
+FIG_SENTINEL := $(FIG_DIR)/fig_sandbox_builds.pdf
 
 all: main.pdf
 
