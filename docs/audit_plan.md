@@ -95,7 +95,11 @@ All **54 entries** in [`papers/shared/references.bib`](../papers/shared/referenc
 
 ### Completed for the arXiv Empirical Preprint (`papers/arxiv-empirical/main.tex`)
 - [x] **Retitled & reframed away from "Survey"** across Title, Abstract, Section 3 heading, and captions in [`papers/arxiv-empirical/main.tex`](../papers/arxiv-empirical/main.tex) (*An Empirical Longitudinal Measurement of arXiv Preprints...*) to avoid arXiv's un-refereed CS survey/position-paper desk-rejection policy (see [`docs/publication_strategy.html`](publication_strategy.html#L630-L649)).
-- [x] **Added explicit `AI-Use Disclosure and Human Accountability` section** in [`papers/arxiv-empirical/main.tex`](../papers/arxiv-empirical/main.tex) separating (1) AI as an empirical research instrument (`run_workflow` `flash`/`flash_lite`/`pro` read-only agents, date, prompts/schemas in `workflows/`) from (2) AI-assisted engineering & drafting under full human verification and responsibility.
+- [x] **Added explicit `AI-Use Disclosure and Human Accountability` section + per-task model/effort provenance table (Table 7)** in [`papers/arxiv-empirical/main.tex`](../papers/arxiv-empirical/main.tex), verified directly from all 150 execution transcripts (81 local + 69 remote):
+  - Stage 4 Lean classification (`flash`, 80 runs): **Gemini 4 Hydrogen (High)** (`gemini-4-hydrogen-tiered-high`) via Google Antigravity `run_workflow`
+  - Stage 4 Pilot v1 Beyond-Lean baseline (`flash_lite`, 34 runs): **Gemini 3.5 Flash-Lite** (`gemini-3.5-flash-lite`) via Google Antigravity `run_workflow`
+  - Stage 5 Layer-A semantic audits (`pro`, 20 runs): **Gemini 4 Hydrogen (Extra High)** (`gemini-4-hydrogen-tiered-xhigh`) via Google Antigravity `run_workflow`
+  - All code writing & manuscript drafting (Abstract + Sections 1–7): **Gemini 4 Neon (High)** (`gemini-4-neon-high`) via Google Antigravity CLI harness (with auxiliary interactive sessions on Gemini 4 Neon Medium and Gemini 4 Carbon High).
 - [x] **Verified double-blind review packaging** via `uv run python scripts/export_blind_artifact.py` (`36 files`, `0 leaks`, enforced in CI).
 
 ### Downstream Venue-Specific Adaptations (Once Target Peer-Reviewed Venue Is Chosen)
