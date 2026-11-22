@@ -99,8 +99,8 @@ def calibrate(
     non_gh_sample_size: int = 50,
     seed: int = 20261122,
     workers: int = 8,
-    out_json: Path = Path("data/recall_calibration.json"),
-    out_md: Path = Path("reports/recall_calibration.md"),
+    out_json: Path = Path("artifacts/slices/2026-11/recall_calibration.json"),
+    out_md: Path = Path("reports/slices/2026-11/recall_calibration.md"),
 ) -> None:
     conn = connect(db_path)
     neg_rows = [

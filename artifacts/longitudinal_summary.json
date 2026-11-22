@@ -1,0 +1,1964 @@
+{
+  "slices": [
+    {
+      "short_id": "T0",
+      "label": "Nov 1\u201319, 2025",
+      "db_path": "data/slice_2025_11.db",
+      "date_min": "2025-11-01",
+      "date_max": "2025-11-19",
+      "total_papers": 2435,
+      "non_tcs_total": 2417,
+      "screened_ok": 2421,
+      "coverage_pct": 99.42505133470226,
+      "fetch_counts": {
+        "failed": 14,
+        "html": 2223,
+        "pdf": 198
+      },
+      "revised_v_gt_1": 862,
+      "revised_pct": 35.40041067761807,
+      "meta_lean_strong": 0,
+      "stage2_lean_strong": 2,
+      "stage2_lean_candidates": 3,
+      "stage2_lean_cand_pct": 0.12320328542094455,
+      "stage2_beyond_any": 37,
+      "stage2_beyond_any_pct": 1.5195071868583163,
+      "stage2_beyond_breakdown": {
+        "other_itp": 10,
+        "model_checker": 11,
+        "protocol_verifier": 6,
+        "smt_sat": 19
+      },
+      "cat_total": {
+        "cs.CR": 406,
+        "cs.DC": 223,
+        "cs.NI": 136,
+        "cs.IT": 209,
+        "eess.SP": 338,
+        "math.OC": 410,
+        "cs.RO": 532,
+        "eess.SY": 476
+      },
+      "v1": {
+        "count": 0,
+        "pct": 0.0,
+        "wilson_95": [
+          0.0,
+          0.15751162779798275
+        ],
+        "non_tcs_count": 0,
+        "non_tcs_pct": 0.0,
+        "eng_math_count": 0,
+        "eng_math_share_pct": 0.0,
+        "eng_math_corpus_pct": 0.0,
+        "cat_lean": {},
+        "cat_eng": {},
+        "roles": {},
+        "paradigms": {},
+        "tiers": {},
+        "ai": {},
+        "artifacts": {},
+        "risks": {},
+        "scanned_owned_repos": 0,
+        "total_owned_loc": 0,
+        "median_owned_loc": 0,
+        "min_owned_loc": 0,
+        "max_owned_loc": 0
+      },
+      "v_latest": {
+        "count": 1,
+        "pct": 0.04106776180698152,
+        "wilson_95": [
+          0.007249836175601582,
+          0.23226794223609945
+        ],
+        "non_tcs_count": 1,
+        "non_tcs_pct": 0.04137360364087712,
+        "eng_math_count": 0,
+        "eng_math_share_pct": 0.0,
+        "eng_math_corpus_pct": 0.0,
+        "cat_lean": {
+          "cs.CR": 1,
+          "cs.DC": 1
+        },
+        "cat_eng": {},
+        "roles": {
+          "software_or_system_fv": 1
+        },
+        "paradigms": {
+          "P0_opaque_or_unspecified": 1
+        },
+        "tiers": {
+          "Tier1_Bronze": 1
+        },
+        "ai": {
+          "unclear": 1
+        },
+        "artifacts": {
+          "broken_or_missing_repo": 1
+        },
+        "risks": {
+          "Mode2_ScopeDowngrade": 1,
+          "Mode12_ProcessOpacity": 1
+        },
+        "scanned_owned_repos": 0,
+        "total_owned_loc": 0,
+        "median_owned_loc": 0,
+        "min_owned_loc": 0,
+        "max_owned_loc": 0
+      },
+      "confirmed_papers": [
+        {
+          "arxiv_id": "2511.15517",
+          "title": "Beluga: Block Synchronization for BFT Consensus Protocols",
+          "primary_category": "cs.CR",
+          "matched_target_cats": [
+            "cs.CR",
+            "cs.DC"
+          ],
+          "submitted_date": "2025-11-19",
+          "updated_date": "2026-06-29",
+          "version": 2,
+          "is_retroactive_v2": true,
+          "paper_domain_role": "software_or_system_fv",
+          "authoring_paradigm": "P0_opaque_or_unspecified",
+          "verification_tier": "Tier1_Bronze",
+          "ai_agent_assisted": "unclear",
+          "ai_tools_mentioned": [],
+          "artifact_availability": "broken_or_missing_repo",
+          "static_risk_flags": [
+            "Mode2_ScopeDowngrade",
+            "Mode12_ProcessOpacity"
+          ],
+          "primary_owned_loc": null,
+          "primary_repo": null,
+          "one_line_summary": "Beluga claims machine-checked Lean proofs for all non-probabilistic theorems via uploaded 'Additional materials' and Appendix I, but provides no accessible public Lean repository for Beluga (the cloned asonnino/mysticeti Lean directory formalizes the separate Hydrozoan paper), yielding P0_opaque_or_unspecified and Tier1_Bronze."
+        }
+      ],
+      "audits": []
+    },
+    {
+      "short_id": "T1",
+      "label": "May 1\u201319, 2026",
+      "db_path": "data/slice_2026_05.db",
+      "date_min": "2026-05-01",
+      "date_max": "2026-05-19",
+      "total_papers": 3298,
+      "non_tcs_total": 3280,
+      "screened_ok": 3288,
+      "coverage_pct": 99.6967859308672,
+      "fetch_counts": {
+        "failed": 10,
+        "html": 3141,
+        "pdf": 147
+      },
+      "revised_v_gt_1": 1048,
+      "revised_pct": 31.776834445118254,
+      "meta_lean_strong": 5,
+      "stage2_lean_strong": 15,
+      "stage2_lean_candidates": 19,
+      "stage2_lean_cand_pct": 0.5761067313523347,
+      "stage2_beyond_any": 44,
+      "stage2_beyond_any_pct": 1.334141904184354,
+      "stage2_beyond_breakdown": {
+        "other_itp": 14,
+        "model_checker": 12,
+        "protocol_verifier": 5,
+        "smt_sat": 23
+      },
+      "cat_total": {
+        "cs.DC": 315,
+        "cs.RO": 740,
+        "cs.IT": 327,
+        "eess.SY": 456,
+        "math.OC": 512,
+        "cs.NI": 227,
+        "eess.SP": 419,
+        "cs.CR": 685
+      },
+      "v1": {
+        "count": 5,
+        "pct": 0.15160703456640387,
+        "wilson_95": [
+          0.06477430555488924,
+          0.3544299189261267
+        ],
+        "non_tcs_count": 3,
+        "non_tcs_pct": 0.09146341463414634,
+        "eng_math_count": 3,
+        "eng_math_share_pct": 60.0,
+        "eng_math_corpus_pct": 0.09096422073984232,
+        "cat_lean": {
+          "eess.SP": 1,
+          "cs.CR": 3,
+          "cs.DC": 1,
+          "eess.SY": 1
+        },
+        "cat_eng": {
+          "eess.SP": 1,
+          "cs.CR": 2,
+          "eess.SY": 1
+        },
+        "roles": {
+          "engineering_math_proof": 3,
+          "software_or_system_fv": 1,
+          "pure_tcs_or_math": 1
+        },
+        "paradigms": {
+          "P1_paper_first_posthoc": 3,
+          "P0_opaque_or_unspecified": 1,
+          "P2_lean_first": 1
+        },
+        "tiers": {
+          "Tier2_Silver": 2,
+          "Tier1_Bronze": 3
+        },
+        "ai": {
+          "explicitly_no": 1,
+          "unclear": 2,
+          "explicitly_yes": 2
+        },
+        "artifacts": {
+          "public_lean_repo": 3,
+          "appendix_only": 1,
+          "none": 1
+        },
+        "risks": {
+          "Mode2_ScopeDowngrade": 4,
+          "Mode6_SorryOrAxiomOrNativeDecide": 1,
+          "Mode12_ProcessOpacity": 2
+        },
+        "scanned_owned_repos": 3,
+        "total_owned_loc": 3603,
+        "median_owned_loc": 749,
+        "min_owned_loc": 473,
+        "max_owned_loc": 2381
+      },
+      "v_latest": {
+        "count": 7,
+        "pct": 0.21224984839296543,
+        "wilson_95": [
+          0.10285250935476375,
+          0.4374962355344261
+        ],
+        "non_tcs_count": 5,
+        "non_tcs_pct": 0.1524390243902439,
+        "eng_math_count": 4,
+        "eng_math_share_pct": 57.142857142857146,
+        "eng_math_corpus_pct": 0.1212856276531231,
+        "cat_lean": {
+          "cs.DC": 2,
+          "eess.SP": 1,
+          "cs.CR": 3,
+          "math.OC": 1,
+          "eess.SY": 1
+        },
+        "cat_eng": {
+          "eess.SP": 1,
+          "math.OC": 1,
+          "cs.CR": 2,
+          "eess.SY": 1
+        },
+        "roles": {
+          "software_or_system_fv": 2,
+          "engineering_math_proof": 4,
+          "pure_tcs_or_math": 1
+        },
+        "paradigms": {
+          "P1_paper_first_posthoc": 5,
+          "P0_opaque_or_unspecified": 1,
+          "P2_lean_first": 1
+        },
+        "tiers": {
+          "Tier3_Gold": 2,
+          "Tier2_Silver": 2,
+          "Tier1_Bronze": 3
+        },
+        "ai": {
+          "explicitly_yes": 3,
+          "explicitly_no": 1,
+          "unclear": 3
+        },
+        "artifacts": {
+          "public_lean_repo": 5,
+          "appendix_only": 1,
+          "none": 1
+        },
+        "risks": {
+          "Mode3_CustomDefs": 1,
+          "Mode10_ProofBloat": 2,
+          "Mode2_ScopeDowngrade": 4,
+          "Mode6_SorryOrAxiomOrNativeDecide": 1,
+          "Mode12_ProcessOpacity": 3
+        },
+        "scanned_owned_repos": 5,
+        "total_owned_loc": 378185,
+        "median_owned_loc": 2381,
+        "min_owned_loc": 473,
+        "max_owned_loc": 340325
+      },
+      "confirmed_papers": [
+        {
+          "arxiv_id": "2605.19531",
+          "title": "Conflict-Freedom as a Progress Condition",
+          "primary_category": "cs.DC",
+          "matched_target_cats": [
+            "cs.DC"
+          ],
+          "submitted_date": "2026-05-19",
+          "updated_date": "2026-11-02",
+          "version": 2,
+          "is_retroactive_v2": true,
+          "paper_domain_role": "software_or_system_fv",
+          "authoring_paradigm": "P1_paper_first_posthoc",
+          "verification_tier": "Tier3_Gold",
+          "ai_agent_assisted": "explicitly_yes",
+          "ai_tools_mentioned": [
+            "Claude Opus 5.5"
+          ],
+          "artifact_availability": "public_lean_repo",
+          "static_risk_flags": [
+            "Mode3_CustomDefs",
+            "Mode10_ProofBloat"
+          ],
+          "primary_owned_loc": 34257,
+          "primary_repo": "zenodo/23098310",
+          "one_line_summary": "Formalizes all numbered results of a PODC'26 distributed computing paper on conflict-freedom and universal constructions in 34k LoC of Lean 4 (std-only, Claude Opus 5.5-assisted) with exhaustive axiom/import auditing and zero sorry/custom axioms."
+        },
+        {
+          "arxiv_id": "2605.14610",
+          "title": "Parametrically Adaptive Transition Polynomial: a Signed-Parity Continuous-alpha Extension of Kunchenko Stochastic Polynomials",
+          "primary_category": "stat.ME",
+          "matched_target_cats": [
+            "eess.SP"
+          ],
+          "submitted_date": "2026-05-14",
+          "updated_date": "2026-06-19",
+          "version": 5,
+          "is_retroactive_v2": false,
+          "paper_domain_role": "engineering_math_proof",
+          "authoring_paradigm": "P1_paper_first_posthoc",
+          "verification_tier": "Tier2_Silver",
+          "ai_agent_assisted": "explicitly_no",
+          "ai_tools_mentioned": [
+            "Claude Code"
+          ],
+          "artifact_availability": "public_lean_repo",
+          "static_risk_flags": [
+            "Mode2_ScopeDowngrade"
+          ],
+          "primary_owned_loc": 473,
+          "primary_repo": "SZabolotnii/Ku-PATP-code-supplement",
+          "one_line_summary": "Statistical/signal-processing paper introducing the PATP fractional-power basis with a small, zero-sorry public Lean 4 + Mathlib v4.26.0 supplement verifying only the algebraic boundary cases, degeneracy identities, entropy constants, and algebraic step of g_2(alpha)."
+        },
+        {
+          "arxiv_id": "2605.16407",
+          "title": "Proof-Carrying Certificates for LLM Pipelines: A Trust-Boundary Architecture",
+          "primary_category": "cs.LO",
+          "matched_target_cats": [
+            "cs.CR"
+          ],
+          "submitted_date": "2026-05-13",
+          "updated_date": "2026-05-13",
+          "version": 1,
+          "is_retroactive_v2": false,
+          "paper_domain_role": "software_or_system_fv",
+          "authoring_paradigm": "P1_paper_first_posthoc",
+          "verification_tier": "Tier1_Bronze",
+          "ai_agent_assisted": "unclear",
+          "ai_tools_mentioned": [],
+          "artifact_availability": "public_lean_repo",
+          "static_risk_flags": [
+            "Mode2_ScopeDowngrade",
+            "Mode6_SorryOrAxiomOrNativeDecide"
+          ],
+          "primary_owned_loc": 2381,
+          "primary_repo": "gkoomullil/proof-carrying-certificates",
+          "one_line_summary": "Lean 4 reference artifact (25 files, ~2.4k LoC) formalizing 22 LLM trust-boundary certificate types and theorems with #print axioms audit (0 sorry/native_decide), downgraded scope (\u211a/2-layer), and 18 declared custom axioms for ML oracles and math placeholders."
+        },
+        {
+          "arxiv_id": "2605.09552",
+          "title": "Phases of Muon: When Muon Eclipses SignSGD",
+          "primary_category": "math.OC",
+          "matched_target_cats": [
+            "math.OC"
+          ],
+          "submitted_date": "2026-05-10",
+          "updated_date": "2026-10-27",
+          "version": 2,
+          "is_retroactive_v2": true,
+          "paper_domain_role": "engineering_math_proof",
+          "authoring_paradigm": "P1_paper_first_posthoc",
+          "verification_tier": "Tier3_Gold",
+          "ai_agent_assisted": "unclear",
+          "ai_tools_mentioned": [],
+          "artifact_availability": "public_lean_repo",
+          "static_risk_flags": [
+            "Mode10_ProofBloat",
+            "Mode12_ProcessOpacity"
+          ],
+          "primary_owned_loc": 340325,
+          "primary_repo": "mlexpos/phases-of-muon",
+          "one_line_summary": "Formalizes 345 theorems and supporting lemmas for high-dimensional stochastic Muon vs SignSGD dynamics and phase diagrams in Lean 4 (340k+ LoC plus 14.5k LoC in alea-foundations) after freezing the audited LaTeX appendix."
+        },
+        {
+          "arxiv_id": "2605.05801",
+          "title": "Self-Correcting Gossip Protocols",
+          "primary_category": "cs.LO",
+          "matched_target_cats": [
+            "cs.DC"
+          ],
+          "submitted_date": "2026-05-07",
+          "updated_date": "2026-05-07",
+          "version": 1,
+          "is_retroactive_v2": false,
+          "paper_domain_role": "pure_tcs_or_math",
+          "authoring_paradigm": "P1_paper_first_posthoc",
+          "verification_tier": "Tier1_Bronze",
+          "ai_agent_assisted": "explicitly_yes",
+          "ai_tools_mentioned": [
+            "Aristotle"
+          ],
+          "artifact_availability": "appendix_only",
+          "static_risk_flags": [
+            "Mode2_ScopeDowngrade",
+            "Mode12_ProcessOpacity"
+          ],
+          "primary_owned_loc": null,
+          "primary_repo": null,
+          "one_line_summary": "Paper-first dynamic epistemic logic study of self-correcting gossip protocols (cs.LO/cs.DC) with an appendix Lean/Mathlib formalization (citing Aristotle) of its semantics and knowledge/belief properties, and no public Lean repository extracted."
+        },
+        {
+          "arxiv_id": "2605.03034",
+          "title": "Stable Agentic Control: Tool-Mediated LLM Architecture for Autonomous Cyber Defense",
+          "primary_category": "cs.AI",
+          "matched_target_cats": [
+            "cs.CR",
+            "eess.SY"
+          ],
+          "submitted_date": "2026-05-04",
+          "updated_date": "2026-05-04",
+          "version": 1,
+          "is_retroactive_v2": false,
+          "paper_domain_role": "engineering_math_proof",
+          "authoring_paradigm": "P0_opaque_or_unspecified",
+          "verification_tier": "Tier1_Bronze",
+          "ai_agent_assisted": "unclear",
+          "ai_tools_mentioned": [],
+          "artifact_availability": "none",
+          "static_risk_flags": [
+            "Mode12_ProcessOpacity"
+          ],
+          "primary_owned_loc": null,
+          "primary_repo": null,
+          "one_line_summary": "Contributes a Lean 4/Mathlib formalization of closed-loop Lyapunov stability (controllability, ISS, observability) for a tool-mediated LLM cyber-defense control model, but provides no public Lean repository (only Appendix A proof sketches and a file table for an unlinked supplementary bundle)."
+        },
+        {
+          "arxiv_id": "2605.02856",
+          "title": "The 1-Bit Barrier is Universal: k-Stage Pipeline Composition and Unified Leakage Bounds for Standard Modular Reductions in PQC Hardware",
+          "primary_category": "cs.CR",
+          "matched_target_cats": [
+            "cs.CR"
+          ],
+          "submitted_date": "2026-05-04",
+          "updated_date": "2026-05-05",
+          "version": 2,
+          "is_retroactive_v2": false,
+          "paper_domain_role": "engineering_math_proof",
+          "authoring_paradigm": "P2_lean_first",
+          "verification_tier": "Tier2_Silver",
+          "ai_agent_assisted": "explicitly_yes",
+          "ai_tools_mentioned": [
+            "Claude Opus 4.7"
+          ],
+          "artifact_availability": "public_lean_repo",
+          "static_risk_flags": [
+            "Mode2_ScopeDowngrade"
+          ],
+          "primary_owned_loc": 749,
+          "primary_repo": "rayiskander2406/qanary-k-stage-composition-arXiv-2605.02856",
+          "one_line_summary": "Formalizes k-stage PF-PINI pipeline composition, a two-branch Montgomery reduction PF-PINI(2) bound, and an end-to-end 2*q^(2k-2) output-preimage cardinality bound over ZMod q in Lean 4 without sorry or custom axioms."
+        }
+      ],
+      "audits": [
+        {
+          "arxiv_id": "2605.14610",
+          "is_retroactive_v2": false,
+          "overall_fidelity": "partial_or_weakened_formalization",
+          "m1": "minor_undisclosed",
+          "m2": "minor_disclosed",
+          "m3": "moderate",
+          "m4": "minor_undisclosed",
+          "non_vacuity": true,
+          "mathlib": "mixed_custom_and_mathlib",
+          "executive_verdict": "arXiv:2605.14610 presents a statistical/signal-processing method (PATP) with a small, clean, zero-sorry Lean 4 + Mathlib v4.26.0 supplement (SZabolotnii/Ku-PATP-code-supplement: 8 files, 473 non-empty LOC, 25 theorems, 11 defs). Overall semantic fidelity is partial_or_weakened_formalization, though most of the macro scope gap is candidly disclosed: the abstract, \u00a74.4, \u00a77.3, Appendix A.2, and REPRODUCIBILITY.md explicitly restrict the Lean claim to supporting algebraic identities and leave MeasureTheory expectations, moment existence, L_2(P) positive definiteness (Theorem 3.3), and asymptotic convergence outside Lean. Within the formalized algebraic slice, PATP.Param, PATP.Basis, and PATP.Degeneracy faithfully verify the quadratic exponent boundary values (0, 1/2, 1), signed-parity oddness, and pointwise basis collapse at alpha = 1/2. However, key weaknesses remain even at the algebraic level: (1) PATP.G2Algebra.g2Formula_eq_from_bFb does not formalize the 2x2 matrix F_2, its inverse, vector b, or eq. (50), nor link p to piAlpha 2 alpha\u2014it assumes eq. (50) as the scalar quotient bFbNumerator / delta2 and proves only 1 / (c * (A / \u0394)) = \u0394 / (c * A), slightly overstated by \u00a74.4's 'from b^T F_2^{-1} b' wording; (2) PATP.ExponentSeparation proves the difference factorization and two root substitutions but omits the root-uniqueness conclusion of Theorem 3.2 on [0,1]; (3) PATP.Entropy (the largest Lean file, omitted from Appendix A.2 Table 2 and \u00a77.3's 'five small modules') hardcodes tabular entropy formulas rather than integrals and proves k_Lap = e/sqrt(2) \u2248 1.9221 (docstring 1.9230), contradicting the paper's \u00a72.5 table value 1.9300; and (4) minor junk-value/domain slips occur where piAlpha_at_zero and patpBasis_at_zero omit i \u2260 0 (relying on 1/0 = 0 at i = 0) and the paper's \u00a73.1 claim p_i : [0,1] -> R_+ fails for i >= 6 (unverified in Lean)."
+        },
+        {
+          "arxiv_id": "2605.09552",
+          "is_retroactive_v2": true,
+          "overall_fidelity": "mostly_faithful_with_disclosed_gaps",
+          "m1": "minor_undisclosed",
+          "m2": "moderate",
+          "m3": "none",
+          "m4": "none",
+          "non_vacuity": true,
+          "mathlib": "strong_mathlib",
+          "executive_verdict": "Across 340k+ LoC in mlexpos/phases-of-muon and 14.5k LoC in mlexpos/alea-foundations (with zero live `sorry`s, only Lean's three standard axioms, and genuine Mathlib-anchored proofs discharging all four external Gaussian interfaces), the Appendix formalization is mathematically rigorous and faithfully tracks the prose appendix statements, with explicit guards against Lean division/hitting-time junk values (`phaseOmegaTimesOK`, `Summable` structure fields, `0 < \u03f1`, `stepUpdate`). However, at the headline paper level there is a substantial, transparently disclosed Mode #2 bridge gap: stochastic Muon trajectory convergence (`thm_app_dyn_main_i`..`_iv`, `cor_app_iso_dynamics_i`..`_iii`) is proved only for fixed positive normalized ridge `\u03f1 > 0` on finite O(B) horizons, whereas all zero-ridge `\u03f1 = 0` power-law/oversampled bounds (`cor_app_os_packed`, `cor_app_pl_endpoints`) are static deterministic RMT coefficient results, stochastic SignSGD is formalized only as a one-step conditional/Haar expectation (`prop_app_sgd_iso_filtered`, `prop_signsgd_recursion_anisotropic`), and the entire Section 5 phase diagram (`thm_app_phase_omega`, `cor_app_phase_omega_winners`) proves properties of adopted deterministic continuous-time ODE `RowModel` arrays rather than stochastic algorithm trajectories. Combined with two minor undisclosed simplifications in the Abstract/Table 1 caption relative to Corollary M.3 (`Phase D` ties and `\u03b6 = \u03b1 + 1` win) and `assum_app_pl_regime` (`\u03b2 \u2208 (0,1)` vs `[0,1)`), the audit verdict is `mostly_faithful_with_disclosed_gaps`."
+        },
+        {
+          "arxiv_id": "2605.02856",
+          "is_retroactive_v2": false,
+          "overall_fidelity": "partial_or_weakened_formalization",
+          "m1": "minor_undisclosed",
+          "m2": "moderate",
+          "m3": "moderate",
+          "m4": "minor_undisclosed",
+          "non_vacuity": false,
+          "mathlib": "mixed_custom_and_mathlib",
+          "executive_verdict": "Partial or weakened formalization with strong disclosure discipline. All 20 Lean 4 declarations in QanaryPaper7 compile without sorry, admit, custom axioms, or native_decide, and the printed theorem signatures in the manuscript match the Lean declarations verbatim. Furthermore, the authors are unusually transparent in disclosing major scope limits: the 2/q conditional probability and min-entropy bounds are informal semantic interpretations of Lean's cardinality bounds (\u00a75.4, \u00a78.1), odd prime q is relaxed to [NeZero q] (\u00a72.1), w < s triggers Nat-subtraction collapse (\u00a74.1), and qanary_unmasked_stage_violates_hypothesis is a 3-line anchoring conditional strictly weaker than any claim about Adams Bridge (\u00a75.3, \u00a77.5). However, three material Layer-A gaps remain: (1) Montgomery reduction itself\u2014computing (T + ((T mod R)\u00b7q' mod R)\u00b7q)/R on masked (xR - mR) mod 2^w\u2014is never formalized or proved equivalent in Lean; instead, montgomeryInternalMap directly postulates the closed-form two-branch if-then-else map over ZMod q, making the PF-PINI(2) bound immediate and skipping the hardware-width/single-conditional-subtraction conditions (notably, montgomery_recon_report.md:60 miscomputes log2(q\u00b7R) \u2248 46 as 2^55.96 for ML-DSA w=56, where Python relies on % q rather than single conditional subtraction); (2) in kPipelineOutput, every stage already receives an independent state_masks i and PFPINIGadget.bound quantifies universally over all inputs, so pfpini_pipeline_composition_k_stages neither uses induction nor Paper 6's fresh_mask_renewal\u2014fresh_masks has zero deductive necessity in the Lean proof, and qanary_kstage_output_multiplicity_bound's universal hypothesis \u2200 i, (stages i).maxMult \u2264 2 is unused for i < k-1 (contradicting \u00a75.3's claim that a non-final stage with maxMult > 2 invalidates the bound); and (3) despite \u00a74.5 claiming concrete instantiations and tightness verification at ML-KEM and ML-DSA parameters, the Lean repo contains zero concrete instantiations and zero existential non-vacuity witnesses (also note that sibling dependencies qanary-paper5 and qanary-paper6 in lakefile.lean are absent from local data/repos/)."
+        }
+      ]
+    },
+    {
+      "short_id": "T2",
+      "label": "Nov 1\u201319, 2026",
+      "db_path": "data/survey.db",
+      "date_min": "2026-11-01",
+      "date_max": "2026-11-19",
+      "total_papers": 4104,
+      "non_tcs_total": 4060,
+      "screened_ok": 4097,
+      "coverage_pct": 99.82943469785575,
+      "fetch_counts": {
+        "failed": 7,
+        "html": 3849,
+        "pdf": 248
+      },
+      "revised_v_gt_1": 248,
+      "revised_pct": 6.042884990253412,
+      "meta_lean_strong": 16,
+      "stage2_lean_strong": 47,
+      "stage2_lean_candidates": 55,
+      "stage2_lean_cand_pct": 1.3401559454191032,
+      "stage2_beyond_any": 48,
+      "stage2_beyond_any_pct": 1.1695906432748537,
+      "stage2_beyond_breakdown": {
+        "other_itp": 18,
+        "model_checker": 11,
+        "protocol_verifier": 6,
+        "smt_sat": 20
+      },
+      "cat_total": {
+        "cs.DC": 335,
+        "cs.NI": 196,
+        "cs.CR": 629,
+        "cs.IT": 338,
+        "eess.SY": 738,
+        "cs.RO": 1159,
+        "math.OC": 724,
+        "eess.SP": 462
+      },
+      "v1": {
+        "count": 39,
+        "pct": 0.9502923976608187,
+        "wilson_95": [
+          0.6959509133346394,
+          1.2963718113983687
+        ],
+        "non_tcs_count": 36,
+        "non_tcs_pct": 0.8866995073891626,
+        "eng_math_count": 28,
+        "eng_math_share_pct": 71.7948717948718,
+        "eng_math_corpus_pct": 0.682261208576998,
+        "cat_lean": {
+          "math.OC": 19,
+          "cs.CR": 7,
+          "cs.IT": 6,
+          "eess.SY": 3,
+          "cs.DC": 6
+        },
+        "cat_eng": {
+          "math.OC": 17,
+          "cs.IT": 6,
+          "cs.CR": 4,
+          "eess.SY": 2
+        },
+        "roles": {
+          "engineering_math_proof": 28,
+          "software_or_system_fv": 4,
+          "pure_tcs_or_math": 7
+        },
+        "paradigms": {
+          "P1_paper_first_posthoc": 28,
+          "P0_opaque_or_unspecified": 8,
+          "P4_speclock_solve_distill": 3
+        },
+        "tiers": {
+          "Tier2_Silver": 7,
+          "Tier1_Bronze": 13,
+          "Tier3_Gold": 19
+        },
+        "ai": {
+          "explicitly_yes": 30,
+          "unclear": 9
+        },
+        "artifacts": {
+          "public_lean_repo": 29,
+          "appendix_only": 1,
+          "none": 6,
+          "broken_or_missing_repo": 3
+        },
+        "risks": {
+          "Mode10_ProofBloat": 12,
+          "Mode12_ProcessOpacity": 17,
+          "Mode2_ScopeDowngrade": 10,
+          "Mode6_SorryOrAxiomOrNativeDecide": 3,
+          "Mode3_CustomDefs": 1
+        },
+        "scanned_owned_repos": 25,
+        "total_owned_loc": 2981464,
+        "median_owned_loc": 23932,
+        "min_owned_loc": 528,
+        "max_owned_loc": 929448
+      },
+      "v_latest": {
+        "count": 39,
+        "pct": 0.9502923976608187,
+        "wilson_95": [
+          0.6959509133346394,
+          1.2963718113983687
+        ],
+        "non_tcs_count": 36,
+        "non_tcs_pct": 0.8866995073891626,
+        "eng_math_count": 28,
+        "eng_math_share_pct": 71.7948717948718,
+        "eng_math_corpus_pct": 0.682261208576998,
+        "cat_lean": {
+          "math.OC": 19,
+          "cs.CR": 7,
+          "cs.IT": 6,
+          "eess.SY": 3,
+          "cs.DC": 6
+        },
+        "cat_eng": {
+          "math.OC": 17,
+          "cs.IT": 6,
+          "cs.CR": 4,
+          "eess.SY": 2
+        },
+        "roles": {
+          "engineering_math_proof": 28,
+          "software_or_system_fv": 4,
+          "pure_tcs_or_math": 7
+        },
+        "paradigms": {
+          "P1_paper_first_posthoc": 28,
+          "P0_opaque_or_unspecified": 8,
+          "P4_speclock_solve_distill": 3
+        },
+        "tiers": {
+          "Tier2_Silver": 7,
+          "Tier1_Bronze": 13,
+          "Tier3_Gold": 19
+        },
+        "ai": {
+          "explicitly_yes": 30,
+          "unclear": 9
+        },
+        "artifacts": {
+          "public_lean_repo": 29,
+          "appendix_only": 1,
+          "none": 6,
+          "broken_or_missing_repo": 3
+        },
+        "risks": {
+          "Mode10_ProofBloat": 12,
+          "Mode12_ProcessOpacity": 17,
+          "Mode2_ScopeDowngrade": 10,
+          "Mode6_SorryOrAxiomOrNativeDecide": 3,
+          "Mode3_CustomDefs": 1
+        },
+        "scanned_owned_repos": 25,
+        "total_owned_loc": 2981464,
+        "median_owned_loc": 23932,
+        "min_owned_loc": 528,
+        "max_owned_loc": 929448
+      },
+      "confirmed_papers": [
+        {
+          "arxiv_id": "2611.26272",
+          "title": "Paper2Lean: Agentic Autoformalization of Mathematical Research Papers at Scale",
+          "primary_category": "math.OC",
+          "matched_target_cats": [
+            "math.OC"
+          ],
+          "submitted_date": "2026-11-19",
+          "updated_date": "2026-11-19",
+          "version": 1,
+          "is_retroactive_v2": false,
+          "paper_domain_role": "engineering_math_proof",
+          "authoring_paradigm": "P1_paper_first_posthoc",
+          "verification_tier": "Tier2_Silver",
+          "ai_agent_assisted": "explicitly_yes",
+          "ai_tools_mentioned": [
+            "Paper2Lean",
+            "lean-lsp-mcp",
+            "Claude",
+            "Codex",
+            "DeepSeek",
+            "GPT-5",
+            "Kimina"
+          ],
+          "artifact_availability": "public_lean_repo",
+          "static_risk_flags": [
+            "Mode10_ProofBloat",
+            "Mode12_ProcessOpacity"
+          ],
+          "primary_owned_loc": 151214,
+          "primary_repo": "TTony2019/OptPaper",
+          "one_line_summary": "Introduces Paper2Lean, an agentic autoformalization pipeline, and releases OptPaper-20, a 151k-LoC Lean 4 / Mathlib formalization of 20 mathematical optimization research papers with zero sorry/axioms."
+        },
+        {
+          "arxiv_id": "2611.26140",
+          "title": "Optimal Patrol Widths in the Infinite-Corridor Barrier-Guarding Game",
+          "primary_category": "math.OC",
+          "matched_target_cats": [
+            "math.OC"
+          ],
+          "submitted_date": "2026-11-19",
+          "updated_date": "2026-11-19",
+          "version": 1,
+          "is_retroactive_v2": false,
+          "paper_domain_role": "engineering_math_proof",
+          "authoring_paradigm": "P1_paper_first_posthoc",
+          "verification_tier": "Tier1_Bronze",
+          "ai_agent_assisted": "explicitly_yes",
+          "ai_tools_mentioned": [
+            "OpenAI GPT",
+            "Codex",
+            "Anthropic Claude",
+            "Google DeepMind Gemini",
+            "Antigravity"
+          ],
+          "artifact_availability": "appendix_only",
+          "static_risk_flags": [
+            "Mode2_ScopeDowngrade",
+            "Mode12_ProcessOpacity"
+          ],
+          "primary_owned_loc": null,
+          "primary_repo": null,
+          "one_line_summary": "Optimal corridor barrier-guarding paper in math.OC whose main analytic and topological proofs are on paper while an accompanying ancillary Lean 4 (Mathlib v4.15.0) library verifies selected lemmas and finite rational certificate replays."
+        },
+        {
+          "arxiv_id": "2611.25599",
+          "title": "Tether: Verified Stateful Policy Engine for System-Level Monitoring of Agents",
+          "primary_category": "cs.CR",
+          "matched_target_cats": [
+            "cs.CR"
+          ],
+          "submitted_date": "2026-11-19",
+          "updated_date": "2026-11-19",
+          "version": 1,
+          "is_retroactive_v2": false,
+          "paper_domain_role": "software_or_system_fv",
+          "authoring_paradigm": "P0_opaque_or_unspecified",
+          "verification_tier": "Tier1_Bronze",
+          "ai_agent_assisted": "unclear",
+          "ai_tools_mentioned": [
+            "Claude",
+            "Codex",
+            "Gemini"
+          ],
+          "artifact_availability": "none",
+          "static_risk_flags": [
+            "Mode12_ProcessOpacity"
+          ],
+          "primary_owned_loc": null,
+          "primary_repo": null,
+          "one_line_summary": "Tether implements a stateful agent security policy EDSL and verifies safety invariants in Lean 4, but provides no public Lean repository or authoring workflow details."
+        },
+        {
+          "arxiv_id": "2611.23762",
+          "title": "Addressable transversal CCZ gates on almost good quantum LDPC codes and nearly optimal magic state protocols",
+          "primary_category": "quant-ph",
+          "matched_target_cats": [
+            "cs.IT"
+          ],
+          "submitted_date": "2026-11-18",
+          "updated_date": "2026-11-18",
+          "version": 1,
+          "is_retroactive_v2": false,
+          "paper_domain_role": "engineering_math_proof",
+          "authoring_paradigm": "P1_paper_first_posthoc",
+          "verification_tier": "Tier2_Silver",
+          "ai_agent_assisted": "explicitly_yes",
+          "ai_tools_mentioned": [
+            "Claude"
+          ],
+          "artifact_availability": "public_lean_repo",
+          "static_risk_flags": [
+            "Mode2_ScopeDowngrade",
+            "Mode12_ProcessOpacity"
+          ],
+          "primary_owned_loc": 589,
+          "primary_repo": "guanyuzhu2014/Uniform-product-expansion---theory-and-Lean-certification",
+          "one_line_summary": "Post-hoc Mathlib-based Lean 4 formalization of three supporting algebraic lemmas (zero sorry/axioms) for an AI-generated companion note proving an assumption of the paper's quantum LDPC CCZ-gate construction, lacking lakefile/toolchain/CI and not covering the main theorems."
+        },
+        {
+          "arxiv_id": "2611.23080",
+          "title": "Colombo: A Frontier-to-Frontier Autoresearch System for Oracle-Based Optimization",
+          "primary_category": "cs.AI",
+          "matched_target_cats": [
+            "math.OC"
+          ],
+          "submitted_date": "2026-11-17",
+          "updated_date": "2026-11-17",
+          "version": 1,
+          "is_retroactive_v2": false,
+          "paper_domain_role": "engineering_math_proof",
+          "authoring_paradigm": "P0_opaque_or_unspecified",
+          "verification_tier": "Tier1_Bronze",
+          "ai_agent_assisted": "explicitly_yes",
+          "ai_tools_mentioned": [
+            "GPT-5",
+            "Colombo"
+          ],
+          "artifact_availability": "none",
+          "static_risk_flags": [
+            "Mode12_ProcessOpacity"
+          ],
+          "primary_owned_loc": null,
+          "primary_repo": null,
+          "one_line_summary": "AI autoresearch system (Colombo) for oracle-based optimization claiming Lean-based formal certification of mathematical claims across 50+ Complexity Atlas settings, but providing only Colombo.pdf on Zenodo with no public Lean code."
+        },
+        {
+          "arxiv_id": "2611.22732",
+          "title": "Provable Mixing Properties of Parallel Mixnets Revisited",
+          "primary_category": "cs.CR",
+          "matched_target_cats": [
+            "cs.CR"
+          ],
+          "submitted_date": "2026-11-17",
+          "updated_date": "2026-11-17",
+          "version": 1,
+          "is_retroactive_v2": false,
+          "paper_domain_role": "engineering_math_proof",
+          "authoring_paradigm": "P1_paper_first_posthoc",
+          "verification_tier": "Tier1_Bronze",
+          "ai_agent_assisted": "explicitly_yes",
+          "ai_tools_mentioned": [
+            "Claude",
+            "ChatGPT",
+            "Gemini"
+          ],
+          "artifact_availability": "public_lean_repo",
+          "static_risk_flags": [
+            "Mode12_ProcessOpacity"
+          ],
+          "primary_owned_loc": null,
+          "primary_repo": null,
+          "one_line_summary": "Analyzes parallel mixnets via statistical variance and concentration bounds for differential indistinguishability, claiming a full accompanying Lean mechanization at a public MPI-SWS GitLab repo carried out entirely by Claude."
+        },
+        {
+          "arxiv_id": "2611.22468",
+          "title": "A 5/2 Guarantee for Echelon Stock (s,S) Policies in One-Warehouse Multi-Retailer Systems",
+          "primary_category": "math.OC",
+          "matched_target_cats": [
+            "math.OC"
+          ],
+          "submitted_date": "2026-11-17",
+          "updated_date": "2026-11-18",
+          "version": 2,
+          "is_retroactive_v2": false,
+          "paper_domain_role": "engineering_math_proof",
+          "authoring_paradigm": "P0_opaque_or_unspecified",
+          "verification_tier": "Tier1_Bronze",
+          "ai_agent_assisted": "explicitly_yes",
+          "ai_tools_mentioned": [
+            "Claude"
+          ],
+          "artifact_availability": "broken_or_missing_repo",
+          "static_risk_flags": [
+            "Mode12_ProcessOpacity"
+          ],
+          "primary_owned_loc": null,
+          "primary_repo": null,
+          "one_line_summary": "Operations-research paper (math.OC) proving a 5/2 cost guarantee for echelon stock (s,S) policies in one-warehouse multi-retailer systems, claiming Lean 4 formalization of main results at a prove2.me URL with Claude mentioned in LaTeX signals and no inspectable Git/Lean repository."
+        },
+        {
+          "arxiv_id": "2611.20298",
+          "title": "Type-Confusion Security",
+          "primary_category": "cs.PL",
+          "matched_target_cats": [
+            "cs.CR"
+          ],
+          "submitted_date": "2026-11-15",
+          "updated_date": "2026-11-15",
+          "version": 1,
+          "is_retroactive_v2": false,
+          "paper_domain_role": "software_or_system_fv",
+          "authoring_paradigm": "P1_paper_first_posthoc",
+          "verification_tier": "Tier1_Bronze",
+          "ai_agent_assisted": "explicitly_yes",
+          "ai_tools_mentioned": [
+            "Codex",
+            "Claude Code"
+          ],
+          "artifact_availability": "none",
+          "static_risk_flags": [
+            "Mode12_ProcessOpacity"
+          ],
+          "primary_owned_loc": null,
+          "primary_repo": null,
+          "one_line_summary": "Mechanizes type-confusion security proofs for an RPC/information-flow core calculus in Lean 4 using Mathlib, translated from pen-and-paper proofs with Codex and Claude Code assistance, with an axioms audit mentioned but no public repository URL provided."
+        },
+        {
+          "arxiv_id": "2611.20131",
+          "title": "Quadrature-Induced Local Minima in Structure-Preserving Lotka-Volterra Control",
+          "primary_category": "math.NA",
+          "matched_target_cats": [
+            "math.OC"
+          ],
+          "submitted_date": "2026-11-15",
+          "updated_date": "2026-11-15",
+          "version": 1,
+          "is_retroactive_v2": false,
+          "paper_domain_role": "engineering_math_proof",
+          "authoring_paradigm": "P0_opaque_or_unspecified",
+          "verification_tier": "Tier1_Bronze",
+          "ai_agent_assisted": "explicitly_yes",
+          "ai_tools_mentioned": [
+            "AI tools (unspecified)"
+          ],
+          "artifact_availability": "none",
+          "static_risk_flags": [
+            "Mode12_ProcessOpacity"
+          ],
+          "primary_owned_loc": null,
+          "primary_repo": null,
+          "one_line_summary": "Optimal control and numerical analysis paper on Lotka-Volterra quadrature whose acknowledgment notes AI-assisted proof formalization/checking in Lean, but provides no public Lean files or workflow details."
+        },
+        {
+          "arxiv_id": "2611.19551",
+          "title": "TrustBound: Mechanized Completeness for Payment Epochs Initiated by AI Agents",
+          "primary_category": "cs.CR",
+          "matched_target_cats": [
+            "cs.CR"
+          ],
+          "submitted_date": "2026-11-14",
+          "updated_date": "2026-11-14",
+          "version": 1,
+          "is_retroactive_v2": false,
+          "paper_domain_role": "software_or_system_fv",
+          "authoring_paradigm": "P1_paper_first_posthoc",
+          "verification_tier": "Tier3_Gold",
+          "ai_agent_assisted": "explicitly_yes",
+          "ai_tools_mentioned": [
+            "ChatGPT",
+            "Codex",
+            "Claude"
+          ],
+          "artifact_availability": "public_lean_repo",
+          "static_risk_flags": [],
+          "primary_owned_loc": 1332,
+          "primary_repo": "tokencraftdata/trustbound",
+          "one_line_summary": "Formalizes an admission-fencing and provider-contract closure model for AI-agent payment epochs in Lean 4.19.0 (zero sorry/custom axioms, checked via #print axioms, premise-removal mutations, and CI) alongside trace-checked Python service histories."
+        },
+        {
+          "arxiv_id": "2611.18455",
+          "title": "Mesh-Free Weak-Form Regression for Learning Interaction Kernels from Particle Trajectories",
+          "primary_category": "stat.ML",
+          "matched_target_cats": [
+            "math.OC"
+          ],
+          "submitted_date": "2026-11-13",
+          "updated_date": "2026-11-13",
+          "version": 1,
+          "is_retroactive_v2": false,
+          "paper_domain_role": "engineering_math_proof",
+          "authoring_paradigm": "P1_paper_first_posthoc",
+          "verification_tier": "Tier3_Gold",
+          "ai_agent_assisted": "unclear",
+          "ai_tools_mentioned": [],
+          "artifact_availability": "public_lean_repo",
+          "static_risk_flags": [],
+          "primary_owned_loc": 12236,
+          "primary_repo": "inody/wmfki_lean",
+          "one_line_summary": "Formalizes the paper's Theorem 1 (mean-field/particle SDE synchronous coupling and weak-form OLS/LASSO coefficient recovery bounds) in Lean 4 with zero sorry/custom axioms and full #print axioms and hash-lock audits."
+        },
+        {
+          "arxiv_id": "2611.18220",
+          "title": "From Pen-and-Paper to Machine-Checked Proofs: Lean for System Identification",
+          "primary_category": "eess.SY",
+          "matched_target_cats": [
+            "eess.SY"
+          ],
+          "submitted_date": "2026-11-13",
+          "updated_date": "2026-11-13",
+          "version": 1,
+          "is_retroactive_v2": false,
+          "paper_domain_role": "engineering_math_proof",
+          "authoring_paradigm": "P1_paper_first_posthoc",
+          "verification_tier": "Tier3_Gold",
+          "ai_agent_assisted": "unclear",
+          "ai_tools_mentioned": [
+            "Claude"
+          ],
+          "artifact_availability": "public_lean_repo",
+          "static_risk_flags": [
+            "Mode12_ProcessOpacity"
+          ],
+          "primary_owned_loc": 528,
+          "primary_repo": "manasdm/Lean-SysID",
+          "one_line_summary": "Tutorial introducing Lean 4 and Mathlib for system identification and control, formalizing elementary identifiability/invariance examples, an ARX/PEM template, and an almost-sure sharpening of Ljung (1999) Lemma 3.1 in a public repo with #print axioms checks but no lakefile/lean-toolchain/CI."
+        },
+        {
+          "arxiv_id": "2611.16781",
+          "title": "Boundary Actuation of a Chain Fountain - Physically Admissible Tracking, Stochastic Limits and Zero-Gravity Circulation",
+          "primary_category": "math.OC",
+          "matched_target_cats": [
+            "math.OC"
+          ],
+          "submitted_date": "2026-11-12",
+          "updated_date": "2026-11-14",
+          "version": 2,
+          "is_retroactive_v2": false,
+          "paper_domain_role": "engineering_math_proof",
+          "authoring_paradigm": "P1_paper_first_posthoc",
+          "verification_tier": "Tier2_Silver",
+          "ai_agent_assisted": "unclear",
+          "ai_tools_mentioned": [
+            "Gemini"
+          ],
+          "artifact_availability": "public_lean_repo",
+          "static_risk_flags": [
+            "Mode12_ProcessOpacity"
+          ],
+          "primary_owned_loc": null,
+          "primary_repo": null,
+          "one_line_summary": "Control-theoretic analysis of boundary actuation for a chain fountain with a Lean 4 formalization (v0.18/v0.19, 722 named theorems) covering tracking, stochastic limits, and zero-gravity circulation via a zipped GitHub archive and a Theorem-to-Lean correspondence appendix."
+        },
+        {
+          "arxiv_id": "2611.16690",
+          "title": "Hilbert's 17th problem for symmetric functions: undecidability and a counterexample",
+          "primary_category": "math.AG",
+          "matched_target_cats": [
+            "math.OC"
+          ],
+          "submitted_date": "2026-11-12",
+          "updated_date": "2026-11-12",
+          "version": 1,
+          "is_retroactive_v2": false,
+          "paper_domain_role": "pure_tcs_or_math",
+          "authoring_paradigm": "P1_paper_first_posthoc",
+          "verification_tier": "Tier2_Silver",
+          "ai_agent_assisted": "explicitly_yes",
+          "ai_tools_mentioned": [
+            "Claude",
+            "Claude Fable 5.1",
+            "Codex"
+          ],
+          "artifact_availability": "public_lean_repo",
+          "static_risk_flags": [
+            "Mode2_ScopeDowngrade",
+            "Mode6_SorryOrAxiomOrNativeDecide"
+          ],
+          "primary_owned_loc": 6592,
+          "primary_repo": "RobinSchabert/positive-sym-func-h17-undecidability-lean",
+          "one_line_summary": "Post-hoc agent-generated Lean 4 formalization (~6.6k LoC) of the Diophantine reduction (Thm 2.2) and octic counterexample (Thm 3.1, Cor 3.6) with #guard_msgs axiom audits; both main theorems are sorry-free via an elementary hypercube bound, while cited Thm 3.2 (and Cor 3.3-3.4) has 1 sorry and decidability/Section 4 are unformalized."
+        },
+        {
+          "arxiv_id": "2611.15431",
+          "title": "Subadditivity and the failure of strong subadditivity in the Nichols--Wootters family of entropies",
+          "primary_category": "quant-ph",
+          "matched_target_cats": [
+            "cs.IT"
+          ],
+          "submitted_date": "2026-11-11",
+          "updated_date": "2026-11-11",
+          "version": 1,
+          "is_retroactive_v2": false,
+          "paper_domain_role": "engineering_math_proof",
+          "authoring_paradigm": "P0_opaque_or_unspecified",
+          "verification_tier": "Tier1_Bronze",
+          "ai_agent_assisted": "explicitly_yes",
+          "ai_tools_mentioned": [
+            "ChatGPT Pro (GPT-6 Pro)",
+            "Codex (gpt-6.1-sol)",
+            "Claude Opus 5.5",
+            "Claude Code"
+          ],
+          "artifact_availability": "none",
+          "static_risk_flags": [
+            "Mode12_ProcessOpacity"
+          ],
+          "primary_owned_loc": null,
+          "primary_repo": null,
+          "one_line_summary": "Proves subadditivity and strong-subadditivity failure for Nichols-Wootters entropies (with cs.IT capacity applications) and claims AI-assisted Lean formal verification in the acknowledgments without providing a public Lean repository or workflow details."
+        },
+        {
+          "arxiv_id": "2611.15201",
+          "title": "Sparse Matrix Multiplication Exponent 1.5 in the Low-bandwidth Model",
+          "primary_category": "cs.DC",
+          "matched_target_cats": [
+            "cs.DC"
+          ],
+          "submitted_date": "2026-11-11",
+          "updated_date": "2026-11-11",
+          "version": 1,
+          "is_retroactive_v2": false,
+          "paper_domain_role": "pure_tcs_or_math",
+          "authoring_paradigm": "P1_paper_first_posthoc",
+          "verification_tier": "Tier3_Gold",
+          "ai_agent_assisted": "explicitly_yes",
+          "ai_tools_mentioned": [
+            "OpenAI Codex",
+            "GPT-6",
+            "GPT-6 Astra",
+            "GPT-6.1 Sol"
+          ],
+          "artifact_availability": "public_lean_repo",
+          "static_risk_flags": [
+            "Mode2_ScopeDowngrade"
+          ],
+          "primary_owned_loc": 5307,
+          "primary_repo": "zenodo/24127514",
+          "one_line_summary": "Lean 4 formalization (zero sorry in Solution, Comparator + multi-kernel audited) of an O(d^{3/2})-round supported sparse matrix multiplication algorithm and broadcast/aggregation lower bounds in a scalar-word low-bandwidth model, created post-hoc from the manuscript PDF with OpenAI Codex/GPT-6."
+        },
+        {
+          "arxiv_id": "2611.15128",
+          "title": "Affine Combiners for Reed-Solomon Proximity Gaps",
+          "primary_category": "cs.IT",
+          "matched_target_cats": [
+            "cs.CR",
+            "cs.IT"
+          ],
+          "submitted_date": "2026-11-11",
+          "updated_date": "2026-11-14",
+          "version": 2,
+          "is_retroactive_v2": false,
+          "paper_domain_role": "engineering_math_proof",
+          "authoring_paradigm": "P1_paper_first_posthoc",
+          "verification_tier": "Tier3_Gold",
+          "ai_agent_assisted": "explicitly_yes",
+          "ai_tools_mentioned": [
+            "ChatGPT 6 Astra",
+            "Claude Code Opus 5.5"
+          ],
+          "artifact_availability": "public_lean_repo",
+          "static_risk_flags": [
+            "Mode2_ScopeDowngrade"
+          ],
+          "primary_owned_loc": 4963,
+          "primary_repo": "subpackage",
+          "one_line_summary": "AI-analyzed coding-theory/crypto-math paper proving Reed-Solomon affine-combiner MCA bounds, whose main RS theorems (Secs. 3\u20134, Thm. 5.2) were post-hoc formalized in Lean 4 inside leanEthereum/leanVM (20 AffineCombiner*.lean files, ~5k LoC) with CI escape-scanning and #print axioms audit, while Sec. 5 equal-degree reductions and Sec. 7 Reed-Muller extensions remain unformalized."
+        },
+        {
+          "arxiv_id": "2611.14756",
+          "title": "Stability of equilibria in discrete-time modified-gradient systems and the multivariate breeder's equation",
+          "primary_category": "math.DS",
+          "matched_target_cats": [
+            "math.OC"
+          ],
+          "submitted_date": "2026-11-10",
+          "updated_date": "2026-11-10",
+          "version": 1,
+          "is_retroactive_v2": false,
+          "paper_domain_role": "engineering_math_proof",
+          "authoring_paradigm": "P1_paper_first_posthoc",
+          "verification_tier": "Tier3_Gold",
+          "ai_agent_assisted": "unclear",
+          "ai_tools_mentioned": [],
+          "artifact_availability": "public_lean_repo",
+          "static_risk_flags": [],
+          "primary_owned_loc": 670,
+          "primary_repo": "magbenji/discrete-modified-gradient-lean",
+          "one_line_summary": "Post-hoc Lean 4 + Mathlib formalization of the main discrete-time modified-gradient stability and basin-of-attraction theorems (Lemma 4.1, Theorem 5.1, Corollary 5.2, Theorem 6.1) with CI-verified standard-axiom audit."
+        },
+        {
+          "arxiv_id": "2611.14475",
+          "title": "Explicit restricted isometries with $k=m^{2/3-o(1)}$",
+          "primary_category": "math.FA",
+          "matched_target_cats": [
+            "cs.IT"
+          ],
+          "submitted_date": "2026-11-10",
+          "updated_date": "2026-11-10",
+          "version": 1,
+          "is_retroactive_v2": false,
+          "paper_domain_role": "engineering_math_proof",
+          "authoring_paradigm": "P4_speclock_solve_distill",
+          "verification_tier": "Tier3_Gold",
+          "ai_agent_assisted": "explicitly_yes",
+          "ai_tools_mentioned": [
+            "Claude Opus 5.5",
+            "Claude Code",
+            "GPT-6.1 Sol",
+            "GPT-6 Astra",
+            "Codex CLI",
+            "ChatGPT"
+          ],
+          "artifact_availability": "public_lean_repo",
+          "static_risk_flags": [
+            "Mode2_ScopeDowngrade",
+            "Mode10_ProofBloat"
+          ],
+          "primary_owned_loc": 29967,
+          "primary_repo": "ckuemmerle/ExplicitRIPTwoThirds",
+          "one_line_summary": "Formalizes all main theorems of an explicit RIP matrix construction (k = m^{2/3-o(1)}) and 2/3 barriers in Lean 4/Mathlib using AI agents under a frozen-statement and Comparator (NanoDa + Lean kernel) spec-lock, omitting only the polynomial running-time bound for 'explicit'."
+        },
+        {
+          "arxiv_id": "2611.13872",
+          "title": "LongTails: Automated Research in Optimization",
+          "primary_category": "math.OC",
+          "matched_target_cats": [
+            "math.OC"
+          ],
+          "submitted_date": "2026-11-10",
+          "updated_date": "2026-11-10",
+          "version": 1,
+          "is_retroactive_v2": false,
+          "paper_domain_role": "engineering_math_proof",
+          "authoring_paradigm": "P4_speclock_solve_distill",
+          "verification_tier": "Tier3_Gold",
+          "ai_agent_assisted": "explicitly_yes",
+          "ai_tools_mentioned": [
+            "Claude",
+            "Codex",
+            "DeepSeek"
+          ],
+          "artifact_availability": "public_lean_repo",
+          "static_risk_flags": [],
+          "primary_owned_loc": 697377,
+          "primary_repo": "k3nfalt/longtails",
+          "one_line_summary": "LongTails is a Lean 4 framework for AI-assisted discovery of optimization algorithms and oracle-complexity bounds, spec-locked via Comparator and yielding >100 formally verified results in a public repository."
+        },
+        {
+          "arxiv_id": "2611.13585",
+          "title": "Approximating graphic TSP by b-matchings",
+          "primary_category": "cs.DS",
+          "matched_target_cats": [
+            "math.OC"
+          ],
+          "submitted_date": "2026-11-10",
+          "updated_date": "2026-11-10",
+          "version": 1,
+          "is_retroactive_v2": false,
+          "paper_domain_role": "pure_tcs_or_math",
+          "authoring_paradigm": "P1_paper_first_posthoc",
+          "verification_tier": "Tier1_Bronze",
+          "ai_agent_assisted": "unclear",
+          "ai_tools_mentioned": [
+            "GPT-5",
+            "GPT-6"
+          ],
+          "artifact_availability": "broken_or_missing_repo",
+          "static_risk_flags": [
+            "Mode12_ProcessOpacity"
+          ],
+          "primary_owned_loc": null,
+          "primary_repo": null,
+          "one_line_summary": "Combinatorial optimization / graph algorithms paper on graphic TSP approximation that claims supplementary Lean 4 (v4.19.0) / Mathlib formalization for stronger Table 2 bounds, but the linked GitHub repo contains zero .lean files or toolchain/CI metadata."
+        },
+        {
+          "arxiv_id": "2611.13584",
+          "title": "Exact (Non-)Accelerations of Heavy-Ball Discretizations",
+          "primary_category": "math.OC",
+          "matched_target_cats": [
+            "math.OC"
+          ],
+          "submitted_date": "2026-11-10",
+          "updated_date": "2026-11-10",
+          "version": 1,
+          "is_retroactive_v2": false,
+          "paper_domain_role": "engineering_math_proof",
+          "authoring_paradigm": "P1_paper_first_posthoc",
+          "verification_tier": "Tier3_Gold",
+          "ai_agent_assisted": "unclear",
+          "ai_tools_mentioned": [],
+          "artifact_availability": "public_lean_repo",
+          "static_risk_flags": [
+            "Mode10_ProofBloat"
+          ],
+          "primary_owned_loc": 55300,
+          "primary_repo": "subpackage",
+          "one_line_summary": "Formalizes all 88 numbered results of a 63-page optimization paper on heavy-ball/momentum discretizations in a 512-file (~55.3k LoC) Lean 4 library with manual ArticleMap correspondence, axiom auditing, and stock-kernel replay."
+        },
+        {
+          "arxiv_id": "2611.12680",
+          "title": "Wolfe's Minimum-Norm-Point Method Generalizes the Simplex Method",
+          "primary_category": "math.OC",
+          "matched_target_cats": [
+            "math.OC"
+          ],
+          "submitted_date": "2026-11-09",
+          "updated_date": "2026-11-11",
+          "version": 2,
+          "is_retroactive_v2": false,
+          "paper_domain_role": "engineering_math_proof",
+          "authoring_paradigm": "P1_paper_first_posthoc",
+          "verification_tier": "Tier3_Gold",
+          "ai_agent_assisted": "explicitly_yes",
+          "ai_tools_mentioned": [
+            "Claude",
+            "Claude Code"
+          ],
+          "artifact_availability": "public_lean_repo",
+          "static_risk_flags": [
+            "Mode10_ProofBloat"
+          ],
+          "primary_owned_loc": 23932,
+          "primary_repo": "zenodo/24136107",
+          "one_line_summary": "Post-hoc Lean 4 formalization (WolfeSimplex on Zenodo, 23.9k LoC, 0 sorry/custom axioms, whole-project axiom and statement-boundary audits) verifying Theorem 1, Corollaries 1\u20134, and all 20 lemmas connecting Wolfe's minimum-norm-point method and the simplex method, developed with Claude/Claude Code assistance."
+        },
+        {
+          "arxiv_id": "2611.12585",
+          "title": "A Large Gap between Galerkin Errors with and without Mesh-Uniform Regularity for the KdV Equation with Boundary Dissipation",
+          "primary_category": "math.NA",
+          "matched_target_cats": [
+            "math.OC"
+          ],
+          "submitted_date": "2026-11-09",
+          "updated_date": "2026-11-17",
+          "version": 2,
+          "is_retroactive_v2": false,
+          "paper_domain_role": "engineering_math_proof",
+          "authoring_paradigm": "P1_paper_first_posthoc",
+          "verification_tier": "Tier2_Silver",
+          "ai_agent_assisted": "explicitly_yes",
+          "ai_tools_mentioned": [
+            "GPT-6 Astra",
+            "Claude",
+            "Codex"
+          ],
+          "artifact_availability": "public_lean_repo",
+          "static_risk_flags": [],
+          "primary_owned_loc": null,
+          "primary_repo": null,
+          "one_line_summary": "Post-hoc Lean 4 formalization (by GPT-6 Astra, provided in arXiv v2 ancillary files) proving high-frequency spurious eigenpairs and error-bound failures for the standard cubic Hermite Galerkin scheme of the KdV equation."
+        },
+        {
+          "arxiv_id": "2611.11713",
+          "title": "Binary Belief Propagation Fixed Points: Finiteness, Rigidity, and Topological Complexity",
+          "primary_category": "cs.IT",
+          "matched_target_cats": [
+            "cs.IT"
+          ],
+          "submitted_date": "2026-11-09",
+          "updated_date": "2026-11-09",
+          "version": 1,
+          "is_retroactive_v2": false,
+          "paper_domain_role": "engineering_math_proof",
+          "authoring_paradigm": "P1_paper_first_posthoc",
+          "verification_tier": "Tier3_Gold",
+          "ai_agent_assisted": "explicitly_yes",
+          "ai_tools_mentioned": [
+            "Large language model tools"
+          ],
+          "artifact_availability": "public_lean_repo",
+          "static_risk_flags": [
+            "Mode10_ProofBloat"
+          ],
+          "primary_owned_loc": 69875,
+          "primary_repo": "ywatanabex/bp-response-geometry-lean",
+          "one_line_summary": "Formally verifies all three main theorems (finiteness, rigidity, and logarithmic genus/size bounds) on binary belief propagation fixed points in Lean 4 with Mathlib and an automated transitive-axiom audit, alongside standalone Python rational interval certificates for a 18-vertex discriminant example."
+        },
+        {
+          "arxiv_id": "2611.10902",
+          "title": "Bisect-Index-Choose: A Fast and Exact Algorithm for EV Charging under Minimum Charging Rates",
+          "primary_category": "eess.SY",
+          "matched_target_cats": [
+            "eess.SY"
+          ],
+          "submitted_date": "2026-11-07",
+          "updated_date": "2026-11-07",
+          "version": 1,
+          "is_retroactive_v2": false,
+          "paper_domain_role": "engineering_math_proof",
+          "authoring_paradigm": "P1_paper_first_posthoc",
+          "verification_tier": "Tier3_Gold",
+          "ai_agent_assisted": "unclear",
+          "ai_tools_mentioned": [
+            "Claude"
+          ],
+          "artifact_availability": "public_lean_repo",
+          "static_risk_flags": [
+            "Mode2_ScopeDowngrade"
+          ],
+          "primary_owned_loc": 2068,
+          "primary_repo": "canberksaner/bic-public",
+          "one_line_summary": "EV charging optimization paper (eess.SY) contributing a Lean 4 + Mathlib formalization (~2,068 LoC) of its main theorems (Theorems 1-4 for K=2, Lemmas 1-2, strong duality, Table I, Appendices A-B, and Algorithm 1 evaluation bound) with a 34-theorem #print axioms manifest and zero sorry/custom axioms, though excluding K!=2 cases, bisection tolerances, and runtime bounds."
+        },
+        {
+          "arxiv_id": "2611.10810",
+          "title": "Extending DBLog-Based Incremental Snapshots to Handle Orphan Rows in CDC Pipelines",
+          "primary_category": "cs.DB",
+          "matched_target_cats": [
+            "cs.DC"
+          ],
+          "submitted_date": "2026-11-07",
+          "updated_date": "2026-11-07",
+          "version": 1,
+          "is_retroactive_v2": false,
+          "paper_domain_role": "software_or_system_fv",
+          "authoring_paradigm": "P1_paper_first_posthoc",
+          "verification_tier": "Tier3_Gold",
+          "ai_agent_assisted": "explicitly_yes",
+          "ai_tools_mentioned": [
+            "Claude Fable 5.1",
+            "Claude Opus 5.5",
+            "Gemini"
+          ],
+          "artifact_availability": "public_lean_repo",
+          "static_risk_flags": [
+            "Mode3_CustomDefs"
+          ],
+          "primary_owned_loc": 10862,
+          "primary_repo": "zenodo/24035424",
+          "one_line_summary": "Extends DBLog incremental snapshots to delete orphan rows in CDC pipelines, formally verifying safety and convergence across six Isabelle/HOL theories ported to Lean 4 (zero sorry/custom axioms, audited via #print axioms) alongside bounded TLA+ models."
+        },
+        {
+          "arxiv_id": "2611.09169",
+          "title": "The multiplier step size in classical two-block ADMM: convergence and counterexamples",
+          "primary_category": "math.OC",
+          "matched_target_cats": [
+            "math.OC"
+          ],
+          "submitted_date": "2026-11-06",
+          "updated_date": "2026-11-06",
+          "version": 1,
+          "is_retroactive_v2": false,
+          "paper_domain_role": "engineering_math_proof",
+          "authoring_paradigm": "P0_opaque_or_unspecified",
+          "verification_tier": "Tier1_Bronze",
+          "ai_agent_assisted": "explicitly_yes",
+          "ai_tools_mentioned": [],
+          "artifact_availability": "public_lean_repo",
+          "static_risk_flags": [
+            "Mode12_ProcessOpacity"
+          ],
+          "primary_owned_loc": null,
+          "primary_repo": null,
+          "one_line_summary": "Optimization paper (math.OC) on two-block ADMM step-size convergence and counterexamples claiming an accompanying Lean 4 formalization on ReasBook (optpku.github.io), while the linked GitHub repo only contains exact arithmetic certificates (0 Lean files) and acknowledges generative AI assistance."
+        },
+        {
+          "arxiv_id": "2611.09050",
+          "title": "Resolvent-Diagonal Energy of Isospectral Jacobi Matrices",
+          "primary_category": "math.OC",
+          "matched_target_cats": [
+            "math.OC"
+          ],
+          "submitted_date": "2026-11-06",
+          "updated_date": "2026-11-06",
+          "version": 1,
+          "is_retroactive_v2": false,
+          "paper_domain_role": "engineering_math_proof",
+          "authoring_paradigm": "P1_paper_first_posthoc",
+          "verification_tier": "Tier3_Gold",
+          "ai_agent_assisted": "explicitly_yes",
+          "ai_tools_mentioned": [
+            "Claude Opus 5.5",
+            "ChatGPT-6.1 Sol"
+          ],
+          "artifact_availability": "public_lean_repo",
+          "static_risk_flags": [
+            "Mode10_ProofBloat"
+          ],
+          "primary_owned_loc": 139600,
+          "primary_repo": "subpackage",
+          "one_line_summary": "Verifies mathematical theorems on resolvent-diagonal energy of isospectral Jacobi matrices and optimal Nesterov momentum endpoint gains in a 139.6k-LoC Lean 4 package (`jacobi`) with automated axiom auditing and kernel replay."
+        },
+        {
+          "arxiv_id": "2611.08172",
+          "title": "Uniform Three-Fold Product Expansion of Algebraic-Geometry Codes over a Fixed Field",
+          "primary_category": "cs.IT",
+          "matched_target_cats": [
+            "cs.IT"
+          ],
+          "submitted_date": "2026-11-05",
+          "updated_date": "2026-11-05",
+          "version": 1,
+          "is_retroactive_v2": false,
+          "paper_domain_role": "engineering_math_proof",
+          "authoring_paradigm": "P1_paper_first_posthoc",
+          "verification_tier": "Tier3_Gold",
+          "ai_agent_assisted": "explicitly_yes",
+          "ai_tools_mentioned": [
+            "Harmonic"
+          ],
+          "artifact_availability": "public_lean_repo",
+          "static_risk_flags": [
+            "Mode10_ProofBloat"
+          ],
+          "primary_owned_loc": 200335,
+          "primary_repo": "dcass-121/d3-lean-verification",
+          "one_line_summary": "Formalizes in Lean 4 (with ~200k LoC, zero sorry/custom axioms, and full-closure audit scripts) the main uniform 3-fold product expansion, sharp filling, and dual-family rate/distance theorems for algebraic-geometry codes on the Garcia-Stichtenoth tower over F_729."
+        },
+        {
+          "arxiv_id": "2611.05243",
+          "title": "Logarithmic Regret for Alternating Mirror Descent",
+          "primary_category": "cs.LG",
+          "matched_target_cats": [
+            "math.OC"
+          ],
+          "submitted_date": "2026-11-03",
+          "updated_date": "2026-11-03",
+          "version": 1,
+          "is_retroactive_v2": false,
+          "paper_domain_role": "engineering_math_proof",
+          "authoring_paradigm": "P1_paper_first_posthoc",
+          "verification_tier": "Tier3_Gold",
+          "ai_agent_assisted": "explicitly_yes",
+          "ai_tools_mentioned": [
+            "GPT-5.6 Sol",
+            "GPT-6 Astra"
+          ],
+          "artifact_availability": "public_lean_repo",
+          "static_risk_flags": [],
+          "primary_owned_loc": 11204,
+          "primary_repo": "CoffeeAndConvexity/AltOMD-Lean",
+          "one_line_summary": "Proves an O(log T) regret bound for Alternating Online Mirror Descent in two-player zero-sum bilinear games and formalizes all 15 named manuscript results in a zero-sorry, axiom-audited Lean 4 repository (AltOMD-Lean) developed with GPT-5.6 Sol and GPT-6 Astra."
+        },
+        {
+          "arxiv_id": "2611.05136",
+          "title": "Information Loss Is All You Need: $TC^0$ Pseudorandomness from Worst-Case Lattices",
+          "primary_category": "cs.CC",
+          "matched_target_cats": [
+            "cs.CR"
+          ],
+          "submitted_date": "2026-11-03",
+          "updated_date": "2026-11-05",
+          "version": 2,
+          "is_retroactive_v2": false,
+          "paper_domain_role": "engineering_math_proof",
+          "authoring_paradigm": "P1_paper_first_posthoc",
+          "verification_tier": "Tier2_Silver",
+          "ai_agent_assisted": "explicitly_yes",
+          "ai_tools_mentioned": [],
+          "artifact_availability": "public_lean_repo",
+          "static_risk_flags": [
+            "Mode2_ScopeDowngrade",
+            "Mode10_ProofBloat"
+          ],
+          "primary_owned_loc": 219688,
+          "primary_repo": "qianchen92/aft-lean-theorem99",
+          "one_line_summary": "AI-generated 219k-LoC Lean 4 formalization of Theorem 9.9 (constructive Gaussian AFT sampler in a counted binary-operation model) with exhaustive transitive axiom audit (Audit.lean) and provenance manifest, covering one core theorem rather than the paper's full LWE-to-LAR/TC0-PRF/ReLU-hardness claims."
+        },
+        {
+          "arxiv_id": "2611.04876",
+          "title": "Leakage-Resilient Computation via Matrix Refreshing",
+          "primary_category": "cs.CR",
+          "matched_target_cats": [
+            "cs.CR"
+          ],
+          "submitted_date": "2026-11-03",
+          "updated_date": "2026-11-03",
+          "version": 1,
+          "is_retroactive_v2": false,
+          "paper_domain_role": "engineering_math_proof",
+          "authoring_paradigm": "P4_speclock_solve_distill",
+          "verification_tier": "Tier3_Gold",
+          "ai_agent_assisted": "explicitly_yes",
+          "ai_tools_mentioned": [
+            "ChatGPT"
+          ],
+          "artifact_availability": "public_lean_repo",
+          "static_risk_flags": [
+            "Mode10_ProofBloat"
+          ],
+          "primary_owned_loc": 81481,
+          "primary_repo": "sdziembowski/MatrixRefresh",
+          "one_line_summary": "Formalizes continual matrix refreshing, NAND/stateful leakage-resilient circuit compilers, and expected-work simulators in Lean 4 (81k LoC) using ChatGPT under a comparator Challenge/Solution spec-lock (`Proofs.ReferenceClaims` vs `Proofs.ProvedClaims`)."
+        },
+        {
+          "arxiv_id": "2611.04561",
+          "title": "Distributed LTL Synthesis under Arbitrary Message Adversaries",
+          "primary_category": "cs.DC",
+          "matched_target_cats": [
+            "cs.DC",
+            "eess.SY"
+          ],
+          "submitted_date": "2026-11-03",
+          "updated_date": "2026-11-03",
+          "version": 1,
+          "is_retroactive_v2": false,
+          "paper_domain_role": "pure_tcs_or_math",
+          "authoring_paradigm": "P1_paper_first_posthoc",
+          "verification_tier": "Tier3_Gold",
+          "ai_agent_assisted": "explicitly_yes",
+          "ai_tools_mentioned": [
+            "Codex",
+            "Claude",
+            "GPT-6"
+          ],
+          "artifact_availability": "public_lean_repo",
+          "static_risk_flags": [
+            "Mode10_ProofBloat",
+            "Mode6_SorryOrAxiomOrNativeDecide"
+          ],
+          "primary_owned_loc": 929448,
+          "primary_repo": "BioDisCo/distributed_synthesis_lean",
+          "one_line_summary": "Distributed LTL synthesis decidability characterization (nowhere-dense geometric image and repeated consensus) formalized post-hoc in ~929k LoC of Lean 4.30/Mathlib with Codex/Claude assistance; main Results and Paper endpoints pass #print axioms and Comparator+Nanoda kernel replay with only standard axioms, while two native_decide calls appear in an unimported falsification probe."
+        },
+        {
+          "arxiv_id": "2611.02256",
+          "title": "Exact Shortest Paths and Maximum Flow in Planar Networks in the CONGEST Model",
+          "primary_category": "cs.DC",
+          "matched_target_cats": [
+            "cs.DC"
+          ],
+          "submitted_date": "2026-11-01",
+          "updated_date": "2026-11-01",
+          "version": 1,
+          "is_retroactive_v2": false,
+          "paper_domain_role": "pure_tcs_or_math",
+          "authoring_paradigm": "P1_paper_first_posthoc",
+          "verification_tier": "Tier2_Silver",
+          "ai_agent_assisted": "explicitly_yes",
+          "ai_tools_mentioned": [
+            "Claude Opus 5.5"
+          ],
+          "artifact_availability": "public_lean_repo",
+          "static_risk_flags": [
+            "Mode2_ScopeDowngrade"
+          ],
+          "primary_owned_loc": 2191,
+          "primary_repo": "ssenge/ExactShortestPathsAndFlowsOnPlanarGraphs",
+          "one_line_summary": "CONGEST planar-network SSSP and max-flow paper formalizing three supporting lemmas (Virtual Source, Dual Distance, discretized boosting) and auxiliary arguments in Lean 4/Mathlib without sorry or custom axioms, while leaving the main distributed algorithms and round bounds on paper."
+        },
+        {
+          "arxiv_id": "2611.02169",
+          "title": "Split Cuts in Fixed Integer Dimensions",
+          "primary_category": "math.OC",
+          "matched_target_cats": [
+            "math.OC"
+          ],
+          "submitted_date": "2026-11-01",
+          "updated_date": "2026-11-04",
+          "version": 2,
+          "is_retroactive_v2": false,
+          "paper_domain_role": "engineering_math_proof",
+          "authoring_paradigm": "P0_opaque_or_unspecified",
+          "verification_tier": "Tier1_Bronze",
+          "ai_agent_assisted": "explicitly_yes",
+          "ai_tools_mentioned": [
+            "OpenAI ChatGPT"
+          ],
+          "artifact_availability": "none",
+          "static_risk_flags": [
+            "Mode12_ProcessOpacity"
+          ],
+          "primary_owned_loc": null,
+          "primary_repo": null,
+          "one_line_summary": "Optimization paper (math.OC) on split cuts in fixed integer dimensions that discloses using OpenAI ChatGPT for Lean verification of proofs and calculations, with no public Lean artifact or workflow details."
+        },
+        {
+          "arxiv_id": "2611.02057",
+          "title": "Paying for Fractional Error: Tight Constant-Round Approximation of Covering Problems with Short Broadcasts",
+          "primary_category": "cs.DS",
+          "matched_target_cats": [
+            "cs.DC"
+          ],
+          "submitted_date": "2026-11-01",
+          "updated_date": "2026-11-01",
+          "version": 1,
+          "is_retroactive_v2": false,
+          "paper_domain_role": "pure_tcs_or_math",
+          "authoring_paradigm": "P1_paper_first_posthoc",
+          "verification_tier": "Tier1_Bronze",
+          "ai_agent_assisted": "explicitly_yes",
+          "ai_tools_mentioned": [
+            "Claude"
+          ],
+          "artifact_availability": "public_lean_repo",
+          "static_risk_flags": [
+            "Mode6_SorryOrAxiomOrNativeDecide",
+            "Mode10_ProofBloat",
+            "Mode12_ProcessOpacity"
+          ],
+          "primary_owned_loc": 166354,
+          "primary_repo": "wwawrzy/paying-for-fractional-error-lean",
+          "one_line_summary": "Formalizes all 81 named distributed-CONGEST covering-approximation results in a 166k-LoC Lean 4 repo with AI assistance; 73 statements use only standard axioms while 8 (including Theorem E and Corollary 1.1) depend on 7 declared external graph/topology axioms, with no CI and an incomplete rebuild of the export."
+        },
+        {
+          "arxiv_id": "2611.01761",
+          "title": "Computation in Anonymous Directed Dynamic Networks: Exact Worst-Case Termination Time and Network-Wise Intractability",
+          "primary_category": "cs.DC",
+          "matched_target_cats": [
+            "cs.DC"
+          ],
+          "submitted_date": "2026-11-01",
+          "updated_date": "2026-11-01",
+          "version": 1,
+          "is_retroactive_v2": false,
+          "paper_domain_role": "pure_tcs_or_math",
+          "authoring_paradigm": "P1_paper_first_posthoc",
+          "verification_tier": "Tier3_Gold",
+          "ai_agent_assisted": "explicitly_yes",
+          "ai_tools_mentioned": [
+            "ChatGPT-6 Astra"
+          ],
+          "artifact_availability": "public_lean_repo",
+          "static_risk_flags": [
+            "Mode10_ProofBloat"
+          ],
+          "primary_owned_loc": 158351,
+          "primary_repo": "gadiluna/ADDN_lean",
+          "one_line_summary": "Public Lean 4 formalization (158k LoC, 2,104 files) produced with ChatGPT-6 Astra covering all 24 formal statements of a cs.DC distributed-counting paper, audited by a custom transitive axiom checker with zero sorry/axioms."
+        },
+        {
+          "arxiv_id": "2611.01384",
+          "title": "Benign population landscapes do not transfer to empirical risk minimization in nonsmooth optimization",
+          "primary_category": "math.OC",
+          "matched_target_cats": [
+            "math.OC"
+          ],
+          "submitted_date": "2026-11-01",
+          "updated_date": "2026-11-01",
+          "version": 1,
+          "is_retroactive_v2": false,
+          "paper_domain_role": "engineering_math_proof",
+          "authoring_paradigm": "P0_opaque_or_unspecified",
+          "verification_tier": "Tier1_Bronze",
+          "ai_agent_assisted": "unclear",
+          "ai_tools_mentioned": [
+            "Claude",
+            "GPT-5",
+            "GPT-6"
+          ],
+          "artifact_availability": "broken_or_missing_repo",
+          "static_risk_flags": [
+            "Mode2_ScopeDowngrade",
+            "Mode12_ProcessOpacity"
+          ],
+          "primary_owned_loc": null,
+          "primary_repo": null,
+          "one_line_summary": "Claims an accompanying Lean formalization of supporting Appendix C analytic bounds for nonsmooth phase retrieval, while main theorems and interval enclosures remain outside Lean and the linked GitHub repo is inaccessible."
+        }
+      ],
+      "audits": [
+        {
+          "arxiv_id": "2611.26272",
+          "is_retroactive_v2": false,
+          "overall_fidelity": "material_undisclosed_drift_or_risk",
+          "m1": "moderate",
+          "m2": "moderate",
+          "m3": "minor_undisclosed",
+          "m4": "moderate",
+          "non_vacuity": false,
+          "mathlib": "strong_mathlib",
+          "executive_verdict": "Paper2Lean (arXiv:2611.26272) releases OptPaper-20, an impressive 158,916-line (495 TheoremLib + 61 Foundation `.lean` files) Lean 4 / Mathlib formalization of 20 optimization papers with zero `sorry`, `admit`, or custom `axiom` declarations and strong Mathlib/Foundation anchoring for convex analysis, Hilbert weak topology, and monotone operators. However, our Layer-A audit contradicts the paper's central claim that \"all identified discrepancies were repaired\" and \"no unresolved discrepancies identified in the audit\": even among the paper's own showcase theorems and across the released corpus, we found material undisclosed hypothesis strengthenings (e.g., `AbbasDynamical2015.kadek_klee_strong_convergence` in `rem_3.lean:33` still takes weak convergence `hweak` as a hypothesis instead of deriving it from Theorem 2.8 and uses `EReal.toReal` in `hKadecKlee`; `Moudafi_Oliny` `thm_1.lean:1500` adds global `hB_lipschitz`; `Attouch_Adly` `thm_2.lean:95` adds `hinitial`), an undisclosed dropped rate conclusion (`Attouch_Adly` `thm_9.lean:11` omits the $o(1/\\ln t)$ rate of Theorem A.1), an undisclosed `[FiniteDimensional \u211d H]` scope downgrade (`Guler_1992` `thm_3.lean:46`), unresolved TODO/extra hypotheses acknowledged in the repo's own `lean_paper_comparison.md`, leaky `Foundation.DIN` coupling (`ODE.lean:2778`), and zero non-vacuity witnesses (`example :`) across the entire repository."
+        },
+        {
+          "arxiv_id": "2611.23762",
+          "is_retroactive_v2": false,
+          "overall_fidelity": "partial_or_weakened_formalization",
+          "m1": "minor_disclosed",
+          "m2": "moderate",
+          "m3": "none",
+          "m4": "none",
+          "non_vacuity": false,
+          "mathlib": "strong_mathlib",
+          "executive_verdict": "Partial formalization of supporting companion-note lemmas only: none of the main theorems of arXiv:2611.23762 (Theorems 1.2\u20131.4, 3.36, 4.27, 5.3, 6.6, Corollaries 3.38, 6.7) nor Assumption 1.1 itself are formalized in Lean. Instead, the companion repository contains CoprimeFrobenius.lean (667 lines, zero sorry/custom axioms, strongly anchored to Mathlib), which faithfully formalizes three auxiliary algebraic lemmas (Lemmas 1.1, 2.1, and 4.1) from the AI-generated companion manuscript Uniform_product_expansion.pdf (cited as [87]/[TZ26] in 2611.23762), itself proving Assumption 1.1 only modulo an imported 3-direction cylinder-gluing theorem (CG_3). Within this narrow scope, statement fidelity is high and gaps (such as omitting the maximal 2-power extraction preprocessing in lemma_4_1) are transparently disclosed in Footnote 1 of the paper, README.md, and Appendix A of the companion PDF, though the repo lacks a lakefile/lean-toolchain/CI setup and explicit non-vacuity witnesses."
+        },
+        {
+          "arxiv_id": "2611.18455",
+          "is_retroactive_v2": false,
+          "overall_fidelity": "high_faithful",
+          "m1": "minor_disclosed",
+          "m2": "minor_disclosed",
+          "m3": "none",
+          "m4": "none",
+          "non_vacuity": true,
+          "mathlib": "strong_mathlib",
+          "executive_verdict": "High-fidelity end-to-end formalization of Theorem 1 (coefficient recovery for weak-form oracle OLS and raw-design LASSO with sampled particle pairs). Rather than wrapping the stochastic dynamics in axioms, WMFKI_Stochastic constructs the McKean\u2013Vlasov process and synchronously coupled interacting particle SDE from primitive independent initial and Brownian inputs (using Asakura's stochasticAnalysis library for Brownian motion, vector SDEs, and C^{1,2} It\u00f4 calculus), proves the O(N^{-2}) fourth-moment coupling rate, O(M/N) design convergence to the actual pushforward population design, and \u03c3^2/N weak-residual energy, combines biased/dependent observation noise and supplied quadrature budgets, and feeds genuine Fr\u00e9chet-derivative weak features and responses into the Lean_Code OLS/LASSO recovery layer with exact constants (4 for OLS, 144 and 576 for LASSO) and zero sorry/custom axioms. Minor differences\u2014chiefly constructing a canonical product realization rather than transferring to an arbitrary pre-existing joint space, evaluating the pair-sampling moment bound at actual observation-noise scale q rather than a fixed upper cap \u03c3\u0304_obs, instantiating RecoveryCertificate.oracle at the Moore\u2013Penrose solution (unique on the good event), and omitting the auxiliary conditional-expectation OLS bound of Proposition 21(i)\u2014are benign or strictly more general and are transparently documented in the repository."
+        },
+        {
+          "arxiv_id": "2611.18220",
+          "is_retroactive_v2": false,
+          "overall_fidelity": "high_faithful",
+          "m1": "minor_disclosed",
+          "m2": "minor_disclosed",
+          "m3": "none",
+          "m4": "minor_undisclosed",
+          "non_vacuity": false,
+          "mathlib": "strong_mathlib",
+          "executive_verdict": "High semantic fidelity across all main theorems in the paper. The accompanying repository `manasdm/Lean-SysID` (while `forgi86/control-theory-in-lean` is only cited as prior work in Section 1) formalizes every headline result claimed in the manuscript: the scalar identifiability and exact-estimator lemmas (`Identification.identifiable_iff_PE`, `Identification.estimator_exact`), scalar discrete-time interval invariance (`Tutorial.interval_invariant`, `Tutorial.traj_bounded`), the almost-sure sharpening of Ljung (1999) Lemma 3.1 (`Ljung31.lemma_3_1` plus `Ljung31.whiteNoise_A3`), and strict global identifiability of ARX models (`SysId.arx_isIdentifiable`). Anchoring to Mathlib is strong (`MeasureTheory`, `ProbabilityTheory.iIndepFun`, `FormalMultilinearSeries`, `HasSum`, `Matrix.PosDef`), and the authors deliberately guard against Lean junk values (explicitly adding `\u03c6\u2081 \u2260 0` against `div_zero`, formulating `(A2)` as `zT h z * zT ht z = 1` instead of `1 / zT h z = zT ht z`, and using `Summable` + `HasSum` rather than bare `tsum` equality). The only gaps are minor and transparent: (1) complex analyticity of `1/H` on a neighborhood of `{|z| \u2265 1}` (Remark 2) is factored into `(A1)\u2013(A2)` in Lemma 5 while `Ljung31.remark_inverse_stable` starts from power-series convergence on `|z| > \u03c1` (`\u03c1 < 1`) rather than `AnalyticOn`; (2) the bounded-noise wrapper and Example 1 counterexample remain prose-only; (3) `#print axioms` is run only on `Ljung31.lemma_3_1` in code despite Remark 1 citing it for all theorems (though zero `sorry`/custom `axiom`/`native_decide` exist across the four files); and (4) the repo contains no explicit non-vacuity witness `example`s or concrete instantiations."
+        },
+        {
+          "arxiv_id": "2611.15128",
+          "is_retroactive_v2": false,
+          "overall_fidelity": "partial_or_weakened_formalization",
+          "m1": "minor_undisclosed",
+          "m2": "moderate",
+          "m3": "none",
+          "m4": "none",
+          "non_vacuity": true,
+          "mathlib": "strong_mathlib",
+          "executive_verdict": "The Lean 4 formalization in leanEthereum/leanVM (20 files in formal/lean_vm/LeanVM/Protocol/ToArkLib/Whir/AffineCombiner*.lean, 4,963 LoC) faithfully formalizes the deep mathematical core of arXiv:2611.15128\u2014namely the finite interpolation-parameter affine MCA bound (Theorem 4.10) generalized to arbitrary finite lane arities via extension-field packing (the finite-parameter form of Eq. (5.7) in Theorem 5.2), together with Lemmas 3.2, 4.2, 4.3, 4.4, 4.5, 4.7 and polynomial-root Hensel reconstruction (from Lemma 3.11), all anchored cleanly to Mathlib and ArkLib and transitively checked to depend only on [propext, Classical.choice, Quot.sound] via LeanVM.theorems_hold. However, the formalization is partial relative to the paper's headline claims: (1) Theorem 1.1 and Lemma 4.1 (the explicit (\u03c1,\u03b7) asymptotic bound 4/(\u03b7 q) + 2^14 n^2 / (\u03c1^3 \u03b7^10 q^2) under n \u03b7^2 \u2265 4/\u03c1) are not derived from Theorem 4.10 in Lean; (2) all Section 6 lower bounds (Propositions 6.1\u20136.3, central to the Abstract's factor-n separation and s=1 necessity claims) are absent; and (3) Section 5's \u03b8-premixed equal-degree reductions (Theorem 5.1 and multi-round Theorem 5.2) and Section 7's Reed\u2013Muller extension (Theorem 7.1) are absent. Only the Section 5 equal-degree and Section 7 Reed\u2013Muller omissions are disclosed in the paper's end-matter 'AI usage' section (line 2253), leaving the Theorem 1.1 and Section 6 omissions undisclosed."
+        },
+        {
+          "arxiv_id": "2611.14756",
+          "is_retroactive_v2": false,
+          "overall_fidelity": "mostly_faithful_with_disclosed_gaps",
+          "m1": "minor_disclosed",
+          "m2": "minor_disclosed",
+          "m3": "minor_disclosed",
+          "m4": "none",
+          "non_vacuity": false,
+          "mathlib": "strong_mathlib",
+          "executive_verdict": "This post-hoc Lean 4 + Mathlib formalization (`magbenji/discrete-modified-gradient-lean`) provides a clean, honest, and mathematically faithful verification of all four positive theoretical results listed in the paper's Data Availability Statement: Lemma 4.1 (and consequences (C1)\u2013(C3)), Theorem 5.1(i)\u2013(ii), Corollary 5.2, and Theorem 6.1, compiling without `sorry` and CI-verified in `Axioms.lean` to rely solely on `[propext, Classical.choice, Quot.sound]`. There is no statement-weakening smuggling or junk-value hazard; in fact, several assumptions are slightly generalized (coordinate-free `InnerProductSpace \u211d E`, `0 \u2264 L`, infinite-dimensional `E` in `ascent` and `basin`). Two structural abstractions are transparently disclosed in `README.md` and module headers: (1) symmetric matrix eigenvalues `\u03bb\u2081(P_k), \u03bb\u2099(P_k)` are abstracted via Rayleigh-quotient bounds `StepBound (P k) (lo k) (hi k)` without proving a spectral-theorem bridge from Mathlib's matrix eigenvalues, and (2) Theorem 6.1 (`basin`) abstracts the connected component `E_c` of `O_c` (whose openness/inclusion properties the paper cites from [32]) into an arbitrary open set `U` satisfying those properties. In addition, the paper's counterexamples and sharpness/necessity results (Examples 3.1, 5.3, 6.2, 7.1, 7.2) are not formalized, and the repository contains no concrete `example` non-vacuity witnesses, though every theorem's hypotheses are clearly consistent and jointly satisfiable."
+        },
+        {
+          "arxiv_id": "2611.14475",
+          "is_retroactive_v2": false,
+          "overall_fidelity": "mostly_faithful_with_disclosed_gaps",
+          "m1": "minor_disclosed",
+          "m2": "minor_disclosed",
+          "m3": "none",
+          "m4": "none",
+          "non_vacuity": false,
+          "mathlib": "strong_mathlib",
+          "executive_verdict": "High-craft, machine-checked formalization covering all numbered theorems, lemmas, and propositions of arXiv:2611.14475 (including Zahl's Theorem 1.8 and the positive-characteristic line case of Guth\u2013Zahl's structure theorem from Mathlib alone), using only Lean's three standard axioms with zero sorrys in the development and verified by Comparator (NanoDa + Lean kernel) against a standalone Challenge.lean interface. All core mathematical objects are cleanly anchored to Mathlib, and every minor statement clarification (Filter.atTop sequence indexing, eventual nonemptiness of subframes, Section 3 connectedness for SRGs, row-dimension reindexing in construction_barrier_host) is explicitly documented. The sole substantive scope gap is the explicitly disclosed omission of the polynomial running-time complexity proof for 'explicit' computability in Theorem 1 (KM.choleskyMatrix is given constructively as a noncomputable Lean definition implementing footnotes 3\u20135, without a complexity bound)."
+        },
+        {
+          "arxiv_id": "2611.13872",
+          "is_retroactive_v2": false,
+          "overall_fidelity": "high_faithful",
+          "m1": "minor_disclosed",
+          "m2": "minor_disclosed",
+          "m3": "none",
+          "m4": "minor_disclosed",
+          "non_vacuity": true,
+          "mathlib": "strong_mathlib",
+          "executive_verdict": "LongTails exhibits high semantic fidelity between arXiv:2611.13872 and the k3nfalt/longtails Lean 4 repository. Its spec-locked OracleTemplate.Convergence interface cleanly separates public algorithm inputs from hidden parameters, hidden objective instances, and oracles, enforces sequential oracle-call accounting via OracleTemplate.execute, and independently audits each theorem and closed-form budget against isolated setup definitions via Comparator with zero sorrys or custom axioms. Across five principal Section 4 / Appendix B results spanning deterministic generalized-smooth acceleration, heavy-tailed coordinate Adam, comparison-oracle nonconvex trust-region optimization, linear-predictor BFGS, and adaptive heavy-tailed simplex optimization, the Lean signatures match the prose and comparison-table specifications faithfully; nuances such as list-output 'visiting' criteria, bundled Armijo-Wolfe line-search oracles, ambient differentiability on the simplex, fixed no-bias-correction Adam tuning, and parameter-dependent stopping budgets are explicitly disclosed in the paper and reflected verbatim in the Lean Setups."
+        },
+        {
+          "arxiv_id": "2611.13584",
+          "is_retroactive_v2": false,
+          "overall_fidelity": "high_faithful",
+          "m1": "minor_disclosed",
+          "m2": "none",
+          "m3": "none",
+          "m4": "none",
+          "non_vacuity": true,
+          "mathlib": "strong_mathlib",
+          "executive_verdict": "High-fidelity, genuinely comprehensive Lean 4 formalization of arXiv:2611.13584 inside the `nesterov/` subpackage of `PolynomialRealizationsProgram` (building on `polyak/` for base optimization classes and spectral coordinates). All headline theorems from the abstract and main sections (Theorem 2.6, Theorem 3.1, Theorem 4.7, Theorems 5.2/5.5/5.8, Theorems 6.2/6.5, Corollary 7.1, Theorems 7.2/7.5, and Theorem 8.1) are faithfully formalized against Mathlib's genuine differentiability, Hilbert-space `gradient`, `StrongConvexOn`, `ProbabilityMeasure`/`Lp`, and `Filter.limsup`/`liminf`, with zero `sorry`/`axiom`/`unsafe`/`implemented_by` declarations in `nesterov/` or `polyak/` and explicit universe-polymorphic compression (`Stationary/Universe.lean`), `(\u03bc, L)` normalization invariance (`Momentum/Scaling.lean`), and `EReal`/`ENNReal` lifting to prevent `limsup`/`sInf` junk values. Only minor, explicitly documented representation choices appear (normalized `L = 1` coordinates in asymptotic families paired with scaling equivalence theorems, `Carrier : Type` in `HilbertRun` bridged to `Type*`, endpoint `ContDiffWithinAt` in `CoeffCk`, `\u2016xstar\u2016 \u2264 1` in `Oracle.InstanceAt`, and proving lag-one certification internally rather than returning `StrictCertificate` in top-level asymptotic rate statements)."
+        },
+        {
+          "arxiv_id": "2611.12680",
+          "is_retroactive_v2": false,
+          "overall_fidelity": "mostly_faithful_with_disclosed_gaps",
+          "m1": "minor_undisclosed",
+          "m2": "minor_disclosed",
+          "m3": "minor_disclosed",
+          "m4": "none",
+          "non_vacuity": true,
+          "mathlib": "mixed_custom_and_mathlib",
+          "executive_verdict": "The WolfeSimplex formalization (23.9k LoC, 0 sorry, 0 custom axioms) exhibits high mathematical fidelity to arXiv:2611.12680 and passes strict axiom and statement-boundary audits. Theorem 1 / Theorem 3.1, all 20 supporting lemmas, the internal Klee-Minty exponential lower bounds (linopt and minnorm from the unique shortest atom; least-index from a suitable corral), and Corollary 3 (Lawson-Hanson NNLS exponential lower bound) are completely proved from standard Mathlib linear-algebraic and probabilistic foundations. The main scope and statement gaps\u2014explicitly disclosed in README.md, docs/COVERAGE.md, and docs/REVIEW.md\u2014are: (1) cited simplex lower-bound families (DFH23, AF17, FHZ11/Han12, FHZ14) and hardness families (FS15, DS18) are taken as explicit theorem hypotheses rather than formalized internally; (2) polynomial/strongly polynomial time and NP/PSPACE complexity classes are not formalized via Turing machines, instead using custom arithmetic/array-cost models (Execution.Program for Wolfe in Corollary 1, dimension/enumeration-indexed straight-line Execution.Code and writer-monad Computation for polynomial constructions) and many-one reductions; and (3) minor undisclosed omissions exist in two Corollary 2 wrapper signatures (zadeh_family and cunningham_family omit polynomial target bit-length bounds in n, unlike random_edge_table1_mdp and random_bland_table1_mdp). Overall fidelity is mostly_faithful_with_disclosed_gaps."
+        },
+        {
+          "arxiv_id": "2611.11713",
+          "is_retroactive_v2": false,
+          "overall_fidelity": "mostly_faithful_with_disclosed_gaps",
+          "m1": "minor_disclosed",
+          "m2": "minor_disclosed",
+          "m3": "none",
+          "m4": "none",
+          "non_vacuity": true,
+          "mathlib": "mixed_custom_and_mathlib",
+          "executive_verdict": "High-fidelity formalization of all three headline theorems (Theorem A fixed-field finiteness, Theorem B positive-direction sweep rigidity and forbidden minors, and Theorem C arbitrary-genus realization at uniform coupling and bounded fixed fields with matching logarithmic vertex-count bounds) in Lean 4 + Mathlib + TauCeti under `BetheGeometry.Response`, audited free of `sorry` or custom axioms by `ResponseAudit.lean` (`6709` declarations, `5452` theorems reported by the paper at the matching git commit `4d0ae2b`). No undisclosed hypothesis strengthening, conclusion weakening, definition smuggling, or vacuous truth was found; the few differences in proof route, coarse lower-bound constant (`5^(6n+2)`), connected-sum genus encoding, and unformalized secondary results (Corollary 3.1, Proposition 4.4/4.5, Section 7 interval certificates) are transparently disclosed in Section 1, Section 8, and `README.md`."
+        },
+        {
+          "arxiv_id": "2611.10902",
+          "is_retroactive_v2": false,
+          "overall_fidelity": "mostly_faithful_with_disclosed_gaps",
+          "m1": "minor_disclosed",
+          "m2": "minor_disclosed",
+          "m3": "none",
+          "m4": "none",
+          "non_vacuity": false,
+          "mathlib": "strong_mathlib",
+          "executive_verdict": "The Lean 4 / Mathlib formalization in canberksaner/bic-public is a clean, axiom-pure (zero sorry, zero custom axioms, 34-declaration #print axioms manifest in lean/CheckAxioms.lean) formalization of the core mathematical machinery of BIC\u2014Theorems 1\u20133, Lemmas 1\u20132 (including a first-principles proof of strong duality for the fixed-on-set convex subproblem), Appendices A\u2013B, all four utility families of Table I, Algorithm 1 (Choose) with its 2(n1+1)+n2 restriction count, the fast-path \u03bb\u03b4 bound, the [0, L] multiplier bracket, and Theorem 4's choosing-phase global optimality for K = 2 groups. There is no definition smuggling or junk-value exploitation, and Mathlib anchoring is strong. The primary fidelity limitation is scope: Lean verifies Theorem 4 only for K = 2 assuming exact evaluation of V_c (omitting K = 1 binary search, K > 2 enumeration, iterative bisection loops with tolerances \u03b5/\u03b4, Section III, and the asymptotic O(n log n log(L/\u03b5)) / O(n^K log(L/\u03b5)) runtime bounds of Proposition 1). While the paper text itself only references the Lean repository via a general footnote without enumerating these omissions, the repository's README.md and Lean docstrings disclose every omitted item and modeling choice transparently."
+        },
+        {
+          "arxiv_id": "2611.09050",
+          "is_retroactive_v2": false,
+          "overall_fidelity": "high_faithful",
+          "m1": "none",
+          "m2": "none",
+          "m3": "none",
+          "m4": "none",
+          "non_vacuity": true,
+          "mathlib": "mixed_custom_and_mathlib",
+          "executive_verdict": "The Lean 4 formalization in dmivilensky/PolynomialRealizationsProgram (package `jacobi`, building on `chebyshev1` and `chebyshev2`) exhibits high semantic fidelity to arXiv:2611.09050. All principal theorems from the abstract, Sections 1\u20136, and Appendices A\u2013E.1 are proved in full generality over `\u211d`/`\u2102`/`\u211d\u22650\u221e` without `sorry`, custom axioms, or hypothesis weakening. Key domain abstractions (Jacobi polynomials, Bessel zeros, Laguerre polynomials, tridiagonal realizations, Schr\u00f6dinger operators, trace-class norms, and Birman\u2013Schwinger integral operators) are explicitly identified with Mathlib primitives or textbook characterizations via equivalence theorems. The only omitted items are floating-point/decimal table evaluations and illustrative plots (Table 1, Figure 2, Appendix E.2), which are explicitly disclosed as excluded in `jacobi/README.md`, `jacobi/Article.lean`, and `jacobi/ArticleMap.md`, along with interpretive literature-comparison remarks (Remarks 2.3, 3.2, 3.3, 5.2, 5.9)."
+        },
+        {
+          "arxiv_id": "2611.08172",
+          "is_retroactive_v2": false,
+          "overall_fidelity": "mostly_faithful_with_disclosed_gaps",
+          "m1": "minor_disclosed",
+          "m2": "minor_disclosed",
+          "m3": "none",
+          "m4": "none",
+          "non_vacuity": true,
+          "mathlib": "mixed_custom_and_mathlib",
+          "executive_verdict": "High-integrity Lean 4 formalization of the paper's core fixed-field Garcia-Stichtenoth (F_729) results: Theorem A (uniform D=3 product expansion across all floors i >= 1 and all words including 0), Theorem C / Target 4.10 (asymptotically sharp pair filling above explicit floor/density thresholds), the rate/distance/dual-distance/expansion assertions of Corollary B, and the genus-ratio limit g_i/N_i -> 1/26 are all unconditionally proved on the concrete tower with only standard axioms (propext, Classical.choice, Quot.sound) and zero sorry. Remarkably, even External Input 4.3 (Garg-Sengupta 2D robustness) and the specialization arguments are discharged internally rather than axiomatized. Gaps relative to the full paper\u2014specifically Section 11 (Theorem 11.2 / Corollary 11.5 over fields q >= 512), Corollary B's Schur-cube fullness C_n^{*3} = F_729^n, the closed genus formula (3.3), and a cruder explicit constant in Theorem A\u2014are explicitly disclosed in the paper's verification section and repository README."
+        },
+        {
+          "arxiv_id": "2611.05243",
+          "is_retroactive_v2": false,
+          "overall_fidelity": "high_faithful",
+          "m1": "none",
+          "m2": "minor_disclosed",
+          "m3": "none",
+          "m4": "none",
+          "non_vacuity": true,
+          "mathlib": "strong_mathlib",
+          "executive_verdict": "High semantic fidelity across all 15 named manuscript results, with zero sorrys, zero non-standard axioms, strong Mathlib anchoring, and careful avoidance of junk values (such as EReal suprema to avoid \u211d sSup=0 bugs and explicit handling of non-unique fderivWithin normal components on lower-dimensional sets). Every constant in Theorem 3.7, Corollary 4.2, Proposition 4.1, and Lemma 3.6 matches the paper verbatim (K=4, C\u2080=24 max{\u2016A\u2016,1} K\u00b2, C=384 max{\u2016A\u2016,1}, 64/3, 16 e\u00b2, 128/3 + 4 e\u00b2). Two minor disclosed scope nuances exist: (1) the elementary averaged-strategy duality-gap corollary Gap(\\bar{x}_T, \\bar{y}_T) = O(\\log T / T) (Eq. (6)\u2013(7), mentioned in the abstract and post-theorem prose) is omitted from Lean, as CORRESPONDENCE.md restricts its map to named theorems/lemmas/propositions/corollaries; and (2) the concrete Shannon corollary (Shannon.alternatingSimplex_regret) routes through real-valued VerifiedRegret.logarithmic_regret rather than directly calling ExtendedRegret.logarithmic_regret, while isLegendre_extendedEntropy separately verifies the extended-real Legendre condition (explicitly disclosed in AltOMDAudit/README.md)."
+        },
+        {
+          "arxiv_id": "2611.05136",
+          "is_retroactive_v2": false,
+          "overall_fidelity": "mostly_faithful_with_disclosed_gaps",
+          "m1": "minor_disclosed",
+          "m2": "minor_disclosed",
+          "m3": "none",
+          "m4": "none",
+          "non_vacuity": false,
+          "mathlib": "mixed_custom_and_mathlib",
+          "executive_verdict": "The repository `qianchen92/aft-lean-theorem99` (1,794 Lean files, 219,688 non-empty LoC) provides a detailed, axiom-clean (`propext`, `Classical.choice`, `Quot.sound` only, verified by `Audit.lean`) Lean 4 formalization of Theorem 9.9 (constructive fixed-order Gaussian affine fiber transport), the deterministic affine evaluator of Definition 5.1, and single-block public-matrix preservation (Lemma 5.2). For this scoped target, semantic fidelity is remarkably high: the explicit Section 9.9 public parameter family, the carry-based quotient rounding map and zero fiber of Definition 6.3, the infinite-lattice discrete Gaussian source (`GaussianSource.latticeGaussian`), the `4c + 267` calibration order, the `2 * fourierConstant R * q * L^(-(R+1)/4) + remainder + numericalError` bound, and bit-level schoolbook arithmetic are all genuinely instantiated rather than stubbed or abstracted away. However, two major gaps exist relative to the paper's full claims\u2014both prominently and candidly disclosed in the paper (Section 1.1, AI Disclosure) and repository docs: (1) only Theorem 9.9 is formalized, leaving unformalized the multi-sample Gaussian-LWE-to-UZF-LWE and UZF-LWE-to-dLAR reductions (Theorems 4.2, 5.4, Corollary 5.5), worst-case lattice hardness (Theorem 1.1 / Corollary 10.1), the TC^0 weak PRF (Proposition 10.2), and ReLU learning hardness (Lemma 10.3 / Corollary 10.4); and (2) polynomial runtime is proved in a custom counted binary-operation model (`work : \u2115`) without a probabilistic Turing-machine simulation theorem. Internal details such as fallback data (`I, 0` vs Appendix H.5's `b_fb` and regular-only core) and classical AST selection (`exists_complete`) do not weaken the proved root theorem statement, though there are no standalone concrete `example` witnesses. Overall, the formalization is mostly faithful with clearly disclosed scope and complexity-model gaps."
+        },
+        {
+          "arxiv_id": "2611.04876",
+          "is_retroactive_v2": false,
+          "overall_fidelity": "mostly_faithful_with_disclosed_gaps",
+          "m1": "minor_undisclosed",
+          "m2": "minor_disclosed",
+          "m3": "none",
+          "m4": "none",
+          "non_vacuity": true,
+          "mathlib": "mixed_custom_and_mathlib",
+          "executive_verdict": "High-quality, deeply engineered Lean 4 formalization (81k LoC across 417 files) using a comparator spec-lock (`Proofs.ReferenceClaims` vs `Proofs.ProvedClaims`) where all 41 `sorry`s reside strictly in the three public challenge files (`Refreshing.lean`, `Compiler.lean`, `EfficientSimulation.lean`) and are discharged without `sorry` or custom axioms in `Proofs/`. The core binary continual-refreshing bound (Thm. 4.1), signed fixed-label and causal composition (Thm. 5.7), stateless and stateful NAND circuit compilers (Thms. 5.2 and 6.1), and counted expected-work simulators (Sec. 5.5) match the paper closely, with the main scope restrictions (deterministic-only strategies without averaging over random tapes, NAND-only source syntax, omitted capped strictly-polynomial simulator, and simplified work counter) transparently disclosed in Secs. 1.1, 5.5, and 6.1. One minor undisclosed formalization boundary quirk is that the comparator-audited public statements `Compiler.Direct.directPrivacyClaim` and `Compiler.Stateful.statefulPrivacyClaim` omit a standalone exact-correctness equality conjunct (and `directPrivacyClaim` omits `min 1` and the `2^{18\u03bb-n/27}` binary rate), even though exact decoder correctness (`realView_eq_transcript_output`, `realView_eq_observed`) and `direct_bound_binary` are fully proved internally inside `Proofs/`."
+        }
+      ]
+    }
+  ],
+  "retroactive_v2": {
+    "2511.15517": {
+      "v1_date": "2025-11-19",
+      "v2_date": "2026-06-29",
+      "note": "Beluga: 0 mentions of Lean in v1 (2025-11-19); added Appendix I Lean formalization in v2 (2026-06-29, Lean v4.33.0)."
+    },
+    "2605.09552": {
+      "v1_date": "2026-05-10",
+      "v2_date": "2026-10-27",
+      "note": "Phases of Muon: 0 mentions of Lean in v1 (2026-05-10); added 340.3k LoC Lean 4 formalization in v2 (2026-10-27, Lean v4.34.1) from frozen camera-ready snapshot cr-2026-10-22."
+    },
+    "2605.19531": {
+      "v1_date": "2026-05-19",
+      "v2_date": "2026-11-02",
+      "note": "Conflict-Freedom (PODC'26): 0 mentions of Lean in v1 (2026-05-19); added 34.3k LoC Claude Opus 5.5-assisted Lean 4 formalization in v2 (2026-11-02, Lean v4.34.0)."
+    }
+  }
+}

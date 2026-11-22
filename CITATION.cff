@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use this pipeline, curated dataset, or taxonomy in your research, please cite it as below."
+title: "How Are Engineering Papers Adopting Lean? A Longitudinal Survey of arXiv Preprints, Authoring Paradigms, Recall Calibration, and Semantic Fidelity"
+type: software
+authors:
+  - family-names: Moeller
+    given-names: Scott
+    affiliation: "Autonomous Networks Research Group (ANRG), University of Southern California"
+  - family-names: Krishnamachari
+    given-names: Bhaskar
+    affiliation: "Autonomous Networks Research Group (ANRG), University of Southern California"
+year: 2026
+repository-code: "https://github.com/electronjoe/survey-lean-proofs-eng-arxiv"
+url: "https://github.com/electronjoe/survey-lean-proofs-eng-arxiv"
+license: MIT
+keywords:
+  - Lean 4
+  - formal verification
+  - autoformalization
+  - arXiv
+  - empirical survey
+  - semantic fidelity

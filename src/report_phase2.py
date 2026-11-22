@@ -13,7 +13,7 @@ from src.db import DEFAULT_DB_PATH, connect, upsert_layer_a_audit
 def import_and_report(
     db_path: Path = DEFAULT_DB_PATH,
     outputs_path: Path | None = Path("data/phase2_outputs.json"),
-    report_path: Path = Path("reports/phase2_layer_a_audit.md"),
+    report_path: Path = Path("reports/slices/2026-11/phase2_layer_a_audit.md"),
 ) -> None:
     conn = connect(db_path)
 
@@ -121,7 +121,7 @@ def main() -> None:
     ap.add_argument("--db", type=Path, default=DEFAULT_DB_PATH)
     ap.add_argument("--outputs", type=Path, default=Path("data/phase2_outputs.json"))
     ap.add_argument("--no-import", action="store_true")
-    ap.add_argument("--report", type=Path, default=Path("reports/phase2_layer_a_audit.md"))
+    ap.add_argument("--report", type=Path, default=Path("reports/slices/2026-11/phase2_layer_a_audit.md"))
     args = ap.parse_args()
     import_and_report(
         db_path=args.db,

@@ -1,0 +1,95 @@
+name: Build Papers
+
+on:
+  push:
+    paths:
+      - "papers/**"
+      - "artifacts/**"
+      - "src/generate_figures.py"
+      - ".github/workflows/build-papers.yml"
+  pull_request:
+    paths:
+      - "papers/**"
+      - "artifacts/**"
+      - "src/generate_figures.py"
+      - ".github/workflows/build-papers.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Install Python dependencies
+        run: uv sync --frozen
+
+      - name: Generate vector PDF figures from git-tracked artifacts
+        run: uv run python -m src.generate_figures
+
+      - name: Install TeX Live packages
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            latexmk \
+            lmodern \
+            texlive-bibtex-extra \
+            texlive-fonts-recommended \
+            texlive-latex-base \
+            texlive-latex-extra \
+            texlive-latex-recommended
+
+      - name: Compile all paper variants
+        run: |
+          set -euo pipefail
+          mkdir -p dist/papers
+          built=0
+          for tex in papers/*/main.tex; do
+            dir="$(dirname "$tex")"
+            variant="$(basename "$dir")"
+            if [ "$variant" = "shared" ]; then
+              continue
+            fi
+            echo "::group::Compiling papers/${variant}/main.tex"
+            (cd "$dir" && latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex)
+            cp "${dir}/main.pdf" "dist/papers/${variant}.pdf"
+            echo "::endgroup::"
+            built=$((built + 1))
+          done
+          if [ "$built" -eq 0 ]; then
+            echo "Error: no paper variants found under papers/*/main.tex" >&2
+            exit 1
+          fi
+          ls -lh dist/papers/ papers/shared/figures/
+
+      - name: Upload compiled PDFs and figures as workflow artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: compiled-papers
+          path: |
+            dist/papers/*.pdf
+            papers/shared/figures/*.pdf
+          retention-days: 90
+
+      - name: Publish rolling papers-latest pre-release on main
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: papers-latest
+          name: Latest Compiled Papers (Rolling)
+          body: |
+            Automatically built from commit `${{ github.sha }}` on `main`.
+            PDFs are generated from git-tracked `artifacts/` and `papers/*/main.tex` without committing binary PDFs to Git.
+          prerelease: true
+          make_latest: false
+          fail_on_unmatched_files: true
+          files: dist/papers/*.pdf

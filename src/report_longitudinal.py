@@ -1,7 +1,7 @@
 """Comparative longitudinal analysis across T0 (Nov 2025), T1 (May 2026), and T2 (Nov 2026).
 
 Queries all three SQLite survey databases (`data/slice_2025_11.db`, `data/slice_2026_05.db`,
-`data/survey.db`) and writes `reports/longitudinal_analysis.md` + `data/longitudinal_summary.json`.
+`data/survey.db`) and writes `reports/longitudinal_analysis.md` + `artifacts/longitudinal_summary.json`.
 
 Explicitly tracks BOTH:
 - Contemporaneous (`v1`-at-submission) Lean adoption, excluding papers whose v1 manuscript had
@@ -440,14 +440,23 @@ def main() -> None:
     ap.add_argument("--t0-db", type=Path, default=Path("data/slice_2025_11.db"))
     ap.add_argument("--t1-db", type=Path, default=Path("data/slice_2026_05.db"))
     ap.add_argument("--t2-db", type=Path, default=Path("data/survey.db"))
+    ap.add_argument("--manifest", type=Path, default=None, help="Optional path to artifacts/slices/manifest.json.")
     ap.add_argument("--report", type=Path, default=Path("reports/longitudinal_analysis.md"))
-    ap.add_argument("--json-out", type=Path, default=Path("data/longitudinal_summary.json"))
+    ap.add_argument("--json-out", type=Path, default=Path("artifacts/longitudinal_summary.json"))
     args = ap.parse_args()
 
+    t0_db, t1_db, t2_db = args.t0_db, args.t1_db, args.t2_db
+    if args.manifest is not None:
+        manifest = json.loads(args.manifest.read_text())
+        by_label = {s["label"]: Path(s["db_path"]) for s in manifest.get("slices", [])}
+        t0_db = by_label.get("T0", t0_db)
+        t1_db = by_label.get("T1", t1_db)
+        t2_db = by_label.get("T2", t2_db)
+
     slices = [
-        summarize_slice("Nov 1–19, 2025", "T0", args.t0_db),
-        summarize_slice("May 1–19, 2026", "T1", args.t1_db),
-        summarize_slice("Nov 1–19, 2026", "T2", args.t2_db),
+        summarize_slice("Nov 1–19, 2025", "T0", t0_db),
+        summarize_slice("May 1–19, 2026", "T1", t1_db),
+        summarize_slice("Nov 1–19, 2026", "T2", t2_db),
     ]
     write_report(slices, args.report, args.json_out)
 

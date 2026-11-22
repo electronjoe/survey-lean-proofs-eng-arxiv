@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0",
+  "target_categories": [
+    "math.OC",
+    "cs.DC",
+    "cs.IT",
+    "cs.CR",
+    "eess.SY",
+    "eess.SP",
+    "cs.NI",
+    "cs.RO"
+  ],
+  "slices": [
+    {
+      "slice_id": "2025-11",
+      "label": "T0",
+      "title": "Nov 1-19, 2025",
+      "start_date": "2025-11-01",
+      "end_date": "2025-11-19",
+      "categories": [
+        "math.OC",
+        "cs.DC",
+        "cs.IT",
+        "cs.CR",
+        "eess.SY",
+        "eess.SP",
+        "cs.NI",
+        "cs.RO"
+      ],
+      "status": "complete",
+      "db_path": "data/slice_2025_11.db",
+      "artifacts_dir": "artifacts/slices/2025-11",
+      "reports_dir": "reports/slices/2025-11",
+      "export_figure_inputs": false
+    },
+    {
+      "slice_id": "2026-05",
+      "label": "T1",
+      "title": "May 1-19, 2026",
+      "start_date": "2026-05-01",
+      "end_date": "2026-05-19",
+      "categories": [
+        "math.OC",
+        "cs.DC",
+        "cs.IT",
+        "cs.CR",
+        "eess.SY",
+        "eess.SP",
+        "cs.NI",
+        "cs.RO"
+      ],
+      "status": "complete",
+      "db_path": "data/slice_2026_05.db",
+      "artifacts_dir": "artifacts/slices/2026-05",
+      "reports_dir": "reports/slices/2026-05",
+      "export_figure_inputs": false
+    },
+    {
+      "slice_id": "2026-11",
+      "label": "T2",
+      "title": "Nov 1-19, 2026",
+      "start_date": "2026-11-01",
+      "end_date": "2026-11-19",
+      "categories": [
+        "math.OC",
+        "cs.DC",
+        "cs.IT",
+        "cs.CR",
+        "eess.SY",
+        "eess.SP",
+        "cs.NI",
+        "cs.RO"
+      ],
+      "status": "complete",
+      "db_path": "data/survey.db",
+      "artifacts_dir": "artifacts/slices/2026-11",
+      "reports_dir": "reports/slices/2026-11",
+      "export_figure_inputs": true
+    }
+  ]
+}

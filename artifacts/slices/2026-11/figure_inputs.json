@@ -1,0 +1,950 @@
+{
+  "schema_version": "1.0",
+  "slice_id": "2026-11",
+  "window": {
+    "date_min": "2026-11-01",
+    "date_max": "2026-11-19"
+  },
+  "funnel": {
+    "total_papers": 4104,
+    "screened": 4097,
+    "candidates": 55,
+    "negatives": 4042,
+    "confirmed": 39,
+    "eng_math": 28,
+    "audited": 17
+  },
+  "category_bifurcation": {
+    "cat_total": {
+      "math.OC": 724,
+      "cs.DC": 335,
+      "cs.IT": 338,
+      "cs.CR": 629,
+      "eess.SY": 738,
+      "eess.SP": 462,
+      "cs.NI": 196,
+      "cs.RO": 1159
+    },
+    "cat_role": {
+      "math.OC": {
+        "engineering_math_proof": 17,
+        "pure_tcs_or_math": 2
+      },
+      "cs.DC": {
+        "pure_tcs_or_math": 5,
+        "software_or_system_fv": 1
+      },
+      "cs.IT": {
+        "engineering_math_proof": 6
+      },
+      "cs.CR": {
+        "engineering_math_proof": 4,
+        "software_or_system_fv": 3
+      },
+      "eess.SY": {
+        "engineering_math_proof": 2,
+        "pure_tcs_or_math": 1
+      },
+      "eess.SP": {},
+      "cs.NI": {},
+      "cs.RO": {}
+    }
+  },
+  "confirmed_lean_papers": [
+    {
+      "arxiv_id": "2611.01384",
+      "primary_category": "math.OC",
+      "authoring_paradigm": "P0_opaque_or_unspecified",
+      "verification_tier": "Tier1_Bronze",
+      "paper_domain_role": "engineering_math_proof",
+      "lean_repos": []
+    },
+    {
+      "arxiv_id": "2611.01761",
+      "primary_category": "cs.DC",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier3_Gold",
+      "paper_domain_role": "pure_tcs_or_math",
+      "lean_repos": [
+        {
+          "repo": "gadiluna/ADDN_lean",
+          "host": "github",
+          "lean_file_count": 2104,
+          "loc_nonempty": 158351
+        }
+      ]
+    },
+    {
+      "arxiv_id": "2611.02057",
+      "primary_category": "cs.DS",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier1_Bronze",
+      "paper_domain_role": "pure_tcs_or_math",
+      "lean_repos": [
+        {
+          "repo": "wwawrzy/paying-for-fractional-error-lean",
+          "host": "github",
+          "lean_file_count": 1617,
+          "loc_nonempty": 166354
+        }
+      ]
+    },
+    {
+      "arxiv_id": "2611.02169",
+      "primary_category": "math.OC",
+      "authoring_paradigm": "P0_opaque_or_unspecified",
+      "verification_tier": "Tier1_Bronze",
+      "paper_domain_role": "engineering_math_proof",
+      "lean_repos": []
+    },
+    {
+      "arxiv_id": "2611.02256",
+      "primary_category": "cs.DC",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier2_Silver",
+      "paper_domain_role": "pure_tcs_or_math",
+      "lean_repos": [
+        {
+          "repo": "ssenge/ExactShortestPathsAndFlowsOnPlanarGraphs",
+          "host": "github",
+          "lean_file_count": 14,
+          "loc_nonempty": 2191
+        }
+      ]
+    },
+    {
+      "arxiv_id": "2611.04561",
+      "primary_category": "cs.DC",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier3_Gold",
+      "paper_domain_role": "pure_tcs_or_math",
+      "lean_repos": [
+        {
+          "repo": "BioDisCo/distributed_synthesis_lean",
+          "host": "github",
+          "lean_file_count": 2395,
+          "loc_nonempty": 929448
+        }
+      ]
+    },
+    {
+      "arxiv_id": "2611.04876",
+      "primary_category": "cs.CR",
+      "authoring_paradigm": "P4_speclock_solve_distill",
+      "verification_tier": "Tier3_Gold",
+      "paper_domain_role": "engineering_math_proof",
+      "lean_repos": [
+        {
+          "repo": "sdziembowski/MatrixRefresh",
+          "host": "github",
+          "lean_file_count": 417,
+          "loc_nonempty": 81481
+        }
+      ]
+    },
+    {
+      "arxiv_id": "2611.05136",
+      "primary_category": "cs.CC",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier2_Silver",
+      "paper_domain_role": "engineering_math_proof",
+      "lean_repos": [
+        {
+          "repo": "qianchen92/aft-lean-theorem99",
+          "host": "github",
+          "lean_file_count": 1794,
+          "loc_nonempty": 219688
+        }
+      ]
+    },
+    {
+      "arxiv_id": "2611.05243",
+      "primary_category": "cs.LG",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier3_Gold",
+      "paper_domain_role": "engineering_math_proof",
+      "lean_repos": [
+        {
+          "repo": "CoffeeAndConvexity/AltOMD-Lean",
+          "host": "github",
+          "lean_file_count": 79,
+          "loc_nonempty": 11204
+        }
+      ]
+    },
+    {
+      "arxiv_id": "2611.08172",
+      "primary_category": "cs.IT",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier3_Gold",
+      "paper_domain_role": "engineering_math_proof",
+      "lean_repos": [
+        {
+          "repo": "dcass-121/d3-lean-verification",
+          "host": "github",
+          "lean_file_count": 2486,
+          "loc_nonempty": 200335
+        }
+      ]
+    },
+    {
+      "arxiv_id": "2611.09050",
+      "primary_category": "math.OC",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier3_Gold",
+      "paper_domain_role": "engineering_math_proof",
+      "lean_repos": [
+        {
+          "repo": "dmivilensky/PolynomialRealizationsProgram",
+          "host": "github",
+          "lean_file_count": 7628,
+          "loc_nonempty": 840767
+        }
+      ]
+    },
+    {
+      "arxiv_id": "2611.09169",
+      "primary_category": "math.OC",
+      "authoring_paradigm": "P0_opaque_or_unspecified",
+      "verification_tier": "Tier1_Bronze",
+      "paper_domain_role": "engineering_math_proof",
+      "lean_repos": []
+    },
+    {
+      "arxiv_id": "2611.10810",
+      "primary_category": "cs.DB",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier3_Gold",
+      "paper_domain_role": "software_or_system_fv",
+      "lean_repos": [
+        {
+          "repo": "zenodo/22643866",
+          "host": "zenodo",
+          "lean_file_count": 6,
+          "loc_nonempty": 2092
+        },
+        {
+          "repo": "zenodo/24035424",
+          "host": "zenodo",
+          "lean_file_count": 24,
+          "loc_nonempty": 10862
+        }
+      ]
+    },
+    {
+      "arxiv_id": "2611.10902",
+      "primary_category": "eess.SY",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier3_Gold",
+      "paper_domain_role": "engineering_math_proof",
+      "lean_repos": [
+        {
+          "repo": "canberksaner/bic-public",
+          "host": "github",
+          "lean_file_count": 11,
+          "loc_nonempty": 2068
+        }
+      ]
+    },
+    {
+      "arxiv_id": "2611.11713",
+      "primary_category": "cs.IT",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier3_Gold",
+      "paper_domain_role": "engineering_math_proof",
+      "lean_repos": [
+        {
+          "repo": "TauCetiProject/TauCeti",
+          "host": "github",
+          "lean_file_count": 37714,
+          "loc_nonempty": 0
+        },
+        {
+          "repo": "ywatanabex/bp-degree-syzygies-lean",
+          "host": "github",
+          "lean_file_count": 932,
+          "loc_nonempty": 135060
+        },
+        {
+          "repo": "ywatanabex/bp-response-geometry-lean",
+          "host": "github",
+          "lean_file_count": 257,
+          "loc_nonempty": 69875
+        }
+      ]
+    },
+    {
+      "arxiv_id": "2611.12585",
+      "primary_category": "math.NA",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier2_Silver",
+      "paper_domain_role": "engineering_math_proof",
+      "lean_repos": []
+    },
+    {
+      "arxiv_id": "2611.12680",
+      "primary_category": "math.OC",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier3_Gold",
+      "paper_domain_role": "engineering_math_proof",
+      "lean_repos": [
+        {
+          "repo": "zenodo/24136107",
+          "host": "zenodo",
+          "lean_file_count": 125,
+          "loc_nonempty": 23932
+        }
+      ]
+    },
+    {
+      "arxiv_id": "2611.13584",
+      "primary_category": "math.OC",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier3_Gold",
+      "paper_domain_role": "engineering_math_proof",
+      "lean_repos": [
+        {
+          "repo": "dmivilensky/PolynomialRealizationsProgram",
+          "host": "github",
+          "lean_file_count": 7628,
+          "loc_nonempty": 840767
+        }
+      ]
+    },
+    {
+      "arxiv_id": "2611.13585",
+      "primary_category": "cs.DS",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier1_Bronze",
+      "paper_domain_role": "pure_tcs_or_math",
+      "lean_repos": []
+    },
+    {
+      "arxiv_id": "2611.13872",
+      "primary_category": "math.OC",
+      "authoring_paradigm": "P4_speclock_solve_distill",
+      "verification_tier": "Tier3_Gold",
+      "paper_domain_role": "engineering_math_proof",
+      "lean_repos": [
+        {
+          "repo": "k3nfalt/longtails",
+          "host": "github",
+          "lean_file_count": 4070,
+          "loc_nonempty": 697377
+        },
+        {
+          "repo": "leanprover/comparator",
+          "host": "github",
+          "lean_file_count": 46,
+          "loc_nonempty": 875
+        },
+        {
+          "repo": "optsuite/optlib",
+          "host": "github",
+          "lean_file_count": 43,
+          "loc_nonempty": 15758
+        }
+      ]
+    },
+    {
+      "arxiv_id": "2611.14475",
+      "primary_category": "math.FA",
+      "authoring_paradigm": "P4_speclock_solve_distill",
+      "verification_tier": "Tier3_Gold",
+      "paper_domain_role": "engineering_math_proof",
+      "lean_repos": [
+        {
+          "repo": "ckuemmerle/ExplicitRIPTwoThirds",
+          "host": "github",
+          "lean_file_count": 379,
+          "loc_nonempty": 29967
+        }
+      ]
+    },
+    {
+      "arxiv_id": "2611.14756",
+      "primary_category": "math.DS",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier3_Gold",
+      "paper_domain_role": "engineering_math_proof",
+      "lean_repos": [
+        {
+          "repo": "zenodo/24118844",
+          "host": "zenodo",
+          "lean_file_count": 6,
+          "loc_nonempty": 670
+        },
+        {
+          "repo": "magbenji/discrete-modified-gradient-lean",
+          "host": "github",
+          "lean_file_count": 6,
+          "loc_nonempty": 670
+        }
+      ]
+    },
+    {
+      "arxiv_id": "2611.15128",
+      "primary_category": "cs.IT",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier3_Gold",
+      "paper_domain_role": "engineering_math_proof",
+      "lean_repos": [
+        {
+          "repo": "leanEthereum/leanVM",
+          "host": "github",
+          "lean_file_count": 2627,
+          "loc_nonempty": 549901
+        }
+      ]
+    },
+    {
+      "arxiv_id": "2611.15201",
+      "primary_category": "cs.DC",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier3_Gold",
+      "paper_domain_role": "pure_tcs_or_math",
+      "lean_repos": [
+        {
+          "repo": "zenodo/24127514",
+          "host": "zenodo",
+          "lean_file_count": 36,
+          "loc_nonempty": 5307
+        }
+      ]
+    },
+    {
+      "arxiv_id": "2611.15431",
+      "primary_category": "quant-ph",
+      "authoring_paradigm": "P0_opaque_or_unspecified",
+      "verification_tier": "Tier1_Bronze",
+      "paper_domain_role": "engineering_math_proof",
+      "lean_repos": []
+    },
+    {
+      "arxiv_id": "2611.16690",
+      "primary_category": "math.AG",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier2_Silver",
+      "paper_domain_role": "pure_tcs_or_math",
+      "lean_repos": [
+        {
+          "repo": "MColbrook/AIM",
+          "host": "github",
+          "lean_file_count": 37,
+          "loc_nonempty": 1870
+        },
+        {
+          "repo": "RobinSchabert/positive-sym-func-h17-undecidability-lean",
+          "host": "github",
+          "lean_file_count": 24,
+          "loc_nonempty": 6592
+        }
+      ]
+    },
+    {
+      "arxiv_id": "2611.16781",
+      "primary_category": "math.OC",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier2_Silver",
+      "paper_domain_role": "engineering_math_proof",
+      "lean_repos": []
+    },
+    {
+      "arxiv_id": "2611.18220",
+      "primary_category": "eess.SY",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier3_Gold",
+      "paper_domain_role": "engineering_math_proof",
+      "lean_repos": [
+        {
+          "repo": "forgi86/control-theory-in-lean",
+          "host": "github",
+          "lean_file_count": 7,
+          "loc_nonempty": 1196
+        },
+        {
+          "repo": "manasdm/Lean-SysID",
+          "host": "github",
+          "lean_file_count": 4,
+          "loc_nonempty": 528
+        }
+      ]
+    },
+    {
+      "arxiv_id": "2611.18455",
+      "primary_category": "stat.ML",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier3_Gold",
+      "paper_domain_role": "engineering_math_proof",
+      "lean_repos": [
+        {
+          "repo": "inody/wmfki_lean",
+          "host": "github",
+          "lean_file_count": 156,
+          "loc_nonempty": 12236
+        }
+      ]
+    },
+    {
+      "arxiv_id": "2611.19551",
+      "primary_category": "cs.CR",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier3_Gold",
+      "paper_domain_role": "software_or_system_fv",
+      "lean_repos": [
+        {
+          "repo": "tokencraftdata/trustbound",
+          "host": "github",
+          "lean_file_count": 16,
+          "loc_nonempty": 1332
+        }
+      ]
+    },
+    {
+      "arxiv_id": "2611.20131",
+      "primary_category": "math.NA",
+      "authoring_paradigm": "P0_opaque_or_unspecified",
+      "verification_tier": "Tier1_Bronze",
+      "paper_domain_role": "engineering_math_proof",
+      "lean_repos": []
+    },
+    {
+      "arxiv_id": "2611.20298",
+      "primary_category": "cs.PL",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier1_Bronze",
+      "paper_domain_role": "software_or_system_fv",
+      "lean_repos": []
+    },
+    {
+      "arxiv_id": "2611.22468",
+      "primary_category": "math.OC",
+      "authoring_paradigm": "P0_opaque_or_unspecified",
+      "verification_tier": "Tier1_Bronze",
+      "paper_domain_role": "engineering_math_proof",
+      "lean_repos": []
+    },
+    {
+      "arxiv_id": "2611.22732",
+      "primary_category": "cs.CR",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier1_Bronze",
+      "paper_domain_role": "engineering_math_proof",
+      "lean_repos": []
+    },
+    {
+      "arxiv_id": "2611.23080",
+      "primary_category": "cs.AI",
+      "authoring_paradigm": "P0_opaque_or_unspecified",
+      "verification_tier": "Tier1_Bronze",
+      "paper_domain_role": "engineering_math_proof",
+      "lean_repos": []
+    },
+    {
+      "arxiv_id": "2611.23762",
+      "primary_category": "quant-ph",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier2_Silver",
+      "paper_domain_role": "engineering_math_proof",
+      "lean_repos": [
+        {
+          "repo": "guanyuzhu2014/Uniform-product-expansion---theory-and-Lean-certification",
+          "host": "github",
+          "lean_file_count": 1,
+          "loc_nonempty": 589
+        }
+      ]
+    },
+    {
+      "arxiv_id": "2611.25599",
+      "primary_category": "cs.CR",
+      "authoring_paradigm": "P0_opaque_or_unspecified",
+      "verification_tier": "Tier1_Bronze",
+      "paper_domain_role": "software_or_system_fv",
+      "lean_repos": []
+    },
+    {
+      "arxiv_id": "2611.26140",
+      "primary_category": "math.OC",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier1_Bronze",
+      "paper_domain_role": "engineering_math_proof",
+      "lean_repos": []
+    },
+    {
+      "arxiv_id": "2611.26272",
+      "primary_category": "math.OC",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier2_Silver",
+      "paper_domain_role": "engineering_math_proof",
+      "lean_repos": [
+        {
+          "repo": "TTony2019/OptPaper",
+          "host": "github",
+          "lean_file_count": 558,
+          "loc_nonempty": 151214
+        },
+        {
+          "repo": "anthropics/fermats-last-theorem",
+          "host": "github",
+          "lean_file_count": 60478,
+          "loc_nonempty": 11880614
+        },
+        {
+          "repo": "cameronfreer/lean4-skills",
+          "host": "github",
+          "lean_file_count": 66,
+          "loc_nonempty": 1442
+        },
+        {
+          "repo": "oOo0oOo/lean-lsp-mcp",
+          "host": "github",
+          "lean_file_count": 20,
+          "loc_nonempty": 123
+        }
+      ]
+    }
+  ],
+  "layer_a_audits": [
+    {
+      "arxiv_id": "2611.04876",
+      "primary_category": "cs.CR",
+      "authoring_paradigm": "P4_speclock_solve_distill",
+      "overall_fidelity": "mostly_faithful_with_disclosed_gaps",
+      "mode1_statement_drift": {
+        "severity": "minor_undisclosed"
+      },
+      "mode2_scope_downgrade": {
+        "severity": "minor_disclosed"
+      },
+      "mode3_definition_smuggling": {
+        "severity": "none"
+      },
+      "mode4_junk_or_vacuity": {
+        "severity": "none"
+      },
+      "has_non_vacuity_witnesses": true,
+      "mathlib_anchoring_quality": "mixed_custom_and_mathlib"
+    },
+    {
+      "arxiv_id": "2611.05136",
+      "primary_category": "cs.CC",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "overall_fidelity": "mostly_faithful_with_disclosed_gaps",
+      "mode1_statement_drift": {
+        "severity": "minor_disclosed"
+      },
+      "mode2_scope_downgrade": {
+        "severity": "minor_disclosed"
+      },
+      "mode3_definition_smuggling": {
+        "severity": "none"
+      },
+      "mode4_junk_or_vacuity": {
+        "severity": "none"
+      },
+      "has_non_vacuity_witnesses": false,
+      "mathlib_anchoring_quality": "mixed_custom_and_mathlib"
+    },
+    {
+      "arxiv_id": "2611.05243",
+      "primary_category": "cs.LG",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "overall_fidelity": "high_faithful",
+      "mode1_statement_drift": {
+        "severity": "none"
+      },
+      "mode2_scope_downgrade": {
+        "severity": "minor_disclosed"
+      },
+      "mode3_definition_smuggling": {
+        "severity": "none"
+      },
+      "mode4_junk_or_vacuity": {
+        "severity": "none"
+      },
+      "has_non_vacuity_witnesses": true,
+      "mathlib_anchoring_quality": "strong_mathlib"
+    },
+    {
+      "arxiv_id": "2611.08172",
+      "primary_category": "cs.IT",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "overall_fidelity": "mostly_faithful_with_disclosed_gaps",
+      "mode1_statement_drift": {
+        "severity": "minor_disclosed"
+      },
+      "mode2_scope_downgrade": {
+        "severity": "minor_disclosed"
+      },
+      "mode3_definition_smuggling": {
+        "severity": "none"
+      },
+      "mode4_junk_or_vacuity": {
+        "severity": "none"
+      },
+      "has_non_vacuity_witnesses": true,
+      "mathlib_anchoring_quality": "mixed_custom_and_mathlib"
+    },
+    {
+      "arxiv_id": "2611.09050",
+      "primary_category": "math.OC",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "overall_fidelity": "high_faithful",
+      "mode1_statement_drift": {
+        "severity": "none"
+      },
+      "mode2_scope_downgrade": {
+        "severity": "none"
+      },
+      "mode3_definition_smuggling": {
+        "severity": "none"
+      },
+      "mode4_junk_or_vacuity": {
+        "severity": "none"
+      },
+      "has_non_vacuity_witnesses": true,
+      "mathlib_anchoring_quality": "mixed_custom_and_mathlib"
+    },
+    {
+      "arxiv_id": "2611.10902",
+      "primary_category": "eess.SY",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "overall_fidelity": "mostly_faithful_with_disclosed_gaps",
+      "mode1_statement_drift": {
+        "severity": "minor_disclosed"
+      },
+      "mode2_scope_downgrade": {
+        "severity": "minor_disclosed"
+      },
+      "mode3_definition_smuggling": {
+        "severity": "none"
+      },
+      "mode4_junk_or_vacuity": {
+        "severity": "none"
+      },
+      "has_non_vacuity_witnesses": false,
+      "mathlib_anchoring_quality": "strong_mathlib"
+    },
+    {
+      "arxiv_id": "2611.11713",
+      "primary_category": "cs.IT",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "overall_fidelity": "mostly_faithful_with_disclosed_gaps",
+      "mode1_statement_drift": {
+        "severity": "minor_disclosed"
+      },
+      "mode2_scope_downgrade": {
+        "severity": "minor_disclosed"
+      },
+      "mode3_definition_smuggling": {
+        "severity": "none"
+      },
+      "mode4_junk_or_vacuity": {
+        "severity": "none"
+      },
+      "has_non_vacuity_witnesses": true,
+      "mathlib_anchoring_quality": "mixed_custom_and_mathlib"
+    },
+    {
+      "arxiv_id": "2611.12680",
+      "primary_category": "math.OC",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "overall_fidelity": "mostly_faithful_with_disclosed_gaps",
+      "mode1_statement_drift": {
+        "severity": "minor_undisclosed"
+      },
+      "mode2_scope_downgrade": {
+        "severity": "minor_disclosed"
+      },
+      "mode3_definition_smuggling": {
+        "severity": "minor_disclosed"
+      },
+      "mode4_junk_or_vacuity": {
+        "severity": "none"
+      },
+      "has_non_vacuity_witnesses": true,
+      "mathlib_anchoring_quality": "mixed_custom_and_mathlib"
+    },
+    {
+      "arxiv_id": "2611.13584",
+      "primary_category": "math.OC",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "overall_fidelity": "high_faithful",
+      "mode1_statement_drift": {
+        "severity": "minor_disclosed"
+      },
+      "mode2_scope_downgrade": {
+        "severity": "none"
+      },
+      "mode3_definition_smuggling": {
+        "severity": "none"
+      },
+      "mode4_junk_or_vacuity": {
+        "severity": "none"
+      },
+      "has_non_vacuity_witnesses": true,
+      "mathlib_anchoring_quality": "strong_mathlib"
+    },
+    {
+      "arxiv_id": "2611.13872",
+      "primary_category": "math.OC",
+      "authoring_paradigm": "P4_speclock_solve_distill",
+      "overall_fidelity": "high_faithful",
+      "mode1_statement_drift": {
+        "severity": "minor_disclosed"
+      },
+      "mode2_scope_downgrade": {
+        "severity": "minor_disclosed"
+      },
+      "mode3_definition_smuggling": {
+        "severity": "none"
+      },
+      "mode4_junk_or_vacuity": {
+        "severity": "minor_disclosed"
+      },
+      "has_non_vacuity_witnesses": true,
+      "mathlib_anchoring_quality": "strong_mathlib"
+    },
+    {
+      "arxiv_id": "2611.14475",
+      "primary_category": "math.FA",
+      "authoring_paradigm": "P4_speclock_solve_distill",
+      "overall_fidelity": "mostly_faithful_with_disclosed_gaps",
+      "mode1_statement_drift": {
+        "severity": "minor_disclosed"
+      },
+      "mode2_scope_downgrade": {
+        "severity": "minor_disclosed"
+      },
+      "mode3_definition_smuggling": {
+        "severity": "none"
+      },
+      "mode4_junk_or_vacuity": {
+        "severity": "none"
+      },
+      "has_non_vacuity_witnesses": false,
+      "mathlib_anchoring_quality": "strong_mathlib"
+    },
+    {
+      "arxiv_id": "2611.14756",
+      "primary_category": "math.DS",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "overall_fidelity": "mostly_faithful_with_disclosed_gaps",
+      "mode1_statement_drift": {
+        "severity": "minor_disclosed"
+      },
+      "mode2_scope_downgrade": {
+        "severity": "minor_disclosed"
+      },
+      "mode3_definition_smuggling": {
+        "severity": "minor_disclosed"
+      },
+      "mode4_junk_or_vacuity": {
+        "severity": "none"
+      },
+      "has_non_vacuity_witnesses": false,
+      "mathlib_anchoring_quality": "strong_mathlib"
+    },
+    {
+      "arxiv_id": "2611.15128",
+      "primary_category": "cs.IT",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "overall_fidelity": "partial_or_weakened_formalization",
+      "mode1_statement_drift": {
+        "severity": "minor_undisclosed"
+      },
+      "mode2_scope_downgrade": {
+        "severity": "moderate"
+      },
+      "mode3_definition_smuggling": {
+        "severity": "none"
+      },
+      "mode4_junk_or_vacuity": {
+        "severity": "none"
+      },
+      "has_non_vacuity_witnesses": true,
+      "mathlib_anchoring_quality": "strong_mathlib"
+    },
+    {
+      "arxiv_id": "2611.18220",
+      "primary_category": "eess.SY",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "overall_fidelity": "high_faithful",
+      "mode1_statement_drift": {
+        "severity": "minor_disclosed"
+      },
+      "mode2_scope_downgrade": {
+        "severity": "minor_disclosed"
+      },
+      "mode3_definition_smuggling": {
+        "severity": "none"
+      },
+      "mode4_junk_or_vacuity": {
+        "severity": "minor_undisclosed"
+      },
+      "has_non_vacuity_witnesses": false,
+      "mathlib_anchoring_quality": "strong_mathlib"
+    },
+    {
+      "arxiv_id": "2611.18455",
+      "primary_category": "stat.ML",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "overall_fidelity": "high_faithful",
+      "mode1_statement_drift": {
+        "severity": "minor_disclosed"
+      },
+      "mode2_scope_downgrade": {
+        "severity": "minor_disclosed"
+      },
+      "mode3_definition_smuggling": {
+        "severity": "none"
+      },
+      "mode4_junk_or_vacuity": {
+        "severity": "none"
+      },
+      "has_non_vacuity_witnesses": true,
+      "mathlib_anchoring_quality": "strong_mathlib"
+    },
+    {
+      "arxiv_id": "2611.23762",
+      "primary_category": "quant-ph",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "overall_fidelity": "partial_or_weakened_formalization",
+      "mode1_statement_drift": {
+        "severity": "minor_disclosed"
+      },
+      "mode2_scope_downgrade": {
+        "severity": "moderate"
+      },
+      "mode3_definition_smuggling": {
+        "severity": "none"
+      },
+      "mode4_junk_or_vacuity": {
+        "severity": "none"
+      },
+      "has_non_vacuity_witnesses": false,
+      "mathlib_anchoring_quality": "strong_mathlib"
+    },
+    {
+      "arxiv_id": "2611.26272",
+      "primary_category": "math.OC",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "overall_fidelity": "material_undisclosed_drift_or_risk",
+      "mode1_statement_drift": {
+        "severity": "moderate"
+      },
+      "mode2_scope_downgrade": {
+        "severity": "moderate"
+      },
+      "mode3_definition_smuggling": {
+        "severity": "minor_undisclosed"
+      },
+      "mode4_junk_or_vacuity": {
+        "severity": "moderate"
+      },
+      "has_non_vacuity_witnesses": false,
+      "mathlib_anchoring_quality": "strong_mathlib"
+    }
+  ]
+}

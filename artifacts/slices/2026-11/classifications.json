@@ -1,0 +1,2333 @@
+{
+  "schema_version": "1.0",
+  "slice_id": "2026-11",
+  "lean_models": [
+    "flash"
+  ],
+  "beyond_lean_models": [
+    "flash_lite"
+  ],
+  "lean_candidate_count": 55,
+  "beyond_lean_count": 34,
+  "lean_results": [
+    {
+      "arxiv_id": "2611.01384",
+      "primary_category": "math.OC",
+      "matched_target_cats": [
+        "math.OC"
+      ],
+      "submitted_date": "2026-11-01",
+      "updated_date": "2026-11-01",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "unclear",
+      "ai_tools_mentioned": [
+        "Claude",
+        "GPT-5",
+        "GPT-6"
+      ],
+      "artifact_availability": "broken_or_missing_repo",
+      "authoring_paradigm": "P0_opaque_or_unspecified",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Claims an accompanying Lean formalization of supporting Appendix C analytic bounds for nonsmooth phase retrieval, while main theorems and interval enclosures remain outside Lean and the linked GitHub repo is inaccessible.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "engineering_math_proof",
+      "paradigm_confidence": "medium",
+      "paradigm_evidence": "The paper states that an accompanying Lean formalization verifies identity (C.22), correlation bounds, angular series/remainder estimates, and uniform bound (C.31), while main moment theorems, covariance reduction, and numerical enclosures are outside Lean; however, the linked repo PenghaoWang1225/Phase-Retrieval is inaccessible (accessible: false) and no authoring workflow details are provided in the evidence.",
+      "static_risk_flags": [
+        "Mode2_ScopeDowngrade",
+        "Mode12_ProcessOpacity"
+      ],
+      "verification_tier_observed": "Tier1_Bronze"
+    },
+    {
+      "arxiv_id": "2611.01761",
+      "primary_category": "cs.DC",
+      "matched_target_cats": [
+        "cs.DC"
+      ],
+      "submitted_date": "2026-11-01",
+      "updated_date": "2026-11-01",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "ChatGPT-6 Astra"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Public Lean 4 formalization (158k LoC, 2,104 files) produced with ChatGPT-6 Astra covering all 24 formal statements of a cs.DC distributed-counting paper, audited by a custom transitive axiom checker with zero sorry/axioms.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "pure_tcs_or_math",
+      "paradigm_confidence": "high",
+      "paradigm_evidence": "paper.tex explicitly discloses using ChatGPT-6 Astra to produce Lean proofs for all results in the paper; the repo links existing numbered statements in paper.tex to Lean declarations post-hoc via claims.json and render_correspondence.py without leanblueprint, LeanArchitect, or Challenge/Solution spec-lock tooling.",
+      "static_risk_flags": [
+        "Mode10_ProofBloat"
+      ],
+      "verification_tier_observed": "Tier3_Gold"
+    },
+    {
+      "arxiv_id": "2611.02057",
+      "primary_category": "cs.DS",
+      "matched_target_cats": [
+        "cs.DC"
+      ],
+      "submitted_date": "2026-11-01",
+      "updated_date": "2026-11-01",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "Claude"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Formalizes all 81 named distributed-CONGEST covering-approximation results in a 166k-LoC Lean 4 repo with AI assistance; 73 statements use only standard axioms while 8 (including Theorem E and Corollary 1.1) depend on 7 declared external graph/topology axioms, with no CI and an incomplete rebuild of the export.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "pure_tcs_or_math",
+      "paradigm_confidence": "high",
+      "paradigm_evidence": "The paper states in Section J that all 81 named results were formalized in Lean 4 across 1612 modules and that AI models (Claude in latex_signals) were used for independent reviews and Lean formalization. The repo has no blueprint directory, LeanArchitect annotations, or comparator Challenge/Solution lock (has_blueprint_dir=false, has_challenge_file=false, tex_file_count=0), instead using a post-hoc statement-level correspondence map (PaperIndex.lean, docs/correspondence.md, verification/statement-map.json).",
+      "static_risk_flags": [
+        "Mode6_SorryOrAxiomOrNativeDecide",
+        "Mode10_ProofBloat",
+        "Mode12_ProcessOpacity"
+      ],
+      "verification_tier_observed": "Tier1_Bronze"
+    },
+    {
+      "arxiv_id": "2611.02169",
+      "primary_category": "math.OC",
+      "matched_target_cats": [
+        "math.OC"
+      ],
+      "submitted_date": "2026-11-01",
+      "updated_date": "2026-11-04",
+      "version": 2,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "OpenAI ChatGPT"
+      ],
+      "artifact_availability": "none",
+      "authoring_paradigm": "P0_opaque_or_unspecified",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Optimization paper (math.OC) on split cuts in fixed integer dimensions that discloses using OpenAI ChatGPT for Lean verification of proofs and calculations, with no public Lean artifact or workflow details.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "engineering_math_proof",
+      "paradigm_confidence": "high",
+      "paradigm_evidence": "The paper lists no public repositories or URLs and mentions Lean only once in an 'AI use disclosure' stating that the authors used OpenAI's ChatGPT to assist with 'checking of proofs and calculations including Lean verification', leaving the formalization workflow and verification scope unspecified.",
+      "static_risk_flags": [
+        "Mode12_ProcessOpacity"
+      ],
+      "verification_tier_observed": "Tier1_Bronze"
+    },
+    {
+      "arxiv_id": "2611.02256",
+      "primary_category": "cs.DC",
+      "matched_target_cats": [
+        "cs.DC"
+      ],
+      "submitted_date": "2026-11-01",
+      "updated_date": "2026-11-01",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "Claude Opus 5.5"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "CONGEST planar-network SSSP and max-flow paper formalizing three supporting lemmas (Virtual Source, Dual Distance, discretized boosting) and auxiliary arguments in Lean 4/Mathlib without sorry or custom axioms, while leaving the main distributed algorithms and round bounds on paper.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "pure_tcs_or_math",
+      "paradigm_confidence": "high",
+      "paradigm_evidence": "The paper and working notes (notes/NOTES.md, notes/LEMMA15.md, etc.) develop the CONGEST algorithms and proofs informally on paper, while lean/SsspFlow/ formalizes only selected supporting mathematical lemmas (Virtual Source, Dual Distance, discretized boosting, plus auxiliary recursion/tools) with explicit 'Not formalized' notes and no blueprint/LeanArchitect or Challenge/Solution spec-lock tooling. README.md explicitly states Claude Opus 5.5 was used to search literature, develop/check proofs, write scripts and the Lean formalization, and draft text.",
+      "static_risk_flags": [
+        "Mode2_ScopeDowngrade"
+      ],
+      "verification_tier_observed": "Tier2_Silver"
+    },
+    {
+      "arxiv_id": "2611.02849",
+      "primary_category": "cs.AI",
+      "matched_target_cats": [
+        "cs.DC"
+      ],
+      "submitted_date": "2026-11-02",
+      "updated_date": "2026-11-02",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "N/A",
+      "ai_tools_mentioned": [],
+      "artifact_availability": "N/A",
+      "authoring_paradigm": "N/A",
+      "lean_usage_status": "lean_citation_or_discussion",
+      "one_line_summary": "Introduces TLAPS-Bench, a benchmark and agentic proof harness for TLA+ Proof System (TLAPS) proofs of real-world system specifications, citing Lean 4 (and Veil/VeriSoftBench) only in background/related work without contributing any Lean artifacts.",
+      "other_formal_tools_contributed": [
+        "TLA+",
+        "TLAPS"
+      ],
+      "paper_domain_role": "N/A",
+      "paradigm_confidence": "N/A",
+      "paradigm_evidence": "The paper does not contribute any Lean proofs or Lean repositories (its artifact repo specula-org/TLAPS-Bench has 0 Lean files, while the listed microsoft/CCF repo is merely an external system whose TLA+ spec is referenced). Lean is only mentioned in background/related work (Veil, VeriSoftBench, de Moura & Ullrich 2021).",
+      "static_risk_flags": [],
+      "verification_tier_observed": "N/A"
+    },
+    {
+      "arxiv_id": "2611.04561",
+      "primary_category": "cs.DC",
+      "matched_target_cats": [
+        "cs.DC",
+        "eess.SY"
+      ],
+      "submitted_date": "2026-11-03",
+      "updated_date": "2026-11-03",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "Codex",
+        "Claude",
+        "GPT-6"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Distributed LTL synthesis decidability characterization (nowhere-dense geometric image and repeated consensus) formalized post-hoc in ~929k LoC of Lean 4.30/Mathlib with Codex/Claude assistance; main Results and Paper endpoints pass #print axioms and Comparator+Nanoda kernel replay with only standard axioms, while two native_decide calls appear in an unimported falsification probe.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "pure_tcs_or_math",
+      "paradigm_confidence": "high",
+      "paradigm_evidence": "Authors state they developed the mathematical characterization without AI, had an initial AI-assisted Lean/LaTeX exploration, then wrote a new manuscript from scratch without reusing the AI LaTeX draft, and 'Finally, we used AI again to formalize in Lean the statements and proofs as written in this paper.' Formalization supplements the paper via clickable badges to Paper/*.lean wrappers checked by scripts/check_paper_links.py, with no leanblueprint/LeanArchitect sync.",
+      "static_risk_flags": [
+        "Mode10_ProofBloat",
+        "Mode6_SorryOrAxiomOrNativeDecide"
+      ],
+      "verification_tier_observed": "Tier3_Gold"
+    },
+    {
+      "arxiv_id": "2611.04876",
+      "primary_category": "cs.CR",
+      "matched_target_cats": [
+        "cs.CR"
+      ],
+      "submitted_date": "2026-11-03",
+      "updated_date": "2026-11-03",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "ChatGPT"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "authoring_paradigm": "P4_speclock_solve_distill",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Formalizes continual matrix refreshing, NAND/stateful leakage-resilient circuit compilers, and expected-work simulators in Lean 4 (81k LoC) using ChatGPT under a comparator Challenge/Solution spec-lock (`Proofs.ReferenceClaims` vs `Proofs.ProvedClaims`).",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "engineering_math_proof",
+      "paradigm_confidence": "high",
+      "paradigm_evidence": "`version-1.0/lean/comparator.json` locks `Proofs.ReferenceClaims` (importing `Refreshing.lean`, `Compiler.lean`, `EfficientSimulation.lean`, whose 3 main theorems and 38 certificates are deliberately stubbed with `by sorry`) against `Proofs.ProvedClaims` (complete sorry-free proofs under `Proofs/`), verified via `lake comparator --paranoid` (permitting only `propext`, `Quot.sound`, `Classical.choice`) and `scripts/check_lean_proof_layout.py`, accompanied by `annotated-specifications.pdf`; the paper explicitly states \"The Lean formalization was done by ChatGPT\" and that the authors iterated with the AI to simplify proofs and write the paper.",
+      "static_risk_flags": [
+        "Mode10_ProofBloat"
+      ],
+      "verification_tier_observed": "Tier3_Gold"
+    },
+    {
+      "arxiv_id": "2611.05136",
+      "primary_category": "cs.CC",
+      "matched_target_cats": [
+        "cs.CR"
+      ],
+      "submitted_date": "2026-11-03",
+      "updated_date": "2026-11-05",
+      "version": 2,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [],
+      "artifact_availability": "public_lean_repo",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "AI-generated 219k-LoC Lean 4 formalization of Theorem 9.9 (constructive Gaussian AFT sampler in a counted binary-operation model) with exhaustive transitive axiom audit (Audit.lean) and provenance manifest, covering one core theorem rather than the paper's full LWE-to-LAR/TC0-PRF/ReLU-hardness claims.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "engineering_math_proof",
+      "paradigm_confidence": "high",
+      "paradigm_evidence": "Paper manuscript was written/checked by the human author while the Lean 4 formalization of Theorem 9.9 (thm:df-constructive-aft) was generated separately by AI without editing LaTeX files ('No manuscript files were edited by this proof task' in provenance/upstream-manuscript-manifest.json) and without leanblueprint, LeanArchitect, Verso Blueprints, or comparator/Challenge.lean spec-lock tooling; alignment with concurrent manuscript edits was tracked manually via SHA-256 manifests.",
+      "static_risk_flags": [
+        "Mode2_ScopeDowngrade",
+        "Mode10_ProofBloat"
+      ],
+      "verification_tier_observed": "Tier2_Silver"
+    },
+    {
+      "arxiv_id": "2611.05243",
+      "primary_category": "cs.LG",
+      "matched_target_cats": [
+        "math.OC"
+      ],
+      "submitted_date": "2026-11-03",
+      "updated_date": "2026-11-03",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "GPT-5.6 Sol",
+        "GPT-6 Astra"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Proves an O(log T) regret bound for Alternating Online Mirror Descent in two-player zero-sum bilinear games and formalizes all 15 named manuscript results in a zero-sorry, axiom-audited Lean 4 repository (AltOMD-Lean) developed with GPT-5.6 Sol and GPT-6 Astra.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "engineering_math_proof",
+      "paradigm_confidence": "high",
+      "paradigm_evidence": "The paper explicitly states that the mathematical proof was developed using GPT-5.6 Sol and the Lean proof was formalized using GPT-6 Astra, with authors verifying proofs and revising the manuscript. The public repo contains no blueprint sync or Challenge/Solution spec-lock tooling, and uses post-hoc correspondence/audit documentation (CORRESPONDENCE.md and AltOMDAudit/README.md) mapping all 15 manuscript labels to Lean declarations.",
+      "static_risk_flags": [],
+      "verification_tier_observed": "Tier3_Gold"
+    },
+    {
+      "arxiv_id": "2611.05726",
+      "primary_category": "cs.LG",
+      "matched_target_cats": [
+        "math.OC"
+      ],
+      "submitted_date": "2026-11-03",
+      "updated_date": "2026-11-15",
+      "version": 4,
+      "model_tier": "flash",
+      "ai_agent_assisted": "N/A",
+      "ai_tools_mentioned": [],
+      "artifact_availability": "N/A",
+      "authoring_paradigm": "N/A",
+      "lean_usage_status": "lean_citation_or_discussion",
+      "one_line_summary": "Cites Lean proofs once in related work as a method for checking LLM-generated optimization formulations; contributes no Lean formalization and its repository has zero Lean files.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "N/A",
+      "paradigm_confidence": "N/A",
+      "paradigm_evidence": "Only one hit for 'Lean proofs' appears in a related-work citation list for checking generated optimization formulations, and the associated GitHub repo junbolian/JointDW contains 0 .lean files and no lakefile or lean-toolchain.",
+      "static_risk_flags": [],
+      "verification_tier_observed": "N/A"
+    },
+    {
+      "arxiv_id": "2611.07496",
+      "primary_category": "cs.DC",
+      "matched_target_cats": [
+        "cs.DC"
+      ],
+      "submitted_date": "2026-11-05",
+      "updated_date": "2026-11-05",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "N/A",
+      "ai_tools_mentioned": [],
+      "artifact_availability": "N/A",
+      "authoring_paradigm": "N/A",
+      "lean_usage_status": "false_positive",
+      "one_line_summary": "False positive: 'lean P' refers to an approximate FP8 softmax probability computation in GPU FlashAttention kernels, not the Lean proof assistant.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "N/A",
+      "paradigm_confidence": "N/A",
+      "paradigm_evidence": "Not applicable: the paper does not use the Lean proof assistant. All 7 'lean' hits refer to 'lean P', a fast approximate FP8 probability calculation in AMD MI355X FlashAttention kernels, and all linked repositories (including Zyphra/zyfa) have 0 Lean files.",
+      "static_risk_flags": [],
+      "verification_tier_observed": "N/A"
+    },
+    {
+      "arxiv_id": "2611.08172",
+      "primary_category": "cs.IT",
+      "matched_target_cats": [
+        "cs.IT"
+      ],
+      "submitted_date": "2026-11-05",
+      "updated_date": "2026-11-05",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "Harmonic"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Formalizes in Lean 4 (with ~200k LoC, zero sorry/custom axioms, and full-closure audit scripts) the main uniform 3-fold product expansion, sharp filling, and dual-family rate/distance theorems for algebraic-geometry codes on the Garcia-Stichtenoth tower over F_729.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "engineering_math_proof",
+      "paradigm_confidence": "high",
+      "paradigm_evidence": "The 76-page cs.IT manuscript states its principal conclusions were formally verified in Lean 4 in an accompanying artifact (dcass-121/d3-lean-verification) unpacked as a submission archive with no leanblueprint/LeanArchitect sync and no Challenge/Solution spec-lock (the scraper's has_solution_file flag is a false positive from *Resolution*.lean files). Both the paper and README map manuscript statements (Target 4.10 / Theorem C, Theorem A with a cruder explicit constant, Corollary B dual parameters, genus-ratio limit) to Lean endpoints while explicitly documenting omitted secondary results (Schur fullness, closed genus formula, general-field extension), characteristic of post-hoc formalization.",
+      "static_risk_flags": [
+        "Mode10_ProofBloat"
+      ],
+      "verification_tier_observed": "Tier3_Gold"
+    },
+    {
+      "arxiv_id": "2611.08318",
+      "primary_category": "cs.AI",
+      "matched_target_cats": [
+        "cs.RO"
+      ],
+      "submitted_date": "2026-11-05",
+      "updated_date": "2026-11-05",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "N/A",
+      "ai_tools_mentioned": [],
+      "artifact_availability": "N/A",
+      "authoring_paradigm": "N/A",
+      "lean_usage_status": "false_positive",
+      "one_line_summary": "False positive: 'Lean' only appears as part of the project URL slug 'PyRUA-Lean' for an embodied AI benchmark study on criteria exposure in robot-control agents.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "N/A",
+      "paradigm_confidence": "N/A",
+      "paradigm_evidence": "The only two matches for 'Lean' in the 98,829-character LaTeX/metadata evidence are the substring 'PyRUA-Lean' inside the project page URL (https://dagroup-pku.github.io/PyRUA-Lean/RSIJudge); no Lean theorem prover code, citations, or discussion are present.",
+      "static_risk_flags": [],
+      "verification_tier_observed": "N/A"
+    },
+    {
+      "arxiv_id": "2611.09050",
+      "primary_category": "math.OC",
+      "matched_target_cats": [
+        "math.OC"
+      ],
+      "submitted_date": "2026-11-06",
+      "updated_date": "2026-11-06",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "Claude Opus 5.5",
+        "ChatGPT-6.1 Sol"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Verifies mathematical theorems on resolvent-diagonal energy of isospectral Jacobi matrices and optimal Nesterov momentum endpoint gains in a 139.6k-LoC Lean 4 package (`jacobi`) with automated axiom auditing and kernel replay.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "engineering_math_proof",
+      "paradigm_confidence": "high",
+      "paradigm_evidence": "Manuscript states that Opus 5.5 and ChatGPT-6.1 Sol were used to edit the manuscript and prepare the Lean formalization package; the `jacobi/` subpackage maps proofs post-hoc to the printed paper numbering via `jacobi/Article.lean` and `jacobi/ArticleMap.md` (noting alternative proofs and excluded numerical figures) without `leanblueprint` (`@[blueprint]`, `\\inputleannode`) or `Challenge.lean`/`Solution.lean` spec-lock.",
+      "static_risk_flags": [
+        "Mode10_ProofBloat"
+      ],
+      "verification_tier_observed": "Tier3_Gold"
+    },
+    {
+      "arxiv_id": "2611.09169",
+      "primary_category": "math.OC",
+      "matched_target_cats": [
+        "math.OC"
+      ],
+      "submitted_date": "2026-11-06",
+      "updated_date": "2026-11-06",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [],
+      "artifact_availability": "public_lean_repo",
+      "authoring_paradigm": "P0_opaque_or_unspecified",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Optimization paper (math.OC) on two-block ADMM step-size convergence and counterexamples claiming an accompanying Lean 4 formalization on ReasBook (optpku.github.io), while the linked GitHub repo only contains exact arithmetic certificates (0 Lean files) and acknowledges generative AI assistance.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "engineering_math_proof",
+      "paradigm_confidence": "medium",
+      "paradigm_evidence": "The paper states 'A Lean 4 formalization accompanying this work is available at https://optpku.github.io/ReasBook/versions/v4.32.0/papers/glowinski_admm_counterexample/.' right before the Acknowledgments ('Generative AI assisted manuscript preparation and parts of the mathematical...'). The only scraped GitHub repo (bqliu815/ADMM-Multiplier-Step-Size) contains 13 files with 0 .lean files, no lakefile/toolchain, and no blueprint or spec-lock files (it holds exact arithmetic certificates and verification scripts). No local_repo_dirs, Lean source files, or workflow details are present in the evidence to determine authoring order or verified scope.",
+      "static_risk_flags": [
+        "Mode12_ProcessOpacity"
+      ],
+      "verification_tier_observed": "Tier1_Bronze"
+    },
+    {
+      "arxiv_id": "2611.09736",
+      "primary_category": "cs.LG",
+      "matched_target_cats": [
+        "cs.CR"
+      ],
+      "submitted_date": "2026-11-06",
+      "updated_date": "2026-11-06",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "N/A",
+      "ai_tools_mentioned": [],
+      "artifact_availability": "N/A",
+      "authoring_paradigm": "N/A",
+      "lean_usage_status": "lean_citation_or_discussion",
+      "one_line_summary": "Analyzes OpenAI's October 2026 Lean 4 proof release and Lean 4.32.1/4.34.0 kernel soundness bugs as a case study for Pi_1 safety vs Sigma_1 provability without contributing Lean proofs of its own results.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "N/A",
+      "paradigm_confidence": "N/A",
+      "paradigm_evidence": "No Lean formalization of the paper's own theorems is claimed or linked; Lean 4, Mathlib, and Lean kernel releases (4.32.1, 4.34.0) are discussed solely as a case study alongside OpenAI's github.com/openai/math release.",
+      "static_risk_flags": [],
+      "verification_tier_observed": "N/A"
+    },
+    {
+      "arxiv_id": "2611.10031",
+      "primary_category": "cs.CR",
+      "matched_target_cats": [
+        "cs.CR"
+      ],
+      "submitted_date": "2026-11-05",
+      "updated_date": "2026-11-05",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "N/A",
+      "ai_tools_mentioned": [],
+      "artifact_availability": "N/A",
+      "authoring_paradigm": "N/A",
+      "lean_usage_status": "lean_citation_or_discussion",
+      "one_line_summary": "zkARc wraps an SMT-based neurosymbolic guardrail pipeline in zero-knowledge proofs and only mentions Lean when citing zkPi and zkLean in related work.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "N/A",
+      "paradigm_confidence": "N/A",
+      "paradigm_evidence": "Lean is only mentioned once in a related-work discussion of zero-knowledge proofs for solvers and neural networks, citing zkPi [26] ('checks Lean proof terms') and zkLean [14] ('specifies ZK statements in Lean'). None of the referenced repositories contain Lean files.",
+      "static_risk_flags": [],
+      "verification_tier_observed": "N/A"
+    },
+    {
+      "arxiv_id": "2611.10810",
+      "primary_category": "cs.DB",
+      "matched_target_cats": [
+        "cs.DC"
+      ],
+      "submitted_date": "2026-11-07",
+      "updated_date": "2026-11-07",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "Claude Fable 5.1",
+        "Claude Opus 5.5",
+        "Gemini"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Extends DBLog incremental snapshots to delete orphan rows in CDC pipelines, formally verifying safety and convergence across six Isabelle/HOL theories ported to Lean 4 (zero sorry/custom axioms, audited via #print axioms) alongside bounded TLA+ models.",
+      "other_formal_tools_contributed": [
+        "isabelle",
+        "tla_plus"
+      ],
+      "paper_domain_role": "software_or_system_fv",
+      "paradigm_confidence": "high",
+      "paradigm_evidence": "Primary formalization is in Isabelle/HOL (session Orphan_Absence) with a separate Lean 4 port in lean/ (OrphanAbsence, 6 of 7 theories, 10,862 LoC) mapped manually via tables in lean/README.md and lean/VERIFICATION.md; no LeanArchitect, leanblueprint, Verso, or Challenge/Solution comparator spec-lock tooling is used, and VERIFICATION.md documents post-hoc wording/list syncs between the paper, Isabelle, and Lean.",
+      "static_risk_flags": [
+        "Mode3_CustomDefs"
+      ],
+      "verification_tier_observed": "Tier3_Gold"
+    },
+    {
+      "arxiv_id": "2611.10902",
+      "primary_category": "eess.SY",
+      "matched_target_cats": [
+        "eess.SY"
+      ],
+      "submitted_date": "2026-11-07",
+      "updated_date": "2026-11-07",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "unclear",
+      "ai_tools_mentioned": [
+        "Claude"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "EV charging optimization paper (eess.SY) contributing a Lean 4 + Mathlib formalization (~2,068 LoC) of its main theorems (Theorems 1-4 for K=2, Lemmas 1-2, strong duality, Table I, Appendices A-B, and Algorithm 1 evaluation bound) with a 34-theorem #print axioms manifest and zero sorry/custom axioms, though excluding K!=2 cases, bisection tolerances, and runtime bounds.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "engineering_math_proof",
+      "paradigm_confidence": "high",
+      "paradigm_evidence": "Public repo canberksaner/bic-public has a lean/ subdirectory (11 Lean 4 files, 2,068 non-empty LoC, Mathlib v4.36.0-rc2) with no blueprint directory, LeanArchitect annotations, or Challenge/Solution spec-lock files. README.md and Lean docstrings (e.g., Correctness.lean, Choose.lean, Everett.lean) explicitly map theorems to existing paper labels, equations, sections, and algorithm line numbers ('lines ch-while to ch-dec', '(eq:decomposition)', 'Lean's groups 0 and 1 are the paper's groups 1 and 2') and list which paper results are checked vs omitted, indicating post-hoc formalization of paper proofs. CheckAxioms.lean runs 34 #print axioms checks with zero sorry/axiom/native_decide. latex_signals.agent_tools lists 'Claude', without context in the repo or snippets.",
+      "static_risk_flags": [
+        "Mode2_ScopeDowngrade"
+      ],
+      "verification_tier_observed": "Tier3_Gold"
+    },
+    {
+      "arxiv_id": "2611.11713",
+      "primary_category": "cs.IT",
+      "matched_target_cats": [
+        "cs.IT"
+      ],
+      "submitted_date": "2026-11-09",
+      "updated_date": "2026-11-09",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "Large language model tools"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Formally verifies all three main theorems (finiteness, rigidity, and logarithmic genus/size bounds) on binary belief propagation fixed points in Lean 4 with Mathlib and an automated transitive-axiom audit, alongside standalone Python rational interval certificates for a 18-vertex discriminant example.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "engineering_math_proof",
+      "paradigm_confidence": "high",
+      "paradigm_evidence": "No blueprint directory or Challenge/Solution spec-lock is present; TheoremB.lean explicitly references the manuscript ('\u8ad6\u6587 papers/bp-response-geometry/ \u306e\u4e3b\u5b9a\u7406 B'), and Section 8 and README.md document where the Lean formalization departs from the written proofs and which parts remain outside it, with LLM tools explicitly credited for writing the Lean formalization.",
+      "static_risk_flags": [
+        "Mode10_ProofBloat"
+      ],
+      "verification_tier_observed": "Tier3_Gold"
+    },
+    {
+      "arxiv_id": "2611.12310",
+      "primary_category": "cs.LG",
+      "matched_target_cats": [
+        "math.OC"
+      ],
+      "submitted_date": "2026-11-09",
+      "updated_date": "2026-11-09",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "N/A",
+      "ai_tools_mentioned": [],
+      "artifact_availability": "N/A",
+      "authoring_paradigm": "N/A",
+      "lean_usage_status": "lean_citation_or_discussion",
+      "one_line_summary": "Optimization paper proving the optimal heavy-ball rate constant using exact-arithmetic Lyapunov certificates, citing a prior Lean 4 formalization by Fotopoulos et al. [7] without contributing Lean proofs of its own.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "N/A",
+      "paradigm_confidence": "N/A",
+      "paradigm_evidence": "The single Lean hit in the paper discusses prior work by Fotopoulos et al. [7] (\"with a Lean 4 formalization of the core construction\"), and the paper's associated repository (marcoshernanz/heavy-ball-optimal-rate) contains 0 .lean files, no lakefile, and no lean-toolchain.",
+      "static_risk_flags": [],
+      "verification_tier_observed": "N/A"
+    },
+    {
+      "arxiv_id": "2611.12585",
+      "primary_category": "math.NA",
+      "matched_target_cats": [
+        "math.OC"
+      ],
+      "submitted_date": "2026-11-09",
+      "updated_date": "2026-11-17",
+      "version": 2,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "GPT-6 Astra",
+        "Claude",
+        "Codex"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Post-hoc Lean 4 formalization (by GPT-6 Astra, provided in arXiv v2 ancillary files) proving high-frequency spurious eigenpairs and error-bound failures for the standard cubic Hermite Galerkin scheme of the KdV equation.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "engineering_math_proof",
+      "paradigm_confidence": "high",
+      "paradigm_evidence": "Comment states 'v2 adds Lean 4 proofs of the main results' and text explains the author tried to check the proof by hand, found its complexity too large, and had it formalized in Lean 4 by GPT-6 Astra (using contraction mappings instead of Rouch\u00e9's theorem), with Appendix A documenting correspondence and build instructions (`lake build SLean`, Lean 4.35.0) rather than blueprint-sync or spec-lock tooling.",
+      "static_risk_flags": [],
+      "verification_tier_observed": "Tier2_Silver"
+    },
+    {
+      "arxiv_id": "2611.12680",
+      "primary_category": "math.OC",
+      "matched_target_cats": [
+        "math.OC"
+      ],
+      "submitted_date": "2026-11-09",
+      "updated_date": "2026-11-11",
+      "version": 2,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "Claude",
+        "Claude Code"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Post-hoc Lean 4 formalization (WolfeSimplex on Zenodo, 23.9k LoC, 0 sorry/custom axioms, whole-project axiom and statement-boundary audits) verifying Theorem 1, Corollaries 1\u20134, and all 20 lemmas connecting Wolfe's minimum-norm-point method and the simplex method, developed with Claude/Claude Code assistance.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "engineering_math_proof",
+      "paradigm_confidence": "high",
+      "paradigm_evidence": "The Lean 4 artifact (WolfeSimplex, archived on Zenodo in arXiv v2) contains 125 .lean files and 0 .tex files with no leanblueprint, LeanArchitect (@[blueprint]/\\inputleannode), or Challenge/Solution spec-lock files. Its .gitignore excludes local reading copies of the unpublished manuscript (/samplepaper_*.tex, /PAPER_MAP.md) and /CLAUDE.md ('Claude Code working notes'), while docs/REVIEW.md and docs/COVERAGE.md record post-hoc alignment checks against an unchanged downloaded manuscript archive (SHA-256 9c07b865...).",
+      "static_risk_flags": [
+        "Mode10_ProofBloat"
+      ],
+      "verification_tier_observed": "Tier3_Gold"
+    },
+    {
+      "arxiv_id": "2611.13584",
+      "primary_category": "math.OC",
+      "matched_target_cats": [
+        "math.OC"
+      ],
+      "submitted_date": "2026-11-10",
+      "updated_date": "2026-11-10",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "unclear",
+      "ai_tools_mentioned": [],
+      "artifact_availability": "public_lean_repo",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Formalizes all 88 numbered results of a 63-page optimization paper on heavy-ball/momentum discretizations in a 512-file (~55.3k LoC) Lean 4 library with manual ArticleMap correspondence, axiom auditing, and stock-kernel replay.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "engineering_math_proof",
+      "paradigm_confidence": "high",
+      "paradigm_evidence": "Paper cites a Lean formalization in PolynomialRealizationsProgram/nesterov; the repo contains no blueprint directory, LeanArchitect annotations, or Challenge/Solution spec-lock, and instead maintains a manual correspondence table (nesterov/ArticleMap.md, referencing a SHA-256 digest of nesterov.tex) and ordered #check showcase (nesterov/Article.lean) mapping all 88 numbered article results to Lean declarations.",
+      "static_risk_flags": [
+        "Mode10_ProofBloat"
+      ],
+      "verification_tier_observed": "Tier3_Gold"
+    },
+    {
+      "arxiv_id": "2611.13585",
+      "primary_category": "cs.DS",
+      "matched_target_cats": [
+        "math.OC"
+      ],
+      "submitted_date": "2026-11-10",
+      "updated_date": "2026-11-10",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "unclear",
+      "ai_tools_mentioned": [
+        "GPT-5",
+        "GPT-6"
+      ],
+      "artifact_availability": "broken_or_missing_repo",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Combinatorial optimization / graph algorithms paper on graphic TSP approximation that claims supplementary Lean 4 (v4.19.0) / Mathlib formalization for stronger Table 2 bounds, but the linked GitHub repo contains zero .lean files or toolchain/CI metadata.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "pure_tcs_or_math",
+      "paradigm_confidence": "medium",
+      "paradigm_evidence": "Paper states main ideas and proofs are human-generated, human-explained, and self-contained in the manuscript/appendix, while Lean 4 (v4.19.0) over Mathlib (c44e0c8e) was used separately as 'Additional Evidence' to formalize stronger bounds for the last column of Table 2 (sketched in paper, cited as [36]). No blueprint or spec-lock tooling is present, though confidence is medium because the linked GitHub repo (Mehrdad-Sohrabi/Graphic-TSP) has lean_file_count: 0.",
+      "static_risk_flags": [
+        "Mode12_ProcessOpacity"
+      ],
+      "verification_tier_observed": "Tier1_Bronze"
+    },
+    {
+      "arxiv_id": "2611.13872",
+      "primary_category": "math.OC",
+      "matched_target_cats": [
+        "math.OC"
+      ],
+      "submitted_date": "2026-11-10",
+      "updated_date": "2026-11-10",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "Claude",
+        "Codex",
+        "DeepSeek"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "authoring_paradigm": "P4_speclock_solve_distill",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "LongTails is a Lean 4 framework for AI-assisted discovery of optimization algorithms and oracle-complexity bounds, spec-locked via Comparator and yielding >100 formally verified results in a public repository.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "engineering_math_proof",
+      "paradigm_confidence": "high",
+      "paradigm_evidence": "Human/researcher fixes a formal Setup (assumptions, oracle model, accuracy criterion) in Lean 4 (LongTails/Setups/*.lean); AI agents (Claude, Codex, DeepSeek) search for algorithms and prove Complexity bounds (LongTails/Theorems/*.lean); run_comparator.py and CI (.github/workflows/verify.yml) dynamically generate Challenge modules from the fixed Setup and audit each solution with leanprover/comparator (restricting axioms to propext, Classical.choice, Quot.sound); verified Complexities are then deterministically converted to LaTeX/tables for the paper (LeanTeX/BudgetLatex.lean and paper \u00a73/\u00a7B\u2013C).",
+      "static_risk_flags": [],
+      "verification_tier_observed": "Tier3_Gold"
+    },
+    {
+      "arxiv_id": "2611.14083",
+      "primary_category": "cs.CR",
+      "matched_target_cats": [
+        "cs.CR"
+      ],
+      "submitted_date": "2026-11-10",
+      "updated_date": "2026-11-10",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "N/A",
+      "ai_tools_mentioned": [],
+      "artifact_availability": "N/A",
+      "authoring_paradigm": "N/A",
+      "lean_usage_status": "lean_citation_or_discussion",
+      "one_line_summary": "Cites FlashProve's Lean-verified ZK inference protocol in related work; Sable itself contributes no Lean formalization.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "N/A",
+      "paradigm_confidence": "N/A",
+      "paradigm_evidence": "The only Lean mention (1 hit) describes a cited related-work protocol (Goldilocks field, BLAKE2b, zero-knowledge, H100\u2014matching the cited anthropics/FlashProve repo), whereas Sable uses KoalaBear, BLAKE3, is non-ZK, and moonmath-ai/Sable has 0 Lean files and no Lean toolchain/lakefile.",
+      "static_risk_flags": [],
+      "verification_tier_observed": "N/A"
+    },
+    {
+      "arxiv_id": "2611.14147",
+      "primary_category": "quant-ph",
+      "matched_target_cats": [
+        "cs.CR"
+      ],
+      "submitted_date": "2026-11-10",
+      "updated_date": "2026-11-10",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "N/A",
+      "ai_tools_mentioned": [
+        "GPT-5"
+      ],
+      "artifact_availability": "N/A",
+      "authoring_paradigm": "N/A",
+      "lean_usage_status": "lean_citation_or_discussion",
+      "one_line_summary": "Quantum information-flow security paper that only cites a prior Lean quantum verification paper (QEDIA) in its bibliography without contributing any Lean formalization.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "N/A",
+      "paradigm_confidence": "N/A",
+      "paradigm_evidence": "Lean appears only once in the bibliography citing Ren et al. (2026) 'QEDIA: Quantum Program Verification in Lean' (arXiv:2610.17708), with no Lean artifacts, URLs, or formalization claims for this paper's own results.",
+      "static_risk_flags": [],
+      "verification_tier_observed": "N/A"
+    },
+    {
+      "arxiv_id": "2611.14475",
+      "primary_category": "math.FA",
+      "matched_target_cats": [
+        "cs.IT"
+      ],
+      "submitted_date": "2026-11-10",
+      "updated_date": "2026-11-10",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "Claude Opus 5.5",
+        "Claude Code",
+        "GPT-6.1 Sol",
+        "GPT-6 Astra",
+        "Codex CLI",
+        "ChatGPT"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "authoring_paradigm": "P4_speclock_solve_distill",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Formalizes all main theorems of an explicit RIP matrix construction (k = m^{2/3-o(1)}) and 2/3 barriers in Lean 4/Mathlib using AI agents under a frozen-statement and Comparator (NanoDa + Lean kernel) spec-lock, omitting only the polynomial running-time bound for 'explicit'.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "engineering_math_proof",
+      "paradigm_confidence": "medium",
+      "paradigm_evidence": "Statements were drafted and frozen from the paper into ExplicitRIP/Frozen/ and Challenge.lean (with sorry), audited against the paper, then solved by parallel AI agents (Opus 5.5 orchestrator, GPT-6.1 Sol, GPT-6 Astra, Claude subagents) and verified against Solution.lean via Comparator (comparator.json, NanoDa enabled). Although the paper text and initial proof were drafted first/concurrently (Nov 7\u201310, 2026) rather than purely Lean-first, the repo explicitly uses frozen Challenge.lean/Solution.lean spec-locking and unconstrained AI proof search, with formalization also surfacing local fixes to cited arguments (footnote 2).",
+      "static_risk_flags": [
+        "Mode2_ScopeDowngrade",
+        "Mode10_ProofBloat"
+      ],
+      "verification_tier_observed": "Tier3_Gold"
+    },
+    {
+      "arxiv_id": "2611.14756",
+      "primary_category": "math.DS",
+      "matched_target_cats": [
+        "math.OC"
+      ],
+      "submitted_date": "2026-11-10",
+      "updated_date": "2026-11-10",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "unclear",
+      "ai_tools_mentioned": [],
+      "artifact_availability": "public_lean_repo",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Post-hoc Lean 4 + Mathlib formalization of the main discrete-time modified-gradient stability and basin-of-attraction theorems (Lemma 4.1, Theorem 5.1, Corollary 5.2, Theorem 6.1) with CI-verified standard-axiom audit.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "engineering_math_proof",
+      "paradigm_confidence": "high",
+      "paradigm_evidence": "The repository contains no blueprint or spec-lock files (has_blueprint_dir=false, has_challenge_file=false, tex_file_count=0); README.md maps Lean theorems to arXiv v1 manuscript numbering and explicitly documents small differences between the Lean proofs and the already-written paper proofs.",
+      "static_risk_flags": [],
+      "verification_tier_observed": "Tier3_Gold"
+    },
+    {
+      "arxiv_id": "2611.15035",
+      "primary_category": "math.OC",
+      "matched_target_cats": [
+        "math.OC"
+      ],
+      "submitted_date": "2026-11-11",
+      "updated_date": "2026-11-11",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "N/A",
+      "ai_tools_mentioned": [],
+      "artifact_availability": "N/A",
+      "authoring_paradigm": "N/A",
+      "lean_usage_status": "lean_citation_or_discussion",
+      "one_line_summary": "Introduces RPX, an independent exact-arithmetic certificate checker for agent-generated MILP reformulations; cites and compares against Lean-based tools (FLARE, PBLean) in related work without contributing Lean proofs.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "N/A",
+      "paradigm_confidence": "N/A",
+      "paradigm_evidence": "Paper does not contribute Lean proofs; all Lean and Lean 4 mentions in the evidence are citations and comparisons in related work (FLARE [22] and PBLean [23]).",
+      "static_risk_flags": [],
+      "verification_tier_observed": "N/A"
+    },
+    {
+      "arxiv_id": "2611.15128",
+      "primary_category": "cs.IT",
+      "matched_target_cats": [
+        "cs.CR",
+        "cs.IT"
+      ],
+      "submitted_date": "2026-11-11",
+      "updated_date": "2026-11-14",
+      "version": 2,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "ChatGPT 6 Astra",
+        "Claude Code Opus 5.5"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "AI-analyzed coding-theory/crypto-math paper proving Reed-Solomon affine-combiner MCA bounds, whose main RS theorems (Secs. 3\u20134, Thm. 5.2) were post-hoc formalized in Lean 4 inside leanEthereum/leanVM (20 AffineCombiner*.lean files, ~5k LoC) with CI escape-scanning and #print axioms audit, while Sec. 5 equal-degree reductions and Sec. 7 Reed-Muller extensions remain unformalized.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "engineering_math_proof",
+      "paradigm_confidence": "high",
+      "paradigm_evidence": "The paper states that all proofs were initially carried out with AI and then 'The authors edited, verified, reorganized, and Lean-formalized the initial writeup' using ChatGPT 6 Astra (with theorem statements checked by Claude Code Opus 5.5). In the linked repo leanEthereum/leanVM (formal/lean_vm/LeanVM/Protocol/ToArkLib/Whir/AffineCombiner*.lean, 20 files, 4,963 LoC), docstrings cite '[CWYZ26]' (this paper) theorem/lemma/equation numbers post-hoc with no leanblueprint/LeanArchitect sync or Challenge/Solution comparator spec-lock.",
+      "static_risk_flags": [
+        "Mode2_ScopeDowngrade"
+      ],
+      "verification_tier_observed": "Tier3_Gold"
+    },
+    {
+      "arxiv_id": "2611.15201",
+      "primary_category": "cs.DC",
+      "matched_target_cats": [
+        "cs.DC"
+      ],
+      "submitted_date": "2026-11-11",
+      "updated_date": "2026-11-11",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "OpenAI Codex",
+        "GPT-6",
+        "GPT-6 Astra",
+        "GPT-6.1 Sol"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Lean 4 formalization (zero sorry in Solution, Comparator + multi-kernel audited) of an O(d^{3/2})-round supported sparse matrix multiplication algorithm and broadcast/aggregation lower bounds in a scalar-word low-bandwidth model, created post-hoc from the manuscript PDF with OpenAI Codex/GPT-6.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "pure_tcs_or_math",
+      "paradigm_confidence": "medium",
+      "paradigm_evidence": "formalization.yaml and docs/manuscript.md state the 10-page paper PDF was supplied first ('Formalize the supplied PDF in Palomar style using multiple agents') with numbered claims and proofs unchanged in arXiv v1 (which only added the formalization DOI footnote and AI Methodology note). Although it uses Challenge.lean/Solution.lean and comparator spec-checking tooling, there was no post-proof distillation into a paper/blueprint, making it paper-first post-hoc formalization using a Challenge/Solution verification harness.",
+      "static_risk_flags": [
+        "Mode2_ScopeDowngrade"
+      ],
+      "verification_tier_observed": "Tier3_Gold"
+    },
+    {
+      "arxiv_id": "2611.15431",
+      "primary_category": "quant-ph",
+      "matched_target_cats": [
+        "cs.IT"
+      ],
+      "submitted_date": "2026-11-11",
+      "updated_date": "2026-11-11",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "ChatGPT Pro (GPT-6 Pro)",
+        "Codex (gpt-6.1-sol)",
+        "Claude Opus 5.5",
+        "Claude Code"
+      ],
+      "artifact_availability": "none",
+      "authoring_paradigm": "P0_opaque_or_unspecified",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Proves subadditivity and strong-subadditivity failure for Nichols-Wootters entropies (with cs.IT capacity applications) and claims AI-assisted Lean formal verification in the acknowledgments without providing a public Lean repository or workflow details.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "engineering_math_proof",
+      "paradigm_confidence": "high",
+      "paradigm_evidence": "Acknowledgments state that AI tools (ChatGPT Pro / GPT-6 Pro, Codex / gpt-6.1-sol, and Claude Opus 5.5 via Claude Code) were used for 'double-checking, including formal verification of the results in Lean', and mention a 'verification package' for computations, but urls, repos, and local_repo_dirs are all empty and no Lean authoring workflow or scope details are provided.",
+      "static_risk_flags": [
+        "Mode12_ProcessOpacity"
+      ],
+      "verification_tier_observed": "Tier1_Bronze"
+    },
+    {
+      "arxiv_id": "2611.16128",
+      "primary_category": "cs.CR",
+      "matched_target_cats": [
+        "cs.CR"
+      ],
+      "submitted_date": "2026-11-12",
+      "updated_date": "2026-11-17",
+      "version": 3,
+      "model_tier": "flash",
+      "ai_agent_assisted": "N/A",
+      "ai_tools_mentioned": [],
+      "artifact_availability": "N/A",
+      "authoring_paradigm": "N/A",
+      "lean_usage_status": "lean_citation_or_discussion",
+      "one_line_summary": "Mentions Lean only when summarizing prior work CBCL [9] whose invariants were checked in Lean, without formalizing the paper's own results.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "N/A",
+      "paradigm_confidence": "N/A",
+      "paradigm_evidence": "The sole Lean mention in the paper refers to cited prior work CBCL [9] ('Three invariants, checked in Lean, bound expansion, apply resource limits and keep the core vocabulary'), not to the authors' own CoordX type system results.",
+      "static_risk_flags": [],
+      "verification_tier_observed": "N/A"
+    },
+    {
+      "arxiv_id": "2611.16690",
+      "primary_category": "math.AG",
+      "matched_target_cats": [
+        "math.OC"
+      ],
+      "submitted_date": "2026-11-12",
+      "updated_date": "2026-11-12",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "Claude",
+        "Claude Fable 5.1",
+        "Codex"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Post-hoc agent-generated Lean 4 formalization (~6.6k LoC) of the Diophantine reduction (Thm 2.2) and octic counterexample (Thm 3.1, Cor 3.6) with #guard_msgs axiom audits; both main theorems are sorry-free via an elementary hypercube bound, while cited Thm 3.2 (and Cor 3.3-3.4) has 1 sorry and decidability/Section 4 are unformalized.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "pure_tcs_or_math",
+      "paradigm_confidence": "high",
+      "paradigm_evidence": "The paper states 'Finally, a Lean formalization of our proof was almost entirely generated by coding agents', and the repo README/AnyDim/Paper.lean explicitly restates the paper's theorems statement-by-statement with documented deviations and no blueprint-sync or comparator spec-lock tooling.",
+      "static_risk_flags": [
+        "Mode2_ScopeDowngrade",
+        "Mode6_SorryOrAxiomOrNativeDecide"
+      ],
+      "verification_tier_observed": "Tier2_Silver"
+    },
+    {
+      "arxiv_id": "2611.16781",
+      "primary_category": "math.OC",
+      "matched_target_cats": [
+        "math.OC"
+      ],
+      "submitted_date": "2026-11-12",
+      "updated_date": "2026-11-14",
+      "version": 2,
+      "model_tier": "flash",
+      "ai_agent_assisted": "unclear",
+      "ai_tools_mentioned": [
+        "Gemini"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Control-theoretic analysis of boundary actuation for a chain fountain with a Lean 4 formalization (v0.18/v0.19, 722 named theorems) covering tracking, stochastic limits, and zero-gravity circulation via a zipped GitHub archive and a Theorem-to-Lean correspondence appendix.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "engineering_math_proof",
+      "paradigm_confidence": "medium",
+      "paradigm_evidence": "Paper derives nonlinear tracking, stochastic viability, and zero-gravity circulation conditions and documents their formalization via Appendix C (\"Theorem-to-Lean correspondence and verification scope\"), incremental completion of \"remaining article deductions\" (v0.18 -> v0.19.0), and a zipped Lean 4.33.0-rc1 source archive (`Chain_Fountain_Lean_GitHub.zip`) with no blueprint or spec-lock files (`has_blueprint_dir: false`, `has_challenge_file: false`, `has_solution_file: false`).",
+      "static_risk_flags": [
+        "Mode12_ProcessOpacity"
+      ],
+      "verification_tier_observed": "Tier2_Silver"
+    },
+    {
+      "arxiv_id": "2611.18220",
+      "primary_category": "eess.SY",
+      "matched_target_cats": [
+        "eess.SY"
+      ],
+      "submitted_date": "2026-11-13",
+      "updated_date": "2026-11-13",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "unclear",
+      "ai_tools_mentioned": [
+        "Claude"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Tutorial introducing Lean 4 and Mathlib for system identification and control, formalizing elementary identifiability/invariance examples, an ARX/PEM template, and an almost-sure sharpening of Ljung (1999) Lemma 3.1 in a public repo with #print axioms checks but no lakefile/lean-toolchain/CI.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "engineering_math_proof",
+      "paradigm_confidence": "high",
+      "paradigm_evidence": "Tutorial paper formalizing existing pen-and-paper textbook results (Ljung 1999 Lemma 3.1, basic identifiability, set invariance, ARX identifiability) in an accompanying repo manasdm/Lean-SysID (created Nov 2-3, 2026 before Nov 13, 2026 submission). Uses '-- ANCHOR:' comments to reproduce Lean snippets in the paper, with no blueprint directory, @[blueprint]/\\inputleannode, or Challenge/Solution spec-lock.",
+      "static_risk_flags": [
+        "Mode12_ProcessOpacity"
+      ],
+      "verification_tier_observed": "Tier3_Gold"
+    },
+    {
+      "arxiv_id": "2611.18455",
+      "primary_category": "stat.ML",
+      "matched_target_cats": [
+        "math.OC"
+      ],
+      "submitted_date": "2026-11-13",
+      "updated_date": "2026-11-13",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "unclear",
+      "ai_tools_mentioned": [],
+      "artifact_availability": "public_lean_repo",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Formalizes the paper's Theorem 1 (mean-field/particle SDE synchronous coupling and weak-form OLS/LASSO coefficient recovery bounds) in Lean 4 with zero sorry/custom axioms and full #print axioms and hash-lock audits.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "engineering_math_proof",
+      "paradigm_confidence": "medium",
+      "paradigm_evidence": "The paper links github.com/inody/wmfki_lean as a Lean 4 formalization of Theorem 1. Repo files (README.md, Blueprint.md, Lean_Code/AXIOM_STATUS.md, scripts/verify.py, statement-lock.json, l4dc-statement-lock.json) show the manuscript's theorems existed first and were translated into hash-locked Lean specifications and verified against SHA-256 hashes of the manuscript's LaTeX environments, without LeanArchitect/leanblueprint/Verso or Challenge/Solution distillation.",
+      "static_risk_flags": [],
+      "verification_tier_observed": "Tier3_Gold"
+    },
+    {
+      "arxiv_id": "2611.19551",
+      "primary_category": "cs.CR",
+      "matched_target_cats": [
+        "cs.CR"
+      ],
+      "submitted_date": "2026-11-14",
+      "updated_date": "2026-11-14",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "ChatGPT",
+        "Codex",
+        "Claude"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Formalizes an admission-fencing and provider-contract closure model for AI-agent payment epochs in Lean 4.19.0 (zero sorry/custom axioms, checked via #print axioms, premise-removal mutations, and CI) alongside trace-checked Python service histories.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "software_or_system_fv",
+      "paradigm_confidence": "medium",
+      "paradigm_evidence": "The LNCS manuscript (paper/lncs/main.tex) states the admission model and closure theorem informally with prose proofs and cites Lean declarations in footnotes and a verbatim excerpt, without LeanArchitect/leanblueprint (has_blueprint_dir=false) or comparator/spec-lock files (has_challenge_file=false, has_solution_file=false); formal/README.md notes supporting Lean models retained for provenance alongside the two core files (Admission.lean, StripeGate.lean). The paper explicitly discloses using OpenAI ChatGPT, Codex, and Anthropic Claude for code development, literature exploration, and manuscript editing.",
+      "static_risk_flags": [],
+      "verification_tier_observed": "Tier3_Gold"
+    },
+    {
+      "arxiv_id": "2611.20131",
+      "primary_category": "math.NA",
+      "matched_target_cats": [
+        "math.OC"
+      ],
+      "submitted_date": "2026-11-15",
+      "updated_date": "2026-11-15",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "AI tools (unspecified)"
+      ],
+      "artifact_availability": "none",
+      "authoring_paradigm": "P0_opaque_or_unspecified",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Optimal control and numerical analysis paper on Lotka-Volterra quadrature whose acknowledgment notes AI-assisted proof formalization/checking in Lean, but provides no public Lean files or workflow details.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "engineering_math_proof",
+      "paradigm_confidence": "high",
+      "paradigm_evidence": "Only a single acknowledgment sentence mentions Lean (\"These tools also assisted with formalizing and checking proofs in (Lean)\"), and the linked GitHub repo (AleXXandreAutran/structure-preserving-lotka-volterra-control) is accessible with 148 files but lean_file_count: 0, has_lean_toolchain: false, and has_lakefile: false, leaving the formalization workflow and scope completely unspecified.",
+      "static_risk_flags": [
+        "Mode12_ProcessOpacity"
+      ],
+      "verification_tier_observed": "Tier1_Bronze"
+    },
+    {
+      "arxiv_id": "2611.20296",
+      "primary_category": "math.OC",
+      "matched_target_cats": [
+        "math.OC"
+      ],
+      "submitted_date": "2026-11-15",
+      "updated_date": "2026-11-15",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "N/A",
+      "ai_tools_mentioned": [],
+      "artifact_availability": "N/A",
+      "authoring_paradigm": "N/A",
+      "lean_usage_status": "lean_citation_or_discussion",
+      "one_line_summary": "Optimization theory paper on (L0,L1)-Lipschitz monotone variational inequalities that only cites a Lean-verified bound in the external LongTails repository as parallel work without contributing Lean proofs of its own.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "N/A",
+      "paradigm_confidence": "N/A",
+      "paradigm_evidence": "The paper's own repository (chitoraphelion/descending-everest-with-first-order-oracles) contains 40 TeX files and 0 Lean files. The single contextual Lean mention cites external parallel work in the LongTails repository (k3nfalt/longtails, Tyurin et al., 2026, theorem RadiusGeneralizedMonotone), and LongTails correspondingly cites the Descending Everest series as external prior/parallel preprints.",
+      "static_risk_flags": [],
+      "verification_tier_observed": "N/A"
+    },
+    {
+      "arxiv_id": "2611.20298",
+      "primary_category": "cs.PL",
+      "matched_target_cats": [
+        "cs.CR"
+      ],
+      "submitted_date": "2026-11-15",
+      "updated_date": "2026-11-15",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "Codex",
+        "Claude Code"
+      ],
+      "artifact_availability": "none",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Mechanizes type-confusion security proofs for an RPC/information-flow core calculus in Lean 4 using Mathlib, translated from pen-and-paper proofs with Codex and Claude Code assistance, with an axioms audit mentioned but no public repository URL provided.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "software_or_system_fv",
+      "paradigm_confidence": "high",
+      "paradigm_evidence": "The AI Use section explicitly states that Codex and Claude Code assisted with Lean 4 development by 'assisting in the translation of pen-and-paper definitions and proofs', and the Data-Availability Statement notes a README.md manually mapping each paper result to its Lean definition, indicating post-hoc formalization of pen-and-paper proofs without blueprint or spec-lock tooling.",
+      "static_risk_flags": [
+        "Mode12_ProcessOpacity"
+      ],
+      "verification_tier_observed": "Tier1_Bronze"
+    },
+    {
+      "arxiv_id": "2611.21256",
+      "primary_category": "math.CO",
+      "matched_target_cats": [
+        "math.OC"
+      ],
+      "submitted_date": "2026-11-16",
+      "updated_date": "2026-11-16",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "N/A",
+      "ai_tools_mentioned": [],
+      "artifact_availability": "N/A",
+      "authoring_paradigm": "N/A",
+      "lean_usage_status": "lean_citation_or_discussion",
+      "one_line_summary": "Combinatorial optimization / graph theory paper that only cites an external Lean 4 repository by Barish [62] claiming a proof of a conjecture from the paper, without contributing Lean formalization of its own results.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "N/A",
+      "paradigm_confidence": "N/A",
+      "paradigm_evidence": "N/A: Paper does not contribute Lean proofs; it only mentions and cites Barish [62] ('An FPT Algorithm for Maximum-Weight Independent Set in Embedded Graphs, in Lean 4') regarding a conjecture.",
+      "static_risk_flags": [],
+      "verification_tier_observed": "N/A"
+    },
+    {
+      "arxiv_id": "2611.22290",
+      "primary_category": "math.NT",
+      "matched_target_cats": [
+        "cs.CR"
+      ],
+      "submitted_date": "2026-11-17",
+      "updated_date": "2026-11-17",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "Claude Fable 5.2",
+        "Claude Opus 5.5"
+      ],
+      "artifact_availability": "N/A",
+      "authoring_paradigm": "N/A",
+      "lean_usage_status": "lean_citation_or_discussion",
+      "one_line_summary": "Cryptography/number theory paper proving Diffie-Hellman is as hard as discrete logarithm with O(log p) advice; only cites external Lean formalizations ([CT26], [Kon26], [Ope26]) of the zero-free half-plane for zeta functions without formalizing its own results.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "N/A",
+      "paradigm_confidence": "N/A",
+      "paradigm_evidence": "All 3 Lean mentions in the paper are bibliographic citations ([CT26], [Kon26], [Ope26]) to external Lean formalizations of a zero-free half-plane for zeta functions; the paper contributes no Lean code or formalization of its own theorems, and its companion repo (OctopusTide/hyperelliptic-curve-method) contains only TeX/PDF with 0 Lean files.",
+      "static_risk_flags": [],
+      "verification_tier_observed": "N/A"
+    },
+    {
+      "arxiv_id": "2611.22468",
+      "primary_category": "math.OC",
+      "matched_target_cats": [
+        "math.OC"
+      ],
+      "submitted_date": "2026-11-17",
+      "updated_date": "2026-11-18",
+      "version": 2,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "Claude"
+      ],
+      "artifact_availability": "broken_or_missing_repo",
+      "authoring_paradigm": "P0_opaque_or_unspecified",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Operations-research paper (math.OC) proving a 5/2 cost guarantee for echelon stock (s,S) policies in one-warehouse multi-retailer systems, claiming Lean 4 formalization of main results at a prove2.me URL with Claude mentioned in LaTeX signals and no inspectable Git/Lean repository.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "engineering_math_proof",
+      "paradigm_confidence": "low",
+      "paradigm_evidence": "Snippet states 'The main results are formally verified in Lean 4; the formal proofs are public at https://prove2.me/missions/...' and mentions '...ical verification, and editing' alongside latex_signals.agent_tools=['Claude'], but repos=[] and local_repo_dirs=[] with no workflow/blueprint/spec-lock details provided in the truncated evidence.",
+      "static_risk_flags": [
+        "Mode12_ProcessOpacity"
+      ],
+      "verification_tier_observed": "Tier1_Bronze"
+    },
+    {
+      "arxiv_id": "2611.22732",
+      "primary_category": "cs.CR",
+      "matched_target_cats": [
+        "cs.CR"
+      ],
+      "submitted_date": "2026-11-17",
+      "updated_date": "2026-11-17",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "Claude",
+        "ChatGPT",
+        "Gemini"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Analyzes parallel mixnets via statistical variance and concentration bounds for differential indistinguishability, claiming a full accompanying Lean mechanization at a public MPI-SWS GitLab repo carried out entirely by Claude.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "engineering_math_proof",
+      "paradigm_confidence": "medium",
+      "paradigm_evidence": "Paper states 'The main results of this paper have been verified in the mechanical proof assistant, Lean' with a public GitLab repository (https://gitlab.mpi-sws.org/FCS/mixnets-sync-public), and notes 'The Lean formalization that accompanies this paper was carried out entirely by Claude' alongside informal proofs (12 theorem environments) with no mention of blueprint sync or spec-lock tooling; local_repo_dirs is empty (only unrelated arXiv HTML GitHub repos were scraped).",
+      "static_risk_flags": [
+        "Mode12_ProcessOpacity"
+      ],
+      "verification_tier_observed": "Tier1_Bronze"
+    },
+    {
+      "arxiv_id": "2611.23080",
+      "primary_category": "cs.AI",
+      "matched_target_cats": [
+        "math.OC"
+      ],
+      "submitted_date": "2026-11-17",
+      "updated_date": "2026-11-17",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "GPT-5",
+        "Colombo"
+      ],
+      "artifact_availability": "none",
+      "authoring_paradigm": "P0_opaque_or_unspecified",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "AI autoresearch system (Colombo) for oracle-based optimization claiming Lean-based formal certification of mathematical claims across 50+ Complexity Atlas settings, but providing only Colombo.pdf on Zenodo with no public Lean code.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "engineering_math_proof",
+      "paradigm_confidence": "medium",
+      "paradigm_evidence": "Section 2.4-2.5 describes an internal Colombo workflow where reviewed natural-language mathematical arguments are translated into pinned-toolchain Lean proofs (with kernel and semantic-alignment checks) and then composed into papers by a Paper Composer; however, the Zenodo artifact (zenodo/23438699) contains only Colombo.pdf and 0 .lean files, providing no public Lean code or direct visibility into how the paper's own claims and 50+ Atlas results were formalized.",
+      "static_risk_flags": [
+        "Mode12_ProcessOpacity"
+      ],
+      "verification_tier_observed": "Tier1_Bronze"
+    },
+    {
+      "arxiv_id": "2611.23762",
+      "primary_category": "quant-ph",
+      "matched_target_cats": [
+        "cs.IT"
+      ],
+      "submitted_date": "2026-11-18",
+      "updated_date": "2026-11-18",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "Claude"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Post-hoc Mathlib-based Lean 4 formalization of three supporting algebraic lemmas (zero sorry/axioms) for an AI-generated companion note proving an assumption of the paper's quantum LDPC CCZ-gate construction, lacking lakefile/toolchain/CI and not covering the main theorems.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "engineering_math_proof",
+      "paradigm_confidence": "high",
+      "paradigm_evidence": "Paper states the proof of Assumption 1.1 in a companion manuscript was generated using AI and is in a companion repo 'together with Lean formalizations of selected algebraic lemmas. We are revising the exposition and extending the Lean formalization, which does not yet cover the full argument.' The repo (CoprimeFrobenius.lean, 667 lines, 0 sorry) formalizes three lemmas from the companion PDF ('exactly as in the note') without blueprint sync, comparator spec-lock, lakefile, or lean-toolchain.",
+      "static_risk_flags": [
+        "Mode2_ScopeDowngrade",
+        "Mode12_ProcessOpacity"
+      ],
+      "verification_tier_observed": "Tier2_Silver"
+    },
+    {
+      "arxiv_id": "2611.25174",
+      "primary_category": "cs.SE",
+      "matched_target_cats": [
+        "math.OC"
+      ],
+      "submitted_date": "2026-11-18",
+      "updated_date": "2026-11-18",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "Claude",
+        "Codex"
+      ],
+      "artifact_availability": "N/A",
+      "authoring_paradigm": "N/A",
+      "lean_usage_status": "lean_citation_or_discussion",
+      "one_line_summary": "Verifies a Rust first-order semidefinite programming solver using Verus (with Claude assistance); Lean and Mathlib are only discussed in related work.",
+      "other_formal_tools_contributed": [
+        "Verus"
+      ],
+      "paper_domain_role": "N/A",
+      "paradigm_confidence": "N/A",
+      "paradigm_evidence": "Paper formalizes its Rust SDP solver in Verus rather than Lean (0 Lean files in PHart3/convopt-rust); Lean and mathlib are only cited and compared in related work/background.",
+      "static_risk_flags": [],
+      "verification_tier_observed": "N/A"
+    },
+    {
+      "arxiv_id": "2611.25599",
+      "primary_category": "cs.CR",
+      "matched_target_cats": [
+        "cs.CR"
+      ],
+      "submitted_date": "2026-11-19",
+      "updated_date": "2026-11-19",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "unclear",
+      "ai_tools_mentioned": [
+        "Claude",
+        "Codex",
+        "Gemini"
+      ],
+      "artifact_availability": "none",
+      "authoring_paradigm": "P0_opaque_or_unspecified",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Tether implements a stateful agent security policy EDSL and verifies safety invariants in Lean 4, but provides no public Lean repository or authoring workflow details.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "software_or_system_fv",
+      "paradigm_confidence": "high",
+      "paradigm_evidence": "The paper implements an abstract action calculus and stateful policy language as a Lean 4 EDSL that compiles to a runtime monitor and proves safety invariants in Lean 4 (Table 1), but provides no public Lean repository (all listed repos have 0 .lean files) and no workflow details indicating paper-first, Lean-first, blueprint-sync, or spec-lock.",
+      "static_risk_flags": [
+        "Mode12_ProcessOpacity"
+      ],
+      "verification_tier_observed": "Tier1_Bronze"
+    },
+    {
+      "arxiv_id": "2611.25663",
+      "primary_category": "cs.CR",
+      "matched_target_cats": [
+        "cs.CR"
+      ],
+      "submitted_date": "2026-11-19",
+      "updated_date": "2026-11-19",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "N/A",
+      "ai_tools_mentioned": [],
+      "artifact_availability": "N/A",
+      "authoring_paradigm": "N/A",
+      "lean_usage_status": "false_positive",
+      "one_line_summary": "False positive: 'Lean' refers to Ethereum's Lean Consensus architecture and the Ream Lean consensus client (written in Rust), not the Lean theorem prover.",
+      "other_formal_tools_contributed": [
+        "tla_plus"
+      ],
+      "paper_domain_role": "N/A",
+      "paradigm_confidence": "N/A",
+      "paradigm_evidence": "All 'Lean' occurrences refer to Ethereum's Lean Consensus / Ream Lean consensus client (written in Rust, 0 .lean files in ReamLabs/ream and DaseinDa/ethereum-pq-transition), rather than the Lean proof assistant.",
+      "static_risk_flags": [],
+      "verification_tier_observed": "N/A"
+    },
+    {
+      "arxiv_id": "2611.26140",
+      "primary_category": "math.OC",
+      "matched_target_cats": [
+        "math.OC"
+      ],
+      "submitted_date": "2026-11-19",
+      "updated_date": "2026-11-19",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "OpenAI GPT",
+        "Codex",
+        "Anthropic Claude",
+        "Google DeepMind Gemini",
+        "Antigravity"
+      ],
+      "artifact_availability": "appendix_only",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Optimal corridor barrier-guarding paper in math.OC whose main analytic and topological proofs are on paper while an accompanying ancillary Lean 4 (Mathlib v4.15.0) library verifies selected lemmas and finite rational certificate replays.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "engineering_math_proof",
+      "paradigm_confidence": "medium",
+      "paradigm_evidence": "The paper presents analytic proofs and topological reductions in LaTeX (34 pages, 25 theorem environments) while attaching a Lean 4 / Mathlib v4.15.0 library in arXiv ancillary files (anc/README.md, ContinuumUpperCert.lean) specifically for selected algebraic lemmas and kernel replays of finite rational certificates alongside Python verifiers, with no mention of blueprint-sync or spec-lock tooling.",
+      "static_risk_flags": [
+        "Mode2_ScopeDowngrade",
+        "Mode12_ProcessOpacity"
+      ],
+      "verification_tier_observed": "Tier1_Bronze"
+    },
+    {
+      "arxiv_id": "2611.26272",
+      "primary_category": "math.OC",
+      "matched_target_cats": [
+        "math.OC"
+      ],
+      "submitted_date": "2026-11-19",
+      "updated_date": "2026-11-19",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "Paper2Lean",
+        "lean-lsp-mcp",
+        "Claude",
+        "Codex",
+        "DeepSeek",
+        "GPT-5",
+        "Kimina"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Introduces Paper2Lean, an agentic autoformalization pipeline, and releases OptPaper-20, a 151k-LoC Lean 4 / Mathlib formalization of 20 mathematical optimization research papers with zero sorry/axioms.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "engineering_math_proof",
+      "paradigm_confidence": "high",
+      "paradigm_evidence": "Existing informal mathematical optimization papers (20 papers from 1983-2024) are converted post-hoc into Lean 4 projects via an agentic DAG extraction, statement formalization, semantic checking, proving, and human-audit pipeline in TTony2019/OptPaper, without leanblueprint/LeanArchitect sync (has_blueprint_dir=false) or Challenge.lean/Solution.lean comparator spec-lock.",
+      "static_risk_flags": [
+        "Mode10_ProofBloat",
+        "Mode12_ProcessOpacity"
+      ],
+      "verification_tier_observed": "Tier2_Silver"
+    }
+  ],
+  "beyond_lean_results": [
+    {
+      "arxiv_id": "2611.02858",
+      "primary_category": "cs.CR",
+      "matched_target_cats": [
+        "cs.CR"
+      ],
+      "submitted_date": "2026-11-02",
+      "updated_date": "2026-11-02",
+      "version": 1,
+      "model_tier": "flash_lite",
+      "lean_usage_status": "formal_contributed",
+      "authoring_paradigm": "N/A",
+      "paradigm_confidence": "N/A",
+      "verification_tier_observed": "N/A",
+      "ai_agent_assisted": "N/A",
+      "artifact_availability": "N/A",
+      "other_formal_tools_contributed": [
+        "PRISM"
+      ],
+      "static_risk_flags": [],
+      "formal_usage_status": "formal_contributed",
+      "one_line_summary": "The paper uses the PRISM model checker to calculate steady-state probabilities and evaluate autonomous self-healing against cyber-attacks.",
+      "tool_category": "model_checker",
+      "tools_contributed": [
+        "PRISM"
+      ]
+    },
+    {
+      "arxiv_id": "2611.04701",
+      "primary_category": "cs.PL",
+      "matched_target_cats": [
+        "cs.CR"
+      ],
+      "submitted_date": "2026-11-03",
+      "updated_date": "2026-11-03",
+      "version": 1,
+      "model_tier": "flash_lite",
+      "lean_usage_status": "citation_or_discussion",
+      "authoring_paradigm": "N/A",
+      "paradigm_confidence": "N/A",
+      "verification_tier_observed": "N/A",
+      "ai_agent_assisted": "N/A",
+      "artifact_availability": "N/A",
+      "other_formal_tools_contributed": [],
+      "static_risk_flags": [],
+      "formal_usage_status": "citation_or_discussion",
+      "one_line_summary": "Empirical study of compiler miscompilations as a threat to zkVM guarantees, mentioning verified compilers like CompCert in discussion.",
+      "tool_category": "N/A",
+      "tools_contributed": []
+    },
+    {
+      "arxiv_id": "2611.05695",
+      "primary_category": "cs.PL",
+      "matched_target_cats": [
+        "cs.CR"
+      ],
+      "submitted_date": "2026-11-03",
+      "updated_date": "2026-11-03",
+      "version": 1,
+      "model_tier": "flash_lite",
+      "lean_usage_status": "formal_contributed",
+      "authoring_paradigm": "N/A",
+      "paradigm_confidence": "N/A",
+      "verification_tier_observed": "N/A",
+      "ai_agent_assisted": "N/A",
+      "artifact_availability": "N/A",
+      "other_formal_tools_contributed": [
+        "Rocq / Coq"
+      ],
+      "static_risk_flags": [],
+      "formal_usage_status": "formal_contributed",
+      "one_line_summary": "Demystifies information flow downgrading using the real-ideal paradigm and fully formalizes the results using the Rocq theorem prover.",
+      "tool_category": "ITP",
+      "tools_contributed": [
+        "Rocq / Coq"
+      ]
+    },
+    {
+      "arxiv_id": "2611.06257",
+      "primary_category": "cs.CR",
+      "matched_target_cats": [
+        "cs.CR"
+      ],
+      "submitted_date": "2026-11-04",
+      "updated_date": "2026-11-04",
+      "version": 1,
+      "model_tier": "flash_lite",
+      "lean_usage_status": "citation_or_discussion",
+      "authoring_paradigm": "N/A",
+      "paradigm_confidence": "N/A",
+      "verification_tier_observed": "N/A",
+      "ai_agent_assisted": "N/A",
+      "artifact_availability": "N/A",
+      "other_formal_tools_contributed": [],
+      "static_risk_flags": [],
+      "formal_usage_status": "citation_or_discussion",
+      "one_line_summary": "The paper evaluates local open-weight LLM agents on vulnerability-reproduction tasks and mentions SMT solvers in related work regarding prior approaches.",
+      "tool_category": "smt_sat",
+      "tools_contributed": []
+    },
+    {
+      "arxiv_id": "2611.07170",
+      "primary_category": "cs.CR",
+      "matched_target_cats": [
+        "cs.CR"
+      ],
+      "submitted_date": "2026-11-04",
+      "updated_date": "2026-11-04",
+      "version": 1,
+      "model_tier": "flash_lite",
+      "lean_usage_status": "citation_or_discussion",
+      "authoring_paradigm": "N/A",
+      "paradigm_confidence": "N/A",
+      "verification_tier_observed": "N/A",
+      "ai_agent_assisted": "N/A",
+      "artifact_availability": "N/A",
+      "other_formal_tools_contributed": [],
+      "static_risk_flags": [],
+      "formal_usage_status": "citation_or_discussion",
+      "one_line_summary": "The paper presents an automated methodology for reconstructing passive Dolev-Yao intruder executions from network traffic, mentioning Tamarin and ProVerif only in the background/related work discussing traditional active intruder verification tools.",
+      "tool_category": "protocol_verifier",
+      "tools_contributed": []
+    },
+    {
+      "arxiv_id": "2611.07919",
+      "primary_category": "cs.DC",
+      "matched_target_cats": [
+        "cs.DC"
+      ],
+      "submitted_date": "2026-11-05",
+      "updated_date": "2026-11-05",
+      "version": 1,
+      "model_tier": "flash_lite",
+      "lean_usage_status": "formal_contributed",
+      "authoring_paradigm": "N/A",
+      "paradigm_confidence": "N/A",
+      "verification_tier_observed": "N/A",
+      "ai_agent_assisted": "N/A",
+      "artifact_availability": "N/A",
+      "other_formal_tools_contributed": [
+        "Z3"
+      ],
+      "static_risk_flags": [],
+      "formal_usage_status": "formal_contributed",
+      "one_line_summary": "The paper introduces a modular parameterized model checking approach for threshold-based distributed algorithms, implemented and evaluated using the Z3 SMT solver.",
+      "tool_category": "smt_sat",
+      "tools_contributed": [
+        "Z3"
+      ]
+    },
+    {
+      "arxiv_id": "2611.09315",
+      "primary_category": "cs.CR",
+      "matched_target_cats": [
+        "cs.CR"
+      ],
+      "submitted_date": "2026-11-06",
+      "updated_date": "2026-11-06",
+      "version": 1,
+      "model_tier": "flash_lite",
+      "lean_usage_status": "citation_or_discussion",
+      "authoring_paradigm": "N/A",
+      "paradigm_confidence": "N/A",
+      "verification_tier_observed": "N/A",
+      "ai_agent_assisted": "N/A",
+      "artifact_availability": "N/A",
+      "other_formal_tools_contributed": [],
+      "static_risk_flags": [],
+      "formal_usage_status": "citation_or_discussion",
+      "one_line_summary": "The paper discusses protocol verification and cites Tamarin in related work/background, but does not contribute or use Tamarin or other formal verification tools for its own verification results (it presents a model checker based on DLTL for testing execution traces).",
+      "tool_category": "protocol_verifier",
+      "tools_contributed": []
+    },
+    {
+      "arxiv_id": "2611.11119",
+      "primary_category": "eess.SY",
+      "matched_target_cats": [
+        "eess.SY",
+        "math.OC"
+      ],
+      "submitted_date": "2026-11-08",
+      "updated_date": "2026-11-08",
+      "version": 1,
+      "model_tier": "flash_lite",
+      "lean_usage_status": "citation_or_discussion",
+      "authoring_paradigm": "N/A",
+      "paradigm_confidence": "N/A",
+      "verification_tier_observed": "N/A",
+      "ai_agent_assisted": "N/A",
+      "artifact_availability": "N/A",
+      "other_formal_tools_contributed": [],
+      "static_risk_flags": [],
+      "formal_usage_status": "citation_or_discussion",
+      "one_line_summary": "The paper introduces a data-driven framework and neural architecture for scalable neural safety certification of monotone dynamical systems, citing SMT solvers (Reluplex) only in related work.",
+      "tool_category": "N/A",
+      "tools_contributed": []
+    },
+    {
+      "arxiv_id": "2611.11506",
+      "primary_category": "cs.CR",
+      "matched_target_cats": [
+        "cs.CR"
+      ],
+      "submitted_date": "2026-11-08",
+      "updated_date": "2026-11-08",
+      "version": 1,
+      "model_tier": "flash_lite",
+      "lean_usage_status": "formal_contributed",
+      "authoring_paradigm": "N/A",
+      "paradigm_confidence": "N/A",
+      "verification_tier_observed": "N/A",
+      "ai_agent_assisted": "N/A",
+      "artifact_availability": "N/A",
+      "other_formal_tools_contributed": [
+        "Isabelle/HOL"
+      ],
+      "static_risk_flags": [],
+      "formal_usage_status": "formal_contributed",
+      "one_line_summary": "Mechanised definitions, defences and verdicts for LLM agents proven or refuted in Isabelle/HOL.",
+      "tool_category": "ITP",
+      "tools_contributed": [
+        "Isabelle/HOL"
+      ]
+    },
+    {
+      "arxiv_id": "2611.12252",
+      "primary_category": "cs.CR",
+      "matched_target_cats": [
+        "cs.CR",
+        "cs.DC"
+      ],
+      "submitted_date": "2026-11-09",
+      "updated_date": "2026-11-09",
+      "version": 1,
+      "model_tier": "flash_lite",
+      "lean_usage_status": "formal_contributed",
+      "authoring_paradigm": "N/A",
+      "paradigm_confidence": "N/A",
+      "verification_tier_observed": "N/A",
+      "ai_agent_assisted": "N/A",
+      "artifact_availability": "N/A",
+      "other_formal_tools_contributed": [
+        "PRISM"
+      ],
+      "static_risk_flags": [],
+      "formal_usage_status": "formal_contributed",
+      "one_line_summary": "The paper compiles security posture and rate-limit models into the PRISM model checker to perform exhaustive state-space search and bound bridge hack losses.",
+      "tool_category": "model_checker",
+      "tools_contributed": [
+        "PRISM"
+      ]
+    },
+    {
+      "arxiv_id": "2611.15401",
+      "primary_category": "eess.SY",
+      "matched_target_cats": [
+        "eess.SY"
+      ],
+      "submitted_date": "2026-11-11",
+      "updated_date": "2026-11-11",
+      "version": 1,
+      "model_tier": "flash_lite",
+      "lean_usage_status": "citation_or_discussion",
+      "authoring_paradigm": "N/A",
+      "paradigm_confidence": "N/A",
+      "verification_tier_observed": "N/A",
+      "ai_agent_assisted": "N/A",
+      "artifact_availability": "N/A",
+      "other_formal_tools_contributed": [],
+      "static_risk_flags": [],
+      "formal_usage_status": "citation_or_discussion",
+      "one_line_summary": "The paper introduces SLyM, an LLM-driven framework for symbolic Lyapunov function discovery, and merely mentions SMT solvers in the background/related work discussion regarding verification bottlenecks of neural Lyapunov methods.",
+      "tool_category": "smt_sat",
+      "tools_contributed": []
+    },
+    {
+      "arxiv_id": "2611.16003",
+      "primary_category": "cs.LG",
+      "matched_target_cats": [
+        "eess.SY",
+        "math.OC"
+      ],
+      "submitted_date": "2026-11-11",
+      "updated_date": "2026-11-11",
+      "version": 1,
+      "model_tier": "flash_lite",
+      "lean_usage_status": "citation_or_discussion",
+      "authoring_paradigm": "N/A",
+      "paradigm_confidence": "N/A",
+      "verification_tier_observed": "N/A",
+      "ai_agent_assisted": "N/A",
+      "artifact_availability": "N/A",
+      "other_formal_tools_contributed": [],
+      "static_risk_flags": [],
+      "formal_usage_status": "citation_or_discussion",
+      "one_line_summary": "The paper proposes Fit-LRP, a neural network verification framework, and only mentions SMT solvers (like Reluplex) in related work/citations.",
+      "tool_category": "smt_sat",
+      "tools_contributed": []
+    },
+    {
+      "arxiv_id": "2611.18055",
+      "primary_category": "cs.PL",
+      "matched_target_cats": [
+        "cs.CR"
+      ],
+      "submitted_date": "2026-11-13",
+      "updated_date": "2026-11-13",
+      "version": 1,
+      "model_tier": "flash_lite",
+      "lean_usage_status": "formal_contributed",
+      "authoring_paradigm": "N/A",
+      "paradigm_confidence": "N/A",
+      "verification_tier_observed": "N/A",
+      "ai_agent_assisted": "N/A",
+      "artifact_availability": "N/A",
+      "other_formal_tools_contributed": [
+        "Coq/Rocq"
+      ],
+      "static_risk_flags": [],
+      "formal_usage_status": "formal_contributed",
+      "one_line_summary": "DeCompCert is a Rocq-verified decompiler for AArch64 assembly generated by CompCert.",
+      "tool_category": "ITP",
+      "tools_contributed": [
+        "Coq/Rocq"
+      ]
+    },
+    {
+      "arxiv_id": "2611.18463",
+      "primary_category": "cs.CR",
+      "matched_target_cats": [
+        "cs.CR"
+      ],
+      "submitted_date": "2026-11-13",
+      "updated_date": "2026-11-13",
+      "version": 1,
+      "model_tier": "flash_lite",
+      "lean_usage_status": "formal_contributed",
+      "authoring_paradigm": "N/A",
+      "paradigm_confidence": "N/A",
+      "verification_tier_observed": "N/A",
+      "ai_agent_assisted": "N/A",
+      "artifact_availability": "N/A",
+      "other_formal_tools_contributed": [
+        "Rocq"
+      ],
+      "static_risk_flags": [],
+      "formal_usage_status": "formal_contributed",
+      "one_line_summary": "VellSSLH: Sound Type-Guided Selective Speculative Load Hardening for LLVM IR, mechanized and proved in Rocq.",
+      "tool_category": "ITP",
+      "tools_contributed": [
+        "Rocq"
+      ]
+    },
+    {
+      "arxiv_id": "2611.19536",
+      "primary_category": "cs.CR",
+      "matched_target_cats": [
+        "cs.CR"
+      ],
+      "submitted_date": "2026-11-14",
+      "updated_date": "2026-11-14",
+      "version": 1,
+      "model_tier": "flash_lite",
+      "lean_usage_status": "citation_or_discussion",
+      "authoring_paradigm": "N/A",
+      "paradigm_confidence": "N/A",
+      "verification_tier_observed": "N/A",
+      "ai_agent_assisted": "N/A",
+      "artifact_availability": "N/A",
+      "other_formal_tools_contributed": [],
+      "static_risk_flags": [],
+      "formal_usage_status": "citation_or_discussion",
+      "one_line_summary": "The paper mentions a plan to model the protocol in a symbolic protocol verifier such as Tamarin in future work, but does not use it in this paper.",
+      "tool_category": "protocol_verifier",
+      "tools_contributed": []
+    },
+    {
+      "arxiv_id": "2611.20453",
+      "primary_category": "cs.LO",
+      "matched_target_cats": [
+        "cs.CR"
+      ],
+      "submitted_date": "2026-11-16",
+      "updated_date": "2026-11-16",
+      "version": 1,
+      "model_tier": "flash_lite",
+      "lean_usage_status": "false_positive",
+      "authoring_paradigm": "N/A",
+      "paradigm_confidence": "N/A",
+      "verification_tier_observed": "N/A",
+      "ai_agent_assisted": "N/A",
+      "artifact_availability": "N/A",
+      "other_formal_tools_contributed": [],
+      "static_risk_flags": [],
+      "formal_usage_status": "false_positive",
+      "one_line_summary": "False positive keyword hit for SeaHorn/SeaDSA verification framework used for static taint analysis / abstract interpretation rather than formal theorem proving or model checking verification results.",
+      "tool_category": "model_checker",
+      "tools_contributed": []
+    },
+    {
+      "arxiv_id": "2611.20671",
+      "primary_category": "cs.CR",
+      "matched_target_cats": [
+        "cs.CR"
+      ],
+      "submitted_date": "2026-11-16",
+      "updated_date": "2026-11-16",
+      "version": 1,
+      "model_tier": "flash_lite",
+      "lean_usage_status": "formal_contributed",
+      "authoring_paradigm": "N/A",
+      "paradigm_confidence": "N/A",
+      "verification_tier_observed": "N/A",
+      "ai_agent_assisted": "N/A",
+      "artifact_availability": "N/A",
+      "other_formal_tools_contributed": [
+        "Tamarin"
+      ],
+      "static_risk_flags": [],
+      "formal_usage_status": "formal_contributed",
+      "one_line_summary": "MASTA uses a multi-agent system to end-to-end model and verify security protocols using the Tamarin theorem prover.",
+      "tool_category": "protocol_verifier",
+      "tools_contributed": [
+        "Tamarin"
+      ]
+    },
+    {
+      "arxiv_id": "2611.20861",
+      "primary_category": "cs.CR",
+      "matched_target_cats": [
+        "cs.CR"
+      ],
+      "submitted_date": "2026-11-16",
+      "updated_date": "2026-11-16",
+      "version": 1,
+      "model_tier": "flash_lite",
+      "lean_usage_status": "citation_or_discussion",
+      "authoring_paradigm": "N/A",
+      "paradigm_confidence": "N/A",
+      "verification_tier_observed": "N/A",
+      "ai_agent_assisted": "N/A",
+      "artifact_availability": "N/A",
+      "other_formal_tools_contributed": [],
+      "static_risk_flags": [],
+      "formal_usage_status": "citation_or_discussion",
+      "one_line_summary": "The paper uses model checkers like Storm for evaluating empirical surrogates / concrete MDP evaluations, but does not itself contribute a new formal tool or verification framework as a formal contribution in the sense of building/extending one (wait, let's examine if Storm is used as an external tool or if they contributed a formal tool. They use Storm via a call to a model checker, so Storm is cited/used externally, but is it citation_or_discussion or formal_contributed? Let's check: the prompt says 'The authors actually used a formal verifier/prover/model checker/SMT solver to verify or synthesize results in this paper.' Wait, let's read the abstract carefully: 'For confirmed discoveries, candidate hits are checked by model checking and budgets use independently certified discovery probabilities. Experiment evaluate these certificates using empirical surrogates and independent confidence bounds.' Wait, they use Storm to obtain requirement values at sampled parameter points ('solving the resulting concrete MDP via a call to a model checker such as Storm'). But wait, is `formal_contributed` meant for papers that *contributed* a formal tool, or used one? Wait, `formal_contributed`: 'The authors actually used a formal verifier/prover/model checker/SMT solver to verify or synthesize results in this paper.' Wait, let's check what `tools_contributed` should be if used. Wait, the prompt says: 'List canonical `tools_contributed` (empty list if not `formal_contributed`).' Since they used Storm rather than *contributing* Storm or a new formal tool, it falls under `citation_or_discussion` or `formal_contributed`? Wait, let's check the definition: 'citation_or_discussion: Only mentions/cites formal tools in background/related work/future work.' But here they used Storm in experiments/evaluations. Wait, let's check standard classification for using an existing tool like Storm vs contributing one. Usually, using an existing tool like PRISM/Storm in experiments is classified as `citation_or_discussion` unless the paper itself presents a formal proof assistant/verifier development or formal verification contribution. Let's check tool_category: `model_checker`. Let's use `citation_or_discussion` and empty tools_contributed, or model_checker? Wait, tool_category must be one of `ITP`, `model_checker`, `protocol_verifier`, `smt_sat`, `mixed`, `N/A`. Since Storm is a model checker, if it's not `formal_contributed`, tool_category could be `model_checker` or `N/A`. Let's check instructions: `tools_contributed` (empty list if not `formal_contributed`). Let's use `citation_or_discussion` and empty list.",
+      "tool_category": "model_checker",
+      "tools_contributed": []
+    },
+    {
+      "arxiv_id": "2611.21009",
+      "primary_category": "eess.SY",
+      "matched_target_cats": [
+        "eess.SY"
+      ],
+      "submitted_date": "2026-11-16",
+      "updated_date": "2026-11-16",
+      "version": 1,
+      "model_tier": "flash_lite",
+      "lean_usage_status": "citation_or_discussion",
+      "authoring_paradigm": "N/A",
+      "paradigm_confidence": "N/A",
+      "verification_tier_observed": "N/A",
+      "ai_agent_assisted": "N/A",
+      "artifact_availability": "N/A",
+      "other_formal_tools_contributed": [],
+      "static_risk_flags": [],
+      "formal_usage_status": "citation_or_discussion",
+      "one_line_summary": "The paper investigates joint learning of neural controllers and control Lyapunov functions, mentioning SMT-based verification in related work and using mixed-integer programming for verification.",
+      "tool_category": "smt_sat",
+      "tools_contributed": []
+    },
+    {
+      "arxiv_id": "2611.21599",
+      "primary_category": "eess.SY",
+      "matched_target_cats": [
+        "eess.SY"
+      ],
+      "submitted_date": "2026-11-16",
+      "updated_date": "2026-11-16",
+      "version": 1,
+      "model_tier": "flash_lite",
+      "lean_usage_status": "citation_or_discussion",
+      "authoring_paradigm": "N/A",
+      "paradigm_confidence": "N/A",
+      "verification_tier_observed": "N/A",
+      "ai_agent_assisted": "N/A",
+      "artifact_availability": "N/A",
+      "other_formal_tools_contributed": [],
+      "static_risk_flags": [],
+      "formal_usage_status": "citation_or_discussion",
+      "one_line_summary": "Hyperlyve introduces a framework for proving asymptotic stability of nonlinear systems with neural network controllers, mentioning SMT solvers (dReal, Reluplex) in related work.",
+      "tool_category": "smt_sat",
+      "tools_contributed": []
+    },
+    {
+      "arxiv_id": "2611.21883",
+      "primary_category": "cs.CR",
+      "matched_target_cats": [
+        "cs.CR"
+      ],
+      "submitted_date": "2026-11-16",
+      "updated_date": "2026-11-16",
+      "version": 1,
+      "model_tier": "flash_lite",
+      "lean_usage_status": "false_positive",
+      "authoring_paradigm": "N/A",
+      "paradigm_confidence": "N/A",
+      "verification_tier_observed": "N/A",
+      "ai_agent_assisted": "N/A",
+      "artifact_availability": "N/A",
+      "other_formal_tools_contributed": [],
+      "static_risk_flags": [],
+      "formal_usage_status": "false_positive",
+      "one_line_summary": "A cryptographic clearing protocol for scalable micropayments with standard cryptographic proofs.",
+      "tool_category": "N/A",
+      "tools_contributed": []
+    },
+    {
+      "arxiv_id": "2611.22180",
+      "primary_category": "cs.CV",
+      "matched_target_cats": [
+        "cs.RO"
+      ],
+      "submitted_date": "2026-11-17",
+      "updated_date": "2026-11-17",
+      "version": 1,
+      "model_tier": "flash_lite",
+      "lean_usage_status": "false_positive",
+      "authoring_paradigm": "N/A",
+      "paradigm_confidence": "N/A",
+      "verification_tier_observed": "N/A",
+      "ai_agent_assisted": "N/A",
+      "artifact_availability": "N/A",
+      "other_formal_tools_contributed": [],
+      "static_risk_flags": [],
+      "formal_usage_status": "false_positive",
+      "one_line_summary": "A computer vision paper evaluating vision-language models on 3-D spatial relations, with a false positive keyword match on cognitive.",
+      "tool_category": "N/A",
+      "tools_contributed": []
+    },
+    {
+      "arxiv_id": "2611.22291",
+      "primary_category": "cs.RO",
+      "matched_target_cats": [
+        "cs.RO"
+      ],
+      "submitted_date": "2026-11-17",
+      "updated_date": "2026-11-17",
+      "version": 1,
+      "model_tier": "flash_lite",
+      "lean_usage_status": "citation_or_discussion",
+      "authoring_paradigm": "N/A",
+      "paradigm_confidence": "N/A",
+      "verification_tier_observed": "N/A",
+      "ai_agent_assisted": "N/A",
+      "artifact_availability": "N/A",
+      "other_formal_tools_contributed": [],
+      "static_risk_flags": [],
+      "formal_usage_status": "citation_or_discussion",
+      "one_line_summary": "A survey/position paper examining agentic intelligence for the physical world, discussing testing practices such as SMT solvers and classical planners in related/surveyed systems without contributing a novel formal verification tool or formal proof.",
+      "tool_category": "N/A",
+      "tools_contributed": []
+    },
+    {
+      "arxiv_id": "2611.22399",
+      "primary_category": "cs.LO",
+      "matched_target_cats": [
+        "cs.RO"
+      ],
+      "submitted_date": "2026-11-17",
+      "updated_date": "2026-11-17",
+      "version": 1,
+      "model_tier": "flash_lite",
+      "lean_usage_status": "citation_or_discussion",
+      "authoring_paradigm": "N/A",
+      "paradigm_confidence": "N/A",
+      "verification_tier_observed": "N/A",
+      "ai_agent_assisted": "N/A",
+      "artifact_availability": "N/A",
+      "other_formal_tools_contributed": [],
+      "static_risk_flags": [],
+      "formal_usage_status": "citation_or_discussion",
+      "one_line_summary": "The paper applies FRET (Formal Requirements Elicitation Tool) to elicit and analyze requirements for robot-assisted dressing, mentioning NuSMV and PRISM only as background/related tools supported by FRET without performing new model checking or formal verification in the paper itself.",
+      "tool_category": "model_checker",
+      "tools_contributed": []
+    },
+    {
+      "arxiv_id": "2611.22403",
+      "primary_category": "cs.SE",
+      "matched_target_cats": [
+        "cs.RO"
+      ],
+      "submitted_date": "2026-11-17",
+      "updated_date": "2026-11-17",
+      "version": 1,
+      "model_tier": "flash_lite",
+      "lean_usage_status": "formal_contributed",
+      "authoring_paradigm": "N/A",
+      "paradigm_confidence": "N/A",
+      "verification_tier_observed": "N/A",
+      "ai_agent_assisted": "N/A",
+      "artifact_availability": "N/A",
+      "other_formal_tools_contributed": [
+        "nuXmv",
+        "NuSMV",
+        "ROCQ",
+        "Coq"
+      ],
+      "static_risk_flags": [],
+      "formal_usage_status": "formal_contributed",
+      "one_line_summary": "BehaVerify presents a verification toolbox for behavior trees that encodes into nuXmv for formal verification and incorporates tools like ROCQ.",
+      "tool_category": "model_checker",
+      "tools_contributed": [
+        "nuXmv",
+        "NuSMV",
+        "ROCQ",
+        "Coq"
+      ]
+    },
+    {
+      "arxiv_id": "2611.22408",
+      "primary_category": "cs.CR",
+      "matched_target_cats": [
+        "cs.CR"
+      ],
+      "submitted_date": "2026-11-17",
+      "updated_date": "2026-11-17",
+      "version": 1,
+      "model_tier": "flash_lite",
+      "lean_usage_status": "formal_contributed",
+      "authoring_paradigm": "N/A",
+      "paradigm_confidence": "N/A",
+      "verification_tier_observed": "N/A",
+      "ai_agent_assisted": "N/A",
+      "artifact_availability": "N/A",
+      "other_formal_tools_contributed": [
+        "SPIN",
+        "Promela"
+      ],
+      "static_risk_flags": [],
+      "formal_usage_status": "formal_contributed",
+      "one_line_summary": "The paper presents a pipeline that mechanises the transition from CAPEC attack patterns to formal attacker models, emitting LTL properties and Promela models verified using SPIN.",
+      "tool_category": "model_checker",
+      "tools_contributed": [
+        "SPIN",
+        "Promela"
+      ]
+    },
+    {
+      "arxiv_id": "2611.22631",
+      "primary_category": "cs.DC",
+      "matched_target_cats": [
+        "cs.DC"
+      ],
+      "submitted_date": "2026-11-17",
+      "updated_date": "2026-11-17",
+      "version": 1,
+      "model_tier": "flash_lite",
+      "lean_usage_status": "citation_or_discussion",
+      "authoring_paradigm": "N/A",
+      "paradigm_confidence": "N/A",
+      "verification_tier_observed": "N/A",
+      "ai_agent_assisted": "N/A",
+      "artifact_availability": "N/A",
+      "other_formal_tools_contributed": [],
+      "static_risk_flags": [],
+      "formal_usage_status": "citation_or_discussion",
+      "one_line_summary": "The paper studies Byzantine resilience of robot gathering under round-robin scheduling and only mentions Coq when discussing related work where related convergence impossibilities were verified in Coq.",
+      "tool_category": "ITP",
+      "tools_contributed": []
+    },
+    {
+      "arxiv_id": "2611.23021",
+      "primary_category": "eess.SY",
+      "matched_target_cats": [
+        "cs.RO",
+        "eess.SY"
+      ],
+      "submitted_date": "2026-11-17",
+      "updated_date": "2026-11-17",
+      "version": 1,
+      "model_tier": "flash_lite",
+      "lean_usage_status": "formal_contributed",
+      "authoring_paradigm": "N/A",
+      "paradigm_confidence": "N/A",
+      "verification_tier_observed": "N/A",
+      "ai_agent_assisted": "N/A",
+      "artifact_availability": "N/A",
+      "other_formal_tools_contributed": [
+        "Z3"
+      ],
+      "static_risk_flags": [],
+      "formal_usage_status": "formal_contributed",
+      "one_line_summary": "Introduces a Satisfiability Modulo Theories (SMT) based encoding and synthesis method for Signal Temporal Logic (STL) specifications in robotic systems.",
+      "tool_category": "smt_sat",
+      "tools_contributed": [
+        "Z3"
+      ]
+    },
+    {
+      "arxiv_id": "2611.23346",
+      "primary_category": "cs.CR",
+      "matched_target_cats": [
+        "cs.CR"
+      ],
+      "submitted_date": "2026-11-17",
+      "updated_date": "2026-11-17",
+      "version": 1,
+      "model_tier": "flash_lite",
+      "lean_usage_status": "citation_or_discussion",
+      "authoring_paradigm": "N/A",
+      "paradigm_confidence": "N/A",
+      "verification_tier_observed": "N/A",
+      "ai_agent_assisted": "N/A",
+      "artifact_availability": "N/A",
+      "other_formal_tools_contributed": [],
+      "static_risk_flags": [],
+      "formal_usage_status": "citation_or_discussion",
+      "one_line_summary": "The paper discusses related work using an SMT solver for policy checking in LLM agents, but does not contribute or use formal verification tools itself.",
+      "tool_category": "smt_sat",
+      "tools_contributed": []
+    },
+    {
+      "arxiv_id": "2611.23715",
+      "primary_category": "cs.CR",
+      "matched_target_cats": [
+        "cs.CR"
+      ],
+      "submitted_date": "2026-11-18",
+      "updated_date": "2026-11-18",
+      "version": 1,
+      "model_tier": "flash_lite",
+      "lean_usage_status": "citation_or_discussion",
+      "authoring_paradigm": "N/A",
+      "paradigm_confidence": "N/A",
+      "verification_tier_observed": "N/A",
+      "ai_agent_assisted": "N/A",
+      "artifact_availability": "N/A",
+      "other_formal_tools_contributed": [],
+      "static_risk_flags": [],
+      "formal_usage_status": "citation_or_discussion",
+      "one_line_summary": "JITAtlas presents a source-level checker for compiler rewrites; Z3 is only mentioned in references/citations.",
+      "tool_category": "N/A",
+      "tools_contributed": []
+    },
+    {
+      "arxiv_id": "2611.23811",
+      "primary_category": "cs.DC",
+      "matched_target_cats": [
+        "cs.DC"
+      ],
+      "submitted_date": "2026-11-18",
+      "updated_date": "2026-11-18",
+      "version": 1,
+      "model_tier": "flash_lite",
+      "lean_usage_status": "formal_contributed",
+      "authoring_paradigm": "N/A",
+      "paradigm_confidence": "N/A",
+      "verification_tier_observed": "N/A",
+      "ai_agent_assisted": "N/A",
+      "artifact_availability": "N/A",
+      "other_formal_tools_contributed": [
+        "Coq/Rocq"
+      ],
+      "static_risk_flags": [],
+      "formal_usage_status": "formal_contributed",
+      "one_line_summary": "The paper formally verifies implementations of sequencer-aided coordination systems (NOPaxos, Corfu, LazyLog) using machine-checked proofs in Rocq/Grove.",
+      "tool_category": "ITP",
+      "tools_contributed": [
+        "Coq/Rocq"
+      ]
+    },
+    {
+      "arxiv_id": "2611.25324",
+      "primary_category": "cs.CR",
+      "matched_target_cats": [
+        "cs.CR"
+      ],
+      "submitted_date": "2026-11-19",
+      "updated_date": "2026-11-19",
+      "version": 1,
+      "model_tier": "flash_lite",
+      "lean_usage_status": "citation_or_discussion",
+      "authoring_paradigm": "N/A",
+      "paradigm_confidence": "N/A",
+      "verification_tier_observed": "N/A",
+      "ai_agent_assisted": "N/A",
+      "artifact_availability": "N/A",
+      "other_formal_tools_contributed": [],
+      "static_risk_flags": [],
+      "formal_usage_status": "citation_or_discussion",
+      "one_line_summary": "The paper presents LOCA, an LLM-based attack for netlist-to-RTL recovery, and cites standard model checkers and SMT solvers (such as Z3 and Yosys/sby) in related work/references without contributing a new formal tool or using formal verification as the core methodology of the paper.",
+      "tool_category": "smt_sat",
+      "tools_contributed": []
+    },
+    {
+      "arxiv_id": "2611.25561",
+      "primary_category": "cs.CR",
+      "matched_target_cats": [
+        "cs.CR"
+      ],
+      "submitted_date": "2026-11-19",
+      "updated_date": "2026-11-19",
+      "version": 1,
+      "model_tier": "flash_lite",
+      "lean_usage_status": "citation_or_discussion",
+      "authoring_paradigm": "N/A",
+      "paradigm_confidence": "N/A",
+      "verification_tier_observed": "N/A",
+      "ai_agent_assisted": "N/A",
+      "artifact_availability": "N/A",
+      "other_formal_tools_contributed": [],
+      "static_risk_flags": [],
+      "formal_usage_status": "citation_or_discussion",
+      "one_line_summary": "Paper on image ciphers and NPCR metric that only cites Z3 in references/bibliography.",
+      "tool_category": "smt_sat",
+      "tools_contributed": []
+    },
+    {
+      "arxiv_id": "2611.25821",
+      "primary_category": "cs.CR",
+      "matched_target_cats": [
+        "cs.CR"
+      ],
+      "submitted_date": "2026-11-19",
+      "updated_date": "2026-11-19",
+      "version": 1,
+      "model_tier": "flash_lite",
+      "lean_usage_status": "citation_or_discussion",
+      "authoring_paradigm": "N/A",
+      "paradigm_confidence": "N/A",
+      "verification_tier_observed": "N/A",
+      "ai_agent_assisted": "N/A",
+      "artifact_availability": "N/A",
+      "other_formal_tools_contributed": [],
+      "static_risk_flags": [],
+      "formal_usage_status": "citation_or_discussion",
+      "one_line_summary": "The paper discusses related work verified in Tamarin by Jiang et al., but does not use formal verification tools itself.",
+      "tool_category": "protocol_verifier",
+      "tools_contributed": []
+    }
+  ]
+}

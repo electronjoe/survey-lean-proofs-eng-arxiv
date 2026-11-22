@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Install dependencies (with dev group)
+        run: uv sync --frozen --dev
+
+      - name: Run unit tests
+        run: uv run pytest -v
+
+      - name: Verify zero tracked PDFs and clean blind artifact export
+        run: |
+          set -euo pipefail
+          pdfs="$(git ls-files '*.pdf')"
+          if [ -n "$pdfs" ]; then
+            echo "Error: tracked PDF files found in Git:" >&2
+            echo "$pdfs" >&2
+            exit 1
+          fi
+          uv run python scripts/export_blind_artifact.py --out /tmp/ci_blind_artifact.zip

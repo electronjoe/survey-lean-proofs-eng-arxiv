@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0",
+  "slice_id": "2025-11",
+  "lean_models": [
+    "flash"
+  ],
+  "beyond_lean_models": [],
+  "lean_candidate_count": 3,
+  "beyond_lean_count": 0,
+  "lean_results": [
+    {
+      "arxiv_id": "2511.11292",
+      "primary_category": "cs.PL",
+      "matched_target_cats": [
+        "cs.CR"
+      ],
+      "submitted_date": "2025-11-14",
+      "updated_date": "2026-08-16",
+      "version": 2,
+      "model_tier": "flash",
+      "ai_agent_assisted": "N/A",
+      "ai_tools_mentioned": [],
+      "artifact_availability": "N/A",
+      "authoring_paradigm": "N/A",
+      "lean_usage_status": "lean_citation_or_discussion",
+      "one_line_summary": "Cites Lean 4 cryptographic formalizations (VCV-io, Tuma & Hopper 2024, Dziembowski et al. 2025) in related work, while its own KEM-IND-CCA preservation proof for Jasmin's ML-KEM is mechanized in Rocq.",
+      "other_formal_tools_contributed": [
+        "Rocq"
+      ],
+      "paper_domain_role": "N/A",
+      "paradigm_confidence": "N/A",
+      "paradigm_evidence": "Paper does not contribute Lean proofs; Lean hits are restricted to related-work/bibliography citations (VCV-io, Tuma and Hopper 2024, Dziembowski et al. 2025). Its own formalization and Zenodo artifact (21968144) are mechanized in Rocq (0 Lean files).",
+      "static_risk_flags": [],
+      "verification_tier_observed": "N/A"
+    },
+    {
+      "arxiv_id": "2511.15071",
+      "primary_category": "cs.CR",
+      "matched_target_cats": [
+        "cs.CR"
+      ],
+      "submitted_date": "2025-11-19",
+      "updated_date": "2025-11-19",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "N/A",
+      "ai_tools_mentioned": [],
+      "artifact_availability": "N/A",
+      "authoring_paradigm": "N/A",
+      "lean_usage_status": "lean_citation_or_discussion",
+      "one_line_summary": "Cites Lean only in related work (discussing zkPi) while presenting zero-knowledge protocols for QBF/PSPACE without Lean formalization.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "N/A",
+      "paradigm_confidence": "N/A",
+      "paradigm_evidence": "Only contextual citation of Lean in related work discussing zkPi [38]; the paper's repositories contain 0 Lean files and no Lean verification is claimed.",
+      "static_risk_flags": [],
+      "verification_tier_observed": "N/A"
+    },
+    {
+      "arxiv_id": "2511.15517",
+      "primary_category": "cs.CR",
+      "matched_target_cats": [
+        "cs.CR",
+        "cs.DC"
+      ],
+      "submitted_date": "2025-11-19",
+      "updated_date": "2026-06-29",
+      "version": 2,
+      "model_tier": "flash",
+      "ai_agent_assisted": "unclear",
+      "ai_tools_mentioned": [],
+      "artifact_availability": "broken_or_missing_repo",
+      "authoring_paradigm": "P0_opaque_or_unspecified",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Beluga claims machine-checked Lean proofs for all non-probabilistic theorems via uploaded 'Additional materials' and Appendix I, but provides no accessible public Lean repository for Beluga (the cloned asonnino/mysticeti Lean directory formalizes the separate Hydrozoan paper), yielding P0_opaque_or_unspecified and Tier1_Bronze.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "software_or_system_fv",
+      "paradigm_confidence": "high",
+      "paradigm_evidence": "Contribution (4) and Appendix I state that all non-probabilistic theorems are formalized in Lean with proof artefacts uploaded as 'Additional materials' and an appendix detailing what is/isn't formalized and paper-implicit choices made explicit; however, asonnino/beluga and AUTHOR/REPO are inaccessible, and the cloned asonnino/mysticeti repo's lean/ directory (Hydrozoan, Lean v4.33.0) is for a different paper, leaving Beluga's Lean code and authoring workflow unobservable.",
+      "static_risk_flags": [
+        "Mode2_ScopeDowngrade",
+        "Mode12_ProcessOpacity"
+      ],
+      "verification_tier_observed": "Tier1_Bronze"
+    }
+  ],
+  "beyond_lean_results": []
+}

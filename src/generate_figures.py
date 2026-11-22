@@ -1,11 +1,18 @@
-"""Generate publication-quality vector PDF figures for Pilot Paper v0.3 directly from data/survey.db."""
+"""Generate publication-quality vector PDF figures from git-tracked `artifacts/`.
+
+By default reads `artifacts/slices/2026-11/figure_inputs.json` and
+`artifacts/longitudinal_summary.json` (zero SQLite dependency, enabling clean
+regeneration in GitHub Actions or any fresh clone). Pass `--from-db data/survey.db`
+to extract figure inputs directly from a local SQLite database instead.
+"""
 
 from __future__ import annotations
 
+import argparse
 import json
-import sqlite3
 from collections import Counter
 from pathlib import Path
+from typing import Any
 
 import matplotlib
 matplotlib.use("Agg")
@@ -14,10 +21,10 @@ import matplotlib.patches as mpatches
 from matplotlib.patches import FancyBboxPatch
 import numpy as np
 
-from src.db import DEFAULT_DB_PATH, connect
-
-FIG_DIR = Path("src/pilot/figures")
+FIG_DIR = Path("papers/shared/figures")
 PREVIEW_DIR = Path("data/fig_previews")
+DEFAULT_FIGURE_INPUTS = Path("artifacts/slices/2026-11/figure_inputs.json")
+DEFAULT_LONGITUDINAL_SUMMARY = Path("artifacts/longitudinal_summary.json")
 
 # Paper-specific subpackage LoC overrides for multi-paper monorepos (verified in Phase 2 audits)
 SUBPACKAGE_LOC = {
@@ -58,33 +65,29 @@ plt.rcParams.update(
 )
 
 
-def _save(fig: plt.Figure, name: str) -> None:
-    FIG_DIR.mkdir(parents=True, exist_ok=True)
-    PREVIEW_DIR.mkdir(parents=True, exist_ok=True)
-    fig.savefig(FIG_DIR / f"{name}.pdf", bbox_inches="tight", dpi=300)
-    fig.savefig(PREVIEW_DIR / f"{name}.png", bbox_inches="tight", dpi=180)
+def _save(fig: plt.Figure, name: str, out_dir: Path = FIG_DIR, save_previews: bool = False) -> None:
+    out_dir.mkdir(parents=True, exist_ok=True)
+    fig.savefig(out_dir / f"{name}.pdf", bbox_inches="tight", dpi=300)
+    if save_previews:
+        PREVIEW_DIR.mkdir(parents=True, exist_ok=True)
+        fig.savefig(PREVIEW_DIR / f"{name}.png", bbox_inches="tight", dpi=180)
     plt.close(fig)
-    print(f"Saved {FIG_DIR / f'{name}.pdf'}")
+    print(f"Saved {out_dir / f'{name}.pdf'}")
 
 
-def make_pipeline_funnel(conn: sqlite3.Connection) -> None:
-    total = conn.execute("SELECT COUNT(*) FROM papers").fetchone()[0]
-    screened = conn.execute("SELECT COUNT(*) FROM screen_results WHERE fetch_source != 'failed'").fetchone()[0]
-    candidates = conn.execute(
-        "SELECT COUNT(*) FROM screen_results WHERE has_lean_strong = 1 OR has_lean_contextual = 1"
-    ).fetchone()[0]
-    negatives = screened - candidates
-    confirmed = conn.execute(
-        "SELECT COUNT(*) FROM classifications WHERE track='lean_candidate' AND lean_usage_status='lean_contributed'"
-    ).fetchone()[0]
-    eng_math = sum(
-        1
-        for r in conn.execute(
-            "SELECT raw_json FROM classifications WHERE track='lean_candidate' AND lean_usage_status='lean_contributed'"
-        )
-        if json.loads(r[0]).get("paper_domain_role") == "engineering_math_proof"
-    )
-    audited = conn.execute("SELECT COUNT(*) FROM layer_a_audits").fetchone()[0]
+def make_pipeline_funnel(
+    fig_data: dict[str, Any],
+    out_dir: Path = FIG_DIR,
+    save_previews: bool = False,
+) -> None:
+    funnel = fig_data["funnel"]
+    total = funnel["total_papers"]
+    screened = funnel["screened"]
+    candidates = funnel["candidates"]
+    negatives = funnel["negatives"]
+    confirmed = funnel["confirmed"]
+    eng_math = funnel["eng_math"]
+    audited = funnel["audited"]
 
     fig, ax = plt.subplots(figsize=(10.4, 3.25))
     ax.set_xlim(0, 10.4)
@@ -211,10 +214,14 @@ def make_pipeline_funnel(conn: sqlite3.Connection) -> None:
         linespacing=1.32,
     )
 
-    _save(fig, "fig_pipeline_funnel")
+    _save(fig, "fig_pipeline_funnel", out_dir=out_dir, save_previews=save_previews)
 
 
-def make_category_bifurcation(conn: sqlite3.Connection) -> None:
+def make_category_bifurcation(
+    fig_data: dict[str, Any],
+    out_dir: Path = FIG_DIR,
+    save_previews: bool = False,
+) -> None:
     cat_labels = {
         "math.OC": "math.OC\n(Opt. & Control)",
         "cs.DC": "cs.DC\n(Distrib. Comp.)",
@@ -226,24 +233,9 @@ def make_category_bifurcation(conn: sqlite3.Connection) -> None:
         "cs.RO": "cs.RO\n(Robotics)",
     }
 
-    cat_total: Counter[str] = Counter()
-    cat_role: dict[str, Counter[str]] = {c: Counter() for c in cat_labels}
-
-    for r in conn.execute(
-        """
-        SELECT p.matched_target_cats_json, c.lean_usage_status, c.raw_json
-        FROM papers p
-        LEFT JOIN classifications c ON p.arxiv_id = c.arxiv_id AND c.track = 'lean_candidate'
-        """
-    ):
-        cats = json.loads(r[0])
-        is_lean = r[1] == "lean_contributed"
-        role = json.loads(r[2]).get("paper_domain_role") if is_lean and r[2] else None
-        for c in cats:
-            if c in cat_labels:
-                cat_total[c] += 1
-                if role:
-                    cat_role[c][role] += 1
+    bif = fig_data["category_bifurcation"]
+    cat_total: Counter[str] = Counter(bif["cat_total"])
+    cat_role: dict[str, Counter[str]] = {c: Counter(bif["cat_role"].get(c, {})) for c in cat_labels}
 
     # Order by total Lean % descending, then papers descending
     order = sorted(
@@ -298,20 +290,15 @@ def make_category_bifurcation(conn: sqlite3.Connection) -> None:
     ax.spines["right"].set_visible(False)
     ax.legend(loc="lower right", bbox_to_anchor=(0.99, 0.36), frameon=True, facecolor="white", edgecolor="#D1D5DB", fontsize=8.0)
 
-    _save(fig, "fig_category_bifurcation")
+    _save(fig, "fig_category_bifurcation", out_dir=out_dir, save_previews=save_previews)
 
 
-def make_paradigms_and_loc(conn: sqlite3.Connection) -> None:
-    rows = conn.execute(
-        """
-        SELECT p.arxiv_id, p.primary_category, c.authoring_paradigm, c.verification_tier,
-               c.raw_json, a.repos_json
-        FROM papers p
-        JOIN classifications c ON p.arxiv_id = c.arxiv_id
-        LEFT JOIN artifact_profiles a ON p.arxiv_id = a.arxiv_id
-        WHERE c.track='lean_candidate' AND c.lean_usage_status='lean_contributed'
-        """
-    ).fetchall()
+def make_paradigms_and_loc(
+    fig_data: dict[str, Any],
+    out_dir: Path = FIG_DIR,
+    save_previews: bool = False,
+) -> None:
+    rows = fig_data["confirmed_lean_papers"]
 
     # Left panel: Paradigm x Verification Tier
     par_order = [
@@ -329,12 +316,11 @@ def make_paradigms_and_loc(conn: sqlite3.Connection) -> None:
     loc_items = []
     for r in rows:
         aid = r["arxiv_id"]
-        cls = json.loads(r["raw_json"])
-        role = cls.get("paper_domain_role")
+        role = r.get("paper_domain_role")
         par = r["authoring_paradigm"]
         repos = [
             rp
-            for rp in (json.loads(r["repos_json"]) if r["repos_json"] else [])
+            for rp in r.get("lean_repos", [])
             if rp.get("lean_file_count", 0) > 0 and rp["repo"] not in SKIP_CITED
         ]
         if not repos:
@@ -342,7 +328,7 @@ def make_paradigms_and_loc(conn: sqlite3.Connection) -> None:
         if aid in SUBPACKAGE_LOC:
             loc, loc_str = SUBPACKAGE_LOC[aid]
         else:
-            loc = repos[0].get("lean_static_counts", {}).get("loc_nonempty", 0)
+            loc = repos[0].get("loc_nonempty", 0)
             loc_str = f"{loc/1000:.1f}k" if loc >= 10000 else f"{loc:,}"
         if loc <= 0:
             continue
@@ -425,24 +411,18 @@ def make_paradigms_and_loc(conn: sqlite3.Connection) -> None:
     ax2.legend(handles=handles, loc="lower right", frameon=True, facecolor="white", edgecolor="#D1D5DB", fontsize=7.2)
 
     plt.tight_layout(w_pad=2.0)
-    _save(fig, "fig_paradigms_and_loc")
+    _save(fig, "fig_paradigms_and_loc", out_dir=out_dir, save_previews=save_previews)
 
 
-def make_phase2_heatmap(conn: sqlite3.Connection) -> None:
-    rows = conn.execute(
-        """
-        SELECT l.arxiv_id, l.raw_json, p.primary_category, c.authoring_paradigm
-        FROM layer_a_audits l
-        JOIN papers p ON l.arxiv_id = p.arxiv_id
-        LEFT JOIN classifications c ON l.arxiv_id = c.arxiv_id
-        """
-    ).fetchall()
-
+def make_phase2_heatmap(
+    fig_data: dict[str, Any],
+    out_dir: Path = FIG_DIR,
+    save_previews: bool = False,
+) -> None:
     audits = []
-    for r in rows:
-        a = json.loads(r["raw_json"])
-        a["primary_category"] = r["primary_category"]
-        a["par"] = (r["authoring_paradigm"] or "?").split("_")[0]
+    for raw in fig_data["layer_a_audits"]:
+        a = dict(raw)
+        a["par"] = (a.get("authoring_paradigm") or "?").split("_")[0]
         audits.append(a)
 
     # Order: material_undisclosed_drift_or_risk (Paper2Lean) at top, then partial, then mostly_faithful, then high_faithful
@@ -574,13 +554,16 @@ def make_phase2_heatmap(conn: sqlite3.Connection) -> None:
         fontweight="bold",
     )
 
-    _save(fig, "fig_phase2_heatmap")
+    _save(fig, "fig_phase2_heatmap", out_dir=out_dir, save_previews=save_previews)
 
 
-def make_longitudinal_curve(summary_path: Path = Path("data/longitudinal_summary.json")) -> None:
+def make_longitudinal_curve(
+    summary_path: Path = DEFAULT_LONGITUDINAL_SUMMARY,
+    out_dir: Path = FIG_DIR,
+    save_previews: bool = False,
+) -> None:
     if not summary_path.exists():
-        print(f"Skipping fig_longitudinal_curve ({summary_path} not found)")
-        return
+        raise FileNotFoundError(f"Longitudinal summary JSON not found: {summary_path}")
     data = json.loads(summary_path.read_text())
     slices = data["slices"]
     t0, t1, t2 = slices[0], slices[1], slices[2]
@@ -636,22 +619,18 @@ def make_longitudinal_curve(summary_path: Path = Path("data/longitudinal_summary
     )
 
     # Direct annotations with carefully separated vertical offsets (zero overlap)
-    # Beyond-Lean control
     ax1.text(0.0, bey_pct[0] - 0.10, f"{bey_pct[0]:.2f}% (n={t0['stage2_beyond_any']})", ha="left", va="top", fontsize=7.6, color="#475569")
     ax1.text(1.0, bey_pct[1] + 0.07, f"{bey_pct[1]:.2f}% (n={t1['stage2_beyond_any']})", ha="center", va="bottom", fontsize=7.6, color="#475569")
     ax1.text(2.05, bey_pct[2] - 0.05, f"{bey_pct[2]:.2f}%\n(n={t2['stage2_beyond_any']})", ha="left", va="center", fontsize=7.6, color="#475569")
 
-    # Stage-2 Lean candidates
     ax1.text(-0.02, cand_pct[0] + 0.14, f"{cand_pct[0]:.2f}% (n={t0['stage2_lean_candidates']})", ha="left", va="bottom", fontsize=7.5, color="#6D28D9")
     ax1.text(0.95, cand_pct[1] + 0.06, f"{cand_pct[1]:.2f}% (n={t1['stage2_lean_candidates']})", ha="right", va="bottom", fontsize=7.6, color="#6D28D9")
     ax1.text(2.05, cand_pct[2] + 0.08, f"{cand_pct[2]:.2f}%\n(n={t2['stage2_lean_candidates']})", ha="left", va="center", fontsize=7.6, fontweight="bold", color="#6D28D9")
 
-    # Confirmed Lean v1
     ax1.text(0.0, -0.08, "0.00% (0 v1)\n[0.04% latest]", ha="center", va="top", fontsize=7.4, fontweight="bold", color="#1E3A8A")
     ax1.text(1.0, -0.08, "0.15% (5 v1)\n[0.21% latest]", ha="center", va="top", fontsize=7.4, fontweight="bold", color="#1D4ED8")
     ax1.text(2.05, v1_pct[2] - 0.04, "0.95%\n(n=39)", ha="left", va="center", fontsize=8.0, fontweight="bold", color="#1D4ED8")
 
-    # Inflection callout badge (placed in open upper-middle band, arrow pointing cleanly to steep T1->T2 slope)
     ax1.annotate(
         "6.3× jump in 6 mo\n(median LoC: 749 → 23.9k;\nAI discl.: 40% → 76.9%)",
         xy=(1.58, 0.59),
@@ -685,7 +664,6 @@ def make_longitudinal_curve(summary_path: Path = Path("data/longitudinal_summary
         ("eess.SY", "#7C3AED", "v", "--", 1.7, "eess.SY (0.41%)"),
         ("eess.SP", "#6B7280", "P", ":", 1.5, "eess.SP (0.24%→0%)"),
     ]
-    # Explicit right-hand y positions to prevent any collision between cs.DC (1.79%) and cs.IT (1.78%)
     label_y_override = {
         "math.OC": 2.62,
         "cs.DC":   1.91,
@@ -703,11 +681,9 @@ def make_longitudinal_curve(summary_path: Path = Path("data/longitudinal_summary
         if abs(ly - vals[2]) > 0.05:
             ax2.plot([2.01, 2.05], [vals[2], ly], color=col, lw=0.8, alpha=0.7)
 
-    # Highlight cs.NI & cs.RO flat zero line
     ax2.plot(x, [0.0, 0.0, 0.0], color="#9CA3AF", linestyle="-", linewidth=1.6, zorder=2)
     ax2.text(2.06, -0.05, "cs.NI & cs.RO (0.00%)", ha="left", va="center", fontsize=7.6, color="#6B7280")
 
-    # Small note for T1 early-adopter peak
     ax2.annotate(
         "Earliest v1 adopters\nin May 2026: cs.CR (0.44%),\ncs.DC (0.32%), eess.SP (0.24%)",
         xy=(1.0, 0.44),
@@ -731,17 +707,42 @@ def make_longitudinal_curve(summary_path: Path = Path("data/longitudinal_summary
     ax2.spines["right"].set_visible(False)
 
     plt.tight_layout(w_pad=1.8)
-    _save(fig, "fig_longitudinal_curve")
+    _save(fig, "fig_longitudinal_curve", out_dir=out_dir, save_previews=save_previews)
 
 
 def main() -> None:
-    conn = connect(DEFAULT_DB_PATH)
-    make_pipeline_funnel(conn)
-    make_category_bifurcation(conn)
-    make_paradigms_and_loc(conn)
-    make_phase2_heatmap(conn)
-    make_longitudinal_curve()
-    conn.close()
+    ap = argparse.ArgumentParser(
+        description="Generate vector PDF figures from git-tracked artifacts/ (or optional --from-db)."
+    )
+    ap.add_argument("--figure-inputs", type=Path, default=DEFAULT_FIGURE_INPUTS)
+    ap.add_argument("--longitudinal-summary", type=Path, default=DEFAULT_LONGITUDINAL_SUMMARY)
+    ap.add_argument(
+        "--from-db",
+        type=Path,
+        default=None,
+        help="Optional SQLite DB path (e.g. data/survey.db) to extract figure inputs directly.",
+    )
+    ap.add_argument("--out-dir", type=Path, default=FIG_DIR)
+    ap.add_argument("--save-previews", action="store_true", help="Also write PNG previews to data/fig_previews/.")
+    args = ap.parse_args()
+
+    if args.from_db is not None:
+        from src.export_artifacts import build_figure_inputs
+
+        fig_data = build_figure_inputs(args.from_db, slice_id="from-db")
+    else:
+        if not args.figure_inputs.exists():
+            raise FileNotFoundError(
+                f"Figure inputs JSON not found: {args.figure_inputs}. "
+                "Run `uv run python -m src.export_artifacts --all` or pass `--from-db data/survey.db`."
+            )
+        fig_data = json.loads(args.figure_inputs.read_text())
+
+    make_pipeline_funnel(fig_data, out_dir=args.out_dir, save_previews=args.save_previews)
+    make_category_bifurcation(fig_data, out_dir=args.out_dir, save_previews=args.save_previews)
+    make_paradigms_and_loc(fig_data, out_dir=args.out_dir, save_previews=args.save_previews)
+    make_phase2_heatmap(fig_data, out_dir=args.out_dir, save_previews=args.save_previews)
+    make_longitudinal_curve(args.longitudinal_summary, out_dir=args.out_dir, save_previews=args.save_previews)
     print("All 5 figures generated successfully.")
 
 

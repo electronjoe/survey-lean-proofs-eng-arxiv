@@ -441,10 +441,10 @@
       </p>
       <div class="meta-bar">
         <span class="meta-pill">Repo: <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv" target="_blank" rel="noopener">electronjoe/survey-lean-proofs-eng-arxiv</a></span>
-        <span class="meta-pill">Pilot PDF: <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/src/pilot/main.pdf" target="_blank" rel="noopener">src/pilot/main.pdf</a></span>
-        <span class="meta-pill">LaTeX Source: <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/src/pilot/main.tex" target="_blank" rel="noopener">src/pilot/main.tex</a></span>
-        <span class="meta-pill">BibTeX: <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/src/pilot/references.bib" target="_blank" rel="noopener">references.bib</a></span>
-        <span class="meta-pill">Taxonomy Notes: <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/proof-methods.md" target="_blank" rel="noopener">proof-methods.md</a></span>
+        <span class="meta-pill">Pilot PDF (CI): <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/releases/download/papers-latest/arxiv-empirical.pdf" target="_blank" rel="noopener">arxiv-empirical.pdf</a></span>
+        <span class="meta-pill">LaTeX Source: <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/papers/arxiv-empirical/main.tex" target="_blank" rel="noopener">papers/arxiv-empirical/main.tex</a></span>
+        <span class="meta-pill">BibTeX: <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/papers/shared/references.bib" target="_blank" rel="noopener">papers/shared/references.bib</a></span>
+        <span class="meta-pill">Taxonomy Notes: <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/docs/proof-methods.md" target="_blank" rel="noopener">docs/proof-methods.md</a></span>
       </div>
     </header>
 
@@ -639,7 +639,7 @@
           <li>
             <strong>1-Year arXiv Ban for Unverified LLM Artifacts (Immediate BibTeX Red Flag!):</strong>
             arXiv enforces 1-year bans for incontrovertible evidence of unchecked LLM output—especially <strong>hallucinated or placeholder citations</strong>.
-            In <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/src/pilot/references.bib#L34-L56" target="_blank" rel="noopener"><code>src/pilot/references.bib#L34-L56</code></a>,
+            In <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/papers/shared/references.bib#L34-L56" target="_blank" rel="noopener"><code>papers/shared/references.bib#L34-L56</code></a>,
             three background citations currently contain placeholder author strings:
             <code>{Lean Atlas Authors}</code> (<code>2604.16347</code>), <code>{Axle Authors}</code> (<code>2606.26442</code>), and
             <code>{ProofBridge Authors}</code> (<code>2510.15681</code>).
@@ -684,7 +684,7 @@
     <section id="blueprints">
       <h2><span class="sec-num">4</span> Trimming &amp; Extension Blueprints by Paper Variant</h2>
       <p>
-        Each target track requires reshaping <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/src/pilot/main.tex" target="_blank" rel="noopener"><code>src/pilot/main.tex</code></a>
+        Each target track requires reshaping <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/papers/arxiv-empirical/main.tex" target="_blank" rel="noopener"><code>papers/arxiv-empirical/main.tex</code></a>
         differently rather than submitting the 18-page pilot draft verbatim.
       </p>
 
@@ -700,10 +700,10 @@
               <li>Move the 39-paper inventory table (Table&nbsp;5) and low-level <code>file:line</code> audit dumps to an online GitHub/Zenodo supplement.</li>
               <li>Condense OAI-PMH / HTML5 scraping mechanics and <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/src/calibrate_recall.py" target="_blank" rel="noopener">recall calibration</a> to a single crisp methods box.</li>
               <li>Remove internal milestone framing (<code>Pilot v1 / v2 / v0.4</code>) and USC ANRG lab-anchor rationale.</li>
-              <li>Limit visuals to 3 flagship figures:
-                <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/src/pilot/figures/fig_longitudinal_curve.pdf" target="_blank" rel="noopener">longitudinal curve</a>,
-                <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/src/pilot/figures/fig_category_bifurcation.pdf" target="_blank" rel="noopener">category bifurcation</a>, and
-                <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/src/pilot/figures/fig_phase2_heatmap.pdf" target="_blank" rel="noopener">Layer-A heatmap</a>.
+              <li>Limit visuals to 3 flagship figures (built from <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/artifacts/slices/2026-11/figure_inputs.json" target="_blank" rel="noopener"><code>artifacts/</code></a> in <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/actions/workflows/build-papers.yml" target="_blank" rel="noopener">GitHub Actions</a>):
+                <code>fig_longitudinal_curve.pdf</code>,
+                <code>fig_category_bifurcation.pdf</code>, and
+                <code>fig_phase2_heatmap.pdf</code>.
               </li>
             </ul>
           </div>
@@ -711,7 +711,7 @@
             <div class="col-label col-extend">What to Add / Extend</div>
             <ul>
               <li>Add a concise <strong>"Engineering Lab Playbook"</strong> sidebar adapting the Five-Gate pipeline &amp; decision matrix from
-                <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/proof-methods.md#L203-L268" target="_blank" rel="noopener"><code>proof-methods.md#L203-L268</code></a>.
+                <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/docs/proof-methods.md#L203-L268" target="_blank" rel="noopener"><code>docs/proof-methods.md#L203-L268</code></a>.
               </li>
               <li>Elevate the central narrative hook: <em>why optimization &amp; information theory adopted Lean overnight while networking, signal processing, and robotics remained at 0%</em>.</li>
               <li>Add an explicit cover note (required by CACM) explaining why every computing/ECE researcher &amp; reviewer needs to understand Type&nbsp;(i) vs. Type&nbsp;(ii) drift now.</li>
@@ -806,7 +806,7 @@
             <div class="col-label col-extend">What to Add / Extend</div>
             <ul>
               <li>Include a self-contained <strong>pedagogical tutorial on Lean&nbsp;4 &amp; Mathlib for ECE/engineering researchers</strong> (worked example of a control/optimization theorem, showing junk-value pitfalls, non-vacuity witnesses, <code>#print axioms</code>, and <code>comparator</code> CI).</li>
-              <li>Integrate the full 12-mode taxonomy, defense-in-depth solutions, and Five-Gate workflow from <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/proof-methods.md" target="_blank" rel="noopener"><code>proof-methods.md</code></a> alongside multi-quarter longitudinal empirical data (<code>T0</code>–<code>T3</code> + <code>cs.LG</code>/<code>stat.ML</code> + sandboxed build reproducibility).</li>
+              <li>Integrate the full 12-mode taxonomy, defense-in-depth solutions, and Five-Gate workflow from <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/docs/proof-methods.md" target="_blank" rel="noopener"><code>docs/proof-methods.md</code></a> alongside multi-quarter longitudinal empirical data (<code>T0</code>–<code>T3</code> + <code>cs.LG</code>/<code>stat.ML</code> + sandboxed build reproducibility).</li>
             </ul>
           </div>
         </div>
@@ -825,9 +825,9 @@
         <li>
           <span class="check-box urgent"></span>
           <div>
-            <strong>[URGENT] Audit &amp; Fix All BibTeX Entries in <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/src/pilot/references.bib" target="_blank" rel="noopener"><code>src/pilot/references.bib</code></a>:</strong>
+            <strong>[URGENT] Audit &amp; Fix All BibTeX Entries in <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/papers/shared/references.bib" target="_blank" rel="noopener"><code>papers/shared/references.bib</code></a>:</strong>
             Replace placeholder authors (<code>{Lean Atlas Authors}</code>, <code>{Axle Authors}</code>, <code>{ProofBridge Authors}</code> at
-            <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/src/pilot/references.bib#L34-L56" target="_blank" rel="noopener">lines 34–56</a>)
+            <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/papers/shared/references.bib#L34-L56" target="_blank" rel="noopener">lines 34–56</a>)
             and verify every eprint ID, title, and author list across all 54 citations against live arXiv/DOI records to eliminate any risk of arXiv moderation bans or reviewer flags.
           </div>
         </li>
@@ -837,8 +837,8 @@
             <strong>[URGENT] Human-Verify Every Named Negative Audit Finding &amp; Pin Commit SHAs:</strong>
             Before publishing critiques of named preprints—especially <code>2611.26272</code> (<em>Paper2Lean</em> / <code>OptPaper-20</code>),
             <code>2611.04876</code>, <code>2605.14610</code>, and <code>2605.02856</code>
-            (see <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/reports/phase2_layer_a_audit.md" target="_blank" rel="noopener"><code>reports/phase2_layer_a_audit.md</code></a> and
-            <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/reports/slice_2026_05_phase2_audit.md" target="_blank" rel="noopener"><code>reports/slice_2026_05_phase2_audit.md</code></a>)—human authors
+            (see <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/reports/slices/2026-11/phase2_layer_a_audit.md" target="_blank" rel="noopener"><code>reports/slices/2026-11/phase2_layer_a_audit.md</code></a> and
+            <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/reports/slices/2026-05/phase2_layer_a_audit.md" target="_blank" rel="noopener"><code>reports/slices/2026-05/phase2_layer_a_audit.md</code></a>)—human authors
             must directly verify every cited <code>file:line</code> claim, record exact arXiv versions (<code>v1</code>) and Git commit SHAs,
             maintain strictly factual tone, and consider <strong>courtesy pre-publication notification</strong> to those authors.
           </div>
@@ -889,7 +889,7 @@
           <div class="phase-time">Phase 0 &bull; Next 1–2 Weeks (Late Nov – Early Dec 2026)</div>
           <h4>Integrity &amp; Hygiene Gate</h4>
           <ul>
-            <li>Audit &amp; fix all entries in <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/src/pilot/references.bib" target="_blank" rel="noopener"><code>references.bib</code></a>.</li>
+            <li>Audit &amp; fix all entries in <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/papers/shared/references.bib" target="_blank" rel="noopener"><code>papers/shared/references.bib</code></a>.</li>
             <li>Human-verify all named Layer-A findings (<code>2611.26272</code>, <code>2611.04876</code>, T1 repos) + pin commit SHAs.</li>
             <li>Optional courtesy outreach to authors of flagged preprints.</li>
             <li>Add explicit AI-Use &amp; Accountability statement.</li>
@@ -935,28 +935,33 @@
           <tbody>
             <tr>
               <td>Pilot LaTeX Manuscript</td>
-              <td><a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/src/pilot/main.tex" target="_blank" rel="noopener"><code>src/pilot/main.tex</code></a> &bull; <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/src/pilot/main.pdf" target="_blank" rel="noopener"><code>main.pdf</code></a></td>
-              <td>Current 18-page v0.4 draft (with self-contained 12-mode Section&nbsp;2); base for trimming/extending variants.</td>
+              <td><a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/papers/arxiv-empirical/main.tex" target="_blank" rel="noopener"><code>papers/arxiv-empirical/main.tex</code></a> &bull; <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/releases/download/papers-latest/arxiv-empirical.pdf" target="_blank" rel="noopener"><code>arxiv-empirical.pdf</code> (CI release)</a></td>
+              <td>Current 18-page v0.4 draft (with self-contained 12-mode Section&nbsp;2); base for trimming/extending variants. PDF built automatically in <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/actions/workflows/build-papers.yml" target="_blank" rel="noopener">GitHub Actions</a>.</td>
             </tr>
             <tr>
               <td>Bibliography (Needs Audit)</td>
-              <td><a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/src/pilot/references.bib" target="_blank" rel="noopener"><code>src/pilot/references.bib</code></a></td>
-              <td>Fix placeholder author entries at <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/src/pilot/references.bib#L34-L56" target="_blank" rel="noopener">lines 34–56</a> and verify all 54 citations.</td>
+              <td><a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/papers/shared/references.bib" target="_blank" rel="noopener"><code>papers/shared/references.bib</code></a></td>
+              <td>Fix placeholder author entries at <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/papers/shared/references.bib#L34-L56" target="_blank" rel="noopener">lines 34–56</a> and verify all 54 citations.</td>
             </tr>
             <tr>
               <td>Full Taxonomy &amp; Five-Gate Playbook</td>
-              <td><a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/proof-methods.md" target="_blank" rel="noopener"><code>proof-methods.md</code></a></td>
+              <td><a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/docs/proof-methods.md" target="_blank" rel="noopener"><code>docs/proof-methods.md</code></a></td>
               <td>Source material for the magazine "Engineering Playbook" sidebar and <em>Proc. IEEE</em> tutorial variant.</td>
             </tr>
             <tr>
               <td>Layer-A Audit Reports (T2 &amp; T1)</td>
-              <td><a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/reports/phase2_layer_a_audit.md" target="_blank" rel="noopener"><code>reports/phase2_layer_a_audit.md</code></a> &bull; <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/reports/slice_2026_05_phase2_audit.md" target="_blank" rel="noopener"><code>slice_2026_05_phase2_audit.md</code></a></td>
+              <td><a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/reports/slices/2026-11/phase2_layer_a_audit.md" target="_blank" rel="noopener"><code>reports/slices/2026-11/phase2_layer_a_audit.md</code></a> &bull; <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/reports/slices/2026-05/phase2_layer_a_audit.md" target="_blank" rel="noopener"><code>2026-05/phase2_layer_a_audit.md</code></a></td>
               <td>Detailed theorem-by-theorem tables for human IRR calibration and verification of named findings.</td>
             </tr>
             <tr>
               <td>Longitudinal &amp; Recall Reports</td>
-              <td><a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/reports/longitudinal_analysis.md" target="_blank" rel="noopener"><code>reports/longitudinal_analysis.md</code></a> &bull; <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/reports/recall_calibration.md" target="_blank" rel="noopener"><code>recall_calibration.md</code></a></td>
+              <td><a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/reports/longitudinal_analysis.md" target="_blank" rel="noopener"><code>reports/longitudinal_analysis.md</code></a> &bull; <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/reports/slices/2026-11/recall_calibration.md" target="_blank" rel="noopener"><code>reports/slices/2026-11/recall_calibration.md</code></a></td>
               <td>Metascience evidence (OAI-PMH survivorship rescue, <code>P1-retro</code> cases, 0/200 GitHub false-negative calibration).</td>
+            </tr>
+            <tr>
+              <td>Structured Artifacts &amp; Slice Manifest</td>
+              <td><a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/artifacts/slices/manifest.json" target="_blank" rel="noopener"><code>artifacts/slices/manifest.json</code></a> &bull; <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/artifacts/longitudinal_summary.json" target="_blank" rel="noopener"><code>artifacts/longitudinal_summary.json</code></a></td>
+              <td>Version-controlled, license-safe JSON datasets enabling zero-DB figure regeneration and double-blind exports.</td>
             </tr>
             <tr>
               <td>Agent Workflow Prompts &amp; Schemas</td>

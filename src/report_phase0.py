@@ -10,7 +10,7 @@ from pathlib import Path
 from src.db import DEFAULT_DB_PATH, connect
 
 
-def generate_report(db_path: Path = DEFAULT_DB_PATH, out_path: Path = Path("reports/phase0_summary.md")) -> None:
+def generate_report(db_path: Path = DEFAULT_DB_PATH, out_path: Path = Path("reports/slices/2026-11/phase0.md")) -> None:
     conn = connect(db_path)
     total_papers = conn.execute("SELECT COUNT(*) FROM papers").fetchone()[0]
     screened = conn.execute("SELECT COUNT(*) FROM screen_results").fetchone()[0]
@@ -179,7 +179,7 @@ def generate_report(db_path: Path = DEFAULT_DB_PATH, out_path: Path = Path("repo
 def main() -> None:
     ap = argparse.ArgumentParser(description="Generate Phase 0 summary markdown report.")
     ap.add_argument("--db", type=Path, default=DEFAULT_DB_PATH)
-    ap.add_argument("--out", type=Path, default=Path("reports/phase0_summary.md"))
+    ap.add_argument("--out", type=Path, default=Path("reports/slices/2026-11/phase0.md"))
     args = ap.parse_args()
     generate_report(db_path=args.db, out_path=args.out)
 

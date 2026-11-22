@@ -1,33 +1,33 @@
 # Survey Progress & Next Steps
 
 **Last updated:** 2026-11-22  
-**Status:** **Longitudinal Baseline Slices (T0 Nov 2025 & T1 May 2026) + Pilot Paper v0.4 COMPLETE** (**9,837** preprints across 3 matched 19-day 8-category slices; 99.68% full-text coverage; contemporaneous `v1` adoption **0.00% → 0.15% → 0.95%** vs. flat Beyond-Lean control **1.52% → 1.33% → 1.17%**; 3 retroactive `v2` Lean additions identified; 20 total Layer-A audited repos; compiled LaTeX Pilot Paper v0.4).
+**Status:** **Clean Multi-Variant Repository Layout + Longitudinal Baseline Slices (T0 Nov 2025 & T1 May 2026) + Pilot Paper v0.4 COMPLETE** (**9,837** preprints across 3 matched 19-day 8-category slices; 99.68% full-text coverage; contemporaneous `v1` adoption **0.00% → 0.15% → 0.95%** vs. flat Beyond-Lean control **1.52% → 1.33% → 1.17%**; 3 retroactive `v2` Lean additions identified; 20 total Layer-A audited repos; zero-PDF Git layout with automated CI figure & LaTeX builds).
 
 ---
 
 ## 1. Completed Milestones
 
 - [x] **Reference Taxonomy & Scope Grounding**
-  - Archived taxonomy of 12 failure modes, 5 verification gates, and 4 Lean↔LaTeX authoring paradigms in [`proof-methods.md`](../proof-methods.md).
+  - Archived taxonomy of 12 failure modes, 5 verification gates, and 4 Lean↔LaTeX authoring paradigms in [`docs/proof-methods.md`](proof-methods.md).
   - Grounded Pilot v1 in USC ANRG's 6 core categories (`cs.DC`, `cs.NI`, `cs.IT`, `eess.SY`, `cs.CR`, `cs.RO`) and expanded Pilot v2 per Bhaskar's feedback ([`docs/research_notes_and_todo.md`](research_notes_and_todo.md)) to **`eess.SP`** and **`math.OC`**.
 - [x] **Phase 0 (v1 + v2): Zero-Token Deterministic Pipeline**
   - Upgraded [`src/ingest_arxiv.py`](../src/ingest_arxiv.py) to arXiv's official OAI-PMH `arXivRaw` harvester (`oaipmh.arxiv.org/oai`) and updated [`src/db.py`](../src/db.py) to set-union `matched_target_cats_json` on conflict (`4,104` unique papers, Nov 1 – Nov 19, 2026; `4,060` excluding pure-TCS primary categories).
   - [`src/fetch_and_screen.py`](../src/fetch_and_screen.py) — **99.83% full-text coverage** (3,849 HTML5, 248 PDF, 7 HTTP 404s; 98.7% corpus reduction; **3.4×** recall over metadata-only: 55 Lean candidates vs 16 metadata-only).
   - [`src/profile_artifacts.py`](../src/profile_artifacts.py) — strictly static LaTeX + **GitHub** (up to 600 MB, including `leanEthereum/leanVM`), **GitLab** (including self-hosted hosts), and **Zenodo** REST API static archive profiler (`24` unique primary Lean repos scanned, **4.17M LoC**).
-  - [`src/calibrate_recall.py`](../src/calibrate_recall.py) — Stage-2 recall calibration across **200** random GitHub-linked negatives (`333` unique GitHub repos via `gh api` recursive trees) + **100** non-GitHub negatives → **0 / 200** missed Lean repos (**1.49%** 95% Clopper–Pearson upper bound; [`reports/recall_calibration.md`](../reports/recall_calibration.md)).
+  - [`src/calibrate_recall.py`](../src/calibrate_recall.py) — Stage-2 recall calibration across **200** random GitHub-linked negatives (`333` unique GitHub repos via `gh api` recursive trees) + **100** non-GitHub negatives → **0 / 200** missed Lean repos (**1.49%** 95% Clopper–Pearson upper bound; [`reports/slices/2026-11/recall_calibration.md`](../reports/slices/2026-11/recall_calibration.md)).
 - [x] **Phase 1 (v1 + v2): Parallel `run_workflow` Classification & Unified SQLite Reporting**
   - Classified all 55 Lean candidates (`flash` read-only `research` agents; Lean-only in v2, skipping Beyond-Lean LLM spend) + re-classified Zenodo/`leanVM` upgrades (`2611.15201`, `2611.15128`, `2611.10810` → all upgraded to `Tier3_Gold`).
-  - Updated [`src/report_phase1.py`](../src/report_phase1.py) to report across all SQLite rows → [`reports/phase1_survey.md`](../reports/phase1_survey.md).
+  - Updated [`src/report_phase1.py`](../src/report_phase1.py) to report across all SQLite rows → [`reports/slices/2026-11/phase1_survey.md`](../reports/slices/2026-11/phase1_survey.md).
 - [x] **Phase 2 (v1 + v2): Expanded Adversarial Layer-A Semantic Fidelity Audit (`n = 17`)**
-  - Expanded [`src/prepare_phase2_audit.py`](../src/prepare_phase2_audit.py) (with PDF fallback + `--unaudited-only`) and ran 9 new parallel `pro` adversarial referee audits alongside the original 8 → **17 audited `engineering_math_proof` repos** ([`reports/phase2_layer_a_audit.md`](../reports/phase2_layer_a_audit.md)).
-  - Compiled Pilot Paper v0.3: [`src/pilot/main.tex`](../src/pilot/main.tex) → [`src/pilot/main.pdf`](../src/pilot/main.pdf).
-
+  - Expanded [`src/prepare_phase2_audit.py`](../src/prepare_phase2_audit.py) (with PDF fallback + `--unaudited-only`) and ran 9 new parallel `pro` adversarial referee audits alongside the original 8 → **17 audited `engineering_math_proof` repos** ([`reports/slices/2026-11/phase2_layer_a_audit.md`](../reports/slices/2026-11/phase2_layer_a_audit.md)).
 - [x] **Longitudinal Baseline Slices (T0: Nov 1–19, 2025 & T1: May 1–19, 2026) & Pilot Paper v0.4**
   - Upgraded [`src/ingest_arxiv.py`](../src/ingest_arxiv.py) with single-pass bias-free multi-slice OAI-PMH harvesting (omitting `until` for historical windows so later-revised preprints are never dropped — rescuing **35.4%** of Nov 2025 and **31.8%** of May 2026 papers) and verified counts against `arxiv.org/list`.
   - Screened, statically profiled, and `flash`-classified **T0 (`data/slice_2025_11.db`, 2,435 papers, 99.43% coverage)** and **T1 (`data/slice_2026_05.db`, 3,298 papers, 99.70% coverage)** without modifying `data/survey.db`.
   - Verified `v1` vs. `v_latest` on all revised historical Lean papers, uncovering **3 retroactive post-hoc autoformalizations** (`2511.15517`, `2605.09552`, `2605.19531`) totaling 374.6k LoC added 5–7 months after initial posting.
-  - Audited all **3** cloned T1 `engineering_math_proof` repos (`pro` tier) → [`reports/slice_2026_05_phase2_audit.md`](../reports/slice_2026_05_phase2_audit.md) (total audited cohort: **20 repos**).
-  - Built [`src/report_longitudinal.py`](../src/report_longitudinal.py) → [`reports/longitudinal_analysis.md`](../reports/longitudinal_analysis.md), generated [`src/pilot/figures/fig_longitudinal_curve.pdf`](../src/pilot/figures/fig_longitudinal_curve.pdf), and compiled Pilot Paper v0.4 ([`src/pilot/main.tex`](../src/pilot/main.tex) → [`src/pilot/main.pdf`](../src/pilot/main.pdf)).
+  - Audited all **3** cloned T1 `engineering_math_proof` repos (`pro` tier) → [`reports/slices/2026-05/phase2_layer_a_audit.md`](../reports/slices/2026-05/phase2_layer_a_audit.md) (total audited cohort: **20 repos**).
+  - Built [`src/report_longitudinal.py`](../src/report_longitudinal.py) → [`reports/longitudinal_analysis.md`](../reports/longitudinal_analysis.md) + [`artifacts/longitudinal_summary.json`](../artifacts/longitudinal_summary.json), decoupled [`src/generate_figures.py`](../src/generate_figures.py) from SQLite using git-tracked `artifacts/`, and promoted the manuscript to [`papers/arxiv-empirical/main.tex`](../papers/arxiv-empirical/main.tex) (compiled PDFs published automatically via [`build-papers.yml`](../.github/workflows/build-papers.yml) and the [`papers-latest` release](https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/releases/download/papers-latest/arxiv-empirical.pdf)).
+- [x] **Clean Multi-Variant Repository Reorganization & CI/Open-Science Scaffolding**
+  - Executed [`docs/reorg_plan.md`](reorg_plan.md): promoted `papers/shared/` & `papers/arxiv-empirical/` with zero PDFs in Git, added [`src/export_artifacts.py`](../src/export_artifacts.py) + [`artifacts/slices/manifest.json`](../artifacts/slices/manifest.json), normalized `reports/slices/{2025-11,2026-05,2026-11}/`, added [`scripts/export_blind_artifact.py`](../scripts/export_blind_artifact.py), [`sandbox/README.md`](../sandbox/README.md), [`tests/test_patterns.py`](../tests/test_patterns.py), `LICENSE`, `CITATION.cff`, and GitHub Actions workflows ([`build-papers.yml`](../.github/workflows/build-papers.yml), [`ci.yml`](../.github/workflows/ci.yml)).
 
 ---
 
@@ -49,18 +49,21 @@
 ## 3. Prioritized Remaining Next Steps
 
 1. **Sandboxed Lean Kernel Verification in Docker (`lake build` + `#print axioms`):**
-   - Execute isolated clean-room builds on compact engineering repos (`<5k` LoC: `Lean-SysID`, `bic-public`, `CoprimeFrobenius`, `discrete-modified-gradient-lean`, `trustbound`, `ExactShortestPathsAndFlowsOnPlanarGraphs`, `zenodo/24127514`, `Ku-PATP-code-supplement`, `qanary-k-stage-composition`) to measure out-of-the-box reproducibility.
-2. **Scoped Machine Learning Theory Arm (`cs.LG` / `stat.ML`):**
+   - Execute isolated clean-room builds under [`sandbox/`](../sandbox/README.md) on compact engineering repos (`<5k` LoC: `Lean-SysID`, `bic-public`, `CoprimeFrobenius`, `discrete-modified-gradient-lean`, `trustbound`, `ExactShortestPathsAndFlowsOnPlanarGraphs`, `zenodo/24127514`, `Ku-PATP-code-supplement`, `qanary-k-stage-composition`) and archive JSON results in [`artifacts/sandbox_builds/`](../artifacts/sandbox_builds/README.md).
+2. **Human IRR & Commit-SHA Verification:**
+   - Record human IRR calibration labels and pinned commit SHAs under [`artifacts/human_annotations/`](../artifacts/human_annotations/README.md) and audit placeholder BibTeX entries in [`papers/shared/references.bib`](../papers/shared/references.bib).
+3. **Scoped Machine Learning Theory Arm (`cs.LG` / `stat.ML`):**
    - Run a 1-week window or stratified 1,000-paper sample of `cs.LG`/`stat.ML` to benchmark ML theory against `math.OC` and `cs.IT`.
-3. **Standalone Periodic Runner (`agy -p`):**
-   - Wrap the classifier prompt + JSON schema in `src/classify_cli.py` for unattended quarterly longitudinal snapshots.
+4. **Standalone Periodic Runner (`agy -p`):**
+   - Wrap the classifier prompt + JSON schema in `src/classify_cli.py` for unattended quarterly longitudinal snapshots (`T3: 2027-02`).
 
 ---
 
 ## 4. Reproducing / Extending the Pipeline
 
 ```bash
-uv sync
+uv sync --dev
+uv run pytest
 
 # 1. Ingest arXiv metadata via official OAI-PMH arXivRaw harvester
 uv run python -m src.ingest_arxiv --source oai --categories eess.SP math.OC --since 2026-11-01 --until 2026-11-22
@@ -86,6 +89,12 @@ uv run python -m src.prepare_phase2_audit --unaudited-only --out data/phase2_inp
 # After running workflows/audit_layer_a.py -> data/phase2_outputs_v2.json:
 uv run python -m src.report_phase2 --outputs data/phase2_outputs_v2.json
 
-# 7. Build the pilot LaTeX paper
-make -C src/pilot
+# 7. Export canonical JSON artifacts, update longitudinal analysis, generate figures, and build paper
+uv run python -m src.export_artifacts --all
+uv run python -m src.report_longitudinal
+uv run python -m src.generate_figures
+make -C papers/arxiv-empirical
+
+# 8. Build verified anonymized double-blind review archive
+uv run python scripts/export_blind_artifact.py
 ```
