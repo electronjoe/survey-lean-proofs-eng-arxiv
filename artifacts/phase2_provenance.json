@@ -1,12 +1,12 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-11-22T09:26:00Z",
+  "generated_at": "2026-11-22T19:34:11Z",
   "total_audited_repos": 20,
   "git_pinned_count": 19,
   "zenodo_pinned_count": 1,
   "theorems_compared_file_line_summary": {
     "total_refs": 196,
-    "resolved_in_bounds": 194
+    "resolved_in_bounds": 196
   },
   "records": [
     {
@@ -60,11 +60,9 @@
       "mode4_severity": "none",
       "theorems_compared_file_line_check": {
         "total_file_line_refs": 6,
-        "resolved_in_bounds": 5,
+        "resolved_in_bounds": 6,
         "unresolved": [],
-        "out_of_bounds": [
-          "ActualConstructiveSampler.lean:130-149 (file has 88 lines)"
-        ]
+        "out_of_bounds": []
       }
     },
     {
@@ -370,11 +368,9 @@
       "mode4_severity": "none",
       "theorems_compared_file_line_check": {
         "total_file_line_refs": 12,
-        "resolved_in_bounds": 11,
+        "resolved_in_bounds": 12,
         "unresolved": [],
-        "out_of_bounds": [
-          "AffineCombinerChart.lean:310-401 (file has 322 lines)"
-        ]
+        "out_of_bounds": []
       }
     },
     {

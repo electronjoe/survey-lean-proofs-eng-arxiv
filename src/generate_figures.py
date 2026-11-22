@@ -201,11 +201,30 @@ def make_pipeline_funnel(
         fontweight="bold",
         color="#1E293B",
     )
+    # Compute unique primary scanned artifact count & raw LoC dynamically from fig_data
+    unique_primary_repos: dict[str, int] = {}
+    for p in fig_data.get("confirmed_lean_papers", []):
+        owned = [
+            rp
+            for rp in p.get("lean_repos", [])
+            if rp.get("lean_file_count", 0) > 0
+            and rp.get("repo") not in SKIP_CITED
+            and rp.get("loc_nonempty", 0) > 0
+        ]
+        if not owned:
+            continue
+        best = max(owned, key=lambda rp: rp.get("loc_nonempty", 0))
+        unique_primary_repos[best["repo"]] = max(
+            unique_primary_repos.get(best["repo"], 0), int(best["loc_nonempty"])
+        )
+    n_unique_primary = len(unique_primary_repos)
+    raw_primary_loc_m = sum(unique_primary_repos.values()) / 1e6
+
     ax.text(
         cost_x + 0.15,
         cost_y + 0.12,
-        "GitHub (<=600 MB, incl. leanVM) + Zenodo + GitLab\n"
-        "24 unique primary Lean repos (4.17M LoC)\n"
+        "GitHub (<=600 MB, incl. zips) + Zenodo + arXiv anc.\n"
+        f"{n_unique_primary} unique primary Lean artifacts ({raw_primary_loc_m:.2f}M LoC)\n"
         "Strictly static: zero untrusted lake build / #eval",
         ha="left",
         va="bottom",
@@ -393,10 +412,10 @@ def make_paradigms_and_loc(
         ax2.text(lv * 1.13, i, ls, va="center", ha="left", fontsize=7.2, color="#1F2937")
 
     ax2.set_yticks(yl)
-    ax2.set_yticklabels(tags, fontsize=7.2, family="monospace")
+    ax2.set_yticklabels(tags, fontsize=6.9, family="monospace")
     ax2.set_xlim(250, 3.2e6)
     ax2.set_xlabel("Non-Empty Lean 4 Lines of Code (log scale; *subpackage LoC)")
-    ax2.set_title("(b) Codebase Scale Across 25 Scanned Lean Artifacts", pad=8)
+    ax2.set_title(f"(b) Codebase Scale Across {len(loc_items)} Scanned Lean Artifacts", pad=8)
     ax2.grid(axis="x", which="major", linestyle=":", alpha=0.6, zorder=1)
     ax2.spines["top"].set_visible(False)
     ax2.spines["right"].set_visible(False)
@@ -631,8 +650,11 @@ def make_longitudinal_curve(
     ax1.text(1.0, -0.08, "0.15% (5 v1)\n[0.21% latest]", ha="center", va="top", fontsize=7.4, fontweight="bold", color="#1D4ED8")
     ax1.text(2.05, v1_pct[2] - 0.04, "0.95%\n(n=39)", ha="left", va="center", fontsize=8.0, fontweight="bold", color="#1D4ED8")
 
+    v1_jump = t2["v1"]["pct"] / max(t1["v1"]["pct"], 1e-9)
+    ai_t1_pct = 100.0 * t1["v1"]["ai"].get("explicitly_yes", 0) / max(t1["v1"]["count"], 1)
+    ai_t2_pct = 100.0 * t2["v1"]["ai"].get("explicitly_yes", 0) / max(t2["v1"]["count"], 1)
     ax1.annotate(
-        "6.3× jump in 6 mo\n(median LoC: 749 → 23.9k;\nAI discl.: 40% → 76.9%)",
+        f"{v1_jump:.1f}× jump in 6 mo\n(median LoC: {t1['v1']['median_owned_loc']:,} → {t2['v1']['median_owned_loc']/1000:.1f}k;\nAI discl.: {ai_t1_pct:.0f}% → {ai_t2_pct:.1f}%)",
         xy=(1.58, 0.59),
         xytext=(0.56, 1.00),
         ha="center",

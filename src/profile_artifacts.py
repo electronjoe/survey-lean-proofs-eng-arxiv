@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import argparse
 import gzip
+import hashlib
 import io
 import json
 import os
@@ -145,12 +146,134 @@ def _scan_local_dir(target_dir: Path, profile: dict[str, Any]) -> None:
             break
 
 
-def fetch_and_scan_latex(client: httpx.Client, arxiv_id: str, version: int) -> tuple[bool, dict[str, Any], list[str]]:
+def _archive_contains_lean_tar(raw: bytes) -> bool:
+    try:
+        with tarfile.open(fileobj=io.BytesIO(raw), mode="r:*") as tf:
+            for m in tf.getmembers():
+                if not m.isfile():
+                    continue
+                name = m.name.lower()
+                base = Path(m.name).name.lower()
+                if name.endswith(".lean") or base in ("lean-toolchain", "lakefile.lean", "lakefile.toml"):
+                    return True
+    except tarfile.TarError:
+        return False
+    return False
+
+
+def _archive_contains_lean_zip(raw: bytes) -> bool:
+    try:
+        with zipfile.ZipFile(io.BytesIO(raw)) as zf:
+            for info in zf.infolist():
+                if info.is_dir():
+                    continue
+                name = info.filename.lower()
+                base = Path(info.filename).name.lower()
+                if name.endswith(".lean") or base in ("lean-toolchain", "lakefile.lean", "lakefile.toml"):
+                    return True
+    except zipfile.BadZipFile:
+        return False
+    return False
+
+
+def _extract_arxiv_ancillary_lean(raw: bytes, arxiv_id: str, clone_root: Path) -> dict[str, Any] | None:
+    """Strictly static extraction & scan of Lean files or nested Lean archives inside an arXiv /src tarball."""
+    try:
+        tf_check = tarfile.open(fileobj=io.BytesIO(raw), mode="r:*")
+    except tarfile.TarError:
+        return None
+
+    direct_lean_members: list[tarfile.TarInfo] = []
+    nested_lean_archives: list[tuple[str, bytes, str]] = []
+    readme_members: list[tarfile.TarInfo] = []
+
+    with tf_check as tf:
+        for member in tf.getmembers():
+            if not member.isfile():
+                continue
+            low = member.name.lower()
+            base = Path(member.name).name.lower()
+            if low.endswith(".lean") or base in ("lean-toolchain", "lakefile.lean", "lakefile.toml"):
+                direct_lean_members.append(member)
+            elif base in ("readme.md", "readme.txt", "readme", "manifest.txt") and "anc" in low:
+                readme_members.append(member)
+            elif low.endswith((".tar.gz", ".tgz", ".tar.bz2", ".tar.xz", ".tar")):
+                f = tf.extractfile(member)
+                if f is not None:
+                    data = f.read()
+                    if _archive_contains_lean_tar(data):
+                        nested_lean_archives.append((member.name, data, "tar"))
+            elif low.endswith(".zip"):
+                f = tf.extractfile(member)
+                if f is not None:
+                    data = f.read()
+                    if _archive_contains_lean_zip(data):
+                        nested_lean_archives.append((member.name, data, "zip"))
+
+        if not direct_lean_members and not nested_lean_archives:
+            return None
+
+        target_dir = clone_root / f"arxiv_anc__{arxiv_id}"
+        target_dir.mkdir(parents=True, exist_ok=True)
+        dest_resolved = target_dir.resolve()
+
+        extracted_bytes = 0
+        for member in direct_lean_members + readme_members:
+            out_path = (target_dir / member.name).resolve()
+            if not str(out_path).startswith(str(dest_resolved)):
+                continue
+            f = tf.extractfile(member)
+            if f is not None:
+                data = f.read()
+                out_path.parent.mkdir(parents=True, exist_ok=True)
+                out_path.write_bytes(data)
+                extracted_bytes += len(data)
+
+        extracted_archives: list[str] = []
+        seen_hashes: set[str] = set()
+        for arc_name, arc_bytes, arc_kind in nested_lean_archives:
+            digest = hashlib.sha256(arc_bytes).hexdigest()
+            if digest in seen_hashes:
+                continue
+            seen_hashes.add(digest)
+            stem = Path(arc_name).name
+            for suf in (".tar.gz", ".tar.bz2", ".tar.xz", ".tgz", ".tar", ".zip"):
+                if stem.lower().endswith(suf):
+                    stem = stem[: -len(suf)]
+                    break
+            arc_dest = target_dir / stem
+            if arc_kind == "tar":
+                with tarfile.open(fileobj=io.BytesIO(arc_bytes), mode="r:*") as ntf:
+                    _safe_extract_tar(ntf, arc_dest)
+            else:
+                with zipfile.ZipFile(io.BytesIO(arc_bytes)) as nzf:
+                    _safe_extract_zip(nzf, arc_dest)
+            extracted_bytes += len(arc_bytes)
+            extracted_archives.append(arc_name)
+
+    profile: dict[str, Any] = {
+        "host": "arxiv_ancillary",
+        "repo": f"arxiv-anc/{arxiv_id}",
+        "accessible": True,
+        "size_kb": extracted_bytes // 1024,
+    }
+    if extracted_archives:
+        profile["extracted_archives"] = extracted_archives
+    _scan_local_dir(target_dir, profile)
+    return profile
+
+
+def fetch_and_scan_latex(
+    client: httpx.Client,
+    arxiv_id: str,
+    version: int,
+    clone_root: Path | None = None,
+) -> tuple[bool, dict[str, Any], list[str], dict[str, Any] | None]:
     url = f"https://arxiv.org/src/{arxiv_id}v{version}"
     try:
         r = client.get(url, follow_redirects=True)
         if r.status_code != 200 or not r.content:
-            return False, {"error": f"status={r.status_code}"}, []
+            return False, {"error": f"status={r.status_code}"}, [], None
         raw = r.content
         tex_parts: list[str] = []
         try:
@@ -172,9 +295,14 @@ def fetch_and_scan_latex(client: httpx.Client, arxiv_id: str, version: int) -> t
         signals = scan_latex_source(combined_tex)
         signals["tex_files_chars"] = len(combined_tex)
         found_urls = sorted({u.rstrip(".,;:)]}\"'\\}") for u in REPO_URL_RE.findall(combined_tex)})
-        return True, signals, found_urls
+        anc_profile = (
+            _extract_arxiv_ancillary_lean(raw, arxiv_id, clone_root)
+            if clone_root is not None
+            else None
+        )
+        return True, signals, found_urls, anc_profile
     except Exception as exc:
-        return False, {"error": str(exc)}, []
+        return False, {"error": str(exc)}, [], None
 
 
 def profile_github_repo(owner: str, repo: str, clone_root: Path) -> dict[str, Any]:
@@ -226,7 +354,12 @@ def profile_github_repo(owner: str, repo: str, clone_root: Path) -> dict[str, An
 
     repo_size_kb = meta.get("size", 0) or 0
     profile["size_kb"] = repo_size_kb
-    if lean_files or has_lean_toolchain or has_lakefile:
+    lean_archives = [
+        p
+        for p in paths
+        if p.lower().endswith((".zip", ".tar.gz", ".tgz")) and "lean" in Path(p).name.lower()
+    ]
+    if lean_files or has_lean_toolchain or has_lakefile or lean_archives:
         target_dir = clone_root / f"{owner}__{repo}"
         if repo_size_kb > MAX_CLONE_KB:
             profile["clone_skipped"] = f"size_kb={repo_size_kb}>{MAX_CLONE_KB}"
@@ -246,6 +379,37 @@ def profile_github_repo(owner: str, repo: str, clone_root: Path) -> dict[str, An
             except subprocess.TimeoutExpired:
                 profile["clone_skipped"] = "timeout_180s"
         if target_dir.exists() and not profile.get("clone_skipped"):
+            if lean_archives and not lean_files:
+                extracted_root = target_dir / "_extracted_archives"
+                extracted_archives: list[str] = []
+                seen_hashes: set[str] = set()
+                for rel_arc in sorted(lean_archives, key=lambda x: (len(Path(x).parts), x)):
+                    arc_path = target_dir / rel_arc
+                    if not arc_path.is_file():
+                        continue
+                    arc_bytes = arc_path.read_bytes()
+                    digest = hashlib.sha256(arc_bytes).hexdigest()
+                    if digest in seen_hashes:
+                        continue
+                    seen_hashes.add(digest)
+                    low = rel_arc.lower()
+                    if low.endswith(".zip") and _archive_contains_lean_zip(arc_bytes):
+                        dest = extracted_root / arc_path.stem
+                        if dest.exists():
+                            continue
+                        with zipfile.ZipFile(io.BytesIO(arc_bytes)) as zf:
+                            _safe_extract_zip(zf, dest)
+                        extracted_archives.append(rel_arc)
+                    elif low.endswith((".tar.gz", ".tgz")) and _archive_contains_lean_tar(arc_bytes):
+                        stem = arc_path.name[:-7] if low.endswith(".tar.gz") else arc_path.stem
+                        dest = extracted_root / stem
+                        if dest.exists():
+                            continue
+                        with tarfile.open(fileobj=io.BytesIO(arc_bytes), mode="r:*") as tf:
+                            _safe_extract_tar(tf, dest)
+                        extracted_archives.append(rel_arc)
+                if extracted_archives:
+                    profile["extracted_archives"] = extracted_archives
             _scan_local_dir(target_dir, profile)
 
     return profile
@@ -279,14 +443,14 @@ def profile_gitlab_repo(host: str, raw_path: str, clone_root: Path) -> dict[str,
                 ["git", "clone", "--depth", "1", clone_url, str(target_dir)],
                 capture_output=True,
                 text=True,
-                timeout=180,
+                timeout=45,
                 env=env,
             )
             if proc.returncode != 0:
                 profile["clone_error"] = (proc.stderr or proc.stdout).strip()[:300]
                 return profile
         except subprocess.TimeoutExpired:
-            profile["clone_skipped"] = "timeout_180s"
+            profile["clone_skipped"] = "timeout_45s"
             return profile
 
     if target_dir.exists():
@@ -433,7 +597,9 @@ def run_profile(
             if row["doi"]:
                 urls_set.update(u.rstrip(".,;:)]}\"'") for u in REPO_URL_RE.findall(row["doi"]))
 
-            latex_ok, latex_signals, tex_urls = fetch_and_scan_latex(client, arxiv_id, version)
+            latex_ok, latex_signals, tex_urls, anc_profile = fetch_and_scan_latex(
+                client, arxiv_id, version, clone_root=clone_root
+            )
             urls_set.update(tex_urls)
             urls = sorted(urls_set)
             print(
@@ -446,6 +612,15 @@ def run_profile(
             seen_gl: set[tuple[str, str]] = set()
             seen_zen: set[str] = set()
             repo_profiles: list[dict[str, Any]] = []
+            if anc_profile is not None:
+                repo_profiles.append(anc_profile)
+                print(
+                    f"    -> ARXIV ANCILLARY LEAN {anc_profile['repo']}: {anc_profile['lean_file_count']} .lean files, "
+                    f"LoC={anc_profile.get('lean_static_counts', {}).get('loc_nonempty', 0)}, "
+                    f"sorry={anc_profile.get('lean_static_counts', {}).get('sorry', 0)}, "
+                    f"axiom={anc_profile.get('lean_static_counts', {}).get('custom_axiom', 0)}",
+                    flush=True,
+                )
 
             for u in urls:
                 m_gh = GITHUB_REPO_RE.match(u)

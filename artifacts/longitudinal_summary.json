@@ -63,7 +63,9 @@
         "total_owned_loc": 0,
         "median_owned_loc": 0,
         "min_owned_loc": 0,
-        "max_owned_loc": 0
+        "max_owned_loc": 0,
+        "raw_primary_unique_repos": 0,
+        "raw_primary_total_loc": 0
       },
       "v_latest": {
         "count": 1,
@@ -232,7 +234,9 @@
         "total_owned_loc": 3603,
         "median_owned_loc": 749,
         "min_owned_loc": 473,
-        "max_owned_loc": 2381
+        "max_owned_loc": 2381,
+        "raw_primary_unique_repos": 3,
+        "raw_primary_total_loc": 3603
       },
       "v_latest": {
         "count": 7,
@@ -615,11 +619,13 @@
           "Mode6_SorryOrAxiomOrNativeDecide": 3,
           "Mode3_CustomDefs": 1
         },
-        "scanned_owned_repos": 25,
-        "total_owned_loc": 2981464,
-        "median_owned_loc": 23932,
+        "scanned_owned_repos": 28,
+        "total_owned_loc": 3104750,
+        "median_owned_loc": 29005,
         "min_owned_loc": 528,
-        "max_owned_loc": 929448
+        "max_owned_loc": 929448,
+        "raw_primary_unique_repos": 27,
+        "raw_primary_total_loc": 4295555
       },
       "v_latest": {
         "count": 39,
@@ -678,9 +684,9 @@
           "Mode6_SorryOrAxiomOrNativeDecide": 3,
           "Mode3_CustomDefs": 1
         },
-        "scanned_owned_repos": 25,
-        "total_owned_loc": 2981464,
-        "median_owned_loc": 23932,
+        "scanned_owned_repos": 28,
+        "total_owned_loc": 3104750,
+        "median_owned_loc": 29005,
         "min_owned_loc": 528,
         "max_owned_loc": 929448
       },
@@ -745,8 +751,8 @@
             "Mode2_ScopeDowngrade",
             "Mode12_ProcessOpacity"
           ],
-          "primary_owned_loc": null,
-          "primary_repo": null,
+          "primary_owned_loc": 28043,
+          "primary_repo": "arxiv-anc/2611.26140",
           "one_line_summary": "Optimal corridor barrier-guarding paper in math.OC whose main analytic and topological proofs are on paper while an accompanying ancillary Lean 4 (Mathlib v4.15.0) library verifies selected lemmas and finite rational certificate replays."
         },
         {
@@ -1034,8 +1040,8 @@
           "static_risk_flags": [
             "Mode12_ProcessOpacity"
           ],
-          "primary_owned_loc": null,
-          "primary_repo": null,
+          "primary_owned_loc": 34579,
+          "primary_repo": "luchesart/Chain-fountain",
           "one_line_summary": "Control-theoretic analysis of boundary actuation for a chain fountain with a Lean 4 formalization (v0.18/v0.19, 722 named theorems) covering tracking, stochastic limits, and zero-gravity circulation via a zipped GitHub archive and a Theorem-to-Lean correspondence appendix."
         },
         {
@@ -1333,8 +1339,8 @@
           ],
           "artifact_availability": "public_lean_repo",
           "static_risk_flags": [],
-          "primary_owned_loc": null,
-          "primary_repo": null,
+          "primary_owned_loc": 60664,
+          "primary_repo": "arxiv-anc/2611.12585",
           "one_line_summary": "Post-hoc Lean 4 formalization (by GPT-6 Astra, provided in arXiv v2 ancillary files) proving high-frequency spurious eigenpairs and error-bound failures for the standard cubic Hermite Galerkin scheme of the KdV equation."
         },
         {

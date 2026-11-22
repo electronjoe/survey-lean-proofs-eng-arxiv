@@ -10,15 +10,15 @@ Matched 19-day (`01`–`19`) eight-category engineering & applied-theory slices 
 | **Full-text coverage (HTML5+PDF)** | 2,421 (99.43%) | 3,288 (99.70%) | 4,097 (99.83%) | ≥99.4% all slices |
 | **Later-revised papers (`v > 1`)** | 862 (35.4%) | 1,048 (31.8%) | 248 (6.0%) | Rescued via unbounded OAI |
 | **Metadata-only Lean strong hits** | 0 | 5 | 16 | 0 → 5 → 16 |
-| **Stage-2 Lean candidates (full-text)** | 3 (0.12%) | 19 (0.58%) | 55 (1.34%) | **11.2×** rate in 12 mo |
+| **Stage-2 Lean candidates (full-text)** | 3 (0.12%) | 19 (0.58%) | 55 (1.34%) | **10.9×** rate in 12 mo |
 | **Stage-2 Beyond-Lean control (all other FV)** | 37 (1.52%) | 44 (1.33%) | 48 (1.17%) | **Flat / slightly down** |
 | **Confirmed Lean — Contemporaneous (`v1`)** | **0 (0.00%)** | **5 (0.15%)** | **39 (0.95%)** | **0.00% → 0.15% → 0.95%** (**6.3×** in 6 mo) |
 | **Confirmed Lean — Latest Rev (`v_latest`)** | 1 (0.04%) | 7 (0.21%) | 39 (0.95%) | **23.1×** rate YoY; **4.5×** in 6 mo |
 | **Non-TCS primary Lean (`v1` / `v_latest`)** | 0 (0.00%) / 1 (0.04%) | 3 (0.09%) / 5 (0.15%) | 36 (0.89%) | **9.7×** rate in 6 mo (`v1`) |
 | **`engineering_math_proof` (`v1` / `v_latest`)** | 0 / 0 | 3 (60.0%) / 4 (57.1%) | **28 (71.8%)** | **0 → 3 → 28** (`v1`, **7.5×** rate in 6 mo) |
 | **Explicit AI disclosure (`v1`: yes/unc/no)** | 0 / 0 / 0 | 2 / 2 / 1 (40% yes) | 30 / 9 / 0 (76.9% yes) | 40% → 76.9% explicit AI |
-| **Median paper-owned LoC (`v1` scanned)** | N/A (0 repos) | **749** (3 repos) | **23,932** (25 repos) | **32.0×** scale jump |
-| **Total paper-owned LoC (`v1` / `v_latest`)** | 0 / 0 | 3,603 / 378,185 | **2,981,464** | **3.6k → 2.98M** (`v1` owned; 4.17M raw) |
+| **Median paper-owned LoC (`v1` scanned)** | N/A (0 repos) | **749** (3 repos) | **29,005** (28 repos) | **38.7×** scale jump |
+| **Total paper-owned LoC (`v1` / `v_latest`)** | 0 / 0 | 3,603 / 378,185 | **3,104,750** | **3.6k → 3.10M** (`v1` owned; 4.30M raw) |
 
 > **95% Confidence Intervals (Contemporaneous `v1`):** T0 `0/2,435 = 0.00%` (one-sided 95% Clopper–Pearson upper bound **0.12%**); T1 `5/3,298 = 0.15%` (95% Wilson CI `[0.06%, 0.35%]`); T2 `39/4,104 = 0.95%` (95% Wilson CI `[0.70%, 1.30%]`). Non-overlapping 95% CIs confirm a statistically decisive inflection.
 
@@ -69,7 +69,7 @@ Without `v1` verification, naive latest-version scraping would misattribute **37
 | **Paradigms (`P1/P2/P3/P4/P0`)** | 0/0/0/0/0 (`v_lat`: 0/0/0/0/1) | 3/1/0/0/1 (`v_lat`: 5/1/0/0/1) | 28/0/0/3/8 |
 | **Tiers (`Gold/Silver/Bronze`)** | 0/0/0 (`v_lat`: 0/0/1) | 0/2/3 (`v_lat`: 2/2/3) | 19/7/13 |
 | **AI Assisted (`yes/unc/no`)** | 0/0/0 (`v_lat`: 0/1/0) | 2/2/1 (`v_lat`: 3/3/1) | 30/9/0 |
-| **Owned LoC (median / range)** | — | **749** (473–2,381) | **23,932** (528–929,448) |
+| **Owned LoC (median / range)** | — | **749** (473–2,381) | **29,005** (528–929,448) |
 
 ## 6. Inventory of Historical Confirmed Lean Papers (T0 & T1)
 

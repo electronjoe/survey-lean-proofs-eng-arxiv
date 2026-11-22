@@ -279,7 +279,14 @@
       "authoring_paradigm": "P1_paper_first_posthoc",
       "verification_tier": "Tier2_Silver",
       "paper_domain_role": "engineering_math_proof",
-      "lean_repos": []
+      "lean_repos": [
+        {
+          "repo": "arxiv-anc/2611.12585",
+          "host": "arxiv_ancillary",
+          "lean_file_count": 341,
+          "loc_nonempty": 60664
+        }
+      ]
     },
     {
       "arxiv_id": "2611.12680",
@@ -447,7 +454,14 @@
       "authoring_paradigm": "P1_paper_first_posthoc",
       "verification_tier": "Tier2_Silver",
       "paper_domain_role": "engineering_math_proof",
-      "lean_repos": []
+      "lean_repos": [
+        {
+          "repo": "luchesart/Chain-fountain",
+          "host": "github",
+          "lean_file_count": 121,
+          "loc_nonempty": 34579
+        }
+      ]
     },
     {
       "arxiv_id": "2611.18220",
@@ -569,7 +583,14 @@
       "authoring_paradigm": "P1_paper_first_posthoc",
       "verification_tier": "Tier1_Bronze",
       "paper_domain_role": "engineering_math_proof",
-      "lean_repos": []
+      "lean_repos": [
+        {
+          "repo": "arxiv-anc/2611.26140",
+          "host": "arxiv_ancillary",
+          "lean_file_count": 53,
+          "loc_nonempty": 28043
+        }
+      ]
     },
     {
       "arxiv_id": "2611.26272",

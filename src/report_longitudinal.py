@@ -211,6 +211,28 @@ def summarize_slice(label: str, short_id: str, db_path: Path) -> dict[str, Any]:
 
     confirmed_v1 = [x for x in confirmed_all if not x["is_retroactive_v2"]]
 
+    # Unique raw primary repo LoC across contemporaneous v1 papers (without subpackage down-adjustment)
+    raw_primary_by_repo: dict[str, int] = {}
+    for x in confirmed_v1:
+        p = papers[x["arxiv_id"]]
+        if not p["repos_json"]:
+            continue
+        owned = [
+            rp
+            for rp in json.loads(p["repos_json"])
+            if rp.get("lean_file_count", 0) > 0
+            and rp.get("repo") not in SKIP_CITED_REPOS
+            and not rp.get("clone_skipped")
+        ]
+        if not owned:
+            continue
+        best = max(owned, key=lambda rp: rp.get("lean_static_counts", {}).get("loc_nonempty", 0))
+        loc_raw = int(best.get("lean_static_counts", {}).get("loc_nonempty", 0))
+        if loc_raw > 0:
+            raw_primary_by_repo[best["repo"]] = max(raw_primary_by_repo.get(best["repo"], 0), loc_raw)
+    raw_primary_loc_v1 = sum(raw_primary_by_repo.values())
+    raw_primary_unique_v1 = len(raw_primary_by_repo)
+
     def _agg(subset: list[dict[str, Any]]) -> dict[str, Any]:
         cat_lean = Counter()
         cat_eng = Counter()
@@ -301,7 +323,11 @@ def summarize_slice(label: str, short_id: str, db_path: Path) -> dict[str, Any]:
             "smt_sat": beyond_smt,
         },
         "cat_total": dict(cat_total),
-        "v1": _agg(confirmed_v1),
+        "v1": {
+            **_agg(confirmed_v1),
+            "raw_primary_unique_repos": raw_primary_unique_v1,
+            "raw_primary_total_loc": raw_primary_loc_v1,
+        },
         "v_latest": _agg(confirmed_all),
         "confirmed_papers": confirmed_all,
         "audits": audits,
@@ -326,7 +352,7 @@ def write_report(slices: list[dict[str, Any]], report_path: Path, json_path: Pat
         f"| **Full-text coverage (HTML5+PDF)** | {t0['screened_ok']:,} ({t0['coverage_pct']:.2f}%) | {t1['screened_ok']:,} ({t1['coverage_pct']:.2f}%) | {t2['screened_ok']:,} ({t2['coverage_pct']:.2f}%) | ≥99.4% all slices |",
         f"| **Later-revised papers (`v > 1`)** | {t0['revised_v_gt_1']:,} ({t0['revised_pct']:.1f}%) | {t1['revised_v_gt_1']:,} ({t1['revised_pct']:.1f}%) | {t2['revised_v_gt_1']:,} ({t2['revised_pct']:.1f}%) | Rescued via unbounded OAI |",
         f"| **Metadata-only Lean strong hits** | {t0['meta_lean_strong']} | {t1['meta_lean_strong']} | {t2['meta_lean_strong']} | 0 → 5 → 16 |",
-        f"| **Stage-2 Lean candidates (full-text)** | {t0['stage2_lean_candidates']} ({t0['stage2_lean_cand_pct']:.2f}%) | {t1['stage2_lean_candidates']} ({t1['stage2_lean_cand_pct']:.2f}%) | {t2['stage2_lean_candidates']} ({t2['stage2_lean_cand_pct']:.2f}%) | **11.2×** rate in 12 mo |",
+        f"| **Stage-2 Lean candidates (full-text)** | {t0['stage2_lean_candidates']} ({t0['stage2_lean_cand_pct']:.2f}%) | {t1['stage2_lean_candidates']} ({t1['stage2_lean_cand_pct']:.2f}%) | {t2['stage2_lean_candidates']} ({t2['stage2_lean_cand_pct']:.2f}%) | **{t2['stage2_lean_cand_pct']/max(t0['stage2_lean_cand_pct'],1e-9):.1f}×** rate in 12 mo |",
         f"| **Stage-2 Beyond-Lean control (all other FV)** | {t0['stage2_beyond_any']} ({t0['stage2_beyond_any_pct']:.2f}%) | {t1['stage2_beyond_any']} ({t1['stage2_beyond_any_pct']:.2f}%) | {t2['stage2_beyond_any']} ({t2['stage2_beyond_any_pct']:.2f}%) | **Flat / slightly down** |",
         f"| **Confirmed Lean — Contemporaneous (`v1`)** | **{t0['v1']['count']} ({t0['v1']['pct']:.2f}%)** | **{t1['v1']['count']} ({t1['v1']['pct']:.2f}%)** | **{t2['v1']['count']} ({t2['v1']['pct']:.2f}%)** | **0.00% → 0.15% → 0.95%** (**6.3×** in 6 mo) |",
         f"| **Confirmed Lean — Latest Rev (`v_latest`)** | {t0['v_latest']['count']} ({t0['v_latest']['pct']:.2f}%) | {t1['v_latest']['count']} ({t1['v_latest']['pct']:.2f}%) | {t2['v_latest']['count']} ({t2['v_latest']['pct']:.2f}%) | **23.1×** rate YoY; **4.5×** in 6 mo |",
@@ -334,7 +360,7 @@ def write_report(slices: list[dict[str, Any]], report_path: Path, json_path: Pat
         f"| **`engineering_math_proof` (`v1` / `v_latest`)** | {t0['v1']['eng_math_count']} / {t0['v_latest']['eng_math_count']} | {t1['v1']['eng_math_count']} ({t1['v1']['eng_math_share_pct']:.1f}%) / {t1['v_latest']['eng_math_count']} ({t1['v_latest']['eng_math_share_pct']:.1f}%) | **{t2['v1']['eng_math_count']} ({t2['v1']['eng_math_share_pct']:.1f}%)** | **0 → 3 → 28** (`v1`, **7.5×** rate in 6 mo) |",
         f"| **Explicit AI disclosure (`v1`: yes/unc/no)** | 0 / 0 / 0 | {t1['v1']['ai'].get('explicitly_yes',0)} / {t1['v1']['ai'].get('unclear',0)} / {t1['v1']['ai'].get('explicitly_no',0)} ({100*t1['v1']['ai'].get('explicitly_yes',0)/max(t1['v1']['count'],1):.0f}% yes) | {t2['v1']['ai'].get('explicitly_yes',0)} / {t2['v1']['ai'].get('unclear',0)} / {t2['v1']['ai'].get('explicitly_no',0)} ({100*t2['v1']['ai'].get('explicitly_yes',0)/max(t2['v1']['count'],1):.1f}% yes) | 40% → 76.9% explicit AI |",
         f"| **Median paper-owned LoC (`v1` scanned)** | N/A (0 repos) | **{t1['v1']['median_owned_loc']:,}** ({t1['v1']['scanned_owned_repos']} repos) | **{t2['v1']['median_owned_loc']:,}** ({t2['v1']['scanned_owned_repos']} repos) | **{t2['v1']['median_owned_loc']/max(t1['v1']['median_owned_loc'],1):.1f}×** scale jump |",
-        f"| **Total paper-owned LoC (`v1` / `v_latest`)** | 0 / 0 | {t1['v1']['total_owned_loc']:,} / {t1['v_latest']['total_owned_loc']:,} | **{t2['v1']['total_owned_loc']:,}** | **{t1['v1']['total_owned_loc']/1e3:.1f}k → {t2['v1']['total_owned_loc']/1e6:.2f}M** (`v1` owned; 4.17M raw) |",
+        f"| **Total paper-owned LoC (`v1` / `v_latest`)** | 0 / 0 | {t1['v1']['total_owned_loc']:,} / {t1['v_latest']['total_owned_loc']:,} | **{t2['v1']['total_owned_loc']:,}** | **{t1['v1']['total_owned_loc']/1e3:.1f}k → {t2['v1']['total_owned_loc']/1e6:.2f}M** (`v1` owned; {t2['v1']['raw_primary_total_loc']/1e6:.2f}M raw) |",
         "",
         f"> **95% Confidence Intervals (Contemporaneous `v1`):** T0 `0/2,435 = 0.00%` (one-sided 95% Clopper–Pearson upper bound **{clopper_pearson_upper(0, t0['total_papers']):.2f}%**); T1 `5/3,298 = 0.15%` (95% Wilson CI `[{t1['v1']['wilson_95'][0]:.2f}%, {t1['v1']['wilson_95'][1]:.2f}%]`); T2 `39/4,104 = 0.95%` (95% Wilson CI `[{t2['v1']['wilson_95'][0]:.2f}%, {t2['v1']['wilson_95'][1]:.2f}%]`). Non-overlapping 95% CIs confirm a statistically decisive inflection.",
         "",

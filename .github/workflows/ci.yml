@@ -28,6 +28,9 @@ jobs:
       - name: Audit BibTeX hygiene and LaTeX citations
         run: uv run python scripts/audit_bib.py
 
+      - name: Verify paper numeric consistency against artifacts
+        run: uv run python scripts/check_paper_numbers.py
+
       - name: Verify zero tracked PDFs and clean blind artifact export
         run: |
           set -euo pipefail

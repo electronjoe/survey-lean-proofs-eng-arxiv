@@ -109,6 +109,7 @@
 - **Paradigm:** `P1_paper_first_posthoc` (`medium`) | **Tier:** `Tier1_Bronze` | **AI:** `explicitly_yes` (['OpenAI GPT', 'Codex', 'Anthropic Claude', 'Google DeepMind Gemini', 'Antigravity'])
 - **Evidence:** The paper presents analytic proofs and topological reductions in LaTeX (34 pages, 25 theorem environments) while attaching a Lean 4 / Mathlib v4.15.0 library in arXiv ancillary files (anc/README.md, ContinuumUpperCert.lean) specifically for selected algebraic lemmas and kernel replays of finite rational certificates alongside Python verifiers, with no mention of blueprint-sync or spec-lock tooling.
 - **Risk flags:** ['Mode2_ScopeDowngrade', 'Mode12_ProcessOpacity']
+- **Repo `arxiv-anc/2611.26140` (arxiv_ancillary):** `.lean` files=53, LoC=28043, theorems=509, defs=618, sorry=0, axiom=0, native_decide=0, unsafe=0, blueprint_attr=0, toolchain=`leanprover/lean4:v4.15.0`, ci=`[]`
 
 #### [2611.25599](https://arxiv.org/abs/2611.25599) — Tether: Verified Stateful Policy Engine for System-Level Monitoring of Agents
 - **Primary / Target Cats:** `cs.CR` / ['cs.CR'] | **Role:** `software_or_system_fv`
@@ -180,6 +181,7 @@
 - **Paradigm:** `P1_paper_first_posthoc` (`medium`) | **Tier:** `Tier2_Silver` | **AI:** `unclear` (['Gemini'])
 - **Evidence:** Paper derives nonlinear tracking, stochastic viability, and zero-gravity circulation conditions and documents their formalization via Appendix C ("Theorem-to-Lean correspondence and verification scope"), incremental completion of "remaining article deductions" (v0.18 -> v0.19.0), and a zipped Lean 4.33.0-rc1 source archive (`Chain_Fountain_Lean_GitHub.zip`) with no blueprint or spec-lock files (`has_blueprint_dir: false`, `has_challenge_file: false`, `has_solution_file: false`).
 - **Risk flags:** ['Mode12_ProcessOpacity']
+- **Repo `luchesart/Chain-fountain` (github):** `.lean` files=121, LoC=34579, theorems=1556, defs=418, sorry=0, axiom=0, native_decide=0, unsafe=0, blueprint_attr=0, toolchain=`leanprover/lean4:v4.33.0-rc1`, ci=`[]`
 
 #### [2611.16690](https://arxiv.org/abs/2611.16690) — Hilbert's 17th problem for symmetric functions: undecidability and a counterexample
 - **Primary / Target Cats:** `math.AG` / ['math.OC'] | **Role:** `pure_tcs_or_math`
@@ -258,6 +260,7 @@
 - **Paradigm:** `P1_paper_first_posthoc` (`high`) | **Tier:** `Tier2_Silver` | **AI:** `explicitly_yes` (['GPT-6 Astra', 'Claude', 'Codex'])
 - **Evidence:** Comment states 'v2 adds Lean 4 proofs of the main results' and text explains the author tried to check the proof by hand, found its complexity too large, and had it formalized in Lean 4 by GPT-6 Astra (using contraction mappings instead of Rouché's theorem), with Appendix A documenting correspondence and build instructions (`lake build SLean`, Lean 4.35.0) rather than blueprint-sync or spec-lock tooling.
 - **Risk flags:** []
+- **Repo `arxiv-anc/2611.12585` (arxiv_ancillary):** `.lean` files=341, LoC=60664, theorems=2636, defs=863, sorry=0, axiom=0, native_decide=0, unsafe=0, blueprint_attr=0, toolchain=`leanprover/lean4:v4.35.0`, ci=`[]`
 
 #### [2611.11713](https://arxiv.org/abs/2611.11713) — Binary Belief Propagation Fixed Points: Finiteness, Rigidity, and Topological Complexity
 - **Primary / Target Cats:** `cs.IT` / ['cs.IT'] | **Role:** `engineering_math_proof`
