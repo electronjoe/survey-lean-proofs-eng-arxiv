@@ -417,18 +417,18 @@ To uphold transparency standards for empirical LLM-assisted research, we documen
 \centering
 \caption{Exact AI harness, model, and reasoning-effort provenance verified from execution transcripts across all empirical and authoring tasks (November~21--22, 2026).}
 \label{tab:ai_provenance}
-\footnotesize
-\setlength{\tabcolsep}{3.5pt}
-\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{3.6cm}>{\raggedright\arraybackslash}p{3.2cm}>{\raggedright\arraybackslash}p{3.8cm}X}
+\scriptsize
+\setlength{\tabcolsep}{3.0pt}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{3.2cm}>{\raggedright\arraybackslash}p{2.9cm}>{\raggedright\arraybackslash}p{4.3cm}>{\raggedright\arraybackslash}X@{}}
 \toprule
 \textbf{Task / Pipeline Role} & \textbf{Harness \& Alias} & \textbf{Exact Model \& Effort} & \textbf{Scope \& Archived Provenance} \\
 \midrule
-\textbf{Stage 4: Lean Classification} (Pilot~v1/v2, T0, T1) & Google Antigravity \texttt{run\_workflow} (\texttt{flash}) & \textbf{Gemini 4 Hydrogen (High)} (\texttt{gemini-4-hydrogen-tiered-high}) & 80 read-only subagent runs (30 Pilot~v1 + 50 Pilot~v2/T0/T1); \texttt{workflows/classify\_candidates.py}. \\
-\textbf{Stage 4: Beyond-Lean Baseline} (Pilot~v1) & Google Antigravity \texttt{run\_workflow} (\texttt{flash\_lite}) & \textbf{Gemini 3.5 Flash-Lite} (\texttt{gemini-3.5-flash-lite}) & 34 read-only subagent runs across the 6 Pilot~v1 categories; \texttt{workflows/classify\_candidates.py}. \\
-\textbf{Stage 5: Layer-A Semantic Audit} (T2 + T1) & Google Antigravity \texttt{run\_workflow} (\texttt{pro}) & \textbf{Gemini 4 Hydrogen (Extra High)} (\texttt{gemini-4-hydrogen-tiered-xhigh}) & 20 read-only adversarial audits (8 Pilot~v1 + 9 Pilot~v2 + 3 T1); \texttt{workflows/audit\_layer\_a.py}. \\
-\textbf{Code Writing \& Manuscript Drafting} (All Sections) & Google Antigravity CLI harness & \textbf{Gemini 4 Neon (High)} (\texttt{gemini-4-neon-high})$^*$ & All pipeline, analysis, audit, and figure code; drafting partner for Abstract and Sections~1--7. \\
+\textbf{Stage 4: Lean Classification} (Pilot~v1/v2, T0, T1) & Google Antigravity \texttt{run\_workflow} (\texttt{flash}) & \textbf{Gemini 4 Hydrogen (High)}\newline \texttt{gemini-4-hydrogen-tiered-high} & 80 read-only subagent runs (30 Pilot~v1 + 50 Pilot~v2/T0/T1); \texttt{workflows/classify\_candidates.py}. \\
+\textbf{Stage 4: Beyond-Lean Baseline} (Pilot~v1) & Google Antigravity \texttt{run\_workflow} (\texttt{flash\_lite}) & \textbf{Gemini 3.5 Flash-Lite}\newline \texttt{gemini-3.5-flash-lite} & 34 read-only subagent runs across the 6 Pilot~v1 categories; \texttt{workflows/classify\_candidates.py}. \\
+\textbf{Stage 5: Layer-A Semantic Audit} (T2 + T1) & Google Antigravity \texttt{run\_workflow} (\texttt{pro}) & \textbf{Gemini 4 Hydrogen (Extra High)}\newline \texttt{gemini-4-hydrogen-tiered-xhigh} & 20 read-only adversarial audits (8 Pilot~v1 + 9 Pilot~v2 + 3 T1); \texttt{workflows/audit\_layer\_a.py}. \\
+\textbf{Code Writing \& Manuscript Drafting} (All Sections) & Google Antigravity CLI harness & \textbf{Gemini 4 Neon (High)}$^*$\newline \texttt{gemini-4-neon-high} & All pipeline, analysis, audit, and figure code; drafting partner for Abstract and Sections~1--7. \\
 \bottomrule
-\multicolumn{4}{l}{\footnotesize $^*$Auxiliary interactive repository sessions also used Gemini~4~Neon (Medium) and Gemini~4~Carbon (High).}
+\multicolumn{4}{@{}l}{\footnotesize $^*$Auxiliary interactive repository sessions also used Gemini~4~Neon (Medium) and Gemini~4~Carbon (High).}
 \end{tabularx}
 \end{table}
 
