@@ -8,6 +8,7 @@ Empirical survey of recent engineering, systems, control, information theory, se
 - **Progress Log & Next Steps:** [`docs/PROGRESS_AND_NEXT_STEPS.md`](docs/PROGRESS_AND_NEXT_STEPS.md)
 - **Domain Scope Notes (Bhaskar Krishnamachari & Scott Moeller):** [`docs/research_notes_and_todo.md`](docs/research_notes_and_todo.md)
 - **Survey Reports:**
+  - [`reports/phase2_layer_a_audit.md`](reports/phase2_layer_a_audit.md) — Deep Layer-A semantic fidelity audit (Modes #1–#4) of all 8 cloned `engineering_math_proof` Lean 4 repos
   - [`reports/phase1_survey.md`](reports/phase1_survey.md) — Classified inventory of 20 confirmed Lean papers + 12 Beyond-Lean baseline papers (Nov 1–19, 2026; 3,160 papers screened)
   - [`reports/phase0_summary.md`](reports/phase0_summary.md) — Zero-token deterministic full-text pre-screen & static repo stats
 - **Error & Paradigm Taxonomy:** [`proof-methods.md`](proof-methods.md)

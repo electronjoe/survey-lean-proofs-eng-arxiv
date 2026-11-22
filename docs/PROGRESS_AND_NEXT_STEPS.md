@@ -1,7 +1,7 @@
 # Survey Progress & Next Steps
 
 **Last updated:** 2026-11-22  
-**Status:** Phase 0 (Ingest, Full-Text Pre-Screen, Static Repo Profiling) & Phase 1 (Lightweight-Agent Classification + Pilot LaTeX Report) **COMPLETE**.
+**Status:** Phase 0 (Ingest, Full-Text Pre-Screen, Static Repo Profiling), Phase 1 (Lightweight-Agent Classification), and **Phase 2 (Deep Layer-A Semantic Drift Audit on all 8 cloned `engineering_math_proof` repos + updated LaTeX Pilot Paper v0.2)** **COMPLETE**.
 
 ---
 
@@ -20,7 +20,11 @@
 - [x] **Phase 1: Parallel `run_workflow` Classification & Reporting**
   - Built [`src/export_workflow_inputs.py`](../src/export_workflow_inputs.py), [`workflows/classify_candidates.py`](../workflows/classify_candidates.py), and [`src/report_phase1.py`](../src/report_phase1.py).
   - Classified all 30 Lean candidates (`flash` read-only `research` agents inspecting local cloned repos) + 34 Beyond-Lean candidates (`flash_lite`) in <5 min with strict JSON schemas.
-  - Generated [`reports/phase1_survey.md`](../reports/phase1_survey.md) and working LaTeX pilot paper [`src/pilot/main.tex`](../src/pilot/main.tex) + [`src/pilot/references.bib`](../src/pilot/references.bib).
+  - Generated [`reports/phase1_survey.md`](../reports/phase1_survey.md).
+- [x] **Phase 2: Deep Layer-A Semantic Fidelity Audit (`engineering_math_proof` Cohort)**
+  - Built [`src/prepare_phase2_audit.py`](../src/prepare_phase2_audit.py) (low-bandwidth math-preserving HTML5 extraction: 12.36 MB total across 8 papers), [`workflows/audit_layer_a.py`](../workflows/audit_layer_a.py) (8 parallel `pro` adversarial referee agents), and [`src/report_phase2.py`](../src/report_phase2.py).
+  - Generated [`reports/phase2_layer_a_audit.md`](../reports/phase2_layer_a_audit.md) with theorem-by-theorem LaTeX↔Lean comparisons and exact `file:line` citations.
+  - Folded Phases 0–2 into compiled LaTeX pilot paper v0.2: [`src/pilot/main.tex`](../src/pilot/main.tex) → [`src/pilot/main.pdf`](../src/pilot/main.pdf).
 
 ---
 
@@ -34,34 +38,30 @@
 | **Authoring Paradigms (`proof-methods.md`)** | `P1` Post-Hoc: **16 (80%)** · `P4` Spec-Lock (`comparator`): **2 (10%)** · `P0` Opaque: **2 (10%)** · `P2` Lean-First: **0** · `P3` Blueprint Sync: **0** |
 | **Explicit AI/Agent Disclosure** | **16 / 20 (80%)** explicitly yes; 4 unclear; **0 explicitly human-only** |
 | **Static Risk Signals** | `Mode12` Opacity: **9** · `Mode10` Proof Bloat (30k–929k LoC): **8** · `Mode2` Scope Downgrade: **7** · `Mode6` Axioms/`native_decide`: **2** |
+| **Phase 2 Layer-A Audit (8 cloned `engineering_math_proof` repos)** | **0/8** definition smuggling (`Mode #3`); **7/8** clean on junk/vacuity (`Mode #4`); **8/8** have computational/algorithmic scope boundaries (`Mode #2`: 7 minor disclosed, 1 moderate); **5/8** lack explicit non-vacuity witnesses; **1** subtle undisclosed spec gap caught inside a `P4` comparator interface (`2611.04876`) |
 
 ---
 
 ## 3. Prioritized Next Steps
 
-### High Priority (Immediate)
+### High Priority (Remote Server Recommended for Downloads)
 1. **Pilot v2 Scope Expansion (per Bhaskar's feedback in [`research_notes_and_todo.md`](research_notes_and_todo.md)):**
-   - Add **`eess.SP`** (Signal Processing) and **`math.OC`** (Optimization & Control) to the 3-week window (and consider a scoped/stratified slice of **`cs.LG` / `stat.ML`** theoretical ML papers).
+   - Add **`eess.SP`** (Signal Processing) and **`math.OC`** (Optimization & Control) over the same 3-week window (~300–600 MB download), and run Phase 2 Layer-A audits on any newly found `engineering_math_proof` Lean repos.
    - Filter out primary pure-TCS categories (`cs.CC`, `cs.DS`, `cs.LO`, `cs.DM`, `cs.FL`) even when cross-listed, and drop Beyond-Lean LLM classification in future passes so all budget goes to Lean engineering-math proofs.
-2. **Phase 2: Deep Layer-A Semantic Drift Audit (`proof-methods.md` Modes #1–#4):**
-   - Run a stronger-model (`pro`/`inherit`) `run_workflow` pass over the **~9–11 `engineering_math_proof` papers with cloned Lean repos** (`2611.18220`, `2611.10902`, `2611.11713`, `2611.08172`, `2611.14475`, `2611.04876`, `2611.05136`, `2611.23762`).
-   - Pair extracted LaTeX `\begin{theorem}` blocks against their corresponding Lean declarations + custom `def`/`structure` stacks to detect:
-     - **Mode #1:** Silent hypothesis strengthening / conclusion weakening (Type i vs. Type ii drift)
-     - **Mode #2:** Unstated scope downgrading between abstract/headline and Lean endpoints
-     - **Mode #3:** Definition smuggling / weak Mathlib anchoring
-     - **Mode #4:** Vacuous hypotheses & Lean junk-value traps (`1/0 = 0`, `Nat` subtraction saturation)
+2. **Recall Calibration & Non-GitHub Artifact Completeness (Referee-Proofing):**
+   - Sample 50–100 random Stage-2 negatives (especially ones with GitHub links) and check via lightweight `gh api` tree queries (<2 MB!) whether any linked repo contains `lean-toolchain`/`*.lean` without naming Lean in the prose.
+   - Extend `src/profile_artifacts.py` to statically inspect GitLab repos (`2611.22732`) and Zenodo archives (`2611.15201`, `2611.10810`).
 
-### Medium Priority (Before Academic Submission)
-3. **Recall Calibration (Negative Spot-Check):**
-   - Sample 50 random Stage-2 negatives (especially papers containing a GitHub link) and run `flash_lite` + GitHub tree check for `lean-toolchain` to bound false-negative rate empirically.
-4. **Non-GitHub Artifact Support:**
-   - Extend `src/profile_artifacts.py` to statically inspect GitLab repos (e.g., `2611.22732` on MPI-SWS GitLab) and Zenodo archives (e.g., `2611.15201`, `2611.10810`).
-5. **Standalone Periodic Re-Run Runner (`agy -p`):**
-   - Wrap `workflows/classify_candidates.py`'s prompt + JSON schema in a standalone `src/classify_cli.py` calling `agy -p --model gemini-3.8-flash-low --output-format json --json-schema ...` so monthly/quarterly snapshots can run unattended outside an interactive chat.
+### Medium Priority (Remote Server)
+3. **Scoped Machine Learning Theory Arm (`cs.LG` / `stat.ML`):**
+   - Run a 1-week window or stratified 1,000-paper sample of `cs.LG`/`stat.ML` (~1–3 GB download) as a dedicated ML-theory comparison arm.
+4. **Historical Baseline Slices & Standalone Periodic Runner (`agy -p`):**
+   - Run the exact same categories on 3-week slices from **Nov 2025** and **May 2026** to quantify the 2026 AI-Lean adoption curve.
+   - Wrap the classifier prompt + JSON schema in a standalone `src/classify_cli.py` calling `agy -p --model gemini-3.8-flash-low --output-format json --json-schema ...` for unattended quarterly snapshots.
 
-### Stretch / Optional
-6. **Sandboxed Lean Kernel Verification:**
-   - For the compact engineering-math repos (<5k LoC: `Lean-SysID`, `bic-public`, `CoprimeFrobenius`, `trustbound`), run `lake build` + `#print axioms` inside an isolated Docker container (no network, read-only mount) to obtain ground-truth kernel certification.
+### Stretch / Optional (Remote Server with Docker)
+5. **Sandboxed Lean Kernel Verification (`lake build` + `#print axioms`):**
+   - For the compact engineering-math repos (<5k LoC: `Lean-SysID`, `bic-public`, `CoprimeFrobenius`, `trustbound`, `ExactShortestPathsAndFlowsOnPlanarGraphs`), run `lake build` + `#print axioms` inside an isolated Docker container (~5–15 GB Mathlib `.olean` cache) to verify out-of-the-box reproducibility.
 
 ---
 
@@ -87,6 +87,11 @@ uv run python -m src.export_workflow_inputs
 # 5. After running workflows/classify_candidates.py -> data/workflow_outputs.json:
 uv run python -m src.report_phase1
 
-# 6. Build the pilot LaTeX paper
+# 6. Phase 2 Layer-A semantic drift audit on cloned engineering_math_proof repos:
+uv run python -m src.prepare_phase2_audit
+# After running workflows/audit_layer_a.py -> data/phase2_outputs.json:
+uv run python -m src.report_phase2
+
+# 7. Build the pilot LaTeX paper
 make -C src/pilot
 ```

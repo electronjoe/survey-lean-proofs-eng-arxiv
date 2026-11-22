@@ -72,6 +72,18 @@ CREATE TABLE IF NOT EXISTS classifications (
     classified_at TEXT NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS layer_a_audits (
+    arxiv_id TEXT PRIMARY KEY REFERENCES papers(arxiv_id),
+    model_tier TEXT NOT NULL,
+    overall_fidelity TEXT NOT NULL,
+    mode1_drift_severity TEXT NOT NULL,
+    mode2_scope_severity TEXT NOT NULL,
+    mode3_def_severity TEXT NOT NULL,
+    mode4_vacuity_junk_severity TEXT NOT NULL,
+    raw_json TEXT NOT NULL,
+    audited_at TEXT NOT NULL
+);
+
 CREATE INDEX IF NOT EXISTS idx_papers_submitted ON papers(submitted_date);
 CREATE INDEX IF NOT EXISTS idx_papers_primary_cat ON papers(primary_category);
 CREATE INDEX IF NOT EXISTS idx_screen_lean ON screen_results(has_lean_strong, has_lean_contextual);
@@ -252,6 +264,44 @@ def upsert_classification(
             result.get("artifact_availability"),
             json.dumps(result.get("other_formal_tools_contributed", [])),
             json.dumps(result.get("static_risk_flags", [])),
+            json.dumps(result),
+            utc_now(),
+        ),
+    )
+
+
+def upsert_layer_a_audit(
+    conn: sqlite3.Connection,
+    arxiv_id: str,
+    model_tier: str,
+    result: dict[str, Any],
+) -> None:
+    conn.execute(
+        """
+        INSERT INTO layer_a_audits (
+            arxiv_id, model_tier, overall_fidelity,
+            mode1_drift_severity, mode2_scope_severity,
+            mode3_def_severity, mode4_vacuity_junk_severity,
+            raw_json, audited_at
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ON CONFLICT(arxiv_id) DO UPDATE SET
+            model_tier = excluded.model_tier,
+            overall_fidelity = excluded.overall_fidelity,
+            mode1_drift_severity = excluded.mode1_drift_severity,
+            mode2_scope_severity = excluded.mode2_scope_severity,
+            mode3_def_severity = excluded.mode3_def_severity,
+            mode4_vacuity_junk_severity = excluded.mode4_vacuity_junk_severity,
+            raw_json = excluded.raw_json,
+            audited_at = excluded.audited_at
+        """,
+        (
+            arxiv_id,
+            model_tier,
+            result.get("overall_fidelity", "unknown"),
+            result.get("mode1_statement_drift", {}).get("severity", "none"),
+            result.get("mode2_scope_downgrade", {}).get("severity", "none"),
+            result.get("mode3_definition_smuggling", {}).get("severity", "none"),
+            result.get("mode4_junk_or_vacuity", {}).get("severity", "none"),
             json.dumps(result),
             utc_now(),
         ),
