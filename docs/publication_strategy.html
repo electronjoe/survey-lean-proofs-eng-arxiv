@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Publication Strategy &amp; Venue Roadmap — Engineering Lean 4 Adoption Study</title>
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --surface-alt: #f1f5f9;
+      --border: #e2e8f0;
+      --border-strong: #cbd5e1;
+      --text: #0f172a;
+      --text-muted: #475569;
+      --accent: #1d4ed8;
+      --accent-soft: #eff6ff;
+      --teal: #0f766e;
+      --teal-soft: #f0fdfa;
+      --amber: #b45309;
+      --amber-soft: #fffbeb;
+      --red: #b91c1c;
+      --red-soft: #fef2f2;
+      --purple: #6d28d9;
+      --purple-soft: #f5f3ff;
+      --radius: 10px;
+      --shadow: 0 1px 3px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.62;
+      font-size: 15.5px;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 0.87em;
+      background: var(--surface-alt);
+      padding: 0.12em 0.36em;
+      border-radius: 4px;
+      color: #1e293b;
+    }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 28px 22px 64px;
+    }
+
+    /* Header */
+    header.hero {
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 65%, #1d4ed8 100%);
+      color: #f8fafc;
+      border-radius: 14px;
+      padding: 32px 34px 28px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.14);
+      margin-bottom: 22px;
+    }
+    header.hero .eyebrow {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: #93c5fd;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    header.hero h1 {
+      margin: 0 0 10px;
+      font-size: 28px;
+      line-height: 1.24;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    header.hero .subtitle {
+      margin: 0 0 18px;
+      color: #dbeafe;
+      font-size: 15.5px;
+      max-width: 860px;
+    }
+    .meta-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .meta-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      color: #f8fafc;
+      padding: 5px 11px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+    .meta-pill a {
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    /* Sticky TOC */
+    nav.toc {
+      position: sticky;
+      top: 10px;
+      z-index: 20;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 10px 14px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 14px;
+      align-items: center;
+      font-size: 13.5px;
+    }
+    nav.toc .toc-label {
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-size: 11.5px;
+      letter-spacing: 0.06em;
+      margin-right: 4px;
+    }
+    nav.toc a {
+      color: #1e293b;
+      font-weight: 600;
+      padding: 3px 6px;
+      border-radius: 5px;
+    }
+    nav.toc a:hover {
+      background: var(--accent-soft);
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    /* Sections & Cards */
+    section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 26px 28px;
+      margin-bottom: 22px;
+      box-shadow: var(--shadow);
+    }
+    section h2 {
+      margin: 0 0 14px;
+      font-size: 21px;
+      line-height: 1.3;
+      color: #0f172a;
+      border-bottom: 2px solid var(--surface-alt);
+      padding-bottom: 9px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .sec-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 14px;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+    section h3 {
+      margin: 20px 0 8px;
+      font-size: 16.5px;
+      color: #1e293b;
+    }
+    p { margin: 0 0 12px; }
+    ul, ol { margin: 6px 0 14px; padding-left: 22px; }
+    li { margin-bottom: 6px; }
+
+    /* Highlight Grid */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 14px;
+      margin: 14px 0 6px;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+      gap: 16px;
+      margin: 14px 0;
+    }
+    .card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      padding: 16px 18px;
+    }
+    .card h4 {
+      margin: 0 0 8px;
+      font-size: 15px;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .card p:last-child, .card ul:last-child { margin-bottom: 0; }
+
+    /* Badges */
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+    .badge-blue { background: var(--accent-soft); color: var(--accent); border: 1px solid #bfdbfe; }
+    .badge-teal { background: var(--teal-soft); color: var(--teal); border: 1px solid #99f6e4; }
+    .badge-amber { background: var(--amber-soft); color: var(--amber); border: 1px solid #fde68a; }
+    .badge-red { background: var(--red-soft); color: var(--red); border: 1px solid #fecaca; }
+    .badge-purple { background: var(--purple-soft); color: var(--purple); border: 1px solid #ddd6fe; }
+
+    /* Tables */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 12px 0 16px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.8px;
+      line-height: 1.5;
+    }
+    th {
+      background: var(--surface-alt);
+      color: #1e293b;
+      text-align: left;
+      padding: 10px 12px;
+      font-weight: 700;
+      border-bottom: 2px solid var(--border-strong);
+      white-space: nowrap;
+    }
+    td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tr:last-child td { border-bottom: none; }
+    tbody tr:hover { background: #f8fafc; }
+
+    /* Callouts */
+    .callout {
+      border-radius: 9px;
+      padding: 15px 18px;
+      margin: 16px 0;
+      border-left: 4px solid;
+    }
+    .callout-red {
+      background: var(--red-soft);
+      border-color: var(--red);
+    }
+    .callout-amber {
+      background: var(--amber-soft);
+      border-color: var(--amber);
+    }
+    .callout-blue {
+      background: var(--accent-soft);
+      border-color: var(--accent);
+    }
+    .callout-teal {
+      background: var(--teal-soft);
+      border-color: var(--teal);
+    }
+    .callout-title {
+      font-weight: 800;
+      margin-bottom: 6px;
+      font-size: 14.5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .callout-red .callout-title { color: var(--red); }
+    .callout-amber .callout-title { color: var(--amber); }
+    .callout-blue .callout-title { color: var(--accent); }
+    .callout-teal .callout-title { color: var(--teal); }
+
+    /* Variant Cards */
+    .variant-box {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 16px;
+      background: var(--surface);
+    }
+    .variant-header {
+      background: var(--surface-alt);
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .variant-header strong { font-size: 15.5px; color: #0f172a; }
+    .variant-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .variant-col {
+      padding: 14px 18px;
+    }
+    .variant-col:first-child {
+      border-right: 1px solid var(--border);
+    }
+    .col-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .col-trim { color: var(--amber); }
+    .col-extend { color: var(--teal); }
+
+    /* Checklist */
+    .checklist {
+      list-style: none;
+      padding-left: 0;
+      margin: 10px 0;
+    }
+    .checklist li {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 10px;
+      background: var(--bg);
+    }
+    .check-box {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--border-strong);
+      border-radius: 5px;
+      background: #fff;
+      margin-top: 2px;
+    }
+    .check-box.urgent {
+      border-color: var(--red);
+      background: var(--red-soft);
+    }
+
+    /* Timeline */
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 14px;
+      margin-top: 12px;
+    }
+    .phase-card {
+      border: 1px solid var(--border);
+      border-top: 4px solid var(--accent);
+      border-radius: 9px;
+      padding: 16px 18px;
+      background: var(--bg);
+    }
+    .phase-card.p-urgent { border-top-color: var(--red); }
+    .phase-card.p-mid { border-top-color: var(--teal); }
+    .phase-card.p-long { border-top-color: var(--purple); }
+    .phase-time {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+    .phase-card h4 { margin: 0 0 8px; font-size: 16px; }
+
+    footer {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 13px;
+      margin-top: 28px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 760px) {
+      .variant-cols { grid-template-columns: 1fr; }
+      .variant-col:first-child { border-right: none; border-bottom: 1px solid var(--border); }
+      .grid-2 { grid-template-columns: 1fr; }
+      header.hero { padding: 24px 20px; }
+      section { padding: 20px 18px; }
+    }
+
+    @media print {
+      body { background: #fff; font-size: 11.5pt; }
+      nav.toc { display: none; }
+      .container { max-width: 100%; padding: 0; }
+      section, .card, .variant-box, .phase-card { box-shadow: none; break-inside: avoid; }
+      header.hero { background: #0f172a !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <header class="hero">
+      <div class="eyebrow">Publication Strategy &amp; Venue Roadmap &bull; November 22, 2026</div>
+      <h1>Publishing Variants of the Engineering Lean&nbsp;4 Adoption Study</h1>
+      <p class="subtitle">
+        Strategic assessment of target venues, publisher AI-use &amp; disclosure policies, trimming/extension blueprints,
+        pre-submission integrity gates, and sequencing for <em>How Are Engineering Papers Adopting Lean?</em>
+        (9,837-paper longitudinal corpus, recall calibration, and 20-paper Layer-A semantic fidelity audit).
+      </p>
+      <div class="meta-bar">
+        <span class="meta-pill">Repo: <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv" target="_blank" rel="noopener">electronjoe/survey-lean-proofs-eng-arxiv</a></span>
+        <span class="meta-pill">Pilot PDF: <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/src/pilot/main.pdf" target="_blank" rel="noopener">src/pilot/main.pdf</a></span>
+        <span class="meta-pill">LaTeX Source: <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/src/pilot/main.tex" target="_blank" rel="noopener">src/pilot/main.tex</a></span>
+        <span class="meta-pill">BibTeX: <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/src/pilot/references.bib" target="_blank" rel="noopener">references.bib</a></span>
+        <span class="meta-pill">Taxonomy Notes: <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/proof-methods.md" target="_blank" rel="noopener">proof-methods.md</a></span>
+      </div>
+    </header>
+
+    <nav class="toc" aria-label="Page navigation">
+      <span class="toc-label">Jump to:</span>
+      <a href="#overview">1. Overview</a>
+      <a href="#venues">2. Venue Portfolio</a>
+      <a href="#ai-policies">3. AI Policies &amp; arXiv Traps</a>
+      <a href="#blueprints">4. Trim &amp; Extend Blueprints</a>
+      <a href="#checklist">5. Pre-Submission Risks</a>
+      <a href="#timeline">6. Sequenced Roadmap</a>
+      <a href="#repo-map">7. GitHub Source Map</a>
+    </nav>
+
+    <!-- SECTION 1 -->
+    <section id="overview">
+      <h2><span class="sec-num">1</span> Executive Overview: Why a Multi-Variant Portfolio Wins</h2>
+      <p>
+        Because this work bridges <strong>applied engineering &amp; ECE</strong>, <strong>formal verification (Lean&nbsp;4)</strong>,
+        <strong>empirical software engineering</strong>, and <strong>AI-for-science metascience</strong>, no single venue
+        maximizes speed, engineering readership, and archival rigor simultaneously. Late-2026 Lean adoption is also moving
+        rapidly (a 6.3&times; rate jump and 32&times; codebase-size jump in six months), meaning a 14-month journal cycle alone
+        would sacrifice timeliness.
+      </p>
+      <div class="grid-3">
+        <div class="card">
+          <h4>Fast Broad Impact <span class="badge badge-blue">2–4 Months</span></h4>
+          <p>
+            Trim the pilot report into a punchy <strong>CACM</strong> or <strong>IEEE Software / IEEE Computer</strong>
+            article pairing the longitudinal inflection curve with an actionable engineering playbook
+            (<code>P1</code>–<code>P4</code> &amp; Five-Gate verification checklist), alongside an empirically framed arXiv preprint.
+          </p>
+        </div>
+        <div class="card">
+          <h4>Formal-Methods Flagship <span class="badge badge-teal">Feb 2027</span></h4>
+          <p>
+            Add Docker-sandboxed <code>lake build</code> + <code>#print axioms</code> verification on compact repos and
+            human inter-rater reliability (IRR) on the 20 Layer-A audits to target <strong>ITP&nbsp;2027</strong>
+            (Glasgow; deadline ~late Feb&nbsp;2027) and <strong>AITP&nbsp;2027</strong>.
+          </p>
+        </div>
+        <div class="card">
+          <h4>Archival / Benchmark Anchor <span class="badge badge-purple">Spring 2027</span></h4>
+          <p>
+            Add a Q1/Q2&nbsp;2027 slice (<code>T3</code>), a <code>cs.LG</code>/<code>stat.ML</code> arm, and a
+            Croissant/Zenodo benchmark dataset of verified LaTeX&harr;Lean drift pairs for
+            <strong>NeurIPS&nbsp;2027 D&amp;B</strong> (~May&nbsp;2027) or <strong>EMSE / ACM TOSEM</strong>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2 -->
+    <section id="venues">
+      <h2><span class="sec-num">2</span> Venue Portfolio &amp; Paper Variants</h2>
+      <p>
+        The table below maps six concrete publication tracks against audience impact, submission cadence (relative to
+        <strong>November&nbsp;2026</strong>), and target format.
+      </p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Track / Variant</th>
+              <th>Top Target Venues</th>
+              <th>Impact &amp; Audience Fit</th>
+              <th>Timeline / Deadlines</th>
+              <th>Target Length &amp; Format</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>A. Broad Computing / Engineering Magazine</strong><br><span class="badge badge-blue">Fastest Reach</span></td>
+              <td><strong>Communications of the ACM (CACM)</strong> <em>(Contributed / Practice)</em>; <strong>IEEE Software</strong>; <strong>IEEE Computer</strong></td>
+              <td>Highest reach among practicing engineers &amp; CS faculty; shapes community norms on <code>P1</code>–<code>P4</code> workflows and semantic verification hygiene.</td>
+              <td>Rolling; ~10–12 weeks to first editorial decision at CACM.</td>
+              <td>3,000–6,000 words (5–10 magazine pages), 25–40 references, 3 crisp figures.</td>
+            </tr>
+            <tr>
+              <td><strong>B. Domain-Targeted IEEE Society Magazine</strong><br><span class="badge badge-blue">Subfield Wake-Up</span></td>
+              <td><strong>IEEE Signal Processing Magazine</strong>; <strong>IEEE Control Systems Magazine</strong>; <strong>IEEE Communications Magazine</strong></td>
+              <td>Directly reaches the disciplines exhibiting sharp bifurcation (<code>math.OC</code> &amp; <code>cs.IT</code> surging vs. 0% in <code>eess.SP</code>, <code>cs.NI</code>, <code>cs.RO</code>).</td>
+              <td>Rolling &amp; Special Issues.</td>
+              <td>4,000–6,000 words (6–9 pages); tutorial + empirical field guide.</td>
+            </tr>
+            <tr>
+              <td><strong>C. Empirical Software Engineering / Mining</strong><br><span class="badge badge-teal">Best Method Fit</span></td>
+              <td><strong>Empirical Software Engineering (EMSE)</strong>; <strong>ACM TOSEM</strong>; <strong>IEEE TSE</strong>; <strong>ASE&nbsp;2027</strong><br><em>(MSR&nbsp;2027 &amp; FSE&nbsp;2027 main tracks closed Oct&nbsp;2026; FSE Tool Demo closes Jan&nbsp;26, 2027)</em></td>
+              <td>Top archival credibility for static codebase profiling, negative recall calibration, and LLM-as-a-judge auditing pipelines.</td>
+              <td>Journals: rolling (3–6 mo review). ASE&nbsp;2027: CFP mid-2027 (Oct&nbsp;24–28, 2027).</td>
+              <td>15–25 pages + full Zenodo replication package &amp; human IRR.</td>
+            </tr>
+            <tr>
+              <td><strong>D. Interactive Theorem Proving &amp; AI4Math</strong><br><span class="badge badge-teal">Lean Community</span></td>
+              <td><strong>ITP&nbsp;2027</strong> (Glasgow, Aug&nbsp;2–7, 2027); <strong>AITP&nbsp;2027</strong> (Aussois, Aug&nbsp;29–Sep&nbsp;3, 2027); <strong>MATH-AI Workshops</strong> (ICML/NeurIPS&nbsp;2027)<br><em>(CPP&nbsp;2027 closed Sep&nbsp;2026)</em></td>
+              <td>Direct feedback and adoption impact with Lean FRO, Mathlib, <code>LeanArchitect</code>/<code>Verso</code>, and <code>comparator</code> toolbuilders.</td>
+              <td><strong>ITP&nbsp;2027:</strong> ~late Feb&nbsp;2027 (3-month runway).<br><strong>AITP&nbsp;2027:</strong> Spring&nbsp;2027.</td>
+              <td>ITP: 15–18 pp (LIPIcs). AITP: short non-archival abstract.</td>
+            </tr>
+            <tr>
+              <td><strong>E. ML Benchmarks &amp; Metascience</strong><br><span class="badge badge-purple">Citation Multiplier</span></td>
+              <td><strong>NeurIPS&nbsp;2027 Datasets &amp; Benchmarks</strong>; <strong>Quantitative Science Studies (QSS, MIT Press)</strong>; <strong>Patterns (Cell Press)</strong>; <strong>Nature Machine Intelligence</strong></td>
+              <td>Positions the corpus + Layer-A audit protocol as a living benchmark, or spotlights metascience discoveries (OAI-PMH bias &amp; retroactive <code>P1-retro</code> formalization).</td>
+              <td><strong>NeurIPS D&amp;B&nbsp;2027:</strong> ~May&nbsp;2027 (6-month runway).<br>QSS / Patterns / NMI: rolling.</td>
+              <td>NeurIPS D&amp;B: 9 pp + unlimited appendix + Hugging Face / Croissant dataset.</td>
+            </tr>
+            <tr>
+              <td><strong>F. Comprehensive Archival Tutorial + Survey</strong><br><span class="badge badge-amber">Long-Term Ref</span></td>
+              <td><strong>Proceedings of the IEEE</strong></td>
+              <td>Flagship ECE tutorial/survey venue; combines a complete Lean&nbsp;4 engineering tutorial, 12-mode taxonomy, defense-in-depth stack, and multi-quarter data.</td>
+              <td>Rolling; slower turnaround (6–12+ months).</td>
+              <td>20–30 IEEE double-column pages (&lt;35 pp recommended max).</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SECTION 3 -->
+    <section id="ai-policies">
+      <h2><span class="sec-num">3</span> AI-Use Policies &amp; Compliance Matrix</h2>
+      <p>
+        Major publishers evaluate <strong>two distinct AI roles</strong> separately:
+        (1) <strong>AI as a research instrument</strong>—here, the <code>flash</code>/<code>pro</code> agents in
+        <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/workflows/classify_candidates.py" target="_blank" rel="noopener"><code>workflows/classify_candidates.py</code></a> and
+        <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/workflows/audit_layer_a.py" target="_blank" rel="noopener"><code>workflows/audit_layer_a.py</code></a>—and
+        (2) <strong>AI-assisted drafting</strong> reviewed, verified, and edited by human authors.
+        <strong>Every publisher below permits both roles</strong> under strict human accountability and venue-specific disclosure rules.
+        No venue allows listing an AI system as an author.
+      </p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Publisher / Venue Family</th>
+              <th>AI in Research Pipeline (Agents / Audits)</th>
+              <th>AI-Assisted Drafting (Human-Edited)</th>
+              <th>Required Disclosure Location &amp; Wording</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>ACM</strong><br><em>CACM, TOSEM, ICSE, FSE, CPP</em></td>
+              <td><span class="badge badge-teal">Permitted</span> Must document tools, models, prompts, and workflow in <strong>Methods</strong>.</td>
+              <td><span class="badge badge-teal">Permitted</span> Updated ACM policy <strong>does not mandate disclosure strictly for writing/editing aid</strong> (though transparency is good practice).</td>
+              <td>Detailed methodology disclosure for agentic classification/auditing; human authors bear 100% liability (retraction risk if errors/hallucinations slip through).</td>
+            </tr>
+            <tr>
+              <td><strong>IEEE</strong><br><em>IEEE Software, IEEE Computer, TSE, Proc. IEEE, Magazines</em></td>
+              <td><span class="badge badge-teal">Permitted</span> Document in <strong>Methods</strong>.</td>
+              <td><span class="badge badge-amber">Disclosure Required</span> PSPB Manual &sect;8.2.1.B.10 requires disclosure whenever AI generates text/code/figures beyond basic grammar polish.</td>
+              <td>Must disclose in <strong>Acknowledgments</strong>: name the exact AI tool(s), identify <strong>which sections</strong> contain AI-generated content, and briefly explain the <strong>extent of use</strong>.</td>
+            </tr>
+            <tr>
+              <td><strong>Springer Nature</strong><br><em>EMSE, Nature Machine Intelligence</em></td>
+              <td><span class="badge badge-teal">Permitted</span> Document thoroughly in <strong>Methods</strong> (plus human IRR for LLM-as-a-judge at EMSE).</td>
+              <td><span class="badge badge-amber">Amber Tier</span> AI-assisted outlining, drafting, or coding verified by humans is permitted <strong>with explicit disclosure</strong>.</td>
+              <td>Declare tool, version, and scope in Methods/Acknowledgements. <strong>Red Tier banned:</strong> AI cannot independently author unverified claims or synthesize/alter empirical figures (code-generated matplotlib plots from real data are fine).</td>
+            </tr>
+            <tr>
+              <td><strong>Elsevier / Cell Press</strong><br><em>Patterns</em></td>
+              <td><span class="badge badge-teal">Permitted</span> Document in <strong>Methods</strong>.</td>
+              <td><span class="badge badge-amber">Disclosure Required</span> Permitted for structuring, drafting, synthesis, and coding under human review.</td>
+              <td>Dedicated section before References titled <em>"Declaration of generative AI and AI-assisted technologies in the manuscript preparation process"</em> using Elsevier's mandatory template.</td>
+            </tr>
+            <tr>
+              <td><strong>NeurIPS / ICML / ICLR</strong></td>
+              <td><span class="badge badge-teal">Permitted</span> Document in <strong>Methods</strong> &amp; paper checklist.</td>
+              <td><span class="badge badge-teal">Permitted</span> Allowed with transparency and full human accountability for factual/citation accuracy.</td>
+              <td>Complete venue AI/reproducibility checklist; provide persistent dataset/artifact hosting (Croissant metadata for NeurIPS D&amp;B).</td>
+            </tr>
+            <tr>
+              <td><strong>arXiv</strong><br><em>Preprint Server</em></td>
+              <td><span class="badge badge-teal">Permitted</span> Report significant tools consistent with subject norms.</td>
+              <td><span class="badge badge-red">Strict Enforcement</span> Allowed with human responsibility, but aggressive moderation penalties apply.</td>
+              <td>See the two critical 2026 arXiv traps immediately below.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout callout-red">
+        <div class="callout-title">&#9888; Two Critical arXiv 2026 Enforcement Traps to Fix Before Any Preprint Upload</div>
+        <ol>
+          <li>
+            <strong>arXiv <code>cs.*</code> Ban on Un-Refereed "Surveys" &amp; Position Papers:</strong>
+            arXiv Computer Science categories now require <strong>documented prior peer review</strong> for literature surveys and position papers.
+            <em>Action:</em> Do <strong>not</strong> title or frame the preprint as <em>"A Longitudinal Survey..."</em>—frame it accurately as an
+            <strong>empirical longitudinal measurement and semantic-fidelity audit study</strong> of 9,837 preprints and 20 codebases.
+          </li>
+          <li>
+            <strong>1-Year arXiv Ban for Unverified LLM Artifacts (Immediate BibTeX Red Flag!):</strong>
+            arXiv enforces 1-year bans for incontrovertible evidence of unchecked LLM output—especially <strong>hallucinated or placeholder citations</strong>.
+            In <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/src/pilot/references.bib#L34-L56" target="_blank" rel="noopener"><code>src/pilot/references.bib#L34-L56</code></a>,
+            three background citations currently contain placeholder author strings:
+            <code>{Lean Atlas Authors}</code> (<code>2604.16347</code>), <code>{Axle Authors}</code> (<code>2606.26442</code>), and
+            <code>{ProofBridge Authors}</code> (<code>2510.15681</code>).
+            <strong>Every single entry in <code>references.bib</code> must be verified 1-by-1 against live arXiv/DOI metadata before submission anywhere.</strong>
+          </li>
+        </ol>
+      </div>
+
+      <h3>Ready-to-Adapt AI Disclosure Templates (By Publisher)</h3>
+      <div class="grid-2">
+        <div class="card">
+          <h4>IEEE (Acknowledgments — PSPB &sect;8.2.1.B.10) <span class="badge badge-amber">Mandatory</span></h4>
+          <p>
+            <em>"Portions of the pipeline scripts, data-analysis tables, and initial manuscript prose across Sections I–VII were drafted with assistance from [Exact Model/Agent Name &amp; Version]. All empirical measurements, code outputs, citations, and final manuscript text were independently reviewed, verified, and edited by the human authors, who take full responsibility for the accuracy and integrity of the work."</em>
+          </p>
+        </div>
+        <div class="card">
+          <h4>ACM (Methods Section) <span class="badge badge-teal">Research Role Required</span></h4>
+          <p>
+            Document exact LLM checkpoints, temperatures/parameters, full prompt templates
+            (<a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/workflows/classify_candidates.py" target="_blank" rel="noopener"><code>classify_candidates.py</code></a>,
+            <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/workflows/audit_layer_a.py" target="_blank" rel="noopener"><code>audit_layer_a.py</code></a>),
+            human IRR validation, and raw JSON traces in Methods + replication package. Writing-assistance disclosure is optional under current ACM policy, though a one-sentence transparency note in Acknowledgments is good practice.
+          </p>
+        </div>
+        <div class="card">
+          <h4>Elsevier / Cell Press (Pre-References Declaration) <span class="badge badge-amber">Exact Template</span></h4>
+          <p>
+            <em>"Declaration of generative AI and AI-assisted technologies in the manuscript preparation process: During the preparation of this work the authors used [Tool/Model Name &amp; Version] to assist with software engineering of the analysis pipeline and initial manuscript drafting and editing. After using this tool/service, the authors reviewed, verified, and edited the content as needed and take full responsibility for the content of the publication."</em>
+          </p>
+        </div>
+        <div class="card">
+          <h4>Springer Nature (Amber Tier — EMSE / NMI) <span class="badge badge-amber">Mandatory + IRR</span></h4>
+          <p>
+            Declare both the LLM-as-a-judge instrument (exact model versions, prompts, human IRR &kappa;/&alpha;, and open-weight baseline where applicable per <code>llm-guidelines.org</code>) in <strong>Methods</strong> and AI-assisted drafting/structuring in <strong>Acknowledgments</strong>, explicitly confirming human verification of all scientific claims, citations, and code-generated figures.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4 -->
+    <section id="blueprints">
+      <h2><span class="sec-num">4</span> Trimming &amp; Extension Blueprints by Paper Variant</h2>
+      <p>
+        Each target track requires reshaping <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/src/pilot/main.tex" target="_blank" rel="noopener"><code>src/pilot/main.tex</code></a>
+        differently rather than submitting the 18-page pilot draft verbatim.
+      </p>
+
+      <div class="variant-box">
+        <div class="variant-header">
+          <strong>Variant 1: Broad Computing / Engineering Magazine (CACM, IEEE Software, IEEE Computer, IEEE Society Magazines)</strong>
+          <span class="badge badge-blue">Target: 4k–6k words</span>
+        </div>
+        <div class="variant-cols">
+          <div class="variant-col">
+            <div class="col-label col-trim">What to Trim</div>
+            <ul>
+              <li>Move the 39-paper inventory table (Table&nbsp;5) and low-level <code>file:line</code> audit dumps to an online GitHub/Zenodo supplement.</li>
+              <li>Condense OAI-PMH / HTML5 scraping mechanics and <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/src/calibrate_recall.py" target="_blank" rel="noopener">recall calibration</a> to a single crisp methods box.</li>
+              <li>Remove internal milestone framing (<code>Pilot v1 / v2 / v0.4</code>) and USC ANRG lab-anchor rationale.</li>
+              <li>Limit visuals to 3 flagship figures:
+                <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/src/pilot/figures/fig_longitudinal_curve.pdf" target="_blank" rel="noopener">longitudinal curve</a>,
+                <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/src/pilot/figures/fig_category_bifurcation.pdf" target="_blank" rel="noopener">category bifurcation</a>, and
+                <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/src/pilot/figures/fig_phase2_heatmap.pdf" target="_blank" rel="noopener">Layer-A heatmap</a>.
+              </li>
+            </ul>
+          </div>
+          <div class="variant-col">
+            <div class="col-label col-extend">What to Add / Extend</div>
+            <ul>
+              <li>Add a concise <strong>"Engineering Lab Playbook"</strong> sidebar adapting the Five-Gate pipeline &amp; decision matrix from
+                <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/proof-methods.md#L203-L268" target="_blank" rel="noopener"><code>proof-methods.md#L203-L268</code></a>.
+              </li>
+              <li>Elevate the central narrative hook: <em>why optimization &amp; information theory adopted Lean overnight while networking, signal processing, and robotics remained at 0%</em>.</li>
+              <li>Add an explicit cover note (required by CACM) explaining why every computing/ECE researcher &amp; reviewer needs to understand Type&nbsp;(i) vs. Type&nbsp;(ii) drift now.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="variant-box">
+        <div class="variant-header">
+          <strong>Variant 2: Archival Empirical Study (EMSE, ACM TOSEM, IEEE TSE, or ITP&nbsp;2027)</strong>
+          <span class="badge badge-teal">Target: 15–25 pages + Replication Package</span>
+        </div>
+        <div class="variant-cols">
+          <div class="variant-col">
+            <div class="col-label col-trim">What to Trim</div>
+            <ul>
+              <li>Replace ANRG lab-profile category selection with a principled external mapping across continuous/discrete theory vs. systems/hardware engineering subfields.</li>
+              <li>For <strong>ITP&nbsp;2027</strong> specifically, condense arXiv scraping infrastructure so at least half the paper focuses on Lean formalization patterns, Mathlib anchoring, <code>comparator</code> gaps, and build soundness.</li>
+            </ul>
+          </div>
+          <div class="variant-col">
+            <div class="col-label col-extend">What to Add / Extend (High Reviewer Priority)</div>
+            <ul>
+              <li><strong>Human Inter-Rater Reliability (IRR):</strong> Following <code>llm-guidelines.org</code> for EMSE/ICSE/FSE/MSR, have 2 humans independently code a stratified sample (e.g., all 20 Layer-A repos + 30 Stage-4 candidates) and report Cohen's &kappa; / Krippendorff's &alpha;.</li>
+              <li><strong>Sandboxed Docker Dynamic Execution:</strong> Run <code>lake build</code> + <code>#print axioms</code> (and <code>comparator</code> where present) on compact repos (&lt;15k&nbsp;LoC or a stratified 15–20 repo cohort) to convert static <code>Tier3_Gold</code> into ground-truth reproducibility.</li>
+              <li><strong>Add the <code>cs.LG</code> / <code>stat.ML</code> theory arm</strong> (already planned in Section&nbsp;7) to answer the inevitable ML-theory comparison question.</li>
+              <li><strong>LLM-as-a-judge hygiene:</strong> Archive exact model versions, full prompt templates from <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/workflows/audit_layer_a.py" target="_blank" rel="noopener"><code>workflows/audit_layer_a.py</code></a>, raw traces, and (for EMSE/TOSEM) an open-weight judge baseline on a subset.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="variant-box">
+        <div class="variant-header">
+          <strong>Variant 3: Living Benchmark &amp; Dataset (NeurIPS&nbsp;2027 Datasets &amp; Benchmarks, Patterns)</strong>
+          <span class="badge badge-purple">Target: 9 pp + Public Benchmark</span>
+        </div>
+        <div class="variant-cols">
+          <div class="variant-col">
+            <div class="col-label col-trim">What to Trim</div>
+            <ul>
+              <li>Tighten long prose case studies into structured benchmark schema descriptions and summary tables in the 9-page main body (push full inventories and prompt appendices to supplemental material).</li>
+            </ul>
+          </div>
+          <div class="variant-col">
+            <div class="col-label col-extend">What to Add / Extend</div>
+            <ul>
+              <li>Add Q1/Q2&nbsp;2027 longitudinal slices (<code>T3</code>/<code>T4</code>) + <code>cs.LG</code>/<code>stat.ML</code> to grow the verified corpus past 80–150+ Lean-engineering papers.</li>
+              <li>Release a Hugging Face + Zenodo dataset with <strong>Croissant metadata</strong> containing human-verified <code>(LaTeX theorem, Lean declaration, Layer-A drift label)</code> tuples.</li>
+              <li>Benchmark 2–3 frontier and open-weight models on detecting your human-labeled Layer-A semantic drift cases (including <code>Paper2Lean</code> negative controls).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="variant-box">
+        <div class="variant-header">
+          <strong>Variant 4: Metascience / Scientometrics (Quantitative Science Studies, Nature Machine Intelligence)</strong>
+          <span class="badge badge-amber">Target: Analysis / Perspective</span>
+        </div>
+        <div class="variant-cols">
+          <div class="variant-col">
+            <div class="col-label col-trim">What to Trim</div>
+            <ul>
+              <li>De-emphasize low-level Lean tactic/lexer implementation details in <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/src/profile_artifacts.py" target="_blank" rel="noopener"><code>src/profile_artifacts.py</code></a> and <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/src/patterns.py" target="_blank" rel="noopener"><code>src/patterns.py</code></a>.</li>
+            </ul>
+          </div>
+          <div class="variant-col">
+            <div class="col-label col-extend">What to Add / Extend</div>
+            <ul>
+              <li>Spotlight the two methodological metascience contributions in <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/reports/longitudinal_analysis.md" target="_blank" rel="noopener"><code>reports/longitudinal_analysis.md</code></a>: <strong>OAI-PMH datestamp survivorship bias</strong> (rescuing 31.8–35.4% of historical preprints) and <strong>retroactive autoformalization (<code>P1-retro</code>)</strong>.</li>
+              <li>Extend to quarterly windows across 2024–2027 and analyze author/institutional adoption patterns (academic vs. industry labs, solo vs. multi-author, peer-review acceptance follow-through).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="variant-box">
+        <div class="variant-header">
+          <strong>Variant 5: Comprehensive Tutorial + Survey Monograph (Proceedings of the IEEE)</strong>
+          <span class="badge badge-amber">Target: 20–30 IEEE Double-Column Pages</span>
+        </div>
+        <div class="variant-cols">
+          <div class="variant-col">
+            <div class="col-label col-trim">What to Trim</div>
+            <ul>
+              <li>Eliminate pilot-report chronology and narrow lab-specific framing; elevate tone to a durable, field-defining reference baseline.</li>
+            </ul>
+          </div>
+          <div class="variant-col">
+            <div class="col-label col-extend">What to Add / Extend</div>
+            <ul>
+              <li>Include a self-contained <strong>pedagogical tutorial on Lean&nbsp;4 &amp; Mathlib for ECE/engineering researchers</strong> (worked example of a control/optimization theorem, showing junk-value pitfalls, non-vacuity witnesses, <code>#print axioms</code>, and <code>comparator</code> CI).</li>
+              <li>Integrate the full 12-mode taxonomy, defense-in-depth solutions, and Five-Gate workflow from <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/proof-methods.md" target="_blank" rel="noopener"><code>proof-methods.md</code></a> alongside multi-quarter longitudinal empirical data (<code>T0</code>–<code>T3</code> + <code>cs.LG</code>/<code>stat.ML</code> + sandboxed build reproducibility).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5 -->
+    <section id="checklist">
+      <h2><span class="sec-num">5</span> Critical Pre-Submission Risks &amp; Hygiene Checklist</h2>
+      <p>
+        Because this paper critiques <em>Process Opacity (Mode&nbsp;#12)</em> and unverified AI outputs, reviewers will hold
+        this manuscript to an unusually high standard of transparency and verification.
+      </p>
+
+      <ul class="checklist">
+        <li>
+          <span class="check-box urgent"></span>
+          <div>
+            <strong>[URGENT] Audit &amp; Fix All BibTeX Entries in <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/src/pilot/references.bib" target="_blank" rel="noopener"><code>src/pilot/references.bib</code></a>:</strong>
+            Replace placeholder authors (<code>{Lean Atlas Authors}</code>, <code>{Axle Authors}</code>, <code>{ProofBridge Authors}</code> at
+            <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/src/pilot/references.bib#L34-L56" target="_blank" rel="noopener">lines 34–56</a>)
+            and verify every eprint ID, title, and author list across all 54 citations against live arXiv/DOI records to eliminate any risk of arXiv moderation bans or reviewer flags.
+          </div>
+        </li>
+        <li>
+          <span class="check-box urgent"></span>
+          <div>
+            <strong>[URGENT] Human-Verify Every Named Negative Audit Finding &amp; Pin Commit SHAs:</strong>
+            Before publishing critiques of named preprints—especially <code>2611.26272</code> (<em>Paper2Lean</em> / <code>OptPaper-20</code>),
+            <code>2611.04876</code>, <code>2605.14610</code>, and <code>2605.02856</code>
+            (see <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/reports/phase2_layer_a_audit.md" target="_blank" rel="noopener"><code>reports/phase2_layer_a_audit.md</code></a> and
+            <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/reports/slice_2026_05_phase2_audit.md" target="_blank" rel="noopener"><code>reports/slice_2026_05_phase2_audit.md</code></a>)—human authors
+            must directly verify every cited <code>file:line</code> claim, record exact arXiv versions (<code>v1</code>) and Git commit SHAs,
+            maintain strictly factual tone, and consider <strong>courtesy pre-publication notification</strong> to those authors.
+          </div>
+        </li>
+        <li>
+          <span class="check-box"></span>
+          <div>
+            <strong>Add a Transparent AI-Use &amp; Human-Accountability Statement:</strong>
+            Draft venue-tailored disclosures covering (a) exact LLM versions, dates, and prompts used in Stages&nbsp;4–5 and (b) AI-assisted manuscript drafting reviewed, fact-checked, and edited by human authors (formatted per ACM Methods, IEEE Acknowledgments, Springer Amber Tier, or Elsevier Declaration template).
+          </div>
+        </li>
+        <li>
+          <span class="check-box"></span>
+          <div>
+            <strong>Human IRR Calibration for LLM-as-a-Judge (Required for SE / Archival Venues):</strong>
+            Independently human-annotate a stratified sample of Stage-4 classifications and Stage-5 Layer-A audits; report Cohen's &kappa; / Krippendorff's &alpha; and reconcile disagreements transparently.
+          </div>
+        </li>
+        <li>
+          <span class="check-box"></span>
+          <div>
+            <strong>Double-Blind &amp; Anonymization Hygiene (ITP / NeurIPS / ASE):</strong>
+            Strip USC ANRG attribution, author footnotes, and direct non-anonymous GitHub URLs from double-blind submissions; host an anonymized replication snapshot (Anonymous GitHub or anonymized Zenodo deposit).
+          </div>
+        </li>
+        <li>
+          <span class="check-box"></span>
+          <div>
+            <strong>Third-Party Code Licensing in Replication Packages:</strong>
+            Do <strong>not</strong> redistribute cloned third-party GitHub <code>.lean</code> source trees inside Zenodo archives unless their licenses explicitly permit it. Distribute your own pipeline scripts, SQLite metadata schemas, repo URLs + commit SHAs, prompt rubrics, and audit JSON outputs.
+          </div>
+        </li>
+        <li>
+          <span class="check-box"></span>
+          <div>
+            <strong>Clean Self-Plagiarism Boundaries Across Variants:</strong>
+            Non-archival outputs (arXiv empirical preprint, AITP&nbsp;2027 abstract, MATH-AI workshop) do not block archival publication. Pairing a short practitioner magazine article (CACM / IEEE Software) with an expanded archival journal/benchmark paper (EMSE / TOSEM / NeurIPS D&amp;B / ITP) is standard when clearly cross-cited and substantially extended (&ge;30–50% new empirical scope such as sandboxed builds, human IRR, <code>cs.LG</code>, and <code>T3</code>).
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- SECTION 6 -->
+    <section id="timeline">
+      <h2><span class="sec-num">6</span> Recommended Sequenced Roadmap (Nov 2026 &rarr; Fall 2027)</h2>
+      <div class="timeline">
+        <div class="phase-card p-urgent">
+          <div class="phase-time">Phase 0 &bull; Next 1–2 Weeks (Late Nov – Early Dec 2026)</div>
+          <h4>Integrity &amp; Hygiene Gate</h4>
+          <ul>
+            <li>Audit &amp; fix all entries in <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/src/pilot/references.bib" target="_blank" rel="noopener"><code>references.bib</code></a>.</li>
+            <li>Human-verify all named Layer-A findings (<code>2611.26272</code>, <code>2611.04876</code>, T1 repos) + pin commit SHAs.</li>
+            <li>Optional courtesy outreach to authors of flagged preprints.</li>
+            <li>Add explicit AI-Use &amp; Accountability statement.</li>
+          </ul>
+        </div>
+        <div class="phase-card p-mid">
+          <div class="phase-time">Phase 1 &bull; Dec 2026 – Feb 2027</div>
+          <h4>Fast Impact + First Archival Shot</h4>
+          <ul>
+            <li><strong>Track A (Fastest Reach):</strong> Trim to ~5,000 words + Engineering Playbook and submit to <strong>CACM</strong> or <strong>IEEE Software</strong>; post empirically framed arXiv preprint (avoiding "Survey" in the title!).</li>
+            <li><strong>Track D (Formal Methods):</strong> Run Docker-sandboxed <code>lake build</code> + <code>#print axioms</code> on compact repos + human IRR on the 20 Layer-A audits &rarr; submit to <strong>ITP&nbsp;2027</strong> (~late Feb&nbsp;2027) &amp; <strong>AITP&nbsp;2027</strong>.</li>
+          </ul>
+        </div>
+        <div class="phase-card p-long">
+          <div class="phase-time">Phase 2 &bull; Spring – Summer 2027</div>
+          <h4>Flagship Benchmark / Journal Anchor</h4>
+          <ul>
+            <li>Add <strong>Q1/Q2&nbsp;2027 slice (<code>T3</code>)</strong> + <strong><code>cs.LG</code> / <code>stat.ML</code> arm</strong> via automated runner.</li>
+            <li>Release Croissant/Zenodo benchmark dataset of verified LaTeX&harr;Lean drift pairs + multi-model judge evaluation.</li>
+            <li>Submit flagship archival version to <strong>NeurIPS&nbsp;2027 Datasets &amp; Benchmarks</strong> (~May&nbsp;2027) or <strong>EMSE / ACM TOSEM</strong> (rolling).</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout callout-teal" style="margin-top: 18px;">
+        <div class="callout-title">Key Strategic Decision for Co-Authors</div>
+        Choose your <strong>primary archival anchor</strong> early—either <strong>(1) CACM/IEEE Software + EMSE/TOSEM</strong> (maximum combined engineering reach + SE rigor), <strong>(2) ITP&nbsp;2027</strong> (fastest top formal-methods conference, ~3-month runway), or <strong>(3) NeurIPS&nbsp;2027 D&amp;B</strong> (highest AI/ML citation multiplier, ~6-month runway)—so extensions (sandboxed builds, human IRR, <code>cs.LG</code>, and <code>T3</code>) are prioritized cleanly without duplicated effort.
+      </div>
+    </section>
+
+    <!-- SECTION 7 -->
+    <section id="repo-map">
+      <h2><span class="sec-num">7</span> Quick-Reference GitHub Source Map</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Artifact / Component</th>
+              <th>GitHub Source Link</th>
+              <th>Role in Publication Preparation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Pilot LaTeX Manuscript</td>
+              <td><a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/src/pilot/main.tex" target="_blank" rel="noopener"><code>src/pilot/main.tex</code></a> &bull; <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/src/pilot/main.pdf" target="_blank" rel="noopener"><code>main.pdf</code></a></td>
+              <td>Current 18-page v0.4 draft (with self-contained 12-mode Section&nbsp;2); base for trimming/extending variants.</td>
+            </tr>
+            <tr>
+              <td>Bibliography (Needs Audit)</td>
+              <td><a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/src/pilot/references.bib" target="_blank" rel="noopener"><code>src/pilot/references.bib</code></a></td>
+              <td>Fix placeholder author entries at <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/src/pilot/references.bib#L34-L56" target="_blank" rel="noopener">lines 34–56</a> and verify all 54 citations.</td>
+            </tr>
+            <tr>
+              <td>Full Taxonomy &amp; Five-Gate Playbook</td>
+              <td><a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/proof-methods.md" target="_blank" rel="noopener"><code>proof-methods.md</code></a></td>
+              <td>Source material for the magazine "Engineering Playbook" sidebar and <em>Proc. IEEE</em> tutorial variant.</td>
+            </tr>
+            <tr>
+              <td>Layer-A Audit Reports (T2 &amp; T1)</td>
+              <td><a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/reports/phase2_layer_a_audit.md" target="_blank" rel="noopener"><code>reports/phase2_layer_a_audit.md</code></a> &bull; <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/reports/slice_2026_05_phase2_audit.md" target="_blank" rel="noopener"><code>slice_2026_05_phase2_audit.md</code></a></td>
+              <td>Detailed theorem-by-theorem tables for human IRR calibration and verification of named findings.</td>
+            </tr>
+            <tr>
+              <td>Longitudinal &amp; Recall Reports</td>
+              <td><a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/reports/longitudinal_analysis.md" target="_blank" rel="noopener"><code>reports/longitudinal_analysis.md</code></a> &bull; <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/reports/recall_calibration.md" target="_blank" rel="noopener"><code>recall_calibration.md</code></a></td>
+              <td>Metascience evidence (OAI-PMH survivorship rescue, <code>P1-retro</code> cases, 0/200 GitHub false-negative calibration).</td>
+            </tr>
+            <tr>
+              <td>Agent Workflow Prompts &amp; Schemas</td>
+              <td><a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/workflows/classify_candidates.py" target="_blank" rel="noopener"><code>workflows/classify_candidates.py</code></a> &bull; <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/workflows/audit_layer_a.py" target="_blank" rel="noopener"><code>workflows/audit_layer_a.py</code></a></td>
+              <td>Prompt templates and JSON schemas to publish in replication packages for LLM-as-a-judge compliance.</td>
+            </tr>
+            <tr>
+              <td>Core Pipeline &amp; Figure Scripts</td>
+              <td><a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/src/ingest_arxiv.py" target="_blank" rel="noopener"><code>ingest_arxiv.py</code></a> &bull; <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/src/profile_artifacts.py" target="_blank" rel="noopener"><code>profile_artifacts.py</code></a> &bull; <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/src/generate_figures.py" target="_blank" rel="noopener"><code>generate_figures.py</code></a></td>
+              <td>Reproducible 0-token ingestion, static profiling, and vector figure generation for extending to <code>T3</code> and <code>cs.LG</code>.</td>
+            </tr>
+            <tr>
+              <td>Project Status &amp; Roadmap Notes</td>
+              <td><a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/docs/PROGRESS_AND_NEXT_STEPS.md" target="_blank" rel="noopener"><code>docs/PROGRESS_AND_NEXT_STEPS.md</code></a></td>
+              <td>Living engineering milestone tracker (Docker sandbox verification, ML-theory arm, periodic runner).</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer>
+      Generated for <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv" target="_blank" rel="noopener"><code>survey-lean-proofs-eng-arxiv</code></a>
+      &bull; Stored at <code>docs/publication_strategy.html</code> &bull; Single-file, print-ready HTML (no external dependencies).
+    </footer>
+
+  </div>
+</body>
+</html>
