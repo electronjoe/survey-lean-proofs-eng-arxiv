@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+*.pyc
+data/
+.env
+.DS_Store
+src/pilot/*.aux
+src/pilot/*.bbl
+src/pilot/*.blg
+src/pilot/*.fdb_latexmk
+src/pilot/*.fls
+src/pilot/*.log
+src/pilot/*.out
+src/pilot/*.synctex.gz
+

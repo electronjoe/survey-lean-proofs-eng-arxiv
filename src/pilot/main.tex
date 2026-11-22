@@ -1,0 +1,267 @@
+\documentclass[11pt,letterpaper]{article}
+
+\usepackage[margin=0.9in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{color}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+\definecolor{barblue}{rgb}{0.17,0.41,0.66}
+\definecolor{bargray}{rgb}{0.55,0.60,0.64}
+\definecolor{barteal}{rgb}{0.13,0.55,0.50}
+\definecolor{baramber}{rgb}{0.80,0.47,0.09}
+
+\title{\textbf{How Are Engineering Papers Adopting Lean?}\\
+\large A Pilot Survey of Recent arXiv Preprints, Authoring Paradigms, and Verification Hygiene}
+
+\author{
+  Scott Moeller \and Bhaskar Krishnamachari\thanks{Autonomous Networks Research Group (ANRG), University of Southern California. Working pilot draft; pipeline code and raw survey artifacts are maintained in \texttt{survey-lean-proofs-eng-arxiv}.}
+}
+\date{November 22, 2026 \quad (Pilot Report v0.1)}
+
+\begin{document}
+\sloppy
+\maketitle
+
+\begin{abstract}
+The rapid rise of LLM-assisted autoformalization in 2026 has brought the Lean~4 theorem prover into applied engineering and systems research---domains far removed from pure mathematics and traditional formal-methods venues. Yet recent postmortems of bulk AI-generated Lean releases show that a green Lean build alone does not guarantee semantic fidelity between a paper's prose claims and its formal code, nor does it prevent proof bloat, scope downgrading, or axiom smuggling. We present a reproducible, token-frugal pilot survey of \textbf{3,160} unique arXiv preprints submitted over a three-week window (November~1--19, 2026) across six engineering, systems, control, information theory, security, and robotics categories aligned with USC's Autonomous Networks Research Group (\texttt{cs.DC}, \texttt{cs.NI}, \texttt{cs.IT}, \texttt{eess.SY}, \texttt{cs.CR}, \texttt{cs.RO}). Combining polite full-text HTML5/PDF screening (99.84\% coverage), strictly static LaTeX and GitHub repository profiling, and parallel lightweight-agent classification reduces LLM inspection volume by 98.0\% (from 3,160 papers to 64 candidates) while achieving $3\times$ higher recall than metadata-only search. We identify \textbf{20 confirmed papers contributing Lean proofs} (0.63\% of the corpus)---already outnumbering all non-Lean formal verification tools combined (12 papers, 0.38\%)---of which \textbf{11} use Lean specifically to verify or supplement mathematical theorems in engineering and applied theory (control/system identification, coding and information theory, compressed sensing, and cryptography). Across the 20 Lean papers, \textbf{80\%} (16/20) explicitly disclose AI/agentic formalization assistance and \textbf{80\%} (16/20) follow \emph{Paper-First, Post-Hoc Autoformalization} (\texttt{P1}); \textbf{0\%} use Lean-first authoring (\texttt{P2}) or synchronized blueprint tooling such as \texttt{LeanArchitect}/\texttt{Verso} (\texttt{P3}), while two early adopters (\textbf{10\%}) already employ \texttt{comparator}-based spec-locking (\texttt{P4}). Static profiling reveals widespread AI-scale proof bloat (8/20 repositories span 30k--929k lines of Lean), process opacity (9/20), partial-scope formalizations (7/20), and external axiom or \texttt{native\_decide} dependencies (2/20). We conclude with a prioritized roadmap for Pilot~v2 (expanding to signal processing \texttt{eess.SP}, optimization \texttt{math.OC}, and scoped ML theory) and Phase~2 semantic LaTeX$\leftrightarrow$Lean drift auditing.
+\end{abstract}
+
+% -----------------------------------------------------------------------------
+\section{Introduction and Motivation}
+\label{sec:intro}
+
+Interactive theorem proving in Lean~4~\cite{demoura2021lean4} has historically been concentrated in formal mathematics and programming-languages communities. Throughout 2026, however, autonomous LLM proving agents have lowered the barrier to generating large Lean~4 formalizations alongside research manuscripts. At the same time, high-profile audits of bulk AI-generated mathematical releases have demonstrated that a compiling Lean build is a weak proxy for trustworthy scholarship~\cite{bastounis2026navier,paglieri2026swarms,leanatlas2026}. In particular, Bastounis et al.~\cite{bastounis2026navier} distinguish \emph{Type~(i) autoformalization} (producing some compiling Lean proof inspired by a manuscript) from \emph{Type~(ii) autoformalization} (faithfully translating every definition, hypothesis, and lemma of the natural-language paper), documenting silent hypothesis strengthening and intermediate lemma drift when agents optimize for compiler closure.
+
+In this pilot study, we ask three concrete empirical questions about \emph{cutting-edge engineering and systems research}:
+\begin{enumerate}
+  \item \textbf{Prevalence:} Are researchers outside pure mathematics and traditional formal-methods venues actively shipping Lean proofs on arXiv right now, and how does Lean compare to established formal-verification tools (Coq/Rocq, Isabelle, TLA+, PRISM, Tamarin, Z3)?
+  \item \textbf{Authoring Paradigms:} Among papers contributing Lean proofs, which Lean$\leftrightarrow$\LaTeX{} workflow are authors actually following---post-hoc autoformalization, Lean-first authoring, synchronized blueprints, or spec-locked solving?
+  \item \textbf{Static Verification Hygiene:} What observable soundness, scope, transparency, and scale risks appear in public Lean artifacts attached to recent engineering preprints?
+\end{enumerate}
+
+To ground domain selection in a concrete engineering lab profile, we anchored this pilot to the research footprint of USC's Autonomous Networks Research Group (ANRG; led by B.~Krishnamachari). Scraping ANRG's publication archive (100 journal and 270 conference papers across IEEE/ACM venues such as ToN, TMC, JSAC, IoT-J, INFOCOM, MobiCom, SenSys, IPSN, ISIT, WiOpt, IPDPS, ICBC, and IROS) alongside its recent 2024--2026 arXiv submissions revealed six primary arXiv communities: \texttt{cs.DC}, \texttt{cs.NI}, \texttt{cs.IT}, \texttt{eess.SY}, \texttt{cs.CR}, and \texttt{cs.RO}. Rather than querying published journal proceedings---which suffer 6--12 months of peer-review lag and would miss the late-2026 AI-Lean inflection point---we exhaustively surveyed all arXiv submissions in these six categories over a recent three-week window.
+
+% -----------------------------------------------------------------------------
+\section{Taxonomy of Authoring Paradigms and Observable Risk Modes}
+\label{sec:taxonomy}
+
+Our classification schema operationalizes the framework synthesized in our companion taxonomy document (\texttt{proof-methods.md}), which draws on recent formal-verification postmortems~\cite{bastounis2026navier,zhu2026leanarchitect,paglieri2026swarms,leanatlas2026,axle2026,proofbridge2025}.
+
+\subsection{Lean\texorpdfstring{$\leftrightarrow$\LaTeX{}}{<->LaTeX} Authoring Paradigms}
+Every confirmed Lean-contributing paper is assigned to one of five workflow paradigms:
+\begin{description}
+  \item[\texttt{P1} (Paper-First, Post-Hoc Autoformalization):] Informal proofs and the \LaTeX{} manuscript are written first; Lean code is created afterward (often by AI agents) and linked via footnotes, manual tables, or post-hoc correspondence maps without bidirectional sync tooling.
+  \item[\texttt{P2} (Raw Lean-First / Auto-Informalization):] The kernel-checked Lean proof is built first, and the human manuscript is authored or decompiled directly against the Lean dependency graph.
+  \item[\texttt{P3} (Spec-Pinned Synchronized Co-Development):] Bidirectional literate tooling such as \texttt{LeanArchitect} (\texttt{@[blueprint]}, \texttt{\textbackslash inputleannode})~\cite{zhu2026leanarchitect}, \texttt{leanblueprint}, or \texttt{Verso Blueprints} keeps the \LaTeX{} theorem DAG and Lean declarations structurally synchronized.
+  \item[\texttt{P4} (Spec-Lock $\rightarrow$ AI-Solve $\rightarrow$ Distill):] Target statements are frozen in a read-only specification module (e.g., \texttt{Challenge.lean} or \texttt{ReferenceClaims}) checked against an untrusted \texttt{Solution.lean} via \texttt{lake comparator} and external kernels (e.g., \texttt{nanoda}), decoupling unconstrained AI proof search from specification integrity.
+  \item[\texttt{P0} (Opaque / Unspecified):] The paper claims Lean verification of its results but supplies neither public Lean artifacts nor sufficient workflow description to classify the paradigm.
+\end{description}
+
+\subsection{Observed Verification Tiers, Domain Roles, and Static Risk Flags}
+To track verification maturity strictly via static inspection (without executing untrusted build scripts), we assign each Lean paper:
+\begin{itemize}
+  \item \textbf{Domain Role} (motivated by engineering-theory focus): \texttt{engineering\_math\_proof} (Lean verifies or supplements mathematical theorems in control, coding/information theory, signal processing, optimization, or cryptographic math), \texttt{software\_or\_system\_fv} (Lean verifies an implementation, policy engine, CDC pipeline, or calculus), or \texttt{pure\_tcs\_or\_math} (theoretical CS or pure math cross-listed into engineering).
+  \item \textbf{Observed Verification Tier:} \texttt{Tier3\_Gold} (main results publicly formalized, zero \texttt{sorry}/custom \texttt{axiom}/\texttt{native\_decide} in proved endpoints, plus explicit audit evidence such as \texttt{\#print axioms}, \texttt{comparator}, or external-kernel replay); \texttt{Tier2\_Silver} (public compiling-looking Lean repo covering supporting lemmas/partial scope or lacking formal audit evidence); \texttt{Tier1\_Bronze} (no public repo, unresolved external axioms, or opaque process).
+  \item \textbf{Static Risk Flags:} \texttt{Mode2\_ScopeDowngrade} (partial/supporting lemmas or restricted parameters formalized vs.\ headline claims), \texttt{Mode3\_CustomDefs} (heavy custom definitions unanchored to Mathlib), \texttt{Mode6\_SorryOrAxiomOrNativeDecide} (unresolved \texttt{sorry}, custom \texttt{axiom}, or \texttt{native\_decide}), \texttt{Mode7\_MetaprogOrUnsafe} (\texttt{unsafe}, \texttt{implemented\_by}, \texttt{\#eval}, or notation overrides), \texttt{Mode10\_ProofBloat} (massive AI-scale LoC, e.g., $>20\text{k}$ LoC), and \texttt{Mode12\_ProcessOpacity} (no public artifact, missing pinned toolchain/CI, or unclear scope).
+\end{itemize}
+Semantic statement-level drift checks (\texttt{Mode1} hypothesis strengthening, \texttt{Mode4} vacuous hypotheses and junk-value traps) require theorem-by-theorem \LaTeX{}$\leftrightarrow$Lean comparison and are deferred to Phase~2.
+
+% -----------------------------------------------------------------------------
+\section{Reproducible Tiered Survey Pipeline}
+\label{sec:pipeline}
+
+Because Lean adoption in non-formal-methods engineering is a rare event ($<1\%$ base rate), running an LLM over every paper wastes token budget, whereas filtering solely on titles and abstracts misses papers that mention Lean only in Section~6, footnotes, or acknowledgments. We therefore built a four-stage, SQLite-checkpointed, idempotent pipeline designed for low token spend and periodic longitudinal re-runs:
+
+\begin{enumerate}
+  \item \textbf{Stage 1 --- arXiv Metadata Ingest (0 LLM tokens):} Query the arXiv Atom API across the six target categories for \texttt{submittedDate:[202611010000 TO 202611222359]} with 3.1\,s inter-request pacing, deduplicating cross-listed preprints into \texttt{data/survey.db}. This yielded \textbf{3,160} unique preprints (actual latest submission timestamp: November~19, 2026). Metadata-only screening found only \textbf{8} unambiguous Lean hits.
+  \item \textbf{Stage 2 --- Polite Full-Text Pre-Screen (0 LLM tokens):} For each preprint, fetch \texttt{arxiv.org/html/\{id\}v\{v\}} first (clean HTML5 preserving clickable hyperlinks), falling back to \texttt{arxiv.org/pdf/\{id\}v\{v\}} via \texttt{pypdf} on 404. We achieved \textbf{99.84\% full-text coverage} (2,969 HTML5, 186 PDF, 5 genuine HTTP 404s). Deterministic case-aware regex detectors scanned full text for strong Lean indicators (\texttt{Lean 4}, \texttt{Mathlib}, \texttt{lakefile}, \texttt{LeanArchitect}, \texttt{Verso}, \texttt{sorryAx}, \texttt{native\_decide}, etc.), contextual \texttt{Lean} mentions near proof terminology (excluding phrases like ``lean manufacturing''), and Beyond-Lean formal tools (Coq/Rocq, Isabelle, Agda, TLA+, PRISM, UPPAAL, NuSMV, SPIN, Tamarin, ProVerif, EasyCrypt, Z3/SMT). Full-text scanning surfaced \textbf{30 Lean candidates} (25 strong, 5 contextual-only---over $3\times$ metadata-only recall) plus \textbf{34 Beyond-Lean candidates}, eliminating \textbf{98.0\%} of the corpus before any LLM call.
+  \item \textbf{Stage 3 --- Strictly Static Artifact Profiler (0 LLM tokens):} For all 30 Lean candidates, download raw \LaTeX{} source (\texttt{/src/\{id\}}) to detect blueprint macros (\texttt{\textbackslash inputleannode}, \texttt{\textbackslash leanok}), theorem environment counts, and AI tool disclosures. For every linked public GitHub repository (excluding arXiv/LaTeXML boilerplate links and giant reference monorepos $>200$\,MB such as \texttt{openai/math} and \texttt{leanEthereum/leanVM}), query the GitHub API via authenticated \texttt{gh} and shallow-clone (\texttt{git clone --depth 1}) for \emph{strictly static} inspection---never executing \texttt{lake build} or compile-time \texttt{\#eval}. A comment-stripping lexer tallies non-empty Lean LoC, \texttt{theorem}/\texttt{lemma}/\texttt{def} counts, \texttt{sorry}, \texttt{admit}, custom \texttt{axiom}, \texttt{native\_decide}, \texttt{unsafe}, \texttt{@[blueprint]}, \texttt{lean-toolchain}, and CI workflow checks.
+  \item \textbf{Stage 4 --- Parallel Lightweight-Agent Classification:} Using Antigravity's dynamic \texttt{run\_workflow} orchestrator with strict JSON schema validation, we fanned out read-only \texttt{research} agents across the 30 Lean candidates (lightweight \texttt{flash} tier, permitted to read READMEs, lakefiles, and representative \texttt{.lean} files inside locally cloned repositories) and the 34 Beyond-Lean candidates (\texttt{flash\_lite} tier, snippet-only). Total runtime for all 64 classifications was under 5~minutes.
+\end{enumerate}
+
+% -----------------------------------------------------------------------------
+\section{Pilot Empirical Results}
+\label{sec:results}
+
+\subsection{Prevalence Across Categories: Lean vs.\ Beyond-Lean}
+Across all 3,160 preprints, Stage~4 confirmed \textbf{20 papers contributing Lean proofs} (0.63\% of the corpus; 7 of the 30 candidates were citations/discussions and 3 were false positives) and \textbf{12 papers contributing non-Lean formal verification} (0.38\%; 19 citations/discussions and 3 false positives). Notably, one of the five contextual-only Lean hits (\texttt{2611.15431}) was a genuine Lean paper, validating the inclusion of contextual matching.
+
+Table~\ref{tab:categories} breaks down prevalence by target category (note that two Lean papers cross-list across target pairs: \texttt{2611.15128} in \texttt{cs.CR}+\texttt{cs.IT}, and \texttt{2611.04561} in \texttt{cs.DC}+\texttt{eess.SY}). Lean adoption is highest in \texttt{cs.DC} (1.79\%), \texttt{cs.IT} (1.78\%), and \texttt{cs.CR} (1.11\%), with an emerging foothold in \texttt{eess.SY} (0.41\%, 3 papers) and zero confirmed Lean papers in \texttt{cs.NI} (196 papers) or \texttt{cs.RO} (1,159 papers) during this three-week window. Crucially, every single confirmed Lean paper in \texttt{cs.IT} (6/6) and 2/3 in \texttt{eess.SY} fall into our \texttt{engineering\_math\_proof} bucket, whereas traditional non-Lean formal tools (Coq/Rocq~5, PRISM~2, Z3~2, Isabelle/HOL~1, Tamarin~1, SPIN~1, nuXmv~1) concentrate heavily in \texttt{cs.CR} software/protocol verification (8/12) and \texttt{cs.DC} distributed-system implementations (3/12), with \emph{zero} non-Lean formal-proof papers in \texttt{cs.IT}.
+
+\begin{table}[t]
+\centering
+\caption{Three-week prevalence across ANRG-aligned arXiv categories (Nov~1--19, 2026). Category counts include cross-listings across the six target categories; the bottom row reports the deduplicated union.}
+\label{tab:categories}
+\footnotesize
+\setlength{\tabcolsep}{4.5pt}
+\begin{tabular}{lrrrrr}
+\toprule
+\textbf{Category} & \textbf{Papers} & \textbf{Lean Contrib.} & \textbf{Lean (\%)} & \textbf{Eng.\ Math Proof} & \textbf{Beyond-Lean} \\
+\midrule
+\texttt{cs.DC} (Distributed Computing) & 335 & 6 & 1.79\% & 0 & 3 \\
+\texttt{cs.IT} (Information Theory) & 338 & 6 & 1.78\% & 6 & 0 \\
+\texttt{cs.CR} (Crypto \& Security) & 629 & 7 & 1.11\% & 4 & 8 \\
+\texttt{eess.SY} (Systems \& Control) & 738 & 3 & 0.41\% & 2 & 1 \\
+\texttt{cs.NI} (Networking) & 196 & 0 & 0.00\% & 0 & 0 \\
+\texttt{cs.RO} (Robotics) & 1,159 & 0 & 0.00\% & 0 & 2 \\
+\midrule
+\textbf{Deduplicated Union} & \textbf{3,160} & \textbf{20} & \textbf{0.63\%} & \textbf{11} & \textbf{12} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Authoring Paradigms, AI Assistance, and Static Hygiene}
+Table~\ref{tab:distributions} summarizes the paradigm, domain-role, verification-tier, AI-disclosure, and static risk distributions across the 20 confirmed Lean papers. Four empirical patterns stand out:
+
+\begin{enumerate}
+  \item \textbf{Post-hoc \texttt{P1} dominates (80\%); synchronized blueprints (\texttt{P3}) and Lean-first (\texttt{P2}) are at 0\%.} Sixteen of twenty papers formalized prose theorems after the fact, typically linking declarations via footnotes or ad-hoc JSON/Markdown correspondence tables (\texttt{PaperIndex.lean}, \texttt{claims.json}, \texttt{README.md}). Not a single paper used \texttt{LeanArchitect}, \texttt{leanblueprint}, or \texttt{Verso}.
+  \item \textbf{Early \texttt{P4} spec-lock adoption (10\%) validates repo-aware auditing.} Two papers---\texttt{2611.14475} (explicit RIP matrices) and \texttt{2611.04876} (leakage-resilient matrix refreshing)---already deploy \texttt{comparator.json} locking frozen specification modules against sorry-free proof modules with external kernel replay (\texttt{NanoDa} / \texttt{--paranoid}). Notably, our naive Stage~3 regex flagged \texttt{sorry=4} and \texttt{sorry=41} in those two repositories; Stage~4 repo-inspecting agents immediately verified that those \texttt{sorry}s were \emph{intentional specification stubs} inside \texttt{Challenge.lean} and \texttt{Proofs.ReferenceClaims}, not incomplete proofs.
+  \item \textbf{AI-assisted formalization is pervasive (80\% explicit, 0\% explicitly human-only).} Sixteen papers explicitly credit LLM agents---most frequently ChatGPT-6 Astra / GPT-6.1 Sol, Claude Opus~5.5 / Claude Code, Codex, and Harmonic. The remaining four do not state their formalization authoring method (though all four mention Claude or Gemini elsewhere in their \LaTeX{} files).
+  \item \textbf{Bimodal codebase scale and pervasive bloat (Mode~\#10).} Among the 13 papers whose Lean repositories were locally cloned and scanned (Figure~\ref{fig:loc}), codebase sizes split sharply into two regimes: compact formalizations of 528--2,191~LoC (5 papers) versus massive AI-generated developments of \textbf{29,967--929,448~LoC} (8 papers, totaling over 1.85~million lines of Lean across just eight November preprints).
+\end{enumerate}
+
+\begin{table}[t]
+\centering
+\caption{Classification distributions across the 20 confirmed Lean-contributing papers.}
+\label{tab:distributions}
+\small
+\begin{tabularx}{\textwidth}{lXr}
+\toprule
+\textbf{Dimension} & \textbf{Category / Label} & \textbf{Count (\%)} \\
+\midrule
+\textbf{Authoring Paradigm} & \texttt{P1\_paper\_first\_posthoc} (post-hoc formalization) & 16 (80\%) \\
+ & \texttt{P4\_speclock\_solve\_distill} (\texttt{comparator} spec-lock) & 2 (10\%) \\
+ & \texttt{P0\_opaque\_or\_unspecified} (no repo / opaque workflow) & 2 (10\%) \\
+ & \texttt{P2\_lean\_first} / \texttt{P3\_blueprint\_sync} & 0 (0\%) \\
+\midrule
+\textbf{Domain Role} & \texttt{engineering\_math\_proof} (control, IT, coding, signal, crypto math) & 11 (55\%) \\
+ & \texttt{pure\_tcs\_or\_math} (CONGEST, distributed complexity, LTL synthesis) & 5 (25\%) \\
+ & \texttt{software\_or\_system\_fv} (policy engines, CDC, type-confusion calculus) & 4 (20\%) \\
+\midrule
+\textbf{Verification Tier} & \texttt{Tier3\_Gold} (public repo, clean endpoints, explicit axiom/kernel audit) & 9 (45\%) \\
+(Static Observed) & \texttt{Tier2\_Silver} (public repo, partial scope or basic build) & 4 (20\%) \\
+ & \texttt{Tier1\_Bronze} (no public repo, custom axioms, or unverified dump) & 7 (35\%) \\
+\midrule
+\textbf{AI Assistance} & \texttt{explicitly\_yes} / \texttt{unclear} / \texttt{explicitly\_no} & 16 / 4 / 0 \\
+\textbf{Public Artifact} & Cloned GitHub (13) + Giant GitHub/GitLab/Zenodo (4) / None (3) & 17 / 3 \\
+\midrule
+\textbf{Static Risk Flags} & \texttt{Mode12\_ProcessOpacity} (no repo, missing CI/toolchain, or unclear scope) & 9 (45\%) \\
+(multi-label) & \texttt{Mode10\_ProofBloat} ($>20\text{k}$ LoC AI-scale codebase) & 8 (40\%) \\
+ & \texttt{Mode2\_ScopeDowngrade} (partial lemmas, $K=2$, or omitted runtime bounds) & 7 (35\%) \\
+ & \texttt{Mode6\_SorryOrAxiomOrNativeDecide} (unresolved axioms / \texttt{native\_decide}) & 2 (10\%) \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\scriptsize
+\newcommand{\locbar}[3]{\textcolor{#1}{\rule{#2cm}{0.22cm}}\hspace{0.4em}#3}
+\begin{tabular}{@{}r l@{}}
+\toprule
+\textbf{Paper (Category, Paradigm, Role)} & \textbf{Non-Empty Lean LoC (log$_{10}$ scale; 1k $\approx$ 1.5\,cm, 1M $\approx$ 8.5\,cm)} \\
+\midrule
+\texttt{2611.04561} (\texttt{cs.DC}, \texttt{P1}, TCS) & \locbar{baramber}{8.4}{929,448} \\
+\texttt{2611.05136} (\texttt{cs.CC/CR}, \texttt{P1}, Eng) & \locbar{barblue}{6.9}{219,688} \\
+\texttt{2611.08172} (\texttt{cs.IT}, \texttt{P1}, Eng) & \locbar{barblue}{6.8}{200,335} \\
+\texttt{2611.02057} (\texttt{cs.DS/DC}, \texttt{P1}, TCS, 7 ax) & \locbar{baramber}{6.6}{166,354} \\
+\texttt{2611.01761} (\texttt{cs.DC}, \texttt{P1}, TCS) & \locbar{baramber}{6.6}{158,351} \\
+\texttt{2611.04876} (\texttt{cs.CR}, \texttt{P4}, Eng) & \locbar{barteal}{5.9}{81,481} \\
+\texttt{2611.11713} (\texttt{cs.IT}, \texttt{P1}, Eng*) & \locbar{barblue}{5.7}{69,875} \\
+\texttt{2611.14475} (\texttt{math.FA/IT}, \texttt{P4}, Eng) & \locbar{barteal}{4.9}{29,967} \\
+\texttt{2611.02256} (\texttt{cs.DC}, \texttt{P1}, TCS) & \locbar{bargray}{2.2}{2,191} \\
+\texttt{2611.10902} (\texttt{eess.SY}, \texttt{P1}, Eng) & \locbar{barblue}{2.1}{2,068} \\
+\texttt{2611.19551} (\texttt{cs.CR}, \texttt{P1}, SysFV) & \locbar{bargray}{1.7}{1,332} \\
+\texttt{2611.23762} (\texttt{quant-ph/IT}, \texttt{P1}, Eng) & \locbar{barblue}{0.9}{589} \\
+\texttt{2611.18220} (\texttt{eess.SY}, \texttt{P1}, Eng*) & \locbar{barblue}{0.8}{528} \\
+\bottomrule
+\end{tabular}
+\caption{Non-empty Lean~4 lines of code (log$_{10}$ scale) across the 13 confirmed papers with locally cloned public repositories. Blue/teal bars indicate \texttt{engineering\_math\_proof} papers (teal = \texttt{P4} \texttt{comparator} spec-lock); amber bars indicate bloated \texttt{pure\_tcs\_or\_math} repos. *Primary paper repo shown (\texttt{2611.11713} also cites a 135k-LoC companion repo; \texttt{2611.18220} also cites a 1.2k-LoC control repo).}
+\label{fig:loc}
+\end{figure}
+
+\subsection{Complete Inventory and Case Studies}
+Table~\ref{tab:inventory} catalogs all 20 confirmed Lean-contributing papers. Four qualitative themes emerge from close inspection of the artifacts:
+
+\paragraph{1.\ Engineering Control and System Identification (\texttt{eess.SY}).}
+Two papers sit squarely inside control and engineering optimization. Mejari et al.~\cite{arxiv2611_18220} present a tutorial introducing Lean~4 and Mathlib for system identification, formalizing identifiability examples and an almost-sure sharpening of Ljung's Lemma~3.1 in 528~LoC. Saner~\cite{arxiv2611_10902} (submitted to IEEE) accompanies a fast EV-charging optimization algorithm with a clean 2,068-LoC Lean~4 formalization (\texttt{v4.36.0-rc2}) featuring a 34-theorem \texttt{\#print axioms} manifest (\texttt{CheckAxioms.lean}) and zero \texttt{sorry}/custom axioms, while transparently scoping the formalization to the $K=2$ group case and excluding runtime/bisection tolerances.
+
+\paragraph{2.\ Information Theory, Coding, and Compressed Sensing (\texttt{cs.IT}).}
+Information-theoretic mathematics is currently the densest cluster of \texttt{engineering\_math\_proof} Lean adoption (6/338 papers, 1.78\%). Watanabe~\cite{arxiv2611_11713} verifies all three main theorems on binary belief-propagation fixed points in 70k~LoC (pinned to \texttt{v4.36.0-rc2} and a specific Mathlib SHA, explicitly auditing \texttt{sorryAx} and \texttt{native\_decide}). Ding and Hsieh~\cite{arxiv2611_08172} formalize uniform three-fold product expansion of algebraic-geometry codes in 200k~LoC (with Harmonic), explicitly noting omitted secondary results such as Schur fullness. K\"ummerle et al.~\cite{arxiv2611_14475} prove explicit restricted isometries ($k=m^{2/3-o(1)}$) using a \texttt{P4} frozen-statement \texttt{Challenge.lean}/\texttt{Solution.lean} lock verified with \texttt{comparator} and \texttt{NanoDa}, omitting only the polynomial running-time bound.
+
+\paragraph{3.\ Candid Disclaimers of Type~(i) Scope Gaps and External Axioms.}
+Several authors exhibit commendable transparency about the limits of AI-generated proofs. Qian~\cite{arxiv2611_05136} (220k~LoC, formalizing only Theorem~9.9) explicitly states: \emph{``The project-specific code is entirely AI-generated. We checked only its main statement's correspondence, compilation, and absence of \texttt{sorryAx} or nonstandard axioms, without verifying correspondence of the internal construction.''} Amiri et al.~\cite{arxiv2611_02057} formalize 81 results in 166k~LoC, where 73 depend only on standard axioms while 8 (including Theorem~E and Corollary~1.1) rely on 7 declared external graph/topology axioms. Bollig et al.~\cite{arxiv2611_04561} reach \textbf{929,448~LoC} (20,193 theorems, 20,454 definitions) with clickable paper-to-Lean proof badges and \texttt{comparator}+\texttt{Nanoda} replay on main endpoints, while leaving two \texttt{native\_decide} calls in an unimported falsification probe.
+
+\paragraph{4.\ Process Opacity Still Affects 45\% of Papers.}
+Three papers---\texttt{2611.25599} (Tether policy engine), \texttt{2611.20298} (Type-Confusion Security), and \texttt{2611.15431} (Nichols--Wootters entropies)---claim Lean verification without linking a public repository. Even among public GitHub repositories, almost none ship GitHub Actions CI workflows (\texttt{ci=[]} across all 13 cloned paper repos), making reproducible external verification dependent on manual local setup.
+
+\begin{table}[p]
+\centering
+\caption{Complete inventory of all 20 confirmed Lean-contributing papers across the 3,160-paper three-week pilot (Nov~1--19, 2026). Role: \textbf{Eng} = \texttt{engineering\_math\_proof}, \textbf{Sys} = \texttt{software\_or\_system\_fv}, \textbf{TCS} = \texttt{pure\_tcs\_or\_math}. LoC reports non-empty lines in the primary cloned paper repo (\textemdash{} = no public repo; \emph{ext} = Zenodo/GitLab/uncloned $>200$\,MB). Risk codes: \textbf{M2} = ScopeDowngrade, \textbf{M6} = Axiom/NativeDecide, \textbf{M10} = ProofBloat, \textbf{M12} = ProcessOpacity.}
+\label{tab:inventory}
+\scriptsize
+\setlength{\tabcolsep}{2.8pt}
+\begin{tabularx}{\textwidth}{llllllrlX}
+\toprule
+\textbf{arXiv ID} & \textbf{Prim.} & \textbf{Role} & \textbf{Par.} & \textbf{Tier} & \textbf{AI} & \textbf{LoC} & \textbf{Risks} & \textbf{Short Title \& Citation} \\
+\midrule
+2611.25599 & \texttt{cs.CR} & Sys & \texttt{P0} & T1 & Unc & \textemdash{} & M12 & Tether: Verified Stateful Policy Engine~\cite{arxiv2611_25599} \\
+2611.23762 & \texttt{quant-ph}* & Eng & \texttt{P1} & T2 & Yes & 589 & M2,M12 & Transversal CCZ Gates on qLDPC Codes~\cite{arxiv2611_23762} \\
+2611.22732 & \texttt{cs.CR} & Eng & \texttt{P1} & T1 & Yes & \emph{ext} & M12 & Mixing Properties of Parallel Mixnets~\cite{arxiv2611_22732} \\
+2611.20298 & \texttt{cs.PL}* & Sys & \texttt{P1} & T1 & Yes & \textemdash{} & M12 & Type-Confusion Security~\cite{arxiv2611_20298} \\
+2611.19551 & \texttt{cs.CR} & Sys & \texttt{P1} & T3 & Yes & 1,332 & none & TrustBound: Payment Epochs for AI Agents~\cite{arxiv2611_19551} \\
+2611.18220 & \texttt{eess.SY} & Eng & \texttt{P1} & T3 & Unc & 528 & M12 & Lean for System Identification~\cite{arxiv2611_18220} \\
+2611.15431 & \texttt{quant-ph}* & Eng & \texttt{P0} & T1 & Yes & \textemdash{} & M12 & Subadditivity in Nichols--Wootters Entropies~\cite{arxiv2611_15431} \\
+2611.15201 & \texttt{cs.DC} & TCS & \texttt{P1} & T1 & Yes & \emph{ext} & M12 & Sparse Matrix Mult.\ Exp.\ 1.5 (Low-BW)~\cite{arxiv2611_15201} \\
+2611.15128 & \texttt{cs.IT} & Eng & \texttt{P1} & T1 & Yes & \emph{ext} & M2,M12 & Affine Combiners for RS Proximity Gaps~\cite{arxiv2611_15128} \\
+2611.14475 & \texttt{math.FA}* & Eng & \texttt{P4} & T3 & Yes & 29,967 & M2,M10 & Explicit Restricted Isometries $k=m^{2/3-o(1)}$~\cite{arxiv2611_14475} \\
+2611.11713 & \texttt{cs.IT} & Eng & \texttt{P1} & T3 & Yes & 69,875 & M10 & Binary Belief Propagation Fixed Points~\cite{arxiv2611_11713} \\
+2611.10902 & \texttt{eess.SY} & Eng & \texttt{P1} & T3 & Unc & 2,068 & M2 & Bisect-Index-Choose EV Charging~\cite{arxiv2611_10902} \\
+2611.10810 & \texttt{cs.DB}* & Sys & \texttt{P1} & T2 & Unc & \emph{ext} & M2 & DBLog Incremental Snapshots (CDC)~\cite{arxiv2611_10810} \\
+2611.08172 & \texttt{cs.IT} & Eng & \texttt{P1} & T3 & Yes & 200,335 & M10 & Three-Fold Product Expansion of AG Codes~\cite{arxiv2611_08172} \\
+2611.05136 & \texttt{cs.CC}* & Eng & \texttt{P1} & T2 & Yes & 219,688 & M2,M10 & $TC^0$ Pseudorandomness from Lattices~\cite{arxiv2611_05136} \\
+2611.04876 & \texttt{cs.CR} & Eng & \texttt{P4} & T3 & Yes & 81,481 & M10 & Leakage-Resilient Comp.\ via Matrix Refreshing~\cite{arxiv2611_04876} \\
+2611.04561 & \texttt{cs.DC} & TCS & \texttt{P1} & T3 & Yes & 929,448 & M6,M10 & Distributed LTL Synthesis (Msg Adversaries)~\cite{arxiv2611_04561} \\
+2611.02256 & \texttt{cs.DC} & TCS & \texttt{P1} & T2 & Yes & 2,191 & M2 & Planar Shortest Paths \& Max-Flow (CONGEST)~\cite{arxiv2611_02256} \\
+2611.02057 & \texttt{cs.DS}* & TCS & \texttt{P1} & T1 & Yes & 166,354 & M6,M10,M12 & Covering Problems with Short Broadcasts~\cite{arxiv2611_02057} \\
+2611.01761 & \texttt{cs.DC} & TCS & \texttt{P1} & T3 & Yes & 158,351 & M10 & Anonymous Directed Dynamic Networks~\cite{arxiv2611_01761} \\
+\bottomrule
+\multicolumn{9}{l}{\footnotesize *Cross-listed into one of the six target categories (\texttt{cs.IT}, \texttt{cs.CR}, \texttt{cs.DC}, or \texttt{eess.SY}).}
+\end{tabularx}
+\end{table}
+
+% -----------------------------------------------------------------------------
+\section{Threats to Validity and Limitations}
+\label{sec:limitations}
+
+As an exploratory three-week pilot, several limitations govern how these results should be interpreted:
+\begin{itemize}
+  \item \textbf{Recall on Stage~2 negatives:} While full-text regex tripled recall over metadata-only search, we have not yet audited a random sample of Stage~2 negatives to empirically bound the false-negative rate (e.g., papers linking a Lean repo without naming Lean in the prose).
+  \item \textbf{Static-only inspection (no kernel execution or Layer-A diff yet):} Our Tier~3 labels reflect \emph{author-reported} audit scripts and static absence of \texttt{sorry}/\texttt{axiom}/\texttt{native\_decide}; we have not executed \texttt{lake build} or \texttt{lake comparator} in a sandbox, nor run adversarial \LaTeX{}$\leftrightarrow$Lean statement comparisons for silent hypothesis strengthening or vacuous truth (\texttt{Mode1}/\texttt{Mode4})~\cite{bastounis2026navier,proofbridge2025}.
+  \item \textbf{Non-GitHub and giant repositories:} Two Zenodo deposits (\texttt{2611.15201}, \texttt{2611.10810}), one GitLab repo (\texttt{2611.22732}), and one 420\,MB GitHub monorepo (\texttt{2611.15128}) were not cloned locally in v1.
+  \item \textbf{Domain coverage:} Pilot~v1 excluded signal processing (\texttt{eess.SP}), optimization (\texttt{math.OC}), and machine learning theory (\texttt{cs.LG}/\texttt{stat.ML}), while including cross-listed theoretical CS and software-verification preprints in \texttt{cs.DC}/\texttt{cs.CR}.
+\end{itemize}
+
+% -----------------------------------------------------------------------------
+\section{Roadmap and Next Steps}
+\label{sec:roadmap}
+
+Based on these pilot results and domain feedback, we plan four concrete next steps:
+\begin{enumerate}
+  \item \textbf{Pilot~v2 Domain Refinement (Lean-Only Engineering Theory):} Add \texttt{eess.SP} (signal processing) and \texttt{math.OC} (optimization and control)---plus a scoped slice of \texttt{cs.LG}/\texttt{stat.ML} theory---while excluding pure CS-theory primary categories (\texttt{cs.CC}, \texttt{cs.DS}, \texttt{cs.LO}) and dropping Beyond-Lean classification so all analysis focuses on Lean mathematical proofs in engineering.
+  \item \textbf{Phase~2 Deep Layer-A Semantic Drift Audit:} Run a targeted frontier-model adversarial audit~\cite{proofbridge2025} on the \texttt{engineering\_math\_proof} papers with cloned Lean repos, pairing \LaTeX{} \texttt{\textbackslash begin\{theorem\}} statements directly against their Lean declarations and custom definitions to measure real-world rates of Type~(i) statement drift (\texttt{Mode1}), definition smuggling (\texttt{Mode3}), and vacuous/junk-value traps (\texttt{Mode4}).
+  \item \textbf{Artifact Completeness \& Recall Calibration:} Add GitLab and Zenodo archive support to \texttt{profile\_artifacts.py}, spot-check 50 random Stage~2 negatives to bound recall, and optionally run sandboxed \texttt{lake check} / \texttt{\#print axioms} verification on compact engineering repositories ($<5\text{k}$~LoC).
+  \item \textbf{Longitudinal Tracking:} Re-run the idempotent pipeline monthly/quarterly (optionally via headless \texttt{agy -p} invocations) to track whether engineering papers migrate from \texttt{P1} post-hoc dumps toward \texttt{P3} blueprints (\texttt{LeanArchitect}/\texttt{Verso}) and \texttt{P4} \texttt{comparator} spec-locks over 2027.
+\end{enumerate}
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}
