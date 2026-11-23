@@ -1,6 +1,6 @@
 # Pre-Submission Audit Plan & Ground-Truth Ledger
 
-**Last updated:** 2026-11-22  
+**Last updated:** 2026-11-23  
 **Scope:** Systematic ground-truth verification of bibliography citations, named empirical/Layer-A findings, methodological weaknesses, and publication compliance for [`papers/arxiv-empirical/main.tex`](../papers/arxiv-empirical/main.tex) and [`papers/shared/references.bib`](../papers/shared/references.bib).
 
 ---
@@ -10,7 +10,7 @@
 | Pillar | Scope | Status | Key Artifact / Gate |
 | :--- | :--- | :--- | :--- |
 | **Pillar 1** | Deterministic + Semantic Bibliography Audit (all 54 entries) | **DONE** | [`scripts/audit_bib.py`](../scripts/audit_bib.py) (CI + `--live`), [`tests/test_audit_bib.py`](../tests/test_audit_bib.py) |
-| **Pillar 2 (Automated)** | Commit-SHA / Zenodo Pinning (20 repos) + Automated `file:line` (`196/196`) & Named-Critique Verification | **DONE** | [`scripts/pin_phase2_provenance.py`](../scripts/pin_phase2_provenance.py), [`artifacts/phase2_provenance.json`](../artifacts/phase2_provenance.json) |
+| **Pillar 2 (Automated)** | Commit-SHA / Zenodo / Ancillary Pinning (23 repos) + Automated `file:line` (`239/239`) & Named-Critique Verification | **DONE** | [`scripts/pin_phase2_provenance.py`](../scripts/pin_phase2_provenance.py), [`artifacts/phase2_provenance.json`](../artifacts/phase2_provenance.json) |
 | **Pillar 2 (Human)** | Independent Human Verification of Named Findings + Clean-Cohort False-Negative Check | **OPEN** | [`artifacts/human_annotations/`](../artifacts/human_annotations/README.md) |
 | **Pillar 3** | Closing Core Methodological Weaknesses (Automated Numeric Sync, Stage-3 Ancillary/Zip Unpacking & Compact Docker Kernel Builds **DONE**; Human IRR, ML Arm **OPEN**) | **PARTIAL** | [`scripts/check_paper_numbers.py`](../scripts/check_paper_numbers.py) (CI), [`artifacts/sandbox_builds/summary.json`](../artifacts/sandbox_builds/summary.json) |
 | **Pillar 4** | Pre-Submission Policy & Framing Gates (arXiv Non-Survey Retitle + AI Disclosure + Double-Blind Gate) | **DONE (arXiv)**; venue-tailored templates open | [`papers/arxiv-empirical/main.tex`](../papers/arxiv-empirical/main.tex), [`docs/publication_strategy.html`](publication_strategy.html) |
@@ -49,7 +49,7 @@ All **54 entries** in [`papers/shared/references.bib`](../papers/shared/referenc
 
 ### Automated Ground-Truth Findings (2026-11-22)
 
-1. **Pinned Immutable Provenance (`n = 20`):** [`scripts/pin_phase2_provenance.py`](../scripts/pin_phase2_provenance.py) exported [`artifacts/phase2_provenance.json`](../artifacts/phase2_provenance.json) covering all 20 Layer-A audited repositories (19 Git commit SHAs + 1 Zenodo record `24136107`, exact arXiv versions audited, `lean-toolchain`, and deterministic `.lean` tree SHA-256 hashes).
+1. **Pinned Immutable Provenance (`n = 23`):** [`scripts/pin_phase2_provenance.py`](../scripts/pin_phase2_provenance.py) exported [`artifacts/phase2_provenance.json`](../artifacts/phase2_provenance.json) covering all 23 Layer-A audited repositories (20 Git commit SHAs + 1 Zenodo record `24136107` + 2 arXiv ancillary packages `2611.26140`/`2611.12585`, exact arXiv versions audited, `lean-toolchain`, and deterministic `.lean` tree SHA-256 hashes), with **`239/239` (100%)** resolved & in-bounds `file:line` citations.
 2. **Direct Code Verification of the 4 Named Negative Findings:**
    - **`2611.26272` (*Paper2Lean* / `TTony2019/OptPaper`, `v1`, commit `1bde49b1bdcb`, 2026-09-26):**
      - Verified paper abstract/intro literally claims *"all identified discrepancies were repaired in the released projects"* and *"no unresolved discrepancies identified in the audit."*
@@ -91,8 +91,9 @@ All **54 entries** in [`papers/shared/references.bib`](../papers/shared/referenc
 - [x] **Automated Paper-to-Artifact Numeric Consistency Gate ([`scripts/check_paper_numbers.py`](../scripts/check_paper_numbers.py)):**
   - Programmatically verifies every bolded count, percentage, CI, multiplier, LoC aggregate, table cell (`tab:categories`, `tab:distributions`, all 39 rows of `tab:inventory`, `tab:longitudinal`), cross-artifact parity (`longitudinal_summary.json` vs. `artifacts/slices/*/figure_inputs.json`), recall calibration, and `phase2_provenance.json` (`196/196`).
   - Wired into [`.github/workflows/ci.yml`](../.github/workflows/ci.yml) with drift-detection unit tests in [`tests/test_check_paper_numbers.py`](../tests/test_check_paper_numbers.py). Caught and fixed a pre-existing rounding inconsistency on the YoY Stage-2 Lean candidate rate multiplier (`11.2×` from rounded `1.34/0.12` → exact `10.9×`).
-- [ ] **ML-Theory Arm, Pending Phase-2 Audits & Scope Hygiene:**
-  - Queue Phase-2 Layer-A semantic audits for the 3 newly unpacked `engineering_math_proof` packages (`2611.26140`, `2611.16781`, `2611.12585`).
+- [x] **Phase-2 Layer-A Semantic Audits on the 3 Newly Unpacked Packages (`2611.26140`, `2611.16781`, `2611.12585`):**
+  - Completed `pro`-tier adversarial Layer-A audits (2026-11-23), raising the audited cohort from `20 → 23` (`20` in T2 + `3` in T1; `239/239` resolved in-bounds `file:line` refs): `2611.16781` scored `high_faithful` (`minor_undisclosed` M1, `minor_disclosed` M2, `none` M3/M4, `strong_mathlib`), `2611.12585` scored `mostly_faithful_with_disclosed_gaps` (`minor_disclosed` M1/M2, `none` M3/M4, `strong_mathlib`), and `2611.26140` scored `partial_or_weakened_formalization` (`minor_disclosed` M1, `moderate` M2 candidly omitting `W_opt`/`GuardsCorridor` game reductions, `none` M3/M4, `mixed_custom_and_mathlib`). All 3 include explicit non-vacuity witnesses (`13/20 = 65.0%` in T2) and preserve **0/20** moderate/severe M1/M3/M4 failures across all Oct–Nov 2026 author-owned repos.
+- [ ] **ML-Theory Arm & Scope Hygiene:**
   - Run a scoped `cs.LG` / `stat.ML` arm (1-week window or stratified 1,000-paper sample) to benchmark ML theory against `math.OC` and `cs.IT`.
   - Audit calendar/conference-deadline confounders around Nov 1–19 and May 1–19, and replace USC ANRG lab-anchor rationale with an external IEEE/ACM disciplinary framing for archival variants.
 
@@ -105,7 +106,7 @@ All **54 entries** in [`papers/shared/references.bib`](../papers/shared/referenc
 - [x] **Added explicit `AI-Use Disclosure and Human Accountability` section + per-task model/effort provenance table (Table 7)** in [`papers/arxiv-empirical/main.tex`](../papers/arxiv-empirical/main.tex), verified directly from all 150 execution transcripts (81 local + 69 remote):
   - Stage 4 Lean classification (`flash`, 80 runs): **Gemini 4 Hydrogen (High)** (`gemini-4-hydrogen-tiered-high`) via Google Antigravity `run_workflow`
   - Stage 4 Pilot v1 Beyond-Lean baseline (`flash_lite`, 34 runs): **Gemini 3.5 Flash-Lite** (`gemini-3.5-flash-lite`) via Google Antigravity `run_workflow`
-  - Stage 5 Layer-A semantic audits (`pro`, 20 runs): **Gemini 4 Hydrogen (Extra High)** (`gemini-4-hydrogen-tiered-xhigh`) via Google Antigravity `run_workflow`
+  - Stage 5 Layer-A semantic audits (`pro`, 23 runs): **Gemini 4 Hydrogen (Extra High)** (`gemini-4-hydrogen-tiered-xhigh`) via Google Antigravity `run_workflow`
   - All code writing & manuscript drafting (Abstract + Sections 1–7): **Gemini 4 Neon (High)** (`gemini-4-neon-high`) via Google Antigravity CLI harness (with auxiliary interactive sessions on Gemini 4 Neon Medium and Gemini 4 Carbon High).
 - [x] **Verified double-blind review packaging** via `uv run python scripts/export_blind_artifact.py` (`37 files`, `0 leaks`, enforced in CI).
 

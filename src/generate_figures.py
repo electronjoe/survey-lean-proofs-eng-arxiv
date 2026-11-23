@@ -508,7 +508,7 @@ def make_phase2_heatmap(
     n_rows = len(audits)
     n_cols = len(col_headers)
 
-    fig, ax = plt.subplots(figsize=(10.2, 5.7))
+    fig, ax = plt.subplots(figsize=(10.2, max(5.7, 0.33 * n_rows + 0.1)))
     ax.set_xlim(0, n_cols)
     ax.set_ylim(0, n_rows)
     ax.invert_yaxis()
@@ -530,7 +530,8 @@ def make_phase2_heatmap(
             fw = "bold" if (is_bold or txt in ("Moderate", "Severe", "Minor (undiscl.)")) else "normal"
             ax.text(c_idx + 0.5, r_idx + 0.5, txt, ha="center", va="center", fontsize=7.6, color=fg, fontweight=fw)
 
-    # Bold divider separating Paper2Lean (bulk pipeline, row 0) from 16 author-owned repos (rows 1..16)
+    # Bold divider separating Paper2Lean (bulk pipeline, row 0) from independent author-owned repos (rows 1..n_rows-1)
+    n_indep = sum(1 for a in audits if a["arxiv_id"] != "2611.26272")
     ax.axhline(1.0, color="#991B1B", linewidth=2.2, linestyle="-", zorder=5)
     ax.text(
         n_cols + 0.08,
@@ -544,8 +545,8 @@ def make_phase2_heatmap(
     )
     ax.text(
         n_cols + 0.08,
-        9.0,
-        "16 Independent\nAuthor-Owned\nEngineering Repos\n(0 mod/sev M1/M3/M4)",
+        1.0 + (n_rows - 1) / 2.0,
+        f"{n_indep} Independent\nAuthor-Owned\nEngineering Repos\n(0 mod/sev M1/M3/M4)",
         ha="left",
         va="center",
         fontsize=7.6,
@@ -568,7 +569,7 @@ def make_phase2_heatmap(
         spine.set_visible(False)
 
     ax.set_title(
-        "Phase 2 Adversarial Layer-A Semantic Fidelity Matrix (n = 17 Engineering-Math Repos)",
+        f"Phase 2 Adversarial Layer-A Semantic Fidelity Matrix (n = {n_rows} Engineering-Math Repos)",
         pad=26,
         fontsize=10.8,
         fontweight="bold",

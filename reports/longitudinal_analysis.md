@@ -84,7 +84,7 @@ Without `v1` verification, naive latest-version scraping would misattribute **37
 | T1 | [2605.03034](https://arxiv.org/abs/2605.03034) | Contemp. `v1` (2026-05-04) | `cs.AI` (`cs.CR,eess.SY`) | `engineering_math_proof` | `P0` | `Tier1_Bronze` | `unclear` | — | Stable Agentic Control: Tool-Mediated LLM Architecture for Autono |
 | T1 | [2605.02856](https://arxiv.org/abs/2605.02856) | Contemp. `v1` (2026-05-04) | `cs.CR` (`cs.CR`) | `engineering_math_proof` | `P2` | `Tier2_Silver` | `explicitly_yes` | 749 | The 1-Bit Barrier is Universal: k-Stage Pipeline Composition and  |
 
-## 7. Historical Phase 2 Layer-A Semantic Fidelity Audits (T1: n = 3 vs. T2: n = 17)
+## 7. Historical Phase 2 Layer-A Semantic Fidelity Audits (T1: n = 3 vs. T2: n = 20)
 
 | arXiv ID | Timing | Overall Fidelity | M1 Drift | M2 Scope | M3 Defs | M4 Junk/Vac | Non-Vac? | Mathlib |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :---: | :--- |

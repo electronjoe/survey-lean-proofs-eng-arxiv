@@ -1,7 +1,7 @@
 # Survey Progress & Next Steps
 
-**Last updated:** 2026-11-22  
-**Status:** **Clean Multi-Variant Repository Layout + Longitudinal Baseline Slices (T0 Nov 2025 & T1 May 2026) + Sandboxed Docker Dynamic Kernel Verification ($n = 14$) + Pilot Paper v0.5 COMPLETE** (**9,837** preprints across 3 matched 19-day 8-category slices; 99.68% full-text coverage; contemporaneous `v1` adoption **0.00% → 0.15% → 0.95%** vs. flat Beyond-Lean control **1.52% → 1.33% → 1.17%**; 20 total Layer-A audited repos; **14/14 compact repos dynamically audited in `--network=none` Docker**, `11/14 = 78.6%` OOTB pass, `3,190` OOTB theorems, `7/7` OOTB `Tier3_Gold` axiom-clean, `0/14` `Lean.ofReduceBool`; zero-PDF Git layout with automated CI figure & LaTeX builds).
+**Last updated:** 2026-11-23  
+**Status:** **Clean Multi-Variant Repository Layout + Longitudinal Baseline Slices (T0 Nov 2025 & T1 May 2026) + Complete Phase-2 Layer-A Audits ($n = 23$) + Sandboxed Docker Dynamic Kernel Verification ($n = 14$) + Pilot Paper v0.5 COMPLETE** (**9,837** preprints across 3 matched 19-day 8-category slices; 99.68% full-text coverage; contemporaneous `v1` adoption **0.00% → 0.15% → 0.95%** vs. flat Beyond-Lean control **1.52% → 1.33% → 1.17%**; **23** total Layer-A audited repos with `239/239` verified `file:line` citations; **14/14 compact repos dynamically audited in `--network=none` Docker**, `11/14 = 78.6%` OOTB pass, `3,190` OOTB theorems, `7/7` OOTB `Tier3_Gold` axiom-clean, `0/14` `Lean.ofReduceBool`; zero-PDF Git layout with automated CI figure & LaTeX builds).
 
 ---
 
@@ -18,8 +18,8 @@
 - [x] **Phase 1 (v1 + v2): Parallel `run_workflow` Classification & Unified SQLite Reporting**
   - Classified all 55 Lean candidates (`flash` read-only `research` agents; Lean-only in v2, skipping Beyond-Lean LLM spend) + re-classified Zenodo/`leanVM` upgrades (`2611.15201`, `2611.15128`, `2611.10810` → all upgraded to `Tier3_Gold`).
   - Updated [`src/report_phase1.py`](../src/report_phase1.py) to report across all SQLite rows → [`reports/slices/2026-11/phase1_survey.md`](../reports/slices/2026-11/phase1_survey.md).
-- [x] **Phase 2 (v1 + v2): Expanded Adversarial Layer-A Semantic Fidelity Audit (`n = 17`)**
-  - Expanded [`src/prepare_phase2_audit.py`](../src/prepare_phase2_audit.py) (with PDF fallback + `--unaudited-only`) and ran 9 new parallel `pro` adversarial referee audits alongside the original 8 → **17 audited `engineering_math_proof` repos** ([`reports/slices/2026-11/phase2_layer_a_audit.md`](../reports/slices/2026-11/phase2_layer_a_audit.md)).
+- [x] **Phase 2 (v1 + v2 + Ancillary/Zip): Expanded Adversarial Layer-A Semantic Fidelity Audit (`n = 20` T2 + `3` T1 = `23` total)**
+  - Expanded [`src/prepare_phase2_audit.py`](../src/prepare_phase2_audit.py) (with PDF fallback + `--unaudited-only`) and ran `pro` adversarial referee audits across all **20** locally inspected T2 `engineering_math_proof` packages (8 Pilot v1 + 9 Pilot v2 + 3 newly unpacked arXiv-ancillary/zipped packages `2611.26140`, `2611.16781`, `2611.12585`; [`reports/slices/2026-11/phase2_layer_a_audit.md`](../reports/slices/2026-11/phase2_layer_a_audit.md)) plus all **3** T1 packages ([`reports/slices/2026-05/phase2_layer_a_audit.md`](../reports/slices/2026-05/phase2_layer_a_audit.md)), with **`239/239` (100%)** resolved & in-bounds `file:line` provenance in [`artifacts/phase2_provenance.json`](../artifacts/phase2_provenance.json).
 - [x] **Longitudinal Baseline Slices (T0: Nov 1–19, 2025 & T1: May 1–19, 2026) & Pilot Paper v0.4**
   - Upgraded [`src/ingest_arxiv.py`](../src/ingest_arxiv.py) with single-pass bias-free multi-slice OAI-PMH harvesting (omitting `until` for historical windows so later-revised preprints are never dropped — rescuing **35.4%** of Nov 2025 and **31.8%** of May 2026 papers) and verified counts against `arxiv.org/list`.
   - Screened, statically profiled, and `flash`-classified **T0 (`data/slice_2025_11.db`, 2,435 papers, 99.43% coverage)** and **T1 (`data/slice_2026_05.db`, 3,298 papers, 99.70% coverage)** without modifying `data/survey.db`.
@@ -52,7 +52,7 @@
 | **Scale, AI & Tier shift (T1→T2 `v1`)** | Median owned LoC **749 → 29,005 (38.7×)** (total **3.10M** owned / **4.30M** raw across 28 scanned T2 papers); explicit AI disclosure **40% → 76.9%** (sole `explicitly_no` paper is May 2026 `2605.14610`); `Tier3_Gold` **0% → 48.7%** |
 | **Stage-2 recall calibration (T2)** | **0 / 200** GitHub-linked negatives (333 repos checked; **1.49%** 95% Clopper–Pearson upper bound); **0 / 100** non-GitHub broad metadata hits |
 | **T2 Engineering Math Proof slice** | **28 / 39 (71.8%)** — led by **`math.OC` (19/724 = 2.62%, 17 eng-math)**, `cs.DC` (1.79%), `cs.IT` (1.78%), `cs.CR` (1.11%), `eess.SY` (0.41%); `cs.NI` (0/559 across 3 slices) and `cs.RO` (0/2,431 across 3 slices) stay 0.00% |
-| **Phase 2 Layer-A Audit (`n = 20` total)** | May 2026 `v1` repos (`2605.14610`, `2605.02856`) scored `partial` with `moderate` Mode #3 abstractions; **17/17 Oct–Nov 2026 author-owned repos** (16 T2 + Oct 2026 `v2` `2605.09552`) have **0** moderate/severe M1 drift or M3 smuggling; **sole `material_undisclosed_drift_or_risk`** is bulk pipeline **`2611.26272` (*Paper2Lean*)**. |
+| **Phase 2 Layer-A Audit (`n = 23` total)** | May 2026 `v1` repos (`2605.14610`, `2605.02856`) scored `partial` with `moderate` Mode #3 abstractions; **20/20 Oct–Nov 2026 author-owned repos** (19 T2 + Oct 2026 `v2` `2605.09552`; `13/20 = 65.0%` T2 non-vacuity witnesses, `239/239` verified `file:line` refs) have **0** moderate/severe M1 drift or M3 smuggling; **sole `material_undisclosed_drift_or_risk`** is bulk pipeline **`2611.26272` (*Paper2Lean*)**. |
 | **Sandboxed Kernel Verification (`n = 14`, `<15k` LoC)** | **11/14 (78.6%)** OOTB pass in `--network=none` Docker (**3,190** OOTB theorems; **3,254** incl. synthetic; median `28.4s`), **0/14** compile errors, **0/14** `Lean.ofReduceBool`; **7/8** compact `Tier3_Gold` OOTB pass (**7/7 = 100%** axiom-clean); **2/2** Mode #6 flags dynamically corroborated (`sorryAx` in `2611.16690`, 11 custom axioms in `2605.16407`); all 3 OOTB fails are Mode #12 packaging/local-dep omissions (`2611.18220`, `2611.23762`, `2605.02856`). |
 
 ---
@@ -61,10 +61,9 @@
 
 *(Detailed pre-submission verification tracker and ground-truth audit ledger: [`docs/audit_plan.md`](audit_plan.md).)*
 
-1. **Human IRR, Named-Finding Verification & Newly Unpacked Phase-2 Audits:**
-   - [x] Audited & fixed all 54 BibTeX entries (`scripts/audit_bib.py --live` in CI), pinned commit SHAs / arXiv versions / `196/196` clean `file:line` checks in [`artifacts/phase2_provenance.json`](../artifacts/phase2_provenance.json), unpacked `2611.26140`/`2611.16781`/`2611.12585`, added the CI numeric consistency gate [`scripts/check_paper_numbers.py`](../scripts/check_paper_numbers.py), and completed isolated Docker `lake build` + `#print axioms` verification on all 14 compact repos (`<15k` LoC) in [`artifacts/sandbox_builds/`](../artifacts/sandbox_builds/README.md).
+1. **Human IRR & Named-Finding Verification:**
+   - [x] Audited & fixed all 54 BibTeX entries (`scripts/audit_bib.py --live` in CI), unpacked & Phase-2 Layer-A audited `2611.26140`/`2611.16781`/`2611.12585` (`n = 23` total audited repos), pinned commit SHAs / Zenodo / ancillary fingerprints & `239/239` clean `file:line` checks in [`artifacts/phase2_provenance.json`](../artifacts/phase2_provenance.json), added the CI numeric consistency gate [`scripts/check_paper_numbers.py`](../scripts/check_paper_numbers.py), and completed isolated Docker `lake build` + `#print axioms` verification on all 14 compact repos (`<15k` LoC) in [`artifacts/sandbox_builds/`](../artifacts/sandbox_builds/README.md).
    - [ ] Record independent human IRR calibration labels and human sign-off on named findings (+ clean-cohort false-negative spot-checks) under [`artifacts/human_annotations/`](../artifacts/human_annotations/README.md).
-   - [ ] Run Phase-2 Layer-A semantic fidelity audits on the 3 newly unpacked `engineering_math_proof` packages (`2611.26140`, `2611.16781`, `2611.12585`).
 2. **Extend Sandboxed Dynamic Verification to Medium/Large Repos (`>15k` LoC) & `lake comparator` Replay:**
    - Extend `sandbox/run_sandbox_audit.py` to multi-10k LoC repos (`2611.12680`, `2611.14475`, `2611.26140`, `2611.16781`, `2611.12585`) and `comparator` replay on `P4` repos (`2611.15201`, `2611.14475`, `2611.04876`, `2611.13872`).
 3. **Scoped Machine Learning Theory Arm (`cs.LG` / `stat.ML`):**

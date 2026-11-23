@@ -11,6 +11,7 @@ import json
 import re
 import sqlite3
 import subprocess
+import zipfile
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -33,15 +34,18 @@ REPO_DIR_MAP: dict[str, tuple[str, str, str]] = {
     "2611.09050": ("dmivilensky__PolynomialRealizationsProgram", "github", "https://github.com/dmivilensky/PolynomialRealizationsProgram"),
     "2611.10902": ("canberksaner__bic-public", "github", "https://github.com/canberksaner/bic-public"),
     "2611.11713": ("ywatanabex__bp-response-geometry-lean", "github", "https://github.com/ywatanabex/bp-response-geometry-lean"),
+    "2611.12585": ("arxiv_anc__2611.12585", "arxiv_ancillary", "https://arxiv.org/src/2611.12585"),
     "2611.12680": ("zenodo__24136107", "zenodo", "https://zenodo.org/records/24136107"),
     "2611.13584": ("dmivilensky__PolynomialRealizationsProgram", "github", "https://github.com/dmivilensky/PolynomialRealizationsProgram"),
     "2611.13872": ("k3nfalt__longtails", "github", "https://github.com/k3nfalt/longtails"),
     "2611.14475": ("ckuemmerle__ExplicitRIPTwoThirds", "github", "https://github.com/ckuemmerle/ExplicitRIPTwoThirds"),
     "2611.14756": ("magbenji__discrete-modified-gradient-lean", "github", "https://github.com/magbenji/discrete-modified-gradient-lean"),
     "2611.15128": ("leanEthereum__leanVM", "github", "https://github.com/leanEthereum/leanVM"),
+    "2611.16781": ("luchesart__Chain-fountain", "github", "https://github.com/luchesart/Chain-fountain"),
     "2611.18220": ("manasdm__Lean-SysID", "github", "https://github.com/manasdm/Lean-SysID"),
     "2611.18455": ("inody__wmfki_lean", "github", "https://github.com/inody/wmfki_lean"),
     "2611.23762": ("guanyuzhu2014__Uniform-product-expansion---theory-and-Lean-certification", "github", "https://github.com/guanyuzhu2014/Uniform-product-expansion---theory-and-Lean-certification"),
+    "2611.26140": ("arxiv_anc__2611.26140", "arxiv_ancillary", "https://arxiv.org/src/2611.26140"),
     "2611.26272": ("TTony2019__OptPaper", "github", "https://github.com/TTony2019/OptPaper"),
     "2605.02856": ("rayiskander2406__qanary-k-stage-composition-arXiv-2605.02856", "github", "https://github.com/rayiskander2406/qanary-k-stage-composition-arXiv-2605.02856"),
     "2605.09552": ("mlexpos__phases-of-muon", "github", "https://github.com/mlexpos/phases-of-muon"),
@@ -87,14 +91,14 @@ def _find_toolchain(repo_path: Path) -> str | None:
     return None
 
 
-def _resolve_lean_file(repo_paths: list[Path], cited_path: str) -> Path | None:
-    """Resolve an auditor-cited relative Lean path (exact or suffix match) in repo_paths."""
+def _resolve_lean_line_count(repo_paths: list[Path], cited_path: str) -> int | None:
+    """Resolve an auditor-cited relative Lean path (or zip member) and return its line count."""
     cited_clean = cited_path.lstrip("./")
     for rp in repo_paths:
         direct = rp / cited_clean
         if direct.is_file():
-            return direct
-    # Fallback: suffix match across *.lean files
+            return len(direct.read_text(encoding="utf-8", errors="replace").splitlines())
+    # Fallback 1: suffix match across extracted *.lean files
     parts = Path(cited_clean).parts
     for rp in repo_paths:
         for lf in rp.rglob(Path(cited_clean).name):
@@ -102,7 +106,23 @@ def _resolve_lean_file(repo_paths: list[Path], cited_path: str) -> Path | None:
                 continue
             rel_parts = lf.relative_to(rp).parts
             if len(rel_parts) >= len(parts) and rel_parts[-len(parts) :] == parts:
-                return lf
+                return len(lf.read_text(encoding="utf-8", errors="replace").splitlines())
+    # Fallback 2: read-only suffix match inside any *.zip archive within repo_paths (e.g., docs/v0.19.0 zip)
+    for rp in repo_paths:
+        for zp in sorted(rp.rglob("*.zip")):
+            if ".lake" in zp.parts:
+                continue
+            try:
+                with zipfile.ZipFile(zp) as zf:
+                    for name in zf.namelist():
+                        if not name.endswith(".lean"):
+                            continue
+                        zparts = Path(name).parts
+                        if len(zparts) >= len(parts) and zparts[-len(parts) :] == parts:
+                            text = zf.read(name).decode("utf-8", errors="replace")
+                            return len(text.splitlines())
+            except zipfile.BadZipFile:
+                continue
     return None
 
 
@@ -120,11 +140,10 @@ def _verify_cited_file_lines(audit_item: dict, repo_paths: list[Path]) -> dict:
             fpath, s_str, e_str = m.group(1), m.group(2), m.group(3)
             start_ln = int(s_str)
             end_ln = int(e_str) if e_str else start_ln
-            resolved = _resolve_lean_file(repo_paths, fpath)
-            if resolved is None:
+            nlines = _resolve_lean_line_count(repo_paths, fpath)
+            if nlines is None:
                 unresolved.append(m.group(0))
                 continue
-            nlines = len(resolved.read_text(encoding="utf-8", errors="replace").splitlines())
             if 1 <= start_ln <= nlines and end_ln <= nlines:
                 resolved_in_bounds += 1
             else:
@@ -212,6 +231,7 @@ def build_provenance() -> dict:
         "total_audited_repos": len(records),
         "git_pinned_count": sum(1 for r in records if r["commit_sha"]),
         "zenodo_pinned_count": sum(1 for r in records if r["zenodo_record_id"]),
+        "ancillary_pinned_count": sum(1 for r in records if r["repo_host"] == "arxiv_ancillary"),
         "theorems_compared_file_line_summary": {
             "total_refs": total_refs,
             "resolved_in_bounds": total_ok,
@@ -226,7 +246,8 @@ def main() -> None:
     s = payload["theorems_compared_file_line_summary"]
     print(
         f"Wrote {OUT_PATH} ({payload['total_audited_repos']} repos: "
-        f"{payload['git_pinned_count']} Git SHAs, {payload['zenodo_pinned_count']} Zenodo; "
+        f"{payload['git_pinned_count']} Git SHAs, {payload['zenodo_pinned_count']} Zenodo, "
+        f"{payload['ancillary_pinned_count']} arXiv ancillary; "
         f"file:line checks {s['resolved_in_bounds']}/{s['total_refs']} resolved & in-bounds)"
     )
     for r in payload["records"]:

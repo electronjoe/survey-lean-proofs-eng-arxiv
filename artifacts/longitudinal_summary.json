@@ -1756,6 +1756,18 @@
           "executive_verdict": "Paper2Lean (arXiv:2611.26272) releases OptPaper-20, an impressive 158,916-line (495 TheoremLib + 61 Foundation `.lean` files) Lean 4 / Mathlib formalization of 20 optimization papers with zero `sorry`, `admit`, or custom `axiom` declarations and strong Mathlib/Foundation anchoring for convex analysis, Hilbert weak topology, and monotone operators. However, our Layer-A audit contradicts the paper's central claim that \"all identified discrepancies were repaired\" and \"no unresolved discrepancies identified in the audit\": even among the paper's own showcase theorems and across the released corpus, we found material undisclosed hypothesis strengthenings (e.g., `AbbasDynamical2015.kadek_klee_strong_convergence` in `rem_3.lean:33` still takes weak convergence `hweak` as a hypothesis instead of deriving it from Theorem 2.8 and uses `EReal.toReal` in `hKadecKlee`; `Moudafi_Oliny` `thm_1.lean:1500` adds global `hB_lipschitz`; `Attouch_Adly` `thm_2.lean:95` adds `hinitial`), an undisclosed dropped rate conclusion (`Attouch_Adly` `thm_9.lean:11` omits the $o(1/\\ln t)$ rate of Theorem A.1), an undisclosed `[FiniteDimensional \u211d H]` scope downgrade (`Guler_1992` `thm_3.lean:46`), unresolved TODO/extra hypotheses acknowledged in the repo's own `lean_paper_comparison.md`, leaky `Foundation.DIN` coupling (`ODE.lean:2778`), and zero non-vacuity witnesses (`example :`) across the entire repository."
         },
         {
+          "arxiv_id": "2611.26140",
+          "is_retroactive_v2": false,
+          "overall_fidelity": "partial_or_weakened_formalization",
+          "m1": "minor_disclosed",
+          "m2": "moderate",
+          "m3": "none",
+          "m4": "none",
+          "non_vacuity": true,
+          "mathlib": "mixed_custom_and_mathlib",
+          "executive_verdict": "This is a candidly scoped P1 paper-first formalization: the paper (2611.26140.md:1584) and lean/README.md:11-24 explicitly state that Lean 4 (Mathlib v4.15.0) proves selected algebraic/analytic sub-lemmas, the q_a root-existence bracket, excursion inequalities, and kernel-replayed checks (by decide, zero sorry, zero native_decide, zero custom axioms) of 7 triangulated surface-cut certificates and 8 continuum upper-bound certificates, while leaving the topological, periodic-approximation, escape-transfer, quadratic-gap, and game-to-certificate reductions on paper. Within the formalized components, the mathematics over \u211d is faithful\u2014explicitly avoiding Mathlib's \u2113^\u221e Prod metric via Euclidean euclidDist, covering the entire continuous velocity disk {vx\u00b2+vy\u00b2 \u2264 1} via convexity and Weierstrass tangent polygons, and proving soundness of SQPair/QPair/BTree/CT/LamSeg rational checkers back to \u211d. However, none of the paper's headline minimax width theorems (W_opt, W_2way, or GuardsCorridor for concrete patrols) are proved in Lean, W_opt/W_2way are not defined, and internal module docstrings in HallwayGuarding.lean and several module headers still retain stale overclaiming text from an earlier draft (explicitly disclaimed in lean/README.md:3)."
+        },
+        {
           "arxiv_id": "2611.23762",
           "is_retroactive_v2": false,
           "overall_fidelity": "partial_or_weakened_formalization",
@@ -1790,6 +1802,18 @@
           "non_vacuity": false,
           "mathlib": "strong_mathlib",
           "executive_verdict": "High semantic fidelity across all main theorems in the paper. The accompanying repository `manasdm/Lean-SysID` (while `forgi86/control-theory-in-lean` is only cited as prior work in Section 1) formalizes every headline result claimed in the manuscript: the scalar identifiability and exact-estimator lemmas (`Identification.identifiable_iff_PE`, `Identification.estimator_exact`), scalar discrete-time interval invariance (`Tutorial.interval_invariant`, `Tutorial.traj_bounded`), the almost-sure sharpening of Ljung (1999) Lemma 3.1 (`Ljung31.lemma_3_1` plus `Ljung31.whiteNoise_A3`), and strict global identifiability of ARX models (`SysId.arx_isIdentifiable`). Anchoring to Mathlib is strong (`MeasureTheory`, `ProbabilityTheory.iIndepFun`, `FormalMultilinearSeries`, `HasSum`, `Matrix.PosDef`), and the authors deliberately guard against Lean junk values (explicitly adding `\u03c6\u2081 \u2260 0` against `div_zero`, formulating `(A2)` as `zT h z * zT ht z = 1` instead of `1 / zT h z = zT ht z`, and using `Summable` + `HasSum` rather than bare `tsum` equality). The only gaps are minor and transparent: (1) complex analyticity of `1/H` on a neighborhood of `{|z| \u2265 1}` (Remark 2) is factored into `(A1)\u2013(A2)` in Lemma 5 while `Ljung31.remark_inverse_stable` starts from power-series convergence on `|z| > \u03c1` (`\u03c1 < 1`) rather than `AnalyticOn`; (2) the bounded-noise wrapper and Example 1 counterexample remain prose-only; (3) `#print axioms` is run only on `Ljung31.lemma_3_1` in code despite Remark 1 citing it for all theorems (though zero `sorry`/custom `axiom`/`native_decide` exist across the four files); and (4) the repo contains no explicit non-vacuity witness `example`s or concrete instantiations."
+        },
+        {
+          "arxiv_id": "2611.16781",
+          "is_retroactive_v2": false,
+          "overall_fidelity": "high_faithful",
+          "m1": "minor_undisclosed",
+          "m2": "minor_disclosed",
+          "m3": "none",
+          "m4": "none",
+          "non_vacuity": true,
+          "mathlib": "strong_mathlib",
+          "executive_verdict": "High semantic fidelity overall across deterministic control, nonlinear stability, stochastic SDE/LIL obstruction, and zero-gravity circulation. All principal theorems are genuinely proved in Lean 4 without sorry or custom axioms (using only propext, Classical.choice, Quot.sound per the v0.19.0 completion audit), and key structures are strongly anchored to Mathlib (plus MathFin and BrownianMotion for the stochastic layer) with explicit non-vacuity witnesses for GlobalTrackingData and explicit counterexamples. The only issues found are minor and mostly disclosed: (1) a repository packaging split where the root zip / extracted directory holds v0.18.0 while v0.19.0 (adding LocalFreezingCompletion and five ZeroGravity completion modules cited in arXiv:2611.16781v2 Appendix C) sits in docs/Chain_Fountain_Lean_GitHub.zip; (2) splitting multi-part prose theorems (Thm 4.1, Prop 7.2, Prop 9.1, Thm 11.5) into complementary Lean declarations; and (3) minor undisclosed Type-(i) technical strengthenings (two-sided HasDerivAt at t = 0 in GlobalTrackingData, pointwise bound \u2200 t : \u211d, |d t| \u2264 dbar in CaratheodoryCompletion/MeasurableForces, and canonical gauge exhaustion exits in Family.maximal_stopped_energy_expectation vs an arbitrary compact set on the maximal process)."
         },
         {
           "arxiv_id": "2611.15128",
@@ -1862,6 +1886,18 @@
           "non_vacuity": true,
           "mathlib": "mixed_custom_and_mathlib",
           "executive_verdict": "The WolfeSimplex formalization (23.9k LoC, 0 sorry, 0 custom axioms) exhibits high mathematical fidelity to arXiv:2611.12680 and passes strict axiom and statement-boundary audits. Theorem 1 / Theorem 3.1, all 20 supporting lemmas, the internal Klee-Minty exponential lower bounds (linopt and minnorm from the unique shortest atom; least-index from a suitable corral), and Corollary 3 (Lawson-Hanson NNLS exponential lower bound) are completely proved from standard Mathlib linear-algebraic and probabilistic foundations. The main scope and statement gaps\u2014explicitly disclosed in README.md, docs/COVERAGE.md, and docs/REVIEW.md\u2014are: (1) cited simplex lower-bound families (DFH23, AF17, FHZ11/Han12, FHZ14) and hardness families (FS15, DS18) are taken as explicit theorem hypotheses rather than formalized internally; (2) polynomial/strongly polynomial time and NP/PSPACE complexity classes are not formalized via Turing machines, instead using custom arithmetic/array-cost models (Execution.Program for Wolfe in Corollary 1, dimension/enumeration-indexed straight-line Execution.Code and writer-monad Computation for polynomial constructions) and many-one reductions; and (3) minor undisclosed omissions exist in two Corollary 2 wrapper signatures (zadeh_family and cunningham_family omit polynomial target bit-length bounds in n, unlike random_edge_table1_mdp and random_bland_table1_mdp). Overall fidelity is mostly_faithful_with_disclosed_gaps."
+        },
+        {
+          "arxiv_id": "2611.12585",
+          "is_retroactive_v2": false,
+          "overall_fidelity": "mostly_faithful_with_disclosed_gaps",
+          "m1": "minor_disclosed",
+          "m2": "minor_disclosed",
+          "m3": "none",
+          "m4": "none",
+          "non_vacuity": true,
+          "mathlib": "strong_mathlib",
+          "executive_verdict": "The Lean 4 formalization in arxiv-anc/2611.12585 (`anc/lean/`, 341 files, 60,664 LOC, zero `sorry`, zero custom axioms) exhibits high semantic fidelity to the paper's theoretical claims, anchored cleanly to Mathlib analytic and functional-analytic types (`Lp \u2102 2`, `InnerProductSpace`, `NormedSpace.exp`, `intervalIntegral`, `CompactOperator`, `AnalyticOnNhd`, `Filter.liminf`) with a full spline/Galerkin bridge (`SLean.Bridge`) connecting element matrices to $C^1([0,L])$ cubic Hermite weak forms. Every gap between prose and Lean is explicitly and prominently disclosed in the paper (Abstract, Remark 3.22, Appendix A.5 / Table 7) and the Lean headers (`anc/lean/README.md`, `CompanionFinal/MainTheorem.lean`): (1) `CompanionFinal.main_theorem : P1 \u2192 Tails` relies on a single external premise `P1` from companion paper [7, (3.15)] (uniform Crandall-Pazy bound for the W-scheme at $L=1$), while 6 of the 11 tails plus `prop318` are proved unconditionally in `tails_without_P1`; (2) nonlinear error theorems (`H3bAtE`, `H3c`, `H5`) use the internally constructed W-scheme energy limit / unique mild PDE solution `Ucal` (`CompanionB.H6iiiV`) in place of proving `[7, Theorem 2.2]`'s identification $\\mathcal{U}(f)=u(f)$, and omit Prop 4.2(b) boundary/PDE regularity; and (3) numerical experiments (Sections 2, 5, Appendix B) are excluded. Extensive cross-module binding lemmas (`H3bH5V`, `unified_objects`) and non-vacuity probes prevent vacuous truth or hidden definition mismatches."
         },
         {
           "arxiv_id": "2611.11713",

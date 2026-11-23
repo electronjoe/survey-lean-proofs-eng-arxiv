@@ -4,7 +4,7 @@
   "audit_models": [
     "pro"
   ],
-  "audit_count": 17,
+  "audit_count": 20,
   "audits": [
     {
       "arxiv_id": "2611.04876",
@@ -685,6 +685,102 @@
       ]
     },
     {
+      "arxiv_id": "2611.12585",
+      "primary_category": "math.NA",
+      "matched_target_cats": [
+        "math.OC"
+      ],
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier2_Silver",
+      "model_tier": "pro",
+      "executive_verdict": "The Lean 4 formalization in arxiv-anc/2611.12585 (`anc/lean/`, 341 files, 60,664 LOC, zero `sorry`, zero custom axioms) exhibits high semantic fidelity to the paper's theoretical claims, anchored cleanly to Mathlib analytic and functional-analytic types (`Lp \u2102 2`, `InnerProductSpace`, `NormedSpace.exp`, `intervalIntegral`, `CompactOperator`, `AnalyticOnNhd`, `Filter.liminf`) with a full spline/Galerkin bridge (`SLean.Bridge`) connecting element matrices to $C^1([0,L])$ cubic Hermite weak forms. Every gap between prose and Lean is explicitly and prominently disclosed in the paper (Abstract, Remark 3.22, Appendix A.5 / Table 7) and the Lean headers (`anc/lean/README.md`, `CompanionFinal/MainTheorem.lean`): (1) `CompanionFinal.main_theorem : P1 \u2192 Tails` relies on a single external premise `P1` from companion paper [7, (3.15)] (uniform Crandall-Pazy bound for the W-scheme at $L=1$), while 6 of the 11 tails plus `prop318` are proved unconditionally in `tails_without_P1`; (2) nonlinear error theorems (`H3bAtE`, `H3c`, `H5`) use the internally constructed W-scheme energy limit / unique mild PDE solution `Ucal` (`CompanionB.H6iiiV`) in place of proving `[7, Theorem 2.2]`'s identification $\\mathcal{U}(f)=u(f)$, and omit Prop 4.2(b) boundary/PDE regularity; and (3) numerical experiments (Sections 2, 5, Appendix B) are excluded. Extensive cross-module binding lemmas (`H3bH5V`, `unified_objects`) and non-vacuity probes prevent vacuous truth or hidden definition mismatches.",
+      "has_non_vacuity_witnesses": true,
+      "mathlib_anchoring_quality": "strong_mathlib",
+      "mode1_statement_drift": {
+        "concrete_examples": [
+          "Disclosed premise `P1` (`CompanionPilot/Probes.lean:18-21`): `CompanionFinal.main_theorem : P1 \u2192 Tails` (`CompanionFinal/MainTheorem.lean:108-111`) takes the mesh-uniform Crandall-Pazy bound `[7, (3.15)]` (`L=1`, `\u03b1=1`, `\u03bb=3\u03c0^2/4`, uniform mesh, complexified `x \u2208 Vh hN`) as a hypothesis for tails `H2`, `H3a`, `H3c`, `H4`, and `H3bH5V`, whereas `H0`, `H1`, `H6i`, `H6ii`, `H6iiiV`, `FamilyProps`, and `prop318` are unconditional (`CompanionFinal/MainTheorem.lean:115,118-121`). Explicitly disclosed in Abstract, Remark 3.22, and Appendix A.5.",
+          "Disclosed substitution of `Ucal` (`CompanionB/H6iii.lean:19-20`) for `[7, Theorem 2.2]`'s `u`: `H3bAtE` (`CompanionH/HeadsH.lean:59-64`), `H3c` (`CompanionE/HeadsE.lean:87-93`), and `CS`/`H5aAt`/`H5bAt` (`CompanionH/HeadsH.lean:26-52`) measure errors against `Ucal`, proved internally in `CompanionB.H6iiiV` (`CompanionB/HeadsNu.lean:30-52`, `CompanionB/NuH6iii.lean:172-271`) to be the W-scheme limit and unique mild solution of eq. (4.2) in the $\\mathcal{E}_\\nu$-ball; the final identification sentence of Prop 4.1 (`u = Ucal`) and Prop 4.2(b) are omitted (`anc/lean/README.md:41-42`, `CompanionFinal/MainTheorem.lean:37-38`, Appendix A.5 Table 7).",
+          "Interval length specialization: `H0` (`SLean/Explicit/Sharp/Expansion/Statement.lean:13-24`) and `H1` (`CompanionA/HeadsA.lean:19-29`) quantify over all `L > 0`, whereas `P1` and `H2`\u2013`H6` fix `L = 1` (matching the paper's explicit restriction in Sections 3.4\u20134).",
+          "Equivalent logical phrasings: `H5bAt` (`CompanionH/HeadsH.lean:49-52`) uses nested quantifiers `\u2200 \u03b5\u2081, 0 < \u03b5\u2081 \u2192 \u03b5\u2081 \u2264 \u03b5\u2080 \u2192 ... \u2200 \u03b5, 0 < \u03b5 \u2192 \u03b5 \u2264 \u03b5\u2081` instead of `0 < \u03b5 \u2264 min{\u03b5\u2081, \u03b5\u2080}`, and `Prop41` (`CompanionH/Prop41.lean:81-93`) expands `liminf` via `\u2200 c' < c, \u2203 N0, \u2200 n \u2265 N0`, supplemented directly by the literal `Filter.liminf` theorem `prop41b_liminf` (`CompanionH/Prop41.lean:371-376`)."
+        ],
+        "severity": "minor_disclosed",
+        "summary": "All hypothesis/conclusion deltas between prose and Lean are explicitly disclosed in the paper (Abstract, Remark 3.22, Appendix A.5) and Lean documentation, with zero undisclosed hypothesis strengthening or conclusion weakening."
+      },
+      "mode2_scope_downgrade": {
+        "concrete_examples": [
+          "The paper's abstract explicitly restricts its Lean claim to the existence of exact spurious eigenpairs for `N \u2265 512` and the failure of both algebraic error bounds (`Ch^p \u03b5` full error and `Ch^p \u03b5^2` ordering error) under the sole premise `[7, (3.15)]` (`P1`). Lean checks these exact headline theorems unconditionally for `N \u2265 512` (`H0`, `H1`, `prop318`) and conditionally on `P1` for all remaining tails (`H2`, `H3a`, `H3bAtE`, `H3c`, `H4`, `H5aAt`, `H5bAt`, `H6i`, `H6ii`, `H6iiiV`) across all `p > 0`, not on toy examples or weaker constants.",
+          "Disclosed scope omissions (Remark 3.22, Table 7, `anc/lean/README.md:41-42`): formalization excludes numerical experiments (Sections 2, 5, Appendix B), external companion theorem `[7, Theorem 2.2]` (`Ucal = u` equivalence in Prop 4.1), and Prop 4.2(b) regularity of `E(t)`."
+        ],
+        "severity": "minor_disclosed",
+        "summary": "Lean verifies the full asymptotic and nonlinear counterexample claims advertised in the abstract (all N \u2265 512, arbitrary p > 0), with only the external continuous-PDE equivalence `[7, Theorem 2.2]`, premise `P1`, and numerical computations explicitly outside scope."
+      },
+      "mode3_definition_smuggling": {
+        "concrete_examples": [
+          "Function spaces and operators are directly anchored to Mathlib: `L2 = Lp \u2102 2 \u03bc` on `[0, 1]` (and `L2L L` on `[0, L]`), `InnerProductSpace \u2102`, `NormedSpace.exp`, `intervalIntegral`, `HasDerivAt`, `AnalyticOnNhd`, `CompactOperator`, `banach_steinhaus`, and `ODE_solution_unique_of_mem_Icc_right`.",
+          "Discrete cubic Hermite FEM definitions in `SLean` are not unanchored matrix axioms: `SLean/Bridge/*` explicitly defines piecewise cubic Hermite `spline h v : \u211d \u2192 \u2102` on `[0, N*h]` via reference element polynomials (`SLean/Hermite/Element.lean`), proves `mem_Xh_iff` (characterizing `X_h` as `C\u00b9([0, Nh])` piecewise cubics with `v(0) = v'(0) = v(Nh) = 0`), proves `function_galerkin_weak`, `generator_weak_unique` (`SLean/Bridge/WeakUniqueness.lean:10-29`), and `function_norm_integrals`, and embeds coordinates isometrically into `Vh hN \u2286 L2` and `VhL hL hN \u2286 L2L L`.",
+          "Cross-module definition/constant consistency is formally proved via `CompanionFinal.Unified.unified_objects` (`CompanionFinal/Unified.lean`), `CompanionFinal.H3bH5V` (`CompanionFinal/Binding.lean:21-24`, sharing common `r\u2080, \u03b5\u2080` between `H3bAtE` and `H5bAt`), `CompanionH/Align.lean`, and `CompanionH/Dock.lean`."
+        ],
+        "severity": "none",
+        "summary": "Key analytical and Galerkin objects are anchored directly to Mathlib with formal bridge theorems proving equivalence to textbook weak forms, Hermite splines, and PDE mild formulations, plus cross-module equality/binding checks preventing definition splitting."
+      },
+      "mode4_junk_or_vacuity": {
+        "concrete_examples": [
+          "Zero `sorry`, zero custom `axiom` declarations, and zero `admit` across all 341 Lean files (standard axioms audited via `#print axioms` in `Audit.lean`, `AuditE.lean`, `AuditH.lean`, `Statement.lean:30`; note that `anc/lean/axioms.txt` mentioned in `anc/lean/README.md:73,93` is not present in the unpacked directory).",
+          "Internal totalizations exist (`phiN N = 0` for `N < 512` at `CompanionPilot/Pilot.lean:143-147`, default values for `Tsg`, `Ainv`, `Ucal`, `uW`, `uS`, `dx`, `Lam`, `0\u207b\u00b9 = 0`), but every main theorem carries strict domain/index hypotheses (`512 \u2264 N`, `0 < h`, `f \u2208 X0V`, `\u2016x\u2016 \u2264 \u03b5`) ensuring junk branches are never reached.",
+          "Explicit non-vacuity and nontriviality probes exist across `CompanionFinal/Probes.lean` (`probe_L2_nontrivial`, `probe_T_ne_zero`, `probe_U_ne_T`, `probe_mild_integrableV`, `probe_Efun_zero`, `probe_Lambda`, `probe_uS_series`, `probe_H5b_ball`), `CompanionPilot/Probes.lean` (`probe_P1_fixed_N`), and `CompanionE/ProbesE.lean` (`ftilA_ne_zero`).",
+          "`CompanionFinal/P1Audit.lean` explicitly checks that `P1` does not entail `False` or trivialize `L2`, and explicitly notes that `probe_P1_fixed_N` (proving `P1` for any fixed `N`) does not prove uniform-in-`N` satisfiability of `P1` (which remains the external premise `[7, (3.15)]`), while `CompanionFinal.tails_without_P1` (`CompanionFinal/MainTheorem.lean:118-121`) proves 6 tails + `prop318` unconditionally."
+        ],
+        "severity": "none",
+        "summary": "No vacuous hypotheses or junk-value leaks appear in theorem conclusions; totalized helper defaults are sealed off by explicit preconditions and verified by non-vacuity witness suites, alongside an explicit audit distinguishing fixed-N vs uniform-N satisfiability of `P1`."
+      },
+      "notable_good_practices": [
+        "Zero `sorry`, zero custom `axiom`, zero `admit` across 341 Lean files (60,664 LOC), with `#print axioms` audit modules verifying only standard Lean axioms.",
+        "Rigorous coordinate-to-function-space bridge (`SLean.Bridge`) proving weak-form uniqueness (`generator_weak_unique`), `C\u00b9` Hermite characterization (`mem_Xh_iff`), and exact integral norm identities (`function_norm_integrals`) instead of axiomatizing discrete matrices.",
+        "Dedicated cross-module alignment and shared-constant bindings (`CompanionFinal/Binding.lean` `H3bH5V`, `CompanionFinal/Unified.lean` `unified_objects`, `CompanionH/Align.lean`, `CompanionH/Dock.lean`) ensuring no silent definition drift across parallel developments.",
+        "Rich non-vacuity witness suite (`CompanionFinal/Probes.lean`, `CompanionPilot/Probes.lean`, `CompanionE/ProbesE.lean`, `CompanionH/ProbesH.lean`) and explicit premise-soundness disclaimer (`CompanionFinal/P1Audit.lean`).",
+        "Clean architectural separation between unconditional theorems (`CompanionFinal.tails_without_P1`, `CompanionFinal.prop318`) and `P1`-conditional theorems (`CompanionFinal.main_theorem`), paired with honest disclosure tables in paper Remark 3.22 and Table 7."
+      ],
+      "overall_fidelity": "mostly_faithful_with_disclosed_gaps",
+      "primary_repo_audited": "arxiv-anc/2611.12585 (anc/lean)",
+      "theorems_compared": [
+        {
+          "alignment_verdict": "faithful",
+          "delta_notes": "Proves for arbitrary L > 0 and N \u2265 512 existence of nonzero f \u2208 X_h with A_h f = \u03b6 \u2022 f, 100/h^3 \u2264 |Im \u03b6|, 0 < -Re \u03b6 \u2264 1600/L^3, and sharp asymptotic expansions with explicit O(N^-4) and O(N^-1) bounds around Cert.thetaStar. Matches paper Theorem 3.1 faithfully and unconditionally.",
+          "lean_declaration": "SLean.Explicit.Sharp.Expansion.spectral_top_with_expansion / CompanionFinal.H0_holds",
+          "lean_file_and_line": "anc/lean/SLean/Explicit/Sharp/Expansion/Statement.lean:13-24; anc/lean/CompanionFinal/MainTheorem.lean:59-75",
+          "paper_claim": "Theorem 3.1: Existence and sharp asymptotic expansion of high-frequency spurious eigenpairs of the S-scheme for all N \u2265 512 and L > 0"
+        },
+        {
+          "alignment_verdict": "faithful",
+          "delta_notes": "Unconditionally quantifies over all L > 0, proving exponential growth \u2265 100 h^-3 exp(-1600t/L^3) on (0, 1], negation of any uniform-in-N C t^{-3/2} Crandall-Pazy bound, and existence of real nonzero \u03c7 \u2208 VhL violating mesh-uniform Kato smoothing by \u03a9(h^-2). Faithful to Corollary 3.3.",
+          "lean_declaration": "CompanionA.H1 / CompanionA.H1_holds (with SLean.Statement.crandall_pazy_failure, SLean.Statement.kato_failure_real)",
+          "lean_file_and_line": "anc/lean/CompanionA/HeadsA.lean:19-29; anc/lean/CompanionA/H1.lean:127-129; anc/lean/SLean/Statement.lean:122-126,139-142",
+          "paper_claim": "Corollary 3.3: Failure of mesh-uniform Crandall-Pazy regularity and Kato L^2_t H^1_x smoothing for the S-scheme"
+        },
+        {
+          "alignment_verdict": "faithful",
+          "delta_notes": "Proved unconditionally in universe-polymorphic Hilbert-space generality (`CompanionFinal.prop318`), with `Prop41` giving the \u03b5-liminf characterization and `prop41b_liminf` directly stating the `Filter.liminf` inequality in `EReal`.",
+          "lean_declaration": "CompanionFinal.prop318 / CompanionH.Abstract.Prop41 / prop41b_liminf",
+          "lean_file_and_line": "anc/lean/CompanionFinal/MainTheorem.lean:115; anc/lean/CompanionH/Prop41.lean:81-93,371-376",
+          "paper_claim": "Proposition 3.18: Abstract Hilbert-space lower bound on liminf ||(T_n - S_n) x_n|| from uniform operator-norm bound and compact resolvent convergence"
+        },
+        {
+          "alignment_verdict": "disclosed_narrower_or_omitted",
+          "delta_notes": "`H3a`, `H3bAtE`, and `H3c` prove failure of linear and full nonlinear C h^p \u03b5 convergence for all p > 0 inside `CompanionFinal.main_theorem` under the explicitly disclosed premise `P1` (`[7, (3.15)]`), fix L=1 per Section 4, and compare against `Ucal` (proved internally in `CompanionB.H6iiiV` as the W-scheme limit / unique mild PDE solution) rather than proving equivalence with `[7, Theorem 2.2]`'s `u`.",
+          "lean_declaration": "CompanionE.H3a, CompanionH.H3bAtE, CompanionE.H3c (bundled via CompanionFinal.main_theorem)",
+          "lean_file_and_line": "anc/lean/CompanionE/HeadsE.lean:65-68,87-93; anc/lean/CompanionH/HeadsH.lean:59-64; anc/lean/CompanionFinal/MainTheorem.lean:108-111",
+          "paper_claim": "Theorem 4.5: Failure of linear and nonlinear algebraic full-error bounds C h^p \u03b5 for the S-scheme on [t_0, \u221e) \u00d7 B_\u03b5(0)"
+        },
+        {
+          "alignment_verdict": "disclosed_narrower_or_omitted",
+          "delta_notes": "`H5aAt` and `H5bAt` prove failure of any algebraic ordering-error bound C h^p \u03b5^2 on arbitrary \u03b5-balls for all p > 0, with the common `(r\u2080, \u03b5\u2080)` between Theorem 4.5(b) and Corollary 4.6(b) enforced by `CompanionFinal.H3bH5V`. Narrowed relative to unrestricted prose only by the explicitly disclosed premise `P1`, `L=1`, and using `Ucal` inside `CS` in place of `[7, Theorem 2.2]`'s `u`.",
+          "lean_declaration": "CompanionH.H5aAt, CompanionH.H5bAt, CompanionFinal.H3bH5V (via CompanionFinal.main_theorem)",
+          "lean_file_and_line": "anc/lean/CompanionH/HeadsH.lean:26-52; anc/lean/CompanionH/H5.lean:98-159; anc/lean/CompanionFinal/Binding.lean:21-24; anc/lean/CompanionFinal/MainTheorem.lean:108-111",
+          "paper_claim": "Corollary 4.6: Failure of algebraic ordering-error bounds C h^p \u03b5^2 for the S-scheme uniformly on [t_0, \u221e) \u00d7 B_\u03b5(0)"
+        }
+      ]
+    },
+    {
       "arxiv_id": "2611.12680",
       "primary_category": "math.OC",
       "matched_target_cats": [
@@ -1275,6 +1371,105 @@
       ]
     },
     {
+      "arxiv_id": "2611.16781",
+      "primary_category": "math.OC",
+      "matched_target_cats": [
+        "math.OC"
+      ],
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier2_Silver",
+      "model_tier": "pro",
+      "executive_verdict": "High semantic fidelity overall across deterministic control, nonlinear stability, stochastic SDE/LIL obstruction, and zero-gravity circulation. All principal theorems are genuinely proved in Lean 4 without sorry or custom axioms (using only propext, Classical.choice, Quot.sound per the v0.19.0 completion audit), and key structures are strongly anchored to Mathlib (plus MathFin and BrownianMotion for the stochastic layer) with explicit non-vacuity witnesses for GlobalTrackingData and explicit counterexamples. The only issues found are minor and mostly disclosed: (1) a repository packaging split where the root zip / extracted directory holds v0.18.0 while v0.19.0 (adding LocalFreezingCompletion and five ZeroGravity completion modules cited in arXiv:2611.16781v2 Appendix C) sits in docs/Chain_Fountain_Lean_GitHub.zip; (2) splitting multi-part prose theorems (Thm 4.1, Prop 7.2, Prop 9.1, Thm 11.5) into complementary Lean declarations; and (3) minor undisclosed Type-(i) technical strengthenings (two-sided HasDerivAt at t = 0 in GlobalTrackingData, pointwise bound \u2200 t : \u211d, |d t| \u2264 dbar in CaratheodoryCompletion/MeasurableForces, and canonical gauge exhaustion exits in Family.maximal_stopped_energy_expectation vs an arbitrary compact set on the maximal process).",
+      "has_non_vacuity_witnesses": true,
+      "mathlib_anchoring_quality": "strong_mathlib",
+      "mode1_statement_drift": {
+        "concrete_examples": [
+          "ChainFountain/GlobalExistence.lean:47-48: GlobalTrackingData requires dr : \u2200 t \u2265 0, HasDerivAt r (r\u2081 t) t and dr\u2081 : \u2200 t \u2265 0, HasDerivAt r\u2081 (r\u2082 t) t, which enforces two-sided differentiability at t = 0 rather than one-sided C\u00b2([0, \u221e)) regularity at the initial endpoint (contrast ZeroGravityACBounds.lean:210-211, which uses ContDiffOn \u211d 1 r (Ici 0) and \u2200 t > 0, HasDerivAt r (rdot t) t). Conversely, GlobalTrackingData omits Assumption 2.1's 0 < \u03b1 < 1/2 and \u03b1 + \u03b2 < 1/2 restrictions, requiring only \u03b1 \u2264 1 and 0 \u2264 \u03b2 in GlobalForces.lean:55.",
+          "ChainFountain/CaratheodoryCompletion.lean:32,73 and ChainFountain/MeasurableForces.lean:39,71: exists_unique_global_caratheodory, exists_unique_global_aemeasurable_caratheodory, exists_global_measurable_admissible, and exists_global_aemeasurable_admissible require hdb : \u2200 t, |d t| \u2264 c.dbar pointwise on all t : \u211d (including t < 0 and null sets even for AEMeasurable d), whereas Proposition 7.2 assumes boundedness on t \u2265 0 and measurableParameters clamps t via max 0 t (note pointwise bound for t \u2265 0 is genuinely used at MeasurableForces.lean:97 to obtain pointwise pickup \u2265 0 for all t \u2265 0).",
+          "ChainFountainStochastic/FamilyEnergy.lean:76-92,120-148: Family.maximal_stopped_energy_expectation and exists_maximal_solution_with_stopped_energy prove Proposition 9.1's stopped energy inequality specifically for the canonical gauge exhaustion exits min (F.exit n \u03c9) T with G_max = ((n : \u211d) + F.R)^3 and globally bounded reference r t \u2208 Icc plo phi (\u2200 t : \u211d\u22650), whereas Proposition 9.1 sentence 1 states the bound for an arbitrary compact localization region on the maximal solution and finite-horizon reference bounds (arbitrary closed balls are handled separately on a finite-horizon localItoProcess in ChainFountainStochastic/MechanicalIto.lean:236-287).",
+          "ChainFountain/Spectral.lean:101-118 and ChainFountain/TransferCompletion.lean:7-48: Theorem 4.1's transfer function W(p) = C(pI - J)^{-1} B_u is checked via the linear system (pI - J)x = (0, -1/h, 0) in resolvent_output plus separate \u211d[X] polynomial degree/evaluation lemmas in TransferCompletion.lean, without formalizing Laplace transforms or matrix inversion over \u2102(p) (explicitly disclosed in Spectral.lean:101-103)."
+        ],
+        "severity": "minor_undisclosed",
+        "summary": "No material mathematical drift or broken conclusions, and in several places Lean proves strictly more general parameter ranges than the prose (e.g., \u03b1 \u2264 1, 0 \u2264 \u03b2 in GlobalForces.lean:55; k \u2265 0 with \u03b3 + k > 0 in ZeroGravityACBounds.lean:209; \u03b2 \u2264 1/2 without h > 0 or v\u2081 > 0 in ZeroGravityOpen.lean:104-110). However, there are minor undisclosed Type-(i) technical strengthenings in GlobalTrackingData, CaratheodoryCompletion/MeasurableForces, and FamilyEnergy, plus minor factoring of multi-part theorems."
+      },
+      "mode2_scope_downgrade": {
+        "concrete_examples": [
+          "Archive versioning mismatch in repo: root Chain_Fountain_Lean_GitHub.zip (pre-extracted to _extracted_archives/Chain_Fountain_Lean_GitHub/Chain_Fountain_Lean/) is v0.18.0 (109 modules), whereas v0.19.0 (ChainFountainCompletion, 116 modules, adding LocalFreezingCompletion.lean and five ZeroGravity completion modules documented in arXiv:2611.16781v2 Appendix C) resides in docs/Chain_Fountain_Lean_GitHub.zip alongside docs/Chain_Fountain_Completion_Map.html.",
+          "Proposition 7.2 is split across CaratheodoryCompletion.lean:31,72 (\u03bad > 0 global Carath\u00e9odory existence + unrestricted AC uniqueness, without forceCertificate), MeasurableForces.lean:70 (\u03bad > 0 AEMeasurable existence + forceCertificate, without AC uniqueness), ClassicalCaratheodory.lean:73 (continuous d including \u03bad = 0 + AC uniqueness, without forceCertificate), and GlobalForces.lean:54 (continuous d including \u03bad = 0 + forceCertificate, without uniqueness), all documented in Appendix C.2.",
+          "Theorem 11.5 is split between ZeroGravityACBounds.lean:207 (circulation_measurable_global_wellposed: scalar AC existence, unrestricted AC uniqueness, positive speed, tension & command bounds under hmargin) and ZeroGravityAEReconstruction.lean:269 (measurable_closed_loop_exists: constructive AECirculatingLoop with C\u00b9 phase, periodicity, inextensibility, and a.e. continuum PDE), documented in Appendix E.3.",
+          "Explicitly disclosed physical/numerical exclusions in paper abstract, Section 1.3, Section 10, and Appendices C/D/E: finite chain supply truncation in Earth tracking, ideal force servo without actuator lag, fixed-shape circulation family without general 3D spatial stability, and unverified Python numerical scripts."
+        ],
+        "severity": "minor_disclosed",
+        "summary": "Lean genuinely verifies all headline claims from the abstract and introduction (nominal and robust invariant tracking, global existence and unrestricted AC uniqueness, local exponential stability, exact barrier feasibility, maximal mechanical SDE with stopped energy and unbounded local freezing, sharp mechanical crown LIL failure, and zero-gravity open obstruction and closed-loop circulation). Minor scope splits across declarations and disclosed model boundaries are thoroughly documented in Appendices C, D, and E; the main repo artifact quirk is that v0.19.0 is zipped under docs/ rather than extracted at the root."
+      },
+      "mode3_definition_smuggling": {
+        "concrete_examples": [
+          "ChainFountain/GlobalExistence.lean:14-67 (GlobalTrackingData) and ChainFountain/Certificate.lean:9-24 (ClassicalSolution): contain only parameter, reference, disturbance, and ODE/inequality hypotheses; tracking, invariance, energy decay, and convergence appear strictly in theorem conclusions. Note GlobalTrackingData.field (GlobalExistence.lean:94-97) clamps time via max 0 t for negative times while leaving t \u2265 0 exact, and GlobalTrackingData.project (line 151) is proved inactive on safeBox/outerBox (project_eq, line 181) and absent from all uniqueness/existence theorem conclusions.",
+          "ChainFountain/AbsoluteContinuity.lean:1-207: uses Mathlib's genuine metric AbsolutelyContinuousOnInterval and interval_deriv_eq_sub to prove the Carath\u00e9odory integral equivalence ac_state_ae_iff_integral, rather than a custom proxy for absolute continuity.",
+          "ChainFountainStochastic/CutoffExhaustion.lean:16-38 (Family) and ChainFountainStochastic/MaximalMechanicalSDE.lean:167-186 (Family.local_mechanical_equation): cutoff coefficients F.c n are proved equal to the unclamped singular mechanical drift and diffusion on each gauge sublevel (F.agrees, F.coefficients_before_exit), and the explosion alternative and non-extendability are proved in Family.explosion_alternative and Family.no_positive_continuous_extension (MaximalMechanicalSDE.lean:101,131).",
+          "External stochastic dependency boundary: lake-manifest.json pins formal-applied-math/formal-mathfin and RemyDegenne/brownian-motion for IsPreBrownianReal, IsBrownianReal, natFiltration, augFiltration, predItoIntegral, localItoIntegral, and IsLocalMartingale (external packages not bundled in the zip), on top of which ChainFountainStochastic directly proves the Gaussian running-maximum bound (BrownianMaximal.lean), two-sided Brownian LIL (BrownianLIL.lean, BrownianSmallTime.lean), Dol\u00e9ans exponential MGF (ItoExponential.lean), vector Picard SDE existence/uniqueness (VectorSDE.lean), and unbounded local freezing (LocalFreezingCompletion.lean)."
+        ],
+        "severity": "none",
+        "summary": "No definition smuggling detected. All deterministic and zero-gravity abstractions (ODE derivatives, Fr\u00e9chet derivatives, Routh-Hurwitz polynomials, metric absolute continuity, Bochner/interval integrals, L\u00b2 norms, Hausdorff distance, arclength reparameterization) are directly anchored in Mathlib. All stochastic mechanical structures (Parameters, Family, crownDiffusion, gauge) sit cleanly on top of MathFin/BrownianMotion interfaces without smuggling conclusions into data types."
+      },
+      "mode4_junk_or_vacuity": {
+        "concrete_examples": [
+          "ChainFountain/GlobalExistence.lean:57 and ChainFountain/GlobalExample.lean:10-108: GlobalTrackingData.disturbance_cap evaluates dbar^2 / (16 * \u03ba * \u03bad) \u2264 cap, which uses Lean's 0 / 0 = 0 convention in the nominal case \u03bad = 0, dbar = 0 (instantiated by nominalGlobalExample, GlobalExample.lean:19-21,52). This is benign because GlobalTrackingData.prefix_energy (GlobalExistence.lean:265-275) explicitly branches on regime : dbar = 0 \u2228 0 < \u03bad and never divides by \u03bad when dbar = 0, while initial_energy forces 0 \u2264 cap.",
+          "ChainFountainStochastic/BrownianSmallTime.lean:13: scale t = sqrt (2 * t * log (log (1 / t))) returns junk 0 at t = 0 or t \u2265 e\u207b\u00b9, which is harmless because all LIL limits are taken along the filter \ud835\udcdd[>] (0 : \u211d\u22650).",
+          "ChainFountain/GlobalL2.lean:87-99 (weighted_L2_gain), docs/Chain_Fountain_Lean_GitHub.zip:Chain_Fountain_Lean/ChainFountain/ZeroGravityEnergy.lean:84-96,143-156,172-216, and ZeroGravityAngularMomentum.lean:205-260: every integral balance explicitly proves MemLp 2 or IntervalIntegrable alongside the integral equality, preventing vacuity from Lean's 0-valued integral on non-integrable functions.",
+          "Non-vacuity witnesses: ChainFountain/GlobalExample.lean:10-108 explicitly constructs nominalGlobalExample and robustGlobalExample (certifying nominal_example_global_exists and robust_example_global_exists); ChainFountain/Barrier.lean:109-118 and ChainFountain/AdditionalClaims.lean:61-64 prove three concrete numerical counterexamples. Note that concrete Lean instances are not supplied for forceCertificate (e.g., Section 10's [-25, 25] parameters), stochastic Parameters + IsPreBrownianReal, or AECirculatingLoop, though their hypotheses are straightforwardly satisfiable."
+        ],
+        "severity": "none",
+        "summary": "No theorem exploits Lean junk values or vacuous hypotheses. Explicit non-vacuity witnesses exist for GlobalTrackingData in both nominal and robust regimes, all integral identities carry explicit integrability proofs, singular height denominators are guarded by positivity/exit arguments, and the benign 0/0 = 0 evaluation in disturbance_cap at dbar = \u03bad = 0 is bypassed by branching in prefix_energy."
+      },
+      "notable_good_practices": [
+        "Unrestricted uniqueness proofs: GlobalTrackingData.exists_unique_global_caratheodory, exists_unique_classical_caratheodory, open_loop_local_exponential_unique, and circulation_ac_closedLoop_unique prove uniqueness against arbitrary forward locally absolutely continuous (or classical) competitors without assuming safe-box or positive-height hypotheses on the competitor.",
+        "Explicit non-vacuity witnesses (nominalGlobalExample, robustGlobalExample in GlobalExample.lean) and formalized boundary counterexamples (counterexample_falling_speed, counterexample_empty_interval in Barrier.lean; counterexample_reference_rate in AdditionalClaims.lean).",
+        "Anti-junk-integral discipline: GlobalL2.lean, ZeroGravityEnergy.lean, ZeroGravityAngularMomentum.lean, and CaratheodoryCompletion.lean systematically prove MemLp 2 and IntervalIntegrable alongside every integral identity.",
+        "Rigorous stochastic localization and LIL completion: CutoffExhaustion/MaximalMechanicalSDE proves genuine exit-time compatibility, explosion alternative, and non-extendability before transferring It\u00f4 energy and small-time integral freezing (extended to unbounded coefficients in v0.19.0 LocalFreezingCompletion.lean) to the maximal process.",
+        "Complete, machine-checked claim crosswalk and baseline-preservation audit (verification/completion/claims.json, baseline-preservation.json, combined-build.log) with zero sorry/admit/custom axioms across all 722 authored theorems in v0.19.0."
+      ],
+      "overall_fidelity": "high_faithful",
+      "primary_repo_audited": "/root/survey-lean-proofs-eng-arxiv/data/repos/luchesart__Chain-fountain (pre-extracted v0.18.0 at _extracted_archives/Chain_Fountain_Lean_GitHub/Chain_Fountain_Lean/ and v0.19.0 completion archive at docs/Chain_Fountain_Lean_GitHub.zip)",
+      "theorems_compared": [
+        {
+          "alignment_verdict": "undisclosed_hypothesis_strengthening",
+          "delta_notes": "Core inequalities, invariant tracking box, energy envelopes, global continuation, force/tension admissibility, and unrestricted AC uniqueness are all faithfully proved (and Alpha/Beta assumptions in GlobalTrackingData/GlobalForces are actually weaker than Assumption 2.1: \u03b1 \u2264 1, 0 \u2264 \u03b2). Minor technical differences: (1) GlobalTrackingData.dr/dr\u2081 require two-sided HasDerivAt at t = 0; (2) CaratheodoryCompletion and MeasurableForces require |d t| \u2264 c.dbar pointwise for all t : \u211d (including t < 0 and null sets for AEMeasurable d); (3) Proposition 7.2's existence+uniqueness+force-feasibility+nominal/robust branches are factored across complementary theorems rather than one combined theorem.",
+          "lean_declaration": "ChainFountain.GlobalTrackingData.exists_unique_global_tracking / exists_global_admissible / exists_unique_global_caratheodory / exists_global_aemeasurable_admissible / exists_unique_classical_caratheodory",
+          "lean_file_and_line": "ChainFountain/PrefixUniqueness.lean:95; ChainFountain/GlobalForces.lean:54; ChainFountain/CaratheodoryCompletion.lean:31,72; ChainFountain/MeasurableForces.lean:70; ChainFountain/ClassicalCaratheodory.lean:73",
+          "paper_claim": "Theorem 6.1, Proposition 6.3, Theorem 7.1, and Proposition 7.2: nominal and robust invariant tracking region, sufficient force and pickup-tension feasibility, disturbance L2/pointwise envelope, global Carath\u00e9odory existence, and unrestricted uniqueness."
+        },
+        {
+          "alignment_verdict": "disclosed_narrower_or_omitted",
+          "delta_notes": "Nonlinear local exponential stability and unrestricted finite-interval uniqueness match faithfully (with explicit cubic SOS Lyapunov + injective observability map + Fr\u00e9chet derivative of openLoopField). The transfer-function formula W(p) is checked via the linear system (pI - J)x = (0, -1/h, 0) in resolvent_output plus separate \u211d[X] polynomial degree/evaluation lemmas in TransferCompletion.lean rather than Laplace transforms or matrix inversion (explicitly disclosed in Spectral.lean:101-103).",
+          "lean_declaration": "ChainFountain.open_loop_local_exponential_unique; ChainFountain.open_loop_frechet_derivative; ChainFountain.characteristic_determinant; ChainFountain.resolvent_output; ChainFountain.transfer_relative_degree_two; ChainFountain.transfer_static_gain_negative; ChainFountain.transfer_physical_zero",
+          "lean_file_and_line": "ChainFountain/PlantStability.lean:27; ChainFountain/Linearization.lean:26; ChainFountain/Spectral.lean:91,104; ChainFountain/TransferCompletion.lean:30,34,44",
+          "paper_claim": "Theorem 4.1: local exponential stability of the natural positive equilibrium x* under Assumption 2.1 with d = 0, and linearized transfer function W(p) from \u0394u to \u0394h with relative degree 2, negative static gain, and stable physical zero -2\u03b1\u2080\u03c9 = -2g/v* < 0."
+        },
+        {
+          "alignment_verdict": "faithful",
+          "delta_notes": "Exact algebraic equivalence barrier_feasible_iff, interval intersection, nearest-point projection (clip_mem, clip_nearest), and conditional AC crown invariance (requiring only h > 0 and feasibility along [0, T], matching the prose disclaimer that it does not ensure h > 0 or w > 0).",
+          "lean_declaration": "ChainFountain.barrier_feasible_iff; ChainFountain.clip_mem; ChainFountain.clip_nearest; ChainFountain.filtered_mechanical_crown_ac",
+          "lean_file_and_line": "ChainFountain/Barrier.lean:56,80,84; ChainFountain/ACBarrier.lean:69",
+          "paper_claim": "Proposition 8.1: exact pointwise barrier feasibility inequality, actuator-clipped least-change projection u*, and conditional crown/pickup invariance B_C(t) \u2265 0, T_P(t) \u2265 0."
+        },
+        {
+          "alignment_verdict": "disclosed_narrower_or_omitted",
+          "delta_notes": "Theorems 9.2 and 9.3 match faithfully in v0.19.0 (docs/Chain_Fountain_Lean_GitHub.zip adds unbounded LocalFreezingCompletion.local_freezing and local_freezing_stoppedProcess; MechanicalSmallTime proves both the \u00b11 normalized crown LIL and boundary exit before F.exit 0 and F.lifetime). For Proposition 9.1, Family.maximal_stopped_energy_expectation proves the stopped Dynkin bound for the canonical gauge exhaustion exits min (F.exit n \u03c9) T with G_max = ((n:\u211d) + F.R)^3 and globally bounded r, rather than an arbitrary compact localization region on the maximal process (arbitrary closed balls on a finite-horizon localItoProcess are handled in MechanicalIto.lean:236).",
+          "lean_declaration": "ChainFountainStochastic.CutoffExhaustion.Family.maximal_stopped_energy_expectation; exists_maximal_solution_with_stopped_energy; ChainFountainStochastic.LocalFreezingCompletion.local_freezing; local_freezing_stoppedProcess; ChainFountainStochastic.MechanicalSmallTime.maximal_crown_normalized_lil; boundary_negative; exists_mechanical_crown_lil",
+          "lean_file_and_line": "ChainFountainStochastic/FamilyEnergy.lean:76,120; docs/Chain_Fountain_Lean_GitHub.zip:Chain_Fountain_Lean/ChainFountainStochastic/LocalFreezingCompletion.lean:102,165; ChainFountainStochastic/MechanicalSmallTime.lean:160,209,230",
+          "paper_claim": "Proposition 9.1, Theorem 9.2, and Theorem 9.3: constructed maximal local mechanical SDE with stopped energy expectation bound, unbounded small-time stochastic integral freezing, and mechanical crown LIL ruling out almost-sure boundary invariance."
+        },
+        {
+          "alignment_verdict": "faithful",
+          "delta_notes": "Matches prose very closely across both zero-gravity branches and v0.19.0 completion deductions: global_positive_margin_impossible uses weaker hypotheses (\u03b2 \u2264 1/2, no h > 0 or v\u2081 > 0 needed); circulation_measurable_global_wellposed generalizes k > 0 to k \u2265 0 with \u03b3 + k > 0, properly uses t > 0 differentiability for r, and requires |d t| \u2264 D only a.e. on t \u2265 0; measurable_closed_loop_exists constructs the full C\u00b9 phase and a.e. continuum PDE in any real InnerProductSpace; ZeroGravitySupply, ZeroGravityShape, and ZeroGravityArclength in docs/Chain_Fountain_Lean_GitHub.zip complete Corollary 11.3, Proposition 11.6, and Appendix E.1.",
+          "lean_declaration": "ChainFountain.ZeroGravity.global_positive_margin_impossible; constant_height_solution; constant_height_finite_supply; circulation_measurable_global_wellposed; measurable_closed_loop_exists; arbitrarily_close_nonattracting_circulation; closed_regular_curve_arclength",
+          "lean_file_and_line": "ChainFountain/ZeroGravityOpen.lean:104,176; ChainFountain/ZeroGravityACBounds.lean:207; ChainFountain/ZeroGravityAEReconstruction.lean:269; docs/Chain_Fountain_Lean_GitHub.zip:Chain_Fountain_Lean/ChainFountain/ZeroGravitySupply.lean:199; ZeroGravityShape.lean:248; ZeroGravityArclength.lean:197",
+          "paper_claim": "Theorem 11.1, Proposition 11.2, Corollary 11.3, Proposition 11.4, Theorem 11.5, and Proposition 11.6: zero-gravity open crown-margin obstruction, exact constant-height decay and finite-source depletion, closed-loop measurable continuum reconstruction, speed tracking margins, arclength parameterization, and Hausdorff shape non-attraction."
+        }
+      ]
+    },
+    {
       "arxiv_id": "2611.18220",
       "primary_category": "eess.SY",
       "matched_target_cats": [
@@ -1558,6 +1753,107 @@
           "lean_declaration": "CoprimeFrobenius.lemma_4_1",
           "lean_file_and_line": "CoprimeFrobenius.lean:505-545",
           "paper_claim": "Companion Lemma 4.1 (Isolating a derivative on coprime-degree subfield grids; Uniform_product_expansion.pdf p. 10, supporting Assumption 1.1)"
+        }
+      ]
+    },
+    {
+      "arxiv_id": "2611.26140",
+      "primary_category": "math.OC",
+      "matched_target_cats": [
+        "math.OC"
+      ],
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier1_Bronze",
+      "model_tier": "pro",
+      "executive_verdict": "This is a candidly scoped P1 paper-first formalization: the paper (2611.26140.md:1584) and lean/README.md:11-24 explicitly state that Lean 4 (Mathlib v4.15.0) proves selected algebraic/analytic sub-lemmas, the q_a root-existence bracket, excursion inequalities, and kernel-replayed checks (by decide, zero sorry, zero native_decide, zero custom axioms) of 7 triangulated surface-cut certificates and 8 continuum upper-bound certificates, while leaving the topological, periodic-approximation, escape-transfer, quadratic-gap, and game-to-certificate reductions on paper. Within the formalized components, the mathematics over \u211d is faithful\u2014explicitly avoiding Mathlib's \u2113^\u221e Prod metric via Euclidean euclidDist, covering the entire continuous velocity disk {vx\u00b2+vy\u00b2 \u2264 1} via convexity and Weierstrass tangent polygons, and proving soundness of SQPair/QPair/BTree/CT/LamSeg rational checkers back to \u211d. However, none of the paper's headline minimax width theorems (W_opt, W_2way, or GuardsCorridor for concrete patrols) are proved in Lean, W_opt/W_2way are not defined, and internal module docstrings in HallwayGuarding.lean and several module headers still retain stale overclaiming text from an earlier draft (explicitly disclaimed in lean/README.md:3).",
+      "has_non_vacuity_witnesses": true,
+      "mathlib_anchoring_quality": "mixed_custom_and_mathlib",
+      "mode1_statement_drift": {
+        "concrete_examples": [
+          "WallPhase.lean:93-96 (`wall_width_le_F_wall`) takes the reduced scalar budget `Phi q a h \u2264 \u221a(1 - \u03b4\u00b2)` at `r = 1` directly as a hypothesis, rather than deriving it from `GuardsCorridor` as in paper Theorem 2.1 (`2611.26140.md:165-167`); `bowtie_attains_F_wall` (`WallPhase.lean:145-147`) proves parameter equality only, not guarding (`lean/README.md:44`).",
+          "AttainmentRoot.lean:1501-1507 (`exists_attainment_root_qa`) proves existence and the 12-digit enclosure of `q_a` and `F_wall r q_a`, omitting uniqueness of `q_a` on `(1/3, 1/2]` and the `[q_a, 59/125]` auxiliary inequalities (11)-(13) of Lemma 3.5 (explicitly attributed to `anc/verify_certificates.py` in `2611.26140.md:415` and noted in `lean/README.md:46`).",
+          "MidlineExcursion.lean:137-139, 678-690 (`midline_width_bound`, `two_way_width_bound`, `two_way_exact_half_and_above`) take a linear rearrangement of the conclusion (`h_nonneg`) directly as a hypothesis rather than proving the summed-excursion limit `N(L) \u2192 \u221e` for `GuardsCorridor` patrols; additionally `two_way_J_bound` (`MidlineExcursion.lean:608`) restricts `0 \u2264 q \u2264 1` (requiring Theorem 6.1 for `q \u2265 1`).",
+          "SurfaceCut.lean:1774-1800 (`checkSurfaceCutCert_sound`) checks strict causal normals (`IsStrictCausalNormal`, `0 < n_t` and `q\u00b2(n_x\u00b2+n_y\u00b2) < n_t\u00b2`) rather than the paper's weak `\u2265` in Proposition 8.1 (`2611.26140.md:1324`), which is a stronger check on certificates, while leaving the topological chamber construction bridging `checkSurfaceCutCert_sound` to `surface_cut_separates_corridor` (`SurfaceCut.lean:826`) on paper.",
+          "SlowAsymptotics.lean:74-77 (`slow_limit_tendsto_two`) quantifies `2/q - 2 \u2264 W q \u2264 W_area 1 q` over an abstract function `W : \u211d \u2192 \u211d` on all of `(0, 1)` rather than proving those bounds for `W_opt` near `0\u207a`.",
+          "CylindricalUncrossing.lean:92,399 formalizes 1D `runningInf` uncrossing on `IsQuasiPeriodicLift T L g`, and `SlowAsymptotics.lean:411,436` / `NonPeriodic.lean` contain earlier-draft boundary-layer and drift theorems not used in the current paper (`lean/README.md:24,53`)."
+        ],
+        "severity": "minor_disclosed",
+        "summary": "Where Lean proves isolated algebraic/analytic sub-lemmas (`wall_width_le_F_wall`, `midline_width_bound`, `two_way_width_bound`, `slow_limit_tendsto_two`) instead of full game theorems, the Lean hypotheses correspond to intermediate reduced inequalities rather than `GuardsCorridor`. All such gaps and omitted uniqueness/topological steps are explicitly disclosed in `2611.26140.md:415,1584`, `anc/README.md:37`, and `lean/README.md:11-24,41-54`, while the formulas that are formalized over `\u211d` (`euclidDist`, `IsPatrol`, `IsUpwardTransit`, `R_round`, `twoWayJ`, `ValidSurfaceTriangle`, `Psi_cert`) match the paper faithfully (with `SurfaceCut.lean` using slightly stricter `IsStrictCausalNormal` on Type C faces)."
+      },
+      "mode2_scope_downgrade": {
+        "concrete_examples": [
+          "Headline definitions `W_opt(q)`, `W_opt(q, H)`, `W_2way(q)`, `W_2way(q, H)` (Definition 1.2, `2611.26140.md:117-124`) do not appear in `Defs.lean` or any Lean module; `lean/README.md:13-14` explicitly states: 'The library does not prove the paper's width theorems. None of its theorems concludes that every guarding patrol has width at most some bound, or that a given patrol guards a given width.'",
+          "Abstract/headline theorems for `q_a \u2264 q < 1` attainment (Theorem 3.6), periodic approximation (Theorem 4.1), escape & uniform/quadratic gap below `q_a` (Theorems 4.2, 5.1, 5.2), and finite-speed ten-leg patrol on `(0, 1/40]` (Theorem 9.2) have no end-to-end formalization in Lean (Sections 4-5 have zero lines of Lean; Theorem 9.2 relies on `anc/hooks/check_slow_hooks.py`).",
+          "`SurfaceCutCert.lean` (`quarter_record_64leg_verified` at line 10062 and six 18-leg theorems) proves `IsPatrol`, `IsPeriodic`, face validity, edge cancellation, and area `-2TW`, but does not invoke `surface_cut_separates_corridor` (`SurfaceCut.lean:826`) to conclude `GuardsCorridor 1 1 q (W_real/2) g`.",
+          "`ContinuumUpperCert.lean` (`cert_unrestricted_*_valid`, `cert_bh_*_valid`) proves `Psi_cert \u2264 certCap < demand_real` uniformly on `[-b, b] \u00d7 {vx\u00b2 + vy\u00b2 \u2264 1}`, but does not connect this to width bounds on guarding patrols (Theorems 8.2 and 8.4 remain on paper).",
+          "Internal docstring drift inside Lean files: `HallwayGuarding.lean:15-66` describes the repo as a 'Complete Machine-Checked Lean 4 Formalization Catalog ... covering Sections 1-9', and `MidlineExcursion.lean:6-9` claims 'resolving W_opt(q) globally for q >= 1' and 'resolving W_2way(q) globally for all q >= 1/2' (remnants of an earlier draft, disclaimed in `lean/README.md:3,13`)."
+        ],
+        "severity": "moderate",
+        "summary": "There is a large scope gap between the paper's headline minimax width theorems in the abstract and what Lean actually proves (auxiliary sub-lemmas and kernel replays of finite rational certificates, without `W_opt`/`W_2way` or `GuardsCorridor` conclusions for concrete patrols). On the paper side, the abstract/intro make no claim of Lean verification and `2611.26140.md:1584` plus `lean/README.md:11-24` candidly disclose the exact scope; however, the disclosure appears only at the end of the paper (`2611.26140.md:1584`) and in `README.md`, while several `.lean` file headers (`HallwayGuarding.lean:15-66`, `MidlineExcursion.lean:6-9`, `SlowAsymptotics.lean:7`) still retain draft-era overclaims."
+      },
+      "mode3_definition_smuggling": {
+        "concrete_examples": [
+          "`Defs.lean:17-37,78` explicitly avoids Mathlib's default `\u2113^\u221e` box metric on `\u211d \u00d7 \u211d` by defining `euclidDist` via `Real.sqrt ((p.1 - q.1)^2 + (p.2 - q.2)^2)` and proving `euclidDist_triangle`. `IsPatrol` and `IsUpwardTransit` (`Defs.lean:111,126`) faithfully encode Euclidean Lipschitz speed bounds and `Filter.Tendsto` at `atBot`/`atTop`.",
+          "`AttainmentRoot.lean:170-182` anchors `\u03b8_star` and `p_fan` to Mathlib `Real.arctan`, `Real.cos`, `Real.sin`, `Real.sqrt`, and `intervalIntegral`, proving `R_round` continuity and IVT root existence via `intermediate_value_Icc'`.",
+          "`ContinuumUpper.lean:1115-1198` represents lane density `\u03bb` (`lam_bins`) and interior gap density `\u03c1` (`gaps`) as contiguous `SignedBins` step lists (`checkBinsContig`) and algebraic bin-area sums (`lam_mass_real`, `gap_mass_real`) rather than Mathlib `MeasureTheory.integral`, and defines custom `IsConvex2D` (`ContinuumUpper.lean:498`); however, `checkBinsContig` enforces exact partition contiguity with nonnegative weights and `lo < hi`, so `lam_mass_real` and `gap_mass_real` coincide with the Lebesgue integrals of the step densities (note `rho_exact` takes `max` across closed bin endpoints, matching bin interiors a.e. and only tightening upper bounds at endpoints).",
+          "`SurfaceCut.lean:316,353,1488` constructs `periodicChain` via Mathlib `Int.floor` and verifies `IsPatrol 1 (W/2) g`, `IsPeriodic T g`, `ValidSurfaceTriangle`, involutive interior edge cancellation modulo `T`, and `realFaceNy` sum `-2TW` via `checkSurfaceCutCert_sound`."
+        ],
+        "severity": "none",
+        "summary": "No definition smuggling or subtly weakened textbook definitions were found. Custom definitions (`euclidDist`, `IsPatrol`, `IsUpwardTransit`, `IsConvex2D`, `SQPair`, `QPair`, `Psi_cert`, `ValidSurfaceTriangle`) are mathematically faithful to the paper's definitions and proved sound over `\u211d` (`euclidDist` specifically prevents an `\u2113^\u221e` product-metric bug). Note that `lam_mass_real`/`gap_mass_real` and `K_lam_bins` encode step-function integrals algebraically rather than through Mathlib `MeasureTheory.integral`, which is sound given `checkBinsContig` contiguity."
+      },
+      "mode4_junk_or_vacuity": {
+        "concrete_examples": [
+          "Unguarded division audit: `W_area`/`W_bf` (`Defs.lean:143-152`) divide by `q^2` and `F_wall`/`optHeight`/`bowtie_*` divide by `3q^2+2q-1`, but every theorem guards them with `0 < q` or `1/3 < q` (`denom_F_pos`, `Defs.lean:157`). `R_round` (`AttainmentRoot.lean:179`) is guarded by `denom_R_round_pos_on_bracket` (`AttainmentRoot.lean:695`). Rational `SQPair`/`QPair` denominators are explicitly checked `0 < den` (`SurfaceCut.lean:1490-1499`, `ContinuumUpper.lean:3517-3522`), and `checkCaptureVert`'s `divPos` is guarded by `L < R` (`SurfaceCut.lean:1633,1950`).",
+          "Truncated `Nat` subtraction audit: In `SurfaceCut.lean:1421,1501` `numGuardKnots - 1` is guarded by `2 \u2264 numGuardKnots`; in `ContinuumUpper.lean:3517,3522,3527` `bS - S` is guarded by `Nat.blt P.S P.bS`, `m*m - n*n` by `Nat.blt n m`, `m_ab*m_ab - n_ab*n_ab` by `Nat.blt n_ab m_ab` (when `is_bh = true`), and `checkVertBound`/`checkVT`/`checkFootprints*` guard every `Nat` subtraction with prior `Nat.ble`/`Nat.blt` checks (`ContinuumUpper.lean:1733-1738,3101-3122,3303-3309`).",
+          "`Real.sqrt` domain audit: `P_flux` (`ContinuumUpper.lean:75`) applies `clip1` to `[-1, 1]` before `1 - z^2`; `f_unr_exact`/`f_bh_exact` (`1126-1133`) require `0 < u < s_k < 1`; `p_fan` (`AttainmentRoot.lean:175`) satisfies `sin(\u03b8_star q)^2 \u2264 1/400 < q^2` on `[q_lo, q_hi]`.",
+          "Non-vacuity witnesses: Concrete instantiations prove joint satisfiability of hypotheses across the library, including `exists_attainment_root_qa` (`AttainmentRoot.lean:1501`), `bowtie_attains_F_wall` (`WallPhase.lean:145`), `wallRunner_isUpwardTransit` (`CylindricalUncrossing.lean:479`), `bh2_exact_on_bowtie` (`BoundedHeightChord.lean:91`), `ten_leg_strictly_beats_golden_ratio` (`SlowAsymptotics.lean:436`), all 7 surface-cut instantiations (`SurfaceCutCert.lean:10062-17425`), and all 8 continuum instantiations (`ContinuumUpperCert.lean:88-372`). Only abstract-function wrapper theorems `surface_cut_separates_corridor` (`SurfaceCut.lean:826`) and `slow_limit_tendsto_two` (`SlowAsymptotics.lean:74`) lack concrete instantiations inside Lean."
+        ],
+        "severity": "none",
+        "summary": "No unguarded junk-value bugs (`1/0 = 0`, truncated `Nat` subtraction, or negative `Real.sqrt`) and no vacuous or contradictory hypotheses were found. Every division and `Nat` subtraction in theorem/checker paths is explicitly guarded, and the repository provides abundant concrete instantiations proving non-vacuity (`exists_attainment_root_qa`, `bowtie_attains_F_wall`, 7 `SurfaceCutCert` theorems, 8 `ContinuumUpperCert` theorems, `ten_leg_strictly_beats_golden_ratio`)."
+      },
+      "notable_good_practices": [
+        "Explicit custom Euclidean `\u2113\u00b2` metric (`euclidDist`, `Defs.lean:36`) with proved `euclidDist_triangle` (`Defs.lean:78`) specifically to avoid Mathlib's `\u2113^\u221e` `Prod` metric trap.",
+        "Pure Lean kernel verification (`by decide`) across all 7 surface-cut certificates and all 8 continuum certificates using `BTree`/`CT`/`VT`/`LamSeg`/`SQPair`/`QPair` data structures without `native_decide`, `sorry`, or custom axioms, verified by `scripts/verify_axioms_portable.sh`.",
+        "Full soundness proofs (`checkSurfaceCutCert_sound` at `SurfaceCut.lean:1774` and `checkContinuumCert_sound` at `ContinuumUpper.lean:3706`) lifting integer/boolean checkers to continuous `\u211d` statements\u2014including exact continuous disk coverage `{vx\u00b2 + vy\u00b2 \u2264 1}` via Weierstrass rational tangent polygons (`unit_disk_covered_by_tangent_chain`) and joint velocity convexity of `P_flux`.",
+        "Exemplary top-level transparency in `lean/README.md:11-24,41-54` and `2611.26140.md:1584`, explicitly listing every game-to-certificate step proved on paper rather than in Lean and documenting draft-era comments/unused modules."
+      ],
+      "overall_fidelity": "partial_or_weakened_formalization",
+      "primary_repo_audited": "arxiv-anc/2611.26140 (hallway_guarding_lean4)",
+      "theorems_compared": [
+        {
+          "alignment_verdict": "disclosed_narrower_or_omitted",
+          "delta_notes": "Lean proves the finite-window straight-wall detection reduction (`wall_phase_detected_in_window`), the closing convex minimization & Cauchy-Schwarz algebra (`wall_width_le_F_wall` assuming `Phi q a h \u2264 \u221a(1 - \u03b4\u00b2)` at `r = 1`), and parameter equality (`bowtie_attains_F_wall` without proving guarding). The phase-cylinder speed budget, cylindrical A-trail uncrossing (Lemma 2.3), Jordan separation contact ordering, and finite-to-periodic reduction remain on paper (explicitly disclosed in `2611.26140.md:1584` and `lean/README.md:15,44-45`). Note `CylindricalUncrossing.lean:92,399` formalizes an unrelated 1D `runningInf` uncrossing lemma not wired to `wall_width_le_F_wall`.",
+          "lean_declaration": "HallwayGuarding.wall_width_le_F_wall, HallwayGuarding.bowtie_attains_F_wall, HallwayGuarding.wall_phase_detected_in_window",
+          "lean_file_and_line": "HallwayGuarding/WallPhase.lean:93-96,145-147; HallwayGuarding/CylindricalUncrossing.lean:549-553",
+          "paper_claim": "Theorem 2.1 (Wall-phase ceiling: any bounded-excursion unit-speed patrol blocking straight wall runners for 1/3 < q < 1 has W = 2b \u2264 F(q) = 2r\u221a(1 + (3q\u00b2+2q-1)\u207b\u00b9)) and Section 3.1 wall-budget equality (2611.26140.md:165-167,295-305)."
+        },
+        {
+          "alignment_verdict": "disclosed_narrower_or_omitted",
+          "delta_notes": "`exists_attainment_root_qa` faithfully formalizes `R_round` continuity (`continuousOn_R_round_Icc`), degree-6 polynomial Taylor brackets (`R_round_gt_one_qlo`, `R_round_lt_one_qhi`), IVT root existence `q_a \u2208 (0.457892036651, 0.457892036652)` with `R_round q_a = 1`, and `F_wall r q_a \u2208 [3.36785112514 r, 3.36785112516 r]` for all `r > 0`, alongside pointwise fan/tube identities (`fan_contact_speed_eq_q`, `eikonal_front_no_upward_crossing`, `bowtie_diag_capture_witness_identity`). Uniqueness of `q_a`, auxiliary conditions (10)-(13) on `[q_a, 0.472]`, and Theorem 3.6 guarding sufficiency (`GuardsCorridor` / `W_opt = F(q)`) are omitted in Lean and explicitly assigned to `anc/verify_certificates.py` and the text (`2611.26140.md:415,1584`, `lean/README.md:16,46`).",
+          "lean_declaration": "HallwayGuarding.exists_attainment_root_qa, HallwayGuarding.fan_contact_speed_eq_q, HallwayGuarding.eikonal_front_no_upward_crossing, HallwayGuarding.bowtie_diag_capture_witness_identity",
+          "lean_file_and_line": "HallwayGuarding/AttainmentRoot.lean:1501-1507,223-228,268-271,393-399",
+          "paper_claim": "Lemma 3.5 (Critical speed q_a unique root of R_round(q)=1 in (1/3,1/2] enclosed in (0.457892036651, 0.457892036652) with F(q_a) enclosure and wavefront hypotheses (10)-(13) on [q_a, 59/125]) and Theorem 3.6 (W_opt(q) = F(q) on [q_a, 1)) (2611.26140.md:403-424)."
+        },
+        {
+          "alignment_verdict": "disclosed_narrower_or_omitted",
+          "delta_notes": "`one_way_excursion_span_bound` and `two_way_J_half_nonpos` / `two_way_J_bound` faithfully prove the single-excursion phase inequalities over `\u211d` (using an exact 24-permutation rational Farkas certificate at `q = 1/2` and affine interpolation on `0 \u2264 q \u2264 1`). However, `midline_width_bound` (`137`) and `two_way_exact_half_and_above` (`688`) take the summed excursion bound `h_nonneg` directly as a hypothesis (already linearly equivalent to the conclusion at `r = 1`), leaving the excursion decomposition of guarding patrols and `N(L) \u2192 \u221e` argument on paper (disclosed in `lean/README.md:18,47` and `2611.26140.md:1584`, though stale docstrings in `MidlineExcursion.lean:6-9` claim full resolution).",
+          "lean_declaration": "HallwayGuarding.one_way_excursion_span_bound, HallwayGuarding.midline_width_bound, HallwayGuarding.two_way_J_half_nonpos, HallwayGuarding.two_way_J_bound, HallwayGuarding.two_way_exact_half_and_above",
+          "lean_file_and_line": "HallwayGuarding/MidlineExcursion.lean:47-55,137-139,502-509,608-617,688-690",
+          "paper_claim": "Theorem 6.1 (Global midline-excursion bound W \u2264 r\u221a(4+q\u207b\u00b2) + ((1-q)_+/q)H and W_opt(q)=r\u221a(4+q\u207b\u00b2) for q \u2265 1) and Theorem 7.1 (Two-way bound 2b \u2264 W_bf(q) + ((1-2q)_+/q)H and W_2way(q)=W_bf(q) for q \u2265 1/2) (2611.26140.md:1062-1082,1120-1133)."
+        },
+        {
+          "alignment_verdict": "disclosed_narrower_or_omitted",
+          "delta_notes": "All 7 rational certificates are kernel-replayed (`by decide`) and lifted via `checkSurfaceCutCert_sound` to prove `IsPatrol 1 (W_real/2) g`, `IsPeriodic T_real g`, facewise `ValidSurfaceTriangle` (with strict causal normals `IsStrictCausalNormal` for Type C and single-piece convex capture-tube bounds for Type S), involutive edge cancellation modulo `T_real`, and projected area `-2TW`. While `surface_cut_separates_corridor` proves `GuardsCorridor r 1 q b g` from an abstract `chamberPhi`, Lean does not prove the 3D homology/degree construction inducing `chamberPhi` from a verified certificate mesh, so `GuardsCorridor` is not concluded for any of the 7 certificates (explicitly disclosed in `lean/README.md:19,48-49` and `2611.26140.md:1584`).",
+          "lean_declaration": "HallwayGuarding.checkSurfaceCutCert_sound, HallwayGuarding.surface_cut_separates_corridor, HallwayGuarding.quarter_record_64leg_verified, HallwayGuarding.transition_18leg_q1_4_verified..q2_5_verified",
+          "lean_file_and_line": "HallwayGuarding/SurfaceCut.lean:826-853,1774-1800; HallwayGuarding/SurfaceCutCert.lean:10062-10078,11177,12434,13675,14918,16139,17408",
+          "paper_claim": "Proposition 8.1 (Triangulated spacetime surface-cut certificate) and the 7 lower bounds W_opt(1/4) > 6.944691333740r (64-leg) and six 18-leg bounds for q \u2208 {1/4, 7/25, 3/10, 1/3, 7/20, 2/5} (2611.26140.md:1306-1352)."
+        },
+        {
+          "alignment_verdict": "disclosed_narrower_or_omitted",
+          "delta_notes": "`checkContinuumCert_sound` and the 8 kernel-replayed (`by decide`) certificate theorems rigorously establish `required_gap_mass_real \u2264 gap_mass_real`, `AllBhCutoffsValid` (for the 5 BH-2 certs), `certCap < demand_real`, and `\u2200 X vx vy : \u211d, |X| \u2264 b \u2192 vx\u00b2+vy\u00b2 \u2264 1 \u2192 Psi_cert P X vx vy \u2264 certCap P` over the full continuous rectangle \u00d7 unit disk, plus strict comparisons against `F_wall`, `W_area`, and `8` (`ContinuumUpperCert.lean:379-416`), alongside BH-2 chord/tail lemmas in `BoundedHeightChord.lean`. The integral/block-decomposition implication from `GuardsCorridor` to `sup \u03a8 \u2265 demand` (Theorems 8.2 and 8.4) remains on paper (disclosed in `lean/README.md:20,50-52` and `2611.26140.md:1584`).",
+          "lean_declaration": "HallwayGuarding.checkContinuumCert_sound, HallwayGuarding.cert_unrestricted_q037_W535_valid..cert_bh_H150_W798_valid, HallwayGuarding.bh2_half_cycle_phase_bound, HallwayGuarding.q_one_third_pigeonhole_floor",
+          "lean_file_and_line": "HallwayGuarding/ContinuumUpper.lean:3706-3720; HallwayGuarding/ContinuumUpperCert.lean:88-372,379-416; HallwayGuarding/BoundedHeightChord.lean:45-152",
+          "paper_claim": "Section 8.2-8.3 (Theorem 8.2, Proposition 8.3, Theorem 8.4) certifying unrestricted ceilings W_opt(0.37) \u2264 5.35r < F(0.37), W_opt(1/3) \u2264 6.12r < W_area(1/3), W_opt(1/4) \u2264 8.10r < W_area(1/4), and five q=1/4 bounded-height ceilings W_opt(1/4, H) \u2264 {7.20, 7.65, 7.70, 7.90, 7.98}r (2611.26140.md:1380-1479)."
         }
       ]
     },

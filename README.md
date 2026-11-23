@@ -26,7 +26,7 @@ Binary PDFs are **not committed to Git**. Every push to `main` regenerates all v
   - [`artifacts/sandbox_builds/summary.json`](artifacts/sandbox_builds/summary.json), [`results_2026-11.json`](artifacts/sandbox_builds/results_2026-11.json), & [`results_2026-05.json`](artifacts/sandbox_builds/results_2026-05.json) — Isolated `--network=none` Docker `lake build` + programmatic `#print axioms` (`Lean.collectAxioms`) verification logs across all 14 standalone compact (`<15k` LoC) repositories (`11/14` OOTB pass, `3,190` OOTB / `3,254` total theorems audited, `7/7` OOTB `Tier3_Gold` axiom-clean, `0/14` `Lean.ofReduceBool`)
 - **Rendered Survey Reports (`reports/`):**
   - [`reports/longitudinal_analysis.md`](reports/longitudinal_analysis.md) — **12-month longitudinal inflection analysis** across **9,837** preprints (T0: Nov 1–19, 2025; T1: May 1–19, 2026; T2: Nov 1–19, 2026; `v1` vs `v_latest` retroactive autoformalization + flat Beyond-Lean FV control)
-  - [`reports/slices/2026-11/phase2_layer_a_audit.md`](reports/slices/2026-11/phase2_layer_a_audit.md) & [`reports/slices/2026-05/phase2_layer_a_audit.md`](reports/slices/2026-05/phase2_layer_a_audit.md) — Deep Layer-A semantic fidelity audits (Modes #1–#4) of **20** locally inspected `engineering_math_proof` Lean 4 repos (17 in T2 + 3 in T1)
+  - [`reports/slices/2026-11/phase2_layer_a_audit.md`](reports/slices/2026-11/phase2_layer_a_audit.md) & [`reports/slices/2026-05/phase2_layer_a_audit.md`](reports/slices/2026-05/phase2_layer_a_audit.md) — Deep Layer-A semantic fidelity audits (Modes #1–#4) of **23** locally inspected `engineering_math_proof` Lean 4 repos (20 in T2 + 3 in T1)
   - [`reports/slices/2026-11/phase1_survey.md`](reports/slices/2026-11/phase1_survey.md), [`reports/slices/2026-05/phase1_survey.md`](reports/slices/2026-05/phase1_survey.md), [`reports/slices/2025-11/phase1_survey.md`](reports/slices/2025-11/phase1_survey.md) — Classified inventories across all three matched slices (`0 → 5 → 39` contemporaneous `v1`; `1 → 7 → 39` latest revision)
   - [`reports/slices/2026-11/recall_calibration.md`](reports/slices/2026-11/recall_calibration.md) — Stage-2 recall calibration auditing 200 random GitHub-linked negatives (333 repos checked; **0/200** missed Lean repos, 1.49% 95% upper bound) + 100 non-GitHub negatives
   - [`reports/slices/2026-11/phase0.md`](reports/slices/2026-11/phase0.md), [`reports/slices/2026-05/phase0.md`](reports/slices/2026-05/phase0.md), [`reports/slices/2025-11/phase0.md`](reports/slices/2025-11/phase0.md) — Zero-token deterministic full-text pre-screen & static repo stats
@@ -73,7 +73,7 @@ survey-lean-proofs-eng-arxiv/
     test_check_paper_numbers.py   # Unit tests for numeric consistency gate and archive unpackers
   artifacts/                      # Git-tracked small structured outputs (<2 MB, license-safe)
     longitudinal_summary.json
-    phase2_provenance.json        # Pinned commit SHAs, toolchains & 196/196 file:line provenance checks
+    phase2_provenance.json        # Pinned commit SHAs, toolchains & 239/239 file:line provenance checks
     slices/
       manifest.json               # Declarative slice registry
       2025-11/                    # T0 classifications

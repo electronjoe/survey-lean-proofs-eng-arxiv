@@ -12,7 +12,7 @@
     "negatives": 4042,
     "confirmed": 39,
     "eng_math": 28,
-    "audited": 17
+    "audited": 20
   },
   "category_bifurcation": {
     "cat_total": {
@@ -768,6 +768,26 @@
       "mathlib_anchoring_quality": "mixed_custom_and_mathlib"
     },
     {
+      "arxiv_id": "2611.12585",
+      "primary_category": "math.NA",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "overall_fidelity": "mostly_faithful_with_disclosed_gaps",
+      "mode1_statement_drift": {
+        "severity": "minor_disclosed"
+      },
+      "mode2_scope_downgrade": {
+        "severity": "minor_disclosed"
+      },
+      "mode3_definition_smuggling": {
+        "severity": "none"
+      },
+      "mode4_junk_or_vacuity": {
+        "severity": "none"
+      },
+      "has_non_vacuity_witnesses": true,
+      "mathlib_anchoring_quality": "strong_mathlib"
+    },
+    {
       "arxiv_id": "2611.12680",
       "primary_category": "math.OC",
       "authoring_paradigm": "P1_paper_first_posthoc",
@@ -888,6 +908,26 @@
       "mathlib_anchoring_quality": "strong_mathlib"
     },
     {
+      "arxiv_id": "2611.16781",
+      "primary_category": "math.OC",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "overall_fidelity": "high_faithful",
+      "mode1_statement_drift": {
+        "severity": "minor_undisclosed"
+      },
+      "mode2_scope_downgrade": {
+        "severity": "minor_disclosed"
+      },
+      "mode3_definition_smuggling": {
+        "severity": "none"
+      },
+      "mode4_junk_or_vacuity": {
+        "severity": "none"
+      },
+      "has_non_vacuity_witnesses": true,
+      "mathlib_anchoring_quality": "strong_mathlib"
+    },
+    {
       "arxiv_id": "2611.18220",
       "primary_category": "eess.SY",
       "authoring_paradigm": "P1_paper_first_posthoc",
@@ -946,6 +986,26 @@
       },
       "has_non_vacuity_witnesses": false,
       "mathlib_anchoring_quality": "strong_mathlib"
+    },
+    {
+      "arxiv_id": "2611.26140",
+      "primary_category": "math.OC",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "overall_fidelity": "partial_or_weakened_formalization",
+      "mode1_statement_drift": {
+        "severity": "minor_disclosed"
+      },
+      "mode2_scope_downgrade": {
+        "severity": "moderate"
+      },
+      "mode3_definition_smuggling": {
+        "severity": "none"
+      },
+      "mode4_junk_or_vacuity": {
+        "severity": "none"
+      },
+      "has_non_vacuity_witnesses": true,
+      "mathlib_anchoring_quality": "mixed_custom_and_mathlib"
     },
     {
       "arxiv_id": "2611.26272",

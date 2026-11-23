@@ -1,12 +1,13 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-11-22T19:34:11Z",
-  "total_audited_repos": 20,
-  "git_pinned_count": 19,
+  "generated_at": "2026-11-23T05:29:03Z",
+  "total_audited_repos": 23,
+  "git_pinned_count": 20,
   "zenodo_pinned_count": 1,
+  "ancillary_pinned_count": 2,
   "theorems_compared_file_line_summary": {
-    "total_refs": 196,
-    "resolved_in_bounds": 196
+    "total_refs": 239,
+    "resolved_in_bounds": 239
   },
   "records": [
     {
@@ -207,6 +208,34 @@
     },
     {
       "slice_id": "2026-11",
+      "arxiv_id": "2611.12585",
+      "arxiv_version_audited": "v2",
+      "arxiv_submitted_date": "2026-11-09T15:39:22Z",
+      "arxiv_updated_date": "2026-11-17T18:28:46Z",
+      "repo_host": "arxiv_ancillary",
+      "repo_url": "https://arxiv.org/src/2611.12585",
+      "commit_sha": null,
+      "commit_short_sha": null,
+      "commit_date": null,
+      "zenodo_record_id": null,
+      "lean_files_count": 341,
+      "lean_tree_sha256": "c7bacee8b81bd6db6add263bdf5f7bc6559b4e85f3106d07b014a644557bced3",
+      "lean_toolchain": "leanprover/lean4:v4.35.0",
+      "companion_repos": [],
+      "overall_fidelity": "mostly_faithful_with_disclosed_gaps",
+      "mode1_severity": "minor_disclosed",
+      "mode2_severity": "minor_disclosed",
+      "mode3_severity": "none",
+      "mode4_severity": "none",
+      "theorems_compared_file_line_check": {
+        "total_file_line_refs": 14,
+        "resolved_in_bounds": 14,
+        "unresolved": [],
+        "out_of_bounds": []
+      }
+    },
+    {
+      "slice_id": "2026-11",
       "arxiv_id": "2611.12680",
       "arxiv_version_audited": "v2",
       "arxiv_submitted_date": "2026-11-09T16:45:36Z",
@@ -375,6 +404,34 @@
     },
     {
       "slice_id": "2026-11",
+      "arxiv_id": "2611.16781",
+      "arxiv_version_audited": "v2",
+      "arxiv_submitted_date": "2026-11-12T13:24:57Z",
+      "arxiv_updated_date": "2026-11-14T18:23:23Z",
+      "repo_host": "github",
+      "repo_url": "https://github.com/luchesart/Chain-fountain",
+      "commit_sha": "888a471dfdbed49a890a27e541f5d3a44795da83",
+      "commit_short_sha": "888a471",
+      "commit_date": "2026-11-14T17:42:32+02:00",
+      "zenodo_record_id": null,
+      "lean_files_count": 121,
+      "lean_tree_sha256": "8e69c21897712cf8e9f6d22aea30b87baabb244188c00552733a75cec079d4ab",
+      "lean_toolchain": "leanprover/lean4:v4.33.0-rc1",
+      "companion_repos": [],
+      "overall_fidelity": "high_faithful",
+      "mode1_severity": "minor_undisclosed",
+      "mode2_severity": "minor_disclosed",
+      "mode3_severity": "none",
+      "mode4_severity": "none",
+      "theorems_compared_file_line_check": {
+        "total_file_line_refs": 20,
+        "resolved_in_bounds": 20,
+        "unresolved": [],
+        "out_of_bounds": []
+      }
+    },
+    {
+      "slice_id": "2026-11",
       "arxiv_id": "2611.18220",
       "arxiv_version_audited": "v1",
       "arxiv_submitted_date": "2026-11-13T14:24:26Z",
@@ -453,6 +510,34 @@
       "theorems_compared_file_line_check": {
         "total_file_line_refs": 3,
         "resolved_in_bounds": 3,
+        "unresolved": [],
+        "out_of_bounds": []
+      }
+    },
+    {
+      "slice_id": "2026-11",
+      "arxiv_id": "2611.26140",
+      "arxiv_version_audited": "v1",
+      "arxiv_submitted_date": "2026-11-19T13:57:43Z",
+      "arxiv_updated_date": "2026-11-19T13:57:43Z",
+      "repo_host": "arxiv_ancillary",
+      "repo_url": "https://arxiv.org/src/2611.26140",
+      "commit_sha": null,
+      "commit_short_sha": null,
+      "commit_date": null,
+      "zenodo_record_id": null,
+      "lean_files_count": 53,
+      "lean_tree_sha256": "6ba74cfee3b39ec0d63e5a681c6495f344e475b8f95138cb69e1f34da104fe64",
+      "lean_toolchain": "leanprover/lean4:v4.15.0",
+      "companion_repos": [],
+      "overall_fidelity": "partial_or_weakened_formalization",
+      "mode1_severity": "minor_disclosed",
+      "mode2_severity": "moderate",
+      "mode3_severity": "none",
+      "mode4_severity": "none",
+      "theorems_compared_file_line_check": {
+        "total_file_line_refs": 9,
+        "resolved_in_bounds": 9,
         "unresolved": [],
         "out_of_bounds": []
       }
