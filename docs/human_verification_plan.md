@@ -59,14 +59,15 @@ Draw a reproducible, seeded stratified sample of **30 Stage-2 Lean candidates** 
 - **4 false positives / contextual-only borderline hits** (including contextual-only matches from T2)
 
 ### Execution Workflow
-- [ ] **4a. Build blinded review kit:** Create `scripts/prepare_stage4_irr.py` generating:
-  - A **blinded** CSV template (`artifacts/human_annotations/stage4_irr_blank.csv`) with columns matching [`artifacts/human_annotations/README.md`](../artifacts/human_annotations/README.md):
+- [x] **4a. Build blinded review kit:** Created [`scripts/prepare_stage4_irr.py`](../scripts/prepare_stage4_irr.py) (`--seed 20261123`) generating:
+  - A **blinded** CSV template ([`artifacts/human_annotations/stage4_irr_blank.csv`](../artifacts/human_annotations/stage4_irr_blank.csv)) matching [`artifacts/human_annotations/README.md`](../artifacts/human_annotations/README.md):
     `slice_id,arxiv_id,annotator_id,lean_usage_status,paper_domain_role,authoring_paradigm,verification_tier,ai_agent_assisted,notes`
+  - A **self-contained, offline interactive HTML walkthrough** ([`docs/stage4_irr_walkthrough.html`](stage4_irr_walkthrough.html)) that opens locally in any browser (zero external dependencies, `localStorage` autosave, color-coded 5-step visual decision tree, auto-`N/A` short-circuiting for non-contributed hits, CSV import/resume, and one-click `stage4_irr.csv` export—verified 0 leaked LLM tokens).
   - A companion blinded Markdown dossier (`data/stage4_irr_dossier.md`, gitignored) containing each paper's title, abstract, Stage-2 matched prose snippets, README excerpt, and Stage-3 static counts—with **zero LLM predictions shown**.
 - [ ] **4b. Independent human annotation:**
-  - *arXiv-ready tier (1 rater):* `annotator_1` completes all 30 rows blindly → saved to `artifacts/human_annotations/stage4_irr.csv`.
-  - *Archival peer-review tier (2 raters, optional now or before EMSE/ITP/NeurIPS):* `annotator_2` (Bhaskar) independently completes the same 30 rows and appends to `artifacts/human_annotations/stage4_irr.csv`.
-- [ ] **4c. Scoring & disagreement reconciliation:** Write `scripts/compute_irr.py` to compute per-field exact agreement, **Cohen's $\kappa$**, **Krippendorff's $\alpha$**, and confusion matrices (Human vs. LLM, plus Human vs. Human if 2 raters), and log concise reconciliation notes for every disagreement.
+  - *arXiv-ready tier (1 rater):* Open [`docs/stage4_irr_walkthrough.html`](stage4_irr_walkthrough.html) locally, complete all 30 rows blindly as `annotator_1`, and save the downloaded CSV to `artifacts/human_annotations/stage4_irr.csv`.
+  - *Archival peer-review tier (2 raters, optional now or before EMSE/ITP/NeurIPS):* `annotator_2` (Bhaskar) opens the same HTML walkthrough, changes `Annotator` to `annotator_2`, completes the 30 rows independently, and appends to `artifacts/human_annotations/stage4_irr.csv`.
+- [x] **4c. Scoring & disagreement reconciliation tooling:** Implemented [`scripts/compute_irr.py`](../scripts/compute_irr.py) + [`tests/test_compute_irr.py`](../tests/test_compute_irr.py) to compute per-field exact agreement, **Cohen's $\kappa$**, **Krippendorff's $\alpha$**, confusion matrices (Human vs. LLM + Human vs. Human / multi-rater $\alpha$), and a disagreement table for reconciliation. *(Ready to run once Step 4b `stage4_irr.csv` is saved.)*
 
 ---
 
