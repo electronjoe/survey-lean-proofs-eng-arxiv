@@ -1,0 +1,4351 @@
+{
+  "schema_version": "1.0",
+  "rubric_version": "1.0",
+  "total_confirmed_papers_v_latest": 47,
+  "borderline_count_total": 8,
+  "borderline_arxiv_ids": [
+    "2605.02856",
+    "2605.14610",
+    "2605.19531",
+    "2611.01384",
+    "2611.02169",
+    "2611.14475",
+    "2611.23762",
+    "2611.26140"
+  ],
+  "slices": [
+    {
+      "short_id": "T0",
+      "label": "Nov 1\u201319, 2025",
+      "total_papers": 2435,
+      "cat_total": {
+        "cs.CR": 406,
+        "cs.DC": 223,
+        "cs.NI": 136,
+        "cs.IT": 209,
+        "eess.SP": 338,
+        "math.OC": 410,
+        "cs.RO": 532,
+        "eess.SY": 476
+      },
+      "modes": {
+        "v1": {
+          "pooled": {
+            "count": 0,
+            "corpus_pct": 0.0,
+            "ci_95_pct": [
+              0.0,
+              0.123
+            ],
+            "ci_type": "clopper_pearson_one_sided_95",
+            "non_tcs_primary_count": 0,
+            "scanned_owned_repos": 0,
+            "total_owned_loc": 0,
+            "median_owned_loc": 0,
+            "mean_owned_loc": 0.0,
+            "min_owned_loc": 0,
+            "max_owned_loc": 0,
+            "tier3_gold_count": 0,
+            "tier3_gold_pct_of_bucket": 0.0,
+            "tier3_gold_pct_of_scanned": 0.0,
+            "p4_count": 0,
+            "p4_pct_of_bucket": 0.0,
+            "ai_explicit_yes_count": 0,
+            "ai_explicit_yes_pct": 0.0,
+            "tiers": {},
+            "paradigms": {},
+            "ai": {},
+            "artifacts": {},
+            "risks": {},
+            "verification_objects": {},
+            "cat_counts": {
+              "math.OC": 0,
+              "cs.DC": 0,
+              "cs.IT": 0,
+              "cs.CR": 0,
+              "eess.SY": 0,
+              "eess.SP": 0,
+              "cs.NI": 0,
+              "cs.RO": 0
+            },
+            "arxiv_ids": []
+          },
+          "by_role": {
+            "eng_algorithmic_proof": {
+              "count": 0,
+              "corpus_pct": 0.0,
+              "ci_95_pct": [
+                0.0,
+                0.123
+              ],
+              "ci_type": "clopper_pearson_one_sided_95",
+              "non_tcs_primary_count": 0,
+              "scanned_owned_repos": 0,
+              "total_owned_loc": 0,
+              "median_owned_loc": 0,
+              "mean_owned_loc": 0.0,
+              "min_owned_loc": 0,
+              "max_owned_loc": 0,
+              "tier3_gold_count": 0,
+              "tier3_gold_pct_of_bucket": 0.0,
+              "tier3_gold_pct_of_scanned": 0.0,
+              "p4_count": 0,
+              "p4_pct_of_bucket": 0.0,
+              "ai_explicit_yes_count": 0,
+              "ai_explicit_yes_pct": 0.0,
+              "tiers": {},
+              "paradigms": {},
+              "ai": {},
+              "artifacts": {},
+              "risks": {},
+              "verification_objects": {},
+              "cat_counts": {
+                "math.OC": 0,
+                "cs.DC": 0,
+                "cs.IT": 0,
+                "cs.CR": 0,
+                "eess.SY": 0,
+                "eess.SP": 0,
+                "cs.NI": 0,
+                "cs.RO": 0
+              },
+              "arxiv_ids": [],
+              "share_of_confirmed_pct": 0.0,
+              "share_of_owned_loc_pct": 0.0
+            },
+            "operational_system_fv": {
+              "count": 0,
+              "corpus_pct": 0.0,
+              "ci_95_pct": [
+                0.0,
+                0.123
+              ],
+              "ci_type": "clopper_pearson_one_sided_95",
+              "non_tcs_primary_count": 0,
+              "scanned_owned_repos": 0,
+              "total_owned_loc": 0,
+              "median_owned_loc": 0,
+              "mean_owned_loc": 0.0,
+              "min_owned_loc": 0,
+              "max_owned_loc": 0,
+              "tier3_gold_count": 0,
+              "tier3_gold_pct_of_bucket": 0.0,
+              "tier3_gold_pct_of_scanned": 0.0,
+              "p4_count": 0,
+              "p4_pct_of_bucket": 0.0,
+              "ai_explicit_yes_count": 0,
+              "ai_explicit_yes_pct": 0.0,
+              "tiers": {},
+              "paradigms": {},
+              "ai": {},
+              "artifacts": {},
+              "risks": {},
+              "verification_objects": {},
+              "cat_counts": {
+                "math.OC": 0,
+                "cs.DC": 0,
+                "cs.IT": 0,
+                "cs.CR": 0,
+                "eess.SY": 0,
+                "eess.SP": 0,
+                "cs.NI": 0,
+                "cs.RO": 0
+              },
+              "arxiv_ids": [],
+              "share_of_confirmed_pct": 0.0,
+              "share_of_owned_loc_pct": 0.0
+            },
+            "pure_math_or_tcs": {
+              "count": 0,
+              "corpus_pct": 0.0,
+              "ci_95_pct": [
+                0.0,
+                0.123
+              ],
+              "ci_type": "clopper_pearson_one_sided_95",
+              "non_tcs_primary_count": 0,
+              "scanned_owned_repos": 0,
+              "total_owned_loc": 0,
+              "median_owned_loc": 0,
+              "mean_owned_loc": 0.0,
+              "min_owned_loc": 0,
+              "max_owned_loc": 0,
+              "tier3_gold_count": 0,
+              "tier3_gold_pct_of_bucket": 0.0,
+              "tier3_gold_pct_of_scanned": 0.0,
+              "p4_count": 0,
+              "p4_pct_of_bucket": 0.0,
+              "ai_explicit_yes_count": 0,
+              "ai_explicit_yes_pct": 0.0,
+              "tiers": {},
+              "paradigms": {},
+              "ai": {},
+              "artifacts": {},
+              "risks": {},
+              "verification_objects": {},
+              "cat_counts": {
+                "math.OC": 0,
+                "cs.DC": 0,
+                "cs.IT": 0,
+                "cs.CR": 0,
+                "eess.SY": 0,
+                "eess.SP": 0,
+                "cs.NI": 0,
+                "cs.RO": 0
+              },
+              "arxiv_ids": [],
+              "share_of_confirmed_pct": 0.0,
+              "share_of_owned_loc_pct": 0.0
+            },
+            "meta_formalization_system": {
+              "count": 0,
+              "corpus_pct": 0.0,
+              "ci_95_pct": [
+                0.0,
+                0.123
+              ],
+              "ci_type": "clopper_pearson_one_sided_95",
+              "non_tcs_primary_count": 0,
+              "scanned_owned_repos": 0,
+              "total_owned_loc": 0,
+              "median_owned_loc": 0,
+              "mean_owned_loc": 0.0,
+              "min_owned_loc": 0,
+              "max_owned_loc": 0,
+              "tier3_gold_count": 0,
+              "tier3_gold_pct_of_bucket": 0.0,
+              "tier3_gold_pct_of_scanned": 0.0,
+              "p4_count": 0,
+              "p4_pct_of_bucket": 0.0,
+              "ai_explicit_yes_count": 0,
+              "ai_explicit_yes_pct": 0.0,
+              "tiers": {},
+              "paradigms": {},
+              "ai": {},
+              "artifacts": {},
+              "risks": {},
+              "verification_objects": {},
+              "cat_counts": {
+                "math.OC": 0,
+                "cs.DC": 0,
+                "cs.IT": 0,
+                "cs.CR": 0,
+                "eess.SY": 0,
+                "eess.SP": 0,
+                "cs.NI": 0,
+                "cs.RO": 0
+              },
+              "arxiv_ids": [],
+              "share_of_confirmed_pct": 0.0,
+              "share_of_owned_loc_pct": 0.0
+            }
+          },
+          "eng_strict_core_non_borderline": {
+            "count": 0,
+            "corpus_pct": 0.0,
+            "ci_95_pct": [
+              0.0,
+              0.123
+            ],
+            "ci_type": "clopper_pearson_one_sided_95",
+            "non_tcs_primary_count": 0,
+            "scanned_owned_repos": 0,
+            "total_owned_loc": 0,
+            "median_owned_loc": 0,
+            "mean_owned_loc": 0.0,
+            "min_owned_loc": 0,
+            "max_owned_loc": 0,
+            "tier3_gold_count": 0,
+            "tier3_gold_pct_of_bucket": 0.0,
+            "tier3_gold_pct_of_scanned": 0.0,
+            "p4_count": 0,
+            "p4_pct_of_bucket": 0.0,
+            "ai_explicit_yes_count": 0,
+            "ai_explicit_yes_pct": 0.0,
+            "tiers": {},
+            "paradigms": {},
+            "ai": {},
+            "artifacts": {},
+            "risks": {},
+            "verification_objects": {},
+            "cat_counts": {
+              "math.OC": 0,
+              "cs.DC": 0,
+              "cs.IT": 0,
+              "cs.CR": 0,
+              "eess.SY": 0,
+              "eess.SP": 0,
+              "cs.NI": 0,
+              "cs.RO": 0
+            },
+            "arxiv_ids": [],
+            "share_of_confirmed_pct": 0.0,
+            "share_of_owned_loc_pct": 0.0
+          }
+        },
+        "v_latest": {
+          "pooled": {
+            "count": 1,
+            "corpus_pct": 0.0411,
+            "ci_95_pct": [
+              0.0072,
+              0.2323
+            ],
+            "ci_type": "wilson_two_sided_95",
+            "non_tcs_primary_count": 1,
+            "scanned_owned_repos": 0,
+            "total_owned_loc": 0,
+            "median_owned_loc": 0,
+            "mean_owned_loc": 0.0,
+            "min_owned_loc": 0,
+            "max_owned_loc": 0,
+            "tier3_gold_count": 0,
+            "tier3_gold_pct_of_bucket": 0.0,
+            "tier3_gold_pct_of_scanned": 0.0,
+            "p4_count": 0,
+            "p4_pct_of_bucket": 0.0,
+            "ai_explicit_yes_count": 0,
+            "ai_explicit_yes_pct": 0.0,
+            "tiers": {
+              "Tier1_Bronze": 1
+            },
+            "paradigms": {
+              "P0_opaque_or_unspecified": 1
+            },
+            "ai": {
+              "unclear": 1
+            },
+            "artifacts": {
+              "broken_or_missing_repo": 1
+            },
+            "risks": {
+              "Mode2_ScopeDowngrade": 1,
+              "Mode12_ProcessOpacity": 1
+            },
+            "verification_objects": {
+              "operational_sw_hw_db_protocol": 1
+            },
+            "cat_counts": {
+              "math.OC": 0,
+              "cs.DC": 1,
+              "cs.IT": 0,
+              "cs.CR": 1,
+              "eess.SY": 0,
+              "eess.SP": 0,
+              "cs.NI": 0,
+              "cs.RO": 0
+            },
+            "arxiv_ids": [
+              "2511.15517"
+            ]
+          },
+          "by_role": {
+            "eng_algorithmic_proof": {
+              "count": 0,
+              "corpus_pct": 0.0,
+              "ci_95_pct": [
+                0.0,
+                0.123
+              ],
+              "ci_type": "clopper_pearson_one_sided_95",
+              "non_tcs_primary_count": 0,
+              "scanned_owned_repos": 0,
+              "total_owned_loc": 0,
+              "median_owned_loc": 0,
+              "mean_owned_loc": 0.0,
+              "min_owned_loc": 0,
+              "max_owned_loc": 0,
+              "tier3_gold_count": 0,
+              "tier3_gold_pct_of_bucket": 0.0,
+              "tier3_gold_pct_of_scanned": 0.0,
+              "p4_count": 0,
+              "p4_pct_of_bucket": 0.0,
+              "ai_explicit_yes_count": 0,
+              "ai_explicit_yes_pct": 0.0,
+              "tiers": {},
+              "paradigms": {},
+              "ai": {},
+              "artifacts": {},
+              "risks": {},
+              "verification_objects": {},
+              "cat_counts": {
+                "math.OC": 0,
+                "cs.DC": 0,
+                "cs.IT": 0,
+                "cs.CR": 0,
+                "eess.SY": 0,
+                "eess.SP": 0,
+                "cs.NI": 0,
+                "cs.RO": 0
+              },
+              "arxiv_ids": [],
+              "share_of_confirmed_pct": 0.0,
+              "share_of_owned_loc_pct": 0.0
+            },
+            "operational_system_fv": {
+              "count": 1,
+              "corpus_pct": 0.0411,
+              "ci_95_pct": [
+                0.0072,
+                0.2323
+              ],
+              "ci_type": "wilson_two_sided_95",
+              "non_tcs_primary_count": 1,
+              "scanned_owned_repos": 0,
+              "total_owned_loc": 0,
+              "median_owned_loc": 0,
+              "mean_owned_loc": 0.0,
+              "min_owned_loc": 0,
+              "max_owned_loc": 0,
+              "tier3_gold_count": 0,
+              "tier3_gold_pct_of_bucket": 0.0,
+              "tier3_gold_pct_of_scanned": 0.0,
+              "p4_count": 0,
+              "p4_pct_of_bucket": 0.0,
+              "ai_explicit_yes_count": 0,
+              "ai_explicit_yes_pct": 0.0,
+              "tiers": {
+                "Tier1_Bronze": 1
+              },
+              "paradigms": {
+                "P0_opaque_or_unspecified": 1
+              },
+              "ai": {
+                "unclear": 1
+              },
+              "artifacts": {
+                "broken_or_missing_repo": 1
+              },
+              "risks": {
+                "Mode2_ScopeDowngrade": 1,
+                "Mode12_ProcessOpacity": 1
+              },
+              "verification_objects": {
+                "operational_sw_hw_db_protocol": 1
+              },
+              "cat_counts": {
+                "math.OC": 0,
+                "cs.DC": 1,
+                "cs.IT": 0,
+                "cs.CR": 1,
+                "eess.SY": 0,
+                "eess.SP": 0,
+                "cs.NI": 0,
+                "cs.RO": 0
+              },
+              "arxiv_ids": [
+                "2511.15517"
+              ],
+              "share_of_confirmed_pct": 100.0,
+              "share_of_owned_loc_pct": 0.0
+            },
+            "pure_math_or_tcs": {
+              "count": 0,
+              "corpus_pct": 0.0,
+              "ci_95_pct": [
+                0.0,
+                0.123
+              ],
+              "ci_type": "clopper_pearson_one_sided_95",
+              "non_tcs_primary_count": 0,
+              "scanned_owned_repos": 0,
+              "total_owned_loc": 0,
+              "median_owned_loc": 0,
+              "mean_owned_loc": 0.0,
+              "min_owned_loc": 0,
+              "max_owned_loc": 0,
+              "tier3_gold_count": 0,
+              "tier3_gold_pct_of_bucket": 0.0,
+              "tier3_gold_pct_of_scanned": 0.0,
+              "p4_count": 0,
+              "p4_pct_of_bucket": 0.0,
+              "ai_explicit_yes_count": 0,
+              "ai_explicit_yes_pct": 0.0,
+              "tiers": {},
+              "paradigms": {},
+              "ai": {},
+              "artifacts": {},
+              "risks": {},
+              "verification_objects": {},
+              "cat_counts": {
+                "math.OC": 0,
+                "cs.DC": 0,
+                "cs.IT": 0,
+                "cs.CR": 0,
+                "eess.SY": 0,
+                "eess.SP": 0,
+                "cs.NI": 0,
+                "cs.RO": 0
+              },
+              "arxiv_ids": [],
+              "share_of_confirmed_pct": 0.0,
+              "share_of_owned_loc_pct": 0.0
+            },
+            "meta_formalization_system": {
+              "count": 0,
+              "corpus_pct": 0.0,
+              "ci_95_pct": [
+                0.0,
+                0.123
+              ],
+              "ci_type": "clopper_pearson_one_sided_95",
+              "non_tcs_primary_count": 0,
+              "scanned_owned_repos": 0,
+              "total_owned_loc": 0,
+              "median_owned_loc": 0,
+              "mean_owned_loc": 0.0,
+              "min_owned_loc": 0,
+              "max_owned_loc": 0,
+              "tier3_gold_count": 0,
+              "tier3_gold_pct_of_bucket": 0.0,
+              "tier3_gold_pct_of_scanned": 0.0,
+              "p4_count": 0,
+              "p4_pct_of_bucket": 0.0,
+              "ai_explicit_yes_count": 0,
+              "ai_explicit_yes_pct": 0.0,
+              "tiers": {},
+              "paradigms": {},
+              "ai": {},
+              "artifacts": {},
+              "risks": {},
+              "verification_objects": {},
+              "cat_counts": {
+                "math.OC": 0,
+                "cs.DC": 0,
+                "cs.IT": 0,
+                "cs.CR": 0,
+                "eess.SY": 0,
+                "eess.SP": 0,
+                "cs.NI": 0,
+                "cs.RO": 0
+              },
+              "arxiv_ids": [],
+              "share_of_confirmed_pct": 0.0,
+              "share_of_owned_loc_pct": 0.0
+            }
+          },
+          "eng_strict_core_non_borderline": {
+            "count": 0,
+            "corpus_pct": 0.0,
+            "ci_95_pct": [
+              0.0,
+              0.123
+            ],
+            "ci_type": "clopper_pearson_one_sided_95",
+            "non_tcs_primary_count": 0,
+            "scanned_owned_repos": 0,
+            "total_owned_loc": 0,
+            "median_owned_loc": 0,
+            "mean_owned_loc": 0.0,
+            "min_owned_loc": 0,
+            "max_owned_loc": 0,
+            "tier3_gold_count": 0,
+            "tier3_gold_pct_of_bucket": 0.0,
+            "tier3_gold_pct_of_scanned": 0.0,
+            "p4_count": 0,
+            "p4_pct_of_bucket": 0.0,
+            "ai_explicit_yes_count": 0,
+            "ai_explicit_yes_pct": 0.0,
+            "tiers": {},
+            "paradigms": {},
+            "ai": {},
+            "artifacts": {},
+            "risks": {},
+            "verification_objects": {},
+            "cat_counts": {
+              "math.OC": 0,
+              "cs.DC": 0,
+              "cs.IT": 0,
+              "cs.CR": 0,
+              "eess.SY": 0,
+              "eess.SP": 0,
+              "cs.NI": 0,
+              "cs.RO": 0
+            },
+            "arxiv_ids": [],
+            "share_of_confirmed_pct": 0.0,
+            "share_of_owned_loc_pct": 0.0
+          }
+        }
+      },
+      "audits_by_role": {}
+    },
+    {
+      "short_id": "T1",
+      "label": "May 1\u201319, 2026",
+      "total_papers": 3298,
+      "cat_total": {
+        "cs.DC": 315,
+        "cs.RO": 740,
+        "cs.IT": 327,
+        "eess.SY": 456,
+        "math.OC": 512,
+        "cs.NI": 227,
+        "eess.SP": 419,
+        "cs.CR": 685
+      },
+      "modes": {
+        "v1": {
+          "pooled": {
+            "count": 5,
+            "corpus_pct": 0.1516,
+            "ci_95_pct": [
+              0.0648,
+              0.3544
+            ],
+            "ci_type": "wilson_two_sided_95",
+            "non_tcs_primary_count": 3,
+            "scanned_owned_repos": 3,
+            "total_owned_loc": 3603,
+            "median_owned_loc": 749,
+            "mean_owned_loc": 1201,
+            "min_owned_loc": 473,
+            "max_owned_loc": 2381,
+            "tier3_gold_count": 0,
+            "tier3_gold_pct_of_bucket": 0.0,
+            "tier3_gold_pct_of_scanned": 0.0,
+            "p4_count": 0,
+            "p4_pct_of_bucket": 0.0,
+            "ai_explicit_yes_count": 2,
+            "ai_explicit_yes_pct": 40.0,
+            "tiers": {
+              "Tier2_Silver": 2,
+              "Tier1_Bronze": 3
+            },
+            "paradigms": {
+              "P1_paper_first_posthoc": 3,
+              "P0_opaque_or_unspecified": 1,
+              "P2_lean_first": 1
+            },
+            "ai": {
+              "explicitly_no": 1,
+              "unclear": 2,
+              "explicitly_yes": 2
+            },
+            "artifacts": {
+              "public_lean_repo": 3,
+              "appendix_only": 1,
+              "none": 1
+            },
+            "risks": {
+              "Mode2_ScopeDowngrade": 4,
+              "Mode6_SorryOrAxiomOrNativeDecide": 1,
+              "Mode12_ProcessOpacity": 2
+            },
+            "verification_objects": {
+              "numerical_or_stat_method": 1,
+              "operational_sw_hw_db_protocol": 1,
+              "abstract_math_or_tcs_theorem": 1,
+              "physical_or_control_model": 1,
+              "algorithm_convergence_or_bound": 1
+            },
+            "cat_counts": {
+              "math.OC": 0,
+              "cs.DC": 1,
+              "cs.IT": 0,
+              "cs.CR": 3,
+              "eess.SY": 1,
+              "eess.SP": 1,
+              "cs.NI": 0,
+              "cs.RO": 0
+            },
+            "arxiv_ids": [
+              "2605.14610",
+              "2605.16407",
+              "2605.05801",
+              "2605.03034",
+              "2605.02856"
+            ]
+          },
+          "by_role": {
+            "eng_algorithmic_proof": {
+              "count": 3,
+              "corpus_pct": 0.091,
+              "ci_95_pct": [
+                0.0309,
+                0.2671
+              ],
+              "ci_type": "wilson_two_sided_95",
+              "non_tcs_primary_count": 3,
+              "scanned_owned_repos": 2,
+              "total_owned_loc": 1222,
+              "median_owned_loc": 611,
+              "mean_owned_loc": 611,
+              "min_owned_loc": 473,
+              "max_owned_loc": 749,
+              "tier3_gold_count": 0,
+              "tier3_gold_pct_of_bucket": 0.0,
+              "tier3_gold_pct_of_scanned": 0.0,
+              "p4_count": 0,
+              "p4_pct_of_bucket": 0.0,
+              "ai_explicit_yes_count": 1,
+              "ai_explicit_yes_pct": 33.33,
+              "tiers": {
+                "Tier2_Silver": 2,
+                "Tier1_Bronze": 1
+              },
+              "paradigms": {
+                "P1_paper_first_posthoc": 1,
+                "P0_opaque_or_unspecified": 1,
+                "P2_lean_first": 1
+              },
+              "ai": {
+                "explicitly_no": 1,
+                "unclear": 1,
+                "explicitly_yes": 1
+              },
+              "artifacts": {
+                "public_lean_repo": 2,
+                "none": 1
+              },
+              "risks": {
+                "Mode2_ScopeDowngrade": 2,
+                "Mode12_ProcessOpacity": 1
+              },
+              "verification_objects": {
+                "numerical_or_stat_method": 1,
+                "physical_or_control_model": 1,
+                "algorithm_convergence_or_bound": 1
+              },
+              "cat_counts": {
+                "math.OC": 0,
+                "cs.DC": 0,
+                "cs.IT": 0,
+                "cs.CR": 2,
+                "eess.SY": 1,
+                "eess.SP": 1,
+                "cs.NI": 0,
+                "cs.RO": 0
+              },
+              "arxiv_ids": [
+                "2605.14610",
+                "2605.03034",
+                "2605.02856"
+              ],
+              "share_of_confirmed_pct": 60.0,
+              "share_of_owned_loc_pct": 33.9162
+            },
+            "operational_system_fv": {
+              "count": 1,
+              "corpus_pct": 0.0303,
+              "ci_95_pct": [
+                0.0054,
+                0.1716
+              ],
+              "ci_type": "wilson_two_sided_95",
+              "non_tcs_primary_count": 0,
+              "scanned_owned_repos": 1,
+              "total_owned_loc": 2381,
+              "median_owned_loc": 2381,
+              "mean_owned_loc": 2381,
+              "min_owned_loc": 2381,
+              "max_owned_loc": 2381,
+              "tier3_gold_count": 0,
+              "tier3_gold_pct_of_bucket": 0.0,
+              "tier3_gold_pct_of_scanned": 0.0,
+              "p4_count": 0,
+              "p4_pct_of_bucket": 0.0,
+              "ai_explicit_yes_count": 0,
+              "ai_explicit_yes_pct": 0.0,
+              "tiers": {
+                "Tier1_Bronze": 1
+              },
+              "paradigms": {
+                "P1_paper_first_posthoc": 1
+              },
+              "ai": {
+                "unclear": 1
+              },
+              "artifacts": {
+                "public_lean_repo": 1
+              },
+              "risks": {
+                "Mode2_ScopeDowngrade": 1,
+                "Mode6_SorryOrAxiomOrNativeDecide": 1
+              },
+              "verification_objects": {
+                "operational_sw_hw_db_protocol": 1
+              },
+              "cat_counts": {
+                "math.OC": 0,
+                "cs.DC": 0,
+                "cs.IT": 0,
+                "cs.CR": 1,
+                "eess.SY": 0,
+                "eess.SP": 0,
+                "cs.NI": 0,
+                "cs.RO": 0
+              },
+              "arxiv_ids": [
+                "2605.16407"
+              ],
+              "share_of_confirmed_pct": 20.0,
+              "share_of_owned_loc_pct": 66.0838
+            },
+            "pure_math_or_tcs": {
+              "count": 1,
+              "corpus_pct": 0.0303,
+              "ci_95_pct": [
+                0.0054,
+                0.1716
+              ],
+              "ci_type": "wilson_two_sided_95",
+              "non_tcs_primary_count": 0,
+              "scanned_owned_repos": 0,
+              "total_owned_loc": 0,
+              "median_owned_loc": 0,
+              "mean_owned_loc": 0.0,
+              "min_owned_loc": 0,
+              "max_owned_loc": 0,
+              "tier3_gold_count": 0,
+              "tier3_gold_pct_of_bucket": 0.0,
+              "tier3_gold_pct_of_scanned": 0.0,
+              "p4_count": 0,
+              "p4_pct_of_bucket": 0.0,
+              "ai_explicit_yes_count": 1,
+              "ai_explicit_yes_pct": 100.0,
+              "tiers": {
+                "Tier1_Bronze": 1
+              },
+              "paradigms": {
+                "P1_paper_first_posthoc": 1
+              },
+              "ai": {
+                "explicitly_yes": 1
+              },
+              "artifacts": {
+                "appendix_only": 1
+              },
+              "risks": {
+                "Mode2_ScopeDowngrade": 1,
+                "Mode12_ProcessOpacity": 1
+              },
+              "verification_objects": {
+                "abstract_math_or_tcs_theorem": 1
+              },
+              "cat_counts": {
+                "math.OC": 0,
+                "cs.DC": 1,
+                "cs.IT": 0,
+                "cs.CR": 0,
+                "eess.SY": 0,
+                "eess.SP": 0,
+                "cs.NI": 0,
+                "cs.RO": 0
+              },
+              "arxiv_ids": [
+                "2605.05801"
+              ],
+              "share_of_confirmed_pct": 20.0,
+              "share_of_owned_loc_pct": 0.0
+            },
+            "meta_formalization_system": {
+              "count": 0,
+              "corpus_pct": 0.0,
+              "ci_95_pct": [
+                0.0,
+                0.0908
+              ],
+              "ci_type": "clopper_pearson_one_sided_95",
+              "non_tcs_primary_count": 0,
+              "scanned_owned_repos": 0,
+              "total_owned_loc": 0,
+              "median_owned_loc": 0,
+              "mean_owned_loc": 0.0,
+              "min_owned_loc": 0,
+              "max_owned_loc": 0,
+              "tier3_gold_count": 0,
+              "tier3_gold_pct_of_bucket": 0.0,
+              "tier3_gold_pct_of_scanned": 0.0,
+              "p4_count": 0,
+              "p4_pct_of_bucket": 0.0,
+              "ai_explicit_yes_count": 0,
+              "ai_explicit_yes_pct": 0.0,
+              "tiers": {},
+              "paradigms": {},
+              "ai": {},
+              "artifacts": {},
+              "risks": {},
+              "verification_objects": {},
+              "cat_counts": {
+                "math.OC": 0,
+                "cs.DC": 0,
+                "cs.IT": 0,
+                "cs.CR": 0,
+                "eess.SY": 0,
+                "eess.SP": 0,
+                "cs.NI": 0,
+                "cs.RO": 0
+              },
+              "arxiv_ids": [],
+              "share_of_confirmed_pct": 0.0,
+              "share_of_owned_loc_pct": 0.0
+            }
+          },
+          "eng_strict_core_non_borderline": {
+            "count": 1,
+            "corpus_pct": 0.0303,
+            "ci_95_pct": [
+              0.0054,
+              0.1716
+            ],
+            "ci_type": "wilson_two_sided_95",
+            "non_tcs_primary_count": 1,
+            "scanned_owned_repos": 0,
+            "total_owned_loc": 0,
+            "median_owned_loc": 0,
+            "mean_owned_loc": 0.0,
+            "min_owned_loc": 0,
+            "max_owned_loc": 0,
+            "tier3_gold_count": 0,
+            "tier3_gold_pct_of_bucket": 0.0,
+            "tier3_gold_pct_of_scanned": 0.0,
+            "p4_count": 0,
+            "p4_pct_of_bucket": 0.0,
+            "ai_explicit_yes_count": 0,
+            "ai_explicit_yes_pct": 0.0,
+            "tiers": {
+              "Tier1_Bronze": 1
+            },
+            "paradigms": {
+              "P0_opaque_or_unspecified": 1
+            },
+            "ai": {
+              "unclear": 1
+            },
+            "artifacts": {
+              "none": 1
+            },
+            "risks": {
+              "Mode12_ProcessOpacity": 1
+            },
+            "verification_objects": {
+              "physical_or_control_model": 1
+            },
+            "cat_counts": {
+              "math.OC": 0,
+              "cs.DC": 0,
+              "cs.IT": 0,
+              "cs.CR": 1,
+              "eess.SY": 1,
+              "eess.SP": 0,
+              "cs.NI": 0,
+              "cs.RO": 0
+            },
+            "arxiv_ids": [
+              "2605.03034"
+            ],
+            "share_of_confirmed_pct": 20.0,
+            "share_of_owned_loc_pct": 0.0
+          }
+        },
+        "v_latest": {
+          "pooled": {
+            "count": 7,
+            "corpus_pct": 0.2122,
+            "ci_95_pct": [
+              0.1029,
+              0.4375
+            ],
+            "ci_type": "wilson_two_sided_95",
+            "non_tcs_primary_count": 5,
+            "scanned_owned_repos": 5,
+            "total_owned_loc": 378185,
+            "median_owned_loc": 2381,
+            "mean_owned_loc": 75637,
+            "min_owned_loc": 473,
+            "max_owned_loc": 340325,
+            "tier3_gold_count": 2,
+            "tier3_gold_pct_of_bucket": 28.57,
+            "tier3_gold_pct_of_scanned": 40.0,
+            "p4_count": 0,
+            "p4_pct_of_bucket": 0.0,
+            "ai_explicit_yes_count": 3,
+            "ai_explicit_yes_pct": 42.86,
+            "tiers": {
+              "Tier3_Gold": 2,
+              "Tier2_Silver": 2,
+              "Tier1_Bronze": 3
+            },
+            "paradigms": {
+              "P1_paper_first_posthoc": 5,
+              "P0_opaque_or_unspecified": 1,
+              "P2_lean_first": 1
+            },
+            "ai": {
+              "explicitly_yes": 3,
+              "explicitly_no": 1,
+              "unclear": 3
+            },
+            "artifacts": {
+              "public_lean_repo": 5,
+              "appendix_only": 1,
+              "none": 1
+            },
+            "risks": {
+              "Mode3_CustomDefs": 1,
+              "Mode10_ProofBloat": 2,
+              "Mode2_ScopeDowngrade": 4,
+              "Mode6_SorryOrAxiomOrNativeDecide": 1,
+              "Mode12_ProcessOpacity": 3
+            },
+            "verification_objects": {
+              "operational_sw_hw_db_protocol": 2,
+              "numerical_or_stat_method": 1,
+              "algorithm_convergence_or_bound": 2,
+              "abstract_math_or_tcs_theorem": 1,
+              "physical_or_control_model": 1
+            },
+            "cat_counts": {
+              "math.OC": 1,
+              "cs.DC": 2,
+              "cs.IT": 0,
+              "cs.CR": 3,
+              "eess.SY": 1,
+              "eess.SP": 1,
+              "cs.NI": 0,
+              "cs.RO": 0
+            },
+            "arxiv_ids": [
+              "2605.19531",
+              "2605.14610",
+              "2605.16407",
+              "2605.09552",
+              "2605.05801",
+              "2605.03034",
+              "2605.02856"
+            ]
+          },
+          "by_role": {
+            "eng_algorithmic_proof": {
+              "count": 4,
+              "corpus_pct": 0.1213,
+              "ci_95_pct": [
+                0.0472,
+                0.3115
+              ],
+              "ci_type": "wilson_two_sided_95",
+              "non_tcs_primary_count": 4,
+              "scanned_owned_repos": 3,
+              "total_owned_loc": 341547,
+              "median_owned_loc": 749,
+              "mean_owned_loc": 113849,
+              "min_owned_loc": 473,
+              "max_owned_loc": 340325,
+              "tier3_gold_count": 1,
+              "tier3_gold_pct_of_bucket": 25.0,
+              "tier3_gold_pct_of_scanned": 33.33,
+              "p4_count": 0,
+              "p4_pct_of_bucket": 0.0,
+              "ai_explicit_yes_count": 1,
+              "ai_explicit_yes_pct": 25.0,
+              "tiers": {
+                "Tier2_Silver": 2,
+                "Tier3_Gold": 1,
+                "Tier1_Bronze": 1
+              },
+              "paradigms": {
+                "P1_paper_first_posthoc": 2,
+                "P0_opaque_or_unspecified": 1,
+                "P2_lean_first": 1
+              },
+              "ai": {
+                "explicitly_no": 1,
+                "unclear": 2,
+                "explicitly_yes": 1
+              },
+              "artifacts": {
+                "public_lean_repo": 3,
+                "none": 1
+              },
+              "risks": {
+                "Mode2_ScopeDowngrade": 2,
+                "Mode10_ProofBloat": 1,
+                "Mode12_ProcessOpacity": 2
+              },
+              "verification_objects": {
+                "numerical_or_stat_method": 1,
+                "algorithm_convergence_or_bound": 2,
+                "physical_or_control_model": 1
+              },
+              "cat_counts": {
+                "math.OC": 1,
+                "cs.DC": 0,
+                "cs.IT": 0,
+                "cs.CR": 2,
+                "eess.SY": 1,
+                "eess.SP": 1,
+                "cs.NI": 0,
+                "cs.RO": 0
+              },
+              "arxiv_ids": [
+                "2605.14610",
+                "2605.09552",
+                "2605.03034",
+                "2605.02856"
+              ],
+              "share_of_confirmed_pct": 57.1429,
+              "share_of_owned_loc_pct": 90.3121
+            },
+            "operational_system_fv": {
+              "count": 2,
+              "corpus_pct": 0.0606,
+              "ci_95_pct": [
+                0.0166,
+                0.2209
+              ],
+              "ci_type": "wilson_two_sided_95",
+              "non_tcs_primary_count": 1,
+              "scanned_owned_repos": 2,
+              "total_owned_loc": 36638,
+              "median_owned_loc": 18319,
+              "mean_owned_loc": 18319,
+              "min_owned_loc": 2381,
+              "max_owned_loc": 34257,
+              "tier3_gold_count": 1,
+              "tier3_gold_pct_of_bucket": 50.0,
+              "tier3_gold_pct_of_scanned": 50.0,
+              "p4_count": 0,
+              "p4_pct_of_bucket": 0.0,
+              "ai_explicit_yes_count": 1,
+              "ai_explicit_yes_pct": 50.0,
+              "tiers": {
+                "Tier3_Gold": 1,
+                "Tier1_Bronze": 1
+              },
+              "paradigms": {
+                "P1_paper_first_posthoc": 2
+              },
+              "ai": {
+                "explicitly_yes": 1,
+                "unclear": 1
+              },
+              "artifacts": {
+                "public_lean_repo": 2
+              },
+              "risks": {
+                "Mode3_CustomDefs": 1,
+                "Mode10_ProofBloat": 1,
+                "Mode2_ScopeDowngrade": 1,
+                "Mode6_SorryOrAxiomOrNativeDecide": 1
+              },
+              "verification_objects": {
+                "operational_sw_hw_db_protocol": 2
+              },
+              "cat_counts": {
+                "math.OC": 0,
+                "cs.DC": 1,
+                "cs.IT": 0,
+                "cs.CR": 1,
+                "eess.SY": 0,
+                "eess.SP": 0,
+                "cs.NI": 0,
+                "cs.RO": 0
+              },
+              "arxiv_ids": [
+                "2605.19531",
+                "2605.16407"
+              ],
+              "share_of_confirmed_pct": 28.5714,
+              "share_of_owned_loc_pct": 9.6879
+            },
+            "pure_math_or_tcs": {
+              "count": 1,
+              "corpus_pct": 0.0303,
+              "ci_95_pct": [
+                0.0054,
+                0.1716
+              ],
+              "ci_type": "wilson_two_sided_95",
+              "non_tcs_primary_count": 0,
+              "scanned_owned_repos": 0,
+              "total_owned_loc": 0,
+              "median_owned_loc": 0,
+              "mean_owned_loc": 0.0,
+              "min_owned_loc": 0,
+              "max_owned_loc": 0,
+              "tier3_gold_count": 0,
+              "tier3_gold_pct_of_bucket": 0.0,
+              "tier3_gold_pct_of_scanned": 0.0,
+              "p4_count": 0,
+              "p4_pct_of_bucket": 0.0,
+              "ai_explicit_yes_count": 1,
+              "ai_explicit_yes_pct": 100.0,
+              "tiers": {
+                "Tier1_Bronze": 1
+              },
+              "paradigms": {
+                "P1_paper_first_posthoc": 1
+              },
+              "ai": {
+                "explicitly_yes": 1
+              },
+              "artifacts": {
+                "appendix_only": 1
+              },
+              "risks": {
+                "Mode2_ScopeDowngrade": 1,
+                "Mode12_ProcessOpacity": 1
+              },
+              "verification_objects": {
+                "abstract_math_or_tcs_theorem": 1
+              },
+              "cat_counts": {
+                "math.OC": 0,
+                "cs.DC": 1,
+                "cs.IT": 0,
+                "cs.CR": 0,
+                "eess.SY": 0,
+                "eess.SP": 0,
+                "cs.NI": 0,
+                "cs.RO": 0
+              },
+              "arxiv_ids": [
+                "2605.05801"
+              ],
+              "share_of_confirmed_pct": 14.2857,
+              "share_of_owned_loc_pct": 0.0
+            },
+            "meta_formalization_system": {
+              "count": 0,
+              "corpus_pct": 0.0,
+              "ci_95_pct": [
+                0.0,
+                0.0908
+              ],
+              "ci_type": "clopper_pearson_one_sided_95",
+              "non_tcs_primary_count": 0,
+              "scanned_owned_repos": 0,
+              "total_owned_loc": 0,
+              "median_owned_loc": 0,
+              "mean_owned_loc": 0.0,
+              "min_owned_loc": 0,
+              "max_owned_loc": 0,
+              "tier3_gold_count": 0,
+              "tier3_gold_pct_of_bucket": 0.0,
+              "tier3_gold_pct_of_scanned": 0.0,
+              "p4_count": 0,
+              "p4_pct_of_bucket": 0.0,
+              "ai_explicit_yes_count": 0,
+              "ai_explicit_yes_pct": 0.0,
+              "tiers": {},
+              "paradigms": {},
+              "ai": {},
+              "artifacts": {},
+              "risks": {},
+              "verification_objects": {},
+              "cat_counts": {
+                "math.OC": 0,
+                "cs.DC": 0,
+                "cs.IT": 0,
+                "cs.CR": 0,
+                "eess.SY": 0,
+                "eess.SP": 0,
+                "cs.NI": 0,
+                "cs.RO": 0
+              },
+              "arxiv_ids": [],
+              "share_of_confirmed_pct": 0.0,
+              "share_of_owned_loc_pct": 0.0
+            }
+          },
+          "eng_strict_core_non_borderline": {
+            "count": 2,
+            "corpus_pct": 0.0606,
+            "ci_95_pct": [
+              0.0166,
+              0.2209
+            ],
+            "ci_type": "wilson_two_sided_95",
+            "non_tcs_primary_count": 2,
+            "scanned_owned_repos": 1,
+            "total_owned_loc": 340325,
+            "median_owned_loc": 340325,
+            "mean_owned_loc": 340325,
+            "min_owned_loc": 340325,
+            "max_owned_loc": 340325,
+            "tier3_gold_count": 1,
+            "tier3_gold_pct_of_bucket": 50.0,
+            "tier3_gold_pct_of_scanned": 100.0,
+            "p4_count": 0,
+            "p4_pct_of_bucket": 0.0,
+            "ai_explicit_yes_count": 0,
+            "ai_explicit_yes_pct": 0.0,
+            "tiers": {
+              "Tier3_Gold": 1,
+              "Tier1_Bronze": 1
+            },
+            "paradigms": {
+              "P1_paper_first_posthoc": 1,
+              "P0_opaque_or_unspecified": 1
+            },
+            "ai": {
+              "unclear": 2
+            },
+            "artifacts": {
+              "public_lean_repo": 1,
+              "none": 1
+            },
+            "risks": {
+              "Mode10_ProofBloat": 1,
+              "Mode12_ProcessOpacity": 2
+            },
+            "verification_objects": {
+              "algorithm_convergence_or_bound": 1,
+              "physical_or_control_model": 1
+            },
+            "cat_counts": {
+              "math.OC": 1,
+              "cs.DC": 0,
+              "cs.IT": 0,
+              "cs.CR": 1,
+              "eess.SY": 1,
+              "eess.SP": 0,
+              "cs.NI": 0,
+              "cs.RO": 0
+            },
+            "arxiv_ids": [
+              "2605.09552",
+              "2605.03034"
+            ],
+            "share_of_confirmed_pct": 28.5714,
+            "share_of_owned_loc_pct": 89.989
+          }
+        }
+      },
+      "audits_by_role": {
+        "eng_algorithmic_proof": {
+          "count": 3,
+          "fidelity_counts": {
+            "partial_or_weakened_formalization": 2,
+            "mostly_faithful_with_disclosed_gaps": 1
+          },
+          "non_vacuity_count": 2,
+          "material_undisclosed_count": 0,
+          "arxiv_ids": [
+            "2605.14610",
+            "2605.09552",
+            "2605.02856"
+          ]
+        }
+      }
+    },
+    {
+      "short_id": "T2",
+      "label": "Nov 1\u201319, 2026",
+      "total_papers": 4104,
+      "cat_total": {
+        "cs.DC": 335,
+        "cs.NI": 196,
+        "cs.CR": 629,
+        "cs.IT": 338,
+        "eess.SY": 738,
+        "cs.RO": 1159,
+        "math.OC": 724,
+        "eess.SP": 462
+      },
+      "modes": {
+        "v1": {
+          "pooled": {
+            "count": 39,
+            "corpus_pct": 0.9503,
+            "ci_95_pct": [
+              0.696,
+              1.2964
+            ],
+            "ci_type": "wilson_two_sided_95",
+            "non_tcs_primary_count": 36,
+            "scanned_owned_repos": 28,
+            "total_owned_loc": 3104750,
+            "median_owned_loc": 29005,
+            "mean_owned_loc": 110883.9,
+            "min_owned_loc": 528,
+            "max_owned_loc": 929448,
+            "tier3_gold_count": 19,
+            "tier3_gold_pct_of_bucket": 48.72,
+            "tier3_gold_pct_of_scanned": 67.86,
+            "p4_count": 3,
+            "p4_pct_of_bucket": 7.69,
+            "ai_explicit_yes_count": 30,
+            "ai_explicit_yes_pct": 76.92,
+            "tiers": {
+              "Tier2_Silver": 7,
+              "Tier1_Bronze": 13,
+              "Tier3_Gold": 19
+            },
+            "paradigms": {
+              "P1_paper_first_posthoc": 28,
+              "P0_opaque_or_unspecified": 8,
+              "P4_speclock_solve_distill": 3
+            },
+            "ai": {
+              "explicitly_yes": 30,
+              "unclear": 9
+            },
+            "artifacts": {
+              "public_lean_repo": 29,
+              "appendix_only": 1,
+              "none": 6,
+              "broken_or_missing_repo": 3
+            },
+            "risks": {
+              "Mode10_ProofBloat": 12,
+              "Mode12_ProcessOpacity": 17,
+              "Mode2_ScopeDowngrade": 10,
+              "Mode6_SorryOrAxiomOrNativeDecide": 3,
+              "Mode3_CustomDefs": 1
+            },
+            "verification_objects": {
+              "meta_proving_pipeline": 3,
+              "physical_or_control_model": 4,
+              "operational_sw_hw_db_protocol": 4,
+              "algorithm_convergence_or_bound": 14,
+              "numerical_or_stat_method": 3,
+              "abstract_math_or_tcs_theorem": 11
+            },
+            "cat_counts": {
+              "math.OC": 19,
+              "cs.DC": 6,
+              "cs.IT": 6,
+              "cs.CR": 7,
+              "eess.SY": 3,
+              "eess.SP": 0,
+              "cs.NI": 0,
+              "cs.RO": 0
+            },
+            "arxiv_ids": [
+              "2611.26272",
+              "2611.26140",
+              "2611.25599",
+              "2611.23762",
+              "2611.23080",
+              "2611.22732",
+              "2611.22468",
+              "2611.20298",
+              "2611.20131",
+              "2611.19551",
+              "2611.18455",
+              "2611.18220",
+              "2611.16781",
+              "2611.16690",
+              "2611.15431",
+              "2611.15201",
+              "2611.15128",
+              "2611.14756",
+              "2611.14475",
+              "2611.13872",
+              "2611.13585",
+              "2611.13584",
+              "2611.12680",
+              "2611.12585",
+              "2611.11713",
+              "2611.10902",
+              "2611.10810",
+              "2611.09169",
+              "2611.09050",
+              "2611.08172",
+              "2611.05243",
+              "2611.05136",
+              "2611.04876",
+              "2611.04561",
+              "2611.02256",
+              "2611.02169",
+              "2611.02057",
+              "2611.01761",
+              "2611.01384"
+            ]
+          },
+          "by_role": {
+            "eng_algorithmic_proof": {
+              "count": 21,
+              "corpus_pct": 0.5117,
+              "ci_95_pct": [
+                0.3349,
+                0.781
+              ],
+              "ci_type": "wilson_two_sided_95",
+              "non_tcs_primary_count": 21,
+              "scanned_owned_repos": 15,
+              "total_owned_loc": 416099,
+              "median_owned_loc": 23932,
+              "mean_owned_loc": 27739.9,
+              "min_owned_loc": 528,
+              "max_owned_loc": 81481,
+              "tier3_gold_count": 11,
+              "tier3_gold_pct_of_bucket": 52.38,
+              "tier3_gold_pct_of_scanned": 73.33,
+              "p4_count": 2,
+              "p4_pct_of_bucket": 9.52,
+              "ai_explicit_yes_count": 14,
+              "ai_explicit_yes_pct": 66.67,
+              "tiers": {
+                "Tier1_Bronze": 7,
+                "Tier2_Silver": 3,
+                "Tier3_Gold": 11
+              },
+              "paradigms": {
+                "P1_paper_first_posthoc": 14,
+                "P0_opaque_or_unspecified": 5,
+                "P4_speclock_solve_distill": 2
+              },
+              "ai": {
+                "explicitly_yes": 14,
+                "unclear": 7
+              },
+              "artifacts": {
+                "appendix_only": 1,
+                "public_lean_repo": 16,
+                "broken_or_missing_repo": 2,
+                "none": 2
+              },
+              "risks": {
+                "Mode2_ScopeDowngrade": 6,
+                "Mode12_ProcessOpacity": 10,
+                "Mode10_ProofBloat": 5
+              },
+              "verification_objects": {
+                "physical_or_control_model": 4,
+                "algorithm_convergence_or_bound": 14,
+                "numerical_or_stat_method": 3
+              },
+              "cat_counts": {
+                "math.OC": 13,
+                "cs.DC": 0,
+                "cs.IT": 4,
+                "cs.CR": 3,
+                "eess.SY": 2,
+                "eess.SP": 0,
+                "cs.NI": 0,
+                "cs.RO": 0
+              },
+              "arxiv_ids": [
+                "2611.26140",
+                "2611.23762",
+                "2611.22732",
+                "2611.22468",
+                "2611.20131",
+                "2611.18455",
+                "2611.18220",
+                "2611.16781",
+                "2611.15128",
+                "2611.14756",
+                "2611.14475",
+                "2611.13584",
+                "2611.12680",
+                "2611.12585",
+                "2611.11713",
+                "2611.10902",
+                "2611.09169",
+                "2611.05243",
+                "2611.04876",
+                "2611.02169",
+                "2611.01384"
+              ],
+              "share_of_confirmed_pct": 53.8462,
+              "share_of_owned_loc_pct": 13.402
+            },
+            "operational_system_fv": {
+              "count": 4,
+              "corpus_pct": 0.0975,
+              "ci_95_pct": [
+                0.0379,
+                0.2504
+              ],
+              "ci_type": "wilson_two_sided_95",
+              "non_tcs_primary_count": 4,
+              "scanned_owned_repos": 2,
+              "total_owned_loc": 12194,
+              "median_owned_loc": 6097,
+              "mean_owned_loc": 6097,
+              "min_owned_loc": 1332,
+              "max_owned_loc": 10862,
+              "tier3_gold_count": 2,
+              "tier3_gold_pct_of_bucket": 50.0,
+              "tier3_gold_pct_of_scanned": 100.0,
+              "p4_count": 0,
+              "p4_pct_of_bucket": 0.0,
+              "ai_explicit_yes_count": 3,
+              "ai_explicit_yes_pct": 75.0,
+              "tiers": {
+                "Tier1_Bronze": 2,
+                "Tier3_Gold": 2
+              },
+              "paradigms": {
+                "P0_opaque_or_unspecified": 1,
+                "P1_paper_first_posthoc": 3
+              },
+              "ai": {
+                "unclear": 1,
+                "explicitly_yes": 3
+              },
+              "artifacts": {
+                "none": 2,
+                "public_lean_repo": 2
+              },
+              "risks": {
+                "Mode12_ProcessOpacity": 2,
+                "Mode3_CustomDefs": 1
+              },
+              "verification_objects": {
+                "operational_sw_hw_db_protocol": 4
+              },
+              "cat_counts": {
+                "math.OC": 0,
+                "cs.DC": 1,
+                "cs.IT": 0,
+                "cs.CR": 3,
+                "eess.SY": 0,
+                "eess.SP": 0,
+                "cs.NI": 0,
+                "cs.RO": 0
+              },
+              "arxiv_ids": [
+                "2611.25599",
+                "2611.20298",
+                "2611.19551",
+                "2611.10810"
+              ],
+              "share_of_confirmed_pct": 10.2564,
+              "share_of_owned_loc_pct": 0.3928
+            },
+            "pure_math_or_tcs": {
+              "count": 11,
+              "corpus_pct": 0.268,
+              "ci_95_pct": [
+                0.1497,
+                0.4793
+              ],
+              "ci_type": "wilson_two_sided_95",
+              "non_tcs_primary_count": 8,
+              "scanned_owned_repos": 9,
+              "total_owned_loc": 1827866,
+              "median_owned_loc": 158351,
+              "mean_owned_loc": 203096.2,
+              "min_owned_loc": 2191,
+              "max_owned_loc": 929448,
+              "tier3_gold_count": 5,
+              "tier3_gold_pct_of_bucket": 45.45,
+              "tier3_gold_pct_of_scanned": 55.56,
+              "p4_count": 0,
+              "p4_pct_of_bucket": 0.0,
+              "ai_explicit_yes_count": 10,
+              "ai_explicit_yes_pct": 90.91,
+              "tiers": {
+                "Tier2_Silver": 3,
+                "Tier1_Bronze": 3,
+                "Tier3_Gold": 5
+              },
+              "paradigms": {
+                "P1_paper_first_posthoc": 10,
+                "P0_opaque_or_unspecified": 1
+              },
+              "ai": {
+                "explicitly_yes": 10,
+                "unclear": 1
+              },
+              "artifacts": {
+                "public_lean_repo": 9,
+                "none": 1,
+                "broken_or_missing_repo": 1
+              },
+              "risks": {
+                "Mode2_ScopeDowngrade": 4,
+                "Mode6_SorryOrAxiomOrNativeDecide": 3,
+                "Mode12_ProcessOpacity": 3,
+                "Mode10_ProofBloat": 6
+              },
+              "verification_objects": {
+                "abstract_math_or_tcs_theorem": 11
+              },
+              "cat_counts": {
+                "math.OC": 3,
+                "cs.DC": 5,
+                "cs.IT": 2,
+                "cs.CR": 1,
+                "eess.SY": 1,
+                "eess.SP": 0,
+                "cs.NI": 0,
+                "cs.RO": 0
+              },
+              "arxiv_ids": [
+                "2611.16690",
+                "2611.15431",
+                "2611.15201",
+                "2611.13585",
+                "2611.09050",
+                "2611.08172",
+                "2611.05136",
+                "2611.04561",
+                "2611.02256",
+                "2611.02057",
+                "2611.01761"
+              ],
+              "share_of_confirmed_pct": 28.2051,
+              "share_of_owned_loc_pct": 58.8732
+            },
+            "meta_formalization_system": {
+              "count": 3,
+              "corpus_pct": 0.0731,
+              "ci_95_pct": [
+                0.0249,
+                0.2147
+              ],
+              "ci_type": "wilson_two_sided_95",
+              "non_tcs_primary_count": 3,
+              "scanned_owned_repos": 2,
+              "total_owned_loc": 848591,
+              "median_owned_loc": 424295,
+              "mean_owned_loc": 424295.5,
+              "min_owned_loc": 151214,
+              "max_owned_loc": 697377,
+              "tier3_gold_count": 1,
+              "tier3_gold_pct_of_bucket": 33.33,
+              "tier3_gold_pct_of_scanned": 50.0,
+              "p4_count": 1,
+              "p4_pct_of_bucket": 33.33,
+              "ai_explicit_yes_count": 3,
+              "ai_explicit_yes_pct": 100.0,
+              "tiers": {
+                "Tier2_Silver": 1,
+                "Tier1_Bronze": 1,
+                "Tier3_Gold": 1
+              },
+              "paradigms": {
+                "P1_paper_first_posthoc": 1,
+                "P0_opaque_or_unspecified": 1,
+                "P4_speclock_solve_distill": 1
+              },
+              "ai": {
+                "explicitly_yes": 3
+              },
+              "artifacts": {
+                "public_lean_repo": 2,
+                "none": 1
+              },
+              "risks": {
+                "Mode10_ProofBloat": 1,
+                "Mode12_ProcessOpacity": 2
+              },
+              "verification_objects": {
+                "meta_proving_pipeline": 3
+              },
+              "cat_counts": {
+                "math.OC": 3,
+                "cs.DC": 0,
+                "cs.IT": 0,
+                "cs.CR": 0,
+                "eess.SY": 0,
+                "eess.SP": 0,
+                "cs.NI": 0,
+                "cs.RO": 0
+              },
+              "arxiv_ids": [
+                "2611.26272",
+                "2611.23080",
+                "2611.13872"
+              ],
+              "share_of_confirmed_pct": 7.6923,
+              "share_of_owned_loc_pct": 27.332
+            }
+          },
+          "eng_strict_core_non_borderline": {
+            "count": 16,
+            "corpus_pct": 0.3899,
+            "ci_95_pct": [
+              0.2401,
+              0.6324
+            ],
+            "ci_type": "wilson_two_sided_95",
+            "non_tcs_primary_count": 16,
+            "scanned_owned_repos": 12,
+            "total_owned_loc": 357500,
+            "median_owned_loc": 18084,
+            "mean_owned_loc": 29791.7,
+            "min_owned_loc": 528,
+            "max_owned_loc": 81481,
+            "tier3_gold_count": 10,
+            "tier3_gold_pct_of_bucket": 62.5,
+            "tier3_gold_pct_of_scanned": 83.33,
+            "p4_count": 1,
+            "p4_pct_of_bucket": 6.25,
+            "ai_explicit_yes_count": 10,
+            "ai_explicit_yes_pct": 62.5,
+            "tiers": {
+              "Tier1_Bronze": 4,
+              "Tier3_Gold": 10,
+              "Tier2_Silver": 2
+            },
+            "paradigms": {
+              "P1_paper_first_posthoc": 12,
+              "P0_opaque_or_unspecified": 3,
+              "P4_speclock_solve_distill": 1
+            },
+            "ai": {
+              "explicitly_yes": 10,
+              "unclear": 6
+            },
+            "artifacts": {
+              "public_lean_repo": 14,
+              "broken_or_missing_repo": 1,
+              "none": 1
+            },
+            "risks": {
+              "Mode12_ProcessOpacity": 6,
+              "Mode2_ScopeDowngrade": 2,
+              "Mode10_ProofBloat": 4
+            },
+            "verification_objects": {
+              "algorithm_convergence_or_bound": 10,
+              "numerical_or_stat_method": 3,
+              "physical_or_control_model": 3
+            },
+            "cat_counts": {
+              "math.OC": 10,
+              "cs.DC": 0,
+              "cs.IT": 2,
+              "cs.CR": 3,
+              "eess.SY": 2,
+              "eess.SP": 0,
+              "cs.NI": 0,
+              "cs.RO": 0
+            },
+            "arxiv_ids": [
+              "2611.22732",
+              "2611.22468",
+              "2611.20131",
+              "2611.18455",
+              "2611.18220",
+              "2611.16781",
+              "2611.15128",
+              "2611.14756",
+              "2611.13584",
+              "2611.12680",
+              "2611.12585",
+              "2611.11713",
+              "2611.10902",
+              "2611.09169",
+              "2611.05243",
+              "2611.04876"
+            ],
+            "share_of_confirmed_pct": 41.0256,
+            "share_of_owned_loc_pct": 11.5146
+          }
+        },
+        "v_latest": {
+          "pooled": {
+            "count": 39,
+            "corpus_pct": 0.9503,
+            "ci_95_pct": [
+              0.696,
+              1.2964
+            ],
+            "ci_type": "wilson_two_sided_95",
+            "non_tcs_primary_count": 36,
+            "scanned_owned_repos": 28,
+            "total_owned_loc": 3104750,
+            "median_owned_loc": 29005,
+            "mean_owned_loc": 110883.9,
+            "min_owned_loc": 528,
+            "max_owned_loc": 929448,
+            "tier3_gold_count": 19,
+            "tier3_gold_pct_of_bucket": 48.72,
+            "tier3_gold_pct_of_scanned": 67.86,
+            "p4_count": 3,
+            "p4_pct_of_bucket": 7.69,
+            "ai_explicit_yes_count": 30,
+            "ai_explicit_yes_pct": 76.92,
+            "tiers": {
+              "Tier2_Silver": 7,
+              "Tier1_Bronze": 13,
+              "Tier3_Gold": 19
+            },
+            "paradigms": {
+              "P1_paper_first_posthoc": 28,
+              "P0_opaque_or_unspecified": 8,
+              "P4_speclock_solve_distill": 3
+            },
+            "ai": {
+              "explicitly_yes": 30,
+              "unclear": 9
+            },
+            "artifacts": {
+              "public_lean_repo": 29,
+              "appendix_only": 1,
+              "none": 6,
+              "broken_or_missing_repo": 3
+            },
+            "risks": {
+              "Mode10_ProofBloat": 12,
+              "Mode12_ProcessOpacity": 17,
+              "Mode2_ScopeDowngrade": 10,
+              "Mode6_SorryOrAxiomOrNativeDecide": 3,
+              "Mode3_CustomDefs": 1
+            },
+            "verification_objects": {
+              "meta_proving_pipeline": 3,
+              "physical_or_control_model": 4,
+              "operational_sw_hw_db_protocol": 4,
+              "algorithm_convergence_or_bound": 14,
+              "numerical_or_stat_method": 3,
+              "abstract_math_or_tcs_theorem": 11
+            },
+            "cat_counts": {
+              "math.OC": 19,
+              "cs.DC": 6,
+              "cs.IT": 6,
+              "cs.CR": 7,
+              "eess.SY": 3,
+              "eess.SP": 0,
+              "cs.NI": 0,
+              "cs.RO": 0
+            },
+            "arxiv_ids": [
+              "2611.26272",
+              "2611.26140",
+              "2611.25599",
+              "2611.23762",
+              "2611.23080",
+              "2611.22732",
+              "2611.22468",
+              "2611.20298",
+              "2611.20131",
+              "2611.19551",
+              "2611.18455",
+              "2611.18220",
+              "2611.16781",
+              "2611.16690",
+              "2611.15431",
+              "2611.15201",
+              "2611.15128",
+              "2611.14756",
+              "2611.14475",
+              "2611.13872",
+              "2611.13585",
+              "2611.13584",
+              "2611.12680",
+              "2611.12585",
+              "2611.11713",
+              "2611.10902",
+              "2611.10810",
+              "2611.09169",
+              "2611.09050",
+              "2611.08172",
+              "2611.05243",
+              "2611.05136",
+              "2611.04876",
+              "2611.04561",
+              "2611.02256",
+              "2611.02169",
+              "2611.02057",
+              "2611.01761",
+              "2611.01384"
+            ]
+          },
+          "by_role": {
+            "eng_algorithmic_proof": {
+              "count": 21,
+              "corpus_pct": 0.5117,
+              "ci_95_pct": [
+                0.3349,
+                0.781
+              ],
+              "ci_type": "wilson_two_sided_95",
+              "non_tcs_primary_count": 21,
+              "scanned_owned_repos": 15,
+              "total_owned_loc": 416099,
+              "median_owned_loc": 23932,
+              "mean_owned_loc": 27739.9,
+              "min_owned_loc": 528,
+              "max_owned_loc": 81481,
+              "tier3_gold_count": 11,
+              "tier3_gold_pct_of_bucket": 52.38,
+              "tier3_gold_pct_of_scanned": 73.33,
+              "p4_count": 2,
+              "p4_pct_of_bucket": 9.52,
+              "ai_explicit_yes_count": 14,
+              "ai_explicit_yes_pct": 66.67,
+              "tiers": {
+                "Tier1_Bronze": 7,
+                "Tier2_Silver": 3,
+                "Tier3_Gold": 11
+              },
+              "paradigms": {
+                "P1_paper_first_posthoc": 14,
+                "P0_opaque_or_unspecified": 5,
+                "P4_speclock_solve_distill": 2
+              },
+              "ai": {
+                "explicitly_yes": 14,
+                "unclear": 7
+              },
+              "artifacts": {
+                "appendix_only": 1,
+                "public_lean_repo": 16,
+                "broken_or_missing_repo": 2,
+                "none": 2
+              },
+              "risks": {
+                "Mode2_ScopeDowngrade": 6,
+                "Mode12_ProcessOpacity": 10,
+                "Mode10_ProofBloat": 5
+              },
+              "verification_objects": {
+                "physical_or_control_model": 4,
+                "algorithm_convergence_or_bound": 14,
+                "numerical_or_stat_method": 3
+              },
+              "cat_counts": {
+                "math.OC": 13,
+                "cs.DC": 0,
+                "cs.IT": 4,
+                "cs.CR": 3,
+                "eess.SY": 2,
+                "eess.SP": 0,
+                "cs.NI": 0,
+                "cs.RO": 0
+              },
+              "arxiv_ids": [
+                "2611.26140",
+                "2611.23762",
+                "2611.22732",
+                "2611.22468",
+                "2611.20131",
+                "2611.18455",
+                "2611.18220",
+                "2611.16781",
+                "2611.15128",
+                "2611.14756",
+                "2611.14475",
+                "2611.13584",
+                "2611.12680",
+                "2611.12585",
+                "2611.11713",
+                "2611.10902",
+                "2611.09169",
+                "2611.05243",
+                "2611.04876",
+                "2611.02169",
+                "2611.01384"
+              ],
+              "share_of_confirmed_pct": 53.8462,
+              "share_of_owned_loc_pct": 13.402
+            },
+            "operational_system_fv": {
+              "count": 4,
+              "corpus_pct": 0.0975,
+              "ci_95_pct": [
+                0.0379,
+                0.2504
+              ],
+              "ci_type": "wilson_two_sided_95",
+              "non_tcs_primary_count": 4,
+              "scanned_owned_repos": 2,
+              "total_owned_loc": 12194,
+              "median_owned_loc": 6097,
+              "mean_owned_loc": 6097,
+              "min_owned_loc": 1332,
+              "max_owned_loc": 10862,
+              "tier3_gold_count": 2,
+              "tier3_gold_pct_of_bucket": 50.0,
+              "tier3_gold_pct_of_scanned": 100.0,
+              "p4_count": 0,
+              "p4_pct_of_bucket": 0.0,
+              "ai_explicit_yes_count": 3,
+              "ai_explicit_yes_pct": 75.0,
+              "tiers": {
+                "Tier1_Bronze": 2,
+                "Tier3_Gold": 2
+              },
+              "paradigms": {
+                "P0_opaque_or_unspecified": 1,
+                "P1_paper_first_posthoc": 3
+              },
+              "ai": {
+                "unclear": 1,
+                "explicitly_yes": 3
+              },
+              "artifacts": {
+                "none": 2,
+                "public_lean_repo": 2
+              },
+              "risks": {
+                "Mode12_ProcessOpacity": 2,
+                "Mode3_CustomDefs": 1
+              },
+              "verification_objects": {
+                "operational_sw_hw_db_protocol": 4
+              },
+              "cat_counts": {
+                "math.OC": 0,
+                "cs.DC": 1,
+                "cs.IT": 0,
+                "cs.CR": 3,
+                "eess.SY": 0,
+                "eess.SP": 0,
+                "cs.NI": 0,
+                "cs.RO": 0
+              },
+              "arxiv_ids": [
+                "2611.25599",
+                "2611.20298",
+                "2611.19551",
+                "2611.10810"
+              ],
+              "share_of_confirmed_pct": 10.2564,
+              "share_of_owned_loc_pct": 0.3928
+            },
+            "pure_math_or_tcs": {
+              "count": 11,
+              "corpus_pct": 0.268,
+              "ci_95_pct": [
+                0.1497,
+                0.4793
+              ],
+              "ci_type": "wilson_two_sided_95",
+              "non_tcs_primary_count": 8,
+              "scanned_owned_repos": 9,
+              "total_owned_loc": 1827866,
+              "median_owned_loc": 158351,
+              "mean_owned_loc": 203096.2,
+              "min_owned_loc": 2191,
+              "max_owned_loc": 929448,
+              "tier3_gold_count": 5,
+              "tier3_gold_pct_of_bucket": 45.45,
+              "tier3_gold_pct_of_scanned": 55.56,
+              "p4_count": 0,
+              "p4_pct_of_bucket": 0.0,
+              "ai_explicit_yes_count": 10,
+              "ai_explicit_yes_pct": 90.91,
+              "tiers": {
+                "Tier2_Silver": 3,
+                "Tier1_Bronze": 3,
+                "Tier3_Gold": 5
+              },
+              "paradigms": {
+                "P1_paper_first_posthoc": 10,
+                "P0_opaque_or_unspecified": 1
+              },
+              "ai": {
+                "explicitly_yes": 10,
+                "unclear": 1
+              },
+              "artifacts": {
+                "public_lean_repo": 9,
+                "none": 1,
+                "broken_or_missing_repo": 1
+              },
+              "risks": {
+                "Mode2_ScopeDowngrade": 4,
+                "Mode6_SorryOrAxiomOrNativeDecide": 3,
+                "Mode12_ProcessOpacity": 3,
+                "Mode10_ProofBloat": 6
+              },
+              "verification_objects": {
+                "abstract_math_or_tcs_theorem": 11
+              },
+              "cat_counts": {
+                "math.OC": 3,
+                "cs.DC": 5,
+                "cs.IT": 2,
+                "cs.CR": 1,
+                "eess.SY": 1,
+                "eess.SP": 0,
+                "cs.NI": 0,
+                "cs.RO": 0
+              },
+              "arxiv_ids": [
+                "2611.16690",
+                "2611.15431",
+                "2611.15201",
+                "2611.13585",
+                "2611.09050",
+                "2611.08172",
+                "2611.05136",
+                "2611.04561",
+                "2611.02256",
+                "2611.02057",
+                "2611.01761"
+              ],
+              "share_of_confirmed_pct": 28.2051,
+              "share_of_owned_loc_pct": 58.8732
+            },
+            "meta_formalization_system": {
+              "count": 3,
+              "corpus_pct": 0.0731,
+              "ci_95_pct": [
+                0.0249,
+                0.2147
+              ],
+              "ci_type": "wilson_two_sided_95",
+              "non_tcs_primary_count": 3,
+              "scanned_owned_repos": 2,
+              "total_owned_loc": 848591,
+              "median_owned_loc": 424295,
+              "mean_owned_loc": 424295.5,
+              "min_owned_loc": 151214,
+              "max_owned_loc": 697377,
+              "tier3_gold_count": 1,
+              "tier3_gold_pct_of_bucket": 33.33,
+              "tier3_gold_pct_of_scanned": 50.0,
+              "p4_count": 1,
+              "p4_pct_of_bucket": 33.33,
+              "ai_explicit_yes_count": 3,
+              "ai_explicit_yes_pct": 100.0,
+              "tiers": {
+                "Tier2_Silver": 1,
+                "Tier1_Bronze": 1,
+                "Tier3_Gold": 1
+              },
+              "paradigms": {
+                "P1_paper_first_posthoc": 1,
+                "P0_opaque_or_unspecified": 1,
+                "P4_speclock_solve_distill": 1
+              },
+              "ai": {
+                "explicitly_yes": 3
+              },
+              "artifacts": {
+                "public_lean_repo": 2,
+                "none": 1
+              },
+              "risks": {
+                "Mode10_ProofBloat": 1,
+                "Mode12_ProcessOpacity": 2
+              },
+              "verification_objects": {
+                "meta_proving_pipeline": 3
+              },
+              "cat_counts": {
+                "math.OC": 3,
+                "cs.DC": 0,
+                "cs.IT": 0,
+                "cs.CR": 0,
+                "eess.SY": 0,
+                "eess.SP": 0,
+                "cs.NI": 0,
+                "cs.RO": 0
+              },
+              "arxiv_ids": [
+                "2611.26272",
+                "2611.23080",
+                "2611.13872"
+              ],
+              "share_of_confirmed_pct": 7.6923,
+              "share_of_owned_loc_pct": 27.332
+            }
+          },
+          "eng_strict_core_non_borderline": {
+            "count": 16,
+            "corpus_pct": 0.3899,
+            "ci_95_pct": [
+              0.2401,
+              0.6324
+            ],
+            "ci_type": "wilson_two_sided_95",
+            "non_tcs_primary_count": 16,
+            "scanned_owned_repos": 12,
+            "total_owned_loc": 357500,
+            "median_owned_loc": 18084,
+            "mean_owned_loc": 29791.7,
+            "min_owned_loc": 528,
+            "max_owned_loc": 81481,
+            "tier3_gold_count": 10,
+            "tier3_gold_pct_of_bucket": 62.5,
+            "tier3_gold_pct_of_scanned": 83.33,
+            "p4_count": 1,
+            "p4_pct_of_bucket": 6.25,
+            "ai_explicit_yes_count": 10,
+            "ai_explicit_yes_pct": 62.5,
+            "tiers": {
+              "Tier1_Bronze": 4,
+              "Tier3_Gold": 10,
+              "Tier2_Silver": 2
+            },
+            "paradigms": {
+              "P1_paper_first_posthoc": 12,
+              "P0_opaque_or_unspecified": 3,
+              "P4_speclock_solve_distill": 1
+            },
+            "ai": {
+              "explicitly_yes": 10,
+              "unclear": 6
+            },
+            "artifacts": {
+              "public_lean_repo": 14,
+              "broken_or_missing_repo": 1,
+              "none": 1
+            },
+            "risks": {
+              "Mode12_ProcessOpacity": 6,
+              "Mode2_ScopeDowngrade": 2,
+              "Mode10_ProofBloat": 4
+            },
+            "verification_objects": {
+              "algorithm_convergence_or_bound": 10,
+              "numerical_or_stat_method": 3,
+              "physical_or_control_model": 3
+            },
+            "cat_counts": {
+              "math.OC": 10,
+              "cs.DC": 0,
+              "cs.IT": 2,
+              "cs.CR": 3,
+              "eess.SY": 2,
+              "eess.SP": 0,
+              "cs.NI": 0,
+              "cs.RO": 0
+            },
+            "arxiv_ids": [
+              "2611.22732",
+              "2611.22468",
+              "2611.20131",
+              "2611.18455",
+              "2611.18220",
+              "2611.16781",
+              "2611.15128",
+              "2611.14756",
+              "2611.13584",
+              "2611.12680",
+              "2611.12585",
+              "2611.11713",
+              "2611.10902",
+              "2611.09169",
+              "2611.05243",
+              "2611.04876"
+            ],
+            "share_of_confirmed_pct": 41.0256,
+            "share_of_owned_loc_pct": 11.5146
+          }
+        }
+      },
+      "audits_by_role": {
+        "eng_algorithmic_proof": {
+          "count": 15,
+          "fidelity_counts": {
+            "partial_or_weakened_formalization": 3,
+            "high_faithful": 5,
+            "mostly_faithful_with_disclosed_gaps": 7
+          },
+          "non_vacuity_count": 10,
+          "material_undisclosed_count": 0,
+          "arxiv_ids": [
+            "2611.26140",
+            "2611.23762",
+            "2611.18455",
+            "2611.18220",
+            "2611.16781",
+            "2611.15128",
+            "2611.14756",
+            "2611.14475",
+            "2611.13584",
+            "2611.12680",
+            "2611.12585",
+            "2611.11713",
+            "2611.10902",
+            "2611.05243",
+            "2611.04876"
+          ]
+        },
+        "pure_math_or_tcs": {
+          "count": 3,
+          "fidelity_counts": {
+            "high_faithful": 1,
+            "mostly_faithful_with_disclosed_gaps": 2
+          },
+          "non_vacuity_count": 2,
+          "material_undisclosed_count": 0,
+          "arxiv_ids": [
+            "2611.09050",
+            "2611.08172",
+            "2611.05136"
+          ]
+        },
+        "meta_formalization_system": {
+          "count": 2,
+          "fidelity_counts": {
+            "material_undisclosed_drift_or_risk": 1,
+            "high_faithful": 1
+          },
+          "non_vacuity_count": 1,
+          "material_undisclosed_count": 1,
+          "arxiv_ids": [
+            "2611.26272",
+            "2611.13872"
+          ]
+        }
+      }
+    }
+  ],
+  "growth_t1_to_t2_v1": {
+    "pooled_rate_multiplier": 6.27,
+    "eng_algorithmic_proof_rate_multiplier": 5.62,
+    "eng_algorithmic_proof_loc_median_multiplier": 39.17,
+    "eng_strict_core_rate_multiplier": 12.87,
+    "operational_system_fv_rate_multiplier": 3.22,
+    "pure_math_or_tcs_rate_multiplier": 8.84
+  },
+  "migration_old_3way_to_4way_all_47": {
+    "software_or_system_fv": {
+      "eng_algorithmic_proof": 0,
+      "operational_system_fv": 7,
+      "pure_math_or_tcs": 0,
+      "meta_formalization_system": 0
+    },
+    "engineering_math_proof": {
+      "eng_algorithmic_proof": 25,
+      "operational_system_fv": 0,
+      "pure_math_or_tcs": 4,
+      "meta_formalization_system": 3
+    },
+    "pure_tcs_or_math": {
+      "eng_algorithmic_proof": 0,
+      "operational_system_fv": 0,
+      "pure_math_or_tcs": 8,
+      "meta_formalization_system": 0
+    }
+  },
+  "migration_old_3way_to_4way_t2_39": {
+    "engineering_math_proof": {
+      "eng_algorithmic_proof": 21,
+      "operational_system_fv": 0,
+      "pure_math_or_tcs": 4,
+      "meta_formalization_system": 3
+    },
+    "software_or_system_fv": {
+      "eng_algorithmic_proof": 0,
+      "operational_system_fv": 4,
+      "pure_math_or_tcs": 0,
+      "meta_formalization_system": 0
+    },
+    "pure_tcs_or_math": {
+      "eng_algorithmic_proof": 0,
+      "operational_system_fv": 0,
+      "pure_math_or_tcs": 7,
+      "meta_formalization_system": 0
+    }
+  },
+  "phase2_audits_by_role": {
+    "eng_algorithmic_proof": {
+      "count": 18,
+      "t1_v1_count": 2,
+      "t1_retro_v2_count": 1,
+      "t2_count": 15,
+      "fidelity_counts": {
+        "partial_or_weakened_formalization": 5,
+        "mostly_faithful_with_disclosed_gaps": 8,
+        "high_faithful": 5
+      },
+      "non_vacuity_count": 12,
+      "material_undisclosed_count": 0,
+      "arxiv_ids": [
+        "2605.14610",
+        "2605.09552",
+        "2605.02856",
+        "2611.26140",
+        "2611.23762",
+        "2611.18455",
+        "2611.18220",
+        "2611.16781",
+        "2611.15128",
+        "2611.14756",
+        "2611.14475",
+        "2611.13584",
+        "2611.12680",
+        "2611.12585",
+        "2611.11713",
+        "2611.10902",
+        "2611.05243",
+        "2611.04876"
+      ]
+    },
+    "operational_system_fv": {
+      "count": 0,
+      "t1_v1_count": 0,
+      "t1_retro_v2_count": 0,
+      "t2_count": 0,
+      "fidelity_counts": {},
+      "non_vacuity_count": 0,
+      "material_undisclosed_count": 0,
+      "arxiv_ids": []
+    },
+    "pure_math_or_tcs": {
+      "count": 3,
+      "t1_v1_count": 0,
+      "t1_retro_v2_count": 0,
+      "t2_count": 3,
+      "fidelity_counts": {
+        "high_faithful": 1,
+        "mostly_faithful_with_disclosed_gaps": 2
+      },
+      "non_vacuity_count": 2,
+      "material_undisclosed_count": 0,
+      "arxiv_ids": [
+        "2611.09050",
+        "2611.08172",
+        "2611.05136"
+      ]
+    },
+    "meta_formalization_system": {
+      "count": 2,
+      "t1_v1_count": 0,
+      "t1_retro_v2_count": 0,
+      "t2_count": 2,
+      "fidelity_counts": {
+        "material_undisclosed_drift_or_risk": 1,
+        "high_faithful": 1
+      },
+      "non_vacuity_count": 1,
+      "material_undisclosed_count": 1,
+      "arxiv_ids": [
+        "2611.26272",
+        "2611.13872"
+      ]
+    }
+  },
+  "sandbox_builds_by_role": {
+    "eng_algorithmic_proof": {
+      "attempted": 8,
+      "pass_ootb": 5,
+      "pass_ootb_clean_axioms": 5,
+      "pass_ootb_nonstandard_axioms": 0,
+      "fail_packaging_or_local_dep": 3,
+      "synthetic_pass": 2,
+      "theorems_ootb": 1439,
+      "theorems_incl_synthetic": 1503,
+      "arxiv_ids": [
+        "2605.14610",
+        "2605.02856",
+        "2611.18220",
+        "2611.23762",
+        "2611.14756",
+        "2611.10902",
+        "2611.05243",
+        "2611.18455"
+      ]
+    },
+    "operational_system_fv": {
+      "attempted": 3,
+      "pass_ootb": 3,
+      "pass_ootb_clean_axioms": 2,
+      "pass_ootb_nonstandard_axioms": 1,
+      "fail_packaging_or_local_dep": 0,
+      "synthetic_pass": 0,
+      "theorems_ootb": 714,
+      "theorems_incl_synthetic": 714,
+      "arxiv_ids": [
+        "2605.16407",
+        "2611.19551",
+        "2611.10810"
+      ]
+    },
+    "pure_math_or_tcs": {
+      "attempted": 3,
+      "pass_ootb": 3,
+      "pass_ootb_clean_axioms": 2,
+      "pass_ootb_nonstandard_axioms": 1,
+      "fail_packaging_or_local_dep": 0,
+      "synthetic_pass": 0,
+      "theorems_ootb": 1037,
+      "theorems_incl_synthetic": 1037,
+      "arxiv_ids": [
+        "2611.02256",
+        "2611.15201",
+        "2611.16690"
+      ]
+    },
+    "meta_formalization_system": {
+      "attempted": 0,
+      "pass_ootb": 0,
+      "pass_ootb_clean_axioms": 0,
+      "pass_ootb_nonstandard_axioms": 0,
+      "fail_packaging_or_local_dep": 0,
+      "synthetic_pass": 0,
+      "theorems_ootb": 0,
+      "theorems_incl_synthetic": 0,
+      "arxiv_ids": []
+    }
+  },
+  "v06_irr_disagreements_reconciled": [
+    {
+      "slice_id": "2026-11",
+      "arxiv_id": "2611.23080",
+      "annotator_1_old_3way": "pure_tcs_or_math",
+      "llm_old_3way": "engineering_math_proof",
+      "adjudicated_role_4way": "meta_formalization_system",
+      "decision_gate": "G1_meta",
+      "is_borderline": false,
+      "resolution_type": "resolved_by_new_meta_bucket",
+      "rationale": "G1 (Rule B1): Colombo is a self-organizing AI autoresearch system certifying claims across 50+ oracle-optimization settings (primary cs.AI); directly resolves annotator_1's v0.6 IRR note."
+    },
+    {
+      "slice_id": "2026-11",
+      "arxiv_id": "2611.13872",
+      "annotator_1_old_3way": "pure_tcs_or_math",
+      "llm_old_3way": "engineering_math_proof",
+      "adjudicated_role_4way": "meta_formalization_system",
+      "decision_gate": "G1_meta",
+      "is_borderline": false,
+      "resolution_type": "resolved_by_new_meta_bucket",
+      "rationale": "G1 (Rule B1): LongTails is an automated research and formal-verification framework generating >100 Lean-verified optimization bounds across many problem classes rather than proving a single original paper theorem; directly resolves annotator_1's v0.6 IRR note."
+    },
+    {
+      "slice_id": "2026-05",
+      "arxiv_id": "2605.14610",
+      "annotator_1_old_3way": "pure_tcs_or_math",
+      "llm_old_3way": "engineering_math_proof",
+      "adjudicated_role_4way": "eng_algorithmic_proof",
+      "decision_gate": "G3_eng_algorithmic",
+      "is_borderline": true,
+      "resolution_type": "clarified_by_explicit_boundary_rule",
+      "rationale": "G3 (Rule B2): Introduces a semiparametric statistical/signal-processing estimator family (PATP) under non-Gaussian noise (eess.SP/stat.ME); borderline in v0.6 IRR only because the small Lean supplement stopped at supporting algebraic identities."
+    },
+    {
+      "slice_id": "2026-05",
+      "arxiv_id": "2605.19531",
+      "annotator_1_old_3way": "pure_tcs_or_math",
+      "llm_old_3way": "software_or_system_fv",
+      "adjudicated_role_4way": "operational_system_fv",
+      "decision_gate": "G2_operational_fv",
+      "is_borderline": true,
+      "resolution_type": "clarified_by_explicit_boundary_rule",
+      "rationale": "G2 (Rule B4): Verifies operational progress (conflict-freedom) and safety invariants for concurrent shared-memory universal constructions (PODC'26, retroactive v2); borderline with theoretical distributed computing in v0.6 IRR."
+    },
+    {
+      "slice_id": "2026-05",
+      "arxiv_id": "2605.02856",
+      "annotator_1_old_3way": "software_or_system_fv",
+      "llm_old_3way": "engineering_math_proof",
+      "adjudicated_role_4way": "eng_algorithmic_proof",
+      "decision_gate": "G3_eng_algorithmic",
+      "is_borderline": true,
+      "resolution_type": "clarified_by_explicit_boundary_rule",
+      "rationale": "G3 (Rule B3): Proves quantitative cardinality and PF-PINI(2) side-channel leakage bounds (2*q^(2k-2)) over ZMod q for masked NTT/Montgomery modular-reduction pipelines rather than RTL/state-machine conformance; flagged borderline because domain is PQC hardware masking (annotator_1 coded software_or_system_fv in v0.6 IRR)."
+    },
+    {
+      "slice_id": "2026-11",
+      "arxiv_id": "2611.09050",
+      "annotator_1_old_3way": "pure_tcs_or_math",
+      "llm_old_3way": "engineering_math_proof",
+      "adjudicated_role_4way": "pure_math_or_tcs",
+      "decision_gate": "G4_pure_math_tcs",
+      "is_borderline": false,
+      "resolution_type": "aligned_with_human_rater",
+      "rationale": "G4 (Rule B5): Spectral/operator-theory theorem on resolvent-diagonal energy of isospectral Jacobi matrices and singular Schrodinger Green operators (math.OC/math.SP); aligns with annotator_1 in v0.6 IRR."
+    },
+    {
+      "slice_id": "2026-11",
+      "arxiv_id": "2611.01761",
+      "annotator_1_old_3way": "engineering_math_proof",
+      "llm_old_3way": "pure_tcs_or_math",
+      "adjudicated_role_4way": "pure_math_or_tcs",
+      "decision_gate": "G4_pure_math_tcs",
+      "is_borderline": false,
+      "resolution_type": "clarified_by_explicit_boundary_rule",
+      "rationale": "G4 (Rule B4): Theoretical distributed computing paper establishing exact worst-case synchronous round complexity and impossibility for Counting in anonymous dynamic graphs."
+    },
+    {
+      "slice_id": "2026-11",
+      "arxiv_id": "2611.08172",
+      "annotator_1_old_3way": "pure_tcs_or_math",
+      "llm_old_3way": "engineering_math_proof",
+      "adjudicated_role_4way": "pure_math_or_tcs",
+      "decision_gate": "G4_pure_math_tcs",
+      "is_borderline": false,
+      "resolution_type": "aligned_with_human_rater",
+      "rationale": "G4 (Rule B5): Pure algebraic-geometry / function-field tower existence theorem (uniform 3-fold product expansion on the Garcia-Stichtenoth tower over F_729; cs.IT/math.AG); aligns with annotator_1 in v0.6 IRR."
+    },
+    {
+      "slice_id": "2026-11",
+      "arxiv_id": "2611.01384",
+      "annotator_1_old_3way": "pure_tcs_or_math",
+      "llm_old_3way": "engineering_math_proof",
+      "adjudicated_role_4way": "eng_algorithmic_proof",
+      "decision_gate": "G3_eng_algorithmic",
+      "is_borderline": true,
+      "resolution_type": "clarified_by_explicit_boundary_rule",
+      "rationale": "G3 (Rule B2/B5): Analyzes empirical risk minimization vs. population optimization landscapes for iterative nonconvex phase-retrieval methods (math.OC/cs.LG); flagged borderline because annotator_1 coded pure_tcs_or_math in v0.6 IRR."
+    }
+  ],
+  "papers_47": [
+    {
+      "arxiv_id": "2511.15517",
+      "title": "Beluga: Block Synchronization for BFT Consensus Protocols",
+      "primary_category": "cs.CR",
+      "matched_target_cats": [
+        "cs.CR",
+        "cs.DC"
+      ],
+      "submitted_date": "2025-11-19",
+      "updated_date": "2026-06-29",
+      "version": 2,
+      "is_retroactive_v2": true,
+      "paper_domain_role": "software_or_system_fv",
+      "authoring_paradigm": "P0_opaque_or_unspecified",
+      "verification_tier": "Tier1_Bronze",
+      "ai_agent_assisted": "unclear",
+      "ai_tools_mentioned": [],
+      "artifact_availability": "broken_or_missing_repo",
+      "static_risk_flags": [
+        "Mode2_ScopeDowngrade",
+        "Mode12_ProcessOpacity"
+      ],
+      "primary_owned_loc": null,
+      "primary_repo": null,
+      "one_line_summary": "Beluga claims machine-checked Lean proofs for all non-probabilistic theorems via uploaded 'Additional materials' and Appendix I, but provides no accessible public Lean repository for Beluga (the cloned asonnino/mysticeti Lean directory formalizes the separate Hydrozoan paper), yielding P0_opaque_or_unspecified and Tier1_Bronze.",
+      "slice_id": "2025-11",
+      "short_id": "T0",
+      "old_paper_domain_role": "software_or_system_fv",
+      "role_4way": "operational_system_fv",
+      "verification_object": "operational_sw_hw_db_protocol",
+      "decision_gate": "G2_operational_fv",
+      "is_borderline": false,
+      "borderline_alt_role": null,
+      "rationale": "G2 (Rule B3/B4): Verifies operational safety and block-synchronization protocol correctness for a BFT consensus system (retroactive v2 Lean formalization)."
+    },
+    {
+      "arxiv_id": "2605.19531",
+      "title": "Conflict-Freedom as a Progress Condition",
+      "primary_category": "cs.DC",
+      "matched_target_cats": [
+        "cs.DC"
+      ],
+      "submitted_date": "2026-05-19",
+      "updated_date": "2026-11-02",
+      "version": 2,
+      "is_retroactive_v2": true,
+      "paper_domain_role": "software_or_system_fv",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier3_Gold",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "Claude Opus 5.5"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "static_risk_flags": [
+        "Mode3_CustomDefs",
+        "Mode10_ProofBloat"
+      ],
+      "primary_owned_loc": 34257,
+      "primary_repo": "zenodo/23098310",
+      "one_line_summary": "Formalizes all numbered results of a PODC'26 distributed computing paper on conflict-freedom and universal constructions in 34k LoC of Lean 4 (std-only, Claude Opus 5.5-assisted) with exhaustive axiom/import auditing and zero sorry/custom axioms.",
+      "slice_id": "2026-05",
+      "short_id": "T1",
+      "old_paper_domain_role": "software_or_system_fv",
+      "role_4way": "operational_system_fv",
+      "verification_object": "operational_sw_hw_db_protocol",
+      "decision_gate": "G2_operational_fv",
+      "is_borderline": true,
+      "borderline_alt_role": "pure_math_or_tcs",
+      "rationale": "G2 (Rule B4): Verifies operational progress (conflict-freedom) and safety invariants for concurrent shared-memory universal constructions (PODC'26, retroactive v2); borderline with theoretical distributed computing in v0.6 IRR."
+    },
+    {
+      "arxiv_id": "2605.14610",
+      "title": "Parametrically Adaptive Transition Polynomial: a Signed-Parity Continuous-alpha Extension of Kunchenko Stochastic Polynomials",
+      "primary_category": "stat.ME",
+      "matched_target_cats": [
+        "eess.SP"
+      ],
+      "submitted_date": "2026-05-14",
+      "updated_date": "2026-06-19",
+      "version": 5,
+      "is_retroactive_v2": false,
+      "paper_domain_role": "engineering_math_proof",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier2_Silver",
+      "ai_agent_assisted": "explicitly_no",
+      "ai_tools_mentioned": [
+        "Claude Code"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "static_risk_flags": [
+        "Mode2_ScopeDowngrade"
+      ],
+      "primary_owned_loc": 473,
+      "primary_repo": "SZabolotnii/Ku-PATP-code-supplement",
+      "one_line_summary": "Statistical/signal-processing paper introducing the PATP fractional-power basis with a small, zero-sorry public Lean 4 + Mathlib v4.26.0 supplement verifying only the algebraic boundary cases, degeneracy identities, entropy constants, and algebraic step of g_2(alpha).",
+      "slice_id": "2026-05",
+      "short_id": "T1",
+      "old_paper_domain_role": "engineering_math_proof",
+      "role_4way": "eng_algorithmic_proof",
+      "verification_object": "numerical_or_stat_method",
+      "decision_gate": "G3_eng_algorithmic",
+      "is_borderline": true,
+      "borderline_alt_role": "pure_math_or_tcs",
+      "rationale": "G3 (Rule B2): Introduces a semiparametric statistical/signal-processing estimator family (PATP) under non-Gaussian noise (eess.SP/stat.ME); borderline in v0.6 IRR only because the small Lean supplement stopped at supporting algebraic identities."
+    },
+    {
+      "arxiv_id": "2605.16407",
+      "title": "Proof-Carrying Certificates for LLM Pipelines: A Trust-Boundary Architecture",
+      "primary_category": "cs.LO",
+      "matched_target_cats": [
+        "cs.CR"
+      ],
+      "submitted_date": "2026-05-13",
+      "updated_date": "2026-05-13",
+      "version": 1,
+      "is_retroactive_v2": false,
+      "paper_domain_role": "software_or_system_fv",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier1_Bronze",
+      "ai_agent_assisted": "unclear",
+      "ai_tools_mentioned": [],
+      "artifact_availability": "public_lean_repo",
+      "static_risk_flags": [
+        "Mode2_ScopeDowngrade",
+        "Mode6_SorryOrAxiomOrNativeDecide"
+      ],
+      "primary_owned_loc": 2381,
+      "primary_repo": "gkoomullil/proof-carrying-certificates",
+      "one_line_summary": "Lean 4 reference artifact (25 files, ~2.4k LoC) formalizing 22 LLM trust-boundary certificate types and theorems with #print axioms audit (0 sorry/native_decide), downgraded scope (\u211a/2-layer), and 18 declared custom axioms for ML oracles and math placeholders.",
+      "slice_id": "2026-05",
+      "short_id": "T1",
+      "old_paper_domain_role": "software_or_system_fv",
+      "role_4way": "operational_system_fv",
+      "verification_object": "operational_sw_hw_db_protocol",
+      "decision_gate": "G2_operational_fv",
+      "is_borderline": false,
+      "borderline_alt_role": null,
+      "rationale": "G2 (Rule B3): Verifies operational trust-boundary certificate invariants and deterministic structured wrappers for LLM software pipelines."
+    },
+    {
+      "arxiv_id": "2605.09552",
+      "title": "Phases of Muon: When Muon Eclipses SignSGD",
+      "primary_category": "math.OC",
+      "matched_target_cats": [
+        "math.OC"
+      ],
+      "submitted_date": "2026-05-10",
+      "updated_date": "2026-10-27",
+      "version": 2,
+      "is_retroactive_v2": true,
+      "paper_domain_role": "engineering_math_proof",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier3_Gold",
+      "ai_agent_assisted": "unclear",
+      "ai_tools_mentioned": [],
+      "artifact_availability": "public_lean_repo",
+      "static_risk_flags": [
+        "Mode10_ProofBloat",
+        "Mode12_ProcessOpacity"
+      ],
+      "primary_owned_loc": 340325,
+      "primary_repo": "mlexpos/phases-of-muon",
+      "one_line_summary": "Formalizes 345 theorems and supporting lemmas for high-dimensional stochastic Muon vs SignSGD dynamics and phase diagrams in Lean 4 (340k+ LoC plus 14.5k LoC in alea-foundations) after freezing the audited LaTeX appendix.",
+      "slice_id": "2026-05",
+      "short_id": "T1",
+      "old_paper_domain_role": "engineering_math_proof",
+      "role_4way": "eng_algorithmic_proof",
+      "verification_object": "algorithm_convergence_or_bound",
+      "decision_gate": "G3_eng_algorithmic",
+      "is_borderline": false,
+      "borderline_alt_role": null,
+      "rationale": "G3: Proves convergence dynamics and phase diagrams for stochastic Muon vs. SignSGD optimization algorithms (retroactive v2 Lean formalization)."
+    },
+    {
+      "arxiv_id": "2605.05801",
+      "title": "Self-Correcting Gossip Protocols",
+      "primary_category": "cs.LO",
+      "matched_target_cats": [
+        "cs.DC"
+      ],
+      "submitted_date": "2026-05-07",
+      "updated_date": "2026-05-07",
+      "version": 1,
+      "is_retroactive_v2": false,
+      "paper_domain_role": "pure_tcs_or_math",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier1_Bronze",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "Aristotle"
+      ],
+      "artifact_availability": "appendix_only",
+      "static_risk_flags": [
+        "Mode2_ScopeDowngrade",
+        "Mode12_ProcessOpacity"
+      ],
+      "primary_owned_loc": null,
+      "primary_repo": null,
+      "one_line_summary": "Paper-first dynamic epistemic logic study of self-correcting gossip protocols (cs.LO/cs.DC) with an appendix Lean/Mathlib formalization (citing Aristotle) of its semantics and knowledge/belief properties, and no public Lean repository extracted.",
+      "slice_id": "2026-05",
+      "short_id": "T1",
+      "old_paper_domain_role": "pure_tcs_or_math",
+      "role_4way": "pure_math_or_tcs",
+      "verification_object": "abstract_math_or_tcs_theorem",
+      "decision_gate": "G4_pure_math_tcs",
+      "is_borderline": false,
+      "borderline_alt_role": null,
+      "rationale": "G4 (Rule B4): Dynamic epistemic logic study (primary cs.LO) proving formal-logic semantics and knowledge/belief theorems for abstract gossip models."
+    },
+    {
+      "arxiv_id": "2605.03034",
+      "title": "Stable Agentic Control: Tool-Mediated LLM Architecture for Autonomous Cyber Defense",
+      "primary_category": "cs.AI",
+      "matched_target_cats": [
+        "cs.CR",
+        "eess.SY"
+      ],
+      "submitted_date": "2026-05-04",
+      "updated_date": "2026-05-04",
+      "version": 1,
+      "is_retroactive_v2": false,
+      "paper_domain_role": "engineering_math_proof",
+      "authoring_paradigm": "P0_opaque_or_unspecified",
+      "verification_tier": "Tier1_Bronze",
+      "ai_agent_assisted": "unclear",
+      "ai_tools_mentioned": [],
+      "artifact_availability": "none",
+      "static_risk_flags": [
+        "Mode12_ProcessOpacity"
+      ],
+      "primary_owned_loc": null,
+      "primary_repo": null,
+      "one_line_summary": "Contributes a Lean 4/Mathlib formalization of closed-loop Lyapunov stability (controllability, ISS, observability) for a tool-mediated LLM cyber-defense control model, but provides no public Lean repository (only Appendix A proof sketches and a file table for an unlinked supplementary bundle).",
+      "slice_id": "2026-05",
+      "short_id": "T1",
+      "old_paper_domain_role": "engineering_math_proof",
+      "role_4way": "eng_algorithmic_proof",
+      "verification_object": "physical_or_control_model",
+      "decision_gate": "G3_eng_algorithmic",
+      "is_borderline": false,
+      "borderline_alt_role": null,
+      "rationale": "G3: Formalizes closed-loop Lyapunov stability, controllability, ISS, and observability theorems for an autonomous cyber-defense feedback control model."
+    },
+    {
+      "arxiv_id": "2605.02856",
+      "title": "The 1-Bit Barrier is Universal: k-Stage Pipeline Composition and Unified Leakage Bounds for Standard Modular Reductions in PQC Hardware",
+      "primary_category": "cs.CR",
+      "matched_target_cats": [
+        "cs.CR"
+      ],
+      "submitted_date": "2026-05-04",
+      "updated_date": "2026-05-05",
+      "version": 2,
+      "is_retroactive_v2": false,
+      "paper_domain_role": "engineering_math_proof",
+      "authoring_paradigm": "P2_lean_first",
+      "verification_tier": "Tier2_Silver",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "Claude Opus 4.7"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "static_risk_flags": [
+        "Mode2_ScopeDowngrade"
+      ],
+      "primary_owned_loc": 749,
+      "primary_repo": "rayiskander2406/qanary-k-stage-composition-arXiv-2605.02856",
+      "one_line_summary": "Formalizes k-stage PF-PINI pipeline composition, a two-branch Montgomery reduction PF-PINI(2) bound, and an end-to-end 2*q^(2k-2) output-preimage cardinality bound over ZMod q in Lean 4 without sorry or custom axioms.",
+      "slice_id": "2026-05",
+      "short_id": "T1",
+      "old_paper_domain_role": "engineering_math_proof",
+      "role_4way": "eng_algorithmic_proof",
+      "verification_object": "algorithm_convergence_or_bound",
+      "decision_gate": "G3_eng_algorithmic",
+      "is_borderline": true,
+      "borderline_alt_role": "operational_system_fv",
+      "rationale": "G3 (Rule B3): Proves quantitative cardinality and PF-PINI(2) side-channel leakage bounds (2*q^(2k-2)) over ZMod q for masked NTT/Montgomery modular-reduction pipelines rather than RTL/state-machine conformance; flagged borderline because domain is PQC hardware masking (annotator_1 coded software_or_system_fv in v0.6 IRR)."
+    },
+    {
+      "arxiv_id": "2611.26272",
+      "title": "Paper2Lean: Agentic Autoformalization of Mathematical Research Papers at Scale",
+      "primary_category": "math.OC",
+      "matched_target_cats": [
+        "math.OC"
+      ],
+      "submitted_date": "2026-11-19",
+      "updated_date": "2026-11-19",
+      "version": 1,
+      "is_retroactive_v2": false,
+      "paper_domain_role": "engineering_math_proof",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier2_Silver",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "Paper2Lean",
+        "lean-lsp-mcp",
+        "Claude",
+        "Codex",
+        "DeepSeek",
+        "GPT-5",
+        "Kimina"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "static_risk_flags": [
+        "Mode10_ProofBloat",
+        "Mode12_ProcessOpacity"
+      ],
+      "primary_owned_loc": 151214,
+      "primary_repo": "TTony2019/OptPaper",
+      "one_line_summary": "Introduces Paper2Lean, an agentic autoformalization pipeline, and releases OptPaper-20, a 151k-LoC Lean 4 / Mathlib formalization of 20 mathematical optimization research papers with zero sorry/axioms.",
+      "slice_id": "2026-11",
+      "short_id": "T2",
+      "old_paper_domain_role": "engineering_math_proof",
+      "role_4way": "meta_formalization_system",
+      "verification_object": "meta_proving_pipeline",
+      "decision_gate": "G1_meta",
+      "is_borderline": false,
+      "borderline_alt_role": null,
+      "rationale": "G1 (Rule B1): Paper2Lean is an end-to-end agentic autoformalization pipeline releasing OptPaper-20 (formalizing 20 external optimization papers) rather than proving an original engineering theorem of its own."
+    },
+    {
+      "arxiv_id": "2611.26140",
+      "title": "Optimal Patrol Widths in the Infinite-Corridor Barrier-Guarding Game",
+      "primary_category": "math.OC",
+      "matched_target_cats": [
+        "math.OC"
+      ],
+      "submitted_date": "2026-11-19",
+      "updated_date": "2026-11-19",
+      "version": 1,
+      "is_retroactive_v2": false,
+      "paper_domain_role": "engineering_math_proof",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier1_Bronze",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "OpenAI GPT",
+        "Codex",
+        "Anthropic Claude",
+        "Google DeepMind Gemini",
+        "Antigravity"
+      ],
+      "artifact_availability": "appendix_only",
+      "static_risk_flags": [
+        "Mode2_ScopeDowngrade",
+        "Mode12_ProcessOpacity"
+      ],
+      "primary_owned_loc": 28043,
+      "primary_repo": "arxiv-anc/2611.26140",
+      "one_line_summary": "Optimal corridor barrier-guarding paper in math.OC whose main analytic and topological proofs are on paper while an accompanying ancillary Lean 4 (Mathlib v4.15.0) library verifies selected lemmas and finite rational certificate replays.",
+      "slice_id": "2026-11",
+      "short_id": "T2",
+      "old_paper_domain_role": "engineering_math_proof",
+      "role_4way": "eng_algorithmic_proof",
+      "verification_object": "physical_or_control_model",
+      "decision_gate": "G3_eng_algorithmic",
+      "is_borderline": true,
+      "borderline_alt_role": "pure_math_or_tcs",
+      "rationale": "G3 (Rule B5): Optimal pursuit-evasion / corridor barrier-guarding patrol control problem (math.OC/math.MG); flagged borderline due to metric-geometry / game-theoretic flavor."
+    },
+    {
+      "arxiv_id": "2611.25599",
+      "title": "Tether: Verified Stateful Policy Engine for System-Level Monitoring of Agents",
+      "primary_category": "cs.CR",
+      "matched_target_cats": [
+        "cs.CR"
+      ],
+      "submitted_date": "2026-11-19",
+      "updated_date": "2026-11-19",
+      "version": 1,
+      "is_retroactive_v2": false,
+      "paper_domain_role": "software_or_system_fv",
+      "authoring_paradigm": "P0_opaque_or_unspecified",
+      "verification_tier": "Tier1_Bronze",
+      "ai_agent_assisted": "unclear",
+      "ai_tools_mentioned": [
+        "Claude",
+        "Codex",
+        "Gemini"
+      ],
+      "artifact_availability": "none",
+      "static_risk_flags": [
+        "Mode12_ProcessOpacity"
+      ],
+      "primary_owned_loc": null,
+      "primary_repo": null,
+      "one_line_summary": "Tether implements a stateful agent security policy EDSL and verifies safety invariants in Lean 4, but provides no public Lean repository or authoring workflow details.",
+      "slice_id": "2026-11",
+      "short_id": "T2",
+      "old_paper_domain_role": "software_or_system_fv",
+      "role_4way": "operational_system_fv",
+      "verification_object": "operational_sw_hw_db_protocol",
+      "decision_gate": "G2_operational_fv",
+      "is_borderline": false,
+      "borderline_alt_role": null,
+      "rationale": "G2 (Rule B3): Implements and verifies operational safety invariants of Tether, a stateful system-level security policy enforcement engine for AI agents (cs.CR)."
+    },
+    {
+      "arxiv_id": "2611.23762",
+      "title": "Addressable transversal CCZ gates on almost good quantum LDPC codes and nearly optimal magic state protocols",
+      "primary_category": "quant-ph",
+      "matched_target_cats": [
+        "cs.IT"
+      ],
+      "submitted_date": "2026-11-18",
+      "updated_date": "2026-11-18",
+      "version": 1,
+      "is_retroactive_v2": false,
+      "paper_domain_role": "engineering_math_proof",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier2_Silver",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "Claude"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "static_risk_flags": [
+        "Mode2_ScopeDowngrade",
+        "Mode12_ProcessOpacity"
+      ],
+      "primary_owned_loc": 589,
+      "primary_repo": "guanyuzhu2014/Uniform-product-expansion---theory-and-Lean-certification",
+      "one_line_summary": "Post-hoc Mathlib-based Lean 4 formalization of three supporting algebraic lemmas (zero sorry/axioms) for an AI-generated companion note proving an assumption of the paper's quantum LDPC CCZ-gate construction, lacking lakefile/toolchain/CI and not covering the main theorems.",
+      "slice_id": "2026-11",
+      "short_id": "T2",
+      "old_paper_domain_role": "engineering_math_proof",
+      "role_4way": "eng_algorithmic_proof",
+      "verification_object": "algorithm_convergence_or_bound",
+      "decision_gate": "G3_eng_algorithmic",
+      "is_borderline": true,
+      "borderline_alt_role": "pure_math_or_tcs",
+      "rationale": "G3 (Rule B2/B5): Constructs addressable transversal CCZ gates on quantum LDPC codes and magic-state distillation protocols (quant-ph/cs.IT); flagged borderline because primary category is quant-ph and the partial Lean supplement verifies 3 companion-note algebraic lemmas."
+    },
+    {
+      "arxiv_id": "2611.23080",
+      "title": "Colombo: A Frontier-to-Frontier Autoresearch System for Oracle-Based Optimization",
+      "primary_category": "cs.AI",
+      "matched_target_cats": [
+        "math.OC"
+      ],
+      "submitted_date": "2026-11-17",
+      "updated_date": "2026-11-17",
+      "version": 1,
+      "is_retroactive_v2": false,
+      "paper_domain_role": "engineering_math_proof",
+      "authoring_paradigm": "P0_opaque_or_unspecified",
+      "verification_tier": "Tier1_Bronze",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "GPT-5",
+        "Colombo"
+      ],
+      "artifact_availability": "none",
+      "static_risk_flags": [
+        "Mode12_ProcessOpacity"
+      ],
+      "primary_owned_loc": null,
+      "primary_repo": null,
+      "one_line_summary": "AI autoresearch system (Colombo) for oracle-based optimization claiming Lean-based formal certification of mathematical claims across 50+ Complexity Atlas settings, but providing only Colombo.pdf on Zenodo with no public Lean code.",
+      "slice_id": "2026-11",
+      "short_id": "T2",
+      "old_paper_domain_role": "engineering_math_proof",
+      "role_4way": "meta_formalization_system",
+      "verification_object": "meta_proving_pipeline",
+      "decision_gate": "G1_meta",
+      "is_borderline": false,
+      "borderline_alt_role": null,
+      "rationale": "G1 (Rule B1): Colombo is a self-organizing AI autoresearch system certifying claims across 50+ oracle-optimization settings (primary cs.AI); directly resolves annotator_1's v0.6 IRR note."
+    },
+    {
+      "arxiv_id": "2611.22732",
+      "title": "Provable Mixing Properties of Parallel Mixnets Revisited",
+      "primary_category": "cs.CR",
+      "matched_target_cats": [
+        "cs.CR"
+      ],
+      "submitted_date": "2026-11-17",
+      "updated_date": "2026-11-17",
+      "version": 1,
+      "is_retroactive_v2": false,
+      "paper_domain_role": "engineering_math_proof",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier1_Bronze",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "Claude",
+        "ChatGPT",
+        "Gemini"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "static_risk_flags": [
+        "Mode12_ProcessOpacity"
+      ],
+      "primary_owned_loc": null,
+      "primary_repo": null,
+      "one_line_summary": "Analyzes parallel mixnets via statistical variance and concentration bounds for differential indistinguishability, claiming a full accompanying Lean mechanization at a public MPI-SWS GitLab repo carried out entirely by Claude.",
+      "slice_id": "2026-11",
+      "short_id": "T2",
+      "old_paper_domain_role": "engineering_math_proof",
+      "role_4way": "eng_algorithmic_proof",
+      "verification_object": "algorithm_convergence_or_bound",
+      "decision_gate": "G3_eng_algorithmic",
+      "is_borderline": false,
+      "borderline_alt_role": null,
+      "rationale": "G3 (Rule B3): Proves quantitative statistical variance and concentration bounds for differential indistinguishability in parallel mixnet routing networks (cs.CR)."
+    },
+    {
+      "arxiv_id": "2611.22468",
+      "title": "A 5/2 Guarantee for Echelon Stock (s,S) Policies in One-Warehouse Multi-Retailer Systems",
+      "primary_category": "math.OC",
+      "matched_target_cats": [
+        "math.OC"
+      ],
+      "submitted_date": "2026-11-17",
+      "updated_date": "2026-11-18",
+      "version": 2,
+      "is_retroactive_v2": false,
+      "paper_domain_role": "engineering_math_proof",
+      "authoring_paradigm": "P0_opaque_or_unspecified",
+      "verification_tier": "Tier1_Bronze",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "Claude"
+      ],
+      "artifact_availability": "broken_or_missing_repo",
+      "static_risk_flags": [
+        "Mode12_ProcessOpacity"
+      ],
+      "primary_owned_loc": null,
+      "primary_repo": null,
+      "one_line_summary": "Operations-research paper (math.OC) proving a 5/2 cost guarantee for echelon stock (s,S) policies in one-warehouse multi-retailer systems, claiming Lean 4 formalization of main results at a prove2.me URL with Claude mentioned in LaTeX signals and no inspectable Git/Lean repository.",
+      "slice_id": "2026-11",
+      "short_id": "T2",
+      "old_paper_domain_role": "engineering_math_proof",
+      "role_4way": "eng_algorithmic_proof",
+      "verification_object": "algorithm_convergence_or_bound",
+      "decision_gate": "G3_eng_algorithmic",
+      "is_borderline": false,
+      "borderline_alt_role": null,
+      "rationale": "G3: Operations-research inventory control paper proving a 5/2 expected-cost optimality guarantee for echelon stock (s,S) policies in one-warehouse multi-retailer systems (math.OC)."
+    },
+    {
+      "arxiv_id": "2611.20298",
+      "title": "Type-Confusion Security",
+      "primary_category": "cs.PL",
+      "matched_target_cats": [
+        "cs.CR"
+      ],
+      "submitted_date": "2026-11-15",
+      "updated_date": "2026-11-15",
+      "version": 1,
+      "is_retroactive_v2": false,
+      "paper_domain_role": "software_or_system_fv",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier1_Bronze",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "Codex",
+        "Claude Code"
+      ],
+      "artifact_availability": "none",
+      "static_risk_flags": [
+        "Mode12_ProcessOpacity"
+      ],
+      "primary_owned_loc": null,
+      "primary_repo": null,
+      "one_line_summary": "Mechanizes type-confusion security proofs for an RPC/information-flow core calculus in Lean 4 using Mathlib, translated from pen-and-paper proofs with Codex and Claude Code assistance, with an axioms audit mentioned but no public repository URL provided.",
+      "slice_id": "2026-11",
+      "short_id": "T2",
+      "old_paper_domain_role": "software_or_system_fv",
+      "role_4way": "operational_system_fv",
+      "verification_object": "operational_sw_hw_db_protocol",
+      "decision_gate": "G2_operational_fv",
+      "is_borderline": false,
+      "borderline_alt_role": null,
+      "rationale": "G2 (Rule B3): Mechanizes operational type-confusion security and information-flow soundness invariants for an RPC core calculus (primary cs.PL, cross-listed cs.CR)."
+    },
+    {
+      "arxiv_id": "2611.20131",
+      "title": "Quadrature-Induced Local Minima in Structure-Preserving Lotka-Volterra Control",
+      "primary_category": "math.NA",
+      "matched_target_cats": [
+        "math.OC"
+      ],
+      "submitted_date": "2026-11-15",
+      "updated_date": "2026-11-15",
+      "version": 1,
+      "is_retroactive_v2": false,
+      "paper_domain_role": "engineering_math_proof",
+      "authoring_paradigm": "P0_opaque_or_unspecified",
+      "verification_tier": "Tier1_Bronze",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "AI tools (unspecified)"
+      ],
+      "artifact_availability": "none",
+      "static_risk_flags": [
+        "Mode12_ProcessOpacity"
+      ],
+      "primary_owned_loc": null,
+      "primary_repo": null,
+      "one_line_summary": "Optimal control and numerical analysis paper on Lotka-Volterra quadrature whose acknowledgment notes AI-assisted proof formalization/checking in Lean, but provides no public Lean files or workflow details.",
+      "slice_id": "2026-11",
+      "short_id": "T2",
+      "old_paper_domain_role": "engineering_math_proof",
+      "role_4way": "eng_algorithmic_proof",
+      "verification_object": "numerical_or_stat_method",
+      "decision_gate": "G3_eng_algorithmic",
+      "is_borderline": false,
+      "borderline_alt_role": null,
+      "rationale": "G3: Analyzes quadrature-induced spurious local minima and convexity preservation in discrete optimal control of Lotka-Volterra dynamics (math.NA/math.OC)."
+    },
+    {
+      "arxiv_id": "2611.19551",
+      "title": "TrustBound: Mechanized Completeness for Payment Epochs Initiated by AI Agents",
+      "primary_category": "cs.CR",
+      "matched_target_cats": [
+        "cs.CR"
+      ],
+      "submitted_date": "2026-11-14",
+      "updated_date": "2026-11-14",
+      "version": 1,
+      "is_retroactive_v2": false,
+      "paper_domain_role": "software_or_system_fv",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier3_Gold",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "ChatGPT",
+        "Codex",
+        "Claude"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "static_risk_flags": [],
+      "primary_owned_loc": 1332,
+      "primary_repo": "tokencraftdata/trustbound",
+      "one_line_summary": "Formalizes an admission-fencing and provider-contract closure model for AI-agent payment epochs in Lean 4.19.0 (zero sorry/custom axioms, checked via #print axioms, premise-removal mutations, and CI) alongside trace-checked Python service histories.",
+      "slice_id": "2026-11",
+      "short_id": "T2",
+      "old_paper_domain_role": "software_or_system_fv",
+      "role_4way": "operational_system_fv",
+      "verification_object": "operational_sw_hw_db_protocol",
+      "decision_gate": "G2_operational_fv",
+      "is_borderline": false,
+      "borderline_alt_role": null,
+      "rationale": "G2 (Rule B3): Verifies operational admission-fencing completeness and contract-closure state-machine invariants for an AI-agent payment service (TrustBound, cs.CR)."
+    },
+    {
+      "arxiv_id": "2611.18455",
+      "title": "Mesh-Free Weak-Form Regression for Learning Interaction Kernels from Particle Trajectories",
+      "primary_category": "stat.ML",
+      "matched_target_cats": [
+        "math.OC"
+      ],
+      "submitted_date": "2026-11-13",
+      "updated_date": "2026-11-13",
+      "version": 1,
+      "is_retroactive_v2": false,
+      "paper_domain_role": "engineering_math_proof",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier3_Gold",
+      "ai_agent_assisted": "unclear",
+      "ai_tools_mentioned": [],
+      "artifact_availability": "public_lean_repo",
+      "static_risk_flags": [],
+      "primary_owned_loc": 12236,
+      "primary_repo": "inody/wmfki_lean",
+      "one_line_summary": "Formalizes the paper's Theorem 1 (mean-field/particle SDE synchronous coupling and weak-form OLS/LASSO coefficient recovery bounds) in Lean 4 with zero sorry/custom axioms and full #print axioms and hash-lock audits.",
+      "slice_id": "2026-11",
+      "short_id": "T2",
+      "old_paper_domain_role": "engineering_math_proof",
+      "role_4way": "eng_algorithmic_proof",
+      "verification_object": "numerical_or_stat_method",
+      "decision_gate": "G3_eng_algorithmic",
+      "is_borderline": false,
+      "borderline_alt_role": null,
+      "rationale": "G3: Proves finite-sample OLS/LASSO coefficient recovery and synchronous particle-SDE coupling error bounds for mesh-free weak-form interaction-kernel regression (stat.ML/math.OC)."
+    },
+    {
+      "arxiv_id": "2611.18220",
+      "title": "From Pen-and-Paper to Machine-Checked Proofs: Lean for System Identification",
+      "primary_category": "eess.SY",
+      "matched_target_cats": [
+        "eess.SY"
+      ],
+      "submitted_date": "2026-11-13",
+      "updated_date": "2026-11-13",
+      "version": 1,
+      "is_retroactive_v2": false,
+      "paper_domain_role": "engineering_math_proof",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier3_Gold",
+      "ai_agent_assisted": "unclear",
+      "ai_tools_mentioned": [
+        "Claude"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "static_risk_flags": [
+        "Mode12_ProcessOpacity"
+      ],
+      "primary_owned_loc": 528,
+      "primary_repo": "manasdm/Lean-SysID",
+      "one_line_summary": "Tutorial introducing Lean 4 and Mathlib for system identification and control, formalizing elementary identifiability/invariance examples, an ARX/PEM template, and an almost-sure sharpening of Ljung (1999) Lemma 3.1 in a public repo with #print axioms checks but no lakefile/lean-toolchain/CI.",
+      "slice_id": "2026-11",
+      "short_id": "T2",
+      "old_paper_domain_role": "engineering_math_proof",
+      "role_4way": "eng_algorithmic_proof",
+      "verification_object": "physical_or_control_model",
+      "decision_gate": "G3_eng_algorithmic",
+      "is_borderline": false,
+      "borderline_alt_role": null,
+      "rationale": "G3 (Rule B1): Control/system-identification tutorial (eess.SY) proving ARX identifiability, discrete invariance, and an almost-sure sharpening of Ljung (1999) Lemma 3.1 (not a meta autoformalization pipeline)."
+    },
+    {
+      "arxiv_id": "2611.16781",
+      "title": "Boundary Actuation of a Chain Fountain - Physically Admissible Tracking, Stochastic Limits and Zero-Gravity Circulation",
+      "primary_category": "math.OC",
+      "matched_target_cats": [
+        "math.OC"
+      ],
+      "submitted_date": "2026-11-12",
+      "updated_date": "2026-11-14",
+      "version": 2,
+      "is_retroactive_v2": false,
+      "paper_domain_role": "engineering_math_proof",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier2_Silver",
+      "ai_agent_assisted": "unclear",
+      "ai_tools_mentioned": [
+        "Gemini"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "static_risk_flags": [
+        "Mode12_ProcessOpacity"
+      ],
+      "primary_owned_loc": 34579,
+      "primary_repo": "luchesart/Chain-fountain",
+      "one_line_summary": "Control-theoretic analysis of boundary actuation for a chain fountain with a Lean 4 formalization (v0.18/v0.19, 722 named theorems) covering tracking, stochastic limits, and zero-gravity circulation via a zipped GitHub archive and a Theorem-to-Lean correspondence appendix.",
+      "slice_id": "2026-11",
+      "short_id": "T2",
+      "old_paper_domain_role": "engineering_math_proof",
+      "role_4way": "eng_algorithmic_proof",
+      "verification_object": "physical_or_control_model",
+      "decision_gate": "G3_eng_algorithmic",
+      "is_borderline": false,
+      "borderline_alt_role": null,
+      "rationale": "G3: Control-theoretic analysis of physically admissible boundary-actuation tracking, stochastic stability limits, and zero-gravity circulation for a mechanical chain fountain (math.OC)."
+    },
+    {
+      "arxiv_id": "2611.16690",
+      "title": "Hilbert's 17th problem for symmetric functions: undecidability and a counterexample",
+      "primary_category": "math.AG",
+      "matched_target_cats": [
+        "math.OC"
+      ],
+      "submitted_date": "2026-11-12",
+      "updated_date": "2026-11-12",
+      "version": 1,
+      "is_retroactive_v2": false,
+      "paper_domain_role": "pure_tcs_or_math",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier2_Silver",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "Claude",
+        "Claude Fable 5.1",
+        "Codex"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "static_risk_flags": [
+        "Mode2_ScopeDowngrade",
+        "Mode6_SorryOrAxiomOrNativeDecide"
+      ],
+      "primary_owned_loc": 6592,
+      "primary_repo": "RobinSchabert/positive-sym-func-h17-undecidability-lean",
+      "one_line_summary": "Post-hoc agent-generated Lean 4 formalization (~6.6k LoC) of the Diophantine reduction (Thm 2.2) and octic counterexample (Thm 3.1, Cor 3.6) with #guard_msgs axiom audits; both main theorems are sorry-free via an elementary hypercube bound, while cited Thm 3.2 (and Cor 3.3-3.4) has 1 sorry and decidability/Section 4 are unformalized.",
+      "slice_id": "2026-11",
+      "short_id": "T2",
+      "old_paper_domain_role": "pure_tcs_or_math",
+      "role_4way": "pure_math_or_tcs",
+      "verification_object": "abstract_math_or_tcs_theorem",
+      "decision_gate": "G4_pure_math_tcs",
+      "is_borderline": false,
+      "borderline_alt_role": null,
+      "rationale": "G4 (Rule B5): Pure algebraic geometry / computability theorem (primary math.AG) proving undecidability and an octic counterexample for Hilbert's 17th problem on symmetric functions."
+    },
+    {
+      "arxiv_id": "2611.15431",
+      "title": "Subadditivity and the failure of strong subadditivity in the Nichols--Wootters family of entropies",
+      "primary_category": "quant-ph",
+      "matched_target_cats": [
+        "cs.IT"
+      ],
+      "submitted_date": "2026-11-11",
+      "updated_date": "2026-11-11",
+      "version": 1,
+      "is_retroactive_v2": false,
+      "paper_domain_role": "engineering_math_proof",
+      "authoring_paradigm": "P0_opaque_or_unspecified",
+      "verification_tier": "Tier1_Bronze",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "ChatGPT Pro (GPT-6 Pro)",
+        "Codex (gpt-6.1-sol)",
+        "Claude Opus 5.5",
+        "Claude Code"
+      ],
+      "artifact_availability": "none",
+      "static_risk_flags": [
+        "Mode12_ProcessOpacity"
+      ],
+      "primary_owned_loc": null,
+      "primary_repo": null,
+      "one_line_summary": "Proves subadditivity and strong-subadditivity failure for Nichols-Wootters entropies (with cs.IT capacity applications) and claims AI-assisted Lean formal verification in the acknowledgments without providing a public Lean repository or workflow details.",
+      "slice_id": "2026-11",
+      "short_id": "T2",
+      "old_paper_domain_role": "engineering_math_proof",
+      "role_4way": "pure_math_or_tcs",
+      "verification_object": "abstract_math_or_tcs_theorem",
+      "decision_gate": "G4_pure_math_tcs",
+      "is_borderline": false,
+      "borderline_alt_role": null,
+      "rationale": "G4 (Rule B5): Foundational quantum-information entropy inequality (subadditivity and SSA failure for Nichols-Wootters entropies; primary quant-ph/math-ph) with no concrete engineering algorithm or protocol analyzed."
+    },
+    {
+      "arxiv_id": "2611.15201",
+      "title": "Sparse Matrix Multiplication Exponent 1.5 in the Low-bandwidth Model",
+      "primary_category": "cs.DC",
+      "matched_target_cats": [
+        "cs.DC"
+      ],
+      "submitted_date": "2026-11-11",
+      "updated_date": "2026-11-11",
+      "version": 1,
+      "is_retroactive_v2": false,
+      "paper_domain_role": "pure_tcs_or_math",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier3_Gold",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "OpenAI Codex",
+        "GPT-6",
+        "GPT-6 Astra",
+        "GPT-6.1 Sol"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "static_risk_flags": [
+        "Mode2_ScopeDowngrade"
+      ],
+      "primary_owned_loc": 5307,
+      "primary_repo": "zenodo/24127514",
+      "one_line_summary": "Lean 4 formalization (zero sorry in Solution, Comparator + multi-kernel audited) of an O(d^{3/2})-round supported sparse matrix multiplication algorithm and broadcast/aggregation lower bounds in a scalar-word low-bandwidth model, created post-hoc from the manuscript PDF with OpenAI Codex/GPT-6.",
+      "slice_id": "2026-11",
+      "short_id": "T2",
+      "old_paper_domain_role": "pure_tcs_or_math",
+      "role_4way": "pure_math_or_tcs",
+      "verification_object": "abstract_math_or_tcs_theorem",
+      "decision_gate": "G4_pure_math_tcs",
+      "is_borderline": false,
+      "borderline_alt_role": null,
+      "rationale": "G4 (Rule B4): Theoretical distributed complexity paper (cs.DC/cs.DS) proving O(d^{3/2}) round complexity and lower bounds for sparse matrix multiplication in the low-bandwidth model."
+    },
+    {
+      "arxiv_id": "2611.15128",
+      "title": "Affine Combiners for Reed-Solomon Proximity Gaps",
+      "primary_category": "cs.IT",
+      "matched_target_cats": [
+        "cs.CR",
+        "cs.IT"
+      ],
+      "submitted_date": "2026-11-11",
+      "updated_date": "2026-11-14",
+      "version": 2,
+      "is_retroactive_v2": false,
+      "paper_domain_role": "engineering_math_proof",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier3_Gold",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "ChatGPT 6 Astra",
+        "Claude Code Opus 5.5"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "static_risk_flags": [
+        "Mode2_ScopeDowngrade"
+      ],
+      "primary_owned_loc": 4963,
+      "primary_repo": "subpackage",
+      "one_line_summary": "AI-analyzed coding-theory/crypto-math paper proving Reed-Solomon affine-combiner MCA bounds, whose main RS theorems (Secs. 3\u20134, Thm. 5.2) were post-hoc formalized in Lean 4 inside leanEthereum/leanVM (20 AffineCombiner*.lean files, ~5k LoC) with CI escape-scanning and #print axioms audit, while Sec. 5 equal-degree reductions and Sec. 7 Reed-Muller extensions remain unformalized.",
+      "slice_id": "2026-11",
+      "short_id": "T2",
+      "old_paper_domain_role": "engineering_math_proof",
+      "role_4way": "eng_algorithmic_proof",
+      "verification_object": "algorithm_convergence_or_bound",
+      "decision_gate": "G3_eng_algorithmic",
+      "is_borderline": false,
+      "borderline_alt_role": null,
+      "rationale": "G3 (Rule B3): Proves quantitative Reed-Solomon proximity-gap soundness error bounds for affine combiners used in FRI/WHIR cryptographic IOPP protocols (cs.IT/cs.CR; formalized inside leanEthereum/leanVM)."
+    },
+    {
+      "arxiv_id": "2611.14756",
+      "title": "Stability of equilibria in discrete-time modified-gradient systems and the multivariate breeder's equation",
+      "primary_category": "math.DS",
+      "matched_target_cats": [
+        "math.OC"
+      ],
+      "submitted_date": "2026-11-10",
+      "updated_date": "2026-11-10",
+      "version": 1,
+      "is_retroactive_v2": false,
+      "paper_domain_role": "engineering_math_proof",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier3_Gold",
+      "ai_agent_assisted": "unclear",
+      "ai_tools_mentioned": [],
+      "artifact_availability": "public_lean_repo",
+      "static_risk_flags": [],
+      "primary_owned_loc": 670,
+      "primary_repo": "magbenji/discrete-modified-gradient-lean",
+      "one_line_summary": "Post-hoc Lean 4 + Mathlib formalization of the main discrete-time modified-gradient stability and basin-of-attraction theorems (Lemma 4.1, Theorem 5.1, Corollary 5.2, Theorem 6.1) with CI-verified standard-axiom audit.",
+      "slice_id": "2026-11",
+      "short_id": "T2",
+      "old_paper_domain_role": "engineering_math_proof",
+      "role_4way": "eng_algorithmic_proof",
+      "verification_object": "physical_or_control_model",
+      "decision_gate": "G3_eng_algorithmic",
+      "is_borderline": false,
+      "borderline_alt_role": null,
+      "rationale": "G3: Proves equilibrium stability and basin-of-attraction guarantees for discrete-time preconditioned/modified-gradient dynamical systems x_{k+1} = x_k + P_k grad f(x_k) (math.DS/math.OC)."
+    },
+    {
+      "arxiv_id": "2611.14475",
+      "title": "Explicit restricted isometries with $k=m^{2/3-o(1)}$",
+      "primary_category": "math.FA",
+      "matched_target_cats": [
+        "cs.IT"
+      ],
+      "submitted_date": "2026-11-10",
+      "updated_date": "2026-11-10",
+      "version": 1,
+      "is_retroactive_v2": false,
+      "paper_domain_role": "engineering_math_proof",
+      "authoring_paradigm": "P4_speclock_solve_distill",
+      "verification_tier": "Tier3_Gold",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "Claude Opus 5.5",
+        "Claude Code",
+        "GPT-6.1 Sol",
+        "GPT-6 Astra",
+        "Codex CLI",
+        "ChatGPT"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "static_risk_flags": [
+        "Mode2_ScopeDowngrade",
+        "Mode10_ProofBloat"
+      ],
+      "primary_owned_loc": 29967,
+      "primary_repo": "ckuemmerle/ExplicitRIPTwoThirds",
+      "one_line_summary": "Formalizes all main theorems of an explicit RIP matrix construction (k = m^{2/3-o(1)}) and 2/3 barriers in Lean 4/Mathlib using AI agents under a frozen-statement and Comparator (NanoDa + Lean kernel) spec-lock, omitting only the polynomial running-time bound for 'explicit'.",
+      "slice_id": "2026-11",
+      "short_id": "T2",
+      "old_paper_domain_role": "engineering_math_proof",
+      "role_4way": "eng_algorithmic_proof",
+      "verification_object": "algorithm_convergence_or_bound",
+      "decision_gate": "G3_eng_algorithmic",
+      "is_borderline": true,
+      "borderline_alt_role": "pure_math_or_tcs",
+      "rationale": "G3 (Rule B5): Gives an explicit construction of compressed-sensing RIP measurement matrices with k=m^{2/3-o(1)} and delta_k -> 0 (cs.IT/math.FA); flagged borderline because the proof machinery is extremal combinatorics and incidence geometry (Zahl/Guth-Zahl)."
+    },
+    {
+      "arxiv_id": "2611.13872",
+      "title": "LongTails: Automated Research in Optimization",
+      "primary_category": "math.OC",
+      "matched_target_cats": [
+        "math.OC"
+      ],
+      "submitted_date": "2026-11-10",
+      "updated_date": "2026-11-10",
+      "version": 1,
+      "is_retroactive_v2": false,
+      "paper_domain_role": "engineering_math_proof",
+      "authoring_paradigm": "P4_speclock_solve_distill",
+      "verification_tier": "Tier3_Gold",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "Claude",
+        "Codex",
+        "DeepSeek"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "static_risk_flags": [],
+      "primary_owned_loc": 697377,
+      "primary_repo": "k3nfalt/longtails",
+      "one_line_summary": "LongTails is a Lean 4 framework for AI-assisted discovery of optimization algorithms and oracle-complexity bounds, spec-locked via Comparator and yielding >100 formally verified results in a public repository.",
+      "slice_id": "2026-11",
+      "short_id": "T2",
+      "old_paper_domain_role": "engineering_math_proof",
+      "role_4way": "meta_formalization_system",
+      "verification_object": "meta_proving_pipeline",
+      "decision_gate": "G1_meta",
+      "is_borderline": false,
+      "borderline_alt_role": null,
+      "rationale": "G1 (Rule B1): LongTails is an automated research and formal-verification framework generating >100 Lean-verified optimization bounds across many problem classes rather than proving a single original paper theorem; directly resolves annotator_1's v0.6 IRR note."
+    },
+    {
+      "arxiv_id": "2611.13585",
+      "title": "Approximating graphic TSP by b-matchings",
+      "primary_category": "cs.DS",
+      "matched_target_cats": [
+        "math.OC"
+      ],
+      "submitted_date": "2026-11-10",
+      "updated_date": "2026-11-10",
+      "version": 1,
+      "is_retroactive_v2": false,
+      "paper_domain_role": "pure_tcs_or_math",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier1_Bronze",
+      "ai_agent_assisted": "unclear",
+      "ai_tools_mentioned": [
+        "GPT-5",
+        "GPT-6"
+      ],
+      "artifact_availability": "broken_or_missing_repo",
+      "static_risk_flags": [
+        "Mode12_ProcessOpacity"
+      ],
+      "primary_owned_loc": null,
+      "primary_repo": null,
+      "one_line_summary": "Combinatorial optimization / graph algorithms paper on graphic TSP approximation that claims supplementary Lean 4 (v4.19.0) / Mathlib formalization for stronger Table 2 bounds, but the linked GitHub repo contains zero .lean files or toolchain/CI metadata.",
+      "slice_id": "2026-11",
+      "short_id": "T2",
+      "old_paper_domain_role": "pure_tcs_or_math",
+      "role_4way": "pure_math_or_tcs",
+      "verification_object": "abstract_math_or_tcs_theorem",
+      "decision_gate": "G4_pure_math_tcs",
+      "is_borderline": false,
+      "borderline_alt_role": null,
+      "rationale": "G4 (Rule B5): Combinatorial graph-approximation paper (primary cs.DS) improving the subtour LP integrality gap for graphic TSP."
+    },
+    {
+      "arxiv_id": "2611.13584",
+      "title": "Exact (Non-)Accelerations of Heavy-Ball Discretizations",
+      "primary_category": "math.OC",
+      "matched_target_cats": [
+        "math.OC"
+      ],
+      "submitted_date": "2026-11-10",
+      "updated_date": "2026-11-10",
+      "version": 1,
+      "is_retroactive_v2": false,
+      "paper_domain_role": "engineering_math_proof",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier3_Gold",
+      "ai_agent_assisted": "unclear",
+      "ai_tools_mentioned": [],
+      "artifact_availability": "public_lean_repo",
+      "static_risk_flags": [
+        "Mode10_ProofBloat"
+      ],
+      "primary_owned_loc": 55300,
+      "primary_repo": "subpackage",
+      "one_line_summary": "Formalizes all 88 numbered results of a 63-page optimization paper on heavy-ball/momentum discretizations in a 512-file (~55.3k LoC) Lean 4 library with manual ArticleMap correspondence, axiom auditing, and stock-kernel replay.",
+      "slice_id": "2026-11",
+      "short_id": "T2",
+      "old_paper_domain_role": "engineering_math_proof",
+      "role_4way": "eng_algorithmic_proof",
+      "verification_object": "algorithm_convergence_or_bound",
+      "decision_gate": "G3_eng_algorithmic",
+      "is_borderline": false,
+      "borderline_alt_role": null,
+      "rationale": "G3: Proves exact worst-case convergence rates and half-step phase barriers for heavy-ball momentum optimization discretizations (math.OC)."
+    },
+    {
+      "arxiv_id": "2611.12680",
+      "title": "Wolfe's Minimum-Norm-Point Method Generalizes the Simplex Method",
+      "primary_category": "math.OC",
+      "matched_target_cats": [
+        "math.OC"
+      ],
+      "submitted_date": "2026-11-09",
+      "updated_date": "2026-11-11",
+      "version": 2,
+      "is_retroactive_v2": false,
+      "paper_domain_role": "engineering_math_proof",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier3_Gold",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "Claude",
+        "Claude Code"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "static_risk_flags": [
+        "Mode10_ProofBloat"
+      ],
+      "primary_owned_loc": 23932,
+      "primary_repo": "zenodo/24136107",
+      "one_line_summary": "Post-hoc Lean 4 formalization (WolfeSimplex on Zenodo, 23.9k LoC, 0 sorry/custom axioms, whole-project axiom and statement-boundary audits) verifying Theorem 1, Corollaries 1\u20134, and all 20 lemmas connecting Wolfe's minimum-norm-point method and the simplex method, developed with Claude/Claude Code assistance.",
+      "slice_id": "2026-11",
+      "short_id": "T2",
+      "old_paper_domain_role": "engineering_math_proof",
+      "role_4way": "eng_algorithmic_proof",
+      "verification_object": "algorithm_convergence_or_bound",
+      "decision_gate": "G3_eng_algorithmic",
+      "is_borderline": false,
+      "borderline_alt_role": null,
+      "rationale": "G3: Proves exponential iteration-complexity lower bounds and simplex/NNLS equivalence for Wolfe's minimum-norm-point optimization algorithm (math.OC)."
+    },
+    {
+      "arxiv_id": "2611.12585",
+      "title": "A Large Gap between Galerkin Errors with and without Mesh-Uniform Regularity for the KdV Equation with Boundary Dissipation",
+      "primary_category": "math.NA",
+      "matched_target_cats": [
+        "math.OC"
+      ],
+      "submitted_date": "2026-11-09",
+      "updated_date": "2026-11-17",
+      "version": 2,
+      "is_retroactive_v2": false,
+      "paper_domain_role": "engineering_math_proof",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier2_Silver",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "GPT-6 Astra",
+        "Claude",
+        "Codex"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "static_risk_flags": [],
+      "primary_owned_loc": 60664,
+      "primary_repo": "arxiv-anc/2611.12585",
+      "one_line_summary": "Post-hoc Lean 4 formalization (by GPT-6 Astra, provided in arXiv v2 ancillary files) proving high-frequency spurious eigenpairs and error-bound failures for the standard cubic Hermite Galerkin scheme of the KdV equation.",
+      "slice_id": "2026-11",
+      "short_id": "T2",
+      "old_paper_domain_role": "engineering_math_proof",
+      "role_4way": "eng_algorithmic_proof",
+      "verification_object": "numerical_or_stat_method",
+      "decision_gate": "G3_eng_algorithmic",
+      "is_borderline": false,
+      "borderline_alt_role": null,
+      "rationale": "G3: Proves discretization error gaps and spurious-eigenpair obstructions for cubic Hermite Galerkin numerical PDE schemes on the boundary-dissipated KdV equation (math.NA/math.OC)."
+    },
+    {
+      "arxiv_id": "2611.11713",
+      "title": "Binary Belief Propagation Fixed Points: Finiteness, Rigidity, and Topological Complexity",
+      "primary_category": "cs.IT",
+      "matched_target_cats": [
+        "cs.IT"
+      ],
+      "submitted_date": "2026-11-09",
+      "updated_date": "2026-11-09",
+      "version": 1,
+      "is_retroactive_v2": false,
+      "paper_domain_role": "engineering_math_proof",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier3_Gold",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "Large language model tools"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "static_risk_flags": [
+        "Mode10_ProofBloat"
+      ],
+      "primary_owned_loc": 69875,
+      "primary_repo": "ywatanabex/bp-response-geometry-lean",
+      "one_line_summary": "Formally verifies all three main theorems (finiteness, rigidity, and logarithmic genus/size bounds) on binary belief propagation fixed points in Lean 4 with Mathlib and an automated transitive-axiom audit, alongside standalone Python rational interval certificates for a 18-vertex discriminant example.",
+      "slice_id": "2026-11",
+      "short_id": "T2",
+      "old_paper_domain_role": "engineering_math_proof",
+      "role_4way": "eng_algorithmic_proof",
+      "verification_object": "algorithm_convergence_or_bound",
+      "decision_gate": "G3_eng_algorithmic",
+      "is_borderline": false,
+      "borderline_alt_role": null,
+      "rationale": "G3: Proves finiteness, rigidity, and topological complexity bounds for fixed points of the binary Belief Propagation inference/decoding algorithm (cs.IT)."
+    },
+    {
+      "arxiv_id": "2611.10902",
+      "title": "Bisect-Index-Choose: A Fast and Exact Algorithm for EV Charging under Minimum Charging Rates",
+      "primary_category": "eess.SY",
+      "matched_target_cats": [
+        "eess.SY"
+      ],
+      "submitted_date": "2026-11-07",
+      "updated_date": "2026-11-07",
+      "version": 1,
+      "is_retroactive_v2": false,
+      "paper_domain_role": "engineering_math_proof",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier3_Gold",
+      "ai_agent_assisted": "unclear",
+      "ai_tools_mentioned": [
+        "Claude"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "static_risk_flags": [
+        "Mode2_ScopeDowngrade"
+      ],
+      "primary_owned_loc": 2068,
+      "primary_repo": "canberksaner/bic-public",
+      "one_line_summary": "EV charging optimization paper (eess.SY) contributing a Lean 4 + Mathlib formalization (~2,068 LoC) of its main theorems (Theorems 1-4 for K=2, Lemmas 1-2, strong duality, Table I, Appendices A-B, and Algorithm 1 evaluation bound) with a 34-theorem #print axioms manifest and zero sorry/custom axioms, though excluding K!=2 cases, bisection tolerances, and runtime bounds.",
+      "slice_id": "2026-11",
+      "short_id": "T2",
+      "old_paper_domain_role": "engineering_math_proof",
+      "role_4way": "eng_algorithmic_proof",
+      "verification_object": "algorithm_convergence_or_bound",
+      "decision_gate": "G3_eng_algorithmic",
+      "is_borderline": false,
+      "borderline_alt_role": null,
+      "rationale": "G3: Proves global optimality and strong duality of the Bisect-Index-Choose (BIC) scheduling algorithm for EV charging under minimum-rate constraints (eess.SY)."
+    },
+    {
+      "arxiv_id": "2611.10810",
+      "title": "Extending DBLog-Based Incremental Snapshots to Handle Orphan Rows in CDC Pipelines",
+      "primary_category": "cs.DB",
+      "matched_target_cats": [
+        "cs.DC"
+      ],
+      "submitted_date": "2026-11-07",
+      "updated_date": "2026-11-07",
+      "version": 1,
+      "is_retroactive_v2": false,
+      "paper_domain_role": "software_or_system_fv",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier3_Gold",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "Claude Fable 5.1",
+        "Claude Opus 5.5",
+        "Gemini"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "static_risk_flags": [
+        "Mode3_CustomDefs"
+      ],
+      "primary_owned_loc": 10862,
+      "primary_repo": "zenodo/24035424",
+      "one_line_summary": "Extends DBLog incremental snapshots to delete orphan rows in CDC pipelines, formally verifying safety and convergence across six Isabelle/HOL theories ported to Lean 4 (zero sorry/custom axioms, audited via #print axioms) alongside bounded TLA+ models.",
+      "slice_id": "2026-11",
+      "short_id": "T2",
+      "old_paper_domain_role": "software_or_system_fv",
+      "role_4way": "operational_system_fv",
+      "verification_object": "operational_sw_hw_db_protocol",
+      "decision_gate": "G2_operational_fv",
+      "is_borderline": false,
+      "borderline_alt_role": null,
+      "rationale": "G2 (Rule B3): Verifies operational safety and convergence invariants of DBLog incremental snapshots handling orphan rows in database CDC pipelines (primary cs.DB)."
+    },
+    {
+      "arxiv_id": "2611.09169",
+      "title": "The multiplier step size in classical two-block ADMM: convergence and counterexamples",
+      "primary_category": "math.OC",
+      "matched_target_cats": [
+        "math.OC"
+      ],
+      "submitted_date": "2026-11-06",
+      "updated_date": "2026-11-06",
+      "version": 1,
+      "is_retroactive_v2": false,
+      "paper_domain_role": "engineering_math_proof",
+      "authoring_paradigm": "P0_opaque_or_unspecified",
+      "verification_tier": "Tier1_Bronze",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [],
+      "artifact_availability": "public_lean_repo",
+      "static_risk_flags": [
+        "Mode12_ProcessOpacity"
+      ],
+      "primary_owned_loc": null,
+      "primary_repo": null,
+      "one_line_summary": "Optimization paper (math.OC) on two-block ADMM step-size convergence and counterexamples claiming an accompanying Lean 4 formalization on ReasBook (optpku.github.io), while the linked GitHub repo only contains exact arithmetic certificates (0 Lean files) and acknowledges generative AI assistance.",
+      "slice_id": "2026-11",
+      "short_id": "T2",
+      "old_paper_domain_role": "engineering_math_proof",
+      "role_4way": "eng_algorithmic_proof",
+      "verification_object": "algorithm_convergence_or_bound",
+      "decision_gate": "G3_eng_algorithmic",
+      "is_borderline": false,
+      "borderline_alt_role": null,
+      "rationale": "G3: Proves convergence bounds and step-size counterexamples for classical two-block ADMM convex optimization."
+    },
+    {
+      "arxiv_id": "2611.09050",
+      "title": "Resolvent-Diagonal Energy of Isospectral Jacobi Matrices",
+      "primary_category": "math.OC",
+      "matched_target_cats": [
+        "math.OC"
+      ],
+      "submitted_date": "2026-11-06",
+      "updated_date": "2026-11-06",
+      "version": 1,
+      "is_retroactive_v2": false,
+      "paper_domain_role": "engineering_math_proof",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier3_Gold",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "Claude Opus 5.5",
+        "ChatGPT-6.1 Sol"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "static_risk_flags": [
+        "Mode10_ProofBloat"
+      ],
+      "primary_owned_loc": 139600,
+      "primary_repo": "subpackage",
+      "one_line_summary": "Verifies mathematical theorems on resolvent-diagonal energy of isospectral Jacobi matrices and optimal Nesterov momentum endpoint gains in a 139.6k-LoC Lean 4 package (`jacobi`) with automated axiom auditing and kernel replay.",
+      "slice_id": "2026-11",
+      "short_id": "T2",
+      "old_paper_domain_role": "engineering_math_proof",
+      "role_4way": "pure_math_or_tcs",
+      "verification_object": "abstract_math_or_tcs_theorem",
+      "decision_gate": "G4_pure_math_tcs",
+      "is_borderline": false,
+      "borderline_alt_role": null,
+      "rationale": "G4 (Rule B5): Spectral/operator-theory theorem on resolvent-diagonal energy of isospectral Jacobi matrices and singular Schrodinger Green operators (math.OC/math.SP); aligns with annotator_1 in v0.6 IRR."
+    },
+    {
+      "arxiv_id": "2611.08172",
+      "title": "Uniform Three-Fold Product Expansion of Algebraic-Geometry Codes over a Fixed Field",
+      "primary_category": "cs.IT",
+      "matched_target_cats": [
+        "cs.IT"
+      ],
+      "submitted_date": "2026-11-05",
+      "updated_date": "2026-11-05",
+      "version": 1,
+      "is_retroactive_v2": false,
+      "paper_domain_role": "engineering_math_proof",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier3_Gold",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "Harmonic"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "static_risk_flags": [
+        "Mode10_ProofBloat"
+      ],
+      "primary_owned_loc": 200335,
+      "primary_repo": "dcass-121/d3-lean-verification",
+      "one_line_summary": "Formalizes in Lean 4 (with ~200k LoC, zero sorry/custom axioms, and full-closure audit scripts) the main uniform 3-fold product expansion, sharp filling, and dual-family rate/distance theorems for algebraic-geometry codes on the Garcia-Stichtenoth tower over F_729.",
+      "slice_id": "2026-11",
+      "short_id": "T2",
+      "old_paper_domain_role": "engineering_math_proof",
+      "role_4way": "pure_math_or_tcs",
+      "verification_object": "abstract_math_or_tcs_theorem",
+      "decision_gate": "G4_pure_math_tcs",
+      "is_borderline": false,
+      "borderline_alt_role": null,
+      "rationale": "G4 (Rule B5): Pure algebraic-geometry / function-field tower existence theorem (uniform 3-fold product expansion on the Garcia-Stichtenoth tower over F_729; cs.IT/math.AG); aligns with annotator_1 in v0.6 IRR."
+    },
+    {
+      "arxiv_id": "2611.05243",
+      "title": "Logarithmic Regret for Alternating Mirror Descent",
+      "primary_category": "cs.LG",
+      "matched_target_cats": [
+        "math.OC"
+      ],
+      "submitted_date": "2026-11-03",
+      "updated_date": "2026-11-03",
+      "version": 1,
+      "is_retroactive_v2": false,
+      "paper_domain_role": "engineering_math_proof",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier3_Gold",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "GPT-5.6 Sol",
+        "GPT-6 Astra"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "static_risk_flags": [],
+      "primary_owned_loc": 11204,
+      "primary_repo": "CoffeeAndConvexity/AltOMD-Lean",
+      "one_line_summary": "Proves an O(log T) regret bound for Alternating Online Mirror Descent in two-player zero-sum bilinear games and formalizes all 15 named manuscript results in a zero-sorry, axiom-audited Lean 4 repository (AltOMD-Lean) developed with GPT-5.6 Sol and GPT-6 Astra.",
+      "slice_id": "2026-11",
+      "short_id": "T2",
+      "old_paper_domain_role": "engineering_math_proof",
+      "role_4way": "eng_algorithmic_proof",
+      "verification_object": "algorithm_convergence_or_bound",
+      "decision_gate": "G3_eng_algorithmic",
+      "is_borderline": false,
+      "borderline_alt_role": null,
+      "rationale": "G3: Proves an explicit O(log T) regret bound for Alternating Online Mirror Descent (AltOMD) in two-player zero-sum games."
+    },
+    {
+      "arxiv_id": "2611.05136",
+      "title": "Information Loss Is All You Need: $TC^0$ Pseudorandomness from Worst-Case Lattices",
+      "primary_category": "cs.CC",
+      "matched_target_cats": [
+        "cs.CR"
+      ],
+      "submitted_date": "2026-11-03",
+      "updated_date": "2026-11-05",
+      "version": 2,
+      "is_retroactive_v2": false,
+      "paper_domain_role": "engineering_math_proof",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier2_Silver",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [],
+      "artifact_availability": "public_lean_repo",
+      "static_risk_flags": [
+        "Mode2_ScopeDowngrade",
+        "Mode10_ProofBloat"
+      ],
+      "primary_owned_loc": 219688,
+      "primary_repo": "qianchen92/aft-lean-theorem99",
+      "one_line_summary": "AI-generated 219k-LoC Lean 4 formalization of Theorem 9.9 (constructive Gaussian AFT sampler in a counted binary-operation model) with exhaustive transitive axiom audit (Audit.lean) and provenance manifest, covering one core theorem rather than the paper's full LWE-to-LAR/TC0-PRF/ReLU-hardness claims.",
+      "slice_id": "2026-11",
+      "short_id": "T2",
+      "old_paper_domain_role": "engineering_math_proof",
+      "role_4way": "pure_math_or_tcs",
+      "verification_object": "abstract_math_or_tcs_theorem",
+      "decision_gate": "G4_pure_math_tcs",
+      "is_borderline": false,
+      "borderline_alt_role": null,
+      "rationale": "G4 (Rule B3): Circuit-complexity and theoretical-cryptography reduction (primary cs.CC) proving TC^0 pseudorandomness and ReLU learning hardness from worst-case lattice problems."
+    },
+    {
+      "arxiv_id": "2611.04876",
+      "title": "Leakage-Resilient Computation via Matrix Refreshing",
+      "primary_category": "cs.CR",
+      "matched_target_cats": [
+        "cs.CR"
+      ],
+      "submitted_date": "2026-11-03",
+      "updated_date": "2026-11-03",
+      "version": 1,
+      "is_retroactive_v2": false,
+      "paper_domain_role": "engineering_math_proof",
+      "authoring_paradigm": "P4_speclock_solve_distill",
+      "verification_tier": "Tier3_Gold",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "ChatGPT"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "static_risk_flags": [
+        "Mode10_ProofBloat"
+      ],
+      "primary_owned_loc": 81481,
+      "primary_repo": "sdziembowski/MatrixRefresh",
+      "one_line_summary": "Formalizes continual matrix refreshing, NAND/stateful leakage-resilient circuit compilers, and expected-work simulators in Lean 4 (81k LoC) using ChatGPT under a comparator Challenge/Solution spec-lock (`Proofs.ReferenceClaims` vs `Proofs.ProvedClaims`).",
+      "slice_id": "2026-11",
+      "short_id": "T2",
+      "old_paper_domain_role": "engineering_math_proof",
+      "role_4way": "eng_algorithmic_proof",
+      "verification_object": "algorithm_convergence_or_bound",
+      "decision_gate": "G3_eng_algorithmic",
+      "is_borderline": false,
+      "borderline_alt_role": null,
+      "rationale": "G3 (Rule B3): Proves quantitative statistical privacy/leakage bounds and simulator work bounds for continual matrix refreshing and leakage-resilient cryptographic circuit compilers."
+    },
+    {
+      "arxiv_id": "2611.04561",
+      "title": "Distributed LTL Synthesis under Arbitrary Message Adversaries",
+      "primary_category": "cs.DC",
+      "matched_target_cats": [
+        "cs.DC",
+        "eess.SY"
+      ],
+      "submitted_date": "2026-11-03",
+      "updated_date": "2026-11-03",
+      "version": 1,
+      "is_retroactive_v2": false,
+      "paper_domain_role": "pure_tcs_or_math",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier3_Gold",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "Codex",
+        "Claude",
+        "GPT-6"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "static_risk_flags": [
+        "Mode10_ProofBloat",
+        "Mode6_SorryOrAxiomOrNativeDecide"
+      ],
+      "primary_owned_loc": 929448,
+      "primary_repo": "BioDisCo/distributed_synthesis_lean",
+      "one_line_summary": "Distributed LTL synthesis decidability characterization (nowhere-dense geometric image and repeated consensus) formalized post-hoc in ~929k LoC of Lean 4.30/Mathlib with Codex/Claude assistance; main Results and Paper endpoints pass #print axioms and Comparator+Nanoda kernel replay with only standard axioms, while two native_decide calls appear in an unimported falsification probe.",
+      "slice_id": "2026-11",
+      "short_id": "T2",
+      "old_paper_domain_role": "pure_tcs_or_math",
+      "role_4way": "pure_math_or_tcs",
+      "verification_object": "abstract_math_or_tcs_theorem",
+      "decision_gate": "G4_pure_math_tcs",
+      "is_borderline": false,
+      "borderline_alt_role": null,
+      "rationale": "G4 (Rule B4): Formal-logic decidability and undecidability characterization of distributed LTL reactive synthesis under message adversaries (cs.DC/cs.FL/cs.LO/eess.SY)."
+    },
+    {
+      "arxiv_id": "2611.02256",
+      "title": "Exact Shortest Paths and Maximum Flow in Planar Networks in the CONGEST Model",
+      "primary_category": "cs.DC",
+      "matched_target_cats": [
+        "cs.DC"
+      ],
+      "submitted_date": "2026-11-01",
+      "updated_date": "2026-11-01",
+      "version": 1,
+      "is_retroactive_v2": false,
+      "paper_domain_role": "pure_tcs_or_math",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier2_Silver",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "Claude Opus 5.5"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "static_risk_flags": [
+        "Mode2_ScopeDowngrade"
+      ],
+      "primary_owned_loc": 2191,
+      "primary_repo": "ssenge/ExactShortestPathsAndFlowsOnPlanarGraphs",
+      "one_line_summary": "CONGEST planar-network SSSP and max-flow paper formalizing three supporting lemmas (Virtual Source, Dual Distance, discretized boosting) and auxiliary arguments in Lean 4/Mathlib without sorry or custom axioms, while leaving the main distributed algorithms and round bounds on paper.",
+      "slice_id": "2026-11",
+      "short_id": "T2",
+      "old_paper_domain_role": "pure_tcs_or_math",
+      "role_4way": "pure_math_or_tcs",
+      "verification_object": "abstract_math_or_tcs_theorem",
+      "decision_gate": "G4_pure_math_tcs",
+      "is_borderline": false,
+      "borderline_alt_role": null,
+      "rationale": "G4 (Rule B4): Theoretical distributed graph-algorithms paper proving CONGEST-model round bounds for planar SSSP and maximum flow."
+    },
+    {
+      "arxiv_id": "2611.02169",
+      "title": "Split Cuts in Fixed Integer Dimensions",
+      "primary_category": "math.OC",
+      "matched_target_cats": [
+        "math.OC"
+      ],
+      "submitted_date": "2026-11-01",
+      "updated_date": "2026-11-04",
+      "version": 2,
+      "is_retroactive_v2": false,
+      "paper_domain_role": "engineering_math_proof",
+      "authoring_paradigm": "P0_opaque_or_unspecified",
+      "verification_tier": "Tier1_Bronze",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "OpenAI ChatGPT"
+      ],
+      "artifact_availability": "none",
+      "static_risk_flags": [
+        "Mode12_ProcessOpacity"
+      ],
+      "primary_owned_loc": null,
+      "primary_repo": null,
+      "one_line_summary": "Optimization paper (math.OC) on split cuts in fixed integer dimensions that discloses using OpenAI ChatGPT for Lean verification of proofs and calculations, with no public Lean artifact or workflow details.",
+      "slice_id": "2026-11",
+      "short_id": "T2",
+      "old_paper_domain_role": "engineering_math_proof",
+      "role_4way": "eng_algorithmic_proof",
+      "verification_object": "algorithm_convergence_or_bound",
+      "decision_gate": "G3_eng_algorithmic",
+      "is_borderline": true,
+      "borderline_alt_role": "pure_math_or_tcs",
+      "rationale": "G3 (Rule B5): Integer linear programming / cutting-plane optimization theory (math.OC) proving polynomial-time constructible split-cut proofs and split-rank bounds; flagged borderline due to polyhedral-combinatorics flavor."
+    },
+    {
+      "arxiv_id": "2611.02057",
+      "title": "Paying for Fractional Error: Tight Constant-Round Approximation of Covering Problems with Short Broadcasts",
+      "primary_category": "cs.DS",
+      "matched_target_cats": [
+        "cs.DC"
+      ],
+      "submitted_date": "2026-11-01",
+      "updated_date": "2026-11-01",
+      "version": 1,
+      "is_retroactive_v2": false,
+      "paper_domain_role": "pure_tcs_or_math",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier1_Bronze",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "Claude"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "static_risk_flags": [
+        "Mode6_SorryOrAxiomOrNativeDecide",
+        "Mode10_ProofBloat",
+        "Mode12_ProcessOpacity"
+      ],
+      "primary_owned_loc": 166354,
+      "primary_repo": "wwawrzy/paying-for-fractional-error-lean",
+      "one_line_summary": "Formalizes all 81 named distributed-CONGEST covering-approximation results in a 166k-LoC Lean 4 repo with AI assistance; 73 statements use only standard axioms while 8 (including Theorem E and Corollary 1.1) depend on 7 declared external graph/topology axioms, with no CI and an incomplete rebuild of the export.",
+      "slice_id": "2026-11",
+      "short_id": "T2",
+      "old_paper_domain_role": "pure_tcs_or_math",
+      "role_4way": "pure_math_or_tcs",
+      "verification_object": "abstract_math_or_tcs_theorem",
+      "decision_gate": "G4_pure_math_tcs",
+      "is_borderline": false,
+      "borderline_alt_role": null,
+      "rationale": "G4 (Rule B4): Theoretical distributed graph-approximation paper (primary cs.DS) proving broadcast CONGEST covering-problem round bounds."
+    },
+    {
+      "arxiv_id": "2611.01761",
+      "title": "Computation in Anonymous Directed Dynamic Networks: Exact Worst-Case Termination Time and Network-Wise Intractability",
+      "primary_category": "cs.DC",
+      "matched_target_cats": [
+        "cs.DC"
+      ],
+      "submitted_date": "2026-11-01",
+      "updated_date": "2026-11-01",
+      "version": 1,
+      "is_retroactive_v2": false,
+      "paper_domain_role": "pure_tcs_or_math",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier3_Gold",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "ChatGPT-6 Astra"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "static_risk_flags": [
+        "Mode10_ProofBloat"
+      ],
+      "primary_owned_loc": 158351,
+      "primary_repo": "gadiluna/ADDN_lean",
+      "one_line_summary": "Public Lean 4 formalization (158k LoC, 2,104 files) produced with ChatGPT-6 Astra covering all 24 formal statements of a cs.DC distributed-counting paper, audited by a custom transitive axiom checker with zero sorry/axioms.",
+      "slice_id": "2026-11",
+      "short_id": "T2",
+      "old_paper_domain_role": "pure_tcs_or_math",
+      "role_4way": "pure_math_or_tcs",
+      "verification_object": "abstract_math_or_tcs_theorem",
+      "decision_gate": "G4_pure_math_tcs",
+      "is_borderline": false,
+      "borderline_alt_role": null,
+      "rationale": "G4 (Rule B4): Theoretical distributed computing paper establishing exact worst-case synchronous round complexity and impossibility for Counting in anonymous dynamic graphs."
+    },
+    {
+      "arxiv_id": "2611.01384",
+      "title": "Benign population landscapes do not transfer to empirical risk minimization in nonsmooth optimization",
+      "primary_category": "math.OC",
+      "matched_target_cats": [
+        "math.OC"
+      ],
+      "submitted_date": "2026-11-01",
+      "updated_date": "2026-11-01",
+      "version": 1,
+      "is_retroactive_v2": false,
+      "paper_domain_role": "engineering_math_proof",
+      "authoring_paradigm": "P0_opaque_or_unspecified",
+      "verification_tier": "Tier1_Bronze",
+      "ai_agent_assisted": "unclear",
+      "ai_tools_mentioned": [
+        "Claude",
+        "GPT-5",
+        "GPT-6"
+      ],
+      "artifact_availability": "broken_or_missing_repo",
+      "static_risk_flags": [
+        "Mode2_ScopeDowngrade",
+        "Mode12_ProcessOpacity"
+      ],
+      "primary_owned_loc": null,
+      "primary_repo": null,
+      "one_line_summary": "Claims an accompanying Lean formalization of supporting Appendix C analytic bounds for nonsmooth phase retrieval, while main theorems and interval enclosures remain outside Lean and the linked GitHub repo is inaccessible.",
+      "slice_id": "2026-11",
+      "short_id": "T2",
+      "old_paper_domain_role": "engineering_math_proof",
+      "role_4way": "eng_algorithmic_proof",
+      "verification_object": "algorithm_convergence_or_bound",
+      "decision_gate": "G3_eng_algorithmic",
+      "is_borderline": true,
+      "borderline_alt_role": "pure_math_or_tcs",
+      "rationale": "G3 (Rule B2/B5): Analyzes empirical risk minimization vs. population optimization landscapes for iterative nonconvex phase-retrieval methods (math.OC/cs.LG); flagged borderline because annotator_1 coded pure_tcs_or_math in v0.6 IRR."
+    }
+  ]
+}
