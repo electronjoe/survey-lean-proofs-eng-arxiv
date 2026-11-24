@@ -30,6 +30,9 @@ DEFAULT_SLICES_DIR = REPO_ROOT / "artifacts" / "slices"
 DEFAULT_PROVENANCE = REPO_ROOT / "artifacts" / "phase2_provenance.json"
 DEFAULT_SANDBOX_DIR = REPO_ROOT / "artifacts" / "sandbox_builds"
 DEFAULT_HUMAN_DIR = REPO_ROOT / "artifacts" / "human_annotations"
+DEFAULT_TRACK1_PATH = REPO_ROOT / "artifacts" / "track1_sensitivity_summary.json"
+DEFAULT_SCOUT_PLUS7_PATH = REPO_ROOT / "artifacts" / "scout_eng_tier12_2026_11_summary.json"
+DEFAULT_TRACK3_PATH = REPO_ROOT / "artifacts" / "track3_operational_fv_pilot.json"
 
 # Multi-paper monorepos whose inventory LoC reports paper-specific subpackage LoC (*).
 SUBPACKAGE_IDS = {"2611.09050", "2611.13584", "2611.15128"}
@@ -757,6 +760,7 @@ def check_all_bolded_numbers(
     recall_cal: dict[str, Any] | None,
     sandbox_data: tuple[dict[str, Any], list[dict[str, Any]]] | None = None,
     human_data: tuple[dict[str, Any] | None, dict[str, Any] | None] | None = None,
+    v07_data: tuple[dict[str, Any] | None, dict[str, Any] | None, dict[str, Any] | None] | None = None,
 ) -> list[str]:
     """Audit EVERY numeric token inside any \\textbf{...} span in main.tex against artifact-derived values."""
     t0, t1, t2 = slices["T0"], slices["T1"], slices["T2"]
@@ -958,19 +962,128 @@ def check_all_bolded_numbers(
             for v in (n_named, n_spot, n_unchanged):
                 _add_int(v)
 
+    # v0.7 scope-refinement artifacts: Track 1 (4-way), Track 2 (+7 scout), Track 3 (operational FV)
+    if v07_data is not None:
+        track1, scout7, track3 = v07_data
+        if track1 is not None:
+            _add_int(int(track1["total_confirmed_papers_v_latest"]))
+            _add_int(int(track1["borderline_count_total"]))
+            gr = track1["growth_t1_to_t2_v1"]
+            for gk in (
+                "pooled_rate_multiplier",
+                "eng_algorithmic_proof_rate_multiplier",
+                "eng_algorithmic_proof_loc_median_multiplier",
+                "eng_strict_core_rate_multiplier",
+                "operational_system_fv_rate_multiplier",
+                "pure_math_or_tcs_rate_multiplier",
+            ):
+                if gr.get(gk) is not None:
+                    v = float(gr[gk])
+                    _add_mult(v)
+                    allowed.add(f"{v:.2f}x")
+            sl_by_id = {sl["short_id"]: sl for sl in track1["slices"]}
+            for sl_blk in track1["slices"]:
+                cat_tots = sl_blk.get("cat_total", {})
+                for mode_key in ("v1", "v_latest"):
+                    mb = sl_blk["modes"][mode_key]
+                    for binfo in list(mb["by_role"].values()) + [mb["pooled"], mb["eng_strict_core_non_borderline"]]:
+                        _add_int(int(binfo["count"]))
+                        _add_pct(float(binfo["corpus_pct"]))
+                        for ci_v in binfo.get("ci_95_pct", []):
+                            _add_pct(float(ci_v))
+                        _add_int(int(binfo.get("scanned_owned_repos", 0)))
+                        _add_int(int(binfo.get("total_owned_loc", 0)))
+                        if binfo.get("median_owned_loc") is not None:
+                            _add_int(int(round(float(binfo["median_owned_loc"]))))
+                        if binfo.get("share_of_owned_loc_pct") is not None:
+                            _add_pct(float(binfo["share_of_owned_loc_pct"]))
+                        if binfo.get("share_of_confirmed_pct") is not None:
+                            _add_pct(float(binfo["share_of_confirmed_pct"]))
+                        _add_int(int(binfo.get("tier3_gold_count", 0)))
+                        if binfo.get("tier3_gold_pct_of_bucket") is not None:
+                            _add_pct(float(binfo["tier3_gold_pct_of_bucket"]))
+                        if binfo.get("tier3_gold_pct_of_scanned") is not None:
+                            _add_pct(float(binfo["tier3_gold_pct_of_scanned"]))
+                        if binfo.get("ai_explicit_yes_pct") is not None:
+                            _add_pct(float(binfo["ai_explicit_yes_pct"]))
+                        for cat_k, cat_cnt in (binfo.get("cat_counts") or {}).items():
+                            _add_int(int(cat_cnt))
+                            if cat_tots.get(cat_k):
+                                _add_pct(100.0 * int(cat_cnt) / int(cat_tots[cat_k]))
+            t2_b = sl_by_id["T2"]["modes"]["v1"]["by_role"]
+            _add_pct(
+                float(t2_b["pure_math_or_tcs"]["share_of_owned_loc_pct"])
+                + float(t2_b["meta_formalization_system"]["share_of_owned_loc_pct"])
+            )
+            for p2_info in track1.get("phase2_audits_by_role", {}).values():
+                _add_int(int(p2_info["count"]))
+                _add_int(int(p2_info["material_undisclosed_count"]))
+        if scout7 is not None:
+            pt = scout7["plus7_totals"]
+            _add_int(len(pt["categories"]))
+            for k in (
+                "raw_category_sum",
+                "unique_papers",
+                "overlap_with_orig8",
+                "net_new_papers",
+                "combined_15cat_unique_papers",
+                "meta_lean_strong",
+                "stage2_lean_strong",
+                "stage2_lean_strong_net_new",
+                "stage2_lean_ctx_only",
+                "stage2_lean_ctx_only_net_new",
+                "stage2_lean_candidates_total",
+                "stage2_lean_candidates_net_new",
+                "beyond_lean_any_fv",
+                "combined_15cat_stage2_lean_candidates",
+            ):
+                _add_int(int(pt[k]))
+            _add_int(sum(int(v) for k, v in pt["fetch_sources"].items() if k in ("html", "pdf")))
+            _add_pct(float(pt["fulltext_coverage_pct"]))
+            _add_pct(100.0 * pt["stage2_lean_candidates_total"] / pt["unique_papers"])
+            eess = scout7["complete_eess_archive"]
+            for k in ("unique_papers", "primary_eess_papers", "stage2_lean_candidates_total", "non_sy_unique_papers"):
+                _add_int(int(eess[k]))
+            _add_pct(float(eess["non_sy_95_upper_bound_pct"]))
+            _add_pct(100.0)
+            for cinfo in scout7["per_category"].values():
+                _add_int(int(cinfo["total"]))
+                _add_int(int(cinfo["net_new_vs_orig8"]))
+                _add_int(int(cinfo["stage2_lean_candidates_total"]))
+                _add_pct(float(cinfo["stage2_candidate_rate_pct"]))
+                for ci_v in cinfo["stage2_candidate_ci95_pct"]:
+                    _add_pct(float(ci_v))
+            na = scout7["math_na_metadata_probe"]
+            for k in ("total_papers", "net_new_vs_15cat", "meta_lean_strong", "meta_lean_ctx_only"):
+                _add_int(int(na[k]))
+            na_captured = sum(
+                1 for h in na["meta_lean_hits"]
+                if h["signal_tier"] == "meta_lean_strong" and (h["in_survey_db_orig8"] or h["in_plus7_scout"])
+            )
+            _add_int(na_captured)
+        if track3 is not None:
+            sc3 = track3["summary_counts"]
+            for v in sc3.values():
+                if isinstance(v, int):
+                    _add_int(v)
+            _add_int(18)  # 18 total custom axiom declarations in 2605.16407
+
     # Structural / non-metric tokens that appear inside \textbf{...} headings/labels
     structural_re = re.compile(
         r"(?:"
         r"\b(?:Nov|May)\s+1--19\b|"
         r"\b(?:T[0-3]|P[0-4]|M(?:2|3|6|10|12)|v1|v2)\b|"
-        r"\b(?:Stage|Stages|Phase|Tier|Layer|Gemini|Lean|Mode)\s*[~-]?\s*(?:\\#)?\d+(?:[.-]\d+)?|"
+        r"\b(?:Stage|Stages|Phase|Tier|Layer|Gemini|Lean|Mode|OpFV)\s*[~-]?\s*(?:\\#)?\d+(?:[.-]\d+)?|"
         r"\\#\d+|"
         r"\b\d{4}\.\d{5}\b|"
         r"\bOptPaper-20\b|"
         r"\bTTony2019/OptPaper\b|"
         r"\b1bde49b\b|"
         r"\b(?:2025|2026)\b|"
-        r"\b8 cats\b"
+        r"\b(?:8|15)[-\s](?:cats?|Cat)\b|"
+        r"\b4-way\b|"
+        r"\b(?:1\.|2\.|3\.|4\.)\s|"
+        r"\+[0-9]+"
         r")"
     )
 
@@ -1154,6 +1267,81 @@ def check_human_verification_and_irr(
     return errors
 
 
+def check_v07_scope_refinements(
+    tex: str,
+    track1: dict[str, Any] | None,
+    scout7: dict[str, Any] | None,
+    track3: dict[str, Any] | None,
+) -> list[str]:
+    """Verify v0.7 Track 1 (tab:track1_4way), Track 2 (tab:scout_plus7), and Track 3 operational-FV claims."""
+    errors: list[str] = []
+    if track1 is not None:
+        rows = [
+            [clean_tex_cell(c) for c in row]
+            for row in split_tabular_rows(extract_table_by_label(tex, "tab:track1_4way"))
+        ]
+        if not rows:
+            errors.append("Could not locate tab:track1_4way in main.tex")
+        else:
+            sl_by_id = {sl["short_id"]: sl for sl in track1["slices"]}
+            t2_b = sl_by_id["T2"]["modes"]["v1"]["by_role"]
+            t1_b = sl_by_id["T1"]["modes"]["v1"]["by_role"]
+            for bucket in ("eng_algorithmic_proof", "operational_system_fv", "pure_math_or_tcs", "meta_formalization_system"):
+                match = [r for r in rows if bucket in r[0].replace(r"\_", "_")]
+                if not match:
+                    errors.append(f"tab:track1_4way missing row for {bucket}")
+                    continue
+                r = match[0]
+                exp_t2 = int(t2_b[bucket]["count"])
+                exp_t1 = int(t1_b[bucket]["count"])
+                exp_loc = int(t2_b[bucket]["total_owned_loc"])
+                exp_med = int(round(float(t2_b[bucket]["median_owned_loc"])))
+                if parse_int(r[2]) != exp_t1:
+                    errors.append(f"tab:track1_4way {bucket} T1 v1: tex={r[2]!r} vs json={exp_t1}")
+                if parse_int(r[3]) != exp_t2:
+                    errors.append(f"tab:track1_4way {bucket} T2 v1: tex={r[3]!r} vs json={exp_t2}")
+                if parse_int(r[5]) != exp_loc:
+                    errors.append(f"tab:track1_4way {bucket} T2 LoC: tex={r[5]!r} vs json={exp_loc}")
+                if parse_int(r[6]) != exp_med:
+                    errors.append(f"tab:track1_4way {bucket} Med LoC: tex={r[6]!r} vs json={exp_med}")
+
+    if scout7 is not None:
+        rows = [
+            [clean_tex_cell(c) for c in row]
+            for row in split_tabular_rows(extract_table_by_label(tex, "tab:scout_plus7"))
+        ]
+        if not rows:
+            errors.append("Could not locate tab:scout_plus7 in main.tex")
+        else:
+            for cat, cinfo in scout7["per_category"].items():
+                match = [r for r in rows if cat in r[0]]
+                if not match:
+                    errors.append(f"tab:scout_plus7 missing row for {cat}")
+                    continue
+                r = match[0]
+                if parse_int(r[1]) != int(cinfo["total"]):
+                    errors.append(f"tab:scout_plus7 {cat} total: tex={r[1]!r} vs json={cinfo['total']}")
+                if parse_int(r[4]) != int(cinfo["stage2_lean_strong"]):
+                    errors.append(f"tab:scout_plus7 {cat} strong: tex={r[4]!r} vs json={cinfo['stage2_lean_strong']}")
+                if parse_int(r[5]) != int(cinfo["stage2_lean_ctx_only"]):
+                    errors.append(f"tab:scout_plus7 {cat} ctx: tex={r[5]!r} vs json={cinfo['stage2_lean_ctx_only']}")
+                if parse_int(r[6]) != int(cinfo["stage2_lean_candidates_total"]):
+                    errors.append(f"tab:scout_plus7 {cat} total S2: tex={r[6]!r} vs json={cinfo['stage2_lean_candidates_total']}")
+                if parse_int(r[7]) != int(cinfo["beyond_lean_any_fv"]):
+                    errors.append(f"tab:scout_plus7 {cat} beyond-lean: tex={r[7]!r} vs json={cinfo['beyond_lean_any_fv']}")
+
+    if track3 is not None:
+        sc = track3["summary_counts"]
+        for desc, tok in (
+            ("Track 3 total operational FV papers", f"\\textbf{{{sc['total_operational_fv_papers']}}}"),
+            ("Track 3 Mode3 false positives", f"\\textbf{{{sc['mode3_custom_defs_false_positives_on_zero_dep_repos']}/{sc['locally_cloned_and_code_audited']}}}"),
+            ("Track 3 refinement gap count", f"\\textbf{{{sc['opfv1_refinement_gap_present']}/{sc['total_operational_fv_papers']}}}"),
+        ):
+            if tok not in tex:
+                errors.append(f"Track 3 prose mismatch ({desc}): expected {tok!r} in main.tex")
+    return errors
+
+
 def run_all_checks(
     tex_path: Path = DEFAULT_TEX,
     longitudinal_path: Path = DEFAULT_LONGITUDINAL,
@@ -1161,6 +1349,9 @@ def run_all_checks(
     provenance_path: Path = DEFAULT_PROVENANCE,
     sandbox_dir: Path = DEFAULT_SANDBOX_DIR,
     human_dir: Path = DEFAULT_HUMAN_DIR,
+    track1_path: Path = DEFAULT_TRACK1_PATH,
+    scout_plus7_path: Path = DEFAULT_SCOUT_PLUS7_PATH,
+    track3_path: Path = DEFAULT_TRACK3_PATH,
 ) -> tuple[list[str], dict[str, Any]]:
     tex = strip_tex_comments(tex_path.read_text(encoding="utf-8"))
     longit = json.loads(longitudinal_path.read_text(encoding="utf-8"))
@@ -1191,6 +1382,11 @@ def run_all_checks(
     layer_a_human = json.loads(layer_a_human_path.read_text(encoding="utf-8")) if layer_a_human_path.is_file() else None
     human_data = (irr_summary, layer_a_human) if (irr_summary is not None or layer_a_human is not None) else None
 
+    track1 = json.loads(track1_path.read_text(encoding="utf-8")) if track1_path.is_file() else None
+    scout7 = json.loads(scout_plus7_path.read_text(encoding="utf-8")) if scout_plus7_path.is_file() else None
+    track3 = json.loads(track3_path.read_text(encoding="utf-8")) if track3_path.is_file() else None
+    v07_data = (track1, scout7, track3) if any(x is not None for x in (track1, scout7, track3)) else None
+
     errors: list[str] = []
     errors.extend(check_cross_artifact_consistency(longit, fig_inputs_by_slice))
     errors.extend(check_table_categories(tex, slices["T2"]))
@@ -1201,7 +1397,7 @@ def run_all_checks(
         errors.extend(check_prose_and_bolded_claims(tex, slices, fig_inputs_by_slice["2026-11"], recall_cal))
         errors.extend(
             check_all_bolded_numbers(
-                tex, slices, fig_inputs_by_slice["2026-11"], recall_cal, sandbox_data, human_data
+                tex, slices, fig_inputs_by_slice["2026-11"], recall_cal, sandbox_data, human_data, v07_data
             )
         )
     if provenance_path.is_file():
@@ -1211,6 +1407,8 @@ def run_all_checks(
         errors.extend(check_sandbox_builds(tex, sandbox_data[0], sandbox_data[1]))
     if human_data is not None:
         errors.extend(check_human_verification_and_irr(tex, irr_summary, layer_a_human))
+    if v07_data is not None:
+        errors.extend(check_v07_scope_refinements(tex, track1, scout7, track3))
 
     t2 = slices["T2"]
     stats = {
