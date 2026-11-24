@@ -1,0 +1,577 @@
+{
+  "annotators": [
+    "annotator_1"
+  ],
+  "human_vs_llm": {
+    "annotator_1": {
+      "metrics": [
+        {
+          "field": "is_lean_contributed",
+          "scope": "all",
+          "n": 30,
+          "exact_agreement": 1.0,
+          "cohens_kappa": 1.0,
+          "krippendorff_alpha": 1.0,
+          "labels": [
+            "yes",
+            "no"
+          ],
+          "confusion": {
+            "yes": {
+              "yes": 16,
+              "no": 0
+            },
+            "no": {
+              "yes": 0,
+              "no": 14
+            }
+          }
+        },
+        {
+          "field": "lean_usage_status",
+          "scope": "all",
+          "n": 30,
+          "exact_agreement": 1.0,
+          "cohens_kappa": 1.0,
+          "krippendorff_alpha": 1.0,
+          "labels": [
+            "lean_contributed",
+            "lean_citation_or_discussion",
+            "false_positive"
+          ],
+          "confusion": {
+            "lean_contributed": {
+              "lean_contributed": 16,
+              "lean_citation_or_discussion": 0,
+              "false_positive": 0
+            },
+            "lean_citation_or_discussion": {
+              "lean_contributed": 0,
+              "lean_citation_or_discussion": 10,
+              "false_positive": 0
+            },
+            "false_positive": {
+              "lean_contributed": 0,
+              "lean_citation_or_discussion": 0,
+              "false_positive": 4
+            }
+          }
+        },
+        {
+          "field": "paper_domain_role",
+          "scope": "all",
+          "n": 30,
+          "exact_agreement": 0.7,
+          "cohens_kappa": 0.572785,
+          "krippendorff_alpha": 0.56759,
+          "labels": [
+            "engineering_math_proof",
+            "software_or_system_fv",
+            "pure_tcs_or_math",
+            "N/A"
+          ],
+          "confusion": {
+            "engineering_math_proof": {
+              "engineering_math_proof": 1,
+              "software_or_system_fv": 0,
+              "pure_tcs_or_math": 1,
+              "N/A": 0
+            },
+            "software_or_system_fv": {
+              "engineering_math_proof": 1,
+              "software_or_system_fv": 3,
+              "pure_tcs_or_math": 0,
+              "N/A": 0
+            },
+            "pure_tcs_or_math": {
+              "engineering_math_proof": 6,
+              "software_or_system_fv": 1,
+              "pure_tcs_or_math": 3,
+              "N/A": 0
+            },
+            "N/A": {
+              "engineering_math_proof": 0,
+              "software_or_system_fv": 0,
+              "pure_tcs_or_math": 0,
+              "N/A": 14
+            }
+          }
+        },
+        {
+          "field": "authoring_paradigm",
+          "scope": "all",
+          "n": 30,
+          "exact_agreement": 0.8,
+          "cohens_kappa": 0.690189,
+          "krippendorff_alpha": 0.69509,
+          "labels": [
+            "P1_paper_first_posthoc",
+            "P2_lean_first",
+            "P4_speclock_solve_distill",
+            "P0_opaque_or_unspecified",
+            "N/A"
+          ],
+          "confusion": {
+            "P1_paper_first_posthoc": {
+              "P1_paper_first_posthoc": 8,
+              "P2_lean_first": 1,
+              "P4_speclock_solve_distill": 1,
+              "P0_opaque_or_unspecified": 1,
+              "N/A": 0
+            },
+            "P2_lean_first": {
+              "P1_paper_first_posthoc": 0,
+              "P2_lean_first": 0,
+              "P4_speclock_solve_distill": 0,
+              "P0_opaque_or_unspecified": 0,
+              "N/A": 0
+            },
+            "P4_speclock_solve_distill": {
+              "P1_paper_first_posthoc": 2,
+              "P2_lean_first": 0,
+              "P4_speclock_solve_distill": 0,
+              "P0_opaque_or_unspecified": 0,
+              "N/A": 0
+            },
+            "P0_opaque_or_unspecified": {
+              "P1_paper_first_posthoc": 0,
+              "P2_lean_first": 0,
+              "P4_speclock_solve_distill": 1,
+              "P0_opaque_or_unspecified": 2,
+              "N/A": 0
+            },
+            "N/A": {
+              "P1_paper_first_posthoc": 0,
+              "P2_lean_first": 0,
+              "P4_speclock_solve_distill": 0,
+              "P0_opaque_or_unspecified": 0,
+              "N/A": 14
+            }
+          }
+        },
+        {
+          "field": "verification_tier",
+          "scope": "all",
+          "n": 30,
+          "exact_agreement": 0.833333,
+          "cohens_kappa": 0.754098,
+          "krippendorff_alpha": 0.757601,
+          "labels": [
+            "Tier3_Gold",
+            "Tier2_Silver",
+            "Tier1_Bronze",
+            "N/A"
+          ],
+          "confusion": {
+            "Tier3_Gold": {
+              "Tier3_Gold": 6,
+              "Tier2_Silver": 2,
+              "Tier1_Bronze": 0,
+              "N/A": 0
+            },
+            "Tier2_Silver": {
+              "Tier3_Gold": 0,
+              "Tier2_Silver": 1,
+              "Tier1_Bronze": 1,
+              "N/A": 0
+            },
+            "Tier1_Bronze": {
+              "Tier3_Gold": 1,
+              "Tier2_Silver": 1,
+              "Tier1_Bronze": 4,
+              "N/A": 0
+            },
+            "N/A": {
+              "Tier3_Gold": 0,
+              "Tier2_Silver": 0,
+              "Tier1_Bronze": 0,
+              "N/A": 14
+            }
+          }
+        },
+        {
+          "field": "ai_agent_assisted",
+          "scope": "all",
+          "n": 30,
+          "exact_agreement": 0.8,
+          "cohens_kappa": 0.680284,
+          "krippendorff_alpha": 0.685333,
+          "labels": [
+            "explicitly_yes",
+            "explicitly_no",
+            "unclear",
+            "N/A"
+          ],
+          "confusion": {
+            "explicitly_yes": {
+              "explicitly_yes": 8,
+              "explicitly_no": 1,
+              "unclear": 2,
+              "N/A": 0
+            },
+            "explicitly_no": {
+              "explicitly_yes": 0,
+              "explicitly_no": 0,
+              "unclear": 0,
+              "N/A": 0
+            },
+            "unclear": {
+              "explicitly_yes": 3,
+              "explicitly_no": 0,
+              "unclear": 2,
+              "N/A": 0
+            },
+            "N/A": {
+              "explicitly_yes": 0,
+              "explicitly_no": 0,
+              "unclear": 0,
+              "N/A": 14
+            }
+          }
+        },
+        {
+          "field": "paper_domain_role",
+          "scope": "agreed_contributed",
+          "n": 16,
+          "exact_agreement": 0.4375,
+          "cohens_kappa": 0.217391,
+          "krippendorff_alpha": 0.159639,
+          "labels": [
+            "engineering_math_proof",
+            "software_or_system_fv",
+            "pure_tcs_or_math"
+          ],
+          "confusion": {
+            "engineering_math_proof": {
+              "engineering_math_proof": 1,
+              "software_or_system_fv": 0,
+              "pure_tcs_or_math": 1
+            },
+            "software_or_system_fv": {
+              "engineering_math_proof": 1,
+              "software_or_system_fv": 3,
+              "pure_tcs_or_math": 0
+            },
+            "pure_tcs_or_math": {
+              "engineering_math_proof": 6,
+              "software_or_system_fv": 1,
+              "pure_tcs_or_math": 3
+            }
+          }
+        },
+        {
+          "field": "authoring_paradigm",
+          "scope": "agreed_contributed",
+          "n": 16,
+          "exact_agreement": 0.625,
+          "cohens_kappa": 0.278195,
+          "krippendorff_alpha": 0.298113,
+          "labels": [
+            "P1_paper_first_posthoc",
+            "P2_lean_first",
+            "P4_speclock_solve_distill",
+            "P0_opaque_or_unspecified"
+          ],
+          "confusion": {
+            "P1_paper_first_posthoc": {
+              "P1_paper_first_posthoc": 8,
+              "P2_lean_first": 1,
+              "P4_speclock_solve_distill": 1,
+              "P0_opaque_or_unspecified": 1
+            },
+            "P2_lean_first": {
+              "P1_paper_first_posthoc": 0,
+              "P2_lean_first": 0,
+              "P4_speclock_solve_distill": 0,
+              "P0_opaque_or_unspecified": 0
+            },
+            "P4_speclock_solve_distill": {
+              "P1_paper_first_posthoc": 2,
+              "P2_lean_first": 0,
+              "P4_speclock_solve_distill": 0,
+              "P0_opaque_or_unspecified": 0
+            },
+            "P0_opaque_or_unspecified": {
+              "P1_paper_first_posthoc": 0,
+              "P2_lean_first": 0,
+              "P4_speclock_solve_distill": 1,
+              "P0_opaque_or_unspecified": 2
+            }
+          }
+        },
+        {
+          "field": "verification_tier",
+          "scope": "agreed_contributed",
+          "n": 16,
+          "exact_agreement": 0.6875,
+          "cohens_kappa": 0.506173,
+          "krippendorff_alpha": 0.517134,
+          "labels": [
+            "Tier3_Gold",
+            "Tier2_Silver",
+            "Tier1_Bronze"
+          ],
+          "confusion": {
+            "Tier3_Gold": {
+              "Tier3_Gold": 6,
+              "Tier2_Silver": 2,
+              "Tier1_Bronze": 0
+            },
+            "Tier2_Silver": {
+              "Tier3_Gold": 0,
+              "Tier2_Silver": 1,
+              "Tier1_Bronze": 1
+            },
+            "Tier1_Bronze": {
+              "Tier3_Gold": 1,
+              "Tier2_Silver": 1,
+              "Tier1_Bronze": 4
+            }
+          }
+        },
+        {
+          "field": "ai_agent_assisted",
+          "scope": "agreed_contributed",
+          "n": 16,
+          "exact_agreement": 0.625,
+          "cohens_kappa": 0.165217,
+          "krippendorff_alpha": 0.187773,
+          "labels": [
+            "explicitly_yes",
+            "explicitly_no",
+            "unclear"
+          ],
+          "confusion": {
+            "explicitly_yes": {
+              "explicitly_yes": 8,
+              "explicitly_no": 1,
+              "unclear": 2
+            },
+            "explicitly_no": {
+              "explicitly_yes": 0,
+              "explicitly_no": 0,
+              "unclear": 0
+            },
+            "unclear": {
+              "explicitly_yes": 3,
+              "explicitly_no": 0,
+              "unclear": 2
+            }
+          }
+        }
+      ],
+      "disagreements": [
+        {
+          "slice_id": "2026-05",
+          "arxiv_id": "2605.02856",
+          "field": "paper_domain_role",
+          "rater_a": "software_or_system_fv",
+          "rater_b": "engineering_math_proof",
+          "notes": "annotator_1: Step 4 is either Gold or Silver but depends upon which lean repo(s) we review. It's unclear what the authors have done here (seem to be multiple proof repos or zip files etc?)."
+        },
+        {
+          "slice_id": "2026-05",
+          "arxiv_id": "2605.14610",
+          "field": "paper_domain_role",
+          "rater_a": "pure_tcs_or_math",
+          "rater_b": "engineering_math_proof",
+          "notes": ""
+        },
+        {
+          "slice_id": "2026-05",
+          "arxiv_id": "2605.19531",
+          "field": "paper_domain_role",
+          "rater_a": "pure_tcs_or_math",
+          "rater_b": "software_or_system_fv",
+          "notes": ""
+        },
+        {
+          "slice_id": "2026-11",
+          "arxiv_id": "2611.01384",
+          "field": "paper_domain_role",
+          "rater_a": "pure_tcs_or_math",
+          "rater_b": "engineering_math_proof",
+          "notes": ""
+        },
+        {
+          "slice_id": "2026-11",
+          "arxiv_id": "2611.01761",
+          "field": "paper_domain_role",
+          "rater_a": "engineering_math_proof",
+          "rater_b": "pure_tcs_or_math",
+          "notes": ""
+        },
+        {
+          "slice_id": "2026-11",
+          "arxiv_id": "2611.08172",
+          "field": "paper_domain_role",
+          "rater_a": "pure_tcs_or_math",
+          "rater_b": "engineering_math_proof",
+          "notes": "annotator_1: Step 3: I see Solution.lean so I might infer P4 Spec lock but the paper text doesn't make that a certainty (same with other Step 3 P4 labels I've applied so far in this document set - I think)."
+        },
+        {
+          "slice_id": "2026-11",
+          "arxiv_id": "2611.09050",
+          "field": "paper_domain_role",
+          "rater_a": "pure_tcs_or_math",
+          "rater_b": "engineering_math_proof",
+          "notes": "annotator_1: Step 4: I'm unsure if `unsafe/impl_by=5` needs to downgrade from Gold? I don't know what `unsafe/impl_by=5` implies. But otherwise it looks Gold to me?"
+        },
+        {
+          "slice_id": "2026-11",
+          "arxiv_id": "2611.13872",
+          "field": "paper_domain_role",
+          "rater_a": "pure_tcs_or_math",
+          "rater_b": "engineering_math_proof",
+          "notes": "annotator_1: For step 2 again I'm a little uncertain because this is meta. The paper's product is an Engineering tool for Pure Math / Theoretical Computer Science - so how should it be labeled? I may need guidance =D  Again Step 3 doesn't really apply because this is a meta paper (system that generates lean proofs). So there is no one lean proof to evaluate? I feel like this paper should be discarded (and the prior paper Number.. 1. Because they are not making claims or generating lean proofs as a primary output of their paper, it's more meta than that. I wonder if Step 4 then doesn't make sense (because there is no one lean proof they should be making claims about build process of!)"
+        },
+        {
+          "slice_id": "2026-11",
+          "arxiv_id": "2611.23080",
+          "field": "paper_domain_role",
+          "rater_a": "pure_tcs_or_math",
+          "rater_b": "engineering_math_proof",
+          "notes": "annotator_1: Step two is maybe borderline to me - But it feels more like a software systems thing than a specific Engineering solution? But I could go either way! I guess it's an Engineering solution to the general Systems Software problem - so ...  Step 3 I think doesn't really apply here to this paper? Because the lean proof is itself a product of the paper. We could inspect the algorithms to see how THEY do it but it's very meta so I think this paper kind of doesn't apply and maybe we should omit it generally? Thoughts?  Step 4. Because it's meta, there is no lean proof method to grade, it's N/A (which isn't an option you offer"
+        },
+        {
+          "slice_id": "2026-05",
+          "arxiv_id": "2605.02856",
+          "field": "authoring_paradigm",
+          "rater_a": "P1_paper_first_posthoc",
+          "rater_b": "P2_lean_first",
+          "notes": "annotator_1: Step 4 is either Gold or Silver but depends upon which lean repo(s) we review. It's unclear what the authors have done here (seem to be multiple proof repos or zip files etc?)."
+        },
+        {
+          "slice_id": "2026-11",
+          "arxiv_id": "2611.04876",
+          "field": "authoring_paradigm",
+          "rater_a": "P1_paper_first_posthoc",
+          "rater_b": "P4_speclock_solve_distill",
+          "notes": ""
+        },
+        {
+          "slice_id": "2026-11",
+          "arxiv_id": "2611.08172",
+          "field": "authoring_paradigm",
+          "rater_a": "P4_speclock_solve_distill",
+          "rater_b": "P1_paper_first_posthoc",
+          "notes": "annotator_1: Step 3: I see Solution.lean so I might infer P4 Spec lock but the paper text doesn't make that a certainty (same with other Step 3 P4 labels I've applied so far in this document set - I think)."
+        },
+        {
+          "slice_id": "2026-11",
+          "arxiv_id": "2611.09050",
+          "field": "authoring_paradigm",
+          "rater_a": "P4_speclock_solve_distill",
+          "rater_b": "P1_paper_first_posthoc",
+          "notes": "annotator_1: Step 4: I'm unsure if `unsafe/impl_by=5` needs to downgrade from Gold? I don't know what `unsafe/impl_by=5` implies. But otherwise it looks Gold to me?"
+        },
+        {
+          "slice_id": "2026-11",
+          "arxiv_id": "2611.13872",
+          "field": "authoring_paradigm",
+          "rater_a": "P0_opaque_or_unspecified",
+          "rater_b": "P4_speclock_solve_distill",
+          "notes": "annotator_1: For step 2 again I'm a little uncertain because this is meta. The paper's product is an Engineering tool for Pure Math / Theoretical Computer Science - so how should it be labeled? I may need guidance =D  Again Step 3 doesn't really apply because this is a meta paper (system that generates lean proofs). So there is no one lean proof to evaluate? I feel like this paper should be discarded (and the prior paper Number.. 1. Because they are not making claims or generating lean proofs as a primary output of their paper, it's more meta than that. I wonder if Step 4 then doesn't make sense (because there is no one lean proof they should be making claims about build process of!)"
+        },
+        {
+          "slice_id": "2026-11",
+          "arxiv_id": "2611.25599",
+          "field": "authoring_paradigm",
+          "rater_a": "P1_paper_first_posthoc",
+          "rater_b": "P0_opaque_or_unspecified",
+          "notes": ""
+        },
+        {
+          "slice_id": "2026-05",
+          "arxiv_id": "2605.14610",
+          "field": "verification_tier",
+          "rater_a": "Tier3_Gold",
+          "rater_b": "Tier2_Silver",
+          "notes": ""
+        },
+        {
+          "slice_id": "2026-05",
+          "arxiv_id": "2605.16407",
+          "field": "verification_tier",
+          "rater_a": "Tier2_Silver",
+          "rater_b": "Tier1_Bronze",
+          "notes": ""
+        },
+        {
+          "slice_id": "2026-11",
+          "arxiv_id": "2611.02256",
+          "field": "verification_tier",
+          "rater_a": "Tier3_Gold",
+          "rater_b": "Tier2_Silver",
+          "notes": ""
+        },
+        {
+          "slice_id": "2026-11",
+          "arxiv_id": "2611.04876",
+          "field": "verification_tier",
+          "rater_a": "Tier1_Bronze",
+          "rater_b": "Tier3_Gold",
+          "notes": ""
+        },
+        {
+          "slice_id": "2026-11",
+          "arxiv_id": "2611.16690",
+          "field": "verification_tier",
+          "rater_a": "Tier1_Bronze",
+          "rater_b": "Tier2_Silver",
+          "notes": ""
+        },
+        {
+          "slice_id": "2026-05",
+          "arxiv_id": "2605.14610",
+          "field": "ai_agent_assisted",
+          "rater_a": "explicitly_yes",
+          "rater_b": "explicitly_no",
+          "notes": ""
+        },
+        {
+          "slice_id": "2026-05",
+          "arxiv_id": "2605.16407",
+          "field": "ai_agent_assisted",
+          "rater_a": "explicitly_yes",
+          "rater_b": "unclear",
+          "notes": ""
+        },
+        {
+          "slice_id": "2026-11",
+          "arxiv_id": "2611.02256",
+          "field": "ai_agent_assisted",
+          "rater_a": "unclear",
+          "rater_b": "explicitly_yes",
+          "notes": ""
+        },
+        {
+          "slice_id": "2026-11",
+          "arxiv_id": "2611.08172",
+          "field": "ai_agent_assisted",
+          "rater_a": "unclear",
+          "rater_b": "explicitly_yes",
+          "notes": "annotator_1: Step 3: I see Solution.lean so I might infer P4 Spec lock but the paper text doesn't make that a certainty (same with other Step 3 P4 labels I've applied so far in this document set - I think)."
+        },
+        {
+          "slice_id": "2026-11",
+          "arxiv_id": "2611.10810",
+          "field": "ai_agent_assisted",
+          "rater_a": "unclear",
+          "rater_b": "explicitly_yes",
+          "notes": ""
+        },
+        {
+          "slice_id": "2026-11",
+          "arxiv_id": "2611.13585",
+          "field": "ai_agent_assisted",
+          "rater_a": "explicitly_yes",
+          "rater_b": "unclear",
+          "notes": "annotator_1: Step 4 I was unable to do because it's beyond my ability (would have to dig through this large repo by hand). It is tier 2 or Tier 3 after download and inspection. Unlike other analysis assistance on this HTML tool - you didn't unzip and inspect source to aid me in looking for sorry etc?"
+        }
+      ]
+    }
+  },
+  "human_vs_human": {},
+  "multirater_alpha": {}
+}

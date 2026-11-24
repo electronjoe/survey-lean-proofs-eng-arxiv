@@ -1,0 +1,31 @@
+slice_id,arxiv_id,annotator_id,lean_usage_status,paper_domain_role,authoring_paradigm,verification_tier,ai_agent_assisted,notes
+2026-11,2611.23080,annotator_1,lean_contributed,pure_tcs_or_math,P0_opaque_or_unspecified,Tier1_Bronze,explicitly_yes,"Step two is maybe borderline to me - But it feels more like a software systems thing than a specific Engineering solution? But I could go either way! I guess it's an Engineering solution to the general Systems Software problem - so ...  Step 3 I think doesn't really apply here to this paper? Because the lean proof is itself a product of the paper. We could inspect the algorithms to see how THEY do it but it's very meta so I think this paper kind of doesn't apply and maybe we should omit it generally? Thoughts?  Step 4. Because it's meta, there is no lean proof method to grade, it's N/A (which isn't an option you offer"
+2026-11,2611.08318,annotator_1,false_positive,N/A,N/A,N/A,N/A,
+2026-05,2605.19742,annotator_1,lean_citation_or_discussion,N/A,N/A,N/A,N/A,
+2026-11,2611.10031,annotator_1,lean_citation_or_discussion,N/A,N/A,N/A,N/A,
+2026-11,2611.07496,annotator_1,false_positive,N/A,N/A,N/A,N/A,
+2026-11,2611.13872,annotator_1,lean_contributed,pure_tcs_or_math,P0_opaque_or_unspecified,Tier3_Gold,explicitly_yes,"For step 2 again I'm a little uncertain because this is meta. The paper's product is an Engineering tool for Pure Math / Theoretical Computer Science - so how should it be labeled? I may need guidance =D  Again Step 3 doesn't really apply because this is a meta paper (system that generates lean proofs). So there is no one lean proof to evaluate? I feel like this paper should be discarded (and the prior paper Number.. 1. Because they are not making claims or generating lean proofs as a primary output of their paper, it's more meta than that. I wonder if Step 4 then doesn't make sense (because there is no one lean proof they should be making claims about build process of!)"
+2026-11,2611.13585,annotator_1,lean_contributed,pure_tcs_or_math,P1_paper_first_posthoc,Tier1_Bronze,explicitly_yes,Step 4 I was unable to do because it's beyond my ability (would have to dig through this large repo by hand). It is tier 2 or Tier 3 after download and inspection. Unlike other analysis assistance on this HTML tool - you didn't unzip and inspect source to aid me in looking for sorry etc?
+2026-05,2605.11522,annotator_1,lean_citation_or_discussion,N/A,N/A,N/A,N/A,
+2026-05,2605.16407,annotator_1,lean_contributed,software_or_system_fv,P1_paper_first_posthoc,Tier2_Silver,explicitly_yes,
+2026-05,2605.16379,annotator_1,lean_citation_or_discussion,N/A,N/A,N/A,N/A,
+2026-05,2605.14859,annotator_1,false_positive,N/A,N/A,N/A,N/A,
+2026-05,2605.00487,annotator_1,lean_citation_or_discussion,N/A,N/A,N/A,N/A,
+2026-05,2605.10401,annotator_1,lean_citation_or_discussion,N/A,N/A,N/A,N/A,
+2026-11,2611.04876,annotator_1,lean_contributed,engineering_math_proof,P1_paper_first_posthoc,Tier1_Bronze,explicitly_yes,
+2026-05,2605.14610,annotator_1,lean_contributed,pure_tcs_or_math,P1_paper_first_posthoc,Tier3_Gold,explicitly_yes,
+2026-05,2605.19531,annotator_1,lean_contributed,pure_tcs_or_math,P1_paper_first_posthoc,Tier3_Gold,explicitly_yes,
+2026-11,2611.25663,annotator_1,false_positive,N/A,N/A,N/A,N/A,
+2026-05,2605.02856,annotator_1,lean_contributed,software_or_system_fv,P1_paper_first_posthoc,Tier2_Silver,explicitly_yes,Step 4 is either Gold or Silver but depends upon which lean repo(s) we review. It's unclear what the authors have done here (seem to be multiple proof repos or zip files etc?).
+2026-11,2611.16690,annotator_1,lean_contributed,pure_tcs_or_math,P1_paper_first_posthoc,Tier1_Bronze,explicitly_yes,
+2026-11,2611.21256,annotator_1,lean_citation_or_discussion,N/A,N/A,N/A,N/A,
+2026-11,2611.25599,annotator_1,lean_contributed,software_or_system_fv,P1_paper_first_posthoc,Tier1_Bronze,unclear,
+2026-11,2611.09050,annotator_1,lean_contributed,pure_tcs_or_math,P4_speclock_solve_distill,Tier3_Gold,explicitly_yes,Step 4: I'm unsure if `unsafe/impl_by=5` needs to downgrade from Gold? I don't know what `unsafe/impl_by=5` implies. But otherwise it looks Gold to me?
+2026-11,2611.01761,annotator_1,lean_contributed,engineering_math_proof,P1_paper_first_posthoc,Tier3_Gold,explicitly_yes,
+2026-11,2611.08172,annotator_1,lean_contributed,pure_tcs_or_math,P4_speclock_solve_distill,Tier3_Gold,unclear,Step 3: I see Solution.lean so I might infer P4 Spec lock but the paper text doesn't make that a certainty (same with other Step 3 P4 labels I've applied so far in this document set - I think).
+2026-11,2611.02256,annotator_1,lean_contributed,pure_tcs_or_math,P1_paper_first_posthoc,Tier3_Gold,unclear,
+2026-11,2611.02849,annotator_1,lean_citation_or_discussion,N/A,N/A,N/A,N/A,Step 1: I believe this is a TLA+ and not lean related (other than citations?). But the lean repo you have analyzed (microsoft/CCF) confuses me.
+2026-11,2611.20296,annotator_1,lean_citation_or_discussion,N/A,N/A,N/A,N/A,You have attached `k3nfalt/longtails` analysis which I believe belongs to another paper! Error on your prep of this HTML for me?
+2026-11,2611.01384,annotator_1,lean_contributed,pure_tcs_or_math,P0_opaque_or_unspecified,Tier1_Bronze,unclear,
+2026-11,2611.10810,annotator_1,lean_contributed,software_or_system_fv,P1_paper_first_posthoc,Tier3_Gold,unclear,
+2026-11,2611.15035,annotator_1,lean_citation_or_discussion,N/A,N/A,N/A,N/A,
