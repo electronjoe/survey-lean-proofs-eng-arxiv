@@ -94,10 +94,15 @@ To ground pure-engineering theory expansion in concrete engineering-theory resea
 | *Excluded (Bhaskar 2026-11-24)* | ~~`stat.ML`~~ / ~~`cs.LG`~~ (Machine Learning) | 449 / 3,509 | Dropped from the core engineering panel per Bhaskar ("take out `cs.ma` `cs.ml`") to avoid AI/ML dilution; keep out of core panel (optional separate ML sub-study only if needed later). |
 | *Deferred (Conditional)* | `math.PR` (Probability) | 592 | #1 primary home of **queueing theory** and stochastic processes in OR, *but* has high pure-probability share — revisit only after Track 1's sharpened role filter is validated. |
 
-**Resulting 15-Category Core Engineering Panel:**
-- **Original 8:** `cs.DC`, `cs.NI`, `cs.IT`, `eess.SY`, `cs.CR`, `cs.RO`, `eess.SP`, `math.OC`
-- **Approved +7:** `cs.PF`, `eess.IV`, `eess.AS`, `cs.GT`, `cs.CE`, `physics.flu-dyn`, `math.DS`
-- **Undecided / Holdout (+1 optional):** `math.NA`
+**Resulting 15-Category Core Engineering Panel (Whole-Category Census Design):**
+- **Design rule (Bhaskar 2026-11-24):** Always ingest **100% of each selected arXiv category** (zero sub-sampling, zero keyword pre-filtering) within the matched temporal windows, and publish an explicit **Category Inclusion & Exclusion Table** in the Methodology section stating every kept category, every major excluded category/family, and its engineering-applicability justification. This also replaces the Pilot-v1 USC ANRG lab-anchor rationale with an externally grounded disciplinary boundary suitable for archival venues (resolving the scope-hygiene item in [`docs/audit_plan.md`](audit_plan.md)).
+- **Kept — Original 8:** `eess.SY`, `eess.SP`, `cs.IT`, `cs.NI`, `cs.DC`, `cs.CR`, `cs.RO`, `math.OC`
+- **Kept — Approved +7:** `eess.IV`, `eess.AS` *(completing **100% of `eess.*`**)*, `cs.PF`, `cs.GT`, `cs.CE`, `physics.flu-dyn`, `math.DS`
+- **Explicitly Excluded (with Engineering-Applicability Justifications for Methodology Table):**
+  - *Pure Math & Pure TCS* (`math.*` excl. `math.OC`/`math.DS`, `cs.CC`, `cs.DS`, `cs.LO`, `cs.DM`, `cs.FL`, `cs.CG`, plus `math.PR` & tentatively `math.NA`): Predominantly pure math / theoretical CS / pure probability or numerical math rather than applied engineering theory (cross-lists into the 15 kept categories are still captured and role-tagged).
+  - *Operational Software / Hardware / DB Verification* (`cs.PL`, `cs.SE`, `cs.AR`, `cs.DB`, `cs.OS`): Decades-old formal-methods and systems-correctness venues with distinct operational threat models (Track 3), separate from engineering algorithmic/mathematical proof adoption.
+  - *High-Volume Empirical AI / ML / Multi-Agent* (`cs.LG`, `cs.AI`, `cs.CL`, `cs.CV`, `cs.MA`, `stat.ML`): Dominated by empirical ML/LLM papers and theorem-prover benchmarks; excluding preserves 100% whole-category census tractability and avoids AI/ML dilution.
+  - *Non-Engineering Natural/Social Sciences* (`physics.*` excl. `physics.flu-dyn`, `astro-ph`, `hep-*`, `q-bio.*`, `q-fin.*`, `econ.*`, `stat.*`): Outside core ECE, control, networks, robotics, fluid/mechanical, and operations engineering.
 - **Zero-token T2 scout command target:** `data/scout_eng_tier12_2026_11.db` (keeping `data/survey.db` untouched until we confirm yields and decide whether to run full T0/T1/T2 longitudinal backfill).
 
 ### Candidate Expansion Tiers
