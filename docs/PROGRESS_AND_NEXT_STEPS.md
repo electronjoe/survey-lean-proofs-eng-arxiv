@@ -67,8 +67,10 @@
    - [ ] *(Archival peer-review tier)* Add independent second human rater (`annotator_2`) + open-weight LLM judge baseline before EMSE/TOSEM/ITP/NeurIPS submission.
 2. **Extend Sandboxed Dynamic Verification to Medium/Large Repos (`>15k` LoC) & `lake comparator` Replay:**
    - Extend `sandbox/run_sandbox_audit.py` to multi-10k LoC repos (`2611.12680`, `2611.14475`, `2611.26140`, `2611.16781`, `2611.12585`) and `comparator` replay on `P4` repos (`2611.15201`, `2611.14475`, `2611.04876`, `2611.13872`).
-3. **Scoped Machine Learning Theory Arm (`cs.LG` / `stat.ML`):**
-   - Run a 1-week window or stratified 1,000-paper sample of `cs.LG`/`stat.ML` to benchmark ML theory against `math.OC` and `cs.IT`.
+3. **Scope Refinement, Approved +7 Engineering Category Enlargement, & Operational-FV Applicability (Tracker: [`docs/scope_refinement_and_future_actions.md`](scope_refinement_and_future_actions.md)):**
+   - [ ] **Track 1 (Sharper 4-Way Differentiation):** Operationalize and re-code the corpus cleanly across (a) *pure engineering algorithmic proofs*, (b) *software/hardware/DB operational correctness*, (c) *pure math / TCS cross-lists*, and (d) *meta autoformalization frameworks*, addressing the `paper_domain_role` conditional IRR gap ($\kappa = 0.217$) and reporting stratified longitudinal curves.
+   - [ ] **Track 2 (Approved +7 Pure-Engineering Categories — Bhaskar 2026-11-24):** Enlarge from 8 → 15 categories with **Tier 1 + Tier 2 minus `cs.MA`, `stat.ML`/`cs.LG`, and (tentatively) `math.NA`**: **`cs.PF`**, **`eess.IV`**, **`eess.AS`** (completing 100% of `eess.*`), **`cs.GT`**, **`cs.CE`**, **`physics.flu-dyn`**, and **`math.DS`** (~1,353 raw T2 papers; run zero-token OAI-PMH + Stage-2 screen first in `data/scout_eng_tier12_2026_11.db`, followed by off-arXiv TechRxiv/engrXiv/OpenAlex check). *(`cs.MA` and ML `stat.ML`/`cs.LG` excluded per Bhaskar; `math.NA` held undecided/optional.)*
+   - [ ] **Track 3 (Operational SW/HW/DB FV Failure-Mode Applicability):** Pilot-audit our 7 existing `software_or_system_fv` papers (4 locally cloned) to test which Layer-A modes transfer vs. misfire (e.g., `Mode3_CustomDefs` false-positive on zero-dep DBLog `2611.10810`), explicitly bound Table 1's external validity in `main.tex`, and evaluate a separate follow-on study (`cs.AR`/`cs.DB`/`cs.OS`/`cs.SE`) for operational Lean FV.
 4. **Standalone Periodic Runner (`agy -p`):**
    - Wrap the classifier prompt + JSON schema in `src/classify_cli.py` for unattended quarterly longitudinal snapshots (`T3: 2027-02`).
 

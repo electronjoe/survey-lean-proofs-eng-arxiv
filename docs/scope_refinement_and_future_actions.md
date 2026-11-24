@@ -1,0 +1,179 @@
+# Scope Refinement & Future Action Plan: Engineering Algorithmic Proofs vs. Math/TCS vs. Software/Hardware Operational FV
+
+**Created:** 2026-11-24  
+**Source:** Author review feedback (Scott Moeller) on Pilot Paper v0.6 ([`papers/arxiv-empirical/main.tex`](../papers/arxiv-empirical/main.tex)) and empirical results across T0/T1/T2 ($N = 9{,}837$), Phase 2 Layer-A audits ($n = 23$), sandboxed kernel builds ($n = 14$), and blinded Stage-4 IRR ($n = 30$).  
+**Related Docs:** [`docs/research_notes_and_todo.md`](research_notes_and_todo.md) · [`docs/PROGRESS_AND_NEXT_STEPS.md`](PROGRESS_AND_NEXT_STEPS.md) · [`docs/proof-methods.md`](proof-methods.md) · [`docs/human_verification_plan.md`](human_verification_plan.md)
+
+---
+
+## Executive Summary of Feedback & Honest Current-State Assessment
+
+Three closely linked scope questions were raised after reviewing our v0.6 results:
+
+1. **Sharper 3-way (and meta-tool) differentiation:** Separating **(a) pure engineering / algorithmic proofs**, **(b) theoretical math & theoretical CS**, and **(c) software, hardware, database, and protocol operational-correctness verification**.
+   - **Does the current paper already differentiate these sufficiently?** **No — not yet.** Although Stage 4 includes a 3-way `paper_domain_role` label (`engineering_math_proof`, `software_or_system_fv`, `pure_tcs_or_math`), **three concrete weaknesses** remain:
+     1. *Lowest IRR in the entire study:* In our blinded Stage-4 IRR ([`artifacts/human_annotations/stage4_irr_summary.json`](../artifacts/human_annotations/stage4_irr_summary.json)), `paper_domain_role` had the weakest conditional reliability of any field (**7/16 = 43.8%**, Cohen's $\kappa = 0.217$, Krippendorff's $\alpha = 0.160$), with **6/9** discrepancies reflecting a systematic directional boundary blur between `pure_tcs_or_math` and `engineering_math_proof` on mathematically dense `math.OC`/`cs.IT`/`eess.SP` papers, plus `software_or_system_fv` boundary ambiguity on `2605.02856` and `2605.19531`.
+     2. *Pooled headline rates:* The paper's headline adoption curve (`0.00% → 0.15% → 0.95%`, $n = 39$ in T2) pools all three roles together (28 `engineering_math_proof` + 7 `pure_tcs_or_math` + 4 `software_or_system_fv`). Even the "excluding pure-TCS primary categories" row (`36/4,060 = 0.89%`) still retains `pure_tcs_or_math` papers with primary category `cs.DC`/`math.AG` and all `software_or_system_fv` papers.
+     3. *Conflation inside `engineering_math_proof`:* That single bucket currently mixes (i) true **engineering algorithmic proofs** (e.g., optimization convergence/regret, control/system-ID, coding/decoding, numerical PDEs), (ii) **pure-math/quantum/complexity theory** cross-listed into engineering (`2611.08172` AG codes, `2611.09050` Jacobi matrices, `2611.05136` $TC^0$ lattices, `2611.15431` quantum entropies), and (iii) **meta autoformalization / autoresearch frameworks** (`2611.13872` *LongTails*, `2611.23080` *Colombo*, `2611.26272` *Paper2Lean*) whose primary artifact is a proof-generating system rather than an engineering paper proving its own algorithmic claim.
+2. **Expanding into additional pure-engineering domains:** Moving beyond the initial 8-category USC ANRG + `eess.SP`/`math.OC` anchor into broader engineering domains (numerical/computational engineering, remaining `eess.*`, queueing/performance, mechanical/fluid/applied physics, and non-arXiv engineering venues).
+3. **Applicability of our "what goes wrong" taxonomy to software/hardware/database operational correctness:** Testing whether our 12-mode taxonomy ([`docs/proof-methods.md`](proof-methods.md), Table 1 in `main.tex`)—which was derived from 2025–2026 AI mathematical-proof postmortems and audited solely on `engineering_math_proof` repos ($n = 23$, **0 `software_or_system_fv` repos**)—actually transfers to operational software/hardware/DB FV.
+   - **Short answer:** **Only partially.** Layer B/C modes (`sorry`/axioms, metaprogramming, timeouts, opacity) mostly transfer, but **Layer A shifts fundamentally or misfires** (for example, our own dataset already flagged zero-dependency DBLog CDC formalization `2611.10810` with `Mode3_CustomDefs` solely because it does not import Mathlib!), and several **dominant operational-FV failure modes** (the model-to-implementation refinement gap, unrealistic fault/concurrency environment assumptions, safety-without-liveness / trace vacuity, extraction/FFI trust boundaries) are currently absent from Table 1.
+
+---
+
+## Action Track 1: Sharpen the Taxonomy & Stratify Analysis Across Engineering Algorithmic Proofs, Pure Math/TCS, Operational FV, and Meta-Systems
+
+### Problem Statement
+Our current single-axis `paper_domain_role` tries to separate both *disciplinary home* (engineering vs. math/TCS) and *verification object* (mathematical/algorithmic theorem vs. operational software/hardware correctness) in one 3-value label, while leaving meta proof-generation frameworks unseparated.
+
+### Proposed Target Taxonomy (Orthogonal 2-Axis or Crisp 4-Way Classification)
+
+Instead of a single ambiguous label, evaluate splitting Stage 4 into two explicit, auditable axes (which roll up cleanly into 4 primary reporting buckets):
+
+| Primary Reporting Bucket | Operational Inclusion Test | Representative In-Corpus Examples |
+| :--- | :--- | :--- |
+| **1. `eng_algorithmic_proof`** *(Core Target)* | Proves mathematical/analytical properties (convergence, stability, regret, optimality, error bounds, identifiability, capacity/decoding guarantees, physical/dynamical bounds) of a concrete **engineering algorithm, controller, estimator, numerical solver, or physical/cyber-physical system**. | `2611.05243` (AltOMD), `2611.13584` (heavy-ball), `2611.12680` (Wolfe MNP), `2611.10902` (EV charging), `2611.18220` (System ID), `2611.16781` (chain fountain control), `2611.11713` (BP decoding), `2611.12585` (KdV Galerkin), `2611.18455` (particle SDE regression), `2611.22468` ($(s,S)$ inventory) |
+| **2. `operational_system_fv`** *(Software / Hardware / DB / Protocol Correctness)* | Verifies **operational correctness invariants** (safety, liveness, crash consistency, type/memory safety, policy enforcement, RTL/circuit/ISA equivalence, consensus/protocol state machines) of a software system, database, hardware/chip design, VM, or security protocol. | `2611.10810` (DBLog CDC snapshots), `2611.19551` (TrustBound payment epochs), `2611.20298` (RPC type-confusion calculus), `2611.25599` (Tether policy engine), `2605.16407` (LLM trust certs), `2605.19531` (conflict-free universal constructions), `2511.15517` (Beluga consensus) |
+| **3. `pure_math_or_tcs`** *(Theoretical Math / CS Cross-Lists)* | Primary contribution is a theorem in pure mathematics, theoretical CS (complexity classes, CONGEST/graph algorithms, formal logic, combinatorics, algebraic geometry), or foundational quantum information—even when cross-listed into `math.OC`, `cs.DC`, `cs.IT`, or `cs.CR`. | `2611.16690` (Hilbert's 17th), `2611.01761`/`2611.02057`/`2611.02256`/`2611.04561`/`2611.15201` (CONGEST / distributed LTL / sparse MM), `2611.13585` (graphic TSP), `2611.05136` ($TC^0$ lattices), `2611.08172` (AG codes), `2611.09050` (Jacobi matrices), `2611.15431` (quantum entropies) |
+| **4. `meta_formalization_system`** *(AI Proving / Autoformalization Pipelines)* | Primary contribution is an **automated system, benchmark, or agentic pipeline** that generates or verifies Lean proofs across *other* problems/papers rather than formalizing a single original engineering theorem of its own. | `2611.26272` (*Paper2Lean* / `OptPaper-20`), `2611.13872` (*LongTails*), `2611.23080` (*Colombo*) |
+
+*(Optional secondary tag: `verification_object` ∈ `{algorithm_convergence_or_bound, physical_or_control_model, numerical_or_stat_method, operational_sw_hw_db_protocol, abstract_math_or_tcs_theorem, meta_proving_pipeline}` to make boundary decisions mechanically auditable.)*
+
+### Concrete Early Steps to Explore Track 1
+- [ ] **Step 1.1 — Draft a crisp 1-page coding decision tree** with explicit boundary rules for the hard borderlines surfaced in Stage-4 IRR (e.g., *algorithmic optimization/coding theorem vs. pure algebraic/combinatorial math*; *cryptographic math reduction vs. protocol/system operational FV*; *single-paper proof vs. meta-framework*).
+- [ ] **Step 1.2 — Re-code all 47 confirmed Lean papers (`T0 + T1 + T2`, `v_latest`)** in a lightweight spreadsheet/JSON under the 4-way taxonomy by both human authors (`annotator_1` & `annotator_2`) and compute Human–Human and Human–LLM $\kappa$/$\alpha$ (target: raise conditional role $\kappa$ from `0.217` to $\ge 0.75$).
+- [ ] **Step 1.3 — Quantify sensitivity of headline results** via a small analysis script over `artifacts/slices/*/classifications.json`:
+  - Recompute T0 → T1 → T2 adoption rates, median LoC, AI-disclosure rate, paradigm mix, and `Tier3_Gold` share **separately** for each of the 4 buckets (especially strict `eng_algorithmic_proof` excluding `pure_math_or_tcs`, `operational_system_fv`, and `meta_formalization_system`).
+  - Check how much of the 3.10M owned LoC and `P4` count comes from meta-systems (`2611.13872` alone is 697k LoC!) vs. standard single-paper engineering proofs.
+- [ ] **Step 1.4 — Decide manuscript presentation for v0.7 / archival venue:** Present both the broad 8-category empirical census *and* the decomposed 4-way longitudinal breakdown prominently in Abstract, Table 1/2/3/4, and Figures 2 & 5 so reviewers never conflate operational FV or pure TCS with engineering algorithmic proofs.
+
+---
+
+## Action Track 2: Discover & Evaluate Additional Pure-Engineering Domains
+
+### Motivation & Signal Already Visible in Our Corpus
+Our current 8 categories (`cs.DC`, `cs.NI`, `cs.IT`, `eess.SY`, `cs.CR`, `cs.RO`, `eess.SP`, `math.OC`) grew out of USC ANRG's networking/control/comms profile plus `eess.SP` and `math.OC`. Yet our own T2 cross-list table (`tab:inventory`) already revealed Lean engineering papers leaking in from **unscanned primary categories**:
+- **`math.NA` / `cs.NA`** (Numerical Analysis — PDEs, Galerkin methods, quadrature): yielded **2** T2 papers (`2611.12585`, `2611.20131`) purely via cross-listing into `math.OC`.
+- **`stat.ML` / `cs.LG` / `stat.ME`** (Statistical & ML Theory): yielded **3** high-quality papers across T1/T2 (`2611.18455`, `2611.05243`, `2605.14610`).
+- **`quant-ph`** (Quantum Engineering / Error Correction): yielded **2** T2 papers (`2611.23762`, `2611.15431`) via `cs.IT`.
+- **`math.DS`** (Dynamical Systems): yielded `2611.14756`.
+
+Meanwhile, several major **pure engineering** arXiv categories—and off-arXiv engineering preprint/publication venues—have never been directly measured.
+
+### Empirical Category Grounding: USC ECE Faculty & Queueing / OR / Stochastic Network Control (2026-11-24)
+
+To ground pure-engineering theory expansion in concrete engineering-theory research programs (rather than database/hardware/software FV), we queried arXiv's live Atom API (2026-11-24, latest 100 papers per query) for four USC Ming Hsieh ECE faculty suggested by Bhaskar Krishnamachari—**Salman Avestimehr**, **Andreas Molisch**, **Mihailo Jovanovic**, and **Antonio Ortega**—plus keyword profiles for **queueing theory**, **stochastic network control**, **operations research**, and **wireless/communication theory**, and measured exact 19-day Nov 1–19, 2026 submission volumes per candidate category:
+
+| Anchor Researcher / Topic | Top arXiv Categories (Primary / All) | Coverage by Current 8 Categories | Key Missing Categories Exposed |
+| :--- | :--- | :--- | :--- |
+| **Andreas Molisch** (wireless, MIMO, channel modeling, ISAC) | Prim: `eess.SP` (46), `cs.IT` (22), `cs.NI` (21), `eess.SY` (7), `cs.LG` (4) | **~96% already covered** | None urgent (minor: `physics.optics`) |
+| **Salman Avestimehr** (info theory, coded computing, privacy, distributed ML) | Prim: `cs.LG` (52), `cs.CR` (10), `cs.CL` (9), `cs.CV` (8), `cs.AI` (6), `cs.DC` (4); All adds `cs.IT` (9), `cs.CE` (4), `stat.ML` (4) | **Non-LLM theory (`cs.IT`/`cs.DC`/`cs.CR`) already covered**; newer LLM/ML work sits in `cs.LG`/`cs.AI`/`cs.CL` | Use **`stat.ML`** (449 papers) rather than `cs.LG` (3,509) to capture theoretical ML without empirical LLM flood |
+| **Antonio Ortega** (graph SP, image/video/audio SP, sampling) | Prim: **`eess.IV` (28)**, `cs.LG` (24), `eess.SP` (16), **`eess.AS` (5)**, `cs.CV` (5), `cs.SD` (3) | Partial (`eess.SP` only; misses **33% of primary papers**) | **`eess.IV`** (175) & **`eess.AS`** (134) — completes 100% of `eess.*`! |
+| **Mihailo Jovanovic** (control theory, flow control, PDE dynamics, optimization) | Prim: `math.OC` (32), **`physics.flu-dyn` (23)**, `cs.LG` (5), `eess.SY` (2); All adds `eess.SY` (34), **`math.DS` (21)**, `math.AP` (9), **`cs.MA` (5)** | Partial (`math.OC`/`eess.SY`; misses fluid/PDE control & dynamical systems) | **`physics.flu-dyn`** (278), **`math.DS`** (360), **`cs.MA`** (230) |
+| **Queueing Theory** | Prim: **`math.PR` (18)**, `cs.NI` (14), `cs.DC` (8), `math.OC` (8), **`cs.PF` (8)**, `eess.SY` (5), **`cs.GT` (4)** | Partial (misses `cs.PF`, `math.PR`, `cs.GT`) | **`cs.PF`** (94 — ultra-clean!), **`cs.GT`** (166), **`math.PR`** (592, needs pure-math filter) |
+| **Stochastic Network Control** | Prim: `cs.NI` (25), `cs.DC` (9), `eess.SY` (7), `cs.IT` (7), `math.OC` (6), `eess.SP` (4); All adds **`cs.PF` (5)**, **`stat.ML` (4)** | **Largely covered** except `cs.PF` & `stat.ML` | **`cs.PF`** (94), **`stat.ML`** (449) |
+| **Operations Research (OR)** | Prim: `math.OC` (24), `cs.AI` (16), `cs.LG` (11), `cs.DS` (6), `eess.SY` (3), `stat.ML` (3), **`cs.GT` (3)** | Strong via `math.OC` | **`cs.GT`** (166), **`cs.PF`** (94), **`math.PR`** (592) |
+
+#### Approved Engineering Enlargement Plan (Bhaskar Krishnamachari Decision, 2026-11-24)
+
+> *"I suggest tier 2 is ok but just take out cs.ma cs.ml"* — followed by *"Would probably take out math.na.. not sure"* — Bhaskar Krishnamachari (2026-11-24; removing `cs.MA` and the ML category `stat.ML` / `cs.LG`, and tentatively excluding `math.NA` to keep the expanded panel strictly focused on pure-engineering theory rather than AI/ML, pure numerical math, or DB/HW FV).
+
+**Approved 7-category core expansion** (expanding the core panel from **8 → 15 categories**, including **100% of arXiv's `eess.*` archive**; **~1,353 raw Nov 1–19, 2026 papers** before cross-list deduplication against our existing 4,104-paper T2 corpus; `math.NA` [446 papers] held as a separate undecided/optional scout):
+
+| Status | Category | Nov 1–19, 2026 Vol. | Engineering-Theory Rationale |
+| :--- | :--- | ---: | :--- |
+| **Approved (Tier 1)** | **`cs.PF`** (Performance) | 94 | Dedicated arXiv home for **queueing theory, scheduling, and stochastic network performance bounds**; tiny volume, virtually zero DB/HW FV noise. |
+| **Approved (Tier 1)** | **`eess.IV`** (Image & Video Processing) | 175 | #1 primary home for Antonio Ortega's signal-processing/inverse-problems work; completes `eess.*` alongside `eess.AS`. |
+| **Approved (Tier 1)** | **`eess.AS`** (Audio & Speech Processing) | 134 | Completes **100% of arXiv's `eess.*` archive** (`eess.SY`, `eess.SP`, `eess.IV`, `eess.AS`). |
+| **Approved (Tier 1)** | **`cs.GT`** (CS & Game Theory) | 166 | Core home for **operations research** and **theoretical networking** (mechanism design, auctions, congestion games, network routing/pricing, strategic queueing). |
+| **Approved (Tier 1)** | **`cs.CE`** (Computational Engineering, Finance & Science) | 146 | Explicitly engineering-scoped computational modeling & simulation; very low volume. |
+| **Approved (Tier 2)** | **`physics.flu-dyn`** (Fluid Dynamics) | 278 | Direct home of Mihailo Jovanovic's flow-control / aerodynamic / PDE-dynamics engineering work; clean test of mechanical/aerospace engineering adoption. |
+| **Approved (Tier 2)** | **`math.DS`** (Dynamical Systems) | 360 | Core companion to `eess.SY`/`math.OC` for nonlinear stability & control (already produced `2611.14756`; requires Track 1 `eng_algorithmic_proof` vs. `pure_math_or_tcs` role separation). |
+| *Tentatively Excluded / Undecided (Bhaskar 2026-11-24)* | `math.NA` (Numerical Analysis; aliases `cs.NA`) | 446 | Bhaskar: *"Would probably take out math.na.. not sure."* Already yielded 2 T2 Lean papers (`2611.12585`, `2611.20131`) via `math.OC` cross-lists, but leans heavily toward applied/numerical math; hold out of core panel (optionally check yield separately if desired). |
+| *Excluded (Bhaskar 2026-11-24)* | ~~`cs.MA`~~ (Multiagent Systems) | 230 | Dropped per Bhaskar to avoid multi-agent LLM/AI overlap. |
+| *Excluded (Bhaskar 2026-11-24)* | ~~`stat.ML`~~ / ~~`cs.LG`~~ (Machine Learning) | 449 / 3,509 | Dropped from the core engineering panel per Bhaskar ("take out `cs.ma` `cs.ml`") to avoid AI/ML dilution; keep out of core panel (optional separate ML sub-study only if needed later). |
+| *Deferred (Conditional)* | `math.PR` (Probability) | 592 | #1 primary home of **queueing theory** and stochastic processes in OR, *but* has high pure-probability share — revisit only after Track 1's sharpened role filter is validated. |
+
+**Resulting 15-Category Core Engineering Panel:**
+- **Original 8:** `cs.DC`, `cs.NI`, `cs.IT`, `eess.SY`, `cs.CR`, `cs.RO`, `eess.SP`, `math.OC`
+- **Approved +7:** `cs.PF`, `eess.IV`, `eess.AS`, `cs.GT`, `cs.CE`, `physics.flu-dyn`, `math.DS`
+- **Undecided / Holdout (+1 optional):** `math.NA`
+- **Zero-token T2 scout command target:** `data/scout_eng_tier12_2026_11.db` (keeping `data/survey.db` untouched until we confirm yields and decide whether to run full T0/T1/T2 longitudinal backfill).
+
+### Candidate Expansion Tiers
+
+| Tier | Candidate Categories / Sources | Engineering Relevance & Expected Signal | Role Alignment |
+| :--- | :--- | :--- | :--- |
+| **Tier A: Direct Pure-Engineering arXiv Expansion** *(High priority for algorithmic/analytical engineering)* | `eess.IV` (Image & Video Processing), `eess.AS` (Audio & Speech Processing), `cs.CE` (Computational Engineering, Finance & Science), `math.NA` / `cs.NA` (Numerical Analysis), `cs.PF` (Performance / Queueing), `cs.GT` (Game Theory / Mechanism Design) | Completes 100% of arXiv's `eess.*` archive; captures inverse problems, FEM/PDE solvers, queueing/scheduling bounds, and algorithmic mechanism design. Moderate volume; directly targets `eng_algorithmic_proof`. | Primarily **`eng_algorithmic_proof`** |
+| **Tier B: Physical, Mechanical, Fluid & Bio-Engineering arXiv Categories** | `physics.flu-dyn` (Fluid Dynamics), `physics.comp-ph` (Computational Physics), `physics.app-ph` (Applied Physics), `physics.class-ph` (Classical Mechanics/EM), `physics.ins-det` (Instrumentation), `cond-mat.mtrl-sci` (Materials Science), `q-bio.QM` (Quantitative Bioengineering) | Tests whether Lean adoption has crossed into mechanical, aerospace, civil, fluid, device, and bio-engineering—or whether it remains confined to math-adjacent ECE/OR/numerical analysis (strengthening or qualifying our disciplinary bifurcation finding). | Primarily **`eng_algorithmic_proof`** (or informative **0% null result**) |
+| **Tier C: Scoped ML / Statistical Theory Arm** *(Already on roadmap)* | `stat.ML`, `cs.LG`, `stat.ME` (1-week or stratified 1,000-paper sample due to volume) | High-volume benchmark against `math.OC` and `cs.IT` for convergence, regret, and generalization proofs. | **`eng_algorithmic_proof`** / applied theory |
+| **Tier D: Operational Software / Hardware / DB Contrast Arm** *(Kept strictly separate for Track 3)* | `cs.AR` (Hardware Architecture), `cs.DB` (Databases), `cs.OS` (Operating Systems), `cs.SE` (Software Engineering), `cs.PL` (Programming Languages) | Deliberately measures the growing Lean **hardware/DB/software operational-correctness** ecosystem without contaminating the pure-engineering algorithmic-proof adoption rate. | Primarily **`operational_system_fv`** |
+| **Tier E: Off-arXiv Engineering Venues** *(arXiv-selection-bias check)* | **TechRxiv** (IEEE), **engrXiv** (Engineering Archive), **OpenAlex / Semantic Scholar** full-text/metadata queries across IEEE Trans., ASME, Automatica, SIAM J. Control/Optim/Num. Anal. | Many mechanical, civil, chemical, power, and traditional IEEE engineering researchers do not post to arXiv; a lightweight off-arXiv probe tests whether zero adoption in e.g. `cs.RO`/`eess.SP`/ME is real or an arXiv sampling artifact. | Cross-check across all buckets |
+
+### Concrete Early Steps to Explore Track 2
+- [ ] **Step 2.1 — Zero-token OAI-PMH volume & metadata scout (T2 window `2026-11-01`–`2026-11-19`):** Run `src/ingest_arxiv.py --source oai` into a separate scratch DB (`data/scout_engineering_2026_11.db`) across Tiers A, B, and D (without touching `data/survey.db`) to measure:
+  1. Exact 19-day paper counts per category (budgeting full-text crawl cost),
+  2. Cross-list overlap with our existing 8 categories,
+  3. Zero-token metadata Lean hits (`has_lean_strong` / `has_lean_contextual`) as an immediate lower-bound prevalence indicator (recalling full-text yields $\sim 3.4\times$ metadata recall).
+- [ ] **Step 2.2 — Full-text Stage-2 screen on the highest-signal Tier A/B categories** (e.g., `eess.IV`, `eess.AS`, `cs.CE`, `math.NA`, `cs.PF`, `physics.flu-dyn`, `physics.comp-ph`) using `src/fetch_and_screen.py` on the scratch DB—zero LLM tokens—to see the true Stage-2 candidate rate before committing any Stage-4 LLM budget.
+- [ ] **Step 2.3 — Run a 1-hour off-arXiv bibliometric probe** on OpenAlex / TechRxiv / engrXiv for `("Lean 4" OR "Mathlib")` in 2025–2026 engineering records to assess whether non-arXiv engineering adoption warrants a footnote, limitation, or secondary dataset.
+- [ ] **Step 2.4 — Decide inclusion boundary:** Based on Step 2.1–2.2 yields, either (a) expand the core engineering longitudinal panel for v0.7/archival submission (e.g., all 4 `eess.*` + `math.OC` + `math.NA` + `cs.CE` + `cs.PF` + `cs.IT` + `cs.NI` + `cs.RO`), or (b) keep the 8-category longitudinal core intact and report the Tier A/B scout as a dedicated *Generalization Beyond the 8-Category Anchor* section.
+
+---
+
+## Action Track 3: Re-Evaluate "What Often Goes Wrong" for Hardware, Database, and Software Operational-Correctness Works
+
+### Why Our Current Failure-Mode Findings Do Not Naively Apply
+Our current 12-mode failure taxonomy (`Table 1` in `main.tex`, [`docs/proof-methods.md`](proof-methods.md)) was synthesized from **2025–2026 AI mathematical-proof postmortems** (*Navier–Stokes* `2610.08144`, `openai/math`, Anthropic FLT, DeepMind conjecture swarms, *Lean Atlas*, *Axle*), and our Phase-2 Layer-A empirical audit ($n = 23$) intentionally inspected **only `engineering_math_proof` repositories (0 `software_or_system_fv` repositories)**.
+
+Applying that math-proof taxonomy uncritically to Lean **hardware, database, systems, and protocol operational-correctness** papers risks both **false-positive critiques** and **blind spots to the actual ways systems FV goes wrong**:
+
+#### Preliminary Applicability Matrix (Current Table 1 vs. Operational SW/HW/DB FV)
+
+| Current Mode / Dimension | Applicability to Operational SW/HW/DB FV | Key Difference / Mismatch |
+| :--- | :--- | :--- |
+| **#1 Statement / Proof Drift (NL $\leftrightarrow$ Lean)** | **Shifts (Two-Hop Risk)** | Prose $\leftrightarrow$ Lean spec drift still happens, but the *dominant* risk is **Formal Model $\leftrightarrow$ Actual Implementation/RTL/SQL** drift (the classic refinement/conformance gap). A paper can have 0 prose-to-Lean drift while verifying a toy state machine disconnected from production code. |
+| **#2 Scope Downgrading** | **Applies (Different Manifestation)** | Instead of "omitted asymptotic complexity or special-case constant," scope downgrading appears as **simplified fault/concurrency models** (e.g., crash-free, synchronous rounds, single-writer, fixed small bit-widths/buffers, or safety-only without liveness). |
+| **#3 Definition Smuggling / Loss of Mathlib Anchoring** | **Poor Fit / False Positives** | Operational systems/HW/DB specs *must* define custom state machines, ISAs, schemas, and transition relations—there is no upstream Mathlib object for DBLog CDC or a custom PCIe/RISC-V cache. **Direct in-corpus proof:** `2611.10810` (DBLog CDC, zero external deps, 507 theorems, clean 11.2s Docker build) was statically flagged `Mode3_CustomDefs` purely for not anchoring to Mathlib! |
+| **#4 Junk Values & Vacuity** | **Applies Strongly (Domain-Specific Form)** | Beyond `1/0 = 0` and `Nat` subtraction, the critical systems traps are **vacuous transition systems** (deadlocked/unreachable states satisfying safety invariants trivially), **overly strong environment/fairness hypotheses**, and **bitvector wraparound / integer overflow** mismatches. |
+| **#5 Reward Hacking / Notation Hijacking** | **Applies** (when AI provers are used) | Same risk if AI agents touch both spec and proof; additionally, agents can weaken system transition relations or strengthen preconditions so bad states become unreachable. |
+| **#6 `sorry`, Custom `axiom`, `native_decide`** | **Applies (With TCB Nuance)** | `sorry`/custom `axiom` remain critical (corroborated in our sandbox on `2605.16407`, which postulated 11 custom axioms). However, hardware/circuit FV heavily relies on SAT/SMT/bitvector reflection (`bv_decide` vs. `native_decide`), where TCB trade-offs differ from continuous math proofs. |
+| **#7 Metaprog. / Side Effects & #8 Kernel Bugs** | **Applies Directly** | Untrusted Lean repos pose identical execution and kernel-soundness risks. |
+| **#9 Foundational Drift (DTT vs. ZFC)** | **Not Applicable** | Universe polymorphism / ZFC strength is practically irrelevant to database, software, or hardware operational correctness. |
+| **#10 Proof Bloat / Tech Debt** | **Applies (Different Baseline)** | Systems/HW FV naturally has larger structural boilerplate (instruction tables, ASTs, case explosions), and **maintenance fragility under code/RTL evolution** matters much more than "recoverable mathematical elegance." |
+| **#11 Checker Timeouts & #12 Process Opacity** | **Applies Directly** | Missing repos (`2611.25599`, `2611.20298`), unpinned toolchains, and slow CI builds are equally damaging (arguably worse if artifacts cannot be re-verified alongside software releases). |
+| **Authoring Paradigms (`P1`–`P4`)** | **Poor Fit** | Systems/HW FV rarely uses math blueprints (`P3`: `LeanArchitect`/`Verso`) or competition-style `Challenge.lean` locks (`P4`). Its native workflows are: **(a) Abstract design-model verification** (TLA+-style in Lean, e.g., `2611.10810`, `2611.19551`), **(b) Verified extraction / executable Lean DSLs**, **(c) Translation validation / verified lifting** (C/LLVM/Verilog/SQL → Lean), and **(d) Stepwise refinement**. |
+
+#### Operational-FV Failure Modes Currently *Missing* from Our Taxonomy
+1. **Model-to-Implementation / Refinement Gap:** The Lean artifact verifies an idealized paper model with no verified refinement, code extraction, or automated conformance testing against the deployed database, software, or RTL.
+2. **Unrealistic Environment / Fault / Adversary Model:** Hidden assumptions (atomic I/O, reliable/FIFO delivery, bounded faults, no memory reordering, single-threaded execution) that contradict the real system's operating environment.
+3. **Trace / Reachability Vacuity (Safety Without Liveness):** Proving invariant preservation without proving that non-trivial valid executions actually exist and make progress (analogous to, but richer than, math non-vacuity witnesses).
+4. **Extraction, FFI, and Lowering TCB Gaps:** Trusting unverified Lean-to-C/Rust/Verilog extraction, runtime FFI shims, or compiler passes when claiming end-to-end operational guarantees.
+5. **Evolution & Maintenance Debt:** AI-generated monolithic proofs that shatter when the underlying software/hardware specification undergoes routine engineering revisions.
+
+### Concrete Early Steps to Explore Track 3
+- [ ] **Step 3.1 — Pilot-audit our existing 7 `software_or_system_fv` papers (`T0 + T1 + T2`)** — especially the 4 locally inspected/cloned artifacts (`2611.10810` DBLog CDC, `2611.19551` TrustBound, `2605.16407` LLM trust certs, `2605.19531` PODC conflict-freedom) plus prose-only inspection of `2611.20298`, `2611.25599`, `2511.15517`:
+  - Classify each by **systems-FV paradigm** (abstract design model vs. executable/extracted code vs. refinement vs. translation validation).
+  - Test every Table 1 failure mode plus the 5 operational-FV failure modes above on each repo to document empirically where Table 1 misfires (like `Mode3_CustomDefs` on `2611.10810`) and what *actually* goes wrong.
+- [ ] **Step 3.2 — Pull a small targeted sample (`n = 10–15`) of Lean hardware/DB/systems papers** from the Track 2 Tier-D scout (`cs.AR`, `cs.DB`, `cs.OS`, `cs.SE`, `cs.PL` in Nov 2026) to ensure our observations aren't biased by only seeing `cs.CR`/`cs.DC` cross-lists.
+- [ ] **Step 3.3 — Explicitly bound external validity in the current paper (`main.tex`):**
+  - Add a crisp **Scope Boundary / External Validity** note in Section 2 and Section 9 (`Threats to Validity`) stating that Table 1's Layer-A taxonomy and Phase-2 semantic-fidelity findings characterize **mathematical and algorithmic proof formalizations**, and do *not* automatically generalize to **operational software, hardware, and database verification** (where Mathlib-anchoring is often inapplicable and model-to-implementation refinement dominates).
+  - Fix the `Mode3_CustomDefs` static rubric in `workflows/classify_candidates.py` so standalone `software_or_system_fv` repos without Mathlib are not spuriously penalized as "definition smuggling."
+- [ ] **Step 3.4 — Decide whether Operational Lean FV is a companion section or a dedicated follow-on paper:** Given that AI-assisted Lean for hardware (RTL/ISA), databases, and systems software appears to be an emerging subfield with fundamentally different threat models and workflows, evaluate splitting it into a focused follow-on study (e.g., *Lean as an Operational Formal-Methods Engine in Systems, Databases, and Hardware*) rather than diluting the engineering-algorithmic-proof paper.
+
+---
+
+## Suggested Ideal Sequencing (Dependencies & Cost-Benefit Order)
+
+The three tracks have clear dependencies: **Track 1's sharpened 4-way taxonomy must be locked *before* we spend Stage-4 LLM classification budget on the +7 new engineering categories**, otherwise we would classify new `math.DS`/`cs.GT`/`cs.CE` papers under the old ambiguous 3-way `paper_domain_role` ($\kappa = 0.217$) and have to re-classify them later. Meanwhile, **zero-token ingestion + full-text Stage-2 screening of the +7 categories can run immediately in parallel** because Stage 1–2 are strictly deterministic and independent of the Stage-4 taxonomy.
+
+| Phase | Step | Cost / Effort | Dependency & Why This Order Is Optimal |
+| :---: | :--- | :--- | :--- |
+| **Phase A** *(Immediate — Run in Parallel)* | **A1. Lock Track 1 4-way rubric + sensitivity breakdown on existing 47 papers** (Steps 1.1–1.3) | Low (1–2 hrs; 0 LLM tokens) | Immediately reveals the exact *strict pure-engineering algorithmic proof* adoption curve vs. `pure_math_or_tcs` / `operational_system_fv` / `meta_formalization_system` on our existing T0–T2 corpus and fixes the IRR bottleneck before any new LLM classification. |
+| | **A2. Zero-token T2 OAI-PMH ingest + Stage-2 full-text screen of the +7 approved categories** (`cs.PF`, `eess.IV`, `eess.AS`, `cs.GT`, `cs.CE`, `physics.flu-dyn`, `math.DS` in `data/scout_eng_tier12_2026_11.db`; optionally log `math.NA` metadata separately to inform Bhaskar's call) | Low (~12–15 min crawl; **0 LLM tokens**; ~1,353 raw papers) | Immediately tells us the exact Stage-2 Lean candidate count and yield per new engineering domain (especially whether `eess.IV`/`eess.AS`/`physics.flu-dyn`/`cs.PF` are 0% null results or active adoption pockets!) without touching `data/survey.db`. |
+| **Phase B** *(Fast Diagnostic — Before Any Full-Panel Re-Run)* | **B1. Pilot-audit our 4 locally cloned `software_or_system_fv` repos** (`2611.10810`, `2611.19551`, `2605.16407`, `2605.19531`) + fix `Mode3_CustomDefs` rubric (Step 3.1 + 3.3) | Low (1–2 hrs) | Empirically validates where Table 1's math-proof failure modes apply vs. misfire on operational SW/HW/DB FV, giving us concrete citations for the paper's Scope Boundary section *before* we decide whether operational FV stays in-scope or spins out. |
+| | **B2. Dual-rater (`annotator_1` + `annotator_2`) validation of Track 1 4-way taxonomy** on the existing 47 papers (Step 1.2) | Low (30–45 min per author) | Confirms Human–Human $\kappa \ge 0.75$ on the sharpened 4-way role boundary (and optionally doubles as the second-rater archival IRR upgrade). |
+| **Phase C** *(Decision Gate & Execution)* | **C1. Stage-3 static profiling + Stage-4 classification (using the *new* 4-way rubric) on the +7 T2 candidates**, plus **T0/T1 longitudinal backfill** of the +7 categories if T2 yields justify a full 15-category longitudinal panel | Moderate (small LLM batch for T2 candidates; ~45 min zero-token OAI+Stage-2 for T0/T1 backfill) | Only runs LLM Stage 4 *once*, under the validated 4-way rubric, and only pays T0/T1 backfill cost once T2 yields confirm the value of a 15-category panel (which also gives a clean "100% of `eess.*` + engineering theory" narrative for archival venues!). |
+| | **C2. Stage-5 Layer-A audits + compact Docker kernel builds** on any newly discovered `eng_algorithmic_proof` repos from the +7 categories | Moderate (targeted to new confirmed repos only) | Keeps Phase-2 semantic auditing and dynamic kernel verification 100% exhaustive over the enlarged engineering cohort. |
+| **Phase D** *(Paper v0.7 / Archival Promotion vs. Spin-Off)* | **D1. Promote `main.tex` to v0.7** with: (i) 15-category engineering panel, (ii) 4-way stratified curves/tables, (iii) explicit Operational-FV external-validity boundary (Track 3), and (iv) optional off-arXiv TechRxiv/engrXiv/OpenAlex check (Step 2.3) | Moderate (manuscript + `check_paper_numbers.py` update) | Produces a dramatically cleaner, narrower-claimed, wider-measured engineering paper aligned with both Scott's and Bhaskar's original vision. |
+| | **D2. Separate Track 3 follow-on decision (`cs.AR`/`cs.DB`/`cs.OS`/`cs.SE`)** | Deferred / Optional | Keeps the operational SW/HW/DB Lean FV investigation cleanly isolated so it neither delays v0.7 nor dilutes the pure-engineering algorithmic-proof paper. |

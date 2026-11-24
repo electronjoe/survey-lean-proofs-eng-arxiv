@@ -34,3 +34,19 @@ Key points from discussion:
   2. `software_or_system_fv` (Lean verifies an implementation, VM, policy engine, protocol, or hardware/chip design)
   3. `pure_tcs_or_math` (pure theoretical CS / combinatorics / algebra cross-listed into engineering)
 - [ ] **Phase 2 Deep Layer-A Audit:** Once scoped to `engineering_math_proof` Lean papers, run adversarial LaTeX ↔ Lean statement comparison (`proof-methods.md` Layer A Modes #1–#4) on the confirmed engineering-theory papers.
+
+---
+
+## Feedback from Scott Moeller (2026-11-24 — Post-v0.6 Review)
+
+*(Full analysis, applicability matrix, and early exploration steps archived in [`docs/scope_refinement_and_future_actions.md`](scope_refinement_and_future_actions.md).)*
+
+Key points to explore for v0.7 / archival submission or follow-on work:
+1. **Sharper differentiation of three distinct populations (plus meta-systems):** Separate **(a) pure engineering / algorithmic proofs** (original target), **(b) theoretical math / CS cross-lists**, and **(c) software, hardware, database, and protocol operational-correctness proofs** (plus **meta autoformalization frameworks** like *Paper2Lean*/*LongTails*/*Colombo*), addressing the conditional IRR blur on `paper_domain_role` ($\kappa = 0.217$) and reporting stratified longitudinal curves rather than only pooled rates.
+2. **Pull in additional pure-engineering domains:** Scout unscanned engineering arXiv categories (`eess.IV`, `eess.AS`, `cs.CE`, `math.NA`/`cs.NA`, `cs.PF`, `cs.GT`, `physics.flu-dyn`, `physics.comp-ph`) and off-arXiv engineering venues (TechRxiv, engrXiv, OpenAlex) to test adoption beyond the 8-category anchor.
+3. **Re-examine failure-mode applicability for operational SW/HW/DB correctness works:** Audit whether our math-proof-derived "what often goes wrong" findings (Table 1, especially Layer A Modes #1–#4 such as `Mode3_CustomDefs` / Mathlib anchoring) transfer to hardware/database/software operational-correctness papers—or whether those works have a fundamentally different failure-mode profile (model-to-implementation refinement gap, fault/environment assumptions, trace/liveness vacuity, extraction TCB) warranting an explicit scope boundary and/or a separate study.
+
+### Category Enlargement Decision (Bhaskar Krishnamachari, 2026-11-24)
+- Grounded in USC Ming Hsieh ECE lab domains (Salman Avestimehr, Andreas Molisch, Mihailo Jovanovic, Antonio Ortega) plus **queueing theory**, **stochastic network control**, and **operations research**.
+- **Approved +7 pure-engineering categories** (Tier 1 + Tier 2 minus `cs.MA`, ML [`stat.ML`/`cs.LG`], and tentatively `math.NA`): **`cs.PF`**, **`eess.IV`**, **`eess.AS`** (completing 100% of `eess.*`), **`cs.GT`**, **`cs.CE`**, **`physics.flu-dyn`**, and **`math.DS`** (~1,353 raw Nov 1–19, 2026 papers before deduplication; core panel grows **8 → 15 categories**).
+- **Excluded / Undecided:** `cs.MA`, `stat.ML`, `cs.LG` excluded per Bhaskar (avoiding AI/ML and multi-agent dilution); `math.NA` tentatively excluded/undecided (*"Would probably take out math.na.. not sure"*); `math.PR` deferred pending Track 1 pure-math vs. engineering-theory filter validation.
