@@ -139,16 +139,30 @@ class TestLeanCommentStrippingAndScanner:
             "axiom unproved_bound : True\n"
             "theorem t1 : True := by sorry\n"
             "theorem t2 : 2 + 2 = 4 := by native_decide\n"
+            "theorem t3 : True := by admit\n"
             "unsafe def badImpl : Nat := 0\n"
             "#print axioms t2\n"
         )
         counts = scan_lean_source(code)
         assert counts["custom_axiom"] == 1
         assert counts["sorry"] == 1
+        assert counts["admit"] == 1
         assert counts["native_decide"] == 1
         assert counts["unsafe_or_impl_by"] == 1
         assert counts["print_axioms"] == 1
-        assert counts["theorem_decl"] == 2
+        assert counts["theorem_decl"] == 3
+
+    def test_scan_lean_source_ignores_admit_constructor_identifier(self) -> None:
+        # Regression test from Phase B1 audit of 2611.19551 (TrustBound formal/Closure.lean)
+        code = (
+            "inductive Step : Nat -> Nat -> Prop where\n"
+            "  | admit (s : Nat) (cap : Nat) : Step s cap\n"
+            "theorem t : True := by\n"
+            "  cases h with\n"
+            "  | admit cap op => trivial\n"
+        )
+        counts = scan_lean_source(code)
+        assert counts.get("admit", 0) == 0
 
 
 class TestLatexScanner:

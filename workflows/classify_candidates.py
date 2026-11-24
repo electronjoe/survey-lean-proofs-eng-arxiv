@@ -29,6 +29,28 @@ LEAN_SCHEMA = {
             "type": "string",
             "enum": ["engineering_math_proof", "software_or_system_fv", "pure_tcs_or_math", "N/A"],
         },
+        "role_4way": {
+            "type": "string",
+            "enum": [
+                "eng_algorithmic_proof",
+                "operational_system_fv",
+                "pure_math_or_tcs",
+                "meta_formalization_system",
+                "N/A",
+            ],
+        },
+        "verification_object": {
+            "type": "string",
+            "enum": [
+                "algorithm_convergence_or_bound",
+                "physical_or_control_model",
+                "numerical_or_stat_method",
+                "operational_sw_hw_db_protocol",
+                "abstract_math_or_tcs_theorem",
+                "meta_proving_pipeline",
+                "N/A",
+            ],
+        },
         "other_formal_tools_contributed": {
             "type": "array",
             "items": {"type": "string"},
@@ -75,6 +97,8 @@ LEAN_SCHEMA = {
         "arxiv_id",
         "lean_usage_status",
         "paper_domain_role",
+        "role_4way",
+        "verification_object",
         "other_formal_tools_contributed",
         "authoring_paradigm",
         "paradigm_confidence",
@@ -134,16 +158,21 @@ Verification Tiers (observed from static evidence only):
 
 Static Risk Flags (include any clearly evidenced):
 - Mode2_ScopeDowngrade (only partial/supporting lemma or simplified model formalized vs headline claim)
-- Mode3_CustomDefs (heavy custom definitions with little/no Mathlib anchoring)
-- Mode6_SorryOrAxiomOrNativeDecide (`sorry`, `admit`, custom `axiom`, or `native_decide` present)
+- Mode3_CustomDefs (ONLY for `eng_algorithmic_proof` or `pure_math_or_tcs` papers: heavy custom mathematical definitions with little/no Mathlib anchoring where standard Mathlib objects exist. Do NOT apply `Mode3_CustomDefs` to `operational_system_fv` repos solely for lacking Mathlib imports — state machines, DB/CDC logs, protocols, ISAs, and type calculi legitimately use zero-dependency Lean 4 core!)
+- Mode6_SorryOrAxiomOrNativeDecide (`sorry`, tactic `admit` [NOT inductive constructors named `admit`], custom `axiom`, or `native_decide` present)
 - Mode7_MetaprogOrUnsafe (`unsafe`, `implemented_by`, `#eval`, or notation/macro overrides)
-- Mode10_ProofBloat (very large/verbose Lean codebase relative to claims, e.g., >20k LoC)
+- Mode10_ProofBloat (very large/verbose Lean codebase relative to claims, e.g., >20k LoC; note for `operational_system_fv`, large multi-module protocol mechanizations with clean structure/audits are expected baseline boilerplate rather than bloat)
 - Mode12_ProcessOpacity (no public repo, missing toolchain/CI, or unclear verification scope)
+- OpFV_RefinementGap (for `operational_system_fv` only: abstract Lean model verified without mechanized refinement or verified extraction to the real software/DB/hardware implementation)
+- OpFV_SafetyOnlyNoLiveness (for `operational_system_fv` only: safety/invariant preservation proved without mechanized liveness/progress)
 
-Domain Role (`paper_domain_role`, for `lean_contributed` papers; use `N/A` otherwise):
-- engineering_math_proof: Lean verifies/supplements mathematical theorems in engineering or applied theory (control, system ID, comms/coding/info theory, signal processing, optimization, networks, statistical/ML theory, cryptographic math).
-- software_or_system_fv: Lean verifies an implementation, policy engine, VM, database/CDC pipeline, distributed system protocol, or chip/hardware design.
-- pure_tcs_or_math: Pure theoretical CS (complexity, graph/CONGEST algorithms) or pure math cross-listed into engineering.
+4-Way Domain Role (`role_4way`, for `lean_contributed` papers; use `N/A` otherwise — apply strictly in sequential Gate 1 -> Gate 4 order per `docs/track1_4way_coding_rubric.md`):
+- Gate 1 -> `meta_formalization_system`: Primary contribution is an automated proving/autoformalization system, agentic pipeline, or benchmark generating/verifying Lean proofs across *other* problems/papers (e.g., Paper2Lean, LongTails, Colombo).
+- Gate 2 -> `operational_system_fv`: Primary verified object is operational correctness (safety, liveness, crash consistency, type/memory safety, policy enforcement, RTL/ISA equivalence, consensus/protocol state machines) of a software system, DB/CDC pipeline, hardware/chip design, VM, or security protocol.
+- Gate 3 -> `eng_algorithmic_proof`: Proves mathematical/analytical properties (convergence, stability, regret, optimality, error bounds, identifiability, capacity/decoding guarantees, physical/dynamical/PDE bounds) of a concrete engineering algorithm, controller, estimator, numerical solver, or physical/cyber-physical system.
+- Gate 4 -> `pure_math_or_tcs`: Primary contribution is a theorem in pure mathematics (algebra, geometry, number theory, ergodic theory, operator algebras), theoretical CS (complexity classes, CONGEST/graph algorithms, combinatorics, formal logic), or foundational quantum information.
+
+Also populate `verification_object` (`algorithm_convergence_or_bound`, `physical_or_control_model`, `numerical_or_stat_method`, `operational_sw_hw_db_protocol`, `abstract_math_or_tcs_theorem`, `meta_proving_pipeline`, or `N/A`) and legacy `paper_domain_role` (mapping `eng_algorithmic_proof` or `meta_formalization_system` -> `engineering_math_proof`, `operational_system_fv` -> `software_or_system_fv`, `pure_math_or_tcs` -> `pure_tcs_or_math`, `N/A` -> `N/A`).
 
 Be conservative: if a paper only cites Lean/Mathlib in related work or evaluates LLM theorem proving benchmarks on Lean without formalizing its own paper's theorems, classify as `lean_citation_or_discussion`. If "Lean" means lean manufacturing/architecture/body mass, classify as `false_positive`."""
 

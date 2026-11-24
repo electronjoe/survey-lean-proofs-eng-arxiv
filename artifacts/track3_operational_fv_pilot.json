@@ -1,0 +1,425 @@
+{
+  "schema_version": "1.0",
+  "audit_phase": "Phase B1 (Track 3 Pilot Audit)",
+  "audited_at": "2026-11-24",
+  "scope": "Exhaustive pilot audit of all 7 operational_system_fv (legacy software_or_system_fv) Lean 4 papers across T0+T1+T2 (4 locally cloned repositories inspected at file:line level; 3 prose-only papers lacking accessible public Lean artifacts).",
+  "summary_counts": {
+    "total_operational_fv_papers": 7,
+    "locally_cloned_and_code_audited": 4,
+    "prose_only_missing_public_repo": 3,
+    "sandbox_docker_ootb_passed": 3,
+    "sandbox_docker_not_attempted_over_15k_loc": 1,
+    "math_paradigms_p2_p3_p4_used": 0,
+    "mode3_custom_defs_false_positives_on_zero_dep_repos": 2,
+    "static_admit_regex_false_positives": 1,
+    "inconsistent_custom_axiom_discovered": 1,
+    "opfv1_refinement_gap_present": 7,
+    "opfv2_unproved_env_or_oracle_assumptions_present": 7,
+    "opfv3_no_mechanized_lean_liveness": 4,
+    "opfv4_extraction_monitor_or_cross_kernel_tcb_gap": 4,
+    "opfv5_evolution_or_maintenance_debt_observed": 3
+  },
+  "systems_fv_paradigm_distribution": {
+    "abstract_design_model": ["2611.10810", "2611.19551", "2605.19531", "2611.20298", "2511.15517"],
+    "executable_embedded_policy_dsl": ["2611.25599"],
+    "certificate_schema_oracle_wrapper": ["2605.16407"]
+  },
+  "papers": [
+    {
+      "arxiv_id": "2611.10810",
+      "slice_id": "2026-11",
+      "v1_contemporaneous": true,
+      "primary_category": "cs.DB",
+      "title": "Extending DBLog-Based Incremental Snapshots to Handle Orphan Rows in CDC Pipelines",
+      "inspection_mode": "cloned_code_audit",
+      "repo": "zenodo/24035424",
+      "local_dir": "data/repos/zenodo__24035424/DBLog_Orphan_Absence_artifact-1.0/DBLog_Orphan_Absence_artifact-1.0",
+      "lean_toolchain": "leanprover/lean4:v4.32.2",
+      "lean_files": 24,
+      "owned_loc": 10862,
+      "mathlib_imports": 0,
+      "sandbox_build": {
+        "attempted": true,
+        "status": "pass",
+        "wall_time_sec": 11.15,
+        "theorems_checked": 507,
+        "axiom_clean": true,
+        "nonstandard_axioms": []
+      },
+      "systems_fv_paradigm": "abstract_design_model",
+      "multi_tool_stack": ["Isabelle/HOL (primary source of truth, 7 theories)", "Lean 4 (independent dual-kernel port, 6/7 theories, 0 external deps)", "TLA+ / TLC (3 bounded operational/liveness connector models)"],
+      "legacy_static_flags": ["Mode3_CustomDefs"],
+      "table1_misfires": [
+        {
+          "mode": "Mode3_CustomDefs",
+          "verdict": "FALSE_POSITIVE",
+          "evidence": "Zero external dependencies (0 Mathlib imports) is an intentional TCB-minimization design choice (`lean/README.md:382-395`) for CDC log/chunk replay contracts where no Mathlib abstraction exists; 507/507 theorems compile axiom-clean in 11.15s in `--network=none` Docker and cross-check an independent Isabelle/HOL session."
+        }
+      ],
+      "table1_transfers": [
+        "Layer B (Mode #6): zero sorry, zero custom axioms, zero native_decide; 475 #print axioms lines + Docker audit confirm pure {propext, Classical.choice, Quot.sound}.",
+        "Mode #4 (non-vacuity): strong explicit witness modules (`OrphanAbsence/Witnesses.lean`, `CompositionWitnesses.lean`, `InterleavedWitnesses.lean`, `RedeliveryWitnesses.lean`, `TilingWitnesses.lean`, `RestartWitnesses.lean`)."
+      ],
+      "operational_fv_modes": {
+        "opfv1_refinement_gap": {
+          "present": true,
+          "severity": "disclosed_structural",
+          "evidence": "Verifies abstract contract locales only; no verified refinement or executable extraction to Debezium, Flink CDC, or PostgreSQL (`README.md:117`)."
+        },
+        "opfv2_env_fault_assumptions": {
+          "present": true,
+          "severity": "disclosed_explicit",
+          "evidence": "Explicitly unmodeled assumptions (`README.md:77-79,117`): per-key in-order transport, PostgreSQL transaction visibility, select/span completeness, sink key-order equality, concurrent sink writers, >1 connector restart, crash inside a close block, and pre-pass committed offsets."
+        },
+        "opfv3_safety_without_liveness_or_vacuity": {
+          "present": true,
+          "severity": "moderate_mitigated_by_tla",
+          "evidence": "Isabelle/HOL and Lean 4 theories prove safety and self-stabilization convergence but omit operational liveness (`README.md:79`); liveness is delegated to bounded TLA+ TLC checks at 2 keys (`tla/README.md:48-51,88`), where 4 review-discovered model limitations remain unfixed (`tla/README.md:121-143`)."
+        },
+        "opfv4_extraction_tcb_or_cross_kernel_gap": {
+          "present": true,
+          "severity": "minor_disclosed",
+          "evidence": "No code extraction; cross-kernel scope gap where `Orphan_Absence_Range_Merge.thy` (Flink CDC buffered range merge) is Isabelle-only and omitted from the Lean 4 port (`README.md:12,83`; `lean/README.md:373-376`)."
+        },
+        "opfv5_evolution_maintenance_debt": {
+          "present": true,
+          "severity": "moderate",
+          "evidence": "Maintaining three parallel specifications (Isabelle/HOL + Lean 4 + 3 TLA+ modules) already exhibits drift: `Range_Merge` unported to Lean, 4 unfixed TLA+ review limitations (`tla/README.md:123-125`), and 6 TLA+ configs not re-run on the final module (`tla/README.md:94-97`)."
+        }
+      }
+    },
+    {
+      "arxiv_id": "2611.19551",
+      "slice_id": "2026-11",
+      "v1_contemporaneous": true,
+      "primary_category": "cs.CR",
+      "title": "TrustBound: Mechanized Completeness for Payment Epochs Initiated by AI Agents",
+      "inspection_mode": "cloned_code_audit",
+      "repo": "tokencraftdata/trustbound",
+      "commit_sha": "f2121df317570b83a8e1eaa3151d5a7f1edb2b5f",
+      "local_dir": "data/repos/tokencraftdata__trustbound",
+      "lean_toolchain": "leanprover/lean4:v4.19.0",
+      "lean_files": 16,
+      "owned_loc": 1332,
+      "mathlib_imports": 0,
+      "sandbox_build": {
+        "attempted": true,
+        "status": "pass",
+        "wall_time_sec": 15.78,
+        "theorems_checked": 68,
+        "axiom_clean": true,
+        "nonstandard_axioms": []
+      },
+      "systems_fv_paradigm": "abstract_design_model",
+      "multi_tool_stack": ["Lean 4 Std-only transition models (Admission.lean, StripeGate.lean, Closure.lean, etc.)", "Premise-removal mutation testing (8 rejected mutations)", "Experimental Python service (`stripe_gate.py`) with 6 projected Lean-checked traces (64 transitions) + 864 bounded Python schedules"],
+      "legacy_static_flags": [],
+      "table1_misfires": [
+        {
+          "mode": "StaticScanner_AdmitRegex",
+          "verdict": "FALSE_POSITIVE",
+          "evidence": "`src/patterns.py` counted `admit: 4` on `formal/Closure.lean:111,124,144,215` where `admit` is an inductive transition constructor (`| admit (s : Epoch) (cap : Nat) ...`), not the Lean `admit` tactic. Dynamically verified 0 `sorryAx` and 68/68 axiom-clean in Docker; fixed in `src/patterns.py`."
+        },
+        {
+          "mode": "AuthoringParadigms_P1_P4",
+          "verdict": "POOR_FIT",
+          "evidence": "Uses premise-removal mutation checking (8 rejected mutations) and trace-projection checking of a real Python service (`research/service_refinement/check_traces.py`) — operational-FV practices absent from P1–P4."
+        }
+      ],
+      "table1_transfers": [
+        "Layer B (Mode #6): 68/68 audited theorems depend only on {propext, Quot.sound, Classical.choice} in 15.78s Docker build.",
+        "Mode #4 (non-vacuity): strong explicit counterexecution and bypass witnesses (`formal/Admission.lean:170-195`: `fence_without_drain`, `bypass_breaks_coverage`) plus 8 premise-removal mutations."
+      ],
+      "operational_fv_modes": {
+        "opfv1_refinement_gap": {
+          "present": true,
+          "severity": "disclosed_structural",
+          "evidence": "Explicitly disclosed (`README.md:73-74`, `formal/Admission.lean:7,197-223`, `research/service_refinement/README.md:129-134`): `refinement_transfers_coverage` states a generic simulation premise, but the Python `StripeGate` implementation is NOT proved to refine the Lean model for all executions; only 6 chosen sequential histories (64 transitions) are projected and checked."
+        },
+        "opfv2_env_fault_assumptions": {
+          "present": true,
+          "severity": "disclosed_explicit",
+          "evidence": "Five explicit unproved deployment obligations A1–A5 (`docs/CLAIMS.md:26-36`, `README.md:65-69`): request-only agents without host/credential access, total mediation of all effect routes, non-rollback durable journal, truthful provider outcomes and irreversible discharge, faithful journal export."
+        },
+        "opfv3_safety_without_liveness_or_vacuity": {
+          "present": true,
+          "severity": "disclosed_safety_only",
+          "evidence": "Explicitly proves safety/identity coverage only (`formal/Admission.lean:11`: 'No signatures, persistence implementation, amount bounds or liveness are proved'; `README.md:137-138`: 'The bounded checks do not establish conflict-free reconciliation or progress for all executions'). Trace vacuity is well-mitigated via `fence_without_drain` and `bypass_breaks_coverage`."
+        },
+        "opfv4_extraction_tcb_or_cross_kernel_gap": {
+          "present": true,
+          "severity": "moderate_disclosed",
+          "evidence": "No verified extraction; trace-projection script (`src/trustbound/trace_evidence.py`, `research/service_refinement/check_traces.py`) and complete event capture remain trusted instrumentation (`research/service_refinement/README.md:19-20,131-132`)."
+        },
+        "opfv5_evolution_maintenance_debt": {
+          "present": true,
+          "severity": "minor_observed",
+          "evidence": "Observed trace-projection churn: a single Nov 13 gate-guard change shifted the 6 projected Lean histories from 66 to 64 transitions (`research/service_refinement/README.md:15-18`)."
+        }
+      }
+    },
+    {
+      "arxiv_id": "2605.16407",
+      "slice_id": "2026-05",
+      "v1_contemporaneous": true,
+      "primary_category": "cs.AI",
+      "title": "Formally Verifiable Generative AI via Dependent Type Theory: Proof-Carrying Certificates for Embeddings, Retrieval, Reasoning, and Agent Actions",
+      "inspection_mode": "cloned_code_audit",
+      "repo": "gkoomullil/proof-carrying-certificates",
+      "commit_sha": "8e5b718c4fc1a53678f1da9a94499df3b311d065",
+      "local_dir": "data/repos/gkoomullil__proof-carrying-certificates/lean_artifact",
+      "lean_toolchain": "leanprover/lean4:v4.30.0-rc2",
+      "lean_files": 25,
+      "owned_loc": 2381,
+      "mathlib_imports": 43,
+      "sandbox_build": {
+        "attempted": true,
+        "status": "pass",
+        "wall_time_sec": 24.5,
+        "theorems_checked": 139,
+        "axiom_clean": false,
+        "nonstandard_axioms": [
+          "VerifiedEmbedding.ParaphraseOracle",
+          "VerifiedEmbedding.cauchy_schwarz_sq",
+          "VerifiedEmbedding.innerProd_sub",
+          "VerifiedEmbedding.Grounding.DecompositionOracle",
+          "VerifiedEmbedding.Grounding.SignedSupportOracle",
+          "VerifiedEmbedding.Concentration.HoeffdingInequality",
+          "VerifiedEmbedding.Concentration.IIDSamples",
+          "VerifiedEmbedding.CoT.StepConfidenceOracle",
+          "VerifiedEmbedding.ProofOfSampling.DecodeAlgorithmDeterministic",
+          "VerifiedEmbedding.ProofOfSampling.Hash",
+          "VerifiedEmbedding.ProofOfSampling.HashCollisionResistant"
+        ]
+      },
+      "systems_fv_paradigm": "certificate_schema_oracle_wrapper",
+      "multi_tool_stack": ["Lean 4 + Mathlib dependent certificate schemas (22 certificate structs)", "Disconnected Python empirical pilot scripts (`pilot_a/`, `pilot_b/`, `pilot_c/`)"],
+      "legacy_static_flags": ["Mode2_ScopeDowngrade", "Mode6_SorryOrAxiomOrNativeDecide"],
+      "table1_misfires": [],
+      "table1_transfers": [
+        "CRITICAL — Mode #6 (Inconsistent Custom Axiom): 18 total `axiom` declarations (8 ML/crypto oracles + 7 worked-example axioms + 3 unproved mathematical theorems postulated despite importing Mathlib: `cauchy_schwarz_sq` [`Certificate.lean:26`], `innerProd_sub` [`Certificate.lean:31`], `HoeffdingInequality` [`Concentration.lean:44`]). Moreover, `innerProd_sub` is PROVABLY INCONSISTENT (derives `False`): `Embedding := List Rat` (`Basic.lean:17`) and `innerProd` (`Basic.lean:29-32`) + `List.zipWith` truncate to min length, so `innerProd_sub [1] [] [1]` asserts `0 = 1`!",
+        "CRITICAL — Mode #1/#4 (Tautological Struct-Projection 'Theorems' & Docstring Drift): >12 headline theorems are 1-line projections of assumed proof fields inside certificate structs with no operational transition semantics — `cegar_terminates := cegar.p_within_budget` (`CEGAR.lean:55-58`), `step_post_holds`/`step_executor_matches`/`trajectory_all_steps_safe` (`Action.lean:80-102`), `all_oracles_in_scope` (`ScopeOfValidity.lean:39-43`), `hoeffding_confidence_interval := cert.h_hoeffding_valid` (`Concentration.lean:117-120`), all 5 theorems in `Additional.lean:44,67,115,136,210`, and `MCR.lean:19-20,78-82` where `MCRCertificate` omits the `p_maximal_over_all` maximality field promised by its own docstring so `residue_is_fixed_point` reduces to `cert.p_residue_cert`."
+      ],
+      "operational_fv_modes": {
+        "opfv1_refinement_gap": {
+          "present": true,
+          "severity": "severe",
+          "evidence": "The Lean artifact defines standalone certificate records and toy examples; the Python empirical pilots (`pilot_a/b/c`) never emit or kernel-check Lean certificates (`lean_artifact/README.txt:218-221` defers production wrapper deployment to future work)."
+        },
+        "opfv2_env_fault_assumptions": {
+          "present": true,
+          "severity": "severe",
+          "evidence": "8 uninterpreted ML/crypto/distributional oracles (`ParaphraseOracle`, `SignedSupportOracle`, `DecompositionOracle`, `StepConfidenceOracle`, `IIDSamples`, `Hash`, `HashCollisionResistant`, `DecodeAlgorithmDeterministic`) plus 7 axioms asserting that toy examples satisfy them (`Example.lean:47`, `GroundingExample.lean:95-98`, `CoTExample.lean:34`, `ConcentrationExample.lean:44-48`, `ProofOfSamplingExample.lean:27`)."
+        },
+        "opfv3_safety_without_liveness_or_vacuity": {
+          "present": true,
+          "severity": "severe",
+          "evidence": "`CEGAR.lean:30-58` models no repair loop or progress condition; `cegar_terminates` merely projects the assumed `history.length ≤ budget` field, and `HoeffdingInequality` (`Concentration.lean:44-45`) is an uninterpreted `Prop` unconnected to `2*exp(-2*k*eps^2)`."
+        },
+        "opfv4_extraction_tcb_or_cross_kernel_gap": {
+          "present": false,
+          "severity": "none_no_extraction",
+          "evidence": "No executable extraction or runtime monitor lowering exists."
+        },
+        "opfv5_evolution_maintenance_debt": {
+          "present": false,
+          "severity": "low",
+          "evidence": "Compact 2,381-LoC schema prototype, though docstring-to-code drift already appears in `MCR.lean:19-20` vs. lines 37–49."
+        }
+      }
+    },
+    {
+      "arxiv_id": "2605.19531",
+      "slice_id": "2026-05",
+      "v1_contemporaneous": false,
+      "retroactive_v2_formalization": true,
+      "primary_category": "cs.DC",
+      "title": "Conflict-Freedom as a Progress Condition",
+      "inspection_mode": "cloned_code_audit",
+      "repo": "zenodo/23098310",
+      "local_dir": "data/repos/zenodo__23098310/CFLean-v1.0/Gtoyos-CFLean-e270a0e",
+      "lean_toolchain": "leanprover/lean4:v4.34.0",
+      "lean_files": 101,
+      "owned_loc": 34257,
+      "mathlib_imports": 0,
+      "sandbox_build": {
+        "attempted": false,
+        "status": "not_attempted_over_15k_loc",
+        "notes": "Excluded from compact (<15k LoC) sandbox cohort due to 34,257 LoC size; includes repo-native exhaustive `CFLeanProof/KernelAudit.lean` enforcing all modules imported and zero non-standard axioms across all 2,061 theorems."
+      },
+      "systems_fv_paradigm": "abstract_design_model",
+      "multi_tool_stack": ["Pure Lean 4 Std-only concurrent distributed algorithms mechanization (101 files, 0 external deps)", "Repo-native exhaustive `KernelAudit.lean` metaprogram", "Executable deterministic machine semantics (`ForwardUniversal.lean`, `ForwardHelping.lean`, `DecidableTraceCompute.lean`)"],
+      "legacy_static_flags": ["Mode3_CustomDefs", "Mode10_ProofBloat"],
+      "table1_misfires": [
+        {
+          "mode": "Mode3_CustomDefs",
+          "verdict": "FALSE_POSITIVE",
+          "evidence": "Zero Mathlib imports (`README.md:52-53`) is a deliberate zero-dependency design choice for shared-memory distributed concurrency (linearizability, traces, GCA, universal constructions), where Mathlib provides no domain abstractions; `CFLeanProof/Paper.lean` restates every definition verbatim next to PODC '26 prose."
+        },
+        {
+          "mode": "Mode10_ProofBloat",
+          "verdict": "BASELINE_MISMATCH",
+          "evidence": "Flagged solely by the >20k LoC heuristic (34,257 LoC), yet spans 101 clean, modular files proving every numbered PODC theorem (safety on infinite histories + liveness + Algorithm 2 GCA + deterministic machines + counterexamples + contention/helping/adopt witnesses) with zero unimported files enforced by `CFLeanProof/KernelAudit.lean:14-43`."
+        }
+      ],
+      "table1_transfers": [
+        "Layer B (Mode #6): zero sorry, zero custom axioms, zero native_decide; enforced programmatically across all `ConflictFreedom.*` declarations by `CFLeanProof/KernelAudit.lean:32-41`.",
+        "Mode #4 (non-vacuity): exemplary concrete execution witnesses (`ContentionWitness.lean`, `HelpingWitness.lean`, `AdoptWitness.lean`, `LinearizationWitness.lean`, `Counterexamples.lean`) and explicit guard against `n = 0` vacuity (`MODEL.md:56-58`)."
+      ],
+      "operational_fv_modes": {
+        "opfv1_refinement_gap": {
+          "present": true,
+          "severity": "disclosed_primitive_refinement",
+          "evidence": "Models Algorithms 1–3 as deterministic abstract machines (`ForwardUniversal.lean`, `ForwardHelping.lean`), but assumes atomic snapshot objects rather than proving refinement to wait-free read/write registers (`README.md:102-107`, `MODEL.md:12-14`), and has no verified systems-language (C/Rust/Java) implementation."
+        },
+        "opfv2_env_fault_assumptions": {
+          "present": true,
+          "severity": "disclosed_explicit",
+          "evidence": "Two explicit model assumptions (`README.md:97-107`): (1) each local trace computation is one atomic step; (2) Algorithm 2 executes over atomic wait-free snapshot objects (Afek et al. 1993 read/write implementation cited, not formalized)."
+        },
+        "opfv3_safety_without_liveness_or_vacuity": {
+          "present": false,
+          "severity": "exemplary_counterexample",
+          "evidence": "Proves BOTH safety (infinite-history linearizability, Thm 4.3 / Lem 6.1) AND liveness (weak conflict-freedom / conflict-freedom progress, Thm 4.4 / Lem 6.2; conflict forgetting/resolution solo extensions, Thm 7.2 / 7.4), backed by non-vacuous contention/helping/adopt witnesses (`README.md:88-93`)."
+        },
+        "opfv4_extraction_tcb_or_cross_kernel_gap": {
+          "present": false,
+          "severity": "none",
+          "evidence": "No external extraction or FFI; decidable local trace computations are evaluated inside Lean's kernel (`README.md:90-93`)."
+        },
+        "opfv5_evolution_maintenance_debt": {
+          "present": true,
+          "severity": "moderate_scale",
+          "evidence": "34,257 LoC across 101 Lean files for one PODC paper illustrates the substantial specification/proof maintenance surface of full safety+liveness concurrency mechanizations."
+        }
+      }
+    },
+    {
+      "arxiv_id": "2611.20298",
+      "slice_id": "2026-11",
+      "v1_contemporaneous": true,
+      "primary_category": "cs.PL",
+      "title": "Type-Confusion Security",
+      "inspection_mode": "prose_only_no_public_repo",
+      "repo": null,
+      "systems_fv_paradigm": "abstract_design_model",
+      "legacy_static_flags": ["Mode12_ProcessOpacity"],
+      "table1_misfires": [],
+      "table1_transfers": [
+        "Layer C (Mode #12 Process Opacity): claims a complete Lean 4 + Mathlib mechanization with `make axiom` (`AxiomsAudit.lean`) and Codex/Claude Code translation from pen-and-paper proofs, but provides no public repository URL ('will submit the Lean artifact for evaluation')."
+      ],
+      "operational_fv_modes": {
+        "opfv1_refinement_gap": {
+          "present": true,
+          "severity": "structural_core_calculus",
+          "evidence": "Formalizes an idealized information-flow core calculus (real–ideal emulation) rather than a deployed smart-contract VM or MCP runtime."
+        },
+        "opfv2_env_fault_assumptions": {
+          "present": true,
+          "severity": "unverifiable_prose_only",
+          "evidence": "Runtime check boundary and attacker model cannot be audited without the missing Lean artifact."
+        },
+        "opfv3_safety_without_liveness_or_vacuity": {
+          "present": false,
+          "severity": "not_applicable_security_emulation",
+          "evidence": "Security property is real–ideal emulation / hyperproperty; artifact unavailable to check non-vacuity examples claimed in prose."
+        },
+        "opfv4_extraction_tcb_or_cross_kernel_gap": {
+          "present": false,
+          "severity": "none_claimed",
+          "evidence": "Core-calculus proof only; no verified compiler/runtime extraction claimed."
+        },
+        "opfv5_evolution_maintenance_debt": {
+          "present": false,
+          "severity": "unobservable",
+          "evidence": "Artifact unavailable."
+        }
+      }
+    },
+    {
+      "arxiv_id": "2611.25599",
+      "slice_id": "2026-11",
+      "v1_contemporaneous": true,
+      "primary_category": "cs.CR",
+      "title": "Tether: Verified Stateful Policy Engine for System-Level Monitoring of Agents",
+      "inspection_mode": "prose_only_no_public_repo",
+      "repo": null,
+      "systems_fv_paradigm": "executable_embedded_policy_dsl",
+      "legacy_static_flags": ["Mode12_ProcessOpacity"],
+      "table1_misfires": [],
+      "table1_transfers": [
+        "Layer C (Mode #12 Process Opacity): claims a Lean 4 EDSL policy language and verified global safety invariants (Table 1) for coding-agent monitoring, but provides no public Lean repository."
+      ],
+      "operational_fv_modes": {
+        "opfv1_refinement_gap": {
+          "present": true,
+          "severity": "high_syscall_abstraction_gap",
+          "evidence": "Proves invariants over an abstract action trace (`Table 1`), while runtime enforcement depends on inferring abstract action semantics from Linux system calls inside an ephemeral sandbox."
+        },
+        "opfv2_env_fault_assumptions": {
+          "present": true,
+          "severity": "high",
+          "evidence": "Security rests on unverified sandbox isolation, completeness of syscall-to-abstract-action inference, and in-scope attack coverage."
+        },
+        "opfv3_safety_without_liveness_or_vacuity": {
+          "present": true,
+          "severity": "safety_only_empirical_utility",
+          "evidence": "Proves safety invariants over abstract traces only (Table 1); usability/non-vacuity (not blocking benign agent tasks) is evaluated only empirically (<5% benign FP rate), not formally."
+        },
+        "opfv4_extraction_tcb_or_cross_kernel_gap": {
+          "present": true,
+          "severity": "high",
+          "evidence": "Compiles Lean 4 EDSL policies into a runtime monitor over sandboxed OS syscalls; the lowering, runtime engine, and syscall-inference front-end sit inside the unverified TCB."
+        },
+        "opfv5_evolution_maintenance_debt": {
+          "present": false,
+          "severity": "unobservable",
+          "evidence": "Artifact unavailable."
+        }
+      }
+    },
+    {
+      "arxiv_id": "2511.15517",
+      "slice_id": "2025-11",
+      "v1_contemporaneous": false,
+      "retroactive_v2_formalization": true,
+      "primary_category": "cs.CR",
+      "title": "Beluga: Block Synchronization for BFT Consensus Protocols",
+      "inspection_mode": "prose_only_missing_repo",
+      "repo": "asonnino/beluga (404 / inaccessible)",
+      "systems_fv_paradigm": "abstract_design_model",
+      "legacy_static_flags": ["Mode2_ScopeDowngrade", "Mode12_ProcessOpacity"],
+      "table1_misfires": [],
+      "table1_transfers": [
+        "Layer C (Mode #12 Process Opacity): `v2` (June 2026) adds Appendix I claiming complete Lean 4 formalization of all non-probabilistic theorems in 'Additional materials', but `asonnino/beluga` and placeholder `AUTHOR/REPO` are inaccessible.",
+        "Mode #2 (Scope Downgrade): explicitly excludes probabilistic/performance analyses (Appendix I.2) and ignores block-verification/execution time."
+      ],
+      "operational_fv_modes": {
+        "opfv1_refinement_gap": {
+          "present": true,
+          "severity": "high",
+          "evidence": "Beluga is implemented in Rust and deployed in production inside Sui's Mysticeti consensus core, with no verified refinement between the Rust implementation and the unpublicized abstract Lean protocol model."
+        },
+        "opfv2_env_fault_assumptions": {
+          "present": true,
+          "severity": "high_unverifiable",
+          "evidence": "Prose notes ignoring block-verification/execution time and formalizing only non-probabilistic properties; full Appendix I modeling details cannot be code-audited without the artifact."
+        },
+        "opfv3_safety_without_liveness_or_vacuity": {
+          "present": false,
+          "severity": "unobservable",
+          "evidence": "Artifact inaccessible."
+        },
+        "opfv4_extraction_tcb_or_cross_kernel_gap": {
+          "present": true,
+          "severity": "high_disconnected_impl",
+          "evidence": "Rust production code is manually written rather than extracted from Lean."
+        },
+        "opfv5_evolution_maintenance_debt": {
+          "present": false,
+          "severity": "unobservable",
+          "evidence": "Artifact inaccessible; retroactive formalization added ~7 months after v1."
+        }
+      }
+    }
+  ]
+}

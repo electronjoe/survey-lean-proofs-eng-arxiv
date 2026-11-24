@@ -123,7 +123,7 @@ LATEX_SIGNAL_PATTERNS: dict[str, re.Pattern[str]] = {
 # --- 6. Static Lean Source Red Flags & Paradigm Markers (Layer B/C + Paradigms 3/4) ---
 LEAN_CODE_PATTERNS: dict[str, re.Pattern[str]] = {
     "sorry": re.compile(r"(?<![A-Za-z0-9_])sorry(?![A-Za-z0-9_])"),
-    "admit": re.compile(r"(?<![A-Za-z0-9_])admit(?![A-Za-z0-9_])"),
+    "admit": re.compile(r"(?:(?:^|[;·])\s*|\bby\s+)admit(?=\s*(?:$|[;)]|--))", re.MULTILINE),
     "custom_axiom": re.compile(r"^\s*(?:private\s+|protected\s+)?axiom\s+", re.MULTILINE),
     "native_decide": re.compile(r"\bnative_decide\b|\bLean\.ofReduceBool\b|\bofReduceNat\b"),
     "unsafe_or_impl_by": re.compile(r"^\s*unsafe\s+|@\[[^\]]*implemented_by\b", re.MULTILINE),
