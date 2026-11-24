@@ -29,6 +29,7 @@ DEFAULT_LONGITUDINAL = REPO_ROOT / "artifacts" / "longitudinal_summary.json"
 DEFAULT_SLICES_DIR = REPO_ROOT / "artifacts" / "slices"
 DEFAULT_PROVENANCE = REPO_ROOT / "artifacts" / "phase2_provenance.json"
 DEFAULT_SANDBOX_DIR = REPO_ROOT / "artifacts" / "sandbox_builds"
+DEFAULT_HUMAN_DIR = REPO_ROOT / "artifacts" / "human_annotations"
 
 # Multi-paper monorepos whose inventory LoC reports paper-specific subpackage LoC (*).
 SUBPACKAGE_IDS = {"2611.09050", "2611.13584", "2611.15128"}
@@ -755,6 +756,7 @@ def check_all_bolded_numbers(
     fig_inputs: dict[str, Any],
     recall_cal: dict[str, Any] | None,
     sandbox_data: tuple[dict[str, Any], list[dict[str, Any]]] | None = None,
+    human_data: tuple[dict[str, Any] | None, dict[str, Any] | None] | None = None,
 ) -> list[str]:
     """Audit EVERY numeric token inside any \\textbf{...} span in main.tex against artifact-derived values."""
     t0, t1, t2 = slices["T0"], slices["T1"], slices["T2"]
@@ -930,6 +932,32 @@ def check_all_bolded_numbers(
             if syn:
                 _add_int(int(syn.get("total_theorems_checked") or 0))
 
+    # Human verification & blinded Stage-4 IRR metrics (if present)
+    if human_data is not None:
+        irr_summary, layer_a_human = human_data
+        if irr_summary is not None:
+            for ann_data in irr_summary.get("human_vs_llm", {}).values():
+                _add_int(len(ann_data.get("disagreements", [])))
+                for m in ann_data.get("metrics", []):
+                    _add_int(int(m["n"]))
+                    allowed.add(f"{m['exact_agreement']:.3f}")
+                    _add_pct(100.0 * m["exact_agreement"])
+                    if m.get("cohens_kappa") is not None:
+                        allowed.add(f"{m['cohens_kappa']:.3f}")
+                    if m.get("krippendorff_alpha") is not None:
+                        allowed.add(f"{m['krippendorff_alpha']:.3f}")
+                    for row in m.get("confusion", {}).values():
+                        for v in row.values():
+                            _add_int(int(v))
+        if layer_a_human is not None:
+            recs = layer_a_human.get("records", [])
+            _add_int(len(recs))
+            n_named = sum(1 for r in recs if r.get("cohort") == "named_critique")
+            n_spot = sum(1 for r in recs if r.get("cohort") == "clean_spot_check")
+            n_unchanged = sum(1 for r in recs if r.get("live_head_unchanged_at_review") is True)
+            for v in (n_named, n_spot, n_unchanged):
+                _add_int(v)
+
     # Structural / non-metric tokens that appear inside \textbf{...} headings/labels
     structural_re = re.compile(
         r"(?:"
@@ -1058,12 +1086,81 @@ def check_sandbox_builds(
     return errors
 
 
+def check_human_verification_and_irr(
+    tex: str,
+    irr_summary: dict[str, Any] | None,
+    layer_a_human: dict[str, Any] | None,
+) -> list[str]:
+    """Verify tab:stage4_irr and prose human-verification counts against artifacts/human_annotations/."""
+    errors: list[str] = []
+    if irr_summary is not None:
+        tab = extract_table_by_label(tex, "tab:stage4_irr")
+        rows = split_tabular_rows(tab)
+        ann_map = irr_summary.get("human_vs_llm", {})
+        if not ann_map:
+            errors.append("stage4_irr_summary.json: missing human_vs_llm entries")
+            return errors
+        first_ann = sorted(ann_map.keys())[0]
+        metrics_by_key = {
+            (m["field"], m["scope"]): m for m in ann_map[first_ann].get("metrics", [])
+        }
+        seen_keys: set[tuple[str, str]] = set()
+        for cells in rows:
+            if len(cells) < 6:
+                continue
+            field_raw = clean_tex_cell(cells[0]).replace(r"\_", "_")
+            field = field_raw.split()[0]
+            scope_txt = clean_tex_cell(cells[1]).lower()
+            scope = "agreed_contributed" if "agreed" in scope_txt else "all"
+            key = (field, scope)
+            if key not in metrics_by_key:
+                continue
+            seen_keys.add(key)
+            exp = metrics_by_key[key]
+            got_n = parse_int(clean_tex_cell(cells[2]))
+            if got_n != int(exp["n"]):
+                errors.append(f"tab:stage4_irr [{key}] n: got {got_n} != expected {exp['n']}")
+            for col_idx, metric_key, label in (
+                (3, "exact_agreement", "exact_agreement"),
+                (4, "cohens_kappa", "cohens_kappa"),
+                (5, "krippendorff_alpha", "krippendorff_alpha"),
+            ):
+                got_s = clean_tex_cell(cells[col_idx])
+                exp_val = exp.get(metric_key)
+                if exp_val is not None:
+                    exp_s = f"{exp_val:.3f}"
+                    if got_s != exp_s:
+                        errors.append(f"tab:stage4_irr [{key}] {label}: got {got_s!r} != expected {exp_s!r}")
+
+        missing = sorted(set(metrics_by_key) - seen_keys)
+        if missing:
+            errors.append(f"tab:stage4_irr missing rows: {missing}")
+
+        n_dis = len(ann_map[first_ann].get("disagreements", []))
+        if f"\\textbf{{{n_dis}}}" not in tex:
+            errors.append(f"IRR prose mismatch: expected bolded disagreement count \\textbf{{{n_dis}}} in main.tex")
+
+    if layer_a_human is not None:
+        recs = layer_a_human.get("records", [])
+        n_named = sum(1 for r in recs if r.get("cohort") == "named_critique")
+        n_spot = sum(1 for r in recs if r.get("cohort") == "clean_spot_check")
+        for desc, token in (
+            ("named critiques human sign-off", f"\\textbf{{{n_named}/{n_named}}}"),
+            ("clean-cohort spot-check count", f"\\textbf{{{n_spot}/{n_spot}}}"),
+            ("clean-cohort zero missed drift", f"\\textbf{{0/{n_spot}}}"),
+        ):
+            if token not in tex:
+                errors.append(f"Human verification prose mismatch ({desc}): expected {token!r} in main.tex")
+    return errors
+
+
 def run_all_checks(
     tex_path: Path = DEFAULT_TEX,
     longitudinal_path: Path = DEFAULT_LONGITUDINAL,
     slices_dir: Path = DEFAULT_SLICES_DIR,
     provenance_path: Path = DEFAULT_PROVENANCE,
     sandbox_dir: Path = DEFAULT_SANDBOX_DIR,
+    human_dir: Path = DEFAULT_HUMAN_DIR,
 ) -> tuple[list[str], dict[str, Any]]:
     tex = strip_tex_comments(tex_path.read_text(encoding="utf-8"))
     longit = json.loads(longitudinal_path.read_text(encoding="utf-8"))
@@ -1088,6 +1185,12 @@ def run_all_checks(
                 sb_records.extend(json.loads(rp.read_text(encoding="utf-8")).get("records", []))
         sandbox_data = (sb_summary, sb_records)
 
+    irr_path = human_dir / "stage4_irr_summary.json"
+    layer_a_human_path = human_dir / "layer_a_human_verification.json"
+    irr_summary = json.loads(irr_path.read_text(encoding="utf-8")) if irr_path.is_file() else None
+    layer_a_human = json.loads(layer_a_human_path.read_text(encoding="utf-8")) if layer_a_human_path.is_file() else None
+    human_data = (irr_summary, layer_a_human) if (irr_summary is not None or layer_a_human is not None) else None
+
     errors: list[str] = []
     errors.extend(check_cross_artifact_consistency(longit, fig_inputs_by_slice))
     errors.extend(check_table_categories(tex, slices["T2"]))
@@ -1096,12 +1199,18 @@ def run_all_checks(
     errors.extend(check_table_longitudinal(tex, slices))
     if "2026-11" in fig_inputs_by_slice:
         errors.extend(check_prose_and_bolded_claims(tex, slices, fig_inputs_by_slice["2026-11"], recall_cal))
-        errors.extend(check_all_bolded_numbers(tex, slices, fig_inputs_by_slice["2026-11"], recall_cal, sandbox_data))
+        errors.extend(
+            check_all_bolded_numbers(
+                tex, slices, fig_inputs_by_slice["2026-11"], recall_cal, sandbox_data, human_data
+            )
+        )
     if provenance_path.is_file():
         prov = json.loads(provenance_path.read_text(encoding="utf-8"))
         errors.extend(check_provenance_integrity(prov, slices))
     if sandbox_data is not None:
         errors.extend(check_sandbox_builds(tex, sandbox_data[0], sandbox_data[1]))
+    if human_data is not None:
+        errors.extend(check_human_verification_and_irr(tex, irr_summary, layer_a_human))
 
     t2 = slices["T2"]
     stats = {

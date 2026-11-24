@@ -432,12 +432,12 @@
   <div class="container">
 
     <header class="hero">
-      <div class="eyebrow">Publication Strategy &amp; Venue Roadmap &bull; November 22, 2026</div>
+      <div class="eyebrow">Publication Strategy &amp; Venue Roadmap &bull; Updated November 24, 2026 (Pilot v0.6 arXiv Gate Complete)</div>
       <h1>Publishing Variants of the Engineering Lean&nbsp;4 Adoption Study</h1>
       <p class="subtitle">
         Strategic assessment of target venues, publisher AI-use &amp; disclosure policies, trimming/extension blueprints,
         pre-submission integrity gates, and sequencing for <em>How Are Engineering Papers Adopting Lean?</em>
-        (9,837-paper longitudinal corpus, recall calibration, and 20-paper Layer-A semantic fidelity audit).
+        (9,837-paper longitudinal corpus, 23-repo Layer-A audit, 14-repo sandboxed Docker kernel benchmark, and blinded Stage-4 IRR + guided human co-review).
       </p>
       <div class="meta-bar">
         <span class="meta-pill">Repo: <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv" target="_blank" rel="noopener">electronjoe/survey-lean-proofs-eng-arxiv</a></span>
@@ -886,13 +886,13 @@
       <h2><span class="sec-num">6</span> Recommended Sequenced Roadmap (Nov 2026 &rarr; Fall 2027)</h2>
       <div class="timeline">
         <div class="phase-card p-urgent">
-          <div class="phase-time">Phase 0 &bull; Next 1–2 Weeks (Late Nov – Early Dec 2026)</div>
-          <h4>Integrity &amp; Hygiene Gate</h4>
+          <div class="phase-time">Phase 0 &bull; COMPLETE (Nov 22–24, 2026 &mdash; arXiv v0.6 Release Gate Passed)</div>
+          <h4>Integrity &amp; Hygiene Gate (Done)</h4>
           <ul>
-            <li>Audit &amp; fix all entries in <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/papers/shared/references.bib" target="_blank" rel="noopener"><code>papers/shared/references.bib</code></a>.</li>
-            <li>Human-verify all named Layer-A findings (<code>2611.26272</code>, <code>2611.04876</code>, T1 repos) + pin commit SHAs.</li>
-            <li>Optional courtesy outreach to authors of flagged preprints.</li>
-            <li>Add explicit AI-Use &amp; Accountability statement.</li>
+            <li>&#10003; Audited &amp; fixed all 54 entries in <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/papers/shared/references.bib" target="_blank" rel="noopener"><code>references.bib</code></a> (<code>scripts/audit_bib.py --live</code>).</li>
+            <li>&#10003; Human co-reviewed 4/4 named critiques + 5/5 clean spot-checks (0/5 missed drift) + pinned 23 repo SHAs in <code>phase2_provenance.json</code>.</li>
+            <li>&#10003; Completed 14-repo isolated Docker kernel builds + blinded Stage-4 human IRR (<code>n=30</code>, 30/30 &kappa;=1.000 on inclusion) &amp; explicit AI-Use provenance table in <code>main.tex</code> v0.6.</li>
+            <li>Optional: courtesy outreach to authors of flagged preprints + 2nd rater (<code>annotator_2</code>) for archival SE/FM submissions.</li>
           </ul>
         </div>
         <div class="phase-card p-mid">
@@ -936,12 +936,12 @@
             <tr>
               <td>Pilot LaTeX Manuscript</td>
               <td><a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/papers/arxiv-empirical/main.tex" target="_blank" rel="noopener"><code>papers/arxiv-empirical/main.tex</code></a> &bull; <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/releases/download/papers-latest/arxiv-empirical.pdf" target="_blank" rel="noopener"><code>arxiv-empirical.pdf</code> (CI release)</a></td>
-              <td>Current 18-page v0.4 draft (with self-contained 12-mode Section&nbsp;2); base for trimming/extending variants. PDF built automatically in <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/actions/workflows/build-papers.yml" target="_blank" rel="noopener">GitHub Actions</a>.</td>
+              <td>Current v0.6 arXiv release candidate (12-mode taxonomy, 9,837-paper curve, 23 Layer-A audits, 14 Docker sandbox builds, &amp; Section&nbsp;8 human verification/IRR). PDF built automatically in <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/actions/workflows/build-papers.yml" target="_blank" rel="noopener">GitHub Actions</a>.</td>
             </tr>
             <tr>
-              <td>Bibliography (Needs Audit)</td>
+              <td>Bibliography (Live-Audited)</td>
               <td><a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/papers/shared/references.bib" target="_blank" rel="noopener"><code>papers/shared/references.bib</code></a></td>
-              <td>Fix placeholder author entries at <a href="https://github.com/electronjoe/survey-lean-proofs-eng-arxiv/blob/main/papers/shared/references.bib#L34-L56" target="_blank" rel="noopener">lines 34–56</a> and verify all 54 citations.</td>
+              <td>All 54 citations verified cleanly against live arXiv API via <code>scripts/audit_bib.py --live</code> (0 issues, gated in CI).</td>
             </tr>
             <tr>
               <td>Full Taxonomy &amp; Five-Gate Playbook</td>

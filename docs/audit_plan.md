@@ -1,6 +1,6 @@
 # Pre-Submission Audit Plan & Ground-Truth Ledger
 
-**Last updated:** 2026-11-23  
+**Last updated:** 2026-11-24  
 **Scope:** Systematic ground-truth verification of bibliography citations, named empirical/Layer-A findings, methodological weaknesses, and publication compliance for [`papers/arxiv-empirical/main.tex`](../papers/arxiv-empirical/main.tex) and [`papers/shared/references.bib`](../papers/shared/references.bib).
 
 ---
@@ -12,8 +12,8 @@
 | **Pillar 1** | Deterministic + Semantic Bibliography Audit (all 54 entries) | **DONE** | [`scripts/audit_bib.py`](../scripts/audit_bib.py) (CI + `--live`), [`tests/test_audit_bib.py`](../tests/test_audit_bib.py) |
 | **Pillar 2 (Automated)** | Commit-SHA / Zenodo / Ancillary Pinning (23 repos) + Automated `file:line` (`239/239`) & Named-Critique Verification | **DONE** | [`scripts/pin_phase2_provenance.py`](../scripts/pin_phase2_provenance.py), [`artifacts/phase2_provenance.json`](../artifacts/phase2_provenance.json) |
 | **Pillar 2 (Human)** | Guided Human Co-Review of 4 Named Findings + 5 Clean-Cohort False-Negative Spot-Checks (`0/5` missed drift) | **DONE** | [`docs/human_verification_plan.md`](human_verification_plan.md), [`artifacts/human_annotations/layer_a_human_verification.json`](../artifacts/human_annotations/layer_a_human_verification.json) |
-| **Pillar 3** | Closing Core Methodological Weaknesses (Automated Numeric Sync, Stage-3 Ancillary/Zip Unpacking & Compact Docker Kernel Builds **DONE**; Human IRR, ML Arm **OPEN**) | **PARTIAL** | [`scripts/check_paper_numbers.py`](../scripts/check_paper_numbers.py) (CI), [`artifacts/sandbox_builds/summary.json`](../artifacts/sandbox_builds/summary.json) |
-| **Pillar 4** | Pre-Submission Policy & Framing Gates (arXiv Non-Survey Retitle + AI Disclosure + Double-Blind Gate) | **DONE (arXiv)**; venue-tailored templates open | [`papers/arxiv-empirical/main.tex`](../papers/arxiv-empirical/main.tex), [`docs/publication_strategy.html`](publication_strategy.html) |
+| **Pillar 3** | Closing Core Methodological Weaknesses (Automated Numeric Sync, Stage-3 Ancillary/Zip Unpacking, Compact Docker Kernel Builds, & Blinded Stage-4 Human IRR **DONE for arXiv**; 2nd Rater + Open-Weight Judge + ML Arm **OPEN for Archival Venues**) | **DONE (arXiv)** | [`scripts/check_paper_numbers.py`](../scripts/check_paper_numbers.py) (CI), [`artifacts/sandbox_builds/summary.json`](../artifacts/sandbox_builds/summary.json), [`artifacts/human_annotations/stage4_irr_summary.json`](../artifacts/human_annotations/stage4_irr_summary.json) |
+| **Pillar 4** | Pre-Submission Policy & Framing Gates (arXiv Non-Survey Retitle + AI Disclosure + Double-Blind Gate + v0.6 Tarball) | **DONE (arXiv)**; venue-tailored templates open | [`papers/arxiv-empirical/main.tex`](../papers/arxiv-empirical/main.tex), [`docs/publication_strategy.html`](publication_strategy.html) |
 
 ---
 
@@ -76,10 +76,9 @@ All **54 entries** in [`papers/shared/references.bib`](../papers/shared/referenc
 
 ## Pillar 3: Closing Core Methodological Weaknesses
 
-- [ ] **Human Inter-Rater Reliability (IRR) for LLM-as-a-Judge (Stages 4 & 5):**
-  - Two humans independently annotate a stratified sample (all 20 Layer-A audit verdicts + ~30 Stage-4 candidates including borderline `citation_only`/false-positive items).
-  - Archive labels in `artifacts/human_annotations/stage4_irr.csv` and `layer_a_human_verification.json`; compute and report Cohen's $\kappa$ / Krippendorff's $\alpha$.
-  - *(For EMSE / ACM TOSEM / NeurIPS D&B)*: Run an open-weight judge baseline on a subset to verify judge-family robustness.
+- [x] **Human Inter-Rater Reliability (IRR) for LLM-as-a-Judge (arXiv 1-rater tier COMPLETE; 2nd rater open for archival venues):**
+  - Completed strictly blinded Stage-4 IRR on a deterministic stratified sample ($n = 30$ across T1/T2, seed `20261123`) via [`docs/stage4_irr_walkthrough.html`](stage4_irr_walkthrough.html), archived in [`artifacts/human_annotations/stage4_irr.csv`](../artifacts/human_annotations/stage4_irr.csv) and [`stage4_irr_summary.json`](../artifacts/human_annotations/stage4_irr_summary.json), scored by [`scripts/compute_irr.py`](../scripts/compute_irr.py): **30/30 (100.0%, $\kappa = 1.000, \alpha = 1.000$)** on `lean_usage_status`, moderate-to-substantial overall conditional agreement ($\kappa = 0.573\text{--}0.754$), and transparent 3-cause reconciliation of all 26 conditional disagreements across $n = 16$ agreed contributors. Paired with guided human co-review of 4/4 named Stage-5 critiques + 5/5 clean spot-checks (`0/5` missed drift) in [`layer_a_human_verification.json`](../artifacts/human_annotations/layer_a_human_verification.json) and integrated into `main.tex` v0.6 Section 8.
+  - *(For EMSE / ACM TOSEM / NeurIPS D&B)*: Add independent second human rater (`annotator_2`) for Human–Human IRR and an open-weight judge baseline on a subset to verify judge-family robustness.
 - [x] **Sandboxed Docker Dynamic Kernel Verification (`lake build` + `#print axioms`, `n = 14`):**
   - Built [`sandbox/Dockerfile`](../sandbox/Dockerfile), [`sandbox/check_axioms.lean`](../sandbox/check_axioms.lean), [`sandbox/container_entry.py`](../sandbox/container_entry.py), and [`sandbox/run_sandbox_audit.py`](../sandbox/run_sandbox_audit.py) enforcing a two-phase clean-room security boundary (`--network=none`, `--user 65534:65534`, `--cap-drop=ALL`, `--security-opt=no-new-privileges:true`, read-only source mounts).
   - Executed the exhaustive cohort of all **14** standalone primary Lean 4 repositories `<15k` LoC across T2 (`n = 11`) and T1 (`n = 3`) and archived structured JSON logs in [`artifacts/sandbox_builds/`](../artifacts/sandbox_builds/README.md) (`results_2026-11.json`, `results_2026-05.json`, `summary.json`): **11/14 (78.6%)** build out of the box (**3,190** theorems audited; median `28.4s`), **0/14** proof-compilation errors, **0/14** `Lean.ofReduceBool`, **7/8 (87.5%)** compact `Tier3_Gold` OOTB pass & **7/7 (100%)** axiom-clean (`2,263` theorems), `2/2` packaging-fail repos (`2611.18220`, `2611.23762`) pass axiom-clean in synthetic documented envs (`3,254` total audited theorems), `1/14` (`2605.02856`) fails missing `../qanary-*` sibling paths, and `2/2` Mode #6 repos dynamically corroborated (`sorryAx` in 9/570 theorems of `2611.16690`; 11 custom axioms in `2605.16407`).

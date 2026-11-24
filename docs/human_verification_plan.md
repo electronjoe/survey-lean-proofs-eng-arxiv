@@ -1,8 +1,9 @@
 # Human Verification & IRR Plan (Steps 2–4 Open Efforts Tracker)
 
-**Last updated:** 2026-11-23  
+**Last updated:** 2026-11-24  
 **Parent trackers:** [`docs/audit_plan.md`](audit_plan.md) · [`docs/PROGRESS_AND_NEXT_STEPS.md`](PROGRESS_AND_NEXT_STEPS.md)  
 **Target output directory:** [`artifacts/human_annotations/`](../artifacts/human_annotations/README.md) (CC-BY-4.0, pseudonymous `annotator_1` / `annotator_2` IDs for double-blind compatibility)
+**Status:** **Steps 2–5 COMPLETE (arXiv v0.6 Release Gate Passed)** — `4/4` named critiques + `5/5` clean spot-checks (`0/5` missed drift) + `n = 30` blinded Stage-4 IRR (`30/30`, $\kappa = 1.000, \alpha = 1.000$ on `lean_usage_status`) integrated into `papers/arxiv-empirical/main.tex` v0.6.
 
 ---
 
@@ -64,15 +65,18 @@ Draw a reproducible, seeded stratified sample of **30 Stage-2 Lean candidates** 
     `slice_id,arxiv_id,annotator_id,lean_usage_status,paper_domain_role,authoring_paradigm,verification_tier,ai_agent_assisted,notes`
   - A **self-contained, offline interactive HTML walkthrough** ([`docs/stage4_irr_walkthrough.html`](stage4_irr_walkthrough.html)) that opens locally in any browser (zero external dependencies, `localStorage` autosave, color-coded 5-step visual decision tree, auto-`N/A` short-circuiting for non-contributed hits, CSV import/resume, and one-click `stage4_irr.csv` export—verified 0 leaked LLM tokens).
   - A companion blinded Markdown dossier (`data/stage4_irr_dossier.md`, gitignored) containing each paper's title, abstract, Stage-2 matched prose snippets, README excerpt, and Stage-3 static counts—with **zero LLM predictions shown**.
-- [ ] **4b. Independent human annotation:**
-  - *arXiv-ready tier (1 rater):* Open [`docs/stage4_irr_walkthrough.html`](stage4_irr_walkthrough.html) locally, complete all 30 rows blindly as `annotator_1`, and save the downloaded CSV to `artifacts/human_annotations/stage4_irr.csv`.
-  - *Archival peer-review tier (2 raters, optional now or before EMSE/ITP/NeurIPS):* `annotator_2` (Bhaskar) opens the same HTML walkthrough, changes `Annotator` to `annotator_2`, completes the 30 rows independently, and appends to `artifacts/human_annotations/stage4_irr.csv`.
-- [x] **4c. Scoring & disagreement reconciliation tooling:** Implemented [`scripts/compute_irr.py`](../scripts/compute_irr.py) + [`tests/test_compute_irr.py`](../tests/test_compute_irr.py) to compute per-field exact agreement, **Cohen's $\kappa$**, **Krippendorff's $\alpha$**, confusion matrices (Human vs. LLM + Human vs. Human / multi-rater $\alpha$), and a disagreement table for reconciliation. *(Ready to run once Step 4b `stage4_irr.csv` is saved.)*
+- [x] **4b. Independent human annotation (arXiv-ready 1-rater tier COMPLETE):**
+  - *arXiv-ready tier (1 rater):* `annotator_1` completed all 30 rows blindly via [`docs/stage4_irr_walkthrough.html`](stage4_irr_walkthrough.html) → archived in [`artifacts/human_annotations/stage4_irr.csv`](../artifacts/human_annotations/stage4_irr.csv).
+  - *Archival peer-review tier (2 raters, optional before EMSE/ITP/NeurIPS):* `annotator_2` (Bhaskar) can independently complete the same 30 rows and append to `artifacts/human_annotations/stage4_irr.csv` (after fixing the static `has_solution_file` / full-sentence AI-context cues noted below).
+- [x] **4c. Scoring & disagreement reconciliation (COMPLETE):** Ran `uv run python scripts/compute_irr.py --csv artifacts/human_annotations/stage4_irr.csv --json-out artifacts/human_annotations/stage4_irr_summary.json` ([`stage4_irr_summary.json`](../artifacts/human_annotations/stage4_irr_summary.json)):
+  - **Primary inclusion boundary (`lean_usage_status` & binary `is_lean_contributed`, $n = 30$):** **30 / 30 (100.0%)**, **Cohen's $\kappa = 1.000$**, **Krippendorff's $\alpha = 1.000$** (`16/16` contributed, `10/10` citation/discussion, `4/4` false positives).
+  - **All-item conditional attributes ($n = 30$):** `verification_tier` `0.833` ($\kappa = 0.754, \alpha = 0.758$), `authoring_paradigm` `0.800` ($\kappa = 0.690, \alpha = 0.695$), `ai_agent_assisted` `0.800` ($\kappa = 0.680, \alpha = 0.685$), `paper_domain_role` `0.700` ($\kappa = 0.573, \alpha = 0.568$).
+  - **Mutually-agreed `lean_contributed` subset ($n = 16$, 26 total disagreements reconciled):** `verification_tier` `0.688` ($\kappa = 0.506, \alpha = 0.517$), `authoring_paradigm` `0.625` ($\kappa = 0.278, \alpha = 0.298$), `ai_agent_assisted` `0.625` ($\kappa = 0.165, \alpha = 0.188$), `paper_domain_role` `0.438` ($\kappa = 0.217, \alpha = 0.160$). Reconciled into 3 clean causes in Section 8.1 of `main.tex`: (a) evidence-window asymmetry & static-flag pitfalls (`11/26`, including `*Resolution*.lean` false `has_solution_file` chip and uncontextualized `.tex` AI chips on `2605.14610`/`2605.16407`), (b) genuine `pure_tcs_or_math` vs. `engineering_math_proof` boundary fuzziness & hybrid automated math-research frameworks (`9/26`, `2611.13872`/`2611.23080`), and (c) one genuine LLM rubric lenience on `2611.16690` (`sorry = 1` → strict `Tier1_Bronze`) plus partial-scope edge cases (`5/26`).
 
 ---
 
-## Step 5: Integration & arXiv Preprint Release Gate
+## Step 5: Integration & arXiv Preprint Release Gate (COMPLETE)
 
-- [ ] Integrate Steps 2–4 results (human verification summary, clean-cohort false-negative check, and Stage-4 IRR $\kappa$/$\alpha$ table) into [`papers/arxiv-empirical/main.tex`](../papers/arxiv-empirical/main.tex) (promoting to v0.6).
-- [ ] Update [`docs/audit_plan.md`](audit_plan.md), [`docs/PROGRESS_AND_NEXT_STEPS.md`](PROGRESS_AND_NEXT_STEPS.md), and refresh [`docs/publication_strategy.html`](publication_strategy.html).
-- [ ] Pass all CI gates (`uv run pytest`, `scripts/audit_bib.py --live`, `scripts/check_paper_numbers.py`, `scripts/export_blind_artifact.py`, clean `make -C papers/arxiv-empirical` with 0 warnings/overfull boxes) and export the arXiv source tarball.
+- [x] Integrated Steps 2–4 results (Section 8: blinded Stage-4 IRR Table + 3-cause reconciliation, guided Stage-5 co-review of 4/4 named critiques and 5/5 clean-cohort spot-checks) into [`papers/arxiv-empirical/main.tex`](../papers/arxiv-empirical/main.tex) (promoted to **v0.6**) and wired programmatic verification into [`scripts/check_paper_numbers.py`](../scripts/check_paper_numbers.py).
+- [x] Updated [`docs/audit_plan.md`](audit_plan.md), [`docs/PROGRESS_AND_NEXT_STEPS.md`](PROGRESS_AND_NEXT_STEPS.md), and refreshed [`docs/publication_strategy.html`](publication_strategy.html).
+- [x] Passed all CI gates (`uv run pytest`, `scripts/audit_bib.py --live`, `scripts/check_paper_numbers.py`, `scripts/export_blind_artifact.py`, clean `make -C papers/arxiv-empirical` with 0 warnings/overfull boxes) and exported & test-compiled the clean arXiv source tarball (`dist/arxiv-empirical-v0.6.tar.gz`).
