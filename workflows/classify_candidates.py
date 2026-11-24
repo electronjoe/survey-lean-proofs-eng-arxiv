@@ -51,6 +51,12 @@ LEAN_SCHEMA = {
                 "N/A",
             ],
         },
+        "role_decision_gate": {
+            "type": "string",
+            "enum": ["G1_meta", "G2_operational_fv", "G3_eng_algorithmic", "G4_pure_math_tcs", "N/A"],
+        },
+        "borderline_flag": {"type": "boolean"},
+        "borderline_note": {"type": "string"},
         "other_formal_tools_contributed": {
             "type": "array",
             "items": {"type": "string"},
@@ -99,6 +105,9 @@ LEAN_SCHEMA = {
         "paper_domain_role",
         "role_4way",
         "verification_object",
+        "role_decision_gate",
+        "borderline_flag",
+        "borderline_note",
         "other_formal_tools_contributed",
         "authoring_paradigm",
         "paradigm_confidence",
@@ -166,13 +175,13 @@ Static Risk Flags (include any clearly evidenced):
 - OpFV_RefinementGap (for `operational_system_fv` only: abstract Lean model verified without mechanized refinement or verified extraction to the real software/DB/hardware implementation)
 - OpFV_SafetyOnlyNoLiveness (for `operational_system_fv` only: safety/invariant preservation proved without mechanized liveness/progress)
 
-4-Way Domain Role (`role_4way`, for `lean_contributed` papers; use `N/A` otherwise — apply strictly in sequential Gate 1 -> Gate 4 order per `docs/track1_4way_coding_rubric.md`):
-- Gate 1 -> `meta_formalization_system`: Primary contribution is an automated proving/autoformalization system, agentic pipeline, or benchmark generating/verifying Lean proofs across *other* problems/papers (e.g., Paper2Lean, LongTails, Colombo).
-- Gate 2 -> `operational_system_fv`: Primary verified object is operational correctness (safety, liveness, crash consistency, type/memory safety, policy enforcement, RTL/ISA equivalence, consensus/protocol state machines) of a software system, DB/CDC pipeline, hardware/chip design, VM, or security protocol.
-- Gate 3 -> `eng_algorithmic_proof`: Proves mathematical/analytical properties (convergence, stability, regret, optimality, error bounds, identifiability, capacity/decoding guarantees, physical/dynamical/PDE bounds) of a concrete engineering algorithm, controller, estimator, numerical solver, or physical/cyber-physical system.
-- Gate 4 -> `pure_math_or_tcs`: Primary contribution is a theorem in pure mathematics (algebra, geometry, number theory, ergodic theory, operator algebras), theoretical CS (complexity classes, CONGEST/graph algorithms, combinatorics, formal logic), or foundational quantum information.
+4-Way Domain Role (`role_4way`, for `lean_contributed` papers; use `N/A` otherwise — apply strictly in sequential Gate 1 -> Gate 4 order per `docs/track1_4way_coding_rubric.md`, stopping at the FIRST gate that answers YES):
+- Gate 1 (`G1_meta`) -> `meta_formalization_system`: Primary contribution is an automated proving/autoformalization system, agentic pipeline, or benchmark generating/verifying Lean proofs across *other* problems/papers (e.g., Paper2Lean, LongTails, Colombo). Rule B1: G1 overrides domain.
+- Gate 2 (`G2_operational_fv`) -> `operational_system_fv`: Primary verified object is operational correctness (safety, liveness, crash consistency, type/memory safety, policy enforcement, RTL/ISA equivalence, consensus/protocol state machines) of a software system, DB/CDC pipeline, hardware/chip design, VM, or security protocol.
+- Gate 3 (`G3_eng_algorithmic`) -> `eng_algorithmic_proof`: Proves mathematical/analytical properties (convergence, stability, regret, optimality, error/discretization bounds, identifiability, capacity/decoding guarantees, physical/dynamical/PDE bounds, or performance guarantees of a concrete auction/pricing/online-allocation/control/numerical algorithm) of a concrete engineering algorithm, controller, estimator, numerical solver, or physical/cyber-physical system. Rule B2: judge by the paper's headline scientific target, not by whether a partial Lean supplement only covers helper lemmas.
+- Gate 4 (`G4_pure_math_tcs`) -> `pure_math_or_tcs`: Default fallback when G1-G3 are NO — primary contribution is a theorem in pure mathematics (algebra, geometry, number theory, ergodic theory, Veech surfaces, fractal/Hausdorff dimension, operator algebras, pure PDE regularity without an engineering controller/solver), theoretical CS (complexity classes, query/communication/time complexity of cake-cutting/Bertrand/matching/secretary/Bernoulli-factory/contract-design/CONGEST/graph problems, combinatorics, cellular automata, formal logic), or foundational quantum information. Note on `cs.GT`: classify pure complexity-class/query-complexity/competitive-ratio TCS papers (e.g., cake cutting, Bertrand structural complexity, submodular secretary, combinatorial Bernoulli factories, online matching) as `pure_math_or_tcs` (`G4_pure_math_tcs`), and reserve `eng_algorithmic_proof` (`G3_eng_algorithmic`) for concrete engineering/learning/control/optimization algorithms (e.g., convergence certificates for learning in auctions, streaming ridge equilibria, alternating mirror descent). Set `borderline_flag=true` with a 1-sentence `borderline_note` (else `false` and `""`) whenever a paper sits near a G3/G4 or G2/G3 boundary (Rule B6).
 
-Also populate `verification_object` (`algorithm_convergence_or_bound`, `physical_or_control_model`, `numerical_or_stat_method`, `operational_sw_hw_db_protocol`, `abstract_math_or_tcs_theorem`, `meta_proving_pipeline`, or `N/A`) and legacy `paper_domain_role` (mapping `eng_algorithmic_proof` or `meta_formalization_system` -> `engineering_math_proof`, `operational_system_fv` -> `software_or_system_fv`, `pure_math_or_tcs` -> `pure_tcs_or_math`, `N/A` -> `N/A`).
+Also populate `verification_object` (`algorithm_convergence_or_bound`, `physical_or_control_model`, `numerical_or_stat_method`, `operational_sw_hw_db_protocol`, `abstract_math_or_tcs_theorem`, `meta_proving_pipeline`, or `N/A`), `role_decision_gate` (`G1_meta`, `G2_operational_fv`, `G3_eng_algorithmic`, `G4_pure_math_tcs`, or `N/A`), and legacy `paper_domain_role` (mapping `eng_algorithmic_proof` or `meta_formalization_system` -> `engineering_math_proof`, `operational_system_fv` -> `software_or_system_fv`, `pure_math_or_tcs` -> `pure_tcs_or_math`, `N/A` -> `N/A`).
 
 Be conservative: if a paper only cites Lean/Mathlib in related work or evaluates LLM theorem proving benchmarks on Lean without formalizing its own paper's theorems, classify as `lean_citation_or_discussion`. If "Lean" means lean manufacturing/architecture/body mass, classify as `false_positive`."""
 

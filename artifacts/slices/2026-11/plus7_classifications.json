@@ -1,0 +1,1194 @@
+{
+  "schema_version": "1.1",
+  "slice_id": "2026-11",
+  "panel": "plus7_approved_engineering",
+  "categories": [
+    "cs.GT",
+    "math.DS",
+    "physics.flu-dyn",
+    "cs.PF",
+    "eess.IV",
+    "eess.AS",
+    "cs.CE"
+  ],
+  "lean_models": [
+    "flash"
+  ],
+  "lean_candidate_count": 36,
+  "lean_contributed_count": 32,
+  "lean_results": [
+    {
+      "arxiv_id": "2611.02167",
+      "primary_category": "math.CA",
+      "matched_target_cats": [
+        "math.DS"
+      ],
+      "submitted_date": "2026-11-01",
+      "updated_date": "2026-11-01",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "N/A",
+      "ai_tools_mentioned": [],
+      "artifact_availability": "N/A",
+      "authoring_paradigm": "N/A",
+      "borderline_flag": false,
+      "borderline_note": "",
+      "lean_usage_status": "lean_citation_or_discussion",
+      "one_line_summary": "Harmonic analysis paper proving Lp bounds for a hybrid trilinear Hilbert transform; mentions Lean only to note that a related preprint lacks a Lean formalization.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "N/A",
+      "paradigm_confidence": "N/A",
+      "paradigm_evidence": "No Lean formalization contributed; the text only remarks that a related OpenAI preprint lacks an official computer-checked Lean formalization.",
+      "role_4way": "N/A",
+      "role_decision_gate": "N/A",
+      "static_risk_flags": [],
+      "verification_object": "N/A",
+      "verification_tier_observed": "N/A"
+    },
+    {
+      "arxiv_id": "2611.02237",
+      "primary_category": "cs.LG",
+      "matched_target_cats": [
+        "math.DS"
+      ],
+      "submitted_date": "2026-11-01",
+      "updated_date": "2026-11-01",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "N/A",
+      "ai_tools_mentioned": [],
+      "artifact_availability": "N/A",
+      "authoring_paradigm": "N/A",
+      "borderline_flag": false,
+      "borderline_note": "",
+      "lean_usage_status": "lean_citation_or_discussion",
+      "one_line_summary": "Develops nonreciprocal spherical attention with nine Rocq-checked algebra lemmas, while only citing/discussing Lean/Mathlib as an alternative formalization tool.",
+      "other_formal_tools_contributed": [
+        "Rocq"
+      ],
+      "paper_domain_role": "N/A",
+      "paradigm_confidence": "N/A",
+      "paradigm_evidence": "No Lean proofs contributed; paper checks nine algebra lemmas in Rocq 9.1.1 and mentions Lean/Mathlib only as an alternative with #print axioms.",
+      "role_4way": "N/A",
+      "role_decision_gate": "N/A",
+      "static_risk_flags": [],
+      "verification_object": "N/A",
+      "verification_tier_observed": "N/A"
+    },
+    {
+      "arxiv_id": "2611.02465",
+      "primary_category": "math.CA",
+      "matched_target_cats": [
+        "math.DS"
+      ],
+      "submitted_date": "2026-11-02",
+      "updated_date": "2026-11-02",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "Codex",
+        "Astra"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "authoring_paradigm": "P4_speclock_solve_distill",
+      "borderline_flag": false,
+      "borderline_note": "",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Lean 4 + Mathlib formalization (via Palomar Challenge/Solution spec-lock, Codex/Astra agent assistance, #print axioms, and Comparator multi-kernel audit) of pointwise ergodic theorems, variational estimates, and M\u00f6bius decay along \u230ap^c\u230b.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "pure_tcs_or_math",
+      "paradigm_confidence": "medium",
+      "paradigm_evidence": "Palomar submission repository with Challenge.lean / Solution.lean spec-lock and comparator.json, Codex (gpt-6.1-sol, gpt-6-luna, gpt-6.1-terra) and Astra agent-assisted formalization targeting the author's supplied LaTeX manuscript fractionalpowersofprimesfinal.tex, accompanied by semantic-audit.md and verification-report.md.",
+      "role_4way": "pure_math_or_tcs",
+      "role_decision_gate": "G4_pure_math_tcs",
+      "static_risk_flags": [
+        "Mode10_ProofBloat"
+      ],
+      "verification_object": "abstract_math_or_tcs_theorem",
+      "verification_tier_observed": "Tier3_Gold"
+    },
+    {
+      "arxiv_id": "2611.04545",
+      "primary_category": "cs.GT",
+      "matched_target_cats": [
+        "cs.GT"
+      ],
+      "submitted_date": "2026-11-03",
+      "updated_date": "2026-11-03",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "unclear",
+      "ai_tools_mentioned": [],
+      "artifact_availability": "broken_or_missing_repo",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "borderline_flag": false,
+      "borderline_note": "",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Proves local convergence certificates for learning in first-price auctions, with finite-algebra identities and leading-order inequalities checked in Lean 4/Mathlib (6,315 lines across 27 files), though the cited GitHub repo is inaccessible.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "engineering_math_proof",
+      "paradigm_confidence": "medium",
+      "paradigm_evidence": "Appendix C maps selected finite-algebra and real-analysis statements from Sections 4-6 (following Appendix A's chain) to Lean 4 / Mathlib v4.34.1 modules (lean/FirstPriceCertificates/, 27 files, 6,315 lines, 338 theorems), noting what each check takes as given while surrounding analytic arguments remain informal; no blueprint-sync or spec-lock tooling is mentioned, and the cited GitHub repo is inaccessible. latex_signals.agent_tools flagged 'claude' and 'harmonic', but 'harmonic' appears in Appendix F.11 ('the harmonic and the Airy well') and no snippet confirms AI-agent use.",
+      "role_4way": "eng_algorithmic_proof",
+      "role_decision_gate": "G3_eng_algorithmic",
+      "static_risk_flags": [
+        "Mode2_ScopeDowngrade",
+        "Mode12_ProcessOpacity"
+      ],
+      "verification_object": "algorithm_convergence_or_bound",
+      "verification_tier_observed": "Tier1_Bronze"
+    },
+    {
+      "arxiv_id": "2611.04575",
+      "primary_category": "math.CO",
+      "matched_target_cats": [
+        "math.DS"
+      ],
+      "submitted_date": "2026-11-03",
+      "updated_date": "2026-11-03",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "ChatGPT"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "borderline_flag": false,
+      "borderline_note": "",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Pure math (math.CO/math.DS) paper with a ChatGPT-generated public Lean 4 + Mathlib formalization (52 modules, 0 sorry/axiom/native_decide, 508-declaration #print axioms audit, and leanblueprint check) verifying all deductions for polynomial configurations and pointwise averages along Piatetski-Shapiro primes conditional on eight explicit external analytic/arithmetic input interfaces.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "pure_tcs_or_math",
+      "paradigm_confidence": "medium",
+      "paradigm_evidence": "The manuscript (Draft1.tex / revised Draft.tex) was written first and preserved unchanged ('Read all 1,273 lines of the authoritative source before choosing modules'), and ChatGPT was used afterward to generate the accompanying Lean 4 formalization; the repo also adds a companion leanblueprint==0.0.20 dependency graph synced with Lean declarations (evidence/BlueprintDeclarations.lean).",
+      "role_4way": "pure_math_or_tcs",
+      "role_decision_gate": "G4_pure_math_tcs",
+      "static_risk_flags": [],
+      "verification_object": "abstract_math_or_tcs_theorem",
+      "verification_tier_observed": "Tier3_Gold"
+    },
+    {
+      "arxiv_id": "2611.04934",
+      "primary_category": "cs.GT",
+      "matched_target_cats": [
+        "cs.GT"
+      ],
+      "submitted_date": "2026-11-03",
+      "updated_date": "2026-11-03",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "Claude"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "borderline_flag": true,
+      "borderline_note": "STOC cs.GT complexity paper on contract design (NP-hardness, query lower bounds, exponential breakpoints) that also proves approximation and operation-count guarantees for concrete water-filling and FPTAS algorithms near the G3/G4 boundary.",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Formalizes the mathematical core and operation/oracle counts of 81 results (76 full, 5 partial) on continuous contract design over polymatroids in a 53.6k-LoC sorry-free Lean 4/Mathlib repo with an explicit COVERAGE.md audit manifest and Claude assistance.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "pure_tcs_or_math",
+      "paradigm_confidence": "medium",
+      "paradigm_evidence": "Lean files (Polymatroid.lean, Linear.lean) note they were taken from Paper/ and adapted/rewritten to follow Overleaf/STOC .tex drafts, tracked via a custom COVERAGE.md sync manifest rather than leanblueprint/@[blueprint] or comparator spec-lock; Claude assisted with checking bounds, formalizing proofs, and drafting text.",
+      "role_4way": "pure_math_or_tcs",
+      "role_decision_gate": "G4_pure_math_tcs",
+      "static_risk_flags": [
+        "Mode2_ScopeDowngrade",
+        "Mode10_ProofBloat"
+      ],
+      "verification_object": "abstract_math_or_tcs_theorem",
+      "verification_tier_observed": "Tier3_Gold"
+    },
+    {
+      "arxiv_id": "2611.05221",
+      "primary_category": "cs.GT",
+      "matched_target_cats": [
+        "cs.GT"
+      ],
+      "submitted_date": "2026-11-03",
+      "updated_date": "2026-11-03",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "ChatGPT",
+        "GPT"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "borderline_flag": true,
+      "borderline_note": "Sits near the G3/G4 boundary as a cs.GT theoretical algorithmic game theory paper proving FPTAS and linear-time exact equilibrium time-complexity bounds for continuous Colonel Blotto games via concrete regret-minimization and coupling algorithms.",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Post-hoc ChatGPT-generated Lean 4 formalization of all 18 named theorems for a cs.GT FPTAS and linear-time exact equilibrium paper on continuous Colonel Blotto games, audited with LeanEnvironmentAudit and leanchecker endpoint replay across ~585k LoC with an open cost-correspondence gap.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "pure_tcs_or_math",
+      "paradigm_confidence": "high",
+      "paradigm_evidence": "Paper states ChatGPT generated the accompanying Lean implementation and formal proofs (after GPT helped work out proof details and manuscript drafts from authors' sketches); docs/paper-coverage.json maps all 18 paper LaTeX statement labels to Lean endpoints post-hoc with no leanblueprint or Challenge/Solution spec-lock.",
+      "role_4way": "pure_math_or_tcs",
+      "role_decision_gate": "G4_pure_math_tcs",
+      "static_risk_flags": [
+        "Mode2_ScopeDowngrade",
+        "Mode10_ProofBloat"
+      ],
+      "verification_object": "abstract_math_or_tcs_theorem",
+      "verification_tier_observed": "Tier3_Gold"
+    },
+    {
+      "arxiv_id": "2611.05243",
+      "primary_category": "cs.LG",
+      "matched_target_cats": [
+        "cs.GT"
+      ],
+      "submitted_date": "2026-11-03",
+      "updated_date": "2026-11-03",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "GPT-5.6 Sol",
+        "GPT-6 Astra"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Proves an O(log T) regret bound for Alternating Online Mirror Descent in two-player zero-sum bilinear games and formalizes all 15 named manuscript results in a zero-sorry, axiom-audited Lean 4 repository (AltOMD-Lean) developed with GPT-5.6 Sol and GPT-6 Astra.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "engineering_math_proof",
+      "paradigm_confidence": "high",
+      "paradigm_evidence": "The paper explicitly states that the mathematical proof was developed using GPT-5.6 Sol and the Lean proof was formalized using GPT-6 Astra, with authors verifying proofs and revising the manuscript. The public repo contains no blueprint sync or Challenge/Solution spec-lock tooling, and uses post-hoc correspondence/audit documentation (CORRESPONDENCE.md and AltOMDAudit/README.md) mapping all 15 manuscript labels to Lean declarations.",
+      "static_risk_flags": [],
+      "verification_tier_observed": "Tier3_Gold",
+      "role_4way": "eng_algorithmic_proof",
+      "verification_object": "algorithm_convergence_or_bound",
+      "role_decision_gate": "G3_eng_algorithmic",
+      "borderline_flag": false,
+      "borderline_note": ""
+    },
+    {
+      "arxiv_id": "2611.06106",
+      "primary_category": "math.AG",
+      "matched_target_cats": [
+        "math.DS"
+      ],
+      "submitted_date": "2026-11-04",
+      "updated_date": "2026-11-05",
+      "version": 2,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "Claude Code",
+        "Codex",
+        "GPT-6",
+        "GPT-5"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "authoring_paradigm": "P3_blueprint_sync",
+      "borderline_flag": false,
+      "borderline_note": "",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "AI-assisted Lean 4 + Mathlib formalization of the characteristic-zero algebraic dynamics theorem that post-critically finite self-maps remain PCF on preperiodic divisors all the way down, audited via leanblueprint and Palomar/Comparator.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "pure_tcs_or_math",
+      "paradigm_confidence": "medium",
+      "paradigm_evidence": "Paper started conventionally and was completed with AI; repo pairs a leanblueprint claim graph (char-zero/blueprint/src/content.tex with \\lean{...}/\\leanok and lean-status.json linking 32 nodes) with Palomar Challenge/Solution comparator packaging (comparator.json) built over the main library.",
+      "role_4way": "pure_math_or_tcs",
+      "role_decision_gate": "G4_pure_math_tcs",
+      "static_risk_flags": [
+        "Mode10_ProofBloat"
+      ],
+      "verification_object": "abstract_math_or_tcs_theorem",
+      "verification_tier_observed": "Tier3_Gold"
+    },
+    {
+      "arxiv_id": "2611.06896",
+      "primary_category": "cs.DS",
+      "matched_target_cats": [
+        "cs.GT"
+      ],
+      "submitted_date": "2026-11-04",
+      "updated_date": "2026-11-04",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "OpenAI Astra"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "borderline_flag": true,
+      "borderline_note": "Proves a competitive-ratio bound for a concrete randomized online-allocation algorithm (near G3), resolved to G4_pure_math_tcs per the explicit cs.GT/TCS online-matching competitive-ratio rule.",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Formalizes the 0.556195 competitive guarantee for edge-weighted online bipartite matching with free disposal in Lean 4.19.0 (aided by OpenAI Astra and ~28.67M LoC of generated certificate proofs), conditioned on two explicit custom literature axioms and excluding running-time/tightness proofs.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "pure_tcs_or_math",
+      "paradigm_confidence": "medium",
+      "paradigm_evidence": "Public Lean 4.19.0 repo (4,860 files, ~28.67M LoC) accompanies the separately distributed paper without leanblueprint/LeanArchitect sync or Challenge/Solution spec-lock; Python generators produce large tournament certificates checked by Lean, while running-time, tightness, and optimization characterizations remain informal in the manuscript.",
+      "role_4way": "pure_math_or_tcs",
+      "role_decision_gate": "G4_pure_math_tcs",
+      "static_risk_flags": [
+        "Mode2_ScopeDowngrade",
+        "Mode6_SorryOrAxiomOrNativeDecide",
+        "Mode7_MetaprogOrUnsafe",
+        "Mode10_ProofBloat"
+      ],
+      "verification_object": "abstract_math_or_tcs_theorem",
+      "verification_tier_observed": "Tier1_Bronze"
+    },
+    {
+      "arxiv_id": "2611.07395",
+      "primary_category": "math.AP",
+      "matched_target_cats": [
+        "physics.flu-dyn"
+      ],
+      "submitted_date": "2026-11-05",
+      "updated_date": "2026-11-05",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "unspecified LLM"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "borderline_flag": false,
+      "borderline_note": "",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Formalizes analytic residual, Hilbert-aliasing, and Taylor grid-to-continuum bounds in Lean 4 (WaveCAP) for a PINN-discovered gravity-capillary water-wave candidate, importing two Julia/Arb numerical bounds as explicit axioms without end-to-end Lean interval replay.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "engineering_math_proof",
+      "paradigm_confidence": "high",
+      "paradigm_evidence": "Public WaveCAP Lean 4 repo (33 files, 12.3k LoC) has no leanblueprint/LeanArchitect/Verso blueprint or Challenge/Solution comparator spec-lock; dedicated publication modules (PaperCertificate.lean, PaperAudit.lean, HalfDCConvention.lean) reconcile Lean's residual sign and DC coefficient conventions post hoc with the manuscript and Julia/Arb pipeline.",
+      "role_4way": "eng_algorithmic_proof",
+      "role_decision_gate": "G3_eng_algorithmic",
+      "static_risk_flags": [
+        "Mode2_ScopeDowngrade",
+        "Mode6_SorryOrAxiomOrNativeDecide"
+      ],
+      "verification_object": "numerical_or_stat_method",
+      "verification_tier_observed": "Tier1_Bronze"
+    },
+    {
+      "arxiv_id": "2611.07494",
+      "primary_category": "cs.GT",
+      "matched_target_cats": [
+        "cs.GT"
+      ],
+      "submitted_date": "2026-11-05",
+      "updated_date": "2026-11-05",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "Claude",
+        "Gemini",
+        "OpenAI Codex"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "borderline_flag": true,
+      "borderline_note": "Classified as G4 pure_math_or_tcs because its headline results are cs.GT contract-design approximation ratios (4/3 disclosure gap) and combinatorial approximation, though its unformalized poly-time approximation algorithm (Theorem 4.4) sits near the G3/G4 boundary.",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Post-hoc AI-assisted Lean 4 formalization (Tier3_Gold with --trust=0 and #print axioms audit) of the main information-theoretic 4/3, 9/8, and N-approximation theorems in cs.GT team contract design, excluding the paper's computational Theorem 4.4.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "pure_tcs_or_math",
+      "paradigm_confidence": "high",
+      "paradigm_evidence": "PROVENANCE.md states the Lean repo was developed post-hoc against the manuscript snapshot transparency_paper.zip and mapped in THEOREMS.md, with no LeanArchitect/leanblueprint or Challenge/Solution spec-lock tooling.",
+      "role_4way": "pure_math_or_tcs",
+      "role_decision_gate": "G4_pure_math_tcs",
+      "static_risk_flags": [
+        "Mode2_ScopeDowngrade"
+      ],
+      "verification_object": "abstract_math_or_tcs_theorem",
+      "verification_tier_observed": "Tier3_Gold"
+    },
+    {
+      "arxiv_id": "2611.07818",
+      "primary_category": "math.DS",
+      "matched_target_cats": [
+        "math.DS"
+      ],
+      "submitted_date": "2026-11-05",
+      "updated_date": "2026-11-23",
+      "version": 2,
+      "model_tier": "flash",
+      "ai_agent_assisted": "unclear",
+      "ai_tools_mentioned": [
+        "harmonic"
+      ],
+      "artifact_availability": "none",
+      "authoring_paradigm": "P0_opaque_or_unspecified",
+      "borderline_flag": false,
+      "borderline_note": "",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Pure math (math.DS) paper on Thurston's pullback algorithm for real entire maps whose V1 results were reportedly formalized in Lean 4 conditional on 25 classical statements, with no public repository.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "pure_tcs_or_math",
+      "paradigm_confidence": "high",
+      "paradigm_evidence": "Acknowledgements state Bernat Bassols-Cornudella helped formalise the first ArXiv version in Lean 4 conditional on 25 classical statements, with a Formalisation Summary available only by email and no public repository or workflow/blueprint details (V2 adds a new appendix; latex_signals.agent_tools matched 'harmonic' alongside an 'AI output was not used as a mathematical source' note).",
+      "role_4way": "pure_math_or_tcs",
+      "role_decision_gate": "G4_pure_math_tcs",
+      "static_risk_flags": [
+        "Mode12_ProcessOpacity"
+      ],
+      "verification_object": "abstract_math_or_tcs_theorem",
+      "verification_tier_observed": "Tier1_Bronze"
+    },
+    {
+      "arxiv_id": "2611.08591",
+      "primary_category": "math-ph",
+      "matched_target_cats": [
+        "math.DS"
+      ],
+      "submitted_date": "2026-11-05",
+      "updated_date": "2026-11-05",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "Claude",
+        "GPT-5.6 Sol"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "borderline_flag": true,
+      "borderline_note": "Sits near the G3/G4 boundary because it develops general Conley index theory in math.DS/math-ph while also proving concrete dynamical bounds, attractors, and Morse decompositions for physical relativistic-hydrodynamic (Gubser, Bjorken) and O(N) RG flows.",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Formalizes Conley index theory for asymptotically autonomous systems, UV-to-IR transport maps, and applications to Gubser, Bjorken, and O(N) flows in Lean 4/Mathlib (38.8k LoC, zero sorry/axioms) with Claude and GPT-5.6 Sol assistance.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "pure_tcs_or_math",
+      "paradigm_confidence": "medium",
+      "paradigm_evidence": "Lean docstrings reference paper LaTeX labels (e.g., thm:slab, prop:palmer) and README maps paper sections/results and documented gaps to Lean declarations, with no blueprint directory or @[blueprint]/\\inputleannode sync annotations in the repo (single squashed commit preceding arXiv submission).",
+      "role_4way": "pure_math_or_tcs",
+      "role_decision_gate": "G4_pure_math_tcs",
+      "static_risk_flags": [],
+      "verification_object": "abstract_math_or_tcs_theorem",
+      "verification_tier_observed": "Tier2_Silver"
+    },
+    {
+      "arxiv_id": "2611.09066",
+      "primary_category": "math.DS",
+      "matched_target_cats": [
+        "math.DS"
+      ],
+      "submitted_date": "2026-11-06",
+      "updated_date": "2026-11-14",
+      "version": 2,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "Claude Code",
+        "Claude Opus 5.5 (Anthropic)"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "borderline_flag": false,
+      "borderline_note": "",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Pure math (math.DS) paper proving Hausdorff and pointwise dimension formulas for planar box-like self-affine sets with rotations, accompanied by a 135k-LoC Claude-assisted Lean 4/Mathlib formalization (42/44 statements, all 3 headline theorems) audited with Comparator, NanoDa, con-ron, and Palomar preflight.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "pure_tcs_or_math",
+      "paradigm_confidence": "medium",
+      "paradigm_evidence": "Paper and formalization.yaml state that authors developed the mathematical ideas/proofs and separately used Claude Code / Claude Opus 5.5 to formalize the results against the TeX manuscript (tracked via SHA-256 fingerprints in paper-correspondence.yaml), with docs/correspondence.md noting several informal-vs-Lean proof divergences (e.g., Sarig vs Bowen, Berry-Esseen vs Kittle-Kogler); Challenge.lean/Solution.lean/comparator are used as a Palomar audit harness rather than P4 paper distillation from Lean.",
+      "role_4way": "pure_math_or_tcs",
+      "role_decision_gate": "G4_pure_math_tcs",
+      "static_risk_flags": [
+        "Mode10_ProofBloat"
+      ],
+      "verification_object": "abstract_math_or_tcs_theorem",
+      "verification_tier_observed": "Tier3_Gold"
+    },
+    {
+      "arxiv_id": "2611.09615",
+      "primary_category": "cs.GT",
+      "matched_target_cats": [
+        "cs.GT"
+      ],
+      "submitted_date": "2026-11-06",
+      "updated_date": "2026-11-06",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "Gemini",
+        "Claude",
+        "ChatGPT"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "borderline_flag": true,
+      "borderline_note": "Sits near the G3/G4 boundary as a cs.GT online-learning and minimax regret paper, but classified as G3 (eng_algorithmic_proof) because its headline contributions are concrete posted-price online algorithms (Algorithms 1-4) with O(Tr sqrt Sigma) and O(sqrt d) regret/loss guarantees.",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Full Lean 4 + Mathlib formalization (21 files, ~15k LoC, zero sorry/axiom, 34-#print-axioms Audit.lean) of all 22 statements and 4 online algorithms for O(sqrt(d)) contextual search and bilateral trade regret bounds.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "engineering_math_proof",
+      "paradigm_confidence": "high",
+      "paradigm_evidence": "Single-commit GitHub repository (renatoppl/trace-square-root, 14,953 LoC across 21 Lean files) maps all 22 numbered paper statements and Algorithms 1-4 post-hoc without leanblueprint/LeanArchitect/Verso or Challenge/Solution spec-lock, explicitly noting where Lean proof routes differ from the paper exposition.",
+      "role_4way": "eng_algorithmic_proof",
+      "role_decision_gate": "G3_eng_algorithmic",
+      "static_risk_flags": [],
+      "verification_object": "algorithm_convergence_or_bound",
+      "verification_tier_observed": "Tier3_Gold"
+    },
+    {
+      "arxiv_id": "2611.11424",
+      "primary_category": "cs.GT",
+      "matched_target_cats": [
+        "cs.GT"
+      ],
+      "submitted_date": "2026-11-08",
+      "updated_date": "2026-11-10",
+      "version": 2,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "OpenAI Codex",
+        "Astra",
+        "Fable 5.2"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "borderline_flag": false,
+      "borderline_note": "",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Formalizes in Lean 4.35.0 (1,391 audited modules, ~127.7k LoC, zero sorry/axioms) all four main Robertson-Webb query-complexity theorems for envy-free cake, chore, and mixed-resource division, with Codex/Astra AI assistance.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "pure_tcs_or_math",
+      "paradigm_confidence": "medium",
+      "paradigm_evidence": "Separately maintained 61-page LaTeX manuscript mapped post-hoc/independently to Lean endpoints via JSON manifests (verification/coverage.json, verification/main_results.json) and scoped correspondence reviews; no leanblueprint, LeanArchitect, or Challenge/Solution spec-lock tooling.",
+      "role_4way": "pure_math_or_tcs",
+      "role_decision_gate": "G4_pure_math_tcs",
+      "static_risk_flags": [
+        "Mode10_ProofBloat"
+      ],
+      "verification_object": "abstract_math_or_tcs_theorem",
+      "verification_tier_observed": "Tier3_Gold"
+    },
+    {
+      "arxiv_id": "2611.11641",
+      "primary_category": "cs.LO",
+      "matched_target_cats": [
+        "math.DS"
+      ],
+      "submitted_date": "2026-11-08",
+      "updated_date": "2026-11-08",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "unclear",
+      "ai_tools_mentioned": [],
+      "artifact_availability": "public_lean_repo",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "borderline_flag": false,
+      "borderline_note": "",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Pure math paper on holomorphic extensions of the Syracuse/Collatz map with a post-hoc standalone Lean 4 script (0 sorry) verifying 20 rational algebraic/arithmetic identities (downgraded from full complex-analytic and 2-adic ergodic claims) and no lakefile or lean-toolchain.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "pure_tcs_or_math",
+      "paradigm_confidence": "high",
+      "paradigm_evidence": "Paper and companion Zenodo monograph develop complex-dynamic and 2-adic ergodic proofs informally first, with a standalone post-hoc Lean 4 file (anc/CollatzAttractor.lean, 215 lines, 20 theorems over \u211a using ring/norm_num) checking algebraic/arithmetic sub-identities listed in Section 7 Table 3, without leanblueprint, @[blueprint], Challenge/Solution spec-lock, or lakefile/lean-toolchain.",
+      "role_4way": "pure_math_or_tcs",
+      "role_decision_gate": "G4_pure_math_tcs",
+      "static_risk_flags": [
+        "Mode2_ScopeDowngrade",
+        "Mode12_ProcessOpacity"
+      ],
+      "verification_object": "abstract_math_or_tcs_theorem",
+      "verification_tier_observed": "Tier2_Silver"
+    },
+    {
+      "arxiv_id": "2611.11805",
+      "primary_category": "math.NA",
+      "matched_target_cats": [
+        "math.DS"
+      ],
+      "submitted_date": "2026-11-09",
+      "updated_date": "2026-11-09",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "OpenAI Codex GPT-6 Astra",
+        "OpenAI GPT-6.1 Sol"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "authoring_paradigm": "P4_speclock_solve_distill",
+      "borderline_flag": false,
+      "borderline_note": "",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Formalizes in Lean 4 (v4.35.0, Mathlib, LeanCert) the homogenization, spectral memory representation, universal approximation, and internal-variable dimension bounds for viscoelastic operator learning using Codex GPT-6 Astra and 331 multi-kernel Lean Comparator checks.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "engineering_math_proof",
+      "paradigm_confidence": "high",
+      "paradigm_evidence": "Paper states OpenAI Codex GPT-6 Astra formalized the theoretical results in Lean 4.35.0 and Lean Comparator verified proofs against separately specified theorem statements; repo has lean/Comparator/Challenges with 331 Comparator configs, CI comparator workflows, and MainResults.lean / READER_GUIDE.md / formalization.yaml aligning all 17 numbered statements to the manuscript.",
+      "role_4way": "eng_algorithmic_proof",
+      "role_decision_gate": "G3_eng_algorithmic",
+      "static_risk_flags": [
+        "Mode10_ProofBloat"
+      ],
+      "verification_object": "algorithm_convergence_or_bound",
+      "verification_tier_observed": "Tier3_Gold"
+    },
+    {
+      "arxiv_id": "2611.12862",
+      "primary_category": "math.AP",
+      "matched_target_cats": [
+        "physics.flu-dyn"
+      ],
+      "submitted_date": "2026-11-09",
+      "updated_date": "2026-11-09",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "unclear",
+      "ai_tools_mentioned": [
+        "Claude",
+        "GPT-6"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "authoring_paradigm": "P4_speclock_solve_distill",
+      "borderline_flag": true,
+      "borderline_note": "Borders G3/G4 because it establishes quantitative PDE regularity bounds for a fluid-dynamics model (cross-listed in physics.flu-dyn), but it is pure mathematical PDE analysis (math.AP) with no engineering controller, algorithm, or numerical solver.",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Formalizes all three main global regularity theorems for 3D incompressible Navier-Stokes with odd viscosity on the cubic torus in a 207k-LoC Lean 4 / Mathlib repository using a challenge/solution spec-lock verified by lake comparator and leanchecker with only standard axioms.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "pure_tcs_or_math",
+      "paradigm_confidence": "medium",
+      "paradigm_evidence": "Uses a frozen challenge.lean/solution.lean spec-lock verified via lake comparator (comparator.json and reports/comparator-2026-11-09.md) where the OddViscousNS library proves the locked theorems via alternative Lean proof routes rather than checking intermediate manuscript lemmas step-by-step, alongside mentions of AI tools (Claude, GPT-6) in the manuscript; however, some paper proof units/audits appear to have existed prior to Lean formalization.",
+      "role_4way": "pure_math_or_tcs",
+      "role_decision_gate": "G4_pure_math_tcs",
+      "static_risk_flags": [
+        "Mode10_ProofBloat"
+      ],
+      "verification_object": "abstract_math_or_tcs_theorem",
+      "verification_tier_observed": "Tier3_Gold"
+    },
+    {
+      "arxiv_id": "2611.14586",
+      "primary_category": "stat.ML",
+      "matched_target_cats": [
+        "cs.GT"
+      ],
+      "submitted_date": "2026-11-10",
+      "updated_date": "2026-11-10",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "GLM-5.3",
+        "DeepSeek V4.1 Flash"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "borderline_flag": false,
+      "borderline_note": "",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Proposes SPAR, a streaming prior-anchored ridge regression algorithm, and formalizes its deterministic algebraic core, refresh chain, OGD/Hedge regret bounds, and coupled contraction in Lean 4 (85 proved declarations, 0 sorry, Mathlib-backed, probability/RMT convergence left on paper).",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "engineering_math_proof",
+      "paradigm_confidence": "high",
+      "paradigm_evidence": "Appendix C provides a manual Result-to-declaration Map (Table 1) linking paper theorems/propositions to Lean 4 declarations in theory/lean/SparTheorems/, while Core.lean states it formalizes the algebraic core of the theory appendix; no blueprint-sync or spec-lock tooling is used.",
+      "role_4way": "eng_algorithmic_proof",
+      "role_decision_gate": "G3_eng_algorithmic",
+      "static_risk_flags": [
+        "Mode2_ScopeDowngrade"
+      ],
+      "verification_object": "algorithm_convergence_or_bound",
+      "verification_tier_observed": "Tier2_Silver"
+    },
+    {
+      "arxiv_id": "2611.14756",
+      "primary_category": "math.DS",
+      "matched_target_cats": [
+        "math.DS"
+      ],
+      "submitted_date": "2026-11-10",
+      "updated_date": "2026-11-10",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "unclear",
+      "ai_tools_mentioned": [],
+      "artifact_availability": "public_lean_repo",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Post-hoc Lean 4 + Mathlib formalization of the main discrete-time modified-gradient stability and basin-of-attraction theorems (Lemma 4.1, Theorem 5.1, Corollary 5.2, Theorem 6.1) with CI-verified standard-axiom audit.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "engineering_math_proof",
+      "paradigm_confidence": "high",
+      "paradigm_evidence": "The repository contains no blueprint or spec-lock files (has_blueprint_dir=false, has_challenge_file=false, tex_file_count=0); README.md maps Lean theorems to arXiv v1 manuscript numbering and explicitly documents small differences between the Lean proofs and the already-written paper proofs.",
+      "static_risk_flags": [],
+      "verification_tier_observed": "Tier3_Gold",
+      "role_4way": "eng_algorithmic_proof",
+      "verification_object": "physical_or_control_model",
+      "role_decision_gate": "G3_eng_algorithmic",
+      "borderline_flag": false,
+      "borderline_note": ""
+    },
+    {
+      "arxiv_id": "2611.14974",
+      "primary_category": "cs.GT",
+      "matched_target_cats": [
+        "cs.GT"
+      ],
+      "submitted_date": "2026-11-11",
+      "updated_date": "2026-11-11",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "N/A",
+      "ai_tools_mentioned": [],
+      "artifact_availability": "N/A",
+      "authoring_paradigm": "N/A",
+      "borderline_flag": false,
+      "borderline_note": "",
+      "lean_usage_status": "lean_citation_or_discussion",
+      "one_line_summary": "Mechanism design (cs.GT) paper on payment rules for open frontier challenges that cites and empirically analyzes the external Lean-checked Proximity Prize (better.codes) repository as a case study without contributing Lean proofs of its own theorems.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "N/A",
+      "paradigm_confidence": "N/A",
+      "paradigm_evidence": "Paper does not contribute Lean proofs of its own results; it only cites and empirically analyzes the external Lean-based Proximity Prize (better.codes) challenge repository (proximity-prize/proximity-prize) as one of five open frontier challenge case studies.",
+      "role_4way": "N/A",
+      "role_decision_gate": "N/A",
+      "static_risk_flags": [],
+      "verification_object": "N/A",
+      "verification_tier_observed": "N/A"
+    },
+    {
+      "arxiv_id": "2611.15711",
+      "primary_category": "cs.DS",
+      "matched_target_cats": [
+        "cs.GT"
+      ],
+      "submitted_date": "2026-11-11",
+      "updated_date": "2026-11-11",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "Codex"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "borderline_flag": true,
+      "borderline_note": "This ITCS 2027 cs.DS/cs.GT paper derives tight competitive-ratio bounds for online algorithms (prophet inequalities and ski-rental), sitting near the G3/G4 boundary where concrete algorithm analysis meets competitive-ratio TCS.",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "ITCS 2027 cs.DS/cs.GT paper on competitive ratios under input subsampling that provides a post-hoc Lean 4 + Mathlib companion repo verifying Section 4 ski-rental analytic series bounds and rational certificates using native_decide.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "pure_tcs_or_math",
+      "paradigm_confidence": "high",
+      "paradigm_evidence": "The paper develops the online-algorithm reductions and probabilistic definitions first and attaches a standalone Lean 4 + Mathlib companion repository (relyt871/BWCA-Online-Lean, documented in Appendix F) to verify analytic series properties and rational certificates for Section 4 lemmas without blueprint sync or Challenge/Solution spec-lock.",
+      "role_4way": "pure_math_or_tcs",
+      "role_decision_gate": "G4_pure_math_tcs",
+      "static_risk_flags": [
+        "Mode2_ScopeDowngrade",
+        "Mode6_SorryOrAxiomOrNativeDecide"
+      ],
+      "verification_object": "abstract_math_or_tcs_theorem",
+      "verification_tier_observed": "Tier1_Bronze"
+    },
+    {
+      "arxiv_id": "2611.15751",
+      "primary_category": "math.CO",
+      "matched_target_cats": [
+        "math.DS"
+      ],
+      "submitted_date": "2026-11-11",
+      "updated_date": "2026-11-11",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "Claude",
+        "Codex"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "borderline_flag": false,
+      "borderline_note": "",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Lean 4 + Mathlib formalization of all numbered theorems, bounds, irreversibility, and detection results for shift-symmetric configurations in d-dimensional cellular automata, verified to Tier3_Gold via 370 SHA-256-frozen Props, build-failing axiom audits, kernel replay, and a hand PDF-to-Lean correspondence audit.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "pure_tcs_or_math",
+      "paradigm_confidence": "medium",
+      "paradigm_evidence": "Paper v3.1 (shift_symmetry_d_dimensions.tex) was written informally first extending Banda et al. (2019), and the Lean 4 + Mathlib formalization was subsequently constructed against the paper text (S01-S11 cite v3.1 line numbers), using custom frozen Prop specs (SHA-256 fingerprinted via check_frozen.py), AuditPaper.lean, kernel_replay.lean, and a custom PDF-to-Lean correspondence audit viewer rather than LeanArchitect/leanblueprint (P3) or a pre-paper Challenge/Solution spec-lock (P4).",
+      "role_4way": "pure_math_or_tcs",
+      "role_decision_gate": "G4_pure_math_tcs",
+      "static_risk_flags": [
+        "Mode7_MetaprogOrUnsafe",
+        "Mode10_ProofBloat"
+      ],
+      "verification_object": "abstract_math_or_tcs_theorem",
+      "verification_tier_observed": "Tier3_Gold"
+    },
+    {
+      "arxiv_id": "2611.16763",
+      "primary_category": "math.AG",
+      "matched_target_cats": [
+        "math.DS"
+      ],
+      "submitted_date": "2026-11-12",
+      "updated_date": "2026-11-12",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "ChatGPT",
+        "Codex",
+        "Claude"
+      ],
+      "artifact_availability": "none",
+      "authoring_paradigm": "P0_opaque_or_unspecified",
+      "borderline_flag": false,
+      "borderline_note": "",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Pure algebraic geometry and dynamical systems paper on composition loci, Bezoutians, and finite-orbit correspondences that mentions AI-assisted partial Lean formalizations with no public repository or workflow details.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "pure_tcs_or_math",
+      "paradigm_confidence": "high",
+      "paradigm_evidence": "The paper discloses that GPT-based tools (ChatGPT and Codex) were used 'to assist with partial Lean formalizations,' while providing no public repository, URLs, or authoring workflow details.",
+      "role_4way": "pure_math_or_tcs",
+      "role_decision_gate": "G4_pure_math_tcs",
+      "static_risk_flags": [
+        "Mode2_ScopeDowngrade",
+        "Mode12_ProcessOpacity"
+      ],
+      "verification_object": "abstract_math_or_tcs_theorem",
+      "verification_tier_observed": "Tier1_Bronze"
+    },
+    {
+      "arxiv_id": "2611.17223",
+      "primary_category": "cs.DS",
+      "matched_target_cats": [
+        "cs.GT"
+      ],
+      "submitted_date": "2026-11-12",
+      "updated_date": "2026-11-12",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "OpenAI Codex",
+        "GPT-6 Astra",
+        "formalize-pdf",
+        "ChatGPT Astra",
+        "Claude Opus",
+        "Gemini Argon"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "authoring_paradigm": "P4_speclock_solve_distill",
+      "borderline_flag": true,
+      "borderline_note": "Proves exact-rounding and expected coin-flip/oracle-query bounds for concrete randomized polytope-sampling algorithms (Interior, Universal, Amplify), sitting near the G3/G4 boundary but classified as G4_pure_math_tcs per the rubric rule for combinatorial Bernoulli factories.",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Formalizes the main exact-rounding and polynomial coin-flip/oracle-query complexity theorems for combinatorial Bernoulli factories (Interior, Universal, Birkhoff, Amplify) in Lean 4 via an automated spec-locked Codex/comparator pipeline, omitting bit-complexity/runtime and LP/GLS preprocessing.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "pure_tcs_or_math",
+      "paradigm_confidence": "high",
+      "paradigm_evidence": "Repo uses frozen Challenge.lean / Trusted.lean / SOURCE.md (freeze.json SHA-256), Solution.lean, and comparator.json (enable_nanoda: true), with README documenting the formalize-pdf pipeline where AI agents freeze the statement from the 21-page PDF before unconstrained Codex proof search and kernel/comparator verification.",
+      "role_4way": "pure_math_or_tcs",
+      "role_decision_gate": "G4_pure_math_tcs",
+      "static_risk_flags": [
+        "Mode2_ScopeDowngrade"
+      ],
+      "verification_object": "abstract_math_or_tcs_theorem",
+      "verification_tier_observed": "Tier3_Gold"
+    },
+    {
+      "arxiv_id": "2611.17277",
+      "primary_category": "math.DS",
+      "matched_target_cats": [
+        "math.DS"
+      ],
+      "submitted_date": "2026-11-12",
+      "updated_date": "2026-11-12",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "GPT-6 Astra",
+        "OpenAI Codex"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "borderline_flag": false,
+      "borderline_note": "",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Pure math (math.DS) paper on Lp densities of self-similar measures and continuous densities of Bernoulli convolutions, whose main theorems are post-hoc formalized in Lean 4 (47.8k LoC, zero sorry/custom axioms in Solution) by GPT-6 Astra / Codex with comparator and multi-kernel (Lean/NanoDa/con-ron) audit.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "pure_tcs_or_math",
+      "paradigm_confidence": "medium",
+      "paradigm_evidence": "Human-authored mathematical paper ('The paper is written by the authors... GPT-6 Astra formalized all results from this paper') with post-hoc AI formalization (GPT-6 Astra / OpenAI Codex) packaged with Challenge.lean/Solution.lean and comparator/PalomarSubmission verification, without blueprint sync or paper distillation from Lean.",
+      "role_4way": "pure_math_or_tcs",
+      "role_decision_gate": "G4_pure_math_tcs",
+      "static_risk_flags": [
+        "Mode10_ProofBloat"
+      ],
+      "verification_object": "abstract_math_or_tcs_theorem",
+      "verification_tier_observed": "Tier3_Gold"
+    },
+    {
+      "arxiv_id": "2611.17292",
+      "primary_category": "cs.DS",
+      "matched_target_cats": [
+        "cs.GT"
+      ],
+      "submitted_date": "2026-11-12",
+      "updated_date": "2026-11-12",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "GPT-6 Astra",
+        "Claude",
+        "Fable 5.2"
+      ],
+      "artifact_availability": "none",
+      "authoring_paradigm": "P0_opaque_or_unspecified",
+      "borderline_flag": false,
+      "borderline_note": "",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Theoretical CS paper on the submodular secretary problem claiming an AI-written (GPT-6 Astra) Lean 4 formalization of all results using native_decide for finite numerical certificates, with no public repository.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "pure_tcs_or_math",
+      "paradigm_confidence": "high",
+      "paradigm_evidence": "Paper claims a Lean 4 formalization written by GPT-6 Astra proving every result (using native_decide for finite numerical certificates in appendices), while the manuscript was drafted with Claude and Fable 5.2, but provides no public repository URLs or Lean-LaTeX workflow/synchronization details.",
+      "role_4way": "pure_math_or_tcs",
+      "role_decision_gate": "G4_pure_math_tcs",
+      "static_risk_flags": [
+        "Mode6_SorryOrAxiomOrNativeDecide",
+        "Mode12_ProcessOpacity"
+      ],
+      "verification_object": "abstract_math_or_tcs_theorem",
+      "verification_tier_observed": "Tier1_Bronze"
+    },
+    {
+      "arxiv_id": "2611.19243",
+      "primary_category": "math.DS",
+      "matched_target_cats": [
+        "math.DS"
+      ],
+      "submitted_date": "2026-11-14",
+      "updated_date": "2026-11-14",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "ChatGPT",
+        "Codex"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "borderline_flag": false,
+      "borderline_note": "",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Pure mathematics (math.DS) paper formalizing its main Veech dichotomy theorem for finite translation covers in Lean 4.35.0/Mathlib with transitive axiom and statement audits (no sorry/custom axioms), developed with ChatGPT/Codex assistance.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "pure_tcs_or_math",
+      "paradigm_confidence": "high",
+      "paradigm_evidence": "The repository formalizes Theorem 1 of the pre-existing LaTeX paper (referenced by SHA-256 in PAPER-SOURCE-PROVENANCE.json), has no blueprint or Challenge/Solution files, and PROOF_NOTES.md notes that the Lean code adapts the paper's moduli/Hurwitz-space presentation into explicit families of curves and covers.",
+      "role_4way": "pure_math_or_tcs",
+      "role_decision_gate": "G4_pure_math_tcs",
+      "static_risk_flags": [
+        "Mode10_ProofBloat"
+      ],
+      "verification_object": "abstract_math_or_tcs_theorem",
+      "verification_tier_observed": "Tier3_Gold"
+    },
+    {
+      "arxiv_id": "2611.20890",
+      "primary_category": "cs.GT",
+      "matched_target_cats": [
+        "cs.GT"
+      ],
+      "submitted_date": "2026-11-16",
+      "updated_date": "2026-11-17",
+      "version": 2,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "Claude",
+        "Claude Code",
+        "OpenAI Codex"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "borderline_flag": false,
+      "borderline_note": "",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Formalizes the main query-complexity theorems and circuit-model PPAD/UEOPL computational reductions for connected epsilon-envy-free cake cutting in Lean 4 + Mathlib (~387k LoC, zero sorry/custom axioms, leanchecker replay and axiom audit), leaving general TM evaluation programs and randomized bounds informal.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "pure_tcs_or_math",
+      "paradigm_confidence": "medium",
+      "paradigm_evidence": "Manuscript proofs and LaTeX (v10-v27) were developed with Claude and Codex, and AI systems then formalized frozen manuscript targets in Lean 4 using custom TARGET_LOCK.json, CORRESPONDENCE.json, and an interactive inspector without leanblueprint/@[blueprint] or Challenge/Solution distillation.",
+      "role_4way": "pure_math_or_tcs",
+      "role_decision_gate": "G4_pure_math_tcs",
+      "static_risk_flags": [
+        "Mode2_ScopeDowngrade",
+        "Mode10_ProofBloat"
+      ],
+      "verification_object": "abstract_math_or_tcs_theorem",
+      "verification_tier_observed": "Tier3_Gold"
+    },
+    {
+      "arxiv_id": "2611.20966",
+      "primary_category": "math.DS",
+      "matched_target_cats": [
+        "math.DS"
+      ],
+      "submitted_date": "2026-11-16",
+      "updated_date": "2026-11-16",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "OpenAI ChatGPT 6.0 (Astra)"
+      ],
+      "artifact_availability": "broken_or_missing_repo",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "borderline_flag": false,
+      "borderline_note": "",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Pure dynamical systems (math.DS) paper claiming Lean 4.35.0/Mathlib formalization (with ChatGPT 6.0 Astra assistance and an Audit.lean check) of counterexample theorems on finite-order exponential mixing vs. CLT, though the linked GitHub repo is inaccessible.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "pure_tcs_or_math",
+      "paradigm_confidence": "medium",
+      "paradigm_evidence": "39-page math.DS paper with 32 theorem environments and a dedicated Section 9 ('Lean formalisation') stating that Theorems A, 7.3, 8.5, and Corollary 1.2 were formalised in Lean 4.35.0 using Mathlib (with AI assistance to develop and revise the Lean formalisation), with no mention of blueprint sync or spec-lock tooling; exact repo commit workflow is unobservable because the linked GitHub repo is inaccessible.",
+      "role_4way": "pure_math_or_tcs",
+      "role_decision_gate": "G4_pure_math_tcs",
+      "static_risk_flags": [
+        "Mode12_ProcessOpacity"
+      ],
+      "verification_object": "abstract_math_or_tcs_theorem",
+      "verification_tier_observed": "Tier1_Bronze"
+    },
+    {
+      "arxiv_id": "2611.22216",
+      "primary_category": "cs.GT",
+      "matched_target_cats": [
+        "cs.GT"
+      ],
+      "submitted_date": "2026-11-17",
+      "updated_date": "2026-11-17",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "unclear",
+      "ai_tools_mentioned": [
+        "OpenAI Astra",
+        "Gemini Argon"
+      ],
+      "artifact_availability": "broken_or_missing_repo",
+      "authoring_paradigm": "P0_opaque_or_unspecified",
+      "borderline_flag": false,
+      "borderline_note": "",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Proves PPAD-completeness, an EPTAS, and tight Theta(2^n) structural complexity for Bertrand networks (cs.GT); claims a Lean formalization via a GitHub link whose repository has 0 .lean files, no lakefile/toolchain, and no workflow details.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "pure_tcs_or_math",
+      "paradigm_confidence": "high",
+      "paradigm_evidence": "Paper only states 'Lean formalization can be found in link.' (pointing to hajiaghayi/Bertrand, pushed 2026-11-19) with no description of Lean authoring workflow; the GitHub repo has total_files=1 (2456 KB) with lean_file_count=0, has_lakefile=false, has_lean_toolchain=false, has_blueprint_dir=false, and workflow_files=[].",
+      "role_4way": "pure_math_or_tcs",
+      "role_decision_gate": "G4_pure_math_tcs",
+      "static_risk_flags": [
+        "Mode12_ProcessOpacity"
+      ],
+      "verification_object": "abstract_math_or_tcs_theorem",
+      "verification_tier_observed": "Tier1_Bronze"
+    },
+    {
+      "arxiv_id": "2611.24787",
+      "primary_category": "math.OA",
+      "matched_target_cats": [
+        "math.DS"
+      ],
+      "submitted_date": "2026-11-18",
+      "updated_date": "2026-11-18",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "GPT-6 Astra",
+        "Gemini",
+        "harmonic"
+      ],
+      "artifact_availability": "none",
+      "authoring_paradigm": "P0_opaque_or_unspecified",
+      "borderline_flag": false,
+      "borderline_note": "",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Pure operator-algebras paper (Connes' bicentralizer conjecture and Kadison's MASA problem) claiming Lean formalization of a subset of results (main line of Theorem A) without a public Lean repository.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "pure_tcs_or_math",
+      "paradigm_confidence": "high",
+      "paradigm_evidence": "The paper notes only that 'Lean was also used to check a formalization of a short note consisting of the preliminaries in Subsection 2.2, Example 3.9, Theorem 4.1, and the whole of Section 5. These components form the main line of the proof of Theorem A,' with no public Lean repository (repos=[], local_repo_dirs=[]) and no further workflow detail.",
+      "role_4way": "pure_math_or_tcs",
+      "role_decision_gate": "G4_pure_math_tcs",
+      "static_risk_flags": [
+        "Mode2_ScopeDowngrade",
+        "Mode12_ProcessOpacity"
+      ],
+      "verification_object": "abstract_math_or_tcs_theorem",
+      "verification_tier_observed": "Tier1_Bronze"
+    },
+    {
+      "arxiv_id": "2611.24920",
+      "primary_category": "cs.GT",
+      "matched_target_cats": [
+        "cs.GT"
+      ],
+      "submitted_date": "2026-11-18",
+      "updated_date": "2026-11-18",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "GPT-5",
+        "GPT-6"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "borderline_flag": true,
+      "borderline_note": "Competitive-ratio impossibility construction for online combinatorial auctions in cs.GT, classified under G4 (pure_math_or_tcs) per the cs.GT competitive-ratio rule rather than G3 (concrete auction/online-allocation algorithm guarantee).",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Formalizes in Lean 4 (+Mathlib) a sequence of finite subadditive online combinatorial auctions whose optimal online-to-prophet competitive ratio limsup is strictly below 4/9 - 1/4300 (< 1/2), with CI-checked kernel axiom audit and zero proof escapes.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "pure_tcs_or_math",
+      "paradigm_confidence": "high",
+      "paradigm_evidence": "Single-commit repo (GO-EPFL/subadditive-online-combinatorial-auctions) with no blueprint or Challenge/Solution spec-lock; README, docs/Formalization.md, and docs/NumericalVerification.md explicitly state the Lean formalization and interval certificates were reconstructed from the accompanying manuscript.",
+      "role_4way": "pure_math_or_tcs",
+      "role_decision_gate": "G4_pure_math_tcs",
+      "static_risk_flags": [
+        "Mode10_ProofBloat"
+      ],
+      "verification_object": "abstract_math_or_tcs_theorem",
+      "verification_tier_observed": "Tier3_Gold"
+    },
+    {
+      "arxiv_id": "2611.26622",
+      "primary_category": "math.CO",
+      "matched_target_cats": [
+        "math.DS"
+      ],
+      "submitted_date": "2026-11-19",
+      "updated_date": "2026-11-19",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "N/A",
+      "ai_tools_mentioned": [
+        "AxiomProver"
+      ],
+      "artifact_availability": "N/A",
+      "authoring_paradigm": "N/A",
+      "borderline_flag": false,
+      "borderline_note": "",
+      "lean_usage_status": "lean_citation_or_discussion",
+      "one_line_summary": "Pure combinatorics/dynamics paper on the Pyjama Problem that only cites Cureton and Thorner [10] for a Lean-formalised zero-free half-plane for finite Hecke L-functions and contributes no Lean proofs of its own.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "N/A",
+      "paradigm_confidence": "N/A",
+      "paradigm_evidence": "Single contextual Lean hit cites Cureton and Thorner [10] using AxiomProver to Lean-formalise a zero-free half-plane for finite Hecke L-functions; no Lean formalization of the paper's own results is claimed and no Lean repos are provided.",
+      "role_4way": "N/A",
+      "role_decision_gate": "N/A",
+      "static_risk_flags": [],
+      "verification_object": "N/A",
+      "verification_tier_observed": "N/A"
+    }
+  ]
+}

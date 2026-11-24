@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.1",
+  "slice_id": "2025-11",
+  "panel": "plus7_approved_engineering",
+  "categories": [
+    "cs.GT",
+    "math.DS",
+    "physics.flu-dyn",
+    "cs.PF",
+    "eess.IV",
+    "eess.AS",
+    "cs.CE"
+  ],
+  "lean_models": [
+    "flash"
+  ],
+  "lean_candidate_count": 1,
+  "lean_contributed_count": 1,
+  "lean_results": [
+    {
+      "arxiv_id": "2511.13056",
+      "primary_category": "cs.GT",
+      "matched_target_cats": [
+        "cs.GT"
+      ],
+      "submitted_date": "2025-11-17",
+      "updated_date": "2026-11-05",
+      "version": 3,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "GPT-5.6 Pro",
+        "GPT-6 Pro",
+        "GPT-6.1 Sol"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "borderline_flag": true,
+      "borderline_note": "Sits near the G3/G4 boundary because it verifies a concrete allocation algorithm and polynomial operation-count bounds, but is a STOC/SODA-style cs.GT fair-division approximation-ratio theorem rather than an engineering/learning/control algorithm.",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Formalizes in Lean 4 (with Mathlib, leanchecker audit, and GPT-5/6 assistance) the 7/9-MMS allocation guarantee and polynomial search bounds of a strongly polynomial-time fair-division algorithm, omitting total RAM running-time/bit-complexity refinement.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "pure_tcs_or_math",
+      "paradigm_confidence": "high",
+      "paradigm_evidence": "docs/research/seven_ninths_mms.md states the Lean development follows CONSOLIDATED_PROOF_REVISED.pdf and STOC_re7.tex, the paper says 'Finally, we formalize and verify our main results in Lean 4' with LLM interaction, and docs/knowledge (mdblueprint) contains no SevenNinths nodes.",
+      "role_4way": "pure_math_or_tcs",
+      "role_decision_gate": "G4_pure_math_tcs",
+      "static_risk_flags": [
+        "Mode2_ScopeDowngrade",
+        "Mode10_ProofBloat"
+      ],
+      "verification_object": "abstract_math_or_tcs_theorem",
+      "verification_tier_observed": "Tier3_Gold"
+    }
+  ]
+}

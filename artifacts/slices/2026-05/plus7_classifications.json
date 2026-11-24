@@ -1,0 +1,208 @@
+{
+  "schema_version": "1.1",
+  "slice_id": "2026-05",
+  "panel": "plus7_approved_engineering",
+  "categories": [
+    "cs.GT",
+    "math.DS",
+    "physics.flu-dyn",
+    "cs.PF",
+    "eess.IV",
+    "eess.AS",
+    "cs.CE"
+  ],
+  "lean_models": [
+    "flash"
+  ],
+  "lean_candidate_count": 6,
+  "lean_contributed_count": 4,
+  "lean_results": [
+    {
+      "arxiv_id": "2605.01140",
+      "primary_category": "cs.PL",
+      "matched_target_cats": [
+        "cs.PF"
+      ],
+      "submitted_date": "2026-05-01",
+      "updated_date": "2026-11-13",
+      "version": 2,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "Claude"
+      ],
+      "artifact_availability": "none",
+      "authoring_paradigm": "P0_opaque_or_unspecified",
+      "borderline_flag": false,
+      "borderline_note": "",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Introduces SoCal, a typed IR for memory-safe traversals over factored serialized ADTs with Lean 4 mechanized progress, preservation, and type-safety (in unlinked supplementary material), alongside the Colobus compiler to C.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "software_or_system_fv",
+      "paradigm_confidence": "high",
+      "paradigm_evidence": "Paper claims a Lean 4 + Mathlib mechanization of Section 3 progress, preservation, and type-safety for SoCal in supplementary material (with AI assistance writing the Lean 4 mechanization and auxiliary proofs), but provides no public Lean repository (the sole URL m-a-d-n-e-s-s/madness has 0 .lean files) and no blueprint/spec-lock or authoring-order details.",
+      "role_4way": "operational_system_fv",
+      "role_decision_gate": "G2_operational_fv",
+      "static_risk_flags": [
+        "Mode12_ProcessOpacity",
+        "OpFV_RefinementGap"
+      ],
+      "verification_object": "operational_sw_hw_db_protocol",
+      "verification_tier_observed": "Tier1_Bronze"
+    },
+    {
+      "arxiv_id": "2605.03338",
+      "primary_category": "cs.NE",
+      "matched_target_cats": [
+        "math.DS"
+      ],
+      "submitted_date": "2026-05-05",
+      "updated_date": "2026-09-09",
+      "version": 2,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "Large language models"
+      ],
+      "artifact_availability": "appendix_only",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "borderline_flag": false,
+      "borderline_note": "",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Analyzes equivariance, finite-horizon perturbation/leakage bounds, and decoder diffusion optimality for continuous-memory recurrent networks, with selected finite-horizon bounds claimed as machine-checked in a supplementary Lean 4/Mathlib project without a public repository URL.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "engineering_math_proof",
+      "paradigm_confidence": "medium",
+      "paradigm_evidence": "Manuscript proofs are primary while only selected finite-horizon and architecture-specific results are formalized in a supplementary Lean 4/Mathlib project mapped to manuscript claims in Appendix N.1; stochastic decoder bounds and PyTorch execution semantics remain unformalized, manuscript Lemma 11 bridges Lean directed-gap bounds to principal angles, and the AI use statement notes LLMs assisted in checking the Lean formalization, with no blueprint-sync or spec-lock tooling mentioned and no public repo URL provided.",
+      "role_4way": "eng_algorithmic_proof",
+      "role_decision_gate": "G3_eng_algorithmic",
+      "static_risk_flags": [
+        "Mode2_ScopeDowngrade",
+        "Mode12_ProcessOpacity"
+      ],
+      "verification_object": "algorithm_convergence_or_bound",
+      "verification_tier_observed": "Tier1_Bronze"
+    },
+    {
+      "arxiv_id": "2605.06194",
+      "primary_category": "cs.GT",
+      "matched_target_cats": [
+        "cs.GT"
+      ],
+      "submitted_date": "2026-05-07",
+      "updated_date": "2026-08-17",
+      "version": 2,
+      "model_tier": "flash",
+      "ai_agent_assisted": "explicitly_yes",
+      "ai_tools_mentioned": [
+        "gpt-5",
+        "codex",
+        "claude"
+      ],
+      "artifact_availability": "public_lean_repo",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "borderline_flag": false,
+      "borderline_note": "",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Proves core existence in approval-based committee elections for up to 7 voter types, with a post-hoc AI-assisted Lean 4 formalization of the n<=5 case in ABCVotingLean that relies on an unproved custom axiom (exists_fractional_budget_core).",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "pure_tcs_or_math",
+      "paradigm_confidence": "high",
+      "paradigm_evidence": "The paper states that a Lean 4 formalization of its n<=5 existence result was produced autonomously in ~10h by gpt-5 in the codex /goal harness, Normality/Main.lean cites 'papers/corefewvoters.tex', and the public ABCVotingLean repo lacks blueprint or Challenge/Solution spec-lock tooling.",
+      "role_4way": "pure_math_or_tcs",
+      "role_decision_gate": "G4_pure_math_tcs",
+      "static_risk_flags": [
+        "Mode2_ScopeDowngrade",
+        "Mode6_SorryOrAxiomOrNativeDecide"
+      ],
+      "verification_object": "abstract_math_or_tcs_theorem",
+      "verification_tier_observed": "Tier1_Bronze"
+    },
+    {
+      "arxiv_id": "2605.12537",
+      "primary_category": "cs.LO",
+      "matched_target_cats": [
+        "cs.GT"
+      ],
+      "submitted_date": "2026-05-04",
+      "updated_date": "2026-05-04",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "unclear",
+      "ai_tools_mentioned": [],
+      "artifact_availability": "public_lean_repo",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "borderline_flag": false,
+      "borderline_note": "",
+      "lean_usage_status": "lean_contributed",
+      "one_line_summary": "Pure formal-logic/social-choice paper (cs.LO/cs.GT) with a small post-hoc Lean 4 core companion (DevNCore.lean, 129 LoC, 0 sorry) formalizing two-agent finite relational lemmas and factor closure, plus an Alloy 6.2.0 companion.",
+      "other_formal_tools_contributed": [
+        "Alloy"
+      ],
+      "paper_domain_role": "pure_tcs_or_math",
+      "paradigm_confidence": "high",
+      "paradigm_evidence": "Section 7.3 and the DevNCore.lean header describe the Lean file as a small, deliberately narrower companion formalizing two-agent finite relational lemmas and update-safety factor closure rather than the paper's main Hilbert system, Lindenbaum construction, or completeness theorem; no blueprint or spec-lock tooling is present.",
+      "role_4way": "pure_math_or_tcs",
+      "role_decision_gate": "G4_pure_math_tcs",
+      "static_risk_flags": [
+        "Mode2_ScopeDowngrade",
+        "Mode12_ProcessOpacity"
+      ],
+      "verification_object": "abstract_math_or_tcs_theorem",
+      "verification_tier_observed": "Tier2_Silver"
+    },
+    {
+      "arxiv_id": "2605.19742",
+      "primary_category": "cs.GT",
+      "matched_target_cats": [
+        "cs.GT"
+      ],
+      "submitted_date": "2026-05-19",
+      "updated_date": "2026-05-31",
+      "version": 4,
+      "model_tier": "flash",
+      "ai_agent_assisted": "N/A",
+      "ai_tools_mentioned": [],
+      "artifact_availability": "N/A",
+      "authoring_paradigm": "N/A",
+      "lean_usage_status": "lean_citation_or_discussion",
+      "one_line_summary": "Derives closed-form bid-ask spread and welfare decomposition for a noisy Glosten-Milgrom model and only mentions Lean 4 mechanization as future work.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "N/A",
+      "paradigm_confidence": "N/A",
+      "paradigm_evidence": "Paper only mentions Lean 4 once before References as a future direction (\"Lean 4 mechanization of the closed-form results across the cluster is a natural formal-verification target\"), with no Lean formalization, repository, or artifacts contributed.",
+      "static_risk_flags": [],
+      "verification_tier_observed": "N/A"
+    },
+    {
+      "arxiv_id": "2605.20243",
+      "primary_category": "math.HO",
+      "matched_target_cats": [
+        "cs.GT"
+      ],
+      "submitted_date": "2026-05-18",
+      "updated_date": "2026-05-18",
+      "version": 1,
+      "model_tier": "flash",
+      "ai_agent_assisted": "N/A",
+      "ai_tools_mentioned": [
+        "Claude"
+      ],
+      "artifact_availability": "N/A",
+      "authoring_paradigm": "N/A",
+      "borderline_flag": false,
+      "borderline_note": "",
+      "lean_usage_status": "lean_citation_or_discussion",
+      "one_line_summary": "Graph-theoretic study of god numbers for solitaire puzzles and two-player sequential games that only cites de Moura et al.'s Lean theorem prover description [19] once in its bibliography without contributing Lean proofs.",
+      "other_formal_tools_contributed": [],
+      "paper_domain_role": "N/A",
+      "paradigm_confidence": "N/A",
+      "paradigm_evidence": "Paper has only a single Lean hit in its 210k-char LaTeX source, which is bibliography entry [19] citing de Moura et al. (2015) \"The lean theorem prover (system description)\", with no repos, URLs, or other formalization indicators.",
+      "role_4way": "N/A",
+      "role_decision_gate": "N/A",
+      "static_risk_flags": [],
+      "verification_object": "N/A",
+      "verification_tier_observed": "N/A"
+    }
+  ]
+}
