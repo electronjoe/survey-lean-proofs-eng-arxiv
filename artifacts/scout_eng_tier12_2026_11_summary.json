@@ -1,0 +1,1401 @@
+{
+  "generated_at": "2026-11-24T22:20:54+00:00",
+  "window": {
+    "since": "2026-11-01",
+    "until": "2026-11-19"
+  },
+  "source_dbs": {
+    "plus7_scout_db": "data/scout_eng_tier12_2026_11.db",
+    "math_na_meta_db": "data/scout_math_na_meta_2026_11.db",
+    "orig8_reference_db": "data/survey.db (read-only; untouched)"
+  },
+  "plus7_totals": {
+    "categories": [
+      "cs.PF",
+      "eess.IV",
+      "eess.AS",
+      "cs.GT",
+      "cs.CE",
+      "physics.flu-dyn",
+      "math.DS"
+    ],
+    "raw_category_sum": 1353,
+    "unique_papers": 1339,
+    "overlap_with_orig8": 140,
+    "net_new_papers": 1199,
+    "combined_15cat_unique_papers": 5303,
+    "fetch_sources": {
+      "html": 1247,
+      "pdf": 89,
+      "failed": 3
+    },
+    "fulltext_coverage_pct": 99.78,
+    "meta_lean_strong": 12,
+    "stage2_lean_strong": 31,
+    "stage2_lean_strong_net_new": 29,
+    "stage2_lean_ctx_only": 5,
+    "stage2_lean_ctx_only_net_new": 5,
+    "stage2_lean_candidates_total": 36,
+    "stage2_lean_candidates_net_new": 34,
+    "stage2_lean_candidates_overlap_orig8": [
+      "2611.05243",
+      "2611.14756"
+    ],
+    "fulltext_vs_meta_strong_multiplier": 2.58,
+    "beyond_lean_any_fv": 9,
+    "combined_15cat_stage2_lean_candidates": 89
+  },
+  "complete_eess_archive": {
+    "categories": [
+      "eess.AS",
+      "eess.IV",
+      "eess.SP",
+      "eess.SY"
+    ],
+    "unique_papers": 1466,
+    "primary_eess_papers": 985,
+    "stage2_lean_candidates_total": 3,
+    "non_sy_categories": [
+      "eess.AS",
+      "eess.IV",
+      "eess.SP"
+    ],
+    "non_sy_unique_papers": 752,
+    "non_sy_stage2_lean_candidates": 0,
+    "non_sy_95_upper_bound_pct": 0.4
+  },
+  "per_category": {
+    "cs.PF": {
+      "total": 94,
+      "primary_count": 24,
+      "cross_list_count": 70,
+      "net_new_vs_orig8": 43,
+      "overlap_with_orig8": 51,
+      "fulltext_screened": 94,
+      "failed": 0,
+      "meta_lean_strong": 0,
+      "stage2_lean_strong": 0,
+      "stage2_lean_strong_primary": 0,
+      "stage2_lean_strong_net_new": 0,
+      "stage2_lean_ctx_only": 0,
+      "stage2_lean_ctx_only_net_new": 0,
+      "stage2_lean_candidates_total": 0,
+      "stage2_lean_candidates_primary": 0,
+      "stage2_lean_candidates_net_new": 0,
+      "stage2_candidate_rate_pct": 0.0,
+      "stage2_candidate_ci95_pct": [
+        0.0,
+        3.14
+      ],
+      "beyond_lean_any_fv": 3,
+      "other_itp": 1,
+      "model_checker": 0,
+      "protocol_verifier": 0,
+      "smt_sat": 2
+    },
+    "eess.IV": {
+      "total": 175,
+      "primary_count": 126,
+      "cross_list_count": 49,
+      "net_new_vs_orig8": 156,
+      "overlap_with_orig8": 19,
+      "fulltext_screened": 175,
+      "failed": 0,
+      "meta_lean_strong": 0,
+      "stage2_lean_strong": 0,
+      "stage2_lean_strong_primary": 0,
+      "stage2_lean_strong_net_new": 0,
+      "stage2_lean_ctx_only": 0,
+      "stage2_lean_ctx_only_net_new": 0,
+      "stage2_lean_candidates_total": 0,
+      "stage2_lean_candidates_primary": 0,
+      "stage2_lean_candidates_net_new": 0,
+      "stage2_candidate_rate_pct": 0.0,
+      "stage2_candidate_ci95_pct": [
+        0.0,
+        1.7
+      ],
+      "beyond_lean_any_fv": 2,
+      "other_itp": 1,
+      "model_checker": 0,
+      "protocol_verifier": 0,
+      "smt_sat": 1
+    },
+    "eess.AS": {
+      "total": 134,
+      "primary_count": 79,
+      "cross_list_count": 55,
+      "net_new_vs_orig8": 123,
+      "overlap_with_orig8": 11,
+      "fulltext_screened": 133,
+      "failed": 1,
+      "meta_lean_strong": 0,
+      "stage2_lean_strong": 0,
+      "stage2_lean_strong_primary": 0,
+      "stage2_lean_strong_net_new": 0,
+      "stage2_lean_ctx_only": 0,
+      "stage2_lean_ctx_only_net_new": 0,
+      "stage2_lean_candidates_total": 0,
+      "stage2_lean_candidates_primary": 0,
+      "stage2_lean_candidates_net_new": 0,
+      "stage2_candidate_rate_pct": 0.0,
+      "stage2_candidate_ci95_pct": [
+        0.0,
+        2.21
+      ],
+      "beyond_lean_any_fv": 1,
+      "other_itp": 1,
+      "model_checker": 0,
+      "protocol_verifier": 0,
+      "smt_sat": 0
+    },
+    "cs.GT": {
+      "total": 166,
+      "primary_count": 117,
+      "cross_list_count": 49,
+      "net_new_vs_orig8": 146,
+      "overlap_with_orig8": 20,
+      "fulltext_screened": 165,
+      "failed": 1,
+      "meta_lean_strong": 3,
+      "stage2_lean_strong": 14,
+      "stage2_lean_strong_primary": 8,
+      "stage2_lean_strong_net_new": 13,
+      "stage2_lean_ctx_only": 2,
+      "stage2_lean_ctx_only_net_new": 2,
+      "stage2_lean_candidates_total": 16,
+      "stage2_lean_candidates_primary": 10,
+      "stage2_lean_candidates_net_new": 15,
+      "stage2_candidate_rate_pct": 9.64,
+      "stage2_candidate_ci95_pct": [
+        6.02,
+        15.08
+      ],
+      "beyond_lean_any_fv": 0,
+      "other_itp": 0,
+      "model_checker": 0,
+      "protocol_verifier": 0,
+      "smt_sat": 0
+    },
+    "cs.CE": {
+      "total": 146,
+      "primary_count": 92,
+      "cross_list_count": 54,
+      "net_new_vs_orig8": 130,
+      "overlap_with_orig8": 16,
+      "fulltext_screened": 146,
+      "failed": 0,
+      "meta_lean_strong": 0,
+      "stage2_lean_strong": 0,
+      "stage2_lean_strong_primary": 0,
+      "stage2_lean_strong_net_new": 0,
+      "stage2_lean_ctx_only": 0,
+      "stage2_lean_ctx_only_net_new": 0,
+      "stage2_lean_candidates_total": 0,
+      "stage2_lean_candidates_primary": 0,
+      "stage2_lean_candidates_net_new": 0,
+      "stage2_candidate_rate_pct": 0.0,
+      "stage2_candidate_ci95_pct": [
+        0.0,
+        2.03
+      ],
+      "beyond_lean_any_fv": 0,
+      "other_itp": 0,
+      "model_checker": 0,
+      "protocol_verifier": 0,
+      "smt_sat": 0
+    },
+    "physics.flu-dyn": {
+      "total": 278,
+      "primary_count": 204,
+      "cross_list_count": 74,
+      "net_new_vs_orig8": 273,
+      "overlap_with_orig8": 5,
+      "fulltext_screened": 278,
+      "failed": 0,
+      "meta_lean_strong": 2,
+      "stage2_lean_strong": 2,
+      "stage2_lean_strong_primary": 0,
+      "stage2_lean_strong_net_new": 2,
+      "stage2_lean_ctx_only": 0,
+      "stage2_lean_ctx_only_net_new": 0,
+      "stage2_lean_candidates_total": 2,
+      "stage2_lean_candidates_primary": 0,
+      "stage2_lean_candidates_net_new": 2,
+      "stage2_candidate_rate_pct": 0.72,
+      "stage2_candidate_ci95_pct": [
+        0.2,
+        2.58
+      ],
+      "beyond_lean_any_fv": 1,
+      "other_itp": 1,
+      "model_checker": 0,
+      "protocol_verifier": 0,
+      "smt_sat": 0
+    },
+    "math.DS": {
+      "total": 360,
+      "primary_count": 219,
+      "cross_list_count": 141,
+      "net_new_vs_orig8": 336,
+      "overlap_with_orig8": 24,
+      "fulltext_screened": 359,
+      "failed": 1,
+      "meta_lean_strong": 7,
+      "stage2_lean_strong": 15,
+      "stage2_lean_strong_primary": 6,
+      "stage2_lean_strong_net_new": 14,
+      "stage2_lean_ctx_only": 3,
+      "stage2_lean_ctx_only_net_new": 3,
+      "stage2_lean_candidates_total": 18,
+      "stage2_lean_candidates_primary": 6,
+      "stage2_lean_candidates_net_new": 17,
+      "stage2_candidate_rate_pct": 5.0,
+      "stage2_candidate_ci95_pct": [
+        3.19,
+        7.76
+      ],
+      "beyond_lean_any_fv": 2,
+      "other_itp": 1,
+      "model_checker": 0,
+      "protocol_verifier": 0,
+      "smt_sat": 1
+    }
+  },
+  "failed_fetches": [
+    {
+      "arxiv_id": "2611.13243",
+      "version": 3,
+      "primary_category": "cs.LG",
+      "matched_plus7_cats": [
+        "eess.AS"
+      ],
+      "http_status": 404,
+      "comment": "Additional checking required"
+    },
+    {
+      "arxiv_id": "2611.11714",
+      "version": 2,
+      "primary_category": "cs.MA",
+      "matched_plus7_cats": [
+        "cs.GT"
+      ],
+      "http_status": 404,
+      "comment": "It is preliminary and is not suitable for public release yet"
+    },
+    {
+      "arxiv_id": "2611.01482",
+      "version": 2,
+      "primary_category": "math.DS",
+      "matched_plus7_cats": [
+        "math.DS"
+      ],
+      "http_status": 404,
+      "comment": "This paper is being withdrawn as it relies heavily on AI-generated arguments that have not been thoroughly verified. We do not feel confident in the results or proofs and do not recommend relying on or citing this"
+    }
+  ],
+  "candidates": [
+    {
+      "arxiv_id": "2611.26622",
+      "version": 1,
+      "submitted_date": "2026-11-19T18:59:08Z",
+      "title": "Quasipolynomial pyjamas",
+      "primary_category": "math.CO",
+      "all_categories": [
+        "math.CO",
+        "math.DS",
+        "math.NT"
+      ],
+      "matched_plus7_cats": [
+        "math.DS"
+      ],
+      "fetch_source": "html",
+      "signal_tier": "lean_ctx_only",
+      "meta_lean_strong": false,
+      "meta_lean_contextual": false,
+      "strong_signal_keys": [],
+      "urls": [
+        "https://github.com/openai/math/blob/main/preprints/Primitive-roots-for-every-admissible-integer-base-October-4-2026/primitive-roots-all-integer-bases.pdf",
+        "https://github.com/openai/math/blob/main/preprints/The-Quasi-Riemann-Hypothesis-October-5-2026/paper2.pdf",
+        "https://github.com/openai/math/blob/main/preprints/The-Quasi-Riemann-Hypothesis-September-30-2026/paper.pdf"
+      ],
+      "in_survey_db_orig8": false,
+      "orig8_classification": null
+    },
+    {
+      "arxiv_id": "2611.24920",
+      "version": 1,
+      "submitted_date": "2026-11-18T18:49:49Z",
+      "title": "The Optimal Competitive Ratio for Subadditive Online Combinatorial Auctions is Less Than 1/2",
+      "primary_category": "cs.GT",
+      "all_categories": [
+        "cs.GT"
+      ],
+      "matched_plus7_cats": [
+        "cs.GT"
+      ],
+      "fetch_source": "html",
+      "signal_tier": "lean_strong",
+      "meta_lean_strong": false,
+      "meta_lean_contextual": false,
+      "strong_signal_keys": [
+        "lean_prover_phrase"
+      ],
+      "urls": [
+        "https://github.com/GO-EPFL/subadditive-online-combinatorial-auctions"
+      ],
+      "in_survey_db_orig8": false,
+      "orig8_classification": null
+    },
+    {
+      "arxiv_id": "2611.24787",
+      "version": 1,
+      "submitted_date": "2026-11-18T17:35:16Z",
+      "title": "A Poisson boundary solution to Connes' bicentralizer conjecture and Kadison's problem on MASA",
+      "primary_category": "math.OA",
+      "all_categories": [
+        "math.DS",
+        "math.OA"
+      ],
+      "matched_plus7_cats": [
+        "math.DS"
+      ],
+      "fetch_source": "html",
+      "signal_tier": "lean_ctx_only",
+      "meta_lean_strong": false,
+      "meta_lean_contextual": false,
+      "strong_signal_keys": [],
+      "urls": [
+        "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/README.md",
+        "https://github.com/openai/math/blob/main/preprints/Expected-amenable-subalgebras-preserving-core-commutants-September-23-2026/Expected-amenable-subalgebras-preserving-core-commutants-September-23-2026.pdf"
+      ],
+      "in_survey_db_orig8": false,
+      "orig8_classification": null
+    },
+    {
+      "arxiv_id": "2611.22216",
+      "version": 1,
+      "submitted_date": "2026-11-17T04:52:49Z",
+      "title": "Settling the Time and Structural Complexity of Bertrand Networks",
+      "primary_category": "cs.GT",
+      "all_categories": [
+        "cs.DS",
+        "cs.GT",
+        "econ.TH"
+      ],
+      "matched_plus7_cats": [
+        "cs.GT"
+      ],
+      "fetch_source": "html",
+      "signal_tier": "lean_strong",
+      "meta_lean_strong": false,
+      "meta_lean_contextual": false,
+      "strong_signal_keys": [
+        "lean_prover_phrase"
+      ],
+      "urls": [
+        "https://github.com/hajiaghayi/Bertrand"
+      ],
+      "in_survey_db_orig8": false,
+      "orig8_classification": null
+    },
+    {
+      "arxiv_id": "2611.20966",
+      "version": 1,
+      "submitted_date": "2026-11-16T12:08:51Z",
+      "title": "Finite-order exponential mixing does not imply the central limit theorem for unique equilibrium states",
+      "primary_category": "math.DS",
+      "all_categories": [
+        "math.DS"
+      ],
+      "matched_plus7_cats": [
+        "math.DS"
+      ],
+      "fetch_source": "html",
+      "signal_tier": "lean_strong",
+      "meta_lean_strong": true,
+      "meta_lean_contextual": true,
+      "strong_signal_keys": [
+        "in_lean_phrase",
+        "lakefile",
+        "lean_prover_phrase",
+        "lean_version",
+        "mathlib"
+      ],
+      "urls": [
+        "https://github.com/Manzatto/equilibrium-states-finite-order-mixing-clt-counterexample"
+      ],
+      "in_survey_db_orig8": false,
+      "orig8_classification": null
+    },
+    {
+      "arxiv_id": "2611.20890",
+      "version": 2,
+      "submitted_date": "2026-11-16T10:59:04Z",
+      "title": "Nearly Settling the Complexity of Connected $\\varepsilon$-Envy-Free Cake Cutting",
+      "primary_category": "cs.GT",
+      "all_categories": [
+        "cs.CC",
+        "cs.GT"
+      ],
+      "matched_plus7_cats": [
+        "cs.GT"
+      ],
+      "fetch_source": "html",
+      "signal_tier": "lean_strong",
+      "meta_lean_strong": false,
+      "meta_lean_contextual": false,
+      "strong_signal_keys": [
+        "lean_prover_phrase",
+        "lean_version",
+        "mathlib"
+      ],
+      "urls": [
+        "https://github.com/SimonWMackenzie/connected-envy-free-lean",
+        "https://github.com/harfe/fixed-point-theorems-lean4"
+      ],
+      "in_survey_db_orig8": false,
+      "orig8_classification": null
+    },
+    {
+      "arxiv_id": "2611.19243",
+      "version": 1,
+      "submitted_date": "2026-11-14T08:14:51Z",
+      "title": "Veech dichotomy for specific covering surface over Veech surface",
+      "primary_category": "math.DS",
+      "all_categories": [
+        "math.DS"
+      ],
+      "matched_plus7_cats": [
+        "math.DS"
+      ],
+      "fetch_source": "html",
+      "signal_tier": "lean_strong",
+      "meta_lean_strong": false,
+      "meta_lean_contextual": false,
+      "strong_signal_keys": [
+        "lean_version",
+        "mathlib"
+      ],
+      "urls": [
+        "https://github.com/Ryan-Hao-Jan/Veech-dichotomy-for-cover"
+      ],
+      "in_survey_db_orig8": false,
+      "orig8_classification": null
+    },
+    {
+      "arxiv_id": "2611.17292",
+      "version": 1,
+      "submitted_date": "2026-11-12T18:53:44Z",
+      "title": "The Submodular Secretary Problem: Tight $1-1/e$ for Monotone Objectives, and Strictly Between $1/e$ and $1/2$ in General",
+      "primary_category": "cs.DS",
+      "all_categories": [
+        "cs.DS",
+        "cs.GT"
+      ],
+      "matched_plus7_cats": [
+        "cs.GT"
+      ],
+      "fetch_source": "html",
+      "signal_tier": "lean_strong",
+      "meta_lean_strong": false,
+      "meta_lean_contextual": false,
+      "strong_signal_keys": [
+        "lean_verifiers",
+        "lean_version"
+      ],
+      "urls": [],
+      "in_survey_db_orig8": false,
+      "orig8_classification": null
+    },
+    {
+      "arxiv_id": "2611.17277",
+      "version": 1,
+      "submitted_date": "2026-11-12T18:50:34Z",
+      "title": "On $L^p$ density of self-similar measures and Bernoulli convolutions",
+      "primary_category": "math.DS",
+      "all_categories": [
+        "math.CA",
+        "math.DS",
+        "math.PR"
+      ],
+      "matched_plus7_cats": [
+        "math.DS"
+      ],
+      "fetch_source": "html",
+      "signal_tier": "lean_strong",
+      "meta_lean_strong": false,
+      "meta_lean_contextual": false,
+      "strong_signal_keys": [
+        "in_lean_phrase",
+        "lean_prover_phrase"
+      ],
+      "urls": [
+        "https://github.com/ckkogler/l1-to-lp-supplementary-material",
+        "https://github.com/ckkogler/lpselfsimilar-lean"
+      ],
+      "in_survey_db_orig8": false,
+      "orig8_classification": null
+    },
+    {
+      "arxiv_id": "2611.17223",
+      "version": 1,
+      "submitted_date": "2026-11-12T18:19:37Z",
+      "title": "Combinatorial Bernoulli Factories with Polynomially Many Coins",
+      "primary_category": "cs.DS",
+      "all_categories": [
+        "cs.DS",
+        "cs.GT",
+        "cs.LG",
+        "math.PR",
+        "stat.CO"
+      ],
+      "matched_plus7_cats": [
+        "cs.GT"
+      ],
+      "fetch_source": "html",
+      "signal_tier": "lean_strong",
+      "meta_lean_strong": false,
+      "meta_lean_contextual": false,
+      "strong_signal_keys": [
+        "in_lean_phrase",
+        "lean_version"
+      ],
+      "urls": [
+        "https://github.com/radniazadeh/bernoulli-poly.git"
+      ],
+      "in_survey_db_orig8": false,
+      "orig8_classification": null
+    },
+    {
+      "arxiv_id": "2611.16763",
+      "version": 1,
+      "submitted_date": "2026-11-12T13:14:19Z",
+      "title": "Composition loci, invariant Bezoutians, and finite-orbit correspondences",
+      "primary_category": "math.AG",
+      "all_categories": [
+        "math.AG",
+        "math.DS"
+      ],
+      "matched_plus7_cats": [
+        "math.DS"
+      ],
+      "fetch_source": "html",
+      "signal_tier": "lean_ctx_only",
+      "meta_lean_strong": false,
+      "meta_lean_contextual": false,
+      "strong_signal_keys": [],
+      "urls": [],
+      "in_survey_db_orig8": false,
+      "orig8_classification": null
+    },
+    {
+      "arxiv_id": "2611.15751",
+      "version": 1,
+      "submitted_date": "2026-11-11T17:30:22Z",
+      "title": "Shift-Symmetric Configurations in $d$-Dimensional Cellular Automata: Enumeration, Bounds, Irreversibility, and Detection",
+      "primary_category": "math.CO",
+      "all_categories": [
+        "math.CO",
+        "math.DS"
+      ],
+      "matched_plus7_cats": [
+        "math.DS"
+      ],
+      "fetch_source": "html",
+      "signal_tier": "lean_strong",
+      "meta_lean_strong": true,
+      "meta_lean_contextual": true,
+      "strong_signal_keys": [
+        "in_lean_phrase",
+        "lean_prover_phrase",
+        "lean_version",
+        "mathlib"
+      ],
+      "urls": [
+        "https://github.com/peterbanda/d-dim-shift-symmetry-in-ca"
+      ],
+      "in_survey_db_orig8": false,
+      "orig8_classification": null
+    },
+    {
+      "arxiv_id": "2611.15711",
+      "version": 1,
+      "submitted_date": "2026-11-11T16:53:18Z",
+      "title": "Beyond Worst-Case Online Algorithms via Input Subsampling",
+      "primary_category": "cs.DS",
+      "all_categories": [
+        "cs.DS",
+        "cs.GT"
+      ],
+      "matched_plus7_cats": [
+        "cs.GT"
+      ],
+      "fetch_source": "html",
+      "signal_tier": "lean_strong",
+      "meta_lean_strong": false,
+      "meta_lean_contextual": false,
+      "strong_signal_keys": [
+        "in_lean_phrase",
+        "lean_prover_phrase",
+        "lean_verifiers",
+        "mathlib"
+      ],
+      "urls": [
+        "https://github.com/relyt871/BWCA-Online-Lean"
+      ],
+      "in_survey_db_orig8": false,
+      "orig8_classification": null
+    },
+    {
+      "arxiv_id": "2611.14974",
+      "version": 1,
+      "submitted_date": "2026-11-11T03:34:51Z",
+      "title": "Who Moved the Frontier? Paying Open Frontier Challenges with Free Identities",
+      "primary_category": "cs.GT",
+      "all_categories": [
+        "cs.AI",
+        "cs.GT",
+        "cs.LG"
+      ],
+      "matched_plus7_cats": [
+        "cs.GT"
+      ],
+      "fetch_source": "html",
+      "signal_tier": "lean_strong",
+      "meta_lean_strong": false,
+      "meta_lean_contextual": false,
+      "strong_signal_keys": [
+        "lean_prover_phrase"
+      ],
+      "urls": [
+        "https://github.com/KellerJordan/modded-nanogpt",
+        "https://github.com/Layr-Labs/quantum-safe-bitcoin-challenge",
+        "https://github.com/karpathy/autoresearch",
+        "https://github.com/mutable-state-inc/autoresearch-at-home",
+        "https://github.com/proximity-prize/proximity-prize",
+        "https://github.com/trevin-creator/autoresearch-mlx"
+      ],
+      "in_survey_db_orig8": false,
+      "orig8_classification": null
+    },
+    {
+      "arxiv_id": "2611.14756",
+      "version": 1,
+      "submitted_date": "2026-11-10T21:32:15Z",
+      "title": "Stability of equilibria in discrete-time modified-gradient systems and the multivariate breeder's equation",
+      "primary_category": "math.DS",
+      "all_categories": [
+        "math.DS",
+        "math.OC",
+        "q-bio.PE"
+      ],
+      "matched_plus7_cats": [
+        "math.DS"
+      ],
+      "fetch_source": "html",
+      "signal_tier": "lean_strong",
+      "meta_lean_strong": true,
+      "meta_lean_contextual": true,
+      "strong_signal_keys": [
+        "lean_version",
+        "mathlib"
+      ],
+      "urls": [
+        "https://doi.org/10.5281/zenodo.24118844",
+        "https://github.com/magbenji/discrete-modified-gradient-lean"
+      ],
+      "in_survey_db_orig8": true,
+      "orig8_classification": "lean_contributed"
+    },
+    {
+      "arxiv_id": "2611.14586",
+      "version": 1,
+      "submitted_date": "2026-11-10T06:42:46Z",
+      "title": "Finite-Cadence Refresh Equilibria for Streaming Prior-Anchored Ridge: A Closed-Form Forgetting Window and Spectral Correction",
+      "primary_category": "stat.ML",
+      "all_categories": [
+        "cs.AI",
+        "cs.GT",
+        "cs.LG",
+        "stat.ML"
+      ],
+      "matched_plus7_cats": [
+        "cs.GT"
+      ],
+      "fetch_source": "html",
+      "signal_tier": "lean_strong",
+      "meta_lean_strong": true,
+      "meta_lean_contextual": true,
+      "strong_signal_keys": [
+        "in_lean_phrase",
+        "lakefile",
+        "lean_version",
+        "mathlib"
+      ],
+      "urls": [
+        "http://github.com/jax-ml/jax",
+        "https://doi.org/10.5281/zenodo.23768172",
+        "https://doi.org/10.5281/zenodo.593816"
+      ],
+      "in_survey_db_orig8": false,
+      "orig8_classification": null
+    },
+    {
+      "arxiv_id": "2611.12862",
+      "version": 1,
+      "submitted_date": "2026-11-09T18:50:49Z",
+      "title": "Quantitative global regularity for Navier--Stokes equations with odd viscosity on the cubic three-torus",
+      "primary_category": "math.AP",
+      "all_categories": [
+        "math-ph",
+        "math.AP",
+        "math.MP",
+        "physics.flu-dyn"
+      ],
+      "matched_plus7_cats": [
+        "physics.flu-dyn"
+      ],
+      "fetch_source": "pdf",
+      "signal_tier": "lean_strong",
+      "meta_lean_strong": true,
+      "meta_lean_contextual": true,
+      "strong_signal_keys": [
+        "in_lean_phrase",
+        "lean_prover_phrase",
+        "lean_version",
+        "mathlib"
+      ],
+      "urls": [
+        "https://github.com/DavetheSlayer/OVNS-Lean",
+        "https://github.com/DavetheSlayer/OVNS-Lean/tree/9bd811d918c2387b82f482ce15b7cf6df1ccf3a6"
+      ],
+      "in_survey_db_orig8": false,
+      "orig8_classification": null
+    },
+    {
+      "arxiv_id": "2611.11805",
+      "version": 1,
+      "submitted_date": "2026-11-09T03:08:26Z",
+      "title": "Operator Learning of Microstructure-Dependent Internal-Variable Models for Inelastic Homogenization: Approximation and Complexity",
+      "primary_category": "math.NA",
+      "all_categories": [
+        "cond-mat.mtrl-sci",
+        "cs.LG",
+        "cs.NA",
+        "math.DS",
+        "math.NA"
+      ],
+      "matched_plus7_cats": [
+        "math.DS"
+      ],
+      "fetch_source": "html",
+      "signal_tier": "lean_strong",
+      "meta_lean_strong": true,
+      "meta_lean_contextual": true,
+      "strong_signal_keys": [
+        "in_lean_phrase",
+        "lean_version",
+        "mathlib"
+      ],
+      "urls": [
+        "https://github.com/sgstepaniants/inelastic_hom_learn"
+      ],
+      "in_survey_db_orig8": false,
+      "orig8_classification": null
+    },
+    {
+      "arxiv_id": "2611.11641",
+      "version": 1,
+      "submitted_date": "2026-11-08T21:54:58Z",
+      "title": "Spectral Stability, Fatou Basin Contraction, and Machine-Checked Multipliers in Holomorphic Extensions of Generalized Syracuse Dynamics",
+      "primary_category": "cs.LO",
+      "all_categories": [
+        "cs.LO",
+        "cs.SC",
+        "math.CV",
+        "math.DS"
+      ],
+      "matched_plus7_cats": [
+        "math.DS"
+      ],
+      "fetch_source": "html",
+      "signal_tier": "lean_strong",
+      "meta_lean_strong": true,
+      "meta_lean_contextual": true,
+      "strong_signal_keys": [
+        "in_lean_phrase",
+        "lean_version"
+      ],
+      "urls": [
+        "https://doi.org/10.5281/zenodo.24060393",
+        "https://doi.org/10.5281/zenodo.24060394",
+        "https://zenodo.org/records/24060394"
+      ],
+      "in_survey_db_orig8": false,
+      "orig8_classification": null
+    },
+    {
+      "arxiv_id": "2611.11424",
+      "version": 2,
+      "submitted_date": "2026-11-08T14:36:52Z",
+      "title": "The Query Complexity of Envy-Free Division: Cake, Chores, and Mixed Resources",
+      "primary_category": "cs.GT",
+      "all_categories": [
+        "cs.GT"
+      ],
+      "matched_plus7_cats": [
+        "cs.GT"
+      ],
+      "fetch_source": "html",
+      "signal_tier": "lean_strong",
+      "meta_lean_strong": false,
+      "meta_lean_contextual": false,
+      "strong_signal_keys": [
+        "lean_prover_phrase",
+        "lean_version",
+        "mathlib"
+      ],
+      "urls": [
+        "https://github.com/farhadi94/envy-free-division"
+      ],
+      "in_survey_db_orig8": false,
+      "orig8_classification": null
+    },
+    {
+      "arxiv_id": "2611.09615",
+      "version": 1,
+      "submitted_date": "2026-11-06T15:35:58Z",
+      "title": "Contextual Search and Bilateral Trade with a Trace-Square-Root Potential",
+      "primary_category": "cs.GT",
+      "all_categories": [
+        "cs.GT",
+        "cs.LG"
+      ],
+      "matched_plus7_cats": [
+        "cs.GT"
+      ],
+      "fetch_source": "html",
+      "signal_tier": "lean_strong",
+      "meta_lean_strong": false,
+      "meta_lean_contextual": false,
+      "strong_signal_keys": [
+        "lean_version"
+      ],
+      "urls": [
+        "http://github.com/renatoppl/trace-square-root"
+      ],
+      "in_survey_db_orig8": false,
+      "orig8_classification": null
+    },
+    {
+      "arxiv_id": "2611.09066",
+      "version": 2,
+      "submitted_date": "2026-11-06T06:51:11Z",
+      "title": "Hausdorff dimension of planar box-like self-affine sets with rotations",
+      "primary_category": "math.DS",
+      "all_categories": [
+        "math.DS"
+      ],
+      "matched_plus7_cats": [
+        "math.DS"
+      ],
+      "fetch_source": "html",
+      "signal_tier": "lean_strong",
+      "meta_lean_strong": false,
+      "meta_lean_contextual": false,
+      "strong_signal_keys": [
+        "lean_prover_phrase",
+        "lean_version",
+        "mathlib"
+      ],
+      "urls": [
+        "https://github.com/sascha2718/lean-diagonal-antidiagonal"
+      ],
+      "in_survey_db_orig8": false,
+      "orig8_classification": null
+    },
+    {
+      "arxiv_id": "2611.08591",
+      "version": 1,
+      "submitted_date": "2026-11-05T19:00:04Z",
+      "title": "Conley index theory for asymptotically autonomous systems and UV-to-IR connections",
+      "primary_category": "math-ph",
+      "all_categories": [
+        "hep-th",
+        "math-ph",
+        "math.DS",
+        "math.MP"
+      ],
+      "matched_plus7_cats": [
+        "math.DS"
+      ],
+      "fetch_source": "html",
+      "signal_tier": "lean_strong",
+      "meta_lean_strong": true,
+      "meta_lean_contextual": true,
+      "strong_signal_keys": [
+        "lean_prover_phrase",
+        "lean_version"
+      ],
+      "urls": [
+        "https://github.com/stacks-ai/papers/tree/main/conley-index-dynamical-systems"
+      ],
+      "in_survey_db_orig8": false,
+      "orig8_classification": null
+    },
+    {
+      "arxiv_id": "2611.07818",
+      "version": 2,
+      "submitted_date": "2026-11-05T10:58:25Z",
+      "title": "Thurston algorithm for real entire maps: existence and uniqueness",
+      "primary_category": "math.DS",
+      "all_categories": [
+        "math.DS"
+      ],
+      "matched_plus7_cats": [
+        "math.DS"
+      ],
+      "fetch_source": "html",
+      "signal_tier": "lean_strong",
+      "meta_lean_strong": false,
+      "meta_lean_contextual": false,
+      "strong_signal_keys": [
+        "lean_version"
+      ],
+      "urls": [],
+      "in_survey_db_orig8": false,
+      "orig8_classification": null
+    },
+    {
+      "arxiv_id": "2611.07494",
+      "version": 1,
+      "submitted_date": "2026-11-05T05:58:27Z",
+      "title": "Transparency in Team Contracts",
+      "primary_category": "cs.GT",
+      "all_categories": [
+        "cs.GT",
+        "econ.TH"
+      ],
+      "matched_plus7_cats": [
+        "cs.GT"
+      ],
+      "fetch_source": "html",
+      "signal_tier": "lean_ctx_only",
+      "meta_lean_strong": false,
+      "meta_lean_contextual": false,
+      "strong_signal_keys": [],
+      "urls": [
+        "http://github.com/wuzhuangtai00/transparency-lean"
+      ],
+      "in_survey_db_orig8": false,
+      "orig8_classification": null
+    },
+    {
+      "arxiv_id": "2611.07395",
+      "version": 1,
+      "submitted_date": "2026-11-05T03:44:55Z",
+      "title": "Rigorously Certified Neural-Network Computation of Nonlinear Water Waves at Near-Machine Precision",
+      "primary_category": "math.AP",
+      "all_categories": [
+        "cs.LG",
+        "math.AP",
+        "physics.flu-dyn"
+      ],
+      "matched_plus7_cats": [
+        "physics.flu-dyn"
+      ],
+      "fetch_source": "html",
+      "signal_tier": "lean_strong",
+      "meta_lean_strong": true,
+      "meta_lean_contextual": true,
+      "strong_signal_keys": [
+        "lean_prover_phrase",
+        "lean_verifiers",
+        "lean_version",
+        "mathlib"
+      ],
+      "urls": [
+        "https://github.com/jax-ml/jax",
+        "https://github.com/michalshavitNYU/Rigorously-certified-water-waves",
+        "https://github.com/michalshavitNYU/Rigorously-certified-water-waves/blob/main/docs/supplementary_computer_assisted_accuracy_proof.pdf",
+        "https://github.com/michalshavitNYU/Rigorously-certified-water-waves/tree/main",
+        "https://github.com/michalshavitNYU/Rigorously-certified-water-waves/tree/main/Julia",
+        "https://github.com/michalshavitNYU/Rigorously-certified-water-waves/tree/main/Lean"
+      ],
+      "in_survey_db_orig8": false,
+      "orig8_classification": null
+    },
+    {
+      "arxiv_id": "2611.06896",
+      "version": 1,
+      "submitted_date": "2026-11-04T18:47:40Z",
+      "title": "Online Edge-Weighted Matching Beyond 0.55",
+      "primary_category": "cs.DS",
+      "all_categories": [
+        "cs.DS",
+        "cs.GT"
+      ],
+      "matched_plus7_cats": [
+        "cs.GT"
+      ],
+      "fetch_source": "html",
+      "signal_tier": "lean_strong",
+      "meta_lean_strong": false,
+      "meta_lean_contextual": false,
+      "strong_signal_keys": [
+        "lean_version"
+      ],
+      "urls": [
+        "https://github.com/farhadi94/online-edge-weighted-matching"
+      ],
+      "in_survey_db_orig8": false,
+      "orig8_classification": null
+    },
+    {
+      "arxiv_id": "2611.06106",
+      "version": 2,
+      "submitted_date": "2026-11-04T07:51:17Z",
+      "title": "PCF All The Way Down",
+      "primary_category": "math.AG",
+      "all_categories": [
+        "math.AG",
+        "math.DS",
+        "math.NT"
+      ],
+      "matched_plus7_cats": [
+        "math.DS"
+      ],
+      "fetch_source": "pdf",
+      "signal_tier": "lean_strong",
+      "meta_lean_strong": false,
+      "meta_lean_contextual": false,
+      "strong_signal_keys": [
+        "in_lean_phrase",
+        "lean_prover_phrase",
+        "lean_version",
+        "leanprover",
+        "mathlib"
+      ],
+      "urls": [
+        "https://github.com/leanprover-community/",
+        "https://github.com/leanprover-community/mathlib4/tree/56a005855ea17e0b0958f73ec801ae140b0a1679",
+        "https://github.com/leanprover/lean4/releases/tag/v4.35.0",
+        "https://github.com/sympy/sympy/releases/tag/1.13.2",
+        "https://github.com/tdupu/",
+        "https://github.com/tdupu/agent-skills-public/tree/1e1b9ba1e6bcf20c31f0bacc799ecdc68b502257",
+        "https://github.com/tdupu/mathcity/tree/0205e0adfb8963a843c28616fcedceafc7ca5680",
+        "https://github.com/tdupu/pcfawd-formalization/tree/05890ba0b0453c289157df45c5bbe472551b1025",
+        "https://github.com/tdupu/pcfawd-formalization/tree/main/char-zero/blueprint"
+      ],
+      "in_survey_db_orig8": false,
+      "orig8_classification": null
+    },
+    {
+      "arxiv_id": "2611.05243",
+      "version": 1,
+      "submitted_date": "2026-11-03T17:26:41Z",
+      "title": "Logarithmic Regret for Alternating Mirror Descent",
+      "primary_category": "cs.LG",
+      "all_categories": [
+        "cs.GT",
+        "cs.LG",
+        "math.OC",
+        "stat.ML"
+      ],
+      "matched_plus7_cats": [
+        "cs.GT"
+      ],
+      "fetch_source": "html",
+      "signal_tier": "lean_strong",
+      "meta_lean_strong": false,
+      "meta_lean_contextual": false,
+      "strong_signal_keys": [
+        "lean_prover_phrase"
+      ],
+      "urls": [
+        "https://github.com/CoffeeAndConvexity/AltOMD-Lean"
+      ],
+      "in_survey_db_orig8": true,
+      "orig8_classification": "lean_contributed"
+    },
+    {
+      "arxiv_id": "2611.05221",
+      "version": 1,
+      "submitted_date": "2026-11-03T17:06:58Z",
+      "title": "Efficient Equilibrium Computation in Colonel Blotto Games",
+      "primary_category": "cs.GT",
+      "all_categories": [
+        "cs.DS",
+        "cs.GT",
+        "econ.TH"
+      ],
+      "matched_plus7_cats": [
+        "cs.GT"
+      ],
+      "fetch_source": "html",
+      "signal_tier": "lean_ctx_only",
+      "meta_lean_strong": false,
+      "meta_lean_contextual": false,
+      "strong_signal_keys": [],
+      "urls": [
+        "https://github.com/AbheekG/colonel-blotto-lean"
+      ],
+      "in_survey_db_orig8": false,
+      "orig8_classification": null
+    },
+    {
+      "arxiv_id": "2611.04934",
+      "version": 1,
+      "submitted_date": "2026-11-03T14:04:32Z",
+      "title": "The Complexity of Continuous Contract Design over Polymatroids",
+      "primary_category": "cs.GT",
+      "all_categories": [
+        "cs.GT"
+      ],
+      "matched_plus7_cats": [
+        "cs.GT"
+      ],
+      "fetch_source": "html",
+      "signal_tier": "lean_strong",
+      "meta_lean_strong": true,
+      "meta_lean_contextual": true,
+      "strong_signal_keys": [
+        "lean_prover_phrase",
+        "lean_version"
+      ],
+      "urls": [
+        "https://doi.org/10.5281/zenodo.23895619",
+        "https://github.com/philippwarode/contract-design-polymatroids-lean"
+      ],
+      "in_survey_db_orig8": false,
+      "orig8_classification": null
+    },
+    {
+      "arxiv_id": "2611.04575",
+      "version": 1,
+      "submitted_date": "2026-11-03T09:35:56Z",
+      "title": "Polynomial configurations and pointwise averages along Piatetski--Shapiro primes",
+      "primary_category": "math.CO",
+      "all_categories": [
+        "math.CO",
+        "math.DS",
+        "math.NT"
+      ],
+      "matched_plus7_cats": [
+        "math.DS"
+      ],
+      "fetch_source": "html",
+      "signal_tier": "lean_strong",
+      "meta_lean_strong": false,
+      "meta_lean_contextual": true,
+      "strong_signal_keys": [
+        "in_lean_phrase",
+        "lean_prover_phrase"
+      ],
+      "urls": [
+        "https://github.com/HamedMousaviMath/Lean-Formalization-Polynomial-Configurations-and-Pointwise-Averages-Along-Piatetski--Shapiro-Primes"
+      ],
+      "in_survey_db_orig8": false,
+      "orig8_classification": null
+    },
+    {
+      "arxiv_id": "2611.04545",
+      "version": 1,
+      "submitted_date": "2026-11-03T09:11:45Z",
+      "title": "Coercive at the equilibrium, monotone nowhere: exact convergence certificates for learning in first-price auctions",
+      "primary_category": "cs.GT",
+      "all_categories": [
+        "cs.GT"
+      ],
+      "matched_plus7_cats": [
+        "cs.GT"
+      ],
+      "fetch_source": "html",
+      "signal_tier": "lean_strong",
+      "meta_lean_strong": true,
+      "meta_lean_contextual": false,
+      "strong_signal_keys": [
+        "in_lean_phrase",
+        "lean_version",
+        "mathlib"
+      ],
+      "urls": [
+        "https://github.com/blubin/firstprice-certificates"
+      ],
+      "in_survey_db_orig8": false,
+      "orig8_classification": null
+    },
+    {
+      "arxiv_id": "2611.02465",
+      "version": 1,
+      "submitted_date": "2026-11-02T03:31:33Z",
+      "title": "Pointwise Ergodic Theorems Along $\\lfloor p^c\\rfloor$ for Every $c>1$",
+      "primary_category": "math.CA",
+      "all_categories": [
+        "math.CA",
+        "math.DS"
+      ],
+      "matched_plus7_cats": [
+        "math.DS"
+      ],
+      "fetch_source": "html",
+      "signal_tier": "lean_strong",
+      "meta_lean_strong": true,
+      "meta_lean_contextual": true,
+      "strong_signal_keys": [
+        "lean_prover_phrase"
+      ],
+      "urls": [
+        "https://github.com/anastasiosfragkosmath/Pointwise-Ergodic-Theorems-Along-floor-p-c-Palomar-Submission"
+      ],
+      "in_survey_db_orig8": false,
+      "orig8_classification": null
+    },
+    {
+      "arxiv_id": "2611.02237",
+      "version": 1,
+      "submitted_date": "2026-11-01T21:58:42Z",
+      "title": "Nonreciprocal Spherical Attention and Retrieval: Sharp Coarsening Clocks and Certified Score Correction",
+      "primary_category": "cs.LG",
+      "all_categories": [
+        "cs.IR",
+        "cs.LG",
+        "math.DS"
+      ],
+      "matched_plus7_cats": [
+        "math.DS"
+      ],
+      "fetch_source": "html",
+      "signal_tier": "lean_strong",
+      "meta_lean_strong": false,
+      "meta_lean_contextual": false,
+      "strong_signal_keys": [
+        "leanprover",
+        "mathlib"
+      ],
+      "urls": [
+        "https://github.com/erikbern/ann-benchmarks",
+        "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2"
+      ],
+      "in_survey_db_orig8": false,
+      "orig8_classification": null
+    },
+    {
+      "arxiv_id": "2611.02167",
+      "version": 1,
+      "submitted_date": "2026-11-01T20:07:32Z",
+      "title": "On a hybrid trilinear Hilbert transform",
+      "primary_category": "math.CA",
+      "all_categories": [
+        "math.CA",
+        "math.CO",
+        "math.DS",
+        "math.NT"
+      ],
+      "matched_plus7_cats": [
+        "math.DS"
+      ],
+      "fetch_source": "html",
+      "signal_tier": "lean_strong",
+      "meta_lean_strong": false,
+      "meta_lean_contextual": false,
+      "strong_signal_keys": [
+        "lean_prover_phrase"
+      ],
+      "urls": [
+        "https://github.com/openai/math/blob/main/preprints/An-L3-bound-for-the-trilinear-Hilbert-transform-October-5-2026/paper.pdf"
+      ],
+      "in_survey_db_orig8": false,
+      "orig8_classification": null
+    }
+  ],
+  "math_na_metadata_probe": {
+    "total_papers": 446,
+    "primary_math_na": 335,
+    "cross_list_count": 111,
+    "overlap_with_orig8": 49,
+    "overlap_with_plus7": 47,
+    "overlap_with_15cat": 92,
+    "net_new_vs_15cat": 354,
+    "meta_lean_strong": 4,
+    "meta_lean_ctx_only": 1,
+    "meta_beyond_lean_any": 0,
+    "meta_lean_hits": [
+      {
+        "arxiv_id": "2611.21570",
+        "primary_category": "math.NA",
+        "all_categories": [
+          "cs.MS",
+          "cs.NA",
+          "math.NA"
+        ],
+        "title": "Trustworthy Numerical Software in the Age of AI: What Would Turing Do?",
+        "signal_tier": "meta_lean_ctx_only",
+        "in_survey_db_orig8": false,
+        "in_plus7_scout": false,
+        "orig8_classification": null
+      },
+      {
+        "arxiv_id": "2611.13584",
+        "primary_category": "math.OC",
+        "all_categories": [
+          "cs.NA",
+          "math.NA",
+          "math.OC"
+        ],
+        "title": "Exact (Non-)Accelerations of Heavy-Ball Discretizations",
+        "signal_tier": "meta_lean_strong",
+        "in_survey_db_orig8": true,
+        "in_plus7_scout": false,
+        "orig8_classification": "lean_contributed"
+      },
+      {
+        "arxiv_id": "2611.12585",
+        "primary_category": "math.NA",
+        "all_categories": [
+          "cs.NA",
+          "math.AP",
+          "math.NA",
+          "math.OC"
+        ],
+        "title": "A Large Gap between Galerkin Errors with and without Mesh-Uniform Regularity for the KdV Equation with Boundary Dissipation",
+        "signal_tier": "meta_lean_strong",
+        "in_survey_db_orig8": true,
+        "in_plus7_scout": false,
+        "orig8_classification": "lean_contributed"
+      },
+      {
+        "arxiv_id": "2611.11805",
+        "primary_category": "math.NA",
+        "all_categories": [
+          "cond-mat.mtrl-sci",
+          "cs.LG",
+          "cs.NA",
+          "math.DS",
+          "math.NA"
+        ],
+        "title": "Operator Learning of Microstructure-Dependent Internal-Variable Models for Inelastic Homogenization: Approximation and Complexity",
+        "signal_tier": "meta_lean_strong",
+        "in_survey_db_orig8": false,
+        "in_plus7_scout": true,
+        "orig8_classification": null
+      },
+      {
+        "arxiv_id": "2611.10961",
+        "primary_category": "cs.AI",
+        "all_categories": [
+          "cs.AI",
+          "cs.LG",
+          "cs.NA",
+          "math.NA"
+        ],
+        "title": "Improving Analytic Constants via Interpretable AI-Guided Lean Proof Refinement",
+        "signal_tier": "meta_lean_strong",
+        "in_survey_db_orig8": false,
+        "in_plus7_scout": false,
+        "orig8_classification": null
+      }
+    ]
+  }
+}
