@@ -809,8 +809,18 @@ def check_prose_and_style(tex: str, panel: dict[str, Any]) -> list[str]:
     _must_match("OpFV 4/8 liveness", rf"{opfv['opfv3_no_mechanized_lean_liveness']}/{opfv['total_operational_fv_papers']}")
     _must_match("OpFV 5/8 TCB", rf"{opfv['opfv4_extraction_monitor_or_cross_kernel_tcb_gap']}/{opfv['total_operational_fv_papers']}")
     hc = hv["layer_a_human_co_review"]
-    _must_match("Human co-review 4/4 critiques", rf"{hc['named_critiques_reviewed']}/{hc['named_critiques_reviewed']}")
-    _must_match("Human co-review 5/5 spot-checks", rf"{hc['clean_spot_checks_reviewed']}/{hc['clean_spot_checks_reviewed']}")
+    _must_match(
+        f"Human co-review {hc['named_critiques_reviewed']}/{hc['named_critiques_reviewed']} critiques",
+        rf"{hc['named_critiques_reviewed']}/{hc['named_critiques_reviewed']}",
+    )
+    _must_match(
+        f"Human co-review {hc['clean_spot_checks_reviewed']}/{hc['clean_spot_checks_reviewed']} spot-checks",
+        rf"{hc['clean_spot_checks_reviewed']}/{hc['clean_spot_checks_reviewed']}",
+    )
+    _must_match(
+        f"Human co-review {hc['total_reviewed']} total Stage-5 repos",
+        rf"\b{hc['total_reviewed']}\s+Stage-5",
+    )
 
     return errors
 

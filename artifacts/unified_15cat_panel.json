@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-11-25T09:18:12+00:00",
+  "generated_at": "2026-11-25T20:57:39+00:00",
   "categories": {
     "all15": [
       "math.OC",
@@ -10821,14 +10821,16 @@
       "multirater_alpha": {}
     },
     "layer_a_human_co_review": {
-      "total_reviewed": 9,
-      "named_critiques_reviewed": 4,
+      "total_reviewed": 11,
+      "named_critiques_reviewed": 6,
       "clean_spot_checks_reviewed": 5,
       "named_critique_ids": [
         "2611.26272",
         "2611.04876",
         "2605.14610",
-        "2605.02856"
+        "2605.02856",
+        "2611.07395",
+        "2611.14586"
       ],
       "clean_spot_check_ids": [
         "2611.13872",
