@@ -148,6 +148,10 @@ def _normalize_text_for_match(s: str) -> str:
     """Normalize LaTeX/arXiv titles and names for tolerant exact comparison."""
     # Unescape common TeX accents and math wrappers
     s = s.replace("--", "-").replace("---", "-")
+    s = s.replace(r"{\i}", "i").replace(r"\i", "i").replace("ı", "i").replace("İ", "i")
+    s = s.replace(r"{\l}", "l").replace(r"\l", "l").replace("ł", "l").replace("Ł", "l")
+    s = s.replace(r"{\o}", "o").replace(r"\o", "o").replace("ø", "o").replace("Ø", "o")
+    s = s.replace(r"{\ss}", "ss").replace("ß", "ss")
     s = re.sub(r"\\['\"`^~=.uvHc]\{?([A-Za-z])\}?", r"\1", s)
     s = s.replace("{", "").replace("}", "").replace("$", "")
     s = unicodedata.normalize("NFKD", s)

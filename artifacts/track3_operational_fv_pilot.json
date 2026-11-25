@@ -1,26 +1,26 @@
 {
-  "schema_version": "1.0",
-  "audit_phase": "Phase B1 (Track 3 Pilot Audit)",
-  "audited_at": "2026-11-24",
-  "scope": "Exhaustive pilot audit of all 7 operational_system_fv (legacy software_or_system_fv) Lean 4 papers across T0+T1+T2 (4 locally cloned repositories inspected at file:line level; 3 prose-only papers lacking accessible public Lean artifacts).",
+  "schema_version": "1.1",
+  "audit_phase": "Phase B1 + 15-Cat Completion (Track 3 Pilot Audit)",
+  "audited_at": "2026-11-25",
+  "scope": "Exhaustive pilot audit of all 8 operational_system_fv Lean 4 papers across the full 15-category T0+T1+T2 panel (4 locally cloned repositories inspected at file:line level; 4 prose-only papers lacking accessible public Lean artifacts).",
   "summary_counts": {
-    "total_operational_fv_papers": 7,
+    "total_operational_fv_papers": 8,
     "locally_cloned_and_code_audited": 4,
-    "prose_only_missing_public_repo": 3,
+    "prose_only_missing_public_repo": 4,
     "sandbox_docker_ootb_passed": 3,
     "sandbox_docker_not_attempted_over_15k_loc": 1,
     "math_paradigms_p2_p3_p4_used": 0,
     "mode3_custom_defs_false_positives_on_zero_dep_repos": 2,
     "static_admit_regex_false_positives": 1,
     "inconsistent_custom_axiom_discovered": 1,
-    "opfv1_refinement_gap_present": 7,
-    "opfv2_unproved_env_or_oracle_assumptions_present": 7,
+    "opfv1_refinement_gap_present": 8,
+    "opfv2_unproved_env_or_oracle_assumptions_present": 8,
     "opfv3_no_mechanized_lean_liveness": 4,
-    "opfv4_extraction_monitor_or_cross_kernel_tcb_gap": 4,
+    "opfv4_extraction_monitor_or_cross_kernel_tcb_gap": 5,
     "opfv5_evolution_or_maintenance_debt_observed": 3
   },
   "systems_fv_paradigm_distribution": {
-    "abstract_design_model": ["2611.10810", "2611.19551", "2605.19531", "2611.20298", "2511.15517"],
+    "abstract_design_model": ["2611.10810", "2611.19551", "2605.19531", "2611.20298", "2511.15517", "2605.01140"],
     "executable_embedded_policy_dsl": ["2611.25599"],
     "certificate_schema_oracle_wrapper": ["2605.16407"]
   },
@@ -418,6 +418,50 @@
           "present": false,
           "severity": "unobservable",
           "evidence": "Artifact inaccessible; retroactive formalization added ~7 months after v1."
+        }
+      }
+    },
+    {
+      "arxiv_id": "2605.01140",
+      "slice_id": "2026-05",
+      "v1_contemporaneous": false,
+      "retroactive_v2_formalization": true,
+      "primary_category": "cs.PL",
+      "matched_target_cats": ["cs.PF"],
+      "title": "SoCal: A Language for Memory-Layout Factorization of Recursive Datatypes",
+      "inspection_mode": "prose_only_no_public_repo",
+      "repo": null,
+      "systems_fv_paradigm": "abstract_design_model",
+      "legacy_static_flags": ["Mode12_ProcessOpacity", "OpFV_RefinementGap"],
+      "table1_misfires": [],
+      "table1_transfers": [
+        "Layer C (Mode #12 Process Opacity): v2 (Nov 13, 2026; +196 days after v1) claims a Claude-assisted Lean 4 + Mathlib mechanization of Section 3 progress, preservation, and type-safety for SoCal in 'the supplementary material', but supplies no public Lean repository URL (the sole cited repo m-a-d-n-e-s-s/madness contains 0 .lean files)."
+      ],
+      "operational_fv_modes": {
+        "opfv1_refinement_gap": {
+          "present": true,
+          "severity": "high_compiler_lowering_gap",
+          "evidence": "Formalizes progress, preservation, and type-safety of the abstract SoCal typed IR (Section 3), whereas the Colobus compiler (built on Gibbon, Section 4) lowers functional programs to C with mutable cursors, loopification, and vectorization without a verified compiler-correctness or refinement proof."
+        },
+        "opfv2_env_fault_assumptions": {
+          "present": true,
+          "severity": "high_unverifiable",
+          "evidence": "Memory safety of deployed binaries depends on unverified Colobus-to-C code generation, Gibbon runtime buffers, and vectorization passes; exact formal IR assumptions cannot be code-audited without the missing Lean artifact."
+        },
+        "opfv3_safety_without_liveness_or_vacuity": {
+          "present": false,
+          "severity": "not_applicable_type_safety_unauditable",
+          "evidence": "Claims standard progress + preservation type-safety for a typed IR rather than distributed liveness; artifact unavailable to check non-vacuity or metatheory soundness."
+        },
+        "opfv4_extraction_tcb_or_cross_kernel_gap": {
+          "present": true,
+          "severity": "high_disconnected_compiler",
+          "evidence": "The Colobus compiler to C is manually implemented inside Gibbon (with AI assistance on loopification and vectorization) rather than extracted from or verified in Lean."
+        },
+        "opfv5_evolution_maintenance_debt": {
+          "present": false,
+          "severity": "unobservable",
+          "evidence": "Artifact unavailable; retroactive Lean 4 mechanization added in v2 (+196 days after v1)."
         }
       }
     }

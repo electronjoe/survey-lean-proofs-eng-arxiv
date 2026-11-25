@@ -1,0 +1,1467 @@
+{
+  "seed": 20261125,
+  "total_stage2_negatives": 1162,
+  "total_github_linked_negatives": 332,
+  "total_non_github_negatives": 830,
+  "gh_sample_size": 50,
+  "gh_accessible_papers": 48,
+  "gh_unique_repos_checked": 77,
+  "gh_lean_hits_count": 1,
+  "gh_fn_rate": 0.02,
+  "gh_fn_95pct_upper_bound": 0.09139813071969745,
+  "gh_acc_fn_95pct_upper_bound": 0.09505862462413556,
+  "gh_lean_hits": [
+    {
+      "arxiv_id": "2611.08673",
+      "title": "Optimal Contention Resolution from Samples",
+      "primary_category": "cs.DS",
+      "matched_target_cats": [
+        "cs.GT"
+      ],
+      "repos_checked": [
+        {
+          "repo": "openai/math",
+          "accessible": true,
+          "default_branch": "main",
+          "total_files": 53984,
+          "lean_file_count": 53549,
+          "sample_lean_files": [
+            "lean/ComparatorChallenges/AbhyankarSathaye.lean",
+            "lean/ComparatorChallenges/AffineBernstein.lean",
+            "lean/ComparatorChallenges/AlgorithmicThinTrees.lean",
+            "lean/ComparatorChallenges/AmplitudeDamping.lean",
+            "lean/ComparatorChallenges/ArithmeticHierarchy.lean"
+          ],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": true
+        }
+      ],
+      "any_accessible": true,
+      "has_lean_repo": true
+    }
+  ],
+  "non_gh_sample_size": 25,
+  "non_gh_broad_meta_flags": [],
+  "gh_audited_sample": [
+    {
+      "arxiv_id": "2611.01843",
+      "title": "MEX: The Musical Expectation Benchmark Suite",
+      "primary_category": "cs.SD",
+      "matched_target_cats": [
+        "eess.AS"
+      ],
+      "repos_checked": [
+        {
+          "repo": "huggingface/lighteval",
+          "accessible": true,
+          "default_branch": "main",
+          "total_files": 549,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        },
+        {
+          "repo": "musicperceptmodeling/mex",
+          "accessible": true,
+          "default_branch": "main",
+          "total_files": 44,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        }
+      ],
+      "any_accessible": true,
+      "has_lean_repo": false
+    },
+    {
+      "arxiv_id": "2611.13590",
+      "title": "Fractional-Order Hybrid SIR Forecasting of COVID-19 in Bangladesh and the United States: Memory Effects and Out-of-Sample Evaluation",
+      "primary_category": "math.DS",
+      "matched_target_cats": [
+        "math.DS"
+      ],
+      "repos_checked": [
+        {
+          "repo": "nytimes/covid-19-data",
+          "accessible": true,
+          "default_branch": "master",
+          "total_files": 39,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        }
+      ],
+      "any_accessible": true,
+      "has_lean_repo": false
+    },
+    {
+      "arxiv_id": "2611.18522",
+      "title": "Patient-specific Modeling of the Tricuspid Valve from 3D Transesophageal Echocardiography",
+      "primary_category": "cs.CE",
+      "matched_target_cats": [
+        "cs.CE"
+      ],
+      "repos_checked": [
+        {
+          "repo": "SoftTissueBiomechanicsLab/3DTEE_to_FEM",
+          "accessible": false,
+          "has_lean": false
+        },
+        {
+          "repo": "pymc-devs/nutpie",
+          "accessible": true,
+          "default_branch": "main",
+          "total_files": 64,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        }
+      ],
+      "any_accessible": true,
+      "has_lean_repo": false
+    },
+    {
+      "arxiv_id": "2611.23322",
+      "title": "Human-AI Mutualism Is Unstable under Capability Asymmetry",
+      "primary_category": "cs.AI",
+      "matched_target_cats": [
+        "cs.GT"
+      ],
+      "repos_checked": [
+        {
+          "repo": "amohseni/mutualism-asymmetry",
+          "accessible": true,
+          "default_branch": "main",
+          "total_files": 69,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        }
+      ],
+      "any_accessible": true,
+      "has_lean_repo": false
+    },
+    {
+      "arxiv_id": "2611.10208",
+      "title": "Reaching separated flow states by release and recapture with learned latent feedback",
+      "primary_category": "physics.flu-dyn",
+      "matched_target_cats": [
+        "physics.flu-dyn"
+      ],
+      "repos_checked": [
+        {
+          "repo": "Khalid-Rafiq-01/cluster_based_latent_flow_control",
+          "accessible": true,
+          "default_branch": "main",
+          "total_files": 27,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        }
+      ],
+      "any_accessible": true,
+      "has_lean_repo": false
+    },
+    {
+      "arxiv_id": "2611.02893",
+      "title": "Voice-Native LLMs Hear Frustration but Do Not Listen to It",
+      "primary_category": "cs.SD",
+      "matched_target_cats": [
+        "eess.AS"
+      ],
+      "repos_checked": [
+        {
+          "repo": "Astarojth/hear-not-listen",
+          "accessible": true,
+          "default_branch": "main",
+          "total_files": 1097,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        },
+        {
+          "repo": "microsoft/fluentui-emoji",
+          "accessible": true,
+          "default_branch": "main",
+          "total_files": 12637,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        }
+      ],
+      "any_accessible": true,
+      "has_lean_repo": false
+    },
+    {
+      "arxiv_id": "2611.21176",
+      "title": "Scientific Coding with Large Language Models: Evidence from Finite Element Analysis",
+      "primary_category": "cs.SE",
+      "matched_target_cats": [
+        "cs.CE"
+      ],
+      "repos_checked": [
+        {
+          "repo": "erfanhamdi/FEM-Bench-v2",
+          "accessible": true,
+          "default_branch": "main",
+          "total_files": 114,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        }
+      ],
+      "any_accessible": true,
+      "has_lean_repo": false
+    },
+    {
+      "arxiv_id": "2611.16718",
+      "title": "MusicRWKV: A Multimodal RWKV Framework for Music Representation Learning",
+      "primary_category": "cs.SD",
+      "matched_target_cats": [
+        "eess.AS"
+      ],
+      "repos_checked": [
+        {
+          "repo": "tanjiarui/music-rwkv",
+          "accessible": true,
+          "default_branch": "main",
+          "total_files": 78,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        },
+        {
+          "repo": "wjie98/rosa_soft",
+          "accessible": true,
+          "default_branch": "main",
+          "total_files": 47,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        }
+      ],
+      "any_accessible": true,
+      "has_lean_repo": false
+    },
+    {
+      "arxiv_id": "2611.08673",
+      "title": "Optimal Contention Resolution from Samples",
+      "primary_category": "cs.DS",
+      "matched_target_cats": [
+        "cs.GT"
+      ],
+      "repos_checked": [
+        {
+          "repo": "openai/math",
+          "accessible": true,
+          "default_branch": "main",
+          "total_files": 53984,
+          "lean_file_count": 53549,
+          "sample_lean_files": [
+            "lean/ComparatorChallenges/AbhyankarSathaye.lean",
+            "lean/ComparatorChallenges/AffineBernstein.lean",
+            "lean/ComparatorChallenges/AlgorithmicThinTrees.lean",
+            "lean/ComparatorChallenges/AmplitudeDamping.lean",
+            "lean/ComparatorChallenges/ArithmeticHierarchy.lean"
+          ],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": true
+        }
+      ],
+      "any_accessible": true,
+      "has_lean_repo": true
+    },
+    {
+      "arxiv_id": "2611.19280",
+      "title": "Hardware-Friendly Plug-and-Play MVDR Beamforming for Microphone Arrays: Algorithm, Prototype, and System-Level Feasibility",
+      "primary_category": "eess.AS",
+      "matched_target_cats": [
+        "eess.AS"
+      ],
+      "repos_checked": [
+        {
+          "repo": "JusperLee/U",
+          "accessible": false,
+          "has_lean": false
+        }
+      ],
+      "any_accessible": false,
+      "has_lean_repo": false
+    },
+    {
+      "arxiv_id": "2611.06078",
+      "title": "SysPilot: Cross-Library Performance Autotuning via Library Performance Contracts",
+      "primary_category": "cs.PF",
+      "matched_target_cats": [
+        "cs.PF"
+      ],
+      "repos_checked": [
+        {
+          "repo": "yinengy/SysPilot",
+          "accessible": true,
+          "default_branch": "main",
+          "total_files": 302,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        }
+      ],
+      "any_accessible": true,
+      "has_lean_repo": false
+    },
+    {
+      "arxiv_id": "2611.13014",
+      "title": "Is a CNN-Transformer Ensemble Worth It When a Chest X-Ray Foundation Model Is Available?",
+      "primary_category": "eess.IV",
+      "matched_target_cats": [
+        "eess.IV"
+      ],
+      "repos_checked": [
+        {
+          "repo": "adityaseelaboyina/cxr-ensemble-vs-foundation-model",
+          "accessible": true,
+          "default_branch": "main",
+          "total_files": 49,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        },
+        {
+          "repo": "huggingface/pytorch-image-models",
+          "accessible": true,
+          "default_branch": "main",
+          "total_files": 555,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        }
+      ],
+      "any_accessible": true,
+      "has_lean_repo": false
+    },
+    {
+      "arxiv_id": "2611.26623",
+      "title": "Path-Independent Deleveraging Rules",
+      "primary_category": "cs.GT",
+      "matched_target_cats": [
+        "cs.GT"
+      ],
+      "repos_checked": [
+        {
+          "repo": "ConejoCapital/HyperMultiAssetedADL",
+          "accessible": true,
+          "default_branch": "main",
+          "total_files": 66,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        },
+        {
+          "repo": "ConejoCapital/HyperReplay",
+          "accessible": true,
+          "default_branch": "main",
+          "total_files": 28,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        }
+      ],
+      "any_accessible": true,
+      "has_lean_repo": false
+    },
+    {
+      "arxiv_id": "2611.03330",
+      "title": "The SIMPLE Law for Energy Cost of LLM Inference",
+      "primary_category": "cs.AI",
+      "matched_target_cats": [
+        "cs.PF"
+      ],
+      "repos_checked": [
+        {
+          "repo": "NVIDIA/TensorRT-LLM",
+          "accessible": true,
+          "default_branch": "main",
+          "total_files": 23769,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        },
+        {
+          "repo": "features/copilot",
+          "accessible": false,
+          "has_lean": false
+        }
+      ],
+      "any_accessible": true,
+      "has_lean_repo": false
+    },
+    {
+      "arxiv_id": "2611.25981",
+      "title": "Safe Subgame Resolving in Multiplayer Games",
+      "primary_category": "cs.GT",
+      "matched_target_cats": [
+        "cs.GT"
+      ],
+      "repos_checked": [
+        {
+          "repo": "lbn187/MultiPlayerSolver",
+          "accessible": true,
+          "default_branch": "main",
+          "total_files": 14,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        }
+      ],
+      "any_accessible": true,
+      "has_lean_repo": false
+    },
+    {
+      "arxiv_id": "2611.26907",
+      "title": "A High-Compression Transformer VAE for Efficient and Controllable 3D Medical Image Generation with Diffusion Transformers",
+      "primary_category": "eess.IV",
+      "matched_target_cats": [
+        "eess.IV"
+      ],
+      "repos_checked": [
+        {
+          "repo": "OncoMMAI/brainmri-vit-vae3d",
+          "accessible": true,
+          "default_branch": "main",
+          "total_files": 18,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        },
+        {
+          "repo": "Project-MONAI/model-zoo",
+          "accessible": true,
+          "default_branch": "dev",
+          "total_files": 668,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        }
+      ],
+      "any_accessible": true,
+      "has_lean_repo": false
+    },
+    {
+      "arxiv_id": "2611.13430",
+      "title": "Off-target posterior mass: A training-free diagnostic for fine-tuning spoken language diarization probes",
+      "primary_category": "eess.AS",
+      "matched_target_cats": [
+        "eess.AS"
+      ],
+      "repos_checked": [
+        {
+          "repo": "snakers4/silero-vad",
+          "accessible": true,
+          "default_branch": "master",
+          "total_files": 115,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        }
+      ],
+      "any_accessible": true,
+      "has_lean_repo": false
+    },
+    {
+      "arxiv_id": "2611.28088",
+      "title": "Shallow may be better: Physics-Constrained Lightweight Networks for High-Throughput Particle Image Velocimetry",
+      "primary_category": "cs.CV",
+      "matched_target_cats": [
+        "physics.flu-dyn"
+      ],
+      "repos_checked": [
+        {
+          "repo": "abrosua/cai-piv_datasetAccessed",
+          "accessible": false,
+          "has_lean": false
+        }
+      ],
+      "any_accessible": false,
+      "has_lean_repo": false
+    },
+    {
+      "arxiv_id": "2611.03078",
+      "title": "Cross-Layer Refinement and Frequency-aware Fusion Network for Multi-Source Remote Sensing Image Classification",
+      "primary_category": "eess.IV",
+      "matched_target_cats": [
+        "eess.IV"
+      ],
+      "repos_checked": [
+        {
+          "repo": "oucailab/CRFNet",
+          "accessible": true,
+          "default_branch": "main",
+          "total_files": 14,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        }
+      ],
+      "any_accessible": true,
+      "has_lean_repo": false
+    },
+    {
+      "arxiv_id": "2611.02430",
+      "title": "InteractionBench: Measuring Timing, Task Accuracy, Whisper and Volume, and Grounding in Real-Time Voice Systems",
+      "primary_category": "cs.SD",
+      "matched_target_cats": [
+        "eess.AS"
+      ],
+      "repos_checked": [
+        {
+          "repo": "avera-labs/InteractionBench",
+          "accessible": true,
+          "default_branch": "main",
+          "total_files": 417,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        },
+        {
+          "repo": "wiseman/py-webrtcvad",
+          "accessible": true,
+          "default_branch": "master",
+          "total_files": 56,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        }
+      ],
+      "any_accessible": true,
+      "has_lean_repo": false
+    },
+    {
+      "arxiv_id": "2611.26317",
+      "title": "Language-Oriented Semantic Modeling for Target Language Extraction",
+      "primary_category": "cs.CL",
+      "matched_target_cats": [
+        "eess.AS"
+      ],
+      "repos_checked": [
+        {
+          "repo": "huggingface/peft",
+          "accessible": true,
+          "default_branch": "main",
+          "total_files": 1058,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        },
+        {
+          "repo": "speechbrain/speechbrain",
+          "accessible": true,
+          "default_branch": "develop",
+          "total_files": 1517,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        }
+      ],
+      "any_accessible": true,
+      "has_lean_repo": false
+    },
+    {
+      "arxiv_id": "2611.12424",
+      "title": "Physics-informed neural networks in the small-data regime: A controlled comparison with classical PDE surrogates",
+      "primary_category": "cs.CE",
+      "matched_target_cats": [
+        "cs.CE"
+      ],
+      "repos_checked": [
+        {
+          "repo": "kirillkatsuba/pinn-small-data-jcp",
+          "accessible": true,
+          "default_branch": "main",
+          "total_files": 338,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        }
+      ],
+      "any_accessible": true,
+      "has_lean_repo": false
+    },
+    {
+      "arxiv_id": "2611.23419",
+      "title": "LIC-Audit: How Comparable Are Reported Gains in Learned Image Compression?",
+      "primary_category": "eess.IV",
+      "matched_target_cats": [
+        "eess.IV"
+      ],
+      "repos_checked": [
+        {
+          "repo": "fengyurenpingsheng/lic-audit",
+          "accessible": true,
+          "default_branch": "main",
+          "total_files": 55,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        }
+      ],
+      "any_accessible": true,
+      "has_lean_repo": false
+    },
+    {
+      "arxiv_id": "2611.08542",
+      "title": "RapidMitDet: Boosting Computational Efficiency for Mitosis Detection via Magnification Alignment",
+      "primary_category": "eess.IV",
+      "matched_target_cats": [
+        "eess.IV"
+      ],
+      "repos_checked": [
+        {
+          "repo": "logincat/RapidMitDet",
+          "accessible": true,
+          "default_branch": "master",
+          "total_files": 105,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        }
+      ],
+      "any_accessible": true,
+      "has_lean_repo": false
+    },
+    {
+      "arxiv_id": "2611.26409",
+      "title": "WeMM-Video: Pushing the Frontiers of Open-Source Omni-Modal Video Understanding",
+      "primary_category": "cs.CV",
+      "matched_target_cats": [
+        "eess.AS"
+      ],
+      "repos_checked": [
+        {
+          "repo": "Tencent/WeMM-Video",
+          "accessible": true,
+          "default_branch": "main",
+          "total_files": 130,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        }
+      ],
+      "any_accessible": true,
+      "has_lean_repo": false
+    },
+    {
+      "arxiv_id": "2611.04127",
+      "title": "Algorithmic Non-dimensionalisation of Polynomial Dynamical Systems with CRNNondim",
+      "primary_category": "math.DS",
+      "matched_target_cats": [
+        "math.DS"
+      ],
+      "repos_checked": [
+        {
+          "repo": "georgio-hawi/crnnondim",
+          "accessible": true,
+          "default_branch": "main",
+          "total_files": 35,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        }
+      ],
+      "any_accessible": true,
+      "has_lean_repo": false
+    },
+    {
+      "arxiv_id": "2611.10162",
+      "title": "M5-TTS: A Mini-Scale Multilingual and Multi-Dialect Text-to-Speech Language Model with Multi-Token Prediction",
+      "primary_category": "eess.AS",
+      "matched_target_cats": [
+        "eess.AS"
+      ],
+      "repos_checked": [
+        {
+          "repo": "ASLP-lab/M5-TTS",
+          "accessible": true,
+          "default_branch": "main",
+          "total_files": 121,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        },
+        {
+          "repo": "BytedanceSpeech/seed-tts-eval",
+          "accessible": true,
+          "default_branch": "main",
+          "total_files": 302,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        },
+        {
+          "repo": "HojoAI/Hojo-TTS-Light",
+          "accessible": true,
+          "default_branch": "main",
+          "total_files": 14,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        },
+        {
+          "repo": "Neywa-Labs/marvis-tts",
+          "accessible": true,
+          "default_branch": "main",
+          "total_files": 20,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        }
+      ],
+      "any_accessible": true,
+      "has_lean_repo": false
+    },
+    {
+      "arxiv_id": "2611.12189",
+      "title": "Computational Structure of Pairwise Housing Connectedness Networks",
+      "primary_category": "cs.CE",
+      "matched_target_cats": [
+        "cs.CE"
+      ],
+      "repos_checked": [
+        {
+          "repo": "tjdls034-gif/housing-connectedness-replication",
+          "accessible": true,
+          "default_branch": "main",
+          "total_files": 42,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        }
+      ],
+      "any_accessible": true,
+      "has_lean_repo": false
+    },
+    {
+      "arxiv_id": "2611.18008",
+      "title": "Sample-Efficient Control of Magnetoconvective Flows via Differentiable Simulation",
+      "primary_category": "cs.LG",
+      "matched_target_cats": [
+        "physics.flu-dyn"
+      ],
+      "repos_checked": [
+        {
+          "repo": "OpenFOAM/OpenFOAM-6",
+          "accessible": true,
+          "default_branch": "master",
+          "total_files": 15479,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        },
+        {
+          "repo": "upb-sciml/fluidgym",
+          "accessible": true,
+          "default_branch": "main",
+          "total_files": 330,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        },
+        {
+          "repo": "upb-sciml/phiPICT",
+          "accessible": true,
+          "default_branch": "main",
+          "total_files": 197,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        }
+      ],
+      "any_accessible": true,
+      "has_lean_repo": false
+    },
+    {
+      "arxiv_id": "2611.13989",
+      "title": "Beyond Fourier and Laplace: The Hankel Neural Operator for Learning Solution Operators of Differential Equations",
+      "primary_category": "physics.flu-dyn",
+      "matched_target_cats": [
+        "physics.flu-dyn"
+      ],
+      "repos_checked": [
+        {
+          "repo": "BiswanathB/Hankel-Neural-Operator-",
+          "accessible": false,
+          "has_lean": false
+        },
+        {
+          "repo": "qianyingcao/Laplace-Neural-Operator",
+          "accessible": true,
+          "default_branch": "main",
+          "total_files": 48,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        }
+      ],
+      "any_accessible": true,
+      "has_lean_repo": false
+    },
+    {
+      "arxiv_id": "2611.15372",
+      "title": "LLMRunner: Closed Workload Model Performance Testing Framework for LLM Servings",
+      "primary_category": "cs.PF",
+      "matched_target_cats": [
+        "cs.PF"
+      ],
+      "repos_checked": [
+        {
+          "repo": "ray-project/llmperf",
+          "accessible": true,
+          "default_branch": "main",
+          "total_files": 23,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        },
+        {
+          "repo": "triton-inference-server/perf_analyzer",
+          "accessible": true,
+          "default_branch": "main",
+          "total_files": 917,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        }
+      ],
+      "any_accessible": true,
+      "has_lean_repo": false
+    },
+    {
+      "arxiv_id": "2611.15420",
+      "title": "Learning Motion-Appearance Coupling Priors for Solving Video Inverse Problems",
+      "primary_category": "cs.CV",
+      "matched_target_cats": [
+        "eess.IV"
+      ],
+      "repos_checked": [
+        {
+          "repo": "MLI-lab/motion_appearance_coupling_priors",
+          "accessible": true,
+          "default_branch": "main",
+          "total_files": 215,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        },
+        {
+          "repo": "mrirecon/bart",
+          "accessible": true,
+          "default_branch": "master",
+          "total_files": 1097,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        },
+        {
+          "repo": "mskwak01/How-I-Warped-Your-Noise-Unofficial",
+          "accessible": true,
+          "default_branch": "main",
+          "total_files": 2,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        }
+      ],
+      "any_accessible": true,
+      "has_lean_repo": false
+    },
+    {
+      "arxiv_id": "2611.11315",
+      "title": "Flash evaporation Riemann Problem: Thermodynamic Relaxation and Oscillation-Free Real Fluid Finite Volume Method",
+      "primary_category": "physics.flu-dyn",
+      "matched_target_cats": [
+        "physics.flu-dyn"
+      ],
+      "repos_checked": [
+        {
+          "repo": "boss-monkey/HRRF",
+          "accessible": true,
+          "default_branch": "main",
+          "total_files": 11,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        }
+      ],
+      "any_accessible": true,
+      "has_lean_repo": false
+    },
+    {
+      "arxiv_id": "2611.24766",
+      "title": "A boundary integral formulation for microscale Marangoni surfing",
+      "primary_category": "physics.flu-dyn",
+      "matched_target_cats": [
+        "physics.flu-dyn"
+      ],
+      "repos_checked": [
+        {
+          "repo": "flatironinstitute/FMM3D",
+          "accessible": true,
+          "default_branch": "master",
+          "total_files": 297,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        },
+        {
+          "repo": "flatironinstitute/FMM3DSoftware",
+          "accessible": false,
+          "has_lean": false
+        },
+        {
+          "repo": "scottweady/marangoni-surfers",
+          "accessible": true,
+          "default_branch": "main",
+          "total_files": 59,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        }
+      ],
+      "any_accessible": true,
+      "has_lean_repo": false
+    },
+    {
+      "arxiv_id": "2611.02364",
+      "title": "Spectral-spatial vision test-time training for hyperspectral image classification",
+      "primary_category": "eess.IV",
+      "matched_target_cats": [
+        "eess.IV"
+      ],
+      "repos_checked": [
+        {
+          "repo": "yangshidi/Spectral-spatial-vision-test-time-training-for-hyperspectral-image-classification",
+          "accessible": true,
+          "default_branch": "main",
+          "total_files": 1,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        }
+      ],
+      "any_accessible": true,
+      "has_lean_repo": false
+    },
+    {
+      "arxiv_id": "2611.13978",
+      "title": "WINIC: An Automatic Cycle-Accurate Multi-Platform Microbenchmarking Tool for Instruction Performance Metrics",
+      "primary_category": "cs.PF",
+      "matched_target_cats": [
+        "cs.PF"
+      ],
+      "repos_checked": [
+        {
+          "repo": "RRZE-HPC/WINIC",
+          "accessible": true,
+          "default_branch": "master",
+          "total_files": 81,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        },
+        {
+          "repo": "RRZE-HPC/ibench",
+          "accessible": true,
+          "default_branch": "master",
+          "total_files": 338,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        }
+      ],
+      "any_accessible": true,
+      "has_lean_repo": false
+    },
+    {
+      "arxiv_id": "2611.26111",
+      "title": "Physics-Informed Deep Learning for Shear Wave Speed Estimation in MR Elastography",
+      "primary_category": "eess.IV",
+      "matched_target_cats": [
+        "eess.IV"
+      ],
+      "repos_checked": [
+        {
+          "repo": "Stef-Martin/E2E-MRE",
+          "accessible": true,
+          "default_branch": "main",
+          "total_files": 20,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        }
+      ],
+      "any_accessible": true,
+      "has_lean_repo": false
+    },
+    {
+      "arxiv_id": "2611.18081",
+      "title": "Generalized hydraulic neural operators turbocharging sewer digital twins",
+      "primary_category": "cs.CE",
+      "matched_target_cats": [
+        "cs.CE"
+      ],
+      "repos_checked": [
+        {
+          "repo": "ruozhoulin/Generalized-Neural-operator-for-Sewer-Hydraulics",
+          "accessible": true,
+          "default_branch": "main",
+          "total_files": 9,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        }
+      ],
+      "any_accessible": true,
+      "has_lean_repo": false
+    },
+    {
+      "arxiv_id": "2611.16601",
+      "title": "Access to the quasi-geostrophic model from within the BK19 compressible flow solver",
+      "primary_category": "physics.flu-dyn",
+      "matched_target_cats": [
+        "physics.flu-dyn"
+      ],
+      "repos_checked": [
+        {
+          "repo": "amir-maghoul/AtmPy",
+          "accessible": true,
+          "default_branch": "main",
+          "total_files": 304,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        }
+      ],
+      "any_accessible": true,
+      "has_lean_repo": false
+    },
+    {
+      "arxiv_id": "2611.18858",
+      "title": "Graph Neural Network based non-local models: Toward application to RANS turbulence modeling",
+      "primary_category": "physics.flu-dyn",
+      "matched_target_cats": [
+        "physics.flu-dyn"
+      ],
+      "repos_checked": [
+        {
+          "repo": "rmcconke/closure-challenge-benchmark",
+          "accessible": true,
+          "default_branch": "main",
+          "total_files": 6217,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        },
+        {
+          "repo": "rmcconke/closure-challenge-benchmarkAccessed",
+          "accessible": false,
+          "has_lean": false
+        }
+      ],
+      "any_accessible": true,
+      "has_lean_repo": false
+    },
+    {
+      "arxiv_id": "2611.05892",
+      "title": "When Is One Query per Template Enough? Adapting Learned Cost Models to New Hardware",
+      "primary_category": "cs.DB",
+      "matched_target_cats": [
+        "cs.PF"
+      ],
+      "repos_checked": [
+        {
+          "repo": "KrishPatel13/query-runtime-transfer",
+          "accessible": true,
+          "default_branch": "main",
+          "total_files": 4167,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        }
+      ],
+      "any_accessible": true,
+      "has_lean_repo": false
+    },
+    {
+      "arxiv_id": "2611.18148",
+      "title": "Certificate-Based Verification of Pulsed Field Ablation Models",
+      "primary_category": "cs.CE",
+      "matched_target_cats": [
+        "cs.CE"
+      ],
+      "repos_checked": [
+        {
+          "repo": "kostisdov/certsim",
+          "accessible": true,
+          "default_branch": "main",
+          "total_files": 149,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        }
+      ],
+      "any_accessible": true,
+      "has_lean_repo": false
+    },
+    {
+      "arxiv_id": "2611.07458",
+      "title": "Physics-informed latent conditional flow matching for generative modeling of granular flows on inclined planes",
+      "primary_category": "cs.CE",
+      "matched_target_cats": [
+        "cs.CE"
+      ],
+      "repos_checked": [
+        {
+          "repo": "Axtal/mechsys",
+          "accessible": true,
+          "default_branch": "main",
+          "total_files": 377,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        }
+      ],
+      "any_accessible": true,
+      "has_lean_repo": false
+    },
+    {
+      "arxiv_id": "2611.09845",
+      "title": "AdaptivePnP: Fast Auto-Tuned Plug-and-Play for Deconvolution",
+      "primary_category": "eess.IV",
+      "matched_target_cats": [
+        "eess.IV"
+      ],
+      "repos_checked": [
+        {
+          "repo": "hdubasullivan/AdaptivePnP",
+          "accessible": true,
+          "default_branch": "main",
+          "total_files": 30,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        }
+      ],
+      "any_accessible": true,
+      "has_lean_repo": false
+    },
+    {
+      "arxiv_id": "2611.17411",
+      "title": "Hydr\\'oDex: gotta match 'em all!",
+      "primary_category": "physics.flu-dyn",
+      "matched_target_cats": [
+        "physics.flu-dyn"
+      ],
+      "repos_checked": [
+        {
+          "repo": "CFT-HY/pttools",
+          "accessible": true,
+          "default_branch": "main",
+          "total_files": 328,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        },
+        {
+          "repo": "CosmoGW/CosmoGW",
+          "accessible": true,
+          "default_branch": "main",
+          "total_files": 165,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        },
+        {
+          "repo": "CosmoGW/CosmoGWVersion",
+          "accessible": false,
+          "has_lean": false
+        },
+        {
+          "repo": "Hydro-Grav/HydroGrav",
+          "accessible": true,
+          "default_branch": "main",
+          "total_files": 46,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        }
+      ],
+      "any_accessible": true,
+      "has_lean_repo": false
+    },
+    {
+      "arxiv_id": "2611.18050",
+      "title": "FEND: Far-End Detection in Outbound Voice AI Calls",
+      "primary_category": "cs.CL",
+      "matched_target_cats": [
+        "eess.AS"
+      ],
+      "repos_checked": [
+        {
+          "repo": "nexmo-community/AnsweringMachineDetection",
+          "accessible": true,
+          "default_branch": "master",
+          "total_files": 17,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        }
+      ],
+      "any_accessible": true,
+      "has_lean_repo": false
+    },
+    {
+      "arxiv_id": "2611.09162",
+      "title": "Rethinking Requirement-to-Code Traceability Through Single-Agent and Multi-Agent Approaches",
+      "primary_category": "cs.CE",
+      "matched_target_cats": [
+        "cs.CE"
+      ],
+      "repos_checked": [
+        {
+          "repo": "huiAlex/TRIAD",
+          "accessible": true,
+          "default_branch": "main",
+          "total_files": 10735,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        }
+      ],
+      "any_accessible": true,
+      "has_lean_repo": false
+    },
+    {
+      "arxiv_id": "2611.24857",
+      "title": "Non-intrusive modal decomposition of transport-dominated data",
+      "primary_category": "math.NA",
+      "matched_target_cats": [
+        "physics.flu-dyn"
+      ],
+      "repos_checked": [
+        {
+          "repo": "jax-ml/jax",
+          "accessible": true,
+          "default_branch": "main",
+          "total_files": 2054,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        },
+        {
+          "repo": "robertkoprinkov-ae/W_POD",
+          "accessible": true,
+          "default_branch": "main",
+          "total_files": 50,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        }
+      ],
+      "any_accessible": true,
+      "has_lean_repo": false
+    },
+    {
+      "arxiv_id": "2611.03192",
+      "title": "Verification Allocation in Stylized LLM Agent Pipelines under Hidden Tool Degradation: A Discrete-Time Mean-Field Analysis",
+      "primary_category": "cs.GT",
+      "matched_target_cats": [
+        "cs.GT"
+      ],
+      "repos_checked": [
+        {
+          "repo": "Shereen20112003/verification-allocation-hidden-tool-degradation",
+          "accessible": true,
+          "default_branch": "main",
+          "total_files": 21,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        }
+      ],
+      "any_accessible": true,
+      "has_lean_repo": false
+    },
+    {
+      "arxiv_id": "2611.25548",
+      "title": "LBW-NPS: A Local Band-Weighted Noise Power Spectrum Loss for Texture-Preserving Low-Dose CT Denoising",
+      "primary_category": "eess.IV",
+      "matched_target_cats": [
+        "eess.IV"
+      ],
+      "repos_checked": [
+        {
+          "repo": "itu-biai/lbw-nps",
+          "accessible": true,
+          "default_branch": "main",
+          "total_files": 33,
+          "lean_file_count": 0,
+          "sample_lean_files": [],
+          "has_lean_toolchain": false,
+          "has_lakefile": false,
+          "has_lean": false
+        }
+      ],
+      "any_accessible": true,
+      "has_lean_repo": false
+    }
+  ],
+  "manual_adjudication": {
+    "raw_tree_hits": 1,
+    "confirmed_missed_lean_contributions": 0,
+    "confirmed_fn_rate": 0.0,
+    "confirmed_fn_95pct_upper_bound": 0.058155079116972264,
+    "adjudicated_hits": [
+      {
+        "arxiv_id": "2611.08673",
+        "repo_flagged": "openai/math",
+        "verdict": "citation_only_not_lean_contribution",
+        "evidence": "The sole GitHub URL in 2611.08673v1 is bibliographic citation [28] linking a PDF preprint inside openai/math (final.pdf). The paper itself contributes no Lean formalization and mentions 'lean' only in the English verb phrase 'We lean on a CRS of Feige and Vondrak'."
+      }
+    ]
+  }
+}

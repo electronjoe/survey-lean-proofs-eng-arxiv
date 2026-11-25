@@ -101,7 +101,14 @@ def calibrate(
     workers: int = 8,
     out_json: Path = Path("artifacts/slices/2026-11/recall_calibration.json"),
     out_md: Path = Path("reports/slices/2026-11/recall_calibration.md"),
+    exclude_db: Path | None = None,
 ) -> None:
+    exclude_ids: set[str] = set()
+    if exclude_db is not None and exclude_db.is_file():
+        econn = connect(exclude_db)
+        exclude_ids = {r[0] for r in econn.execute("SELECT arxiv_id FROM papers").fetchall()}
+        econn.close()
+
     conn = connect(db_path)
     neg_rows = [
         dict(r)
@@ -117,6 +124,7 @@ def calibrate(
             ORDER BY p.arxiv_id ASC
             """
         ).fetchall()
+        if r["arxiv_id"] not in exclude_ids
     ]
     conn.close()
 
@@ -281,10 +289,13 @@ def calibrate(
 def main() -> None:
     ap = argparse.ArgumentParser(description="Calibrate Stage-2 recall on random Stage-2 negatives.")
     ap.add_argument("--db", type=Path, default=DEFAULT_DB_PATH)
+    ap.add_argument("--exclude-db", type=Path, default=None)
     ap.add_argument("--gh-sample", type=int, default=100)
     ap.add_argument("--non-gh-sample", type=int, default=50)
     ap.add_argument("--seed", type=int, default=20261122)
     ap.add_argument("--workers", type=int, default=8)
+    ap.add_argument("--out-json", type=Path, default=Path("artifacts/slices/2026-11/recall_calibration.json"))
+    ap.add_argument("--out-md", type=Path, default=Path("reports/slices/2026-11/recall_calibration.md"))
     args = ap.parse_args()
     calibrate(
         db_path=args.db,
@@ -292,6 +303,9 @@ def main() -> None:
         non_gh_sample_size=args.non_gh_sample,
         seed=args.seed,
         workers=args.workers,
+        out_json=args.out_json,
+        out_md=args.out_md,
+        exclude_db=args.exclude_db,
     )
 
 

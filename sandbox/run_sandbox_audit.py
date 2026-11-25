@@ -293,6 +293,85 @@ PLUS7_COMPACT_COHORT: list[TargetRepo] = [
     ),
 ]
 
+# Remaining 6 compact (<15k LoC) pure_math_or_tcs repos across the 15-category panel
+# (completing 23/23 = 100% exhaustive compact Docker kernel coverage across ALL roles).
+PLUS7_MATH_COMPACT_COHORT: list[TargetRepo] = [
+    TargetRepo(
+        slice_id="2026-05",
+        arxiv_id="2605.12537",
+        repo="arxiv-anc/2605.12537",
+        local_dir="arxiv_anc__2605.12537",
+        mode="packaging_only",
+        synthetic_toolchain="leanprover/lean4:v4.35.0",
+        synthetic_mathlib_rev="",
+        synthetic_subdir="anc/lean",
+        synthetic_files=("DevNCore.lean",),
+        notes="Single standalone arXiv ancillary .lean file (0 imports, pure Lean 4 Core) omitting lakefile and lean-toolchain; secondary check runs direct `lean` on cached v4.35.0.",
+    ),
+    TargetRepo(
+        slice_id="2026-11",
+        arxiv_id="2611.11641",
+        repo="zenodo/24060393",
+        local_dir="zenodo__24060393",
+        mode="packaging_only",
+        synthetic_toolchain="leanprover/lean4:v4.35.0",
+        synthetic_mathlib_rev="v4.35.0",
+        synthetic_subdir="zenodo_bundle_collatz_spectral_stability_v1.0",
+        synthetic_files=("CollatzAttractor.lean",),
+        notes="Single standalone Zenodo .lean file importing Mathlib without lakefile or lean-toolchain; secondary check tests against cached v4.35.0 + Mathlib.",
+    ),
+    TargetRepo(
+        slice_id="2026-11",
+        arxiv_id="2611.07494",
+        repo="wuzhuangtai00/transparency-lean",
+        local_dir="wuzhuangtai00__transparency-lean",
+        project_subdir="",
+        mode="lake",
+        lake_targets=("TransparencyLean",),
+        module_prefixes=("TransparencyLean",),
+        notes="TransparencyLean (v4.19.0 + Mathlib c44e0c8ee6).",
+    ),
+    TargetRepo(
+        slice_id="2026-11",
+        arxiv_id="2611.15711",
+        repo="relyt871/BWCA-Online-Lean",
+        local_dir="relyt871__BWCA-Online-Lean",
+        project_subdir="lean",
+        mode="lake",
+        lake_targets=("SkiRental",),
+        module_prefixes=(
+            "SkiRental",
+            "buy_by_breakeven_threshold",
+            "general_K",
+            "one_third_kernel",
+            "lower_rho_bridge",
+        ),
+        notes="BWCA-Online-Lean ski-rental certificates (v4.31.0 + Mathlib).",
+    ),
+    TargetRepo(
+        slice_id="2026-11",
+        arxiv_id="2611.17223",
+        repo="radniazadeh/bernoulli-poly",
+        local_dir="radniazadeh__bernoulli-poly",
+        project_subdir="",
+        mode="lake",
+        lake_targets=("draft_d0e609b31c9c", "Solution"),
+        module_prefixes=("draft_d0e609b31c9c", "Solution"),
+        notes="Comparator Challenge/Solution layout (v4.30.0-rc2 + Mathlib); builds and audits proved draft_d0e609b31c9c + Solution modules (excluding Challenge spec stubs).",
+    ),
+    TargetRepo(
+        slice_id="2026-11",
+        arxiv_id="2611.04575",
+        repo="HamedMousaviMath/Lean-Formalization-Polynomial-Configurations-and-Pointwise-Averages-Along-Piatetski--Shapiro-Primes",
+        local_dir="HamedMousaviMath__Lean-Formalization-Polynomial-Configurations-and-Pointwise-Averages-Along-Piatetski--Shapiro-Primes",
+        project_subdir="",
+        mode="lake",
+        lake_targets=("PSPrimes",),
+        module_prefixes=("PSPrimes",),
+        notes="PSPrimes (v4.19.0 + Mathlib c44e0c8ee6).",
+    ),
+]
+
 PLUS7_CLS_PATH = REPO_ROOT / "artifacts" / "slices" / "2026-11" / "plus7_classifications.json"
 PHASE_C1_PATH = REPO_ROOT / "artifacts" / "phase_c1_15cat_longitudinal.json"
 
@@ -320,19 +399,32 @@ def _hash_lean_tree(repo_dir: Path) -> str:
 
 
 def _load_paper_metadata(cohort: str = "orig8") -> dict[str, dict[str, Any]]:
-    if cohort == "plus7":
+    if cohort in ("plus7", "plus7_math"):
         out: dict[str, dict[str, Any]] = {}
-        if PLUS7_CLS_PATH.is_file():
-            cls_doc = json.loads(PLUS7_CLS_PATH.read_text(encoding="utf-8"))
-            for r in cls_doc.get("lean_results", []):
-                out[r["arxiv_id"]] = {
-                    "verification_tier": r.get("verification_tier_observed"),
-                    "paper_domain_role": r.get("paper_domain_role"),
-                    "role_4way": r.get("role_4way"),
-                    "primary_owned_loc": None,
-                }
+        for cls_path in (
+            PLUS7_CLS_PATH,
+            REPO_ROOT / "artifacts" / "slices" / "2026-05" / "plus7_classifications.json",
+        ):
+            if cls_path.is_file():
+                cls_doc = json.loads(cls_path.read_text(encoding="utf-8"))
+                for r in cls_doc.get("lean_results", []):
+                    out[r["arxiv_id"]] = {
+                        "verification_tier": r.get("verification_tier_observed"),
+                        "paper_domain_role": r.get("paper_domain_role"),
+                        "role_4way": r.get("role_4way"),
+                        "primary_owned_loc": None,
+                    }
         if PHASE_C1_PATH.is_file():
             c1 = json.loads(PHASE_C1_PATH.read_text(encoding="utf-8"))
+            for sl in c1.get("slices", []):
+                for item in sl.get("plus7_confirmed_papers", []):
+                    aid = item["arxiv_id"]
+                    out.setdefault(aid, {})
+                    out[aid]["primary_owned_loc"] = item.get("primary_owned_loc")
+                    if not out[aid].get("verification_tier"):
+                        out[aid]["verification_tier"] = item.get("verification_tier")
+                    if item.get("role_4way"):
+                        out[aid]["role_4way"] = item["role_4way"]
             for item in c1.get("phase_c2_eng_alg_audit_queue", []):
                 aid = item["arxiv_id"]
                 out.setdefault(aid, {})
@@ -635,30 +727,42 @@ def audit_target(target: TargetRepo, meta_by_id: dict[str, dict[str, Any]]) -> d
         })
         # Secondary check: test whether the standalone .lean files actually type-check in the
         # README/header-documented Lean + Mathlib environment inside the same `--network=none` container.
-        if target.synthetic_toolchain and target.synthetic_mathlib_rev:
-            print(f"  [Secondary] Running synthetic Mathlib check ({target.synthetic_toolchain}) ...")
-            _ensure_toolchain(target.synthetic_toolchain)
-            synth_pkgs = [
-                {
-                    "name": "mathlib",
-                    "type": "git",
-                    "url": "https://github.com/leanprover-community/mathlib4",
-                    "rev": target.synthetic_mathlib_rev,
-                }
-            ]
-            pkg_dir, meta_dir = _prepare_mathlib_and_deps(target.synthetic_toolchain, synth_pkgs)
-            entry_args = [
-                "--mode", "synthetic_mathlib",
-                "--project-subdir", target.synthetic_subdir,
-                "--synthetic-toolchain", target.synthetic_toolchain,
-                "--timeout", str(target.timeout_sec),
-                "--lean-files", *target.synthetic_files,
-            ]
+        if target.synthetic_toolchain and target.synthetic_files:
+            if target.synthetic_mathlib_rev:
+                print(f"  [Secondary] Running synthetic Mathlib check ({target.synthetic_toolchain}) ...")
+                _ensure_toolchain(target.synthetic_toolchain)
+                synth_pkgs = [
+                    {
+                        "name": "mathlib",
+                        "type": "git",
+                        "url": "https://github.com/leanprover-community/mathlib4",
+                        "rev": target.synthetic_mathlib_rev,
+                    }
+                ]
+                pkg_dir, meta_dir = _prepare_mathlib_and_deps(target.synthetic_toolchain, synth_pkgs)
+                entry_args = [
+                    "--mode", "synthetic_mathlib",
+                    "--project-subdir", target.synthetic_subdir,
+                    "--synthetic-toolchain", target.synthetic_toolchain,
+                    "--timeout", str(target.timeout_sec),
+                    "--lean-files", *target.synthetic_files,
+                ]
+            else:
+                print(f"  [Secondary] Running synthetic Std-only check ({target.synthetic_toolchain}) ...")
+                _ensure_toolchain(target.synthetic_toolchain)
+                pkg_dir, meta_dir = None, None
+                entry_args = [
+                    "--mode", "lean_files",
+                    "--project-subdir", target.synthetic_subdir,
+                    "--synthetic-toolchain", target.synthetic_toolchain,
+                    "--timeout", str(target.timeout_sec),
+                    "--lean-files", *target.synthetic_files,
+                ]
             syn_res = _run_phase_b_container(repo_dir, pkg_dir, meta_dir, entry_args, target.timeout_sec)
             syn_ax = syn_res.get("axioms_audit") or {}
             record["synthetic_env_check"] = {
                 "toolchain_used": target.synthetic_toolchain,
-                "mathlib_rev_used": target.synthetic_mathlib_rev,
+                "mathlib_rev_used": target.synthetic_mathlib_rev or None,
                 "exit_code": syn_res.get("exit_code"),
                 "build_status": syn_res.get("build_status"),
                 "wall_time_sec": syn_res.get("wall_time_sec"),
@@ -907,14 +1011,56 @@ def _merge_and_write_outputs(new_records: list[dict[str, Any]]) -> None:
     print(f"\nWrote sandbox build results and summary to {OUT_DIR}/")
 
 
+def _merge_and_write_plus7_math_outputs(new_records: list[dict[str, Any]]) -> None:
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    res_path = OUT_DIR / "results_plus7_math.json"
+    rec_map: dict[str, dict[str, Any]] = {}
+    if res_path.is_file():
+        existing = json.loads(res_path.read_text(encoding="utf-8"))
+        for r in existing.get("records", []):
+            rec_map[r["arxiv_id"]] = r
+    for r in new_records:
+        rec_map[r["arxiv_id"]] = r
+
+    cohort_order = {t.arxiv_id: idx for idx, t in enumerate(PLUS7_MATH_COMPACT_COHORT)}
+    ordered = sorted(rec_map.values(), key=lambda x: cohort_order.get(x["arxiv_id"], 999))
+    payload = {
+        "schema_version": "1.0",
+        "cohort": "plus7_pure_math_or_tcs_compact",
+        "slice_ids": ["2026-05", "2026-11"],
+        "runner_image": IMAGE_NAME,
+        "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "security_invariants": {
+            "network_mode": "none",
+            "user": "65534:65534",
+            "cap_drop": "ALL",
+            "no_new_privileges": True,
+            "readonly_source_mount": True,
+            "cpus": 4,
+            "memory": "10g",
+            "pids_limit": 512,
+        },
+        "selection_criterion": "All remaining standalone primary Lean 4 pure_math_or_tcs repositories with < 15,000 non-empty LoC across the 15-category T1+T2 panel (completing 23/23 = 100% compact all-role coverage).",
+        "summary": _summarize_records(ordered),
+        "records": ordered,
+    }
+    res_path.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+    print(f"\nWrote +7 pure_math_or_tcs sandbox build results to {res_path}")
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description="Run isolated Docker lake build + #print axioms benchmark.")
-    ap.add_argument("--cohort", choices=["orig8", "plus7"], default="orig8", help="Target cohort (default: orig8).")
+    ap.add_argument("--cohort", choices=["orig8", "plus7", "plus7_math"], default="orig8", help="Target cohort (default: orig8).")
     ap.add_argument("--only", nargs="*", default=None, help="Subset of arXiv IDs to run.")
     args = ap.parse_args()
 
     meta_by_id = _load_paper_metadata(args.cohort)
-    cohort_list = PLUS7_COMPACT_COHORT if args.cohort == "plus7" else COMPACT_COHORT
+    if args.cohort == "plus7":
+        cohort_list = PLUS7_COMPACT_COHORT
+    elif args.cohort == "plus7_math":
+        cohort_list = PLUS7_MATH_COMPACT_COHORT
+    else:
+        cohort_list = COMPACT_COHORT
     targets = cohort_list
     if args.only:
         want = set(args.only)
@@ -929,6 +1075,8 @@ def main() -> None:
         # Checkpoint after every repo so no progress is ever lost!
         if args.cohort == "plus7":
             _merge_and_write_plus7_outputs(results)
+        elif args.cohort == "plus7_math":
+            _merge_and_write_plus7_math_outputs(results)
         else:
             _merge_and_write_outputs(results)
 

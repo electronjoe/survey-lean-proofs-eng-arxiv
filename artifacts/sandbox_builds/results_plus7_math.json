@@ -1,0 +1,2176 @@
+{
+  "schema_version": "1.0",
+  "cohort": "plus7_pure_math_or_tcs_compact",
+  "slice_ids": [
+    "2026-05",
+    "2026-11"
+  ],
+  "runner_image": "lean-survey-sandbox:v1",
+  "generated_at": "2026-11-25T09:17:12Z",
+  "security_invariants": {
+    "network_mode": "none",
+    "user": "65534:65534",
+    "cap_drop": "ALL",
+    "no_new_privileges": true,
+    "readonly_source_mount": true,
+    "cpus": 4,
+    "memory": "10g",
+    "pids_limit": 512
+  },
+  "selection_criterion": "All remaining standalone primary Lean 4 pure_math_or_tcs repositories with < 15,000 non-empty LoC across the 15-category T1+T2 panel (completing 23/23 = 100% compact all-role coverage).",
+  "summary": {
+    "total_attempted": 6,
+    "pass_out_of_box": 4,
+    "pass_and_standard_axioms_only": 3,
+    "pass_with_nonstandard_axioms": 1,
+    "fail_packaging_no_lakefile": 2,
+    "fail_missing_local_dep": 0,
+    "fail_build_or_other": 0,
+    "synthetic_env_pass_among_packaging_fails": 1,
+    "synthetic_env_clean_among_packaging_fails": 1,
+    "tier3_gold_attempted": 3,
+    "tier3_gold_pass_out_of_box": 3,
+    "tier3_gold_clean_axioms": 3,
+    "total_theorems_checked_ootb": 1708,
+    "total_theorems_checked_incl_synthetic": 1724,
+    "sorry_ax_repos_ootb": [],
+    "of_reduce_bool_repos_ootb": [],
+    "nonstandard_axiom_repos_ootb": [
+      {
+        "arxiv_id": "2611.15711",
+        "axioms": [
+          "SkiRental.Certificates.e_lower_for_K_left._native.native_decide.ax_1_1",
+          "SkiRental.Certificates.K_left_partial_gt_text_bound._native.native_decide.ax_1_1",
+          "SkiRental.Certificates.K_right_partial_value._native.native_decide.ax_1_1",
+          "SkiRental.Certificates.lower_rho_bridge_P3_text_bound_positive._native.native_decide.ax_1_1",
+          "SkiRental.Certificates.K_right_margin._native.native_decide.ax_1_1",
+          "SkiRental.Certificates.nearbyQPolynomialShiftCoeffs_positive._native.native_decide.ax_1_1",
+          "SkiRental.Certificates.generalKPolynomialShiftCoeffs_positive._native.native_decide.ax_1_1",
+          "SkiRental.Certificates.e_upper_for_K_right._native.native_decide.ax_1_1",
+          "SkiRental.Certificates.K_left_partial_value._native.native_decide.ax_1_1",
+          "SkiRental.Certificates.nearbyQ_at_four_fifths_positive._native.native_decide.ax_1_1",
+          "SkiRental.Certificates.lower_rho_bridge_P5_text_bound_positive._native.native_decide.ax_1_1",
+          "SkiRental.Certificates.lower_rho_bridge_e_partial_gt._native.native_decide.ax_1_1",
+          "SkiRental.Certificates.uPolynomialBernsteinCoeffs_positive._native.native_decide.ax_1_1",
+          "SkiRental.Certificates.one_third_times_recip_upper._native.native_decide.ax_1_1",
+          "SkiRental.Certificates.e_interval_nonempty._native.native_decide.ax_1_1",
+          "SkiRental.Certificates.D_031087_lower_bracket._native.native_decide.ax_1_1",
+          "SkiRental.Certificates.D_031088_upper_bracket._native.native_decide.ax_1_1",
+          "SkiRental.Certificates.lower_rho_bridge_S6_margin_value._native.native_decide.ax_1_1",
+          "SkiRental.Certificates.lower_rho_bridge_S6_margin_positive._native.native_decide.ax_1_1",
+          "SkiRental.Certificates.lowerRhoBridgeBernsteinCoeffs_positive._native.native_decide.ax_1_1",
+          "SkiRental.Certificates.lemma20P5BernsteinCoeffs_positive._native.native_decide.ax_1_1",
+          "SkiRental.Certificates.lemma20P5TBernsteinCoeffs_positive._native.native_decide.ax_1_1",
+          "SkiRental.Certificates.lemma20P5TBernstein_min_matches_endpoint._native.native_decide.ax_1_1",
+          "SkiRental.Certificates.lemma19P3BernsteinCoeffs_positive._native.native_decide.ax_1_1",
+          "SkiRental.Certificates.lemma20P5Bernstein_min_matches_paper._native.native_decide.ax_1_1",
+          "SkiRental.Certificates.lemma19DxiFiniteBernsteinCoeffs_nonnegative._native.native_decide.ax_1_1",
+          "SkiRental.Certificates.lemma19P3Bernstein_min_positive._native.native_decide.ax_1_1",
+          "SkiRental.Scalar.lemma19P3Coeff_pos._native.native_decide.ax_1_1",
+          "SkiRental.Scalar.lemma20P5TCoeff_pos._native.native_decide.ax_1_1",
+          "SkiRental.Scalar.lowerRhoBridgeCoeff_pos._native.native_decide.ax_1_1",
+          "SkiRental.Scalar.lemma19DxiFiniteCoeff_nonneg._native.native_decide.ax_1_1",
+          "SkiRental.Scalar.lemma20P5Coeff_pos._native.native_decide.ax_1_1"
+        ]
+      }
+    ]
+  },
+  "records": [
+    {
+      "slice_id": "2026-05",
+      "arxiv_id": "2605.12537",
+      "repo": "arxiv-anc/2605.12537",
+      "commit_sha": null,
+      "zenodo_record_id": null,
+      "lean_tree_sha256": "f93c3ef9760ba36e1ccd58af84e469bfa756034fb11be21849c44543384baf5f",
+      "static_verification_tier": "Tier2_Silver",
+      "paper_domain_role": "pure_tcs_or_math",
+      "role_4way": "pure_math_or_tcs",
+      "owned_loc": 129,
+      "lean_toolchain": null,
+      "project_subdir": ".",
+      "build_mode": "packaging_only",
+      "executed_at": "2026-11-25T08:43:30Z",
+      "network_mode": "none",
+      "security_flags": [
+        "--network=none",
+        "--user=65534:65534",
+        "--cap-drop=ALL",
+        "--security-opt=no-new-privileges:true",
+        "--cpus=4",
+        "--memory=10g",
+        "--pids-limit=512"
+      ],
+      "timeout_sec": 1800,
+      "notes": "Single standalone arXiv ancillary .lean file (0 imports, pure Lean 4 Core) omitting lakefile and lean-toolchain; secondary check runs direct `lean` on cached v4.35.0.",
+      "exit_code": 2,
+      "build_status": "fail_packaging",
+      "wall_time_sec": 0.0,
+      "total_theorems_checked": 0,
+      "standard_axioms_used": [],
+      "nonstandard_axioms_detected": [],
+      "sorry_ax_detected": false,
+      "of_reduce_bool_detected": false,
+      "trust_compiler_detected": false,
+      "axioms_by_theorem": {},
+      "error_summary": "Repository omits both lakefile.{toml,lean} and lean-toolchain; clean-room `lake build` cannot execute out of the box.",
+      "synthetic_env_check": {
+        "toolchain_used": "leanprover/lean4:v4.35.0",
+        "mathlib_rev_used": null,
+        "exit_code": 0,
+        "build_status": "pass",
+        "wall_time_sec": 9.85,
+        "files_checked": [
+          {
+            "exit_code": 0,
+            "file": "DevNCore.lean",
+            "wall_time_sec": 2.78
+          }
+        ],
+        "total_theorems_checked": 16,
+        "standard_axioms_used": [
+          "propext",
+          "Quot.sound"
+        ],
+        "nonstandard_axioms_detected": [],
+        "sorry_ax_detected": false,
+        "of_reduce_bool_detected": false,
+        "trust_compiler_detected": false,
+        "axioms_by_theorem": {
+          "DevNCore.Coal.ofNat_ctorIdx": [],
+          "DevNCore.DevFrame.comp": [
+            "propext"
+          ],
+          "DevNCore.DevFrame.empty_id": [
+            "propext"
+          ],
+          "DevNCore.DevFrame.mk.congr_simp": [
+            "propext"
+          ],
+          "DevNCore.DevFrame.refl": [
+            "propext"
+          ],
+          "DevNCore.DevFrame.symm": [
+            "propext"
+          ],
+          "DevNCore.DevFrame.trans": [
+            "propext"
+          ],
+          "DevNCore.TwoState.ofNat_ctorIdx": [],
+          "DevNCore.join.eq_3": [
+            "propext"
+          ],
+          "DevNCore.join.eq_4": [
+            "propext"
+          ],
+          "DevNCore.join.eq_5": [
+            "propext"
+          ],
+          "DevNCore.join_compl": [
+            "propext"
+          ],
+          "DevNCore.midpoint": [
+            "propext"
+          ],
+          "DevNCore.nonProductFrame_not_coordinate_separated": [
+            "propext",
+            "Quot.sound"
+          ],
+          "DevNCore.rectangular_mixing": [
+            "propext"
+          ],
+          "DevNCore.restricted_composition_iff_factor_closed": [
+            "propext"
+          ]
+        },
+        "error_summary": ""
+      }
+    },
+    {
+      "slice_id": "2026-11",
+      "arxiv_id": "2611.11641",
+      "repo": "zenodo/24060393",
+      "commit_sha": null,
+      "zenodo_record_id": "24060393",
+      "lean_tree_sha256": "f4ec8fac313d1b1349753abfa7786773d99a35ce0891db7806b836ff3b16d013",
+      "static_verification_tier": "Tier2_Silver",
+      "paper_domain_role": "pure_tcs_or_math",
+      "role_4way": "pure_math_or_tcs",
+      "owned_loc": 174,
+      "lean_toolchain": null,
+      "project_subdir": ".",
+      "build_mode": "packaging_only",
+      "executed_at": "2026-11-25T08:43:40Z",
+      "network_mode": "none",
+      "security_flags": [
+        "--network=none",
+        "--user=65534:65534",
+        "--cap-drop=ALL",
+        "--security-opt=no-new-privileges:true",
+        "--cpus=4",
+        "--memory=10g",
+        "--pids-limit=512"
+      ],
+      "timeout_sec": 1800,
+      "notes": "Single standalone Zenodo .lean file importing Mathlib without lakefile or lean-toolchain; secondary check tests against cached v4.35.0 + Mathlib.",
+      "exit_code": 2,
+      "build_status": "fail_packaging",
+      "wall_time_sec": 0.0,
+      "total_theorems_checked": 0,
+      "standard_axioms_used": [],
+      "nonstandard_axioms_detected": [],
+      "sorry_ax_detected": false,
+      "of_reduce_bool_detected": false,
+      "trust_compiler_detected": false,
+      "axioms_by_theorem": {},
+      "error_summary": "Repository omits both lakefile.{toml,lean} and lean-toolchain; clean-room `lake build` cannot execute out of the box.",
+      "synthetic_env_check": {
+        "toolchain_used": "leanprover/lean4:v4.35.0",
+        "mathlib_rev_used": "v4.35.0",
+        "exit_code": 1,
+        "build_status": "fail_build",
+        "wall_time_sec": 7.23,
+        "files_checked": [
+          {
+            "exit_code": 1,
+            "file": "CollatzAttractor.lean",
+            "wall_time_sec": 7.23
+          }
+        ],
+        "total_theorems_checked": 0,
+        "standard_axioms_used": [],
+        "nonstandard_axioms_detected": [],
+        "sorry_ax_detected": false,
+        "of_reduce_bool_detected": false,
+        "trust_compiler_detected": false,
+        "axioms_by_theorem": {},
+        "error_summary": "CollatzAttractor.lean: ...[truncated]...\nsitory has local changes:\n  /work/synthetic_proj/.lake/packages/aesop\nwarning: Qq: repository has local changes:\n  /work/synthetic_proj/.lake/packages/Qq\nwarning: batteries: repository has local changes:\n  /work/synthetic_proj/.lake/packages/batteries\n /work/repo/zenodo_bundle_collatz_spectral_stability_v1.0/CollatzAttractor.lean:13:0: error: object file '/work/synthetic_proj/.lake/packages/mathlib/.lake/build/lib/lean/Mathlib/Data/Rat/Basic.olean' of module Mathlib.Data.Rat.Basic does not exist"
+      }
+    },
+    {
+      "slice_id": "2026-11",
+      "arxiv_id": "2611.07494",
+      "repo": "wuzhuangtai00/transparency-lean",
+      "commit_sha": "d654acb3b8df00b198ee6765a00ec6a2e10c62d8",
+      "zenodo_record_id": null,
+      "lean_tree_sha256": "a8f8e8e98cd203b9c4178989c2f0c2f15e16091c8aac47496ca5fca61063c4cd",
+      "static_verification_tier": "Tier3_Gold",
+      "paper_domain_role": "pure_tcs_or_math",
+      "role_4way": "pure_math_or_tcs",
+      "owned_loc": 5340,
+      "lean_toolchain": "leanprover/lean4:v4.19.0",
+      "project_subdir": ".",
+      "build_mode": "lake",
+      "executed_at": "2026-11-25T08:44:25Z",
+      "network_mode": "none",
+      "security_flags": [
+        "--network=none",
+        "--user=65534:65534",
+        "--cap-drop=ALL",
+        "--security-opt=no-new-privileges:true",
+        "--cpus=4",
+        "--memory=10g",
+        "--pids-limit=512"
+      ],
+      "timeout_sec": 1800,
+      "notes": "TransparencyLean (v4.19.0 + Mathlib c44e0c8ee6).",
+      "exit_code": 0,
+      "build_status": "pass",
+      "wall_time_sec": 127.51,
+      "axiom_check_wall_time_sec": 243.45,
+      "target_modules_count": 48,
+      "total_theorems_checked": 455,
+      "standard_axioms_used": [
+        "propext",
+        "Quot.sound",
+        "Classical.choice"
+      ],
+      "nonstandard_axioms_detected": [],
+      "sorry_ax_detected": false,
+      "of_reduce_bool_detected": false,
+      "trust_compiler_detected": false,
+      "axioms_by_theorem": {
+        "TransparencyLean.ContractScheme.all_or_nothing": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.ContractScheme.equilibrium": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.ContractScheme.feasible": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.FiniteDist.expect_add": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.FiniteDist.expect_const": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.FiniteDist.expect_finset_sum": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.FiniteDist.expect_mono": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.FiniteDist.expect_mul": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.FiniteDist.expect_nonneg": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.FiniteDist.expect_pointMass": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.FiniteDist.expect_sub": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.FiniteDist.ext": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.FiniteDist.ext_iff": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.FiniteDist.nonneg": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.FiniteDist.sum_eq_one": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.FiniteKernel.joint_eq": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.FiniteKernel.signalMass_nonneg": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.FiniteKernel.signalMass_sum": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.PosteriorScheme.all_or_nothing": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.PosteriorScheme.expect_expect": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.PosteriorScheme.kernel_bayes": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.PosteriorScheme.kernel_joint_eq": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.PosteriorScheme.kernel_signalMass": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.PosteriorScheme.payoff_le_of_all_or_nothing": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.PosteriorScheme.plausible": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.achievable_bddAbove": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.achievable_nonempty": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.compact_convexHull": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.continuous_payoffMap": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.continuous_rewardAt": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.convexHull_fixed_mixture": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.empty_zero_equilibrium": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.equilibrium_feasibleTeam": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.feasibleDomain_compact": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.feasiblePayoffs_compact": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.feasiblePayoffs_convexHull_compact": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.finite_optimal_scheme": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.fullDisclosure_attained": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.isEquilibrium_iff_bestResponse": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.mem_feasiblePayoffs_iff": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.minimumContract_equilibrium": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.minimumContract_feasible": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.minimumContract_le": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.minimumContract_utility_ge": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.noDisclosure_attained": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.optimal_payoff_exists": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.posteriorReward_monotone": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.posteriorReward_pointMass": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.posteriorReward_submodular": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.posteriorReward_supermodular": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.posteriorReward_valid": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.principalUtility_le_one": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.principalUtility_zero": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.probabilityVectors_compact": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.statelessValue_attained": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.statelessValue_le": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.statelessValue_le_one": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.statelessValue_nonneg": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.utility_le_statelessValue": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TransparencyLean.zero_feasible": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ]
+      },
+      "error_summary": ""
+    },
+    {
+      "slice_id": "2026-11",
+      "arxiv_id": "2611.15711",
+      "repo": "relyt871/BWCA-Online-Lean",
+      "commit_sha": "c506cfcb825b959000e4875646663156e9a848f7",
+      "zenodo_record_id": null,
+      "lean_tree_sha256": "fa190c75bd5a3f9cb76203b5185821cf73a88a08d41a2b60dae4e0f2bcb9d533",
+      "static_verification_tier": "Tier1_Bronze",
+      "paper_domain_role": "pure_tcs_or_math",
+      "role_4way": "pure_math_or_tcs",
+      "owned_loc": 5909,
+      "lean_toolchain": "leanprover/lean4:v4.31.0",
+      "project_subdir": "lean",
+      "build_mode": "lake",
+      "executed_at": "2026-11-25T08:53:20Z",
+      "network_mode": "none",
+      "security_flags": [
+        "--network=none",
+        "--user=65534:65534",
+        "--cap-drop=ALL",
+        "--security-opt=no-new-privileges:true",
+        "--cpus=4",
+        "--memory=10g",
+        "--pids-limit=512"
+      ],
+      "timeout_sec": 1800,
+      "notes": "BWCA-Online-Lean ski-rental certificates (v4.31.0 + Mathlib).",
+      "exit_code": 0,
+      "build_status": "pass",
+      "wall_time_sec": 318.61,
+      "axiom_check_wall_time_sec": 17.15,
+      "target_modules_count": 12,
+      "total_theorems_checked": 347,
+      "standard_axioms_used": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "nonstandard_axioms_detected": [
+        "SkiRental.Certificates.e_lower_for_K_left._native.native_decide.ax_1_1",
+        "SkiRental.Certificates.K_left_partial_gt_text_bound._native.native_decide.ax_1_1",
+        "SkiRental.Certificates.K_right_partial_value._native.native_decide.ax_1_1",
+        "SkiRental.Certificates.lower_rho_bridge_P3_text_bound_positive._native.native_decide.ax_1_1",
+        "SkiRental.Certificates.K_right_margin._native.native_decide.ax_1_1",
+        "SkiRental.Certificates.nearbyQPolynomialShiftCoeffs_positive._native.native_decide.ax_1_1",
+        "SkiRental.Certificates.generalKPolynomialShiftCoeffs_positive._native.native_decide.ax_1_1",
+        "SkiRental.Certificates.e_upper_for_K_right._native.native_decide.ax_1_1",
+        "SkiRental.Certificates.K_left_partial_value._native.native_decide.ax_1_1",
+        "SkiRental.Certificates.nearbyQ_at_four_fifths_positive._native.native_decide.ax_1_1",
+        "SkiRental.Certificates.lower_rho_bridge_P5_text_bound_positive._native.native_decide.ax_1_1",
+        "SkiRental.Certificates.lower_rho_bridge_e_partial_gt._native.native_decide.ax_1_1",
+        "SkiRental.Certificates.uPolynomialBernsteinCoeffs_positive._native.native_decide.ax_1_1",
+        "SkiRental.Certificates.one_third_times_recip_upper._native.native_decide.ax_1_1",
+        "SkiRental.Certificates.e_interval_nonempty._native.native_decide.ax_1_1",
+        "SkiRental.Certificates.D_031087_lower_bracket._native.native_decide.ax_1_1",
+        "SkiRental.Certificates.D_031088_upper_bracket._native.native_decide.ax_1_1",
+        "SkiRental.Certificates.lower_rho_bridge_S6_margin_value._native.native_decide.ax_1_1",
+        "SkiRental.Certificates.lower_rho_bridge_S6_margin_positive._native.native_decide.ax_1_1",
+        "SkiRental.Certificates.lowerRhoBridgeBernsteinCoeffs_positive._native.native_decide.ax_1_1",
+        "SkiRental.Certificates.lemma20P5BernsteinCoeffs_positive._native.native_decide.ax_1_1",
+        "SkiRental.Certificates.lemma20P5TBernsteinCoeffs_positive._native.native_decide.ax_1_1",
+        "SkiRental.Certificates.lemma20P5TBernstein_min_matches_endpoint._native.native_decide.ax_1_1",
+        "SkiRental.Certificates.lemma19P3BernsteinCoeffs_positive._native.native_decide.ax_1_1",
+        "SkiRental.Certificates.lemma20P5Bernstein_min_matches_paper._native.native_decide.ax_1_1",
+        "SkiRental.Certificates.lemma19DxiFiniteBernsteinCoeffs_nonnegative._native.native_decide.ax_1_1",
+        "SkiRental.Certificates.lemma19P3Bernstein_min_positive._native.native_decide.ax_1_1",
+        "SkiRental.Scalar.lemma19P3Coeff_pos._native.native_decide.ax_1_1",
+        "SkiRental.Scalar.lemma20P5TCoeff_pos._native.native_decide.ax_1_1",
+        "SkiRental.Scalar.lowerRhoBridgeCoeff_pos._native.native_decide.ax_1_1",
+        "SkiRental.Scalar.lemma19DxiFiniteCoeff_nonneg._native.native_decide.ax_1_1",
+        "SkiRental.Scalar.lemma20P5Coeff_pos._native.native_decide.ax_1_1"
+      ],
+      "sorry_ax_detected": false,
+      "of_reduce_bool_detected": false,
+      "trust_compiler_detected": false,
+      "axioms_by_theorem": {
+        "SkiRental.Analysis.buy_by_breakeven_D_le_endpoint": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Scalar.lemma19DxiFiniteCoeff_nonneg._native.native_decide.ax_1_1",
+          "SkiRental.Scalar.lemma19P3Coeff_pos._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Analysis.buy_by_breakeven_Dxi_finite_nonneg": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Scalar.lemma19DxiFiniteCoeff_nonneg._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Analysis.buy_by_breakeven_Dxi_series_nonneg": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Scalar.lemma19DxiFiniteCoeff_nonneg._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Analysis.buy_by_breakeven_U_nonneg": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Scalar.lemma19P3Coeff_pos._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Analysis.buy_by_breakeven_multiplier_nonneg": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Scalar.lemma19P3Coeff_pos._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Analysis.buy_by_breakeven_rho_star_left_check": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Certificates.D_031087_lower_bracket._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Analysis.buy_by_breakeven_rho_star_right_check": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Certificates.D_031088_upper_bracket._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Certificates.D_031087_lower_bracket": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Certificates.D_031087_lower_bracket._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Certificates.D_031088_upper_bracket": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Certificates.D_031088_upper_bracket._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Certificates.K_left_partial_gt_text_bound": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Certificates.K_left_partial_gt_text_bound._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Certificates.K_left_partial_value": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Certificates.K_left_partial_value._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Certificates.K_right_margin": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Certificates.K_right_margin._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Certificates.K_right_partial_value": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Certificates.K_right_partial_value._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Certificates.e_interval_nonempty": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Certificates.e_interval_nonempty._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Certificates.e_lower_for_K_left": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Certificates.e_lower_for_K_left._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Certificates.e_upper_for_K_right": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Certificates.e_upper_for_K_right._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Certificates.generalKPolynomialShiftCoeffs_positive": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Certificates.generalKPolynomialShiftCoeffs_positive._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Certificates.generalVPositiveP5BernsteinCoeffs_positive": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Certificates.lemma20P5BernsteinCoeffs_positive._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Certificates.generalVPositiveP5Bernstein_min_matches_paper": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Certificates.lemma20P5Bernstein_min_matches_paper._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Certificates.generalVPositiveP5TBernsteinCoeffs_positive": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Certificates.lemma20P5TBernsteinCoeffs_positive._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Certificates.generalVPositiveP5TBernstein_min_matches_endpoint": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Certificates.lemma20P5TBernstein_min_matches_endpoint._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Certificates.lemma19DxiFiniteBernsteinCoeffs_nonnegative": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Certificates.lemma19DxiFiniteBernsteinCoeffs_nonnegative._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Certificates.lemma19P3BernsteinCoeffs_positive": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Certificates.lemma19P3BernsteinCoeffs_positive._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Certificates.lemma19P3Bernstein_min_positive": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Certificates.lemma19P3Bernstein_min_positive._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Certificates.lemma20P5BernsteinCoeffs_positive": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Certificates.lemma20P5BernsteinCoeffs_positive._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Certificates.lemma20P5Bernstein_min_matches_paper": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Certificates.lemma20P5Bernstein_min_matches_paper._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Certificates.lemma20P5TBernsteinCoeffs_positive": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Certificates.lemma20P5TBernsteinCoeffs_positive._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Certificates.lemma20P5TBernstein_min_matches_endpoint": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Certificates.lemma20P5TBernstein_min_matches_endpoint._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Certificates.lowerRhoBridgeBernsteinCoeffs_positive": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Certificates.lowerRhoBridgeBernsteinCoeffs_positive._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Certificates.lower_rho_bridge_P3_text_bound_positive": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Certificates.lower_rho_bridge_P3_text_bound_positive._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Certificates.lower_rho_bridge_P5_text_bound_positive": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Certificates.lower_rho_bridge_P5_text_bound_positive._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Certificates.lower_rho_bridge_S6_margin_positive": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Certificates.lower_rho_bridge_S6_margin_positive._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Certificates.lower_rho_bridge_S6_margin_value": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Certificates.lower_rho_bridge_S6_margin_value._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Certificates.lower_rho_bridge_e_partial_gt": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Certificates.lower_rho_bridge_e_partial_gt._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Certificates.nearbyQPolynomialShiftCoeffs_positive": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Certificates.nearbyQPolynomialShiftCoeffs_positive._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Certificates.nearbyQ_at_four_fifths_positive": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Certificates.nearbyQ_at_four_fifths_positive._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Certificates.one_third_times_recip_upper": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Certificates.one_third_times_recip_upper._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Certificates.uPolynomialBernsteinCoeffs_positive": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Certificates.uPolynomialBernsteinCoeffs_positive._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Polynomial.bernstein5_pos": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Polynomial.bernsteinBasis_nonneg": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Polynomial.bernsteinEval_nonneg": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Polynomial.bernsteinEval_pos": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Polynomial.eval_nonneg_of_nonneg_coeffs": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Polynomial.eval_pos_of_all_pos": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Polynomial.exists_bernsteinBasis_pos": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Scalar.U3CubicLower_eq_Upower_partial": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Scalar.U3CubicLower_le_Upower": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Scalar.U3CubicLower_pos_on_box": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Scalar.lemma19P3Coeff_pos._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Scalar.UBernstein_pos": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Scalar.UInnerPoly_shift_eq": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Scalar.UPartial_one": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Scalar.UPartial_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Scalar.UpowerDerivBound_summable": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Scalar.UpowerDerivSeries_eq_neg_shifted": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Scalar.UpowerDerivTerm_norm_le_bound": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Scalar.UpowerMag_le_expTerm": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Scalar.UpowerMag_nonneg": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Scalar.UpowerMag_shifted_antitone4": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Scalar.UpowerMag_succ_le": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Scalar.UpowerMag_summable": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Scalar.UpowerShiftTerm_summable": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Scalar.UpowerTerm_eq_altMag": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Scalar.UpowerTerm_summable": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Scalar.UpowerTerm_zero_summable": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Scalar.Upower_add_rho_UpowerDerivSeries_eq_lemma20V": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Scalar.Upower_functional_term_identity": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Scalar.Upower_nonneg_on_lemma19_box": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Scalar.lemma19P3Coeff_pos._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Scalar.Upower_term_sub_rho_shift_eq": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Scalar.deriv_Upower_eq_UpowerDerivSeries": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Scalar.generalVPositiveExpression_eq_series": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Scalar.generalVPositiveSeries_nonneg_on_box": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Scalar.lemma20P5TCoeff_pos._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Scalar.generalVPositiveSixTerm_le_rawSeries": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Scalar.generalVPositiveSixTerm_pos_on_box": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Scalar.lemma20P5TCoeff_pos._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Scalar.generalVPositive_nonneg_on_box": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Scalar.lemma20P5TCoeff_pos._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Scalar.general_K_left_e_bound_arithmetic": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Certificates.e_lower_for_K_left._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Scalar.general_K_left_endpoint_arithmetic": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Certificates.K_left_partial_gt_text_bound._native.native_decide.ax_1_1",
+          "SkiRental.Certificates.one_third_times_recip_upper._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Scalar.general_K_left_partial_gt_text_bound": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Certificates.K_left_partial_gt_text_bound._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Scalar.general_K_left_partial_value": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Certificates.K_left_partial_value._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Scalar.general_K_left_rho_times_recip_upper": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Certificates.one_third_times_recip_upper._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Scalar.general_K_right_e_bound_arithmetic": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Certificates.e_upper_for_K_right._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Scalar.general_K_right_endpoint_margin": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Certificates.K_right_margin._native.native_decide.ax_1_1",
+          "SkiRental.Certificates.K_right_partial_value._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Scalar.general_K_right_partial_value": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Certificates.K_right_partial_value._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Scalar.general_K_shifted_coefficients_positive": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Certificates.generalKPolynomialShiftCoeffs_positive._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Scalar.general_endpoint_concavity_factor_nonneg": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Scalar.lemma20P5TCoeff_pos._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Scalar.hasDerivAt_Upower": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Scalar.lemma19DxiFiniteBernstein_nonneg": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Scalar.lemma19DxiFiniteCoeff_nonneg._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Scalar.lemma19DxiFiniteCoeff_nonneg": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Scalar.lemma19DxiFiniteCoeff_nonneg._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Scalar.lemma19DxiFiniteDen_pos": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Scalar.lemma19DxiFiniteNum_nonneg_on_box": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Scalar.lemma19DxiFiniteCoeff_nonneg._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Scalar.lemma19DxiFiniteNum_shift_eq_bernstein": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Scalar.lemma19DxiFinite_nonneg_on_box": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Scalar.lemma19DxiFiniteCoeff_nonneg._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Scalar.lemma19P3Bernstein_pos": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Scalar.lemma19P3Coeff_pos._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Scalar.lemma19P3Coeff_pos": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Scalar.lemma19P3Coeff_pos._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Scalar.lemma19P3Num_pos_on_box": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Scalar.lemma19P3Coeff_pos._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Scalar.lemma19P3Num_shift_eq_bernstein": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Scalar.lemma19P3_pos_of_num_pos": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Scalar.lemma20P5Bernstein_pos": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Scalar.lemma20P5Coeff_pos._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Scalar.lemma20P5Coeff_pos": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Scalar.lemma20P5Coeff_pos._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Scalar.lemma20P5Den_mul_P5T_eq_num": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Scalar.lemma20P5Den_mul_P5_eq_num": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Scalar.lemma20P5Den_pos": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Scalar.lemma20P5Num_pos_on_box": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Scalar.lemma20P5Coeff_pos._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Scalar.lemma20P5Num_shift_eq_bernstein": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Scalar.lemma20P5TBernstein_pos": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Scalar.lemma20P5TCoeff_pos._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Scalar.lemma20P5TCoeff_pos": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Scalar.lemma20P5TCoeff_pos._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Scalar.lemma20P5TNum_pos_on_box": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Scalar.lemma20P5TCoeff_pos._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Scalar.lemma20P5T_pos_of_num_pos": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Scalar.lemma20P5T_pos_on_box": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Scalar.lemma20P5TCoeff_pos._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Scalar.lemma20P5_pos_of_num_pos": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Scalar.lemma20P5_pos_on_box": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Scalar.lemma20P5Coeff_pos._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Scalar.lemma20VFromUpower_eq_lemma20V": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Scalar.lemma20VFromUpower_nonneg_on_box": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Scalar.lemma20P5TCoeff_pos._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Scalar.lemma20VMag_le_expTerm": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Scalar.lemma20VMag_nonneg": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Scalar.lemma20VMag_shifted_antitone": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Scalar.lemma20VMag_succ_le": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Scalar.lemma20V_nonneg_on_box": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Scalar.lemma20P5TCoeff_pos._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Scalar.lemma20Vbar_pos_on_box": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Scalar.lemma20P5TCoeff_pos._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Scalar.lemma20_shifted_tail_nonneg": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Scalar.lowerRhoBridgeBernstein_pos": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Scalar.lowerRhoBridgeCoeff_pos._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Scalar.lowerRhoBridgeCoeff_pos": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Scalar.lowerRhoBridgeCoeff_pos._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Scalar.lowerRhoBridgeDSeries_gt_one": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Scalar.lowerRhoBridgeCoeff_pos._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Scalar.lowerRhoBridgeMarginDen_pos": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Scalar.lowerRhoBridgeMarginNum_pos": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Scalar.lowerRhoBridgeCoeff_pos._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Scalar.lowerRhoBridgeMarginNum_shift_eq_bernstein": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Scalar.lowerRhoBridgeP3_add_P5_gt_bound": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Scalar.lowerRhoBridgeCoeff_pos._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Scalar.lowerRhoBridgeQuad_pos": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Scalar.lowerRhoBridgeQuartic_pos": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Scalar.lowerRhoBridgeS6_gt_bound": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Scalar.lowerRhoBridgeCoeff_pos._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Scalar.lowerRhoBridgeTerm_le_factorial_tail": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Scalar.lowerRhoBridgeTerm_nonneg": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Scalar.lowerRhoBridgeTerm_succ_le": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Scalar.lowerRhoBridgeTerm_summable": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Scalar.lower_rho_bridge_D_gt_one": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Scalar.lowerRhoBridgeCoeff_pos._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Scalar.lower_rho_bridge_S6_margin_certificate": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Certificates.lower_rho_bridge_S6_margin_value._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Scalar.lower_rho_bridge_S6_margin_positive": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Certificates.lower_rho_bridge_S6_margin_positive._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Scalar.lower_rho_bridge_e_partial_gt": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Certificates.lower_rho_bridge_e_partial_gt._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Scalar.lower_rho_bridge_series_entry_point": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Scalar.lowerRhoBridgeCoeff_pos._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Scalar.lower_rho_bridge_unconditional": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Scalar.lowerRhoBridgeCoeff_pos._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Scalar.real_exp_eq_tsum_pow_div_factorial": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Scalar.scalarCertificateTightDxiFinite_nonneg_on_box": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Scalar.lemma19DxiFiniteCoeff_nonneg._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Scalar.scalarCertificateTightMultiplier_nonneg_on_box": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Scalar.lemma19P3Coeff_pos._native.native_decide.ax_1_1"
+        ],
+        "SkiRental.Scalar.scalarCertificateTightMultiplier_recurrence": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Scalar.scalarCertificateTightU_eq_power_series": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Scalar.scalarCertificateTightU_functional_identity": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "SkiRental.Scalar.scalarCertificateTightU_nonneg_on_box": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "SkiRental.Scalar.lemma19P3Coeff_pos._native.native_decide.ax_1_1"
+        ]
+      },
+      "error_summary": ""
+    },
+    {
+      "slice_id": "2026-11",
+      "arxiv_id": "2611.17223",
+      "repo": "radniazadeh/bernoulli-poly",
+      "commit_sha": "3475e18ddc9a11a4e4c3944e497ee515b2c4349b",
+      "zenodo_record_id": null,
+      "lean_tree_sha256": "b593f60960c12e65479885005fb0bfa9f71253b71d7d708a2ef8da39371879bc",
+      "static_verification_tier": "Tier3_Gold",
+      "paper_domain_role": "pure_tcs_or_math",
+      "role_4way": "pure_math_or_tcs",
+      "owned_loc": 10541,
+      "lean_toolchain": "leanprover/lean4:v4.30.0-rc2",
+      "project_subdir": ".",
+      "build_mode": "lake",
+      "executed_at": "2026-11-25T09:02:44Z",
+      "network_mode": "none",
+      "security_flags": [
+        "--network=none",
+        "--user=65534:65534",
+        "--cap-drop=ALL",
+        "--security-opt=no-new-privileges:true",
+        "--cpus=4",
+        "--memory=10g",
+        "--pids-limit=512"
+      ],
+      "timeout_sec": 1800,
+      "notes": "Comparator Challenge/Solution layout (v4.30.0-rc2 + Mathlib); builds and audits proved draft_d0e609b31c9c + Solution modules (excluding Challenge spec stubs).",
+      "exit_code": 0,
+      "build_status": "pass",
+      "wall_time_sec": 166.8,
+      "axiom_check_wall_time_sec": 9.36,
+      "target_modules_count": 54,
+      "total_theorems_checked": 458,
+      "standard_axioms_used": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "nonstandard_axioms_detected": [],
+      "sorry_ax_detected": false,
+      "of_reduce_bool_detected": false,
+      "trust_compiler_detected": false,
+      "axioms_by_theorem": {
+        "FormalizedPapers.draft_d0e609b31c9c.Program.brecOn.eq": [],
+        "FormalizedPapers.draft_d0e609b31c9c.ProgramEnsures.executions_preserved": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "FormalizedPapers.draft_d0e609b31c9c.ProgramEnsures.of_ret": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "FormalizedPapers.draft_d0e609b31c9c.ProgramEnsures.step_preserved": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "FormalizedPapers.draft_d0e609b31c9c.ProgramEnsures.terminalMass_eq_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "FormalizedPapers.draft_d0e609b31c9c.amplifyCoefficient_le": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "FormalizedPapers.draft_d0e609b31c9c.amplifyCoefficient_lt_twice": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "FormalizedPapers.draft_d0e609b31c9c.amplify_capped_drift_lower_bound": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "FormalizedPapers.draft_d0e609b31c9c.amplify_capped_jump_lower_bound": [
+          "propext",
+          "Quot.sound"
+        ],
+        "FormalizedPapers.draft_d0e609b31c9c.amplify_drift_lower_bound": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "FormalizedPapers.draft_d0e609b31c9c.amplify_geometric_hasSum": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "FormalizedPapers.draft_d0e609b31c9c.amplify_geometric_mass": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "FormalizedPapers.draft_d0e609b31c9c.amplify_geometric_mean": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "FormalizedPapers.draft_d0e609b31c9c.amplify_geometric_parameter_bounds": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "FormalizedPapers.draft_d0e609b31c9c.amplify_geometric_tail_excess": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "FormalizedPapers.draft_d0e609b31c9c.amplify_geometric_tail_excess_le": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "FormalizedPapers.draft_d0e609b31c9c.amplify_geometric_tail_mass": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "FormalizedPapers.draft_d0e609b31c9c.amplify_geometric_tsum": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "FormalizedPapers.draft_d0e609b31c9c.amplify_initial_power": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "FormalizedPapers.draft_d0e609b31c9c.amplify_inner_power_identity": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "FormalizedPapers.draft_d0e609b31c9c.amplify_phase_bias_bounds": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "FormalizedPapers.draft_d0e609b31c9c.amplify_phase_cost_hasSum": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "FormalizedPapers.draft_d0e609b31c9c.amplify_phase_cost_tsum_lt": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "FormalizedPapers.draft_d0e609b31c9c.amplify_power_mem_Icc": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "FormalizedPapers.draft_d0e609b31c9c.amplify_survival_le_fifth": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "FormalizedPapers.draft_d0e609b31c9c.amplify_survival_le_quarter": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "FormalizedPapers.draft_d0e609b31c9c.amplify_survival_mem_Icc": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "FormalizedPapers.draft_d0e609b31c9c.amplify_transition_power_identity": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "FormalizedPapers.draft_d0e609b31c9c.executions_fail": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "FormalizedPapers.draft_d0e609b31c9c.executions_ret": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "FormalizedPapers.draft_d0e609b31c9c.executions_reward_le": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "FormalizedPapers.draft_d0e609b31c9c.executions_sum_succ": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "FormalizedPapers.draft_d0e609b31c9c.executions_total_mass": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "FormalizedPapers.draft_d0e609b31c9c.expectedCost_fail": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "FormalizedPapers.draft_d0e609b31c9c.expectedCost_le_of_potential": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "FormalizedPapers.draft_d0e609b31c9c.expectedCost_prefix_monotone": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "FormalizedPapers.draft_d0e609b31c9c.expectedCost_ret": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "FormalizedPapers.draft_d0e609b31c9c.five_le_amplifyFactor_pow_threshold": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "FormalizedPapers.draft_d0e609b31c9c.historyCost_append": [
+          "propext"
+        ],
+        "FormalizedPapers.draft_d0e609b31c9c.historyCost_le_step": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "FormalizedPapers.draft_d0e609b31c9c.le_amplifyCoefficient": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "FormalizedPapers.draft_d0e609b31c9c.list_sum_iSup_of_monotone": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "FormalizedPapers.draft_d0e609b31c9c.one_lt_amplifyFactor": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "FormalizedPapers.draft_d0e609b31c9c.step.eq_3": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "FormalizedPapers.draft_d0e609b31c9c.step.eq_4": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "FormalizedPapers.draft_d0e609b31c9c.step.eq_5": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "FormalizedPapers.draft_d0e609b31c9c.step.eq_6": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "FormalizedPapers.draft_d0e609b31c9c.step.eq_7": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "FormalizedPapers.draft_d0e609b31c9c.step.eq_8": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "FormalizedPapers.draft_d0e609b31c9c.step.eq_9": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "FormalizedPapers.draft_d0e609b31c9c.step_total_mass": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "FormalizedPapers.draft_d0e609b31c9c.terminalIndicator_le_one": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "FormalizedPapers.draft_d0e609b31c9c.terminalIndicator_le_step": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "FormalizedPapers.draft_d0e609b31c9c.terminalMass_fail": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "FormalizedPapers.draft_d0e609b31c9c.terminalMass_le_of_reward": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "FormalizedPapers.draft_d0e609b31c9c.terminalMass_le_one": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "FormalizedPapers.draft_d0e609b31c9c.terminalMass_mono": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "FormalizedPapers.draft_d0e609b31c9c.terminalMass_ret": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "FormalizedPapers.draft_d0e609b31c9c.terminal_prefix_monotone": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "FormalizedPapers.draft_d0e609b31c9c.terminatesAS_ret": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      "error_summary": ""
+    },
+    {
+      "slice_id": "2026-11",
+      "arxiv_id": "2611.04575",
+      "repo": "HamedMousaviMath/Lean-Formalization-Polynomial-Configurations-and-Pointwise-Averages-Along-Piatetski--Shapiro-Primes",
+      "commit_sha": "a58378c4370a0defec6a239f0998adae4a7b1114",
+      "zenodo_record_id": null,
+      "lean_tree_sha256": "6b8a426ab9909c3ece01efaec8afbb7080aec0b0a6c8d853de6b20ffb7c3ffcf",
+      "static_verification_tier": "Tier3_Gold",
+      "paper_domain_role": "pure_tcs_or_math",
+      "role_4way": "pure_math_or_tcs",
+      "owned_loc": 12659,
+      "lean_toolchain": "leanprover/lean4:v4.19.0",
+      "project_subdir": ".",
+      "build_mode": "lake",
+      "executed_at": "2026-11-25T09:09:01Z",
+      "network_mode": "none",
+      "security_flags": [
+        "--network=none",
+        "--user=65534:65534",
+        "--cap-drop=ALL",
+        "--security-opt=no-new-privileges:true",
+        "--cpus=4",
+        "--memory=10g",
+        "--pids-limit=512"
+      ],
+      "timeout_sec": 1800,
+      "notes": "PSPrimes (v4.19.0 + Mathlib c44e0c8ee6).",
+      "exit_code": 0,
+      "build_status": "pass",
+      "wall_time_sec": 233.08,
+      "axiom_check_wall_time_sec": 243.64,
+      "target_modules_count": 53,
+      "total_theorems_checked": 448,
+      "standard_axioms_used": [
+        "propext",
+        "Quot.sound",
+        "Classical.choice"
+      ],
+      "nonstandard_axioms_detected": [],
+      "sorry_ax_detected": false,
+      "of_reduce_bool_detected": false,
+      "trust_compiler_detected": false,
+      "axioms_by_theorem": {
+        "PSPrimes.IntegerAction.add_act": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "PSPrimes.IntegerAction.preserving": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "PSPrimes.IntegerAction.zero_act": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "PSPrimes.PhaseBound.mass": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "PSPrimes.PhaseBound.mono": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "PSPrimes.PhaseBound.smul": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "PSPrimes.PolynomialFamily.increasing_degrees": [
+          "propext",
+          "Quot.sound"
+        ],
+        "PSPrimes.PolynomialFamily.nonempty": [
+          "propext",
+          "Quot.sound"
+        ],
+        "PSPrimes.PolynomialFamily.positive_degree": [
+          "propext",
+          "Quot.sound"
+        ],
+        "PSPrimes.PolynomialFamily.zero_constant": [
+          "propext",
+          "Quot.sound"
+        ],
+        "PSPrimes.coeff_rescale": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "PSPrimes.coeff_rescale_zero": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "PSPrimes.comparison_exponents": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "PSPrimes.configuration_affine_image": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "PSPrimes.configuration_rescale_affine_image": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "PSPrimes.countingForm_discrepancy": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "PSPrimes.countingForm_smul": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "PSPrimes.countingForm_sub": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "PSPrimes.dilated_support_scale_le": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "PSPrimes.discrepancyWeight_one": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "PSPrimes.eval_rescale_ediv": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "PSPrimes.eval_rescale_mul": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "PSPrimes.exists_finsupp_of_bounded_support": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "PSPrimes.exp_log_subpower_le_rpow": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "PSPrimes.floorScale_le_root": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "PSPrimes.floorScale_power_bounds": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "PSPrimes.homogeneous_polynomialForm_bound": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "PSPrimes.liftFinsupp_eq_liftFunction": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "PSPrimes.liftFinsupp_mul": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "PSPrimes.liftFinsupp_support_bound": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "PSPrimes.liftFunction_mul": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "PSPrimes.liftFunction_rescale": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "PSPrimes.liftedScale_normalization_bounds": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "PSPrimes.liftedScale_normalization_identity": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "PSPrimes.liftedScale_power_bounds": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "PSPrimes.lifting_sum": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "PSPrimes.model_minus_count": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "PSPrimes.modulus_subpower": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "PSPrimes.natDegree_rescale": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "PSPrimes.natDegree_rescale_le": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "PSPrimes.norm_complexPhase": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "PSPrimes.norm_liftFinsupp_le": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "PSPrimes.norm_liftFunction_le": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "PSPrimes.norm_liftWeight_le": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "PSPrimes.phaseSum_liftWeight": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "PSPrimes.phaseSum_smul": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "PSPrimes.phaseSum_zero": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "PSPrimes.polynomialForm_smul": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "PSPrimes.rescale_coeff_bound": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "PSPrimes.rescale_nested_eval": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "PSPrimes.rescale_one": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "PSPrimes.rescale_rescale": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "PSPrimes.rootScale_lt_twice_floor": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "PSPrimes.rootScale_nonneg": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "PSPrimes.rootScale_pow": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "PSPrimes.sparseMangoldt_nonneg": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "PSPrimes.sparseMangoldt_one": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "PSPrimes.sparseMangoldt_prime": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "PSPrimes.sum_liftWeight": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "PSPrimes.sum_multiples": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ]
+      },
+      "error_summary": ""
+    }
+  ]
+}
