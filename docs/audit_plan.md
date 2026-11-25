@@ -92,9 +92,12 @@ All **54 entries** in [`papers/shared/references.bib`](../papers/shared/referenc
   - Wired into [`.github/workflows/ci.yml`](../.github/workflows/ci.yml) with drift-detection unit tests in [`tests/test_check_paper_numbers.py`](../tests/test_check_paper_numbers.py). Caught and fixed a pre-existing rounding inconsistency on the YoY Stage-2 Lean candidate rate multiplier (`11.2×` from rounded `1.34/0.12` → exact `10.9×`).
 - [x] **Phase-2 Layer-A Semantic Audits on the 3 Newly Unpacked Packages (`2611.26140`, `2611.16781`, `2611.12585`):**
   - Completed `pro`-tier adversarial Layer-A audits (2026-11-23), raising the audited cohort from `20 → 23` (`20` in T2 + `3` in T1; `239/239` resolved in-bounds `file:line` refs): `2611.16781` scored `high_faithful` (`minor_undisclosed` M1, `minor_disclosed` M2, `none` M3/M4, `strong_mathlib`), `2611.12585` scored `mostly_faithful_with_disclosed_gaps` (`minor_disclosed` M1/M2, `none` M3/M4, `strong_mathlib`), and `2611.26140` scored `partial_or_weakened_formalization` (`minor_disclosed` M1, `moderate` M2 candidly omitting `W_opt`/`GuardsCorridor` game reductions, `none` M3/M4, `mixed_custom_and_mathlib`). All 3 include explicit non-vacuity witnesses (`13/20 = 65.0%` in T2) and preserve **0/20** moderate/severe M1/M3/M4 failures across all Oct–Nov 2026 author-owned repos.
+- [ ] **Cross-Model & Higher-Reasoning-Tier Classification / Audit Calibration (Hydrogen vs. Neon / Increased Thinking):**
+  - Benchmark current Stage-4 classifications (**Gemini 4 Hydrogen, High**) against higher-cost, more intelligent models and deeper thinking budgets (e.g., **Gemini 4 Neon** at High / increased thinking effort, plus an open-weight / cross-family LLM judge baseline) across a stratified sample or the full confirmed/borderline 15-category cohort.
+  - Quantify inter-model agreement ($\kappa$/$\alpha$) on `lean_usage_status`, `role_4way`, `borderline_flag`, `authoring_paradigm`, and `verification_tier_observed`, and run targeted Stage-5 Layer-A spot-checks (**Hydrogen Extra High** vs. **Neon** with increased thinking) to verify whether higher-intelligence judges uncover subtle misclassifications or semantic drift missed at lower compute tiers.
 - [ ] **ML-Theory Arm & Scope Hygiene:**
   - Run a scoped `cs.LG` / `stat.ML` arm (1-week window or stratified 1,000-paper sample) to benchmark ML theory against `math.OC` and `cs.IT`.
-  - Audit calendar/conference-deadline confounders around Nov 1–19 and May 1–19, and replace USC ANRG lab-anchor rationale with an external IEEE/ACM disciplinary framing for archival variants.
+  - Audit calendar/conference-deadline confounders around Nov 1–19 and May 1–19. *(Note: USC ANRG lab-anchor rationale was replaced with whole-category disciplinary framing in v0.7.)*
 
 ---
 
