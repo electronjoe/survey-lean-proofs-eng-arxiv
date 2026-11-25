@@ -255,6 +255,47 @@ COMPACT_COHORT: list[TargetRepo] = [
     ),
 ]
 
+# Phase C2 cohort: ALL newly discovered `<15k` LoC `eng_algorithmic_proof` public repos
+# from the +7 engineering categories in T2 (2026-11) — 3 compact repositories total.
+PLUS7_COMPACT_COHORT: list[TargetRepo] = [
+    TargetRepo(
+        slice_id="2026-11",
+        arxiv_id="2611.14586",
+        repo="zenodo/23768172",
+        local_dir="zenodo__23768172",
+        project_subdir="spar_zenodo/spar/theory/lean",
+        mode="lake",
+        lake_targets=("SparTheorems",),
+        module_prefixes=("SparTheorems",),
+        notes="Zenodo SPAR Lean 4 formalization (v4.35.0-rc4 + Mathlib) of deterministic algebraic core, refresh chain, and OGD/Hedge regret bounds.",
+    ),
+    TargetRepo(
+        slice_id="2026-11",
+        arxiv_id="2611.09615",
+        repo="renatoppl/trace-square-root",
+        local_dir="renatoppl__trace-square-root",
+        project_subdir="",
+        mode="lake",
+        lake_targets=("TraceSqrt",),
+        module_prefixes=("TraceSqrt",),
+        notes="TraceSqrt Lean 4 formalization (v4.27.0 + Mathlib) of all 22 numbered statements and 4 online algorithms.",
+    ),
+    TargetRepo(
+        slice_id="2026-11",
+        arxiv_id="2611.07395",
+        repo="michalshavitNYU/Rigorously-certified-water-waves",
+        local_dir="michalshavitNYU__Rigorously-certified-water-waves",
+        project_subdir="Lean",
+        mode="lake",
+        lake_targets=("WaveCAP", "WaveCAP.PaperTheorems", "WaveCAP.PaperAudit"),
+        module_prefixes=("WaveCAP",),
+        notes="WaveCAP Lean 4 formalization (v4.29.0-rc6 + Mathlib); builds default WaveCAP library plus dedicated PaperTheorems and PaperAudit targets per README.",
+    ),
+]
+
+PLUS7_CLS_PATH = REPO_ROOT / "artifacts" / "slices" / "2026-11" / "plus7_classifications.json"
+PHASE_C1_PATH = REPO_ROOT / "artifacts" / "phase_c1_15cat_longitudinal.json"
+
 
 def _get_git_sha(repo_dir: Path) -> str | None:
     if not (repo_dir / ".git").exists():
@@ -278,9 +319,31 @@ def _hash_lean_tree(repo_dir: Path) -> str:
     return h.hexdigest()
 
 
-def _load_paper_metadata() -> dict[str, dict[str, Any]]:
+def _load_paper_metadata(cohort: str = "orig8") -> dict[str, dict[str, Any]]:
+    if cohort == "plus7":
+        out: dict[str, dict[str, Any]] = {}
+        if PLUS7_CLS_PATH.is_file():
+            cls_doc = json.loads(PLUS7_CLS_PATH.read_text(encoding="utf-8"))
+            for r in cls_doc.get("lean_results", []):
+                out[r["arxiv_id"]] = {
+                    "verification_tier": r.get("verification_tier_observed"),
+                    "paper_domain_role": r.get("paper_domain_role"),
+                    "role_4way": r.get("role_4way"),
+                    "primary_owned_loc": None,
+                }
+        if PHASE_C1_PATH.is_file():
+            c1 = json.loads(PHASE_C1_PATH.read_text(encoding="utf-8"))
+            for item in c1.get("phase_c2_eng_alg_audit_queue", []):
+                aid = item["arxiv_id"]
+                out.setdefault(aid, {})
+                out[aid]["primary_owned_loc"] = item.get("primary_owned_loc")
+                if not out[aid].get("verification_tier"):
+                    out[aid]["verification_tier"] = item.get("verification_tier")
+                out[aid]["role_4way"] = item.get("role_4way", "eng_algorithmic_proof")
+        return out
+
     data = json.loads(LONGITUDINAL_PATH.read_text(encoding="utf-8"))
-    out: dict[str, dict[str, Any]] = {}
+    out = {}
     for s in data["slices"]:
         for p in s.get("confirmed_papers", []):
             out[p["arxiv_id"]] = p
@@ -543,6 +606,7 @@ def audit_target(target: TargetRepo, meta_by_id: dict[str, dict[str, Any]]) -> d
         "lean_tree_sha256": lean_tree_sha,
         "static_verification_tier": paper_meta.get("verification_tier"),
         "paper_domain_role": paper_meta.get("paper_domain_role"),
+        **({"role_4way": paper_meta["role_4way"]} if paper_meta.get("role_4way") else {}),
         "owned_loc": paper_meta.get("primary_owned_loc"),
         "lean_toolchain": lean_toolchain,
         "project_subdir": target.project_subdir or ".",
@@ -688,6 +752,102 @@ def audit_target(target: TargetRepo, meta_by_id: dict[str, dict[str, Any]]) -> d
     return record
 
 
+def _summarize_records(recs: list[dict[str, Any]]) -> dict[str, Any]:
+    n = len(recs)
+    passed = [r for r in recs if r["build_status"] == "pass"]
+    clean_axioms = [
+        r
+        for r in passed
+        if not r.get("sorry_ax_detected")
+        and not r.get("of_reduce_bool_detected")
+        and not r.get("trust_compiler_detected")
+        and not r.get("nonstandard_axioms_detected")
+    ]
+    failed_packaging = [r for r in recs if r["build_status"] == "fail_packaging"]
+    failed_local_dep = [r for r in recs if r["build_status"] == "fail_missing_local_dep"]
+    failed_build = [r for r in recs if r["build_status"] in ("fail_build", "fail_network_dep", "timeout", "fail_runner")]
+    synth_passed = [
+        r
+        for r in failed_packaging
+        if (r.get("synthetic_env_check") or {}).get("build_status") == "pass"
+    ]
+    synth_clean = [
+        r
+        for r in synth_passed
+        if not (r.get("synthetic_env_check") or {}).get("sorry_ax_detected")
+        and not (r.get("synthetic_env_check") or {}).get("of_reduce_bool_detected")
+        and not (r.get("synthetic_env_check") or {}).get("nonstandard_axioms_detected")
+    ]
+    t3_all = [r for r in recs if r.get("static_verification_tier") == "Tier3_Gold"]
+    t3_pass = [r for r in t3_all if r["build_status"] == "pass"]
+    t3_clean = [r for r in t3_all if r in clean_axioms]
+    total_thms_ootb = sum(int(r.get("total_theorems_checked") or 0) for r in passed)
+    total_thms_synth = sum(
+        int((r.get("synthetic_env_check") or {}).get("total_theorems_checked") or 0)
+        for r in synth_passed
+    )
+    return {
+        "total_attempted": n,
+        "pass_out_of_box": len(passed),
+        "pass_and_standard_axioms_only": len(clean_axioms),
+        "pass_with_nonstandard_axioms": len(passed) - len(clean_axioms),
+        "fail_packaging_no_lakefile": len(failed_packaging),
+        "fail_missing_local_dep": len(failed_local_dep),
+        "fail_build_or_other": len(failed_build),
+        "synthetic_env_pass_among_packaging_fails": len(synth_passed),
+        "synthetic_env_clean_among_packaging_fails": len(synth_clean),
+        "tier3_gold_attempted": len(t3_all),
+        "tier3_gold_pass_out_of_box": len(t3_pass),
+        "tier3_gold_clean_axioms": len(t3_clean),
+        "total_theorems_checked_ootb": total_thms_ootb,
+        "total_theorems_checked_incl_synthetic": total_thms_ootb + total_thms_synth,
+        "sorry_ax_repos_ootb": [r["arxiv_id"] for r in passed if r.get("sorry_ax_detected")],
+        "of_reduce_bool_repos_ootb": [r["arxiv_id"] for r in passed if r.get("of_reduce_bool_detected")],
+        "nonstandard_axiom_repos_ootb": [
+            {"arxiv_id": r["arxiv_id"], "axioms": r.get("nonstandard_axioms_detected", [])}
+            for r in passed
+            if r.get("nonstandard_axioms_detected")
+        ],
+    }
+
+
+def _merge_and_write_plus7_outputs(new_records: list[dict[str, Any]]) -> None:
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    res_path = OUT_DIR / "results_plus7_2026-11.json"
+    rec_map: dict[str, dict[str, Any]] = {}
+    if res_path.is_file():
+        existing = json.loads(res_path.read_text(encoding="utf-8"))
+        for r in existing.get("records", []):
+            rec_map[r["arxiv_id"]] = r
+    for r in new_records:
+        rec_map[r["arxiv_id"]] = r
+
+    cohort_order = {t.arxiv_id: idx for idx, t in enumerate(PLUS7_COMPACT_COHORT)}
+    ordered = sorted(rec_map.values(), key=lambda x: cohort_order.get(x["arxiv_id"], 999))
+    payload = {
+        "schema_version": "1.0",
+        "cohort": "plus7_eng_algorithmic_proof_compact",
+        "slice_id": "2026-11",
+        "runner_image": IMAGE_NAME,
+        "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "security_invariants": {
+            "network_mode": "none",
+            "user": "65534:65534",
+            "cap_drop": "ALL",
+            "no_new_privileges": True,
+            "readonly_source_mount": True,
+            "cpus": 4,
+            "memory": "10g",
+            "pids_limit": 512,
+        },
+        "selection_criterion": "All newly discovered standalone primary Lean 4 eng_algorithmic_proof repositories with < 15,000 non-empty LoC from the +7 engineering categories in T2 (Nov 2026).",
+        "summary": _summarize_records(ordered),
+        "records": ordered,
+    }
+    res_path.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+    print(f"\nWrote +7 sandbox build results to {res_path}")
+
+
 def _merge_and_write_outputs(new_records: list[dict[str, Any]]) -> None:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     by_slice: dict[str, dict[str, dict[str, Any]]] = {"2026-11": {}, "2026-05": {}}
@@ -730,65 +890,6 @@ def _merge_and_write_outputs(new_records: list[dict[str, Any]]) -> None:
             json.dumps(payload, indent=2) + "\n", encoding="utf-8"
         )
 
-    # Build aggregate summary.json for figure generation and check_paper_numbers.py
-    def _summarize(recs: list[dict[str, Any]]) -> dict[str, Any]:
-        n = len(recs)
-        passed = [r for r in recs if r["build_status"] == "pass"]
-        clean_axioms = [
-            r
-            for r in passed
-            if not r.get("sorry_ax_detected")
-            and not r.get("of_reduce_bool_detected")
-            and not r.get("trust_compiler_detected")
-            and not r.get("nonstandard_axioms_detected")
-        ]
-        failed_packaging = [r for r in recs if r["build_status"] == "fail_packaging"]
-        failed_local_dep = [r for r in recs if r["build_status"] == "fail_missing_local_dep"]
-        failed_build = [r for r in recs if r["build_status"] in ("fail_build", "fail_network_dep", "timeout", "fail_runner")]
-        synth_passed = [
-            r
-            for r in failed_packaging
-            if (r.get("synthetic_env_check") or {}).get("build_status") == "pass"
-        ]
-        synth_clean = [
-            r
-            for r in synth_passed
-            if not (r.get("synthetic_env_check") or {}).get("sorry_ax_detected")
-            and not (r.get("synthetic_env_check") or {}).get("of_reduce_bool_detected")
-            and not (r.get("synthetic_env_check") or {}).get("nonstandard_axioms_detected")
-        ]
-        t3_all = [r for r in recs if r.get("static_verification_tier") == "Tier3_Gold"]
-        t3_pass = [r for r in t3_all if r["build_status"] == "pass"]
-        t3_clean = [r for r in t3_all if r in clean_axioms]
-        total_thms_ootb = sum(int(r.get("total_theorems_checked") or 0) for r in passed)
-        total_thms_synth = sum(
-            int((r.get("synthetic_env_check") or {}).get("total_theorems_checked") or 0)
-            for r in synth_passed
-        )
-        return {
-            "total_attempted": n,
-            "pass_out_of_box": len(passed),
-            "pass_and_standard_axioms_only": len(clean_axioms),
-            "pass_with_nonstandard_axioms": len(passed) - len(clean_axioms),
-            "fail_packaging_no_lakefile": len(failed_packaging),
-            "fail_missing_local_dep": len(failed_local_dep),
-            "fail_build_or_other": len(failed_build),
-            "synthetic_env_pass_among_packaging_fails": len(synth_passed),
-            "synthetic_env_clean_among_packaging_fails": len(synth_clean),
-            "tier3_gold_attempted": len(t3_all),
-            "tier3_gold_pass_out_of_box": len(t3_pass),
-            "tier3_gold_clean_axioms": len(t3_clean),
-            "total_theorems_checked_ootb": total_thms_ootb,
-            "total_theorems_checked_incl_synthetic": total_thms_ootb + total_thms_synth,
-            "sorry_ax_repos_ootb": [r["arxiv_id"] for r in passed if r.get("sorry_ax_detected")],
-            "of_reduce_bool_repos_ootb": [r["arxiv_id"] for r in passed if r.get("of_reduce_bool_detected")],
-            "nonstandard_axiom_repos_ootb": [
-                {"arxiv_id": r["arxiv_id"], "axioms": r.get("nonstandard_axioms_detected", [])}
-                for r in passed
-                if r.get("nonstandard_axioms_detected")
-            ],
-        }
-
     t2_recs = [r for r in all_records if r["slice_id"] == "2026-11"]
     t1_recs = [r for r in all_records if r["slice_id"] == "2026-05"]
     summary = {
@@ -796,10 +897,10 @@ def _merge_and_write_outputs(new_records: list[dict[str, Any]]) -> None:
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "runner_image": IMAGE_NAME,
         "selection_criterion": "All standalone primary Lean 4 repositories with < 15,000 non-empty LoC across T1 (May 2026) and T2 (Nov 2026).",
-        "overall": _summarize(all_records),
+        "overall": _summarize_records(all_records),
         "by_slice": {
-            "2026-11": _summarize(t2_recs),
-            "2026-05": _summarize(t1_recs),
+            "2026-11": _summarize_records(t2_recs),
+            "2026-05": _summarize_records(t1_recs),
         },
     }
     (OUT_DIR / "summary.json").write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
@@ -808,23 +909,28 @@ def _merge_and_write_outputs(new_records: list[dict[str, Any]]) -> None:
 
 def main() -> None:
     ap = argparse.ArgumentParser(description="Run isolated Docker lake build + #print axioms benchmark.")
-    ap.add_argument("--only", nargs="*", default=None, help="Subset of arXiv IDs to run (default: full 14-repo cohort).")
+    ap.add_argument("--cohort", choices=["orig8", "plus7"], default="orig8", help="Target cohort (default: orig8).")
+    ap.add_argument("--only", nargs="*", default=None, help="Subset of arXiv IDs to run.")
     args = ap.parse_args()
 
-    meta_by_id = _load_paper_metadata()
-    targets = COMPACT_COHORT
+    meta_by_id = _load_paper_metadata(args.cohort)
+    cohort_list = PLUS7_COMPACT_COHORT if args.cohort == "plus7" else COMPACT_COHORT
+    targets = cohort_list
     if args.only:
         want = set(args.only)
-        targets = [t for t in COMPACT_COHORT if t.arxiv_id in want]
+        targets = [t for t in cohort_list if t.arxiv_id in want]
         if not targets:
-            raise SystemExit(f"No matching targets for {args.only}")
+            raise SystemExit(f"No matching targets for {args.only} in cohort {args.cohort}")
 
     results: list[dict[str, Any]] = []
     for t in targets:
         rec = audit_target(t, meta_by_id)
         results.append(rec)
         # Checkpoint after every repo so no progress is ever lost!
-        _merge_and_write_outputs(results)
+        if args.cohort == "plus7":
+            _merge_and_write_plus7_outputs(results)
+        else:
+            _merge_and_write_outputs(results)
 
 
 if __name__ == "__main__":

@@ -1,0 +1,597 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-11-25T01:36:12Z",
+  "phase": "C2",
+  "scope": "Targeted Stage-5 Layer-A semantic fidelity audits (n=4) and isolated --network=none Docker compact (<15k LoC) kernel builds (n=3) on all newly discovered eng_algorithmic_proof public repos from the +7 engineering categories.",
+  "plus7_provenance": {
+    "total_audited_repos": 4,
+    "git_pinned_count": 3,
+    "zenodo_pinned_count": 1,
+    "theorems_compared_file_line_summary": {
+      "total_refs": 35,
+      "resolved_in_bounds": 35
+    }
+  },
+  "combined_15cat_provenance": {
+    "total_audited_repos": 27,
+    "theorems_compared_file_line_summary": {
+      "total_refs": 274,
+      "resolved_in_bounds": 274
+    }
+  },
+  "layer_a_summary": {
+    "plus7_t2_eng_algorithmic_proof": {
+      "count": 4,
+      "overall_fidelity": {
+        "mostly_faithful_with_disclosed_gaps": 1,
+        "high_faithful": 2,
+        "partial_or_weakened_formalization": 1
+      },
+      "mode1_statement_drift": {
+        "minor_disclosed": 3,
+        "moderate": 1
+      },
+      "mode2_scope_downgrade": {
+        "moderate": 2,
+        "minor_disclosed": 2
+      },
+      "mode3_definition_smuggling": {
+        "minor_disclosed": 1,
+        "none": 2,
+        "minor_undisclosed": 1
+      },
+      "mode4_junk_or_vacuity": {
+        "minor_disclosed": 1,
+        "none": 2,
+        "minor_undisclosed": 1
+      },
+      "has_non_vacuity_witnesses_count": 1,
+      "has_non_vacuity_witnesses_pct": 25.0,
+      "mathlib_anchoring_quality": {
+        "strong_mathlib": 3,
+        "mixed_custom_and_mathlib": 1
+      },
+      "material_undisclosed_count": 0
+    },
+    "orig8_t2_eng_algorithmic_proof": {
+      "count": 15,
+      "overall_fidelity": {
+        "mostly_faithful_with_disclosed_gaps": 7,
+        "high_faithful": 5,
+        "partial_or_weakened_formalization": 3
+      },
+      "mode1_statement_drift": {
+        "minor_undisclosed": 4,
+        "none": 1,
+        "minor_disclosed": 10
+      },
+      "mode2_scope_downgrade": {
+        "minor_disclosed": 11,
+        "none": 1,
+        "moderate": 3
+      },
+      "mode3_definition_smuggling": {
+        "none": 13,
+        "minor_disclosed": 2
+      },
+      "mode4_junk_or_vacuity": {
+        "none": 14,
+        "minor_undisclosed": 1
+      },
+      "has_non_vacuity_witnesses_count": 10,
+      "has_non_vacuity_witnesses_pct": 66.7,
+      "mathlib_anchoring_quality": {
+        "mixed_custom_and_mathlib": 4,
+        "strong_mathlib": 11
+      },
+      "material_undisclosed_count": 0
+    },
+    "all15_t2_eng_algorithmic_proof": {
+      "count": 19,
+      "overall_fidelity": {
+        "mostly_faithful_with_disclosed_gaps": 8,
+        "high_faithful": 7,
+        "partial_or_weakened_formalization": 4
+      },
+      "mode1_statement_drift": {
+        "minor_undisclosed": 4,
+        "none": 1,
+        "minor_disclosed": 13,
+        "moderate": 1
+      },
+      "mode2_scope_downgrade": {
+        "minor_disclosed": 13,
+        "none": 1,
+        "moderate": 5
+      },
+      "mode3_definition_smuggling": {
+        "none": 15,
+        "minor_disclosed": 3,
+        "minor_undisclosed": 1
+      },
+      "mode4_junk_or_vacuity": {
+        "none": 16,
+        "minor_undisclosed": 2,
+        "minor_disclosed": 1
+      },
+      "has_non_vacuity_witnesses_count": 11,
+      "has_non_vacuity_witnesses_pct": 57.9,
+      "mathlib_anchoring_quality": {
+        "mixed_custom_and_mathlib": 5,
+        "strong_mathlib": 14
+      },
+      "material_undisclosed_count": 0
+    },
+    "all15_t1_t2_eng_algorithmic_proof": {
+      "count": 22,
+      "overall_fidelity": {
+        "partial_or_weakened_formalization": 6,
+        "mostly_faithful_with_disclosed_gaps": 9,
+        "high_faithful": 7
+      },
+      "mode1_statement_drift": {
+        "minor_undisclosed": 7,
+        "none": 1,
+        "minor_disclosed": 13,
+        "moderate": 1
+      },
+      "mode2_scope_downgrade": {
+        "moderate": 7,
+        "minor_disclosed": 14,
+        "none": 1
+      },
+      "mode3_definition_smuggling": {
+        "moderate": 2,
+        "none": 16,
+        "minor_disclosed": 3,
+        "minor_undisclosed": 1
+      },
+      "mode4_junk_or_vacuity": {
+        "minor_undisclosed": 4,
+        "none": 17,
+        "minor_disclosed": 1
+      },
+      "has_non_vacuity_witnesses_count": 13,
+      "has_non_vacuity_witnesses_pct": 59.1,
+      "mathlib_anchoring_quality": {
+        "mixed_custom_and_mathlib": 7,
+        "strong_mathlib": 15
+      },
+      "material_undisclosed_count": 0
+    },
+    "all15_t1_t2_all_roles": {
+      "count": 27,
+      "overall_fidelity": {
+        "partial_or_weakened_formalization": 6,
+        "mostly_faithful_with_disclosed_gaps": 11,
+        "high_faithful": 9,
+        "material_undisclosed_drift_or_risk": 1
+      },
+      "mode1_statement_drift": {
+        "minor_undisclosed": 7,
+        "minor_disclosed": 16,
+        "none": 2,
+        "moderate": 2
+      },
+      "mode2_scope_downgrade": {
+        "moderate": 8,
+        "minor_disclosed": 17,
+        "none": 2
+      },
+      "mode3_definition_smuggling": {
+        "moderate": 2,
+        "none": 20,
+        "minor_disclosed": 3,
+        "minor_undisclosed": 2
+      },
+      "mode4_junk_or_vacuity": {
+        "minor_undisclosed": 4,
+        "none": 20,
+        "minor_disclosed": 2,
+        "moderate": 1
+      },
+      "has_non_vacuity_witnesses_count": 16,
+      "has_non_vacuity_witnesses_pct": 59.3,
+      "mathlib_anchoring_quality": {
+        "mixed_custom_and_mathlib": 10,
+        "strong_mathlib": 17
+      },
+      "material_undisclosed_count": 1
+    }
+  },
+  "sandbox_summary": {
+    "plus7_t2_compact_eng_alg": {
+      "total_attempted": 3,
+      "pass_out_of_box": 3,
+      "pass_out_of_box_pct": 100.0,
+      "pass_and_standard_axioms_only": 2,
+      "pass_with_nonstandard_axioms": 1,
+      "fail_packaging_no_lakefile": 0,
+      "fail_missing_local_dep": 0,
+      "fail_build_or_other": 0,
+      "synthetic_env_pass_among_packaging_fails": 0,
+      "tier3_gold_attempted": 1,
+      "tier3_gold_pass_out_of_box": 1,
+      "tier3_gold_clean_axioms": 1,
+      "total_theorems_checked_ootb": 361,
+      "total_theorems_checked_incl_synthetic": 361,
+      "median_pass_wall_time_sec": 312.8,
+      "min_pass_wall_time_sec": 77.84,
+      "max_pass_wall_time_sec": 779.02,
+      "sorry_ax_repos_ootb": [],
+      "of_reduce_bool_repos_ootb": [],
+      "nonstandard_axiom_repos_ootb": [
+        {
+          "arxiv_id": "2611.07395",
+          "axioms": [
+            "WaveCAP.cert_arb_dmin_bound",
+            "WaveCAP.cert_arb_sup_bound_le_eps0",
+            "WaveCAP.PaperCertificate.cert_arb_dmin_bound",
+            "WaveCAP.PaperCertificate.cert_arb_sup_bound_le_eps0"
+          ]
+        }
+      ]
+    },
+    "orig8_t1_t2_compact_all_roles": {
+      "total_attempted": 14,
+      "pass_out_of_box": 11,
+      "pass_out_of_box_pct": 78.6,
+      "pass_and_standard_axioms_only": 9,
+      "pass_with_nonstandard_axioms": 2,
+      "fail_packaging_no_lakefile": 2,
+      "fail_missing_local_dep": 1,
+      "fail_build_or_other": 0,
+      "synthetic_env_pass_among_packaging_fails": 2,
+      "tier3_gold_attempted": 8,
+      "tier3_gold_pass_out_of_box": 7,
+      "tier3_gold_clean_axioms": 7,
+      "total_theorems_checked_ootb": 3190,
+      "total_theorems_checked_incl_synthetic": 3254,
+      "median_pass_wall_time_sec": 28.39,
+      "min_pass_wall_time_sec": 11.15,
+      "max_pass_wall_time_sec": 1562.1,
+      "sorry_ax_repos_ootb": [
+        "2611.16690"
+      ],
+      "of_reduce_bool_repos_ootb": [],
+      "nonstandard_axiom_repos_ootb": [
+        {
+          "arxiv_id": "2611.16690",
+          "axioms": [
+            "sorryAx"
+          ]
+        },
+        {
+          "arxiv_id": "2605.16407",
+          "axioms": [
+            "VerifiedEmbedding.ParaphraseOracle",
+            "VerifiedEmbedding.cauchy_schwarz_sq",
+            "VerifiedEmbedding.innerProd_sub",
+            "VerifiedEmbedding.Grounding.DecompositionOracle",
+            "VerifiedEmbedding.Grounding.SignedSupportOracle",
+            "VerifiedEmbedding.Concentration.HoeffdingInequality",
+            "VerifiedEmbedding.Concentration.IIDSamples",
+            "VerifiedEmbedding.CoT.StepConfidenceOracle",
+            "VerifiedEmbedding.ProofOfSampling.DecodeAlgorithmDeterministic",
+            "VerifiedEmbedding.ProofOfSampling.Hash",
+            "VerifiedEmbedding.ProofOfSampling.HashCollisionResistant"
+          ]
+        }
+      ]
+    },
+    "all15_t1_t2_compact_all_roles": {
+      "total_attempted": 17,
+      "pass_out_of_box": 14,
+      "pass_out_of_box_pct": 82.4,
+      "pass_and_standard_axioms_only": 11,
+      "pass_with_nonstandard_axioms": 3,
+      "fail_packaging_no_lakefile": 2,
+      "fail_missing_local_dep": 1,
+      "fail_build_or_other": 0,
+      "synthetic_env_pass_among_packaging_fails": 2,
+      "tier3_gold_attempted": 9,
+      "tier3_gold_pass_out_of_box": 8,
+      "tier3_gold_clean_axioms": 8,
+      "total_theorems_checked_ootb": 3551,
+      "total_theorems_checked_incl_synthetic": 3615,
+      "median_pass_wall_time_sec": 51.81,
+      "min_pass_wall_time_sec": 11.15,
+      "max_pass_wall_time_sec": 1562.1,
+      "sorry_ax_repos_ootb": [
+        "2611.16690"
+      ],
+      "of_reduce_bool_repos_ootb": [],
+      "nonstandard_axiom_repos_ootb": [
+        {
+          "arxiv_id": "2611.16690",
+          "axioms": [
+            "sorryAx"
+          ]
+        },
+        {
+          "arxiv_id": "2605.16407",
+          "axioms": [
+            "VerifiedEmbedding.ParaphraseOracle",
+            "VerifiedEmbedding.cauchy_schwarz_sq",
+            "VerifiedEmbedding.innerProd_sub",
+            "VerifiedEmbedding.Grounding.DecompositionOracle",
+            "VerifiedEmbedding.Grounding.SignedSupportOracle",
+            "VerifiedEmbedding.Concentration.HoeffdingInequality",
+            "VerifiedEmbedding.Concentration.IIDSamples",
+            "VerifiedEmbedding.CoT.StepConfidenceOracle",
+            "VerifiedEmbedding.ProofOfSampling.DecodeAlgorithmDeterministic",
+            "VerifiedEmbedding.ProofOfSampling.Hash",
+            "VerifiedEmbedding.ProofOfSampling.HashCollisionResistant"
+          ]
+        },
+        {
+          "arxiv_id": "2611.07395",
+          "axioms": [
+            "WaveCAP.cert_arb_dmin_bound",
+            "WaveCAP.cert_arb_sup_bound_le_eps0",
+            "WaveCAP.PaperCertificate.cert_arb_dmin_bound",
+            "WaveCAP.PaperCertificate.cert_arb_sup_bound_le_eps0"
+          ]
+        }
+      ]
+    },
+    "all15_t1_t2_compact_eng_alg": {
+      "total_attempted": 11,
+      "pass_out_of_box": 8,
+      "pass_out_of_box_pct": 72.7,
+      "pass_and_standard_axioms_only": 7,
+      "pass_with_nonstandard_axioms": 1,
+      "fail_packaging_no_lakefile": 2,
+      "fail_missing_local_dep": 1,
+      "fail_build_or_other": 0,
+      "synthetic_env_pass_among_packaging_fails": 2,
+      "tier3_gold_attempted": 6,
+      "tier3_gold_pass_out_of_box": 5,
+      "tier3_gold_clean_axioms": 5,
+      "total_theorems_checked_ootb": 1800,
+      "total_theorems_checked_incl_synthetic": 1864,
+      "median_pass_wall_time_sec": 103.78,
+      "min_pass_wall_time_sec": 22.92,
+      "max_pass_wall_time_sec": 1562.1,
+      "sorry_ax_repos_ootb": [],
+      "of_reduce_bool_repos_ootb": [],
+      "nonstandard_axiom_repos_ootb": [
+        {
+          "arxiv_id": "2611.07395",
+          "axioms": [
+            "WaveCAP.cert_arb_dmin_bound",
+            "WaveCAP.cert_arb_sup_bound_le_eps0",
+            "WaveCAP.PaperCertificate.cert_arb_dmin_bound",
+            "WaveCAP.PaperCertificate.cert_arb_sup_bound_le_eps0"
+          ]
+        }
+      ]
+    }
+  },
+  "records": [
+    {
+      "slice_id": "2026-11",
+      "arxiv_id": "2611.07395",
+      "arxiv_version_audited": "v1",
+      "arxiv_submitted_date": "2026-11-05T03:44:55Z",
+      "arxiv_updated_date": "2026-11-05T03:44:55Z",
+      "primary_category": "math.AP",
+      "matched_plus7_cats": [
+        "physics.flu-dyn"
+      ],
+      "role_4way": "eng_algorithmic_proof",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier1_Bronze",
+      "primary_owned_loc": 12309,
+      "compact_sandbox_eligible": true,
+      "repo_host": "github",
+      "repo_url": "https://github.com/michalshavitNYU/Rigorously-certified-water-waves",
+      "commit_sha": "e7753774cdebd3858dbc2349e21bda9e0bed003b",
+      "commit_short_sha": "e775377",
+      "commit_date": "2026-11-04T21:56:57-05:00",
+      "zenodo_record_id": null,
+      "lean_files_count": 33,
+      "lean_tree_sha256": "6e5ef3cc222e03365f2b67b2e1953ab4d80ca283c40473a31ae6c685c5f90e6b",
+      "lean_toolchain": "leanprover/lean4:v4.29.0-rc6",
+      "layer_a": {
+        "overall_fidelity": "mostly_faithful_with_disclosed_gaps",
+        "mode1_severity": "minor_disclosed",
+        "mode2_severity": "moderate",
+        "mode3_severity": "minor_disclosed",
+        "mode4_severity": "minor_disclosed",
+        "has_non_vacuity_witnesses": false,
+        "mathlib_anchoring_quality": "strong_mathlib",
+        "theorems_compared_count": 5,
+        "theorems_compared_file_line_check": {
+          "total_file_line_refs": 10,
+          "resolved_in_bounds": 10,
+          "unresolved": [],
+          "out_of_bounds": []
+        }
+      },
+      "sandbox_build": {
+        "build_status": "pass",
+        "exit_code": 0,
+        "wall_time_sec": 312.8,
+        "axiom_check_wall_time_sec": 347.8,
+        "target_modules_count": 32,
+        "total_theorems_checked": 207,
+        "standard_axioms_used": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "nonstandard_axioms_detected": [
+          "WaveCAP.cert_arb_dmin_bound",
+          "WaveCAP.cert_arb_sup_bound_le_eps0",
+          "WaveCAP.PaperCertificate.cert_arb_dmin_bound",
+          "WaveCAP.PaperCertificate.cert_arb_sup_bound_le_eps0"
+        ],
+        "sorry_ax_detected": false,
+        "of_reduce_bool_detected": false,
+        "trust_compiler_detected": false,
+        "axiom_check_error": null
+      }
+    },
+    {
+      "slice_id": "2026-11",
+      "arxiv_id": "2611.09615",
+      "arxiv_version_audited": "v1",
+      "arxiv_submitted_date": "2026-11-06T15:35:58Z",
+      "arxiv_updated_date": "2026-11-06T15:35:58Z",
+      "primary_category": "cs.GT",
+      "matched_plus7_cats": [
+        "cs.GT"
+      ],
+      "role_4way": "eng_algorithmic_proof",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier3_Gold",
+      "primary_owned_loc": 14953,
+      "compact_sandbox_eligible": true,
+      "repo_host": "github",
+      "repo_url": "https://github.com/renatoppl/trace-square-root",
+      "commit_sha": "8b3d893ab6931d6f792d4deae2702fb567f545d6",
+      "commit_short_sha": "8b3d893",
+      "commit_date": "2026-11-02T16:22:25-05:00",
+      "zenodo_record_id": null,
+      "lean_files_count": 21,
+      "lean_tree_sha256": "42c53aedb9d840fde9ba5128a67dd45e0c5a836fa0b6cd112aa60c43fd25604b",
+      "lean_toolchain": "leanprover/lean4:v4.27.0",
+      "layer_a": {
+        "overall_fidelity": "high_faithful",
+        "mode1_severity": "minor_disclosed",
+        "mode2_severity": "minor_disclosed",
+        "mode3_severity": "none",
+        "mode4_severity": "none",
+        "has_non_vacuity_witnesses": false,
+        "mathlib_anchoring_quality": "strong_mathlib",
+        "theorems_compared_count": 5,
+        "theorems_compared_file_line_check": {
+          "total_file_line_refs": 5,
+          "resolved_in_bounds": 5,
+          "unresolved": [],
+          "out_of_bounds": []
+        }
+      },
+      "sandbox_build": {
+        "build_status": "pass",
+        "exit_code": 0,
+        "wall_time_sec": 779.02,
+        "axiom_check_wall_time_sec": 116.82,
+        "target_modules_count": 20,
+        "total_theorems_checked": 69,
+        "standard_axioms_used": [
+          "Quot.sound",
+          "propext",
+          "Classical.choice"
+        ],
+        "nonstandard_axioms_detected": [],
+        "sorry_ax_detected": false,
+        "of_reduce_bool_detected": false,
+        "trust_compiler_detected": false,
+        "axiom_check_error": null
+      }
+    },
+    {
+      "slice_id": "2026-11",
+      "arxiv_id": "2611.11805",
+      "arxiv_version_audited": "v1",
+      "arxiv_submitted_date": "2026-11-09T03:08:26Z",
+      "arxiv_updated_date": "2026-11-09T03:08:26Z",
+      "primary_category": "math.NA",
+      "matched_plus7_cats": [
+        "math.DS"
+      ],
+      "role_4way": "eng_algorithmic_proof",
+      "authoring_paradigm": "P4_speclock_solve_distill",
+      "verification_tier": "Tier3_Gold",
+      "primary_owned_loc": 42036,
+      "compact_sandbox_eligible": false,
+      "repo_host": "github",
+      "repo_url": "https://github.com/sgstepaniants/inelastic_hom_learn",
+      "commit_sha": "8c65f3273b7c15ec46187ca9337fe4ada5fd2302",
+      "commit_short_sha": "8c65f32",
+      "commit_date": "2026-11-04T12:40:22-05:00",
+      "zenodo_record_id": null,
+      "lean_files_count": 753,
+      "lean_tree_sha256": "5879dc65765bc8e390a4efcb1b43befde1cd0de48f534f767adca0080d3cf971",
+      "lean_toolchain": "leanprover/lean4:v4.35.0",
+      "layer_a": {
+        "overall_fidelity": "high_faithful",
+        "mode1_severity": "minor_disclosed",
+        "mode2_severity": "minor_disclosed",
+        "mode3_severity": "none",
+        "mode4_severity": "none",
+        "has_non_vacuity_witnesses": true,
+        "mathlib_anchoring_quality": "strong_mathlib",
+        "theorems_compared_count": 5,
+        "theorems_compared_file_line_check": {
+          "total_file_line_refs": 10,
+          "resolved_in_bounds": 10,
+          "unresolved": [],
+          "out_of_bounds": []
+        }
+      },
+      "sandbox_build": null
+    },
+    {
+      "slice_id": "2026-11",
+      "arxiv_id": "2611.14586",
+      "arxiv_version_audited": "v1",
+      "arxiv_submitted_date": "2026-11-10T06:42:46Z",
+      "arxiv_updated_date": "2026-11-10T06:42:46Z",
+      "primary_category": "stat.ML",
+      "matched_plus7_cats": [
+        "cs.GT"
+      ],
+      "role_4way": "eng_algorithmic_proof",
+      "authoring_paradigm": "P1_paper_first_posthoc",
+      "verification_tier": "Tier2_Silver",
+      "primary_owned_loc": 1969,
+      "compact_sandbox_eligible": true,
+      "repo_host": "zenodo",
+      "repo_url": "https://zenodo.org/records/23768172",
+      "commit_sha": null,
+      "commit_short_sha": null,
+      "commit_date": null,
+      "zenodo_record_id": "23768172",
+      "lean_files_count": 7,
+      "lean_tree_sha256": "00628704227d85a28099ede84e07c37720d3b36c4aa93670dcd10b5ca924bae9",
+      "lean_toolchain": "leanprover/lean4:v4.35.0-rc4",
+      "layer_a": {
+        "overall_fidelity": "partial_or_weakened_formalization",
+        "mode1_severity": "moderate",
+        "mode2_severity": "moderate",
+        "mode3_severity": "minor_undisclosed",
+        "mode4_severity": "minor_undisclosed",
+        "has_non_vacuity_witnesses": false,
+        "mathlib_anchoring_quality": "mixed_custom_and_mathlib",
+        "theorems_compared_count": 5,
+        "theorems_compared_file_line_check": {
+          "total_file_line_refs": 10,
+          "resolved_in_bounds": 10,
+          "unresolved": [],
+          "out_of_bounds": []
+        }
+      },
+      "sandbox_build": {
+        "build_status": "pass",
+        "exit_code": 0,
+        "wall_time_sec": 77.84,
+        "axiom_check_wall_time_sec": 12.97,
+        "target_modules_count": 7,
+        "total_theorems_checked": 85,
+        "standard_axioms_used": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "nonstandard_axioms_detected": [],
+        "sorry_ax_detected": false,
+        "of_reduce_bool_detected": false,
+        "trust_compiler_detected": false,
+        "axiom_check_error": null
+      }
+    }
+  ]
+}

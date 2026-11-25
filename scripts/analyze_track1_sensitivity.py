@@ -275,10 +275,12 @@ def compute_sensitivity(
             "arxiv_ids": [a["arxiv_id"] for a in ra],
         }
 
-    # Sandboxed Docker dynamic builds (n=14) by 4-way role
+    # Sandboxed Docker dynamic builds (n=14 orig-8 cohort) by 4-way role
     sandbox_records = []
     for sb_file in sorted(sandbox_dir.glob("results_*.json")):
         sb_payload = json.loads(sb_file.read_text(encoding="utf-8"))
+        if str(sb_payload.get("cohort", "")).startswith("plus7"):
+            continue
         for rec in sb_payload.get("records", []):
             aid = rec["arxiv_id"]
             sandbox_records.append({**rec, "role_4way": adj_by_id[aid]["role_4way"]})

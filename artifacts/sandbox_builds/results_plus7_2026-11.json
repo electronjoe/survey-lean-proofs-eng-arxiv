@@ -1,0 +1,1160 @@
+{
+  "schema_version": "1.0",
+  "cohort": "plus7_eng_algorithmic_proof_compact",
+  "slice_id": "2026-11",
+  "runner_image": "lean-survey-sandbox:v1",
+  "generated_at": "2026-11-25T01:33:55Z",
+  "security_invariants": {
+    "network_mode": "none",
+    "user": "65534:65534",
+    "cap_drop": "ALL",
+    "no_new_privileges": true,
+    "readonly_source_mount": true,
+    "cpus": 4,
+    "memory": "10g",
+    "pids_limit": 512
+  },
+  "selection_criterion": "All newly discovered standalone primary Lean 4 eng_algorithmic_proof repositories with < 15,000 non-empty LoC from the +7 engineering categories in T2 (Nov 2026).",
+  "summary": {
+    "total_attempted": 3,
+    "pass_out_of_box": 3,
+    "pass_and_standard_axioms_only": 2,
+    "pass_with_nonstandard_axioms": 1,
+    "fail_packaging_no_lakefile": 0,
+    "fail_missing_local_dep": 0,
+    "fail_build_or_other": 0,
+    "synthetic_env_pass_among_packaging_fails": 0,
+    "synthetic_env_clean_among_packaging_fails": 0,
+    "tier3_gold_attempted": 1,
+    "tier3_gold_pass_out_of_box": 1,
+    "tier3_gold_clean_axioms": 1,
+    "total_theorems_checked_ootb": 361,
+    "total_theorems_checked_incl_synthetic": 361,
+    "sorry_ax_repos_ootb": [],
+    "of_reduce_bool_repos_ootb": [],
+    "nonstandard_axiom_repos_ootb": [
+      {
+        "arxiv_id": "2611.07395",
+        "axioms": [
+          "WaveCAP.cert_arb_dmin_bound",
+          "WaveCAP.cert_arb_sup_bound_le_eps0",
+          "WaveCAP.PaperCertificate.cert_arb_dmin_bound",
+          "WaveCAP.PaperCertificate.cert_arb_sup_bound_le_eps0"
+        ]
+      }
+    ]
+  },
+  "records": [
+    {
+      "slice_id": "2026-11",
+      "arxiv_id": "2611.14586",
+      "repo": "zenodo/23768172",
+      "commit_sha": null,
+      "zenodo_record_id": "23768172",
+      "lean_tree_sha256": "00628704227d85a28099ede84e07c37720d3b36c4aa93670dcd10b5ca924bae9",
+      "static_verification_tier": "Tier2_Silver",
+      "paper_domain_role": "engineering_math_proof",
+      "role_4way": "eng_algorithmic_proof",
+      "owned_loc": 1969,
+      "lean_toolchain": "leanprover/lean4:v4.35.0-rc4",
+      "project_subdir": "spar_zenodo/spar/theory/lean",
+      "build_mode": "lake",
+      "executed_at": "2026-11-25T00:43:23Z",
+      "network_mode": "none",
+      "security_flags": [
+        "--network=none",
+        "--user=65534:65534",
+        "--cap-drop=ALL",
+        "--security-opt=no-new-privileges:true",
+        "--cpus=4",
+        "--memory=10g",
+        "--pids-limit=512"
+      ],
+      "timeout_sec": 1800,
+      "notes": "Zenodo SPAR Lean 4 formalization (v4.35.0-rc4 + Mathlib) of deterministic algebraic core, refresh chain, and OGD/Hedge regret bounds.",
+      "exit_code": 0,
+      "build_status": "pass",
+      "wall_time_sec": 77.84,
+      "axiom_check_wall_time_sec": 12.97,
+      "target_modules_count": 7,
+      "total_theorems_checked": 85,
+      "standard_axioms_used": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "nonstandard_axioms_detected": [],
+      "sorry_ax_detected": false,
+      "of_reduce_bool_detected": false,
+      "trust_compiler_detected": false,
+      "axioms_by_theorem": {
+        "Lcum_succ": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Zfun_pos": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Zfun_prod_bound": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Zfun_step": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Zfun_step_bound": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "anchored_det_pos": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "branch_max_lipschitz": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "conj_const_diagonal": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "conj_det": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "conj_trace": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "convex_interp_sq_le": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "cycle_midpoint_average": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "de_collapse": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "debiased_dial_contraction": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "deff_sub_plugin": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "deff_sub_plugin_nonneg": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "diagonal_resolvent": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "dominance": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "dominance_strict": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "eigenbasis_pull_identity": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "exp_neg_le_one_sub_add_sq": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "hedge_regret": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "lag_invariance": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "moving_frame_reduction": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "ogd_regret_box": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "ogd_regret_box_D": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "ogd_regret_segment": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "ogd_step": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "ogd_step_D": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "optimal_pull_attained": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "optimal_pull_min": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "projBoxD_dist_sq_le": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "projBoxD_le": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "projBoxD_nonneg": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "projBox_dist_sq_le": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "projBox_le": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "projBox_nonneg": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "projBox_of_ge": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "projBox_of_le": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "projBox_self": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "pull_identity": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "pull_identity_general": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "pull_inverse": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "quadratic_calibration": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "refresh_anchor_variance": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "refresh_closed_form": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "refresh_contraction_rate": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "refresh_rate_identity": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "refresh_variance_form": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "refresh_variance_lb": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "refresh_variance_lt": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "safety_threshold": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "smooth_dim_lipschitz": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "sq_subgradient": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "sum_expand_sq": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "sum_range_half": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "weights_sum_one": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "wgt_nonneg": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "window_optimum": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "window_second_deriv_pos": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      "error_summary": ""
+    },
+    {
+      "slice_id": "2026-11",
+      "arxiv_id": "2611.09615",
+      "repo": "renatoppl/trace-square-root",
+      "commit_sha": "8b3d893ab6931d6f792d4deae2702fb567f545d6",
+      "zenodo_record_id": null,
+      "lean_tree_sha256": "42c53aedb9d840fde9ba5128a67dd45e0c5a836fa0b6cd112aa60c43fd25604b",
+      "static_verification_tier": "Tier3_Gold",
+      "paper_domain_role": "engineering_math_proof",
+      "role_4way": "eng_algorithmic_proof",
+      "owned_loc": 14953,
+      "lean_toolchain": "leanprover/lean4:v4.27.0",
+      "project_subdir": ".",
+      "build_mode": "lake",
+      "executed_at": "2026-11-25T00:48:26Z",
+      "network_mode": "none",
+      "security_flags": [
+        "--network=none",
+        "--user=65534:65534",
+        "--cap-drop=ALL",
+        "--security-opt=no-new-privileges:true",
+        "--cpus=4",
+        "--memory=10g",
+        "--pids-limit=512"
+      ],
+      "timeout_sec": 1800,
+      "notes": "TraceSqrt Lean 4 formalization (v4.27.0 + Mathlib) of all 22 numbered statements and 4 online algorithms.",
+      "exit_code": 0,
+      "build_status": "pass",
+      "wall_time_sec": 779.02,
+      "axiom_check_wall_time_sec": 116.82,
+      "target_modules_count": 20,
+      "total_theorems_checked": 69,
+      "standard_axioms_used": [
+        "Quot.sound",
+        "propext",
+        "Classical.choice"
+      ],
+      "nonstandard_axioms_detected": [],
+      "sorry_ax_detected": false,
+      "of_reduce_bool_detected": false,
+      "trust_compiler_detected": false,
+      "axioms_by_theorem": {
+        "Matrix.PosSemidef.sqrt.congr_simp": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TraceSqrt.BudgetBalancedBroker.budget_balanced": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TraceSqrt.BudgetBalancedBroker.measurable_postOffer": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TraceSqrt.PDTradeState.posDef_RB": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TraceSqrt.PDTradeState.posDef_RS": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TraceSqrt.SearchLearner.measurable_postPrice": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TraceSqrt.TradePlan.posDef_RB0": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TraceSqrt.TradePlan.posDef_RB1": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TraceSqrt.TradePlan.posDef_RS0": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TraceSqrt.TradePlan.posDef_RS1": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TraceSqrt.claim_D_nonneg": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TraceSqrt.claim_gain_decomposition": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TraceSqrt.claim_trade_displacement": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TraceSqrt.claim_trade_profile": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TraceSqrt.condCovMat.congr_simp": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TraceSqrt.cor_adversarial_bilateral_trade_regret": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TraceSqrt.instCompactSpaceUnitBallPair": [
+          "Quot.sound",
+          "propext",
+          "Classical.choice"
+        ],
+        "TraceSqrt.instIsProbabilityMeasureUnifBoolPrior": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TraceSqrt.instNonemptyUnitBallPair": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TraceSqrt.isCompact_unitBallPairSet": [
+          "Quot.sound",
+          "propext",
+          "Classical.choice"
+        ],
+        "TraceSqrt.lem_adversarial_drift": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TraceSqrt.lem_deviation_contraction": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TraceSqrt.lem_directional_and_tangent_bounds": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TraceSqrt.lem_directional_sd_decrease": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TraceSqrt.lem_directional_sd_decrease_binary": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TraceSqrt.lem_directional_sd_decrease_family": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TraceSqrt.lem_discrete_jitter_plan_approx": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TraceSqrt.lem_drift": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TraceSqrt.lem_envelope": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TraceSqrt.lem_fintype_minimax_separation": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TraceSqrt.lem_gap_envelope": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TraceSqrt.lem_gap_function": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TraceSqrt.lem_initial_potential_jitter_and_lip": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TraceSqrt.lem_scalar_potential": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TraceSqrt.lem_scalar_trade_or_info": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TraceSqrt.lem_toi": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TraceSqrt.lem_trade_displacement": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TraceSqrt.lem_trade_lottery": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TraceSqrt.lem_trade_or_information": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TraceSqrt.lem_trade_profile": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TraceSqrt.lem_trade_profile_bounds": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TraceSqrt.lem_trade_small_gain": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TraceSqrt.lem_unit_ball_finite_net": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TraceSqrt.measurable_psdTraceSqrt": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TraceSqrt.prob_expectation_le_of_pointwise": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TraceSqrt.prop_search_lower_bound": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TraceSqrt.prop_search_lower_bound_potential": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TraceSqrt.prop_trade_lower_bound": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TraceSqrt.quad_potential_variational": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TraceSqrt.rem_pd": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TraceSqrt.thm_adversarial_bilateral_trade": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TraceSqrt.thm_adversarial_bilateral_trade_rand_ctx": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TraceSqrt.thm_adversarial_contextual_search": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TraceSqrt.thm_adversarial_contextual_search_rand_ctx": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TraceSqrt.thm_bayesian_bilateral_trade": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TraceSqrt.thm_bayesian_bilateral_trade_rand_ctx": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TraceSqrt.thm_bayesian_contextual_search": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TraceSqrt.thm_bayesian_contextual_search_rand_ctx": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "TraceSqrt.tradeProfileEnvelope_of_pos": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ]
+      },
+      "error_summary": ""
+    },
+    {
+      "slice_id": "2026-11",
+      "arxiv_id": "2611.07395",
+      "repo": "michalshavitNYU/Rigorously-certified-water-waves",
+      "commit_sha": "e7753774cdebd3858dbc2349e21bda9e0bed003b",
+      "zenodo_record_id": null,
+      "lean_tree_sha256": "6e5ef3cc222e03365f2b67b2e1953ab4d80ca283c40473a31ae6c685c5f90e6b",
+      "static_verification_tier": "Tier1_Bronze",
+      "paper_domain_role": "engineering_math_proof",
+      "role_4way": "eng_algorithmic_proof",
+      "owned_loc": 12309,
+      "lean_toolchain": "leanprover/lean4:v4.29.0-rc6",
+      "project_subdir": "Lean",
+      "build_mode": "lake",
+      "executed_at": "2026-11-25T01:22:27Z",
+      "network_mode": "none",
+      "security_flags": [
+        "--network=none",
+        "--user=65534:65534",
+        "--cap-drop=ALL",
+        "--security-opt=no-new-privileges:true",
+        "--cpus=4",
+        "--memory=10g",
+        "--pids-limit=512"
+      ],
+      "timeout_sec": 1800,
+      "notes": "WaveCAP Lean 4 formalization (v4.29.0-rc6 + Mathlib); builds default WaveCAP library plus dedicated PaperTheorems and PaperAudit targets per README.",
+      "exit_code": 0,
+      "build_status": "pass",
+      "wall_time_sec": 312.8,
+      "axiom_check_wall_time_sec": 347.8,
+      "target_modules_count": 32,
+      "total_theorems_checked": 207,
+      "standard_axioms_used": [
+        "propext",
+        "Quot.sound",
+        "Classical.choice"
+      ],
+      "nonstandard_axioms_detected": [
+        "WaveCAP.cert_arb_dmin_bound",
+        "WaveCAP.cert_arb_sup_bound_le_eps0",
+        "WaveCAP.PaperCertificate.cert_arb_dmin_bound",
+        "WaveCAP.PaperCertificate.cert_arb_sup_bound_le_eps0"
+      ],
+      "sorry_ax_detected": false,
+      "of_reduce_bool_detected": false,
+      "trust_compiler_detected": false,
+      "axioms_by_theorem": {
+        "WaveCAP.Certificate.cert_D_ge": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice",
+          "WaveCAP.cert_arb_dmin_bound"
+        ],
+        "WaveCAP.Certificate.cert_residual_le": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice",
+          "WaveCAP.cert_arb_dmin_bound",
+          "WaveCAP.cert_arb_sup_bound_le_eps0"
+        ],
+        "WaveCAP.D_bounded_below_by_phase4_n150_half_dc_decimal": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice",
+          "WaveCAP.PaperCertificate.cert_arb_dmin_bound"
+        ],
+        "WaveCAP.D_periodic": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "WaveCAP.D_pos_of_DLower_pos": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "WaveCAP.G_contdiff": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "WaveCAP.G_eq_div": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "WaveCAP.G_sup_bound_recurrence": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "WaveCAP.PaperCertificate.cert_D_ge": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice",
+          "WaveCAP.PaperCertificate.cert_arb_dmin_bound"
+        ],
+        "WaveCAP.PaperCertificate.cert_residual_le": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice",
+          "WaveCAP.PaperCertificate.cert_arb_sup_bound_le_eps0",
+          "WaveCAP.PaperCertificate.cert_arb_dmin_bound"
+        ],
+        "WaveCAP.Periodic.deriv_periodic": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "WaveCAP.abs_iteratedDeriv_comp_le": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "WaveCAP.abs_iteratedDeriv_mul_le": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "WaveCAP.antitoneOn_inv_rpow": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "WaveCAP.cert_arb_residual_TS": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice",
+          "WaveCAP.cert_arb_dmin_bound"
+        ],
+        "WaveCAP.dftCoeff_eq_aliased_sum": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "WaveCAP.dft_hilbert_aliasing_bound": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "WaveCAP.exp_grid_eq": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "WaveCAP.exp_two_pi_I_grid_aliased": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "WaveCAP.exp_two_pi_I_grid_aliased_pushed": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "WaveCAP.fourierCoeffOn_cos_real": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "WaveCAP.fourierCoeffOn_deriv_eq": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "WaveCAP.fourierCoeffOn_eq_inv_n_mul_fourierCoeffOn_deriv": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "WaveCAP.fourierCoeffOn_exp_intMul_I": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "WaveCAP.fourierCoeffOn_sin_real": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "WaveCAP.fourierCoeff_norm_le_Cp_div_pow": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "WaveCAP.fourierCoeff_norm_le_F\u2082_div_sq": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "WaveCAP.fourierCoeff_norm_le_inv_n_mul_fourierCoeff_deriv": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "WaveCAP.fourier_neg_coe_apply_real": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "WaveCAP.fourier_tail_hilbert_bound": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "WaveCAP.hasDerivAt_complex_cast": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "WaveCAP.hilbertMult_disagreement_eq_zero_of_principal": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "WaveCAP.hilbertMult_disagreement_le_two": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "WaveCAP.hilbertMult_zero": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "WaveCAP.integral_exp_intMul_I_two_pi": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "WaveCAP.integral_inv_rpow_eq": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "WaveCAP.norm_fourierCoeff_neg_eq": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "WaveCAP.norm_hilbertMult_le_one": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "WaveCAP.norm_hilbertMult_of_ne_zero": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "WaveCAP.paperBabenkoGOne_bounded_by_phase4_n150_half_dc_certificate": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice",
+          "WaveCAP.PaperCertificate.cert_arb_sup_bound_le_eps0",
+          "WaveCAP.PaperCertificate.cert_arb_dmin_bound"
+        ],
+        "WaveCAP.paperBabenkoGOne_bounded_by_phase4_n150_half_dc_decimal": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice",
+          "WaveCAP.PaperCertificate.cert_arb_sup_bound_le_eps0",
+          "WaveCAP.PaperCertificate.cert_arb_dmin_bound"
+        ],
+        "WaveCAP.periodicHilbert_add": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "WaveCAP.periodicHilbert_commutes_deriv": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "WaveCAP.periodicHilbert_const": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "WaveCAP.periodicHilbert_cos": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "WaveCAP.periodicHilbert_le_tsum_fourierCoeff": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "WaveCAP.periodicHilbert_sin": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "WaveCAP.periodicHilbert_smul": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "WaveCAP.periodicHilbert_sub_truncatedSpectralHilbert_eq": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "WaveCAP.residual_bounded_by_certificate": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice",
+          "WaveCAP.cert_arb_dmin_bound",
+          "WaveCAP.cert_arb_sup_bound_le_eps0"
+        ],
+        "WaveCAP.residual_bounded_by_phase4_n150_half_dc_certificate": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice",
+          "WaveCAP.PaperCertificate.cert_arb_sup_bound_le_eps0",
+          "WaveCAP.PaperCertificate.cert_arb_dmin_bound"
+        ],
+        "WaveCAP.residual_bounded_by_phase4_n150_half_dc_decimal": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice",
+          "WaveCAP.PaperCertificate.cert_arb_sup_bound_le_eps0",
+          "WaveCAP.PaperCertificate.cert_arb_dmin_bound"
+        ],
+        "WaveCAP.samplingDFTHilbert_diff_le_aliasingTail_grid": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "WaveCAP.samplingDFTHilbert_eq_cot_convolution": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "WaveCAP.samplingDFTHilbert_eq_tsum_int_grid": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "WaveCAP.samplingDFTHilbert_sub_periodicHilbert_grid_eq": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "WaveCAP.sum_exp_two_pi_I_grid_eq": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "WaveCAP.sum_sin_grid_eq_cotKernel": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "WaveCAP.summable_F\u2082_div_int_sq": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "WaveCAP.summable_fourierCoeff_norm_full_of_contDiff": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "WaveCAP.summable_fourierCoeff_norm_of_contDiff": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "WaveCAP.summable_fourierCoeff_tail": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "WaveCAP.summable_hilbertMult_fourierCoeff_exp": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "WaveCAP.summable_indicator_one_div_int_sq": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "WaveCAP.truncatedSpectralHilbert_aliasing_bound": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "WaveCAP.truncatedSpectralHilbert_diff_le_fourierTail": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "WaveCAP.tsum_disagreement_bound_collapses": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "WaveCAP.tsum_fourierCoeff_tail_le": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "WaveCAP.tsum_inv_pow_tail_le": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "WaveCAP.tsum_one_div_int_sq_excluding_zero": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ],
+        "WaveCAP.zero_lt_two_pi": [
+          "propext",
+          "Quot.sound",
+          "Classical.choice"
+        ]
+      },
+      "error_summary": ""
+    }
+  ]
+}

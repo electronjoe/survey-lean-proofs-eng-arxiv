@@ -247,7 +247,7 @@ def run_lake_mode(args: argparse.Namespace, work_repo: Path, env: dict[str, str]
         arc, aout, aerr, aelapsed, atimed_out = _run_cmd(
             ["lake", "env", "lean", str(driver_path.name)],
             proj_dir,
-            min(300, max(60, args.timeout // 3)),
+            min(1200, max(300, args.timeout // 2)),
             env,
         )
         parsed = _parse_axioms_json(aout)
