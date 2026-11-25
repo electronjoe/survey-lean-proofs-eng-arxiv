@@ -8,9 +8,7 @@ import zipfile
 from pathlib import Path
 
 from scripts.check_paper_numbers import (
-    DEFAULT_LONGITUDINAL,
-    DEFAULT_PROVENANCE,
-    DEFAULT_SLICES_DIR,
+    DEFAULT_PANEL,
     DEFAULT_TEX,
     run_all_checks,
 )
@@ -20,37 +18,40 @@ from src.profile_artifacts import _extract_arxiv_ancillary_lean
 def test_repo_paper_numbers_pass_consistency_gate() -> None:
     errors, stats = run_all_checks(
         tex_path=DEFAULT_TEX,
-        longitudinal_path=DEFAULT_LONGITUDINAL,
-        slices_dir=DEFAULT_SLICES_DIR,
-        provenance_path=DEFAULT_PROVENANCE,
+        panel_path=DEFAULT_PANEL,
     )
-    assert errors == [], f"Unexpected numeric drift:\n" + "\n".join(errors)
-    assert stats["t2_confirmed"] == 39
-    assert stats["t2_scanned_owned_repos"] == 28
+    assert errors == [], "Unexpected numeric or style drift:\n" + "\n".join(errors)
+    assert stats["total_papers"] == 12613
+    assert stats["t2_confirmed_v1"] == 68
+    assert stats["t2_scanned_owned_repos"] == 51
+    assert stats["inventory_eng_rows"] == 34
+    assert stats["master_ledger_rows"] == 82
+    assert stats["sandbox_repos"] == 23
+    assert stats["layer_a_audited"] == 27
 
 
-def test_detects_bolded_count_ci_percentage_and_loc_drift(tmp_path: Path) -> None:
+def test_detects_numeric_table_ci_loc_and_schema_drift(tmp_path: Path) -> None:
     tex = DEFAULT_TEX.read_text(encoding="utf-8")
     mutated = (
-        tex.replace(r"\textbf{9,837}", r"\textbf{9,999}", 1)
-        .replace(r"[0.70\%, 1.30\%]", r"[0.71\%, 1.31\%]", 1)
-        .replace(r"28,043", r"27,000", 1)
-        .replace(r"4.30~million non-empty lines of code", r"4.17~million non-empty lines of code", 1)
+        tex.replace("12,613", "12,999")
+        .replace(r"[1.01\%, 1.62\%]", r"[1.05\%, 1.69\%]")
+        .replace("28,043", "27,000")
+        .replace("5,259", "5,000")
+        .replace("Engineering algorithmic proofs", r"\texttt{eng\_algorithmic\_proof}", 1)
     )
     bad_tex = tmp_path / "main.tex"
     bad_tex.write_text(mutated, encoding="utf-8")
 
     errors, _ = run_all_checks(
         tex_path=bad_tex,
-        longitudinal_path=DEFAULT_LONGITUDINAL,
-        slices_dir=DEFAULT_SLICES_DIR,
-        provenance_path=DEFAULT_PROVENANCE,
+        panel_path=DEFAULT_PANEL,
     )
     joined = "\n".join(errors)
-    assert "9,837" in joined
+    assert "12,613" in joined
     assert "T2 Wilson CI" in joined
     assert "2611.26140" in joined
-    assert "4.30" in joined
+    assert "5,259" in joined
+    assert "eng_algorithmic_proof" in joined
 
 
 def test_extract_arxiv_ancillary_lean_direct_and_nested_tar(tmp_path: Path) -> None:
