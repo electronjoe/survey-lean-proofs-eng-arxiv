@@ -1,7 +1,7 @@
 # Pre-Submission Audit Plan & Ground-Truth Ledger
 
-**Last updated:** 2026-11-24  
-**Scope:** Systematic ground-truth verification of bibliography citations, named empirical/Layer-A findings, methodological weaknesses, and publication compliance for [`papers/arxiv-empirical/main.tex`](../papers/arxiv-empirical/main.tex) and [`papers/shared/references.bib`](../papers/shared/references.bib).
+**Last updated:** 2026-11-25  
+**Scope:** Systematic ground-truth verification of bibliography citations, named empirical/Layer-A findings, methodological weaknesses, and publication compliance for [`papers/arxiv-empirical/main.tex`](../papers/arxiv-empirical/main.tex) (v0.7, 15-category longitudinal panel) and [`papers/shared/references.bib`](../papers/shared/references.bib).
 
 ---
 
@@ -9,11 +9,11 @@
 
 | Pillar | Scope | Status | Key Artifact / Gate |
 | :--- | :--- | :--- | :--- |
-| **Pillar 1** | Deterministic + Semantic Bibliography Audit (all 54 entries) | **DONE** | [`scripts/audit_bib.py`](../scripts/audit_bib.py) (CI + `--live`), [`tests/test_audit_bib.py`](../tests/test_audit_bib.py) |
-| **Pillar 2 (Automated)** | Commit-SHA / Zenodo / Ancillary Pinning (23 repos) + Automated `file:line` (`239/239`) & Named-Critique Verification | **DONE** | [`scripts/pin_phase2_provenance.py`](../scripts/pin_phase2_provenance.py), [`artifacts/phase2_provenance.json`](../artifacts/phase2_provenance.json) |
+| **Pillar 1** | Deterministic + Semantic Bibliography Audit (all 65 entries, 64 arXiv eprints) | **DONE** | [`scripts/audit_bib.py`](../scripts/audit_bib.py) (CI + `--live`), [`tests/test_audit_bib.py`](../tests/test_audit_bib.py) |
+| **Pillar 2 (Automated)** | Commit-SHA / Zenodo / Ancillary Pinning (27 repos: 23 orig-8 + 4 `+7`) + Automated `file:line` (`274/274`) & Named-Critique Verification | **DONE** | [`scripts/pin_phase2_provenance.py`](../scripts/pin_phase2_provenance.py), [`artifacts/phase2_provenance.json`](../artifacts/phase2_provenance.json), [`artifacts/phase_c2_plus7_audits.json`](../artifacts/phase_c2_plus7_audits.json) |
 | **Pillar 2 (Human)** | Guided Human Co-Review of 4 Named Findings + 5 Clean-Cohort False-Negative Spot-Checks (`0/5` missed drift) | **DONE** | [`docs/human_verification_plan.md`](human_verification_plan.md), [`artifacts/human_annotations/layer_a_human_verification.json`](../artifacts/human_annotations/layer_a_human_verification.json) |
-| **Pillar 3** | Closing Core Methodological Weaknesses (Automated Numeric Sync, Stage-3 Ancillary/Zip Unpacking, Compact Docker Kernel Builds, & Blinded Stage-4 Human IRR **DONE for arXiv**; 2nd Rater + Open-Weight Judge + ML Arm **OPEN for Archival Venues**) | **DONE (arXiv)** | [`scripts/check_paper_numbers.py`](../scripts/check_paper_numbers.py) (CI), [`artifacts/sandbox_builds/summary.json`](../artifacts/sandbox_builds/summary.json), [`artifacts/human_annotations/stage4_irr_summary.json`](../artifacts/human_annotations/stage4_irr_summary.json) |
-| **Pillar 4** | Pre-Submission Policy & Framing Gates (arXiv Non-Survey Retitle + AI Disclosure + Double-Blind Gate + v0.6 Tarball) | **DONE (arXiv)**; venue-tailored templates open | [`papers/arxiv-empirical/main.tex`](../papers/arxiv-empirical/main.tex), [`docs/publication_strategy.html`](publication_strategy.html) |
+| **Pillar 3** | Closing Core Methodological Weaknesses (15-Category Longitudinal Panel `12,613` Papers, 4-Way Stratification, Off-arXiv Probe, Operational-FV Boundary + D2 Spin-Off, Automated Numeric Sync, Stage-3 Ancillary/Zip Unpacking, `n = 17` Compact Docker Kernel Builds, & Blinded Stage-4 Human IRR **DONE for arXiv v0.7**; 2nd Rater + Open-Weight Judge + ML Arm **OPEN for Archival Venues**) | **DONE (arXiv v0.7)** | [`scripts/check_paper_numbers.py`](../scripts/check_paper_numbers.py) (CI), [`artifacts/phase_c1_15cat_longitudinal.json`](../artifacts/phase_c1_15cat_longitudinal.json), [`artifacts/off_arxiv_probe.json`](../artifacts/off_arxiv_probe.json), [`artifacts/sandbox_builds/summary.json`](../artifacts/sandbox_builds/summary.json), [`artifacts/human_annotations/stage4_irr_summary.json`](../artifacts/human_annotations/stage4_irr_summary.json) |
+| **Pillar 4** | Pre-Submission Policy & Framing Gates (arXiv Non-Survey Retitle + Whole-Category Disciplinary Scope Replacing Lab Anchor + AI Disclosure + Double-Blind Gate + v0.7 Promotion) | **DONE (arXiv v0.7)**; venue-tailored templates open | [`papers/arxiv-empirical/main.tex`](../papers/arxiv-empirical/main.tex), [`docs/operational_fv_spinoff_brief.md`](operational_fv_spinoff_brief.md), [`docs/publication_strategy.html`](publication_strategy.html) |
 
 ---
 

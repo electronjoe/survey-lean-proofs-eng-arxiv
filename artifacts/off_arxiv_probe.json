@@ -1,0 +1,1944 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-11-25T01:45:33Z",
+  "window": {
+    "from": "2025-01-01",
+    "until": "2026-11-25"
+  },
+  "preprint_servers": {
+    "techrxiv": {
+      "server": "TechRxiv",
+      "crossref_prefix": "10.36227",
+      "window": {
+        "from": "2025-01-01",
+        "until": "2026-11-25"
+      },
+      "total_records_2025_2026": 7849,
+      "queries": {
+        "lean4_phrase": {
+          "query": "\"Lean 4\"",
+          "raw_total_results": 7,
+          "inspected_count": 7,
+          "confirmed_lean_tp_count": 0,
+          "items": [
+            {
+              "doi": "10.36227/techrxiv.175459443.39044829/v1",
+              "title": "Optimizing Lean Six Sigma Methodologies for Electrical Equipment Manufacturing",
+              "published": "2025-08-07",
+              "query_matched": "lean4_phrase",
+              "is_lean_theorem_prover": false,
+              "tp_matches": [],
+              "false_positive_cues": [
+                "lean six sigma"
+              ]
+            },
+            {
+              "doi": "10.36227/techrxiv.175696157.75242016/v1",
+              "title": "Next-Generation Training Ecosystems Digital Twins Combined with Lean Error-Proofing and Continuous Improvement",
+              "published": "2025-09-04",
+              "query_matched": "lean4_phrase",
+              "is_lean_theorem_prover": false,
+              "tp_matches": [],
+              "false_positive_cues": [
+                "lean error-proofing"
+              ]
+            },
+            {
+              "doi": "10.36227/techrxiv.175459830.02641032/v1",
+              "title": "Evaluating the Role of Lean Manufacturing in Reducing Production Costs and Enhancing Efficiency in Textile Mills",
+              "published": "2025-08-07",
+              "query_matched": "lean4_phrase",
+              "is_lean_theorem_prover": false,
+              "tp_matches": [],
+              "false_positive_cues": [
+                "lean manufacturing"
+              ]
+            },
+            {
+              "doi": "10.36227/techrxiv.174613060.03901668/v2",
+              "title": "Augmenting Healthcare Systems for Pandemic Preparedness: A Lean Six Sigma Perspective",
+              "published": "2025-05-27",
+              "query_matched": "lean4_phrase",
+              "is_lean_theorem_prover": false,
+              "tp_matches": [],
+              "false_positive_cues": [
+                "lean six sigma"
+              ]
+            },
+            {
+              "doi": "10.36227/techrxiv.174613060.03901668/v1",
+              "title": "Augmenting Healthcare Systems for Pandemic Preparedness: A Lean Six Sigma Perspective",
+              "published": "2025-05-01",
+              "query_matched": "lean4_phrase",
+              "is_lean_theorem_prover": false,
+              "tp_matches": [],
+              "false_positive_cues": [
+                "lean six sigma"
+              ]
+            },
+            {
+              "doi": "10.36227/techrxiv.176185552.20669715/v1",
+              "title": "Toward Intelligent Sustainability: A Structured Integration of Artificial Intelligence and Lean Six Sigma in Life Cycle Assessment",
+              "published": "2025-10-30",
+              "query_matched": "lean4_phrase",
+              "is_lean_theorem_prover": false,
+              "tp_matches": [],
+              "false_positive_cues": [
+                "lean six sigma"
+              ]
+            },
+            {
+              "doi": "10.36227/techrxiv.174594967.78823991/v1",
+              "title": "Augmenting Healthcare Systems for Pandemic Preparedness: A Lean Six Sigma Perspective",
+              "published": "2025-04-29",
+              "query_matched": "lean4_phrase",
+              "is_lean_theorem_prover": false,
+              "tp_matches": [],
+              "false_positive_cues": [
+                "lean six sigma"
+              ]
+            }
+          ]
+        },
+        "mathlib": {
+          "query": "Mathlib",
+          "raw_total_results": 0,
+          "inspected_count": 0,
+          "confirmed_lean_tp_count": 0,
+          "items": []
+        },
+        "leanprover": {
+          "query": "leanprover",
+          "raw_total_results": 0,
+          "inspected_count": 0,
+          "confirmed_lean_tp_count": 0,
+          "items": []
+        }
+      },
+      "unique_raw_hits": 7,
+      "confirmed_lean_tp_unique": 0,
+      "confirmed_95pct_ub_pct": 0.0382,
+      "confirmed_items": []
+    },
+    "engrxiv": {
+      "server": "engrXiv",
+      "crossref_prefix": "10.31224",
+      "window": {
+        "from": "2025-01-01",
+        "until": "2026-11-25"
+      },
+      "total_records_2025_2026": 2662,
+      "queries": {
+        "lean4_phrase": {
+          "query": "\"Lean 4\"",
+          "raw_total_results": 6,
+          "inspected_count": 6,
+          "confirmed_lean_tp_count": 0,
+          "items": [
+            {
+              "doi": "10.31224/8088",
+              "title": "Decarbonizing Gas Turbines: Multi-Physics Modeling of Lean Hydrogen Combustion and NOx Formation",
+              "published": "2026-08-28",
+              "query_matched": "lean4_phrase",
+              "is_lean_theorem_prover": false,
+              "tp_matches": [],
+              "false_positive_cues": [
+                "lean hydrogen"
+              ]
+            },
+            {
+              "doi": "10.31224/6375",
+              "title": "TSLN: Time-Series Lean Notation",
+              "published": "2026-01-29",
+              "query_matched": "lean4_phrase",
+              "is_lean_theorem_prover": false,
+              "tp_matches": [],
+              "false_positive_cues": [
+                "lean notation"
+              ]
+            },
+            {
+              "doi": "10.31224/8153",
+              "title": "Physics Informed Neural Networks for Real Time 3D Flow Field and Emission Prediction in Lean Hydrogen Swirl Combustors",
+              "published": "2026-09-06",
+              "query_matched": "lean4_phrase",
+              "is_lean_theorem_prover": false,
+              "tp_matches": [],
+              "false_positive_cues": [
+                "lean hydrogen"
+              ]
+            },
+            {
+              "doi": "10.31224/7080",
+              "title": "A Drift-Conscious Machine Learning Governance Framework for Phase Specific Model Selection in Lean Six Sigma DMAIC",
+              "published": "2026-05-27",
+              "query_matched": "lean4_phrase",
+              "is_lean_theorem_prover": false,
+              "tp_matches": [],
+              "false_positive_cues": [
+                "lean six sigma"
+              ]
+            },
+            {
+              "doi": "10.31224/7082",
+              "title": "Stage-Specific Comparative Assessment of Machine Learning Techniques within the Lean Six Sigma DMAIC Methodology for Industrial Process Performance Enhancement",
+              "published": "2026-05-27",
+              "query_matched": "lean4_phrase",
+              "is_lean_theorem_prover": false,
+              "tp_matches": [],
+              "false_positive_cues": [
+                "lean six sigma"
+              ]
+            },
+            {
+              "doi": "10.31224/3865",
+              "title": "Evaluating Lean Six Sigma Tools for Welding Engineering Applications: An Engineering Perspective",
+              "published": "2024-09-03",
+              "query_matched": "lean4_phrase",
+              "is_lean_theorem_prover": false,
+              "tp_matches": [],
+              "false_positive_cues": [
+                "lean six sigma"
+              ]
+            }
+          ]
+        },
+        "mathlib": {
+          "query": "Mathlib",
+          "raw_total_results": 0,
+          "inspected_count": 0,
+          "confirmed_lean_tp_count": 0,
+          "items": []
+        },
+        "leanprover": {
+          "query": "leanprover",
+          "raw_total_results": 0,
+          "inspected_count": 0,
+          "confirmed_lean_tp_count": 0,
+          "items": []
+        }
+      },
+      "unique_raw_hits": 6,
+      "confirmed_lean_tp_unique": 0,
+      "confirmed_95pct_ub_pct": 0.1125,
+      "confirmed_items": []
+    },
+    "combined": {
+      "total_records_2025_2026": 10511,
+      "unique_raw_hits": 13,
+      "confirmed_lean_tp_unique": 0,
+      "confirmed_95pct_ub_pct": 0.0285
+    }
+  },
+  "openalex": {
+    "mathlib_all_fields": {
+      "count_2025": 235,
+      "count_2026": 3632,
+      "count_2025_2026": 3867,
+      "yoy_multiplier_2026_over_2025": 15.46,
+      "by_primary_field": [
+        {
+          "field_id": "17",
+          "field_name": "Computer Science",
+          "count": 1612,
+          "share_pct": 41.69
+        },
+        {
+          "field_id": "26",
+          "field_name": "Mathematics",
+          "count": 1542,
+          "share_pct": 39.88
+        },
+        {
+          "field_id": "31",
+          "field_name": "Physics and Astronomy",
+          "count": 426,
+          "share_pct": 11.02
+        },
+        {
+          "field_id": "22",
+          "field_name": "Engineering",
+          "count": 55,
+          "share_pct": 1.42
+        },
+        {
+          "field_id": "12",
+          "field_name": "Arts and Humanities",
+          "count": 51,
+          "share_pct": 1.32
+        },
+        {
+          "field_id": "20",
+          "field_name": "Economics, Econometrics and Finance",
+          "count": 41,
+          "share_pct": 1.06
+        },
+        {
+          "field_id": "18",
+          "field_name": "Decision Sciences",
+          "count": 39,
+          "share_pct": 1.01
+        },
+        {
+          "field_id": "33",
+          "field_name": "Social Sciences",
+          "count": 27,
+          "share_pct": 0.7
+        },
+        {
+          "field_id": "13",
+          "field_name": "Biochemistry, Genetics and Molecular Biology",
+          "count": 23,
+          "share_pct": 0.59
+        },
+        {
+          "field_id": "28",
+          "field_name": "Neuroscience",
+          "count": 8,
+          "share_pct": 0.21
+        },
+        {
+          "field_id": "14",
+          "field_name": "Business, Management and Accounting",
+          "count": 7,
+          "share_pct": 0.18
+        },
+        {
+          "field_id": "25",
+          "field_name": "Materials Science",
+          "count": 7,
+          "share_pct": 0.18
+        },
+        {
+          "field_id": "19",
+          "field_name": "Earth and Planetary Sciences",
+          "count": 5,
+          "share_pct": 0.13
+        },
+        {
+          "field_id": "21",
+          "field_name": "Energy",
+          "count": 4,
+          "share_pct": 0.1
+        },
+        {
+          "field_id": "27",
+          "field_name": "Medicine",
+          "count": 4,
+          "share_pct": 0.1
+        },
+        {
+          "field_id": "32",
+          "field_name": "Psychology",
+          "count": 4,
+          "share_pct": 0.1
+        },
+        {
+          "field_id": "23",
+          "field_name": "Environmental Science",
+          "count": 3,
+          "share_pct": 0.08
+        },
+        {
+          "field_id": "36",
+          "field_name": "Health Professions",
+          "count": 3,
+          "share_pct": 0.08
+        },
+        {
+          "field_id": "11",
+          "field_name": "Agricultural and Biological Sciences",
+          "count": 1,
+          "share_pct": 0.03
+        },
+        {
+          "field_id": "15",
+          "field_name": "Chemical Engineering",
+          "count": 1,
+          "share_pct": 0.03
+        },
+        {
+          "field_id": "16",
+          "field_name": "Chemistry",
+          "count": 1,
+          "share_pct": 0.03
+        },
+        {
+          "field_id": "30",
+          "field_name": "Pharmacology, Toxicology and Pharmaceutics",
+          "count": 1,
+          "share_pct": 0.03
+        }
+      ]
+    },
+    "engineering_field_22": {
+      "total_works_2025_2026": 2313125,
+      "mathlib_count_2025_2026": 55,
+      "mathlib_share_of_all_mathlib_pct": 1.42,
+      "mathlib_rate_per_10k_eng_works": 0.238,
+      "mathlib_by_year": {
+        "2025": 0,
+        "2026": 55
+      },
+      "mathlib_with_arxiv_version": 17,
+      "mathlib_off_arxiv_only": 38,
+      "mathlib_arxiv_share_pct": 30.9,
+      "mathlib_off_arxiv_share_pct": 69.1,
+      "lean4_formalization_query_count": 52,
+      "lean4_theorem_prover_query_count": 14,
+      "subfields_top": [
+        {
+          "subfield": "Control and Systems Engineering",
+          "count": 22
+        },
+        {
+          "subfield": "Computational Mechanics",
+          "count": 13
+        },
+        {
+          "subfield": "Aerospace Engineering",
+          "count": 7
+        },
+        {
+          "subfield": "Electrical and Electronic Engineering",
+          "count": 7
+        },
+        {
+          "subfield": "Industrial and Manufacturing Engineering",
+          "count": 3
+        },
+        {
+          "subfield": "Biomedical Engineering",
+          "count": 2
+        },
+        {
+          "subfield": "Mechanics of Materials",
+          "count": 1
+        }
+      ],
+      "off_arxiv_sources_top": [
+        {
+          "source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "count": 32
+        },
+        {
+          "source": "PhilPapers (PhilPapers Foundation)",
+          "count": 2
+        },
+        {
+          "source": "Research Square",
+          "count": 2
+        },
+        {
+          "source": "SSRN Electronic Journal",
+          "count": 1
+        },
+        {
+          "source": "DROPS (Schloss Dagstuhl \u2013 Leibniz Center for Informatics)",
+          "count": 1
+        }
+      ],
+      "off_arxiv_works": [
+        {
+          "openalex_id": "https://openalex.org/W7221320213",
+          "doi": "https://doi.org/10.5281/zenodo.23288168",
+          "publication_year": 2026,
+          "publication_date": "2026-10-10",
+          "type": "software",
+          "title": "Lean 4 formalization for \"Spectral stability for strong ideal-gas shock layers\"",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Computational Mechanics",
+          "topic": "Computational Fluid Dynamics and Aerodynamics"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7237352799",
+          "doi": "https://doi.org/10.5281/zenodo.24409235",
+          "publication_year": 2026,
+          "publication_date": "2026-11-21",
+          "type": "software",
+          "title": "The Vibrating String with Formal Verification in Lean 4. La Conjecture de la Cordelette Vibrante V\u00e9rification Formelle en Lean 4.",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Control and Systems Engineering",
+          "topic": "Stability and Controllability of Differential Equations"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7225343744",
+          "doi": "https://doi.org/10.5281/zenodo.23972601",
+          "publication_year": 2026,
+          "publication_date": "2026-11-05",
+          "type": "preprint",
+          "title": "The Frohmanian Tether: A Machine-Checked Audit of Its Architecture and Obstructions",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Aerospace Engineering",
+          "topic": "Space Satellite Systems and Control"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7236153364",
+          "doi": "https://doi.org/10.5281/zenodo.24333373",
+          "publication_year": 2026,
+          "publication_date": "2026-11-18",
+          "type": "software",
+          "title": "Weyl's boundary-layer theorems formalised in Lean 4: existence and uniqueness for the Blasius and Homann problems, existence for the problems (A_lambda)",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Computational Mechanics",
+          "topic": "Fluid Mechanics Fundamentals and Applications"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7225596091",
+          "doi": "https://doi.org/10.5281/zenodo.24039910",
+          "publication_year": 2026,
+          "publication_date": "2026-11-07",
+          "type": "preprint",
+          "title": "Syntonic Nav: Against Adaptive Filters",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Aerospace Engineering",
+          "topic": "Inertial Sensor and Navigation"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7221718896",
+          "doi": "https://doi.org/10.5281/zenodo.23352090",
+          "publication_year": 2026,
+          "publication_date": "2026-10-13",
+          "type": "software",
+          "title": "lean-mechanics: classical, continuum and discrete mechanics in Lean 4",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Control and Systems Engineering",
+          "topic": "Dynamics and Control of Mechanical Systems"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7214506974",
+          "doi": "https://doi.org/10.5281/zenodo.22980196",
+          "publication_year": 2026,
+          "publication_date": "2026-09-26",
+          "type": "software",
+          "title": "Ku-Mellin-PATP: reproducibility code",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Computational Mechanics",
+          "topic": "Probabilistic and Robust Engineering Design"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7169506846",
+          "doi": "https://doi.org/10.5281/zenodo.21107021",
+          "publication_year": 2026,
+          "publication_date": "2026-07-17",
+          "type": "conference-abstract",
+          "title": "TH44 / VM-2 Exact Non-Commuting Collapse Surface",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Control and Systems Engineering",
+          "topic": "Control Systems and Identification"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7161589529",
+          "doi": "https://doi.org/10.5281/zenodo.20270517",
+          "publication_year": 2026,
+          "publication_date": "2026-05-19",
+          "type": "preprint",
+          "title": "ITU Tier 1+ #4: Semiconductor Scaling (K_semi)",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Electrical and Electronic Engineering",
+          "topic": "Advancements in Photolithography Techniques"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7238792321",
+          "doi": "https://doi.org/10.5281/zenodo.24485282",
+          "publication_year": 2026,
+          "publication_date": "2026-11-24",
+          "type": "software",
+          "title": "SpectralDissipationInvariant: Machine-Checked Lean 4 Quadratic Energy & L\u00b2 Convergence Criterion for Dissipative Nonlinear PDEs",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Control and Systems Engineering",
+          "topic": "Stability and Controllability of Differential Equations"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7161545863",
+          "doi": "https://doi.org/10.5281/zenodo.20271997",
+          "publication_year": 2026,
+          "publication_date": "2026-05-19",
+          "type": "preprint",
+          "title": "ITU Tier 1+ #13: Robotics (K_robot)",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Control and Systems Engineering",
+          "topic": "Robotics and Automated Systems"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7154447141",
+          "doi": "https://doi.org/10.5281/zenodo.19584002",
+          "publication_year": 2026,
+          "publication_date": "2026-04-15",
+          "type": "software",
+          "title": "ns-lean4-pipeline: Reproducibility artifact for \"A Scaling Invariant at Direction-Field Creases in 3D Navier-Stokes Reconnection\"",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Computational Mechanics",
+          "topic": "Fluid Dynamics and Turbulent Flows"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7225700151",
+          "doi": "https://doi.org/10.5281/zenodo.24121040",
+          "publication_year": 2026,
+          "publication_date": "2026-11-10",
+          "type": "preprint",
+          "title": "Metriplectic Completion of the Frohmanian Symplectic Tether: An Assembled Finite-Dimensional Viscous System, the Imported Tether Kernel, and Lean 4 Checks",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Control and Systems Engineering",
+          "topic": "Control and Stability of Dynamical Systems"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7226012478",
+          "doi": "https://doi.org/10.5281/zenodo.24185982",
+          "publication_year": 2026,
+          "publication_date": "2026-11-13",
+          "type": "preprint",
+          "title": "A lossless four-bus power system with 18 real power flow solutions",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Electrical and Electronic Engineering",
+          "topic": "Power System Optimization and Stability"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7169116618",
+          "doi": "https://doi.org/10.5281/zenodo.21106940",
+          "publication_year": 2026,
+          "publication_date": "2026-07-01",
+          "type": "conference-abstract",
+          "title": "TH43: The Effective Collapse Threshold under Online Estimation",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Control and Systems Engineering",
+          "topic": "Control Systems and Identification"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7225408115",
+          "doi": "https://doi.org/10.5281/zenodo.23995537",
+          "publication_year": 2026,
+          "publication_date": "2026-11-06",
+          "type": "preprint",
+          "title": "Complete Evolution Representations for Spatial Rigid-Body Contact Dynamics",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Control and Systems Engineering",
+          "topic": "Dynamics and Control of Mechanical Systems"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7238826816",
+          "doi": "https://doi.org/10.5281/zenodo.24456120",
+          "publication_year": 2026,
+          "publication_date": "2026-11-23",
+          "type": "preprint",
+          "title": "Cyclic Industrial Symbiosis: A Lean Proof of the N-Partner Product Condition",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Industrial and Manufacturing Engineering",
+          "topic": "Sustainable Industrial Ecology"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7225433488",
+          "doi": "https://doi.org/10.5281/zenodo.23995519",
+          "publication_year": 2026,
+          "publication_date": "2026-11-06",
+          "type": "preprint",
+          "title": "Complete Evolution Representations for Planar Rigid-Body Contact Dynamics",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Control and Systems Engineering",
+          "topic": "Dynamics and Control of Mechanical Systems"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7224093292",
+          "doi": "https://doi.org/10.5281/zenodo.23731866",
+          "publication_year": 2026,
+          "publication_date": "2026-10-28",
+          "type": "preprint",
+          "title": "A Local Displacement-Only Action for an Odd-Mass Continuum Model",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Mechanics of Materials",
+          "topic": "Elasticity and Wave Propagation"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7169611021",
+          "doi": "https://doi.org/10.5281/zenodo.21419868",
+          "publication_year": 2026,
+          "publication_date": "2026-07-17",
+          "type": "conference-abstract",
+          "title": "TH47 / VC-1: Universal Vector Converse",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Control and Systems Engineering",
+          "topic": "Control Systems and Identification"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7153751471",
+          "doi": "https://doi.org/10.5281/zenodo.19526374",
+          "publication_year": 2026,
+          "publication_date": "2026-04-30",
+          "type": "software",
+          "title": "The Geometric Siphon: research repository",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Computational Mechanics",
+          "topic": "Fluid Mechanics Fundamentals and Applications"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7168078506",
+          "doi": "https://doi.org/10.5281/zenodo.21300190",
+          "publication_year": 2026,
+          "publication_date": "2026-07-10",
+          "type": "preprint",
+          "title": "The Identification Duality",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Control and Systems Engineering",
+          "topic": "Control Systems and Identification"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7233079232",
+          "doi": "https://doi.org/10.5281/zenodo.24227492",
+          "publication_year": 2026,
+          "publication_date": "2026-11-14",
+          "type": "preprint",
+          "title": "Minimum inter-event time for ordinal (Kendall \u03c4_b) event triggers: proofs, counterexamples and an open conjecture",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Control and Systems Engineering",
+          "topic": "Stability and Control of Uncertain Systems"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7141373730",
+          "doi": "https://doi.org/10.5281/zenodo.19243721",
+          "publication_year": 2026,
+          "publication_date": "2026-03-27",
+          "type": "preprint",
+          "title": "The Starflower Framework: A Unified Theory of Structural Computational Invariance and Bio-Mimetic Robotic Architectures",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Electrical and Electronic Engineering",
+          "topic": "Advanced Memory and Neural Computing"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7225405486",
+          "doi": "https://doi.org/10.5281/zenodo.23995048",
+          "publication_year": 2026,
+          "publication_date": "2026-11-06",
+          "type": "preprint",
+          "title": "Precedence-constrained Scheduling of Unit Jobs is Polynomial for Every Fixed Number of Machines",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Industrial and Manufacturing Engineering",
+          "topic": "Scheduling and Optimization Algorithms"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7225276129",
+          "doi": "https://doi.org/10.5281/zenodo.23934414",
+          "publication_year": 2026,
+          "publication_date": "2026-11-04",
+          "type": "preprint",
+          "title": "Syntonic Nav V2.0: A Navigation Filter with No Parameter Table",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Aerospace Engineering",
+          "topic": "Inertial Sensor and Navigation"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7154753491",
+          "doi": "https://doi.org/10.5281/zenodo.19637032",
+          "publication_year": 2026,
+          "publication_date": "2026-04-18",
+          "type": "preprint",
+          "title": "The Syntonic Capacity Theorem and Extensions: Gaussian, Correlated, and Non-Gaussian Adaptive-Tracking Bounds",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Control and Systems Engineering",
+          "topic": "Control Systems and Identification"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7224134063",
+          "doi": "https://doi.org/10.5281/zenodo.23734084",
+          "publication_year": 2026,
+          "publication_date": "2026-10-28",
+          "type": "preprint",
+          "title": "Theorem U\u2032-Local: The Local Exponent Law of the Syntonic Window",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Aerospace Engineering",
+          "topic": "Inertial Sensor and Navigation"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7225569704",
+          "doi": "https://doi.org/10.5281/zenodo.24039856",
+          "publication_year": 2026,
+          "publication_date": "2026-11-07",
+          "type": "preprint",
+          "title": "Syntonic Nav: Against Truth-Tuned Rivals",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Aerospace Engineering",
+          "topic": "Inertial Sensor and Navigation"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7225693859",
+          "doi": "https://doi.org/10.5281/zenodo.24120868",
+          "publication_year": 2026,
+          "publication_date": "2026-11-10",
+          "type": "article",
+          "title": "Applied Identity Physics: Every Power-Limited Drive Is One Relation \u2014 a \u00b7 \u03b1 \u00b7 v_e = 2, the Specific-Mass Decomposition, the Radiator\u2013Core Crossover at 749.54 K, and the Matched Radius as the Drive's Impedance Match",
+          "primary_source": "PhilPapers (PhilPapers Foundation)",
+          "host_organization": "",
+          "all_sources": [
+            "PhilPapers (PhilPapers Foundation)",
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Aerospace Engineering",
+          "topic": "Rocket and propulsion systems research"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7213346139",
+          "doi": "https://doi.org/10.21203/rs.3.rs-11029602/v1",
+          "publication_year": 2026,
+          "publication_date": "2026-09-15",
+          "type": "preprint",
+          "title": "Experimental Realization of Zero-Payload Interplanetary Data Teleportation via Algorithmic Topological Resonance",
+          "primary_source": "Research Square",
+          "host_organization": "",
+          "all_sources": [
+            "Research Square"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Electrical and Electronic Engineering",
+          "topic": "Space Technology and Applications"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7223206283",
+          "doi": "https://doi.org/10.5281/zenodo.23552322",
+          "publication_year": 2026,
+          "publication_date": "2026-10-22",
+          "type": "preprint",
+          "title": "Independently Checkable Certificates for Connected DC Optimal Transmission Switching",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Electrical and Electronic Engineering",
+          "topic": "Electric Power System Optimization"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7167267305",
+          "doi": "https://doi.org/10.5281/zenodo.21134495",
+          "publication_year": 2026,
+          "publication_date": "2026-07-02",
+          "type": "preprint",
+          "title": "Vector/Matrix Syntony: Matrix-Geometric-Mean Scaling and Per-Mode Capacity for Multi-Axis Adaptive Systems",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Control and Systems Engineering",
+          "topic": "Control Systems and Identification"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7225462718",
+          "doi": "https://doi.org/10.5281/zenodo.24025446",
+          "publication_year": 2026,
+          "publication_date": "2026-11-07",
+          "type": "article",
+          "title": "Applied Identity Physics Identity Vector Amplification-IVA Peak, One Corridor Across Exhaust Velocity, Mass Ratio and Nuclear Binding",
+          "primary_source": "PhilPapers (PhilPapers Foundation)",
+          "host_organization": "",
+          "all_sources": [
+            "PhilPapers (PhilPapers Foundation)",
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Aerospace Engineering",
+          "topic": "Rocket and propulsion systems research"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7207606458",
+          "doi": "https://doi.org/10.2139/ssrn.7386042",
+          "publication_year": 2026,
+          "publication_date": "2026-01-01",
+          "type": "preprint",
+          "title": "Uniform Inf\u2013Sup Stability of Quartic and Quintic Scott\u2013Vogelius Elements on Freudenthal Meshes: A Protected Raw Edge-Star Lifting",
+          "primary_source": "SSRN Electronic Journal",
+          "host_organization": "RELX Group (Netherlands)",
+          "all_sources": [
+            "SSRN Electronic Journal"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Computational Mechanics",
+          "topic": "Advanced Numerical Methods in Computational Mathematics"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7205709215",
+          "doi": "https://doi.org/10.21203/rs.3.rs-10887173/v1",
+          "publication_year": 2026,
+          "publication_date": "2026-09-02",
+          "type": "preprint",
+          "title": "Uniform inf\u2013sup stability of quartic and quintic Scott\u2013Vogelius elements on Freudenthal meshes: a protected raw edge-star lifting",
+          "primary_source": "Research Square",
+          "host_organization": "",
+          "all_sources": [
+            "Research Square"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Computational Mechanics",
+          "topic": "Advanced Numerical Methods in Computational Mathematics"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7221810106",
+          "doi": "https://doi.org/10.5281/zenodo.23374123",
+          "publication_year": 2026,
+          "publication_date": "2026-10-14",
+          "type": "software",
+          "title": "SpectraNS-3D: a reproducible numerical methodology for unforced 3D incompressible Navier\u2013Stokes vortex-tube studies",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Computational Mechanics",
+          "topic": "Fluid Dynamics and Turbulent Flows"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7163744450",
+          "doi": "https://doi.org/10.4230/lipics.sand.2026.10",
+          "publication_year": 2026,
+          "publication_date": "2026-01-01",
+          "type": "article",
+          "title": "Asymptotic Subspace Consensus in Dynamic Networks",
+          "primary_source": "DROPS (Schloss Dagstuhl \u2013 Leibniz Center for Informatics)",
+          "host_organization": "Schloss Dagstuhl \u2013 Leibniz Center for Informatics",
+          "all_sources": [
+            "DROPS (Schloss Dagstuhl \u2013 Leibniz Center for Informatics)",
+            "HAL",
+            "Leibniz international proceedings in informatics"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Control and Systems Engineering",
+          "topic": "Distributed Control Multi-Agent Systems"
+        }
+      ],
+      "all_mathlib_engineering_works": [
+        {
+          "openalex_id": "https://openalex.org/W7221320213",
+          "doi": "https://doi.org/10.5281/zenodo.23288168",
+          "publication_year": 2026,
+          "publication_date": "2026-10-10",
+          "type": "software",
+          "title": "Lean 4 formalization for \"Spectral stability for strong ideal-gas shock layers\"",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Computational Mechanics",
+          "topic": "Computational Fluid Dynamics and Aerodynamics"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7237352799",
+          "doi": "https://doi.org/10.5281/zenodo.24409235",
+          "publication_year": 2026,
+          "publication_date": "2026-11-21",
+          "type": "software",
+          "title": "The Vibrating String with Formal Verification in Lean 4. La Conjecture de la Cordelette Vibrante V\u00e9rification Formelle en Lean 4.",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Control and Systems Engineering",
+          "topic": "Stability and Controllability of Differential Equations"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7225343744",
+          "doi": "https://doi.org/10.5281/zenodo.23972601",
+          "publication_year": 2026,
+          "publication_date": "2026-11-05",
+          "type": "preprint",
+          "title": "The Frohmanian Tether: A Machine-Checked Audit of Its Architecture and Obstructions",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Aerospace Engineering",
+          "topic": "Space Satellite Systems and Control"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7236153364",
+          "doi": "https://doi.org/10.5281/zenodo.24333373",
+          "publication_year": 2026,
+          "publication_date": "2026-11-18",
+          "type": "software",
+          "title": "Weyl's boundary-layer theorems formalised in Lean 4: existence and uniqueness for the Blasius and Homann problems, existence for the problems (A_lambda)",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Computational Mechanics",
+          "topic": "Fluid Mechanics Fundamentals and Applications"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7225596091",
+          "doi": "https://doi.org/10.5281/zenodo.24039910",
+          "publication_year": 2026,
+          "publication_date": "2026-11-07",
+          "type": "preprint",
+          "title": "Syntonic Nav: Against Adaptive Filters",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Aerospace Engineering",
+          "topic": "Inertial Sensor and Navigation"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7221718896",
+          "doi": "https://doi.org/10.5281/zenodo.23352090",
+          "publication_year": 2026,
+          "publication_date": "2026-10-13",
+          "type": "software",
+          "title": "lean-mechanics: classical, continuum and discrete mechanics in Lean 4",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Control and Systems Engineering",
+          "topic": "Dynamics and Control of Mechanical Systems"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7214506974",
+          "doi": "https://doi.org/10.5281/zenodo.22980196",
+          "publication_year": 2026,
+          "publication_date": "2026-09-26",
+          "type": "software",
+          "title": "Ku-Mellin-PATP: reproducibility code",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Computational Mechanics",
+          "topic": "Probabilistic and Robust Engineering Design"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7160955825",
+          "doi": "https://doi.org/10.48550/arxiv.2605.08609",
+          "publication_year": 2026,
+          "publication_date": "2026-05-09",
+          "type": "preprint",
+          "title": "Sheaves as a Means of Maintaining Consistency in Model-based Systems Engineering",
+          "primary_source": "arXiv",
+          "host_organization": "arXiv",
+          "all_sources": [
+            "arXiv"
+          ],
+          "has_arxiv_version": true,
+          "subfield": "Control and Systems Engineering",
+          "topic": "Systems Engineering Methodologies and Applications"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7169506846",
+          "doi": "https://doi.org/10.5281/zenodo.21107021",
+          "publication_year": 2026,
+          "publication_date": "2026-07-17",
+          "type": "conference-abstract",
+          "title": "TH44 / VM-2 Exact Non-Commuting Collapse Surface",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Control and Systems Engineering",
+          "topic": "Control Systems and Identification"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7161589529",
+          "doi": "https://doi.org/10.5281/zenodo.20270517",
+          "publication_year": 2026,
+          "publication_date": "2026-05-19",
+          "type": "preprint",
+          "title": "ITU Tier 1+ #4: Semiconductor Scaling (K_semi)",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Electrical and Electronic Engineering",
+          "topic": "Advancements in Photolithography Techniques"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7238792321",
+          "doi": "https://doi.org/10.5281/zenodo.24485282",
+          "publication_year": 2026,
+          "publication_date": "2026-11-24",
+          "type": "software",
+          "title": "SpectralDissipationInvariant: Machine-Checked Lean 4 Quadratic Energy & L\u00b2 Convergence Criterion for Dissipative Nonlinear PDEs",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Control and Systems Engineering",
+          "topic": "Stability and Controllability of Differential Equations"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7161545863",
+          "doi": "https://doi.org/10.5281/zenodo.20271997",
+          "publication_year": 2026,
+          "publication_date": "2026-05-19",
+          "type": "preprint",
+          "title": "ITU Tier 1+ #13: Robotics (K_robot)",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Control and Systems Engineering",
+          "topic": "Robotics and Automated Systems"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7154447141",
+          "doi": "https://doi.org/10.5281/zenodo.19584002",
+          "publication_year": 2026,
+          "publication_date": "2026-04-15",
+          "type": "software",
+          "title": "ns-lean4-pipeline: Reproducibility artifact for \"A Scaling Invariant at Direction-Field Creases in 3D Navier-Stokes Reconnection\"",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Computational Mechanics",
+          "topic": "Fluid Dynamics and Turbulent Flows"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7225700151",
+          "doi": "https://doi.org/10.5281/zenodo.24121040",
+          "publication_year": 2026,
+          "publication_date": "2026-11-10",
+          "type": "preprint",
+          "title": "Metriplectic Completion of the Frohmanian Symplectic Tether: An Assembled Finite-Dimensional Viscous System, the Imported Tether Kernel, and Lean 4 Checks",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Control and Systems Engineering",
+          "topic": "Control and Stability of Dynamical Systems"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7226012478",
+          "doi": "https://doi.org/10.5281/zenodo.24185982",
+          "publication_year": 2026,
+          "publication_date": "2026-11-13",
+          "type": "preprint",
+          "title": "A lossless four-bus power system with 18 real power flow solutions",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Electrical and Electronic Engineering",
+          "topic": "Power System Optimization and Stability"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7169116618",
+          "doi": "https://doi.org/10.5281/zenodo.21106940",
+          "publication_year": 2026,
+          "publication_date": "2026-07-01",
+          "type": "conference-abstract",
+          "title": "TH43: The Effective Collapse Threshold under Online Estimation",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Control and Systems Engineering",
+          "topic": "Control Systems and Identification"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7225408115",
+          "doi": "https://doi.org/10.5281/zenodo.23995537",
+          "publication_year": 2026,
+          "publication_date": "2026-11-06",
+          "type": "preprint",
+          "title": "Complete Evolution Representations for Spatial Rigid-Body Contact Dynamics",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Control and Systems Engineering",
+          "topic": "Dynamics and Control of Mechanical Systems"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7238826816",
+          "doi": "https://doi.org/10.5281/zenodo.24456120",
+          "publication_year": 2026,
+          "publication_date": "2026-11-23",
+          "type": "preprint",
+          "title": "Cyclic Industrial Symbiosis: A Lean Proof of the N-Partner Product Condition",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Industrial and Manufacturing Engineering",
+          "topic": "Sustainable Industrial Ecology"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7225433488",
+          "doi": "https://doi.org/10.5281/zenodo.23995519",
+          "publication_year": 2026,
+          "publication_date": "2026-11-06",
+          "type": "preprint",
+          "title": "Complete Evolution Representations for Planar Rigid-Body Contact Dynamics",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Control and Systems Engineering",
+          "topic": "Dynamics and Control of Mechanical Systems"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7224093292",
+          "doi": "https://doi.org/10.5281/zenodo.23731866",
+          "publication_year": 2026,
+          "publication_date": "2026-10-28",
+          "type": "preprint",
+          "title": "A Local Displacement-Only Action for an Odd-Mass Continuum Model",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Mechanics of Materials",
+          "topic": "Elasticity and Wave Propagation"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7169611021",
+          "doi": "https://doi.org/10.5281/zenodo.21419868",
+          "publication_year": 2026,
+          "publication_date": "2026-07-17",
+          "type": "conference-abstract",
+          "title": "TH47 / VC-1: Universal Vector Converse",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Control and Systems Engineering",
+          "topic": "Control Systems and Identification"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7153751471",
+          "doi": "https://doi.org/10.5281/zenodo.19526374",
+          "publication_year": 2026,
+          "publication_date": "2026-04-30",
+          "type": "software",
+          "title": "The Geometric Siphon: research repository",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Computational Mechanics",
+          "topic": "Fluid Mechanics Fundamentals and Applications"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7168078506",
+          "doi": "https://doi.org/10.5281/zenodo.21300190",
+          "publication_year": 2026,
+          "publication_date": "2026-07-10",
+          "type": "preprint",
+          "title": "The Identification Duality",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Control and Systems Engineering",
+          "topic": "Control Systems and Identification"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7233079232",
+          "doi": "https://doi.org/10.5281/zenodo.24227492",
+          "publication_year": 2026,
+          "publication_date": "2026-11-14",
+          "type": "preprint",
+          "title": "Minimum inter-event time for ordinal (Kendall \u03c4_b) event triggers: proofs, counterexamples and an open conjecture",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Control and Systems Engineering",
+          "topic": "Stability and Control of Uncertain Systems"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7141373730",
+          "doi": "https://doi.org/10.5281/zenodo.19243721",
+          "publication_year": 2026,
+          "publication_date": "2026-03-27",
+          "type": "preprint",
+          "title": "The Starflower Framework: A Unified Theory of Structural Computational Invariance and Bio-Mimetic Robotic Architectures",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Electrical and Electronic Engineering",
+          "topic": "Advanced Memory and Neural Computing"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7225405486",
+          "doi": "https://doi.org/10.5281/zenodo.23995048",
+          "publication_year": 2026,
+          "publication_date": "2026-11-06",
+          "type": "preprint",
+          "title": "Precedence-constrained Scheduling of Unit Jobs is Polynomial for Every Fixed Number of Machines",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Industrial and Manufacturing Engineering",
+          "topic": "Scheduling and Optimization Algorithms"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7225276129",
+          "doi": "https://doi.org/10.5281/zenodo.23934414",
+          "publication_year": 2026,
+          "publication_date": "2026-11-04",
+          "type": "preprint",
+          "title": "Syntonic Nav V2.0: A Navigation Filter with No Parameter Table",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Aerospace Engineering",
+          "topic": "Inertial Sensor and Navigation"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7154753491",
+          "doi": "https://doi.org/10.5281/zenodo.19637032",
+          "publication_year": 2026,
+          "publication_date": "2026-04-18",
+          "type": "preprint",
+          "title": "The Syntonic Capacity Theorem and Extensions: Gaussian, Correlated, and Non-Gaussian Adaptive-Tracking Bounds",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Control and Systems Engineering",
+          "topic": "Control Systems and Identification"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7224134063",
+          "doi": "https://doi.org/10.5281/zenodo.23734084",
+          "publication_year": 2026,
+          "publication_date": "2026-10-28",
+          "type": "preprint",
+          "title": "Theorem U\u2032-Local: The Local Exponent Law of the Syntonic Window",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Aerospace Engineering",
+          "topic": "Inertial Sensor and Navigation"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7225569704",
+          "doi": "https://doi.org/10.5281/zenodo.24039856",
+          "publication_year": 2026,
+          "publication_date": "2026-11-07",
+          "type": "preprint",
+          "title": "Syntonic Nav: Against Truth-Tuned Rivals",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Aerospace Engineering",
+          "topic": "Inertial Sensor and Navigation"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7225693859",
+          "doi": "https://doi.org/10.5281/zenodo.24120868",
+          "publication_year": 2026,
+          "publication_date": "2026-11-10",
+          "type": "article",
+          "title": "Applied Identity Physics: Every Power-Limited Drive Is One Relation \u2014 a \u00b7 \u03b1 \u00b7 v_e = 2, the Specific-Mass Decomposition, the Radiator\u2013Core Crossover at 749.54 K, and the Matched Radius as the Drive's Impedance Match",
+          "primary_source": "PhilPapers (PhilPapers Foundation)",
+          "host_organization": "",
+          "all_sources": [
+            "PhilPapers (PhilPapers Foundation)",
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Aerospace Engineering",
+          "topic": "Rocket and propulsion systems research"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7213346139",
+          "doi": "https://doi.org/10.21203/rs.3.rs-11029602/v1",
+          "publication_year": 2026,
+          "publication_date": "2026-09-15",
+          "type": "preprint",
+          "title": "Experimental Realization of Zero-Payload Interplanetary Data Teleportation via Algorithmic Topological Resonance",
+          "primary_source": "Research Square",
+          "host_organization": "",
+          "all_sources": [
+            "Research Square"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Electrical and Electronic Engineering",
+          "topic": "Space Technology and Applications"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7223206283",
+          "doi": "https://doi.org/10.5281/zenodo.23552322",
+          "publication_year": 2026,
+          "publication_date": "2026-10-22",
+          "type": "preprint",
+          "title": "Independently Checkable Certificates for Connected DC Optimal Transmission Switching",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Electrical and Electronic Engineering",
+          "topic": "Electric Power System Optimization"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7167267305",
+          "doi": "https://doi.org/10.5281/zenodo.21134495",
+          "publication_year": 2026,
+          "publication_date": "2026-07-02",
+          "type": "preprint",
+          "title": "Vector/Matrix Syntony: Matrix-Geometric-Mean Scaling and Per-Mode Capacity for Multi-Axis Adaptive Systems",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Control and Systems Engineering",
+          "topic": "Control Systems and Identification"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7223681532",
+          "doi": "https://doi.org/10.48550/arxiv.2610.31886",
+          "publication_year": 2026,
+          "publication_date": "2026-10-22",
+          "type": "preprint",
+          "title": "A frame-indifferent rank-one convex function in three dimensions which is not quasiconvex",
+          "primary_source": "arXiv",
+          "host_organization": "arXiv",
+          "all_sources": [
+            "arXiv"
+          ],
+          "has_arxiv_version": true,
+          "subfield": "Biomedical Engineering",
+          "topic": "Elasticity and Material Modeling"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7169514001",
+          "doi": "https://doi.org/10.48550/arxiv.2607.14699",
+          "publication_year": 2026,
+          "publication_date": "2026-07-16",
+          "type": "preprint",
+          "title": "Exact Computation of Non-Gaussian Mismatch Penalties in Wiener-Hermite Cross-Correlation Identification",
+          "primary_source": "arXiv",
+          "host_organization": "arXiv",
+          "all_sources": [
+            "arXiv"
+          ],
+          "has_arxiv_version": true,
+          "subfield": "Control and Systems Engineering",
+          "topic": "Control Systems and Identification"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7225462718",
+          "doi": "https://doi.org/10.5281/zenodo.24025446",
+          "publication_year": 2026,
+          "publication_date": "2026-11-07",
+          "type": "article",
+          "title": "Applied Identity Physics Identity Vector Amplification-IVA Peak, One Corridor Across Exhaust Velocity, Mass Ratio and Nuclear Binding",
+          "primary_source": "PhilPapers (PhilPapers Foundation)",
+          "host_organization": "",
+          "all_sources": [
+            "PhilPapers (PhilPapers Foundation)",
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Aerospace Engineering",
+          "topic": "Rocket and propulsion systems research"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7207606458",
+          "doi": "https://doi.org/10.2139/ssrn.7386042",
+          "publication_year": 2026,
+          "publication_date": "2026-01-01",
+          "type": "preprint",
+          "title": "Uniform Inf\u2013Sup Stability of Quartic and Quintic Scott\u2013Vogelius Elements on Freudenthal Meshes: A Protected Raw Edge-Star Lifting",
+          "primary_source": "SSRN Electronic Journal",
+          "host_organization": "RELX Group (Netherlands)",
+          "all_sources": [
+            "SSRN Electronic Journal"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Computational Mechanics",
+          "topic": "Advanced Numerical Methods in Computational Mathematics"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7205709215",
+          "doi": "https://doi.org/10.21203/rs.3.rs-10887173/v1",
+          "publication_year": 2026,
+          "publication_date": "2026-09-02",
+          "type": "preprint",
+          "title": "Uniform inf\u2013sup stability of quartic and quintic Scott\u2013Vogelius elements on Freudenthal meshes: a protected raw edge-star lifting",
+          "primary_source": "Research Square",
+          "host_organization": "",
+          "all_sources": [
+            "Research Square"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Computational Mechanics",
+          "topic": "Advanced Numerical Methods in Computational Mathematics"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7216573443",
+          "doi": "https://doi.org/10.48550/arxiv.2610.00082",
+          "publication_year": 2026,
+          "publication_date": "2026-09-06",
+          "type": "preprint",
+          "title": "A Zero-Flux Material Cylinder in the Unsteady Kiknadze--Krasnov Vortex",
+          "primary_source": "arXiv",
+          "host_organization": "arXiv",
+          "all_sources": [
+            "arXiv"
+          ],
+          "has_arxiv_version": true,
+          "subfield": "Computational Mechanics",
+          "topic": "Fluid Dynamics and Turbulent Flows"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7222970573",
+          "doi": "https://doi.org/10.48550/arxiv.2610.22944",
+          "publication_year": 2026,
+          "publication_date": "2026-10-16",
+          "type": "preprint",
+          "title": "Implementing the EIT complete electrode model through Robin boundary conditions",
+          "primary_source": "arXiv",
+          "host_organization": "arXiv",
+          "all_sources": [
+            "arXiv"
+          ],
+          "has_arxiv_version": true,
+          "subfield": "Electrical and Electronic Engineering",
+          "topic": "Electrical and Bioimpedance Tomography"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7213116718",
+          "doi": "https://doi.org/10.48550/arxiv.2609.12875",
+          "publication_year": 2026,
+          "publication_date": "2026-09-11",
+          "type": "preprint",
+          "title": "What an odour descriptor corpus can and cannot measure: valence, attenuation, and the ceiling of the public record",
+          "primary_source": "arXiv",
+          "host_organization": "arXiv",
+          "all_sources": [
+            "arXiv"
+          ],
+          "has_arxiv_version": true,
+          "subfield": "Biomedical Engineering",
+          "topic": "Advanced Chemical Sensor Technologies"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7164589847",
+          "doi": "https://doi.org/10.1007/s00034-026-03812-y",
+          "publication_year": 2026,
+          "publication_date": "2026-10-14",
+          "type": "article",
+          "title": "A Closed-Form Skew Penalty for Volterra Cross-Correlation Identification Under Non-Gaussian Input",
+          "primary_source": "Circuits Systems and Signal Processing",
+          "host_organization": "Birkh\u00e4user",
+          "all_sources": [
+            "Circuits Systems and Signal Processing",
+            "arXiv"
+          ],
+          "has_arxiv_version": true,
+          "subfield": "Control and Systems Engineering",
+          "topic": "Control Systems and Identification"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7221810106",
+          "doi": "https://doi.org/10.5281/zenodo.23374123",
+          "publication_year": 2026,
+          "publication_date": "2026-10-14",
+          "type": "software",
+          "title": "SpectraNS-3D: a reproducible numerical methodology for unforced 3D incompressible Navier\u2013Stokes vortex-tube studies",
+          "primary_source": "Zenodo (CERN European Organization for Nuclear Research)",
+          "host_organization": "European Organization for Nuclear Research",
+          "all_sources": [
+            "Zenodo (CERN European Organization for Nuclear Research)"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Computational Mechanics",
+          "topic": "Fluid Dynamics and Turbulent Flows"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7225746254",
+          "doi": "https://doi.org/10.48550/arxiv.2611.12585",
+          "publication_year": 2026,
+          "publication_date": "2026-11-09",
+          "type": "preprint",
+          "title": "A Large Gap between Galerkin Errors with and without Mesh-Uniform Regularity for the KdV Equation with Boundary Dissipation",
+          "primary_source": "arXiv",
+          "host_organization": "arXiv",
+          "all_sources": [
+            "arXiv"
+          ],
+          "has_arxiv_version": true,
+          "subfield": "Computational Mechanics",
+          "topic": "Advanced Numerical Methods in Computational Mathematics"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7235399090",
+          "doi": "https://doi.org/10.48550/arxiv.2611.21353",
+          "publication_year": 2026,
+          "publication_date": "2026-11-16",
+          "type": "preprint",
+          "title": "An Adaptive Reduced Speed of Light Approximation",
+          "primary_source": "arXiv",
+          "host_organization": "arXiv",
+          "all_sources": [
+            "arXiv"
+          ],
+          "has_arxiv_version": true,
+          "subfield": "Computational Mechanics",
+          "topic": "Radiative Heat Transfer Studies"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7167044582",
+          "doi": "https://doi.org/10.48550/arxiv.2607.00091",
+          "publication_year": 2026,
+          "publication_date": "2026-06-30",
+          "type": "preprint",
+          "title": "A Priori Integral Persistent Excitation in Conservative Polynomial ODEs with Higher-Order Interactions",
+          "primary_source": "arXiv",
+          "host_organization": "arXiv",
+          "all_sources": [
+            "arXiv"
+          ],
+          "has_arxiv_version": true,
+          "subfield": "Control and Systems Engineering",
+          "topic": "Control Systems and Identification"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7221770075",
+          "doi": "https://doi.org/10.48550/arxiv.2610.14285",
+          "publication_year": 2026,
+          "publication_date": "2026-10-09",
+          "type": "preprint",
+          "title": "Zero-Crossing Time Lower Bounds for the Homogeneous Super-Twisting Algorithm",
+          "primary_source": "arXiv",
+          "host_organization": "arXiv",
+          "all_sources": [
+            "arXiv"
+          ],
+          "has_arxiv_version": true,
+          "subfield": "Control and Systems Engineering",
+          "topic": "Adaptive Control of Nonlinear Systems"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7236474022",
+          "doi": "https://doi.org/10.48550/arxiv.2611.22862",
+          "publication_year": 2026,
+          "publication_date": "2026-11-17",
+          "type": "preprint",
+          "title": "Convergence of a Parametric Symmetric Galerkin Boundary Element Method for the Mullins-Sekerka Flow",
+          "primary_source": "arXiv",
+          "host_organization": "arXiv",
+          "all_sources": [
+            "arXiv"
+          ],
+          "has_arxiv_version": true,
+          "subfield": "Computational Mechanics",
+          "topic": "Advanced Numerical Methods in Computational Mathematics"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7214071514",
+          "doi": "https://doi.org/10.48550/arxiv.2609.26541",
+          "publication_year": 2026,
+          "publication_date": "2026-09-22",
+          "type": "preprint",
+          "title": "Robust Strictly Positive Real Synthesis for Sixth-Order Interval Polynomial Families",
+          "primary_source": "arXiv",
+          "host_organization": "arXiv",
+          "all_sources": [
+            "arXiv"
+          ],
+          "has_arxiv_version": true,
+          "subfield": "Control and Systems Engineering",
+          "topic": "Advanced Control Systems Design"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7225828303",
+          "doi": "https://doi.org/10.48550/arxiv.2611.14349",
+          "publication_year": 2026,
+          "publication_date": "2026-11-10",
+          "type": "preprint",
+          "title": "Shape Perturbation of the Galerkin Boundary Element Dirichlet-to-Neumann Matrix on Moving Polygons",
+          "primary_source": "arXiv",
+          "host_organization": "arXiv",
+          "all_sources": [
+            "arXiv"
+          ],
+          "has_arxiv_version": true,
+          "subfield": "Computational Mechanics",
+          "topic": "Advanced Numerical Methods in Computational Mathematics"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7163744450",
+          "doi": "https://doi.org/10.4230/lipics.sand.2026.10",
+          "publication_year": 2026,
+          "publication_date": "2026-01-01",
+          "type": "article",
+          "title": "Asymptotic Subspace Consensus in Dynamic Networks",
+          "primary_source": "DROPS (Schloss Dagstuhl \u2013 Leibniz Center for Informatics)",
+          "host_organization": "Schloss Dagstuhl \u2013 Leibniz Center for Informatics",
+          "all_sources": [
+            "DROPS (Schloss Dagstuhl \u2013 Leibniz Center for Informatics)",
+            "HAL",
+            "Leibniz international proceedings in informatics"
+          ],
+          "has_arxiv_version": false,
+          "subfield": "Control and Systems Engineering",
+          "topic": "Distributed Control Multi-Agent Systems"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7131320290",
+          "doi": "https://doi.org/10.48550/arxiv.2602.19121",
+          "publication_year": 2026,
+          "publication_date": "2026-02-22",
+          "type": "preprint",
+          "title": "Asymptotic Subspace Consensus in Dynamic Networks",
+          "primary_source": "arXiv",
+          "host_organization": "arXiv",
+          "all_sources": [
+            "arXiv"
+          ],
+          "has_arxiv_version": true,
+          "subfield": "Control and Systems Engineering",
+          "topic": "Distributed Control Multi-Agent Systems"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7213295748",
+          "doi": "https://doi.org/10.48550/arxiv.2609.15554",
+          "publication_year": 2026,
+          "publication_date": "2026-09-14",
+          "type": "preprint",
+          "title": "Greedy Packing of Nested Rings: Placement Rules, a Golden Counterexample, and a Tribonacci Floor",
+          "primary_source": "arXiv",
+          "host_organization": "arXiv",
+          "all_sources": [
+            "arXiv"
+          ],
+          "has_arxiv_version": true,
+          "subfield": "Industrial and Manufacturing Engineering",
+          "topic": "Optimization and Packing Problems"
+        },
+        {
+          "openalex_id": "https://openalex.org/W7220700730",
+          "doi": "https://doi.org/10.48550/arxiv.2610.04957",
+          "publication_year": 2026,
+          "publication_date": "2026-10-04",
+          "type": "preprint",
+          "title": "Trinity: One Differentiable Physics for Training, Refining and Scoring Generative Floorplanners",
+          "primary_source": "arXiv",
+          "host_organization": "arXiv",
+          "all_sources": [
+            "arXiv"
+          ],
+          "has_arxiv_version": true,
+          "subfield": "Electrical and Electronic Engineering",
+          "topic": "VLSI and FPGA Design Techniques"
+        }
+      ]
+    }
+  }
+}

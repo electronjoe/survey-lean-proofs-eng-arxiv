@@ -33,6 +33,9 @@ DEFAULT_HUMAN_DIR = REPO_ROOT / "artifacts" / "human_annotations"
 DEFAULT_TRACK1_PATH = REPO_ROOT / "artifacts" / "track1_sensitivity_summary.json"
 DEFAULT_SCOUT_PLUS7_PATH = REPO_ROOT / "artifacts" / "scout_eng_tier12_2026_11_summary.json"
 DEFAULT_TRACK3_PATH = REPO_ROOT / "artifacts" / "track3_operational_fv_pilot.json"
+DEFAULT_PHASE_C1_PATH = REPO_ROOT / "artifacts" / "phase_c1_15cat_longitudinal.json"
+DEFAULT_PHASE_C2_PATH = REPO_ROOT / "artifacts" / "phase_c2_plus7_audits.json"
+DEFAULT_OFF_ARXIV_PATH = REPO_ROOT / "artifacts" / "off_arxiv_probe.json"
 
 # Multi-paper monorepos whose inventory LoC reports paper-specific subpackage LoC (*).
 SUBPACKAGE_IDS = {"2611.09050", "2611.13584", "2611.15128"}
@@ -761,6 +764,7 @@ def check_all_bolded_numbers(
     sandbox_data: tuple[dict[str, Any], list[dict[str, Any]]] | None = None,
     human_data: tuple[dict[str, Any] | None, dict[str, Any] | None] | None = None,
     v07_data: tuple[dict[str, Any] | None, dict[str, Any] | None, dict[str, Any] | None] | None = None,
+    phase_d_data: tuple[dict[str, Any] | None, dict[str, Any] | None, dict[str, Any] | None] | None = None,
 ) -> list[str]:
     """Audit EVERY numeric token inside any \\textbf{...} span in main.tex against artifact-derived values."""
     t0, t1, t2 = slices["T0"], slices["T1"], slices["T2"]
@@ -1068,6 +1072,156 @@ def check_all_bolded_numbers(
                     _add_int(v)
             _add_int(18)  # 18 total custom axiom declarations in 2605.16407
 
+    # Phase C1 (15-cat longitudinal), Phase C2 (+7 Layer-A & compact sandbox), Off-arXiv probe
+    if phase_d_data is not None:
+        c1, c2, off_ax = phase_d_data
+        if c1 is not None:
+            gt = c1["grand_totals"]
+            for k in (
+                "panel_15cat_unique_papers",
+                "panel_15cat_fulltext_screened",
+                "plus7_unique_papers",
+                "plus7_net_new_papers",
+                "complete_eess_3slice_unique_papers",
+                "eess_non_sy_3slice_unique_papers",
+            ):
+                _add_int(int(gt[k]))
+            _add_pct(float(gt["panel_15cat_fulltext_coverage_pct"]))
+            _add_int(int(gt["eess_non_sy_3slice_confirmed_v1"]["count"]))
+            _add_pct(float(gt["eess_non_sy_3slice_confirmed_v1"]["pct"]))
+            for mv in c1.get("multipliers", {}).values():
+                if mv is not None:
+                    v = float(mv)
+                    _add_mult(v)
+                    allowed.add(f"{v:.2f}x")
+            _add_int(len(c1["categories"]["all15"]))
+            _add_int(len(c1["categories"]["eess_all"]))
+            _add_int(len(c1["grand_totals"]["persistent_zero_categories_v_latest_3slice"]))
+            _add_int(7)  # 7 total retroactive additions across 15 categories
+            for sl in c1["slices"]:
+                for panel_key in ("panel_15cat", "plus7"):
+                    pb = sl[panel_key]
+                    _add_int(int(pb["total_papers"]))
+                    _add_int(int(pb["fulltext_screened"]))
+                    _add_pct(float(pb["fulltext_coverage_pct"]))
+                    _add_int(int(pb["stage2_lean_candidates"]))
+                    _add_pct(100.0 * int(pb["stage2_lean_candidates"]) / max(int(pb["total_papers"]), 1))
+                    _add_int(int(pb["beyond_lean_stage2"]["count"]))
+                    _add_pct(float(pb["beyond_lean_stage2"]["pct"]))
+                    for mode in ("confirmed_v1", "confirmed_v_latest"):
+                        _add_int(int(pb[mode]["count"]))
+                        _add_pct(float(pb[mode]["pct"]))
+                        for ci_v in pb[mode].get("ci_95_pct", []):
+                            _add_pct(float(ci_v))
+                    for rmap_key in ("roles_v1", "roles_v_latest"):
+                        tot_conf = int(pb["confirmed_v1" if rmap_key == "roles_v1" else "confirmed_v_latest"]["count"])
+                        for rb in pb[rmap_key].values():
+                            _add_int(int(rb["count"]))
+                            _add_pct(float(rb["pct"]))
+                            if tot_conf > 0:
+                                _add_pct(100.0 * int(rb["count"]) / tot_conf)
+                            for ci_v in rb.get("ci_95_pct", []):
+                                _add_pct(float(ci_v))
+                            _add_int(int(rb.get("strict_core_count", 0)))
+                            _add_int(int(rb.get("tier3_gold_count", 0)))
+                            _add_int(int(rb.get("p4_count", 0)))
+                    sc = pb.get("scale_v1") or {}
+                    if sc.get("median_owned_loc"):
+                        _add_int(int(sc["median_owned_loc"]))
+                    if sc.get("total_owned_loc"):
+                        allowed.add(f"{sc['total_owned_loc'] / 1e6:.2f}M")
+                    t_v1 = pb.get("tiers_v1") or {}
+                    a_v1 = pb.get("ai_v1") or {}
+                    p_v1 = pb.get("paradigms_v1") or {}
+                    n_c1 = int(pb["confirmed_v1"]["count"])
+                    for mp in (t_v1, a_v1, p_v1):
+                        for vv in mp.values():
+                            _add_int(int(vv))
+                            if n_c1 > 0:
+                                _add_pct(100.0 * int(vv) / n_c1)
+                    for cinfo in (pb.get("per_category") or {}).values():
+                        _add_int(int(cinfo["total_papers"]))
+                        _add_int(int(cinfo["confirmed_v1"]["count"]))
+                        _add_pct(float(cinfo["confirmed_v1"]["pct"]))
+                        for rc in (cinfo.get("roles_v1") or {}).values():
+                            _add_int(int(rc))
+                            _add_pct(100.0 * int(rc) / max(int(cinfo["total_papers"]), 1))
+                ee = sl["complete_eess_archive"]
+                for ek in ("eess_all_unique_papers", "eess_non_sy_unique_papers"):
+                    _add_int(int(ee[ek]))
+            _add_int(30)  # 30 net-new +7 T2 confirmed papers
+            _add_int(5)   # 5 net-new +7 T2 eng_algorithmic_proof papers
+            _add_int(795) # eess.IV + eess.AS 3-slice total (489 + 306)
+        if c2 is not None:
+            for prov_key in ("plus7_provenance", "combined_15cat_provenance"):
+                pb = c2[prov_key]
+                _add_int(int(pb["total_audited_repos"]))
+                fl = pb["theorems_compared_file_line_summary"]
+                _add_int(int(fl["total_refs"]))
+                _add_int(int(fl["resolved_in_bounds"]))
+            _add_int(24)  # 20 orig-8 T2 + 4 plus7 T2 audited repos
+            for la in c2["layer_a_summary"].values():
+                _add_int(int(la["count"]))
+                _add_int(int(la["material_undisclosed_count"]))
+                _add_int(int(la["has_non_vacuity_witnesses_count"]))
+                _add_pct(float(la["has_non_vacuity_witnesses_pct"]))
+                for ov_c in (la.get("overall_fidelity") or {}).values():
+                    _add_int(int(ov_c))
+            for sb in c2["sandbox_summary"].values():
+                for sk in (
+                    "total_attempted",
+                    "pass_out_of_box",
+                    "pass_and_standard_axioms_only",
+                    "pass_with_nonstandard_axioms",
+                    "tier3_gold_attempted",
+                    "tier3_gold_pass_out_of_box",
+                    "tier3_gold_clean_axioms",
+                    "total_theorems_checked_ootb",
+                    "total_theorems_checked_incl_synthetic",
+                ):
+                    _add_int(int(sb[sk]))
+                _add_pct(float(sb["pass_out_of_box_pct"]))
+                if sb.get("median_pass_wall_time_sec"):
+                    allowed.add(f"{float(sb['median_pass_wall_time_sec']):.1f}")
+            for rec in c2.get("records", []):
+                sb_r = rec.get("sandbox_build") or {}
+                if sb_r.get("total_theorems_checked"):
+                    _add_int(int(sb_r["total_theorems_checked"]))
+        if off_ax is not None:
+            ps = off_ax["preprint_servers"]
+            for srv in (ps["techrxiv"], ps["engrxiv"], ps["combined"]):
+                _add_int(int(srv["total_records_2025_2026"]))
+                _add_int(int(srv["unique_raw_hits"]))
+                _add_int(int(srv["confirmed_lean_tp_unique"]))
+                allowed.add(f"{float(srv['confirmed_95pct_ub_pct']):.3f}%")
+                _add_pct(float(srv["confirmed_95pct_ub_pct"]))
+            oa_all = off_ax["openalex"]["mathlib_all_fields"]
+            for k in ("count_2025", "count_2026", "count_2025_2026"):
+                _add_int(int(oa_all[k]))
+            _add_mult(float(oa_all["yoy_multiplier_2026_over_2025"]))
+            for fb in oa_all["by_primary_field"]:
+                _add_int(int(fb["count"]))
+                _add_pct(float(fb["share_pct"]))
+            oa_eng = off_ax["openalex"]["engineering_field_22"]
+            for k in (
+                "total_works_2025_2026",
+                "mathlib_count_2025_2026",
+                "mathlib_with_arxiv_version",
+                "mathlib_off_arxiv_only",
+                "lean4_formalization_query_count",
+                "lean4_theorem_prover_query_count",
+            ):
+                _add_int(int(oa_eng[k]))
+            for k in (
+                "mathlib_share_of_all_mathlib_pct",
+                "mathlib_arxiv_share_pct",
+                "mathlib_off_arxiv_share_pct",
+            ):
+                _add_pct(float(oa_eng[k]))
+            for src in oa_eng.get("off_arxiv_sources_top", []):
+                _add_int(int(src["count"]))
+                _add_pct(100.0 * int(src["count"]) / max(int(oa_eng["mathlib_off_arxiv_only"]), 1))
+
     # Structural / non-metric tokens that appear inside \textbf{...} headings/labels
     structural_re = re.compile(
         r"(?:"
@@ -1342,6 +1496,135 @@ def check_v07_scope_refinements(
     return errors
 
 
+def check_phase_d_15cat_and_off_arxiv(
+    tex: str,
+    c1: dict[str, Any] | None,
+    c2: dict[str, Any] | None,
+    off_ax: dict[str, Any] | None,
+) -> list[str]:
+    """Verify Phase C1 (tab:panel15_longitudinal, tab:panel15_cats), Phase C2 (tab:sandbox_plus7), and Off-arXiv (tab:off_arxiv)."""
+    errors: list[str] = []
+    if c1 is not None:
+        rows_l = [
+            [clean_tex_cell(c) for c in row]
+            for row in split_tabular_rows(extract_table_by_label(tex, "tab:panel15_longitudinal"))
+        ]
+        if not rows_l:
+            errors.append("Missing tab:panel15_longitudinal in main.tex")
+        else:
+            p15_by_id = {sl["short_id"]: sl["panel_15cat"] for sl in c1["slices"]}
+            for token, getter in (
+                ("15-Cat Unique Papers", lambda p: p["total_papers"]),
+                ("Confirmed Lean (v1 contemp.)", lambda p: p["confirmed_v1"]["count"]),
+                ("Confirmed Lean (v\\_latest)", lambda p: p["confirmed_v_latest"]["count"]),
+                ("eng\\_algorithmic\\_proof", lambda p: p["roles_v1"]["eng_algorithmic_proof"]["count"]),
+                ("pure\\_math\\_or\\_tcs", lambda p: p["roles_v1"]["pure_math_or_tcs"]["count"]),
+            ):
+                match = [r for r in rows_l if token in r[0]]
+                if not match:
+                    errors.append(f"tab:panel15_longitudinal missing row matching {token!r}")
+                    continue
+                r = match[0]
+                for idx, sid in ((1, "T0"), (2, "T1"), (3, "T2")):
+                    got = parse_int(r[idx])
+                    exp = int(getter(p15_by_id[sid]))
+                    if got != exp:
+                        errors.append(f"tab:panel15_longitudinal [{token}][{sid}]: got {got} != expected {exp}")
+
+        rows_c = [
+            [clean_tex_cell(c) for c in row]
+            for row in split_tabular_rows(extract_table_by_label(tex, "tab:panel15_cats"))
+        ]
+        if not rows_c:
+            errors.append("Missing tab:panel15_cats in main.tex")
+        else:
+            t2_cats = next(sl["panel_15cat"]["per_category"] for sl in c1["slices"] if sl["short_id"] == "T2")
+            for cat in c1["categories"]["plus7"]:
+                match = [r for r in rows_c if cat in r[0]]
+                if not match:
+                    errors.append(f"tab:panel15_cats missing row for {cat}")
+                    continue
+                r = match[0]
+                exp_n = int(t2_cats[cat]["total_papers"])
+                exp_eng = int(t2_cats[cat]["roles_v1"]["eng_algorithmic_proof"])
+                exp_pm = int(t2_cats[cat]["roles_v1"]["pure_math_or_tcs"])
+                if parse_int(r[3]) != exp_n:
+                    errors.append(f"tab:panel15_cats [{cat}] T2 papers: got {r[3]!r} != expected {exp_n}")
+                if parse_int(r[5]) != exp_eng:
+                    errors.append(f"tab:panel15_cats [{cat}] T2 eng_alg: got {r[5]!r} != expected {exp_eng}")
+                if parse_int(r[6]) != exp_pm:
+                    errors.append(f"tab:panel15_cats [{cat}] T2 pure_math: got {r[6]!r} != expected {exp_pm}")
+
+    if c2 is not None:
+        rows_sb = [
+            [clean_tex_cell(c) for c in row]
+            for row in split_tabular_rows(extract_table_by_label(tex, "tab:sandbox_plus7"))
+        ]
+        sb_recs = {r["arxiv_id"]: r for r in c2["records"] if r.get("compact_sandbox_eligible")}
+        seen_sb: set[str] = set()
+        for r in rows_sb:
+            if len(r) < 10:
+                continue
+            aid = r[0]
+            if not re.match(r"^\d{4}\.\d{5}$", aid):
+                continue
+            seen_sb.add(aid)
+            if aid not in sb_recs:
+                errors.append(f"tab:sandbox_plus7 unknown arXiv ID {aid}")
+                continue
+            rec = sb_recs[aid]
+            if parse_int(r[4]) != int(rec["primary_owned_loc"]):
+                errors.append(f"tab:sandbox_plus7 [{aid}] LoC: got {r[4]!r} != expected {rec['primary_owned_loc']}")
+            if parse_int(r[8]) != int(rec["sandbox_build"]["total_theorems_checked"]):
+                errors.append(
+                    f"tab:sandbox_plus7 [{aid}] Thms: got {r[8]!r} != expected {rec['sandbox_build']['total_theorems_checked']}"
+                )
+        if set(sb_recs) - seen_sb:
+            errors.append(f"tab:sandbox_plus7 missing repos: {sorted(set(sb_recs) - seen_sb)}")
+
+        ov15 = c2["sandbox_summary"]["all15_t1_t2_compact_all_roles"]
+        comb_prov = c2["combined_15cat_provenance"]
+        for desc, tok in (
+            ("Phase C2 combined 15-cat sandbox pass", f"\\textbf{{{ov15['pass_out_of_box']}/{ov15['total_attempted']} ({ov15['pass_out_of_box_pct']:.1f}\\%)}}"),
+            ("Phase C2 combined 15-cat OOTB theorems", f"\\textbf{{{ov15['total_theorems_checked_ootb']:,}}}"),
+            ("Phase C2 combined 274/274 file:line refs", f"\\textbf{{{comb_prov['theorems_compared_file_line_summary']['resolved_in_bounds']}/{comb_prov['theorems_compared_file_line_summary']['total_refs']}}}"),
+        ):
+            if tok not in tex:
+                errors.append(f"Phase C2 prose mismatch ({desc}): expected {tok!r} in main.tex")
+
+    if off_ax is not None:
+        rows_oa = [
+            [clean_tex_cell(c) for c in row]
+            for row in split_tabular_rows(extract_table_by_label(tex, "tab:off_arxiv"))
+        ]
+        if not rows_oa:
+            errors.append("Missing tab:off_arxiv in main.tex")
+        else:
+            ps = off_ax["preprint_servers"]
+            oa_all = off_ax["openalex"]["mathlib_all_fields"]
+            oa_eng = off_ax["openalex"]["engineering_field_22"]
+            for prefix, exp_tot, exp_hit in (
+                ("TechRxiv (IEEE", ps["techrxiv"]["total_records_2025_2026"], ps["techrxiv"]["confirmed_lean_tp_unique"]),
+                ("engrXiv", ps["engrxiv"]["total_records_2025_2026"], ps["engrxiv"]["confirmed_lean_tp_unique"]),
+                ("TechRxiv + engrXiv", ps["combined"]["total_records_2025_2026"], ps["combined"]["confirmed_lean_tp_unique"]),
+                ("OpenAlex Engineering", oa_eng["total_works_2025_2026"], oa_eng["mathlib_count_2025_2026"]),
+            ):
+                match = [r for r in rows_oa if r[0].startswith(prefix)]
+                if not match:
+                    errors.append(f"tab:off_arxiv missing row starting with {prefix!r}")
+                    continue
+                r = match[0]
+                if parse_int(r[1]) != int(exp_tot):
+                    errors.append(f"tab:off_arxiv [{prefix}] total: got {r[1]!r} != expected {exp_tot}")
+                if parse_int(r[2]) != int(exp_hit):
+                    errors.append(f"tab:off_arxiv [{prefix}] hits: got {r[2]!r} != expected {exp_hit}")
+            m_gl = [r for r in rows_oa if r[0].startswith("OpenAlex Global")]
+            if not m_gl or parse_int(m_gl[0][2]) != int(oa_all["count_2025_2026"]):
+                errors.append(f"tab:off_arxiv OpenAlex Global count mismatch (expected {oa_all['count_2025_2026']})")
+
+    return errors
+
+
 def run_all_checks(
     tex_path: Path = DEFAULT_TEX,
     longitudinal_path: Path = DEFAULT_LONGITUDINAL,
@@ -1352,6 +1635,9 @@ def run_all_checks(
     track1_path: Path = DEFAULT_TRACK1_PATH,
     scout_plus7_path: Path = DEFAULT_SCOUT_PLUS7_PATH,
     track3_path: Path = DEFAULT_TRACK3_PATH,
+    phase_c1_path: Path = DEFAULT_PHASE_C1_PATH,
+    phase_c2_path: Path = DEFAULT_PHASE_C2_PATH,
+    off_arxiv_path: Path = DEFAULT_OFF_ARXIV_PATH,
 ) -> tuple[list[str], dict[str, Any]]:
     tex = strip_tex_comments(tex_path.read_text(encoding="utf-8"))
     longit = json.loads(longitudinal_path.read_text(encoding="utf-8"))
@@ -1387,6 +1673,11 @@ def run_all_checks(
     track3 = json.loads(track3_path.read_text(encoding="utf-8")) if track3_path.is_file() else None
     v07_data = (track1, scout7, track3) if any(x is not None for x in (track1, scout7, track3)) else None
 
+    c1 = json.loads(phase_c1_path.read_text(encoding="utf-8")) if phase_c1_path.is_file() else None
+    c2 = json.loads(phase_c2_path.read_text(encoding="utf-8")) if phase_c2_path.is_file() else None
+    off_ax = json.loads(off_arxiv_path.read_text(encoding="utf-8")) if off_arxiv_path.is_file() else None
+    phase_d_data = (c1, c2, off_ax) if any(x is not None for x in (c1, c2, off_ax)) else None
+
     errors: list[str] = []
     errors.extend(check_cross_artifact_consistency(longit, fig_inputs_by_slice))
     errors.extend(check_table_categories(tex, slices["T2"]))
@@ -1397,7 +1688,7 @@ def run_all_checks(
         errors.extend(check_prose_and_bolded_claims(tex, slices, fig_inputs_by_slice["2026-11"], recall_cal))
         errors.extend(
             check_all_bolded_numbers(
-                tex, slices, fig_inputs_by_slice["2026-11"], recall_cal, sandbox_data, human_data, v07_data
+                tex, slices, fig_inputs_by_slice["2026-11"], recall_cal, sandbox_data, human_data, v07_data, phase_d_data
             )
         )
     if provenance_path.is_file():
@@ -1409,6 +1700,8 @@ def run_all_checks(
         errors.extend(check_human_verification_and_irr(tex, irr_summary, layer_a_human))
     if v07_data is not None:
         errors.extend(check_v07_scope_refinements(tex, track1, scout7, track3))
+    if phase_d_data is not None:
+        errors.extend(check_phase_d_15cat_and_off_arxiv(tex, c1, c2, off_ax))
 
     t2 = slices["T2"]
     stats = {

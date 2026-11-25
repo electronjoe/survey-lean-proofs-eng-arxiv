@@ -25,6 +25,9 @@ FIG_DIR = Path("papers/shared/figures")
 PREVIEW_DIR = Path("data/fig_previews")
 DEFAULT_FIGURE_INPUTS = Path("artifacts/slices/2026-11/figure_inputs.json")
 DEFAULT_LONGITUDINAL_SUMMARY = Path("artifacts/longitudinal_summary.json")
+DEFAULT_PHASE_C1 = Path("artifacts/phase_c1_15cat_longitudinal.json")
+DEFAULT_PLUS7_AUDITS = Path("artifacts/slices/2026-11/plus7_layer_a_audits.json")
+DEFAULT_PHASE_C2 = Path("artifacts/phase_c2_plus7_audits.json")
 DEFAULT_SANDBOX_DIR = Path("artifacts/sandbox_builds")
 
 # Paper-specific subpackage LoC overrides for multi-paper monorepos (verified in Phase 2 audits)
@@ -239,9 +242,98 @@ def make_pipeline_funnel(
 
 def make_category_bifurcation(
     fig_data: dict[str, Any],
+    phase_c1_path: Path = DEFAULT_PHASE_C1,
     out_dir: Path = FIG_DIR,
     save_previews: bool = False,
 ) -> None:
+    if phase_c1_path.is_file():
+        c1 = json.loads(phase_c1_path.read_text(encoding="utf-8"))
+        t2_p15 = next(s["panel_15cat"] for s in c1["slices"] if s["short_id"] == "T2")
+        per_cat = t2_p15["per_category"]
+        cat_labels = {
+            "cs.GT": "cs.GT* (Game Theory / OR)",
+            "math.DS": "math.DS* (Dynamical Sys.)",
+            "math.OC": "math.OC (Opt. & Control)",
+            "cs.DC": "cs.DC (Distrib. Comp.)",
+            "cs.IT": "cs.IT (Info. Theory)",
+            "cs.CR": "cs.CR (Crypto & Sec.)",
+            "physics.flu-dyn": "physics.flu-dyn* (Fluids)",
+            "eess.SY": "eess.SY (Systems & Ctrl)",
+            "eess.SP": "eess.SP (Signal Proc.)",
+            "eess.IV": "eess.IV* (Image & Video)",
+            "eess.AS": "eess.AS* (Audio & Speech)",
+            "cs.NI": "cs.NI (Networking)",
+            "cs.RO": "cs.RO (Robotics)",
+            "cs.PF": "cs.PF* (Perf. / Queueing)",
+            "cs.CE": "cs.CE* (Comp. Eng.)",
+        }
+        order = sorted(
+            cat_labels.keys(),
+            key=lambda c: (
+                per_cat[c]["confirmed_v1"]["pct"],
+                per_cat[c]["roles_v1"]["eng_algorithmic_proof"] / max(per_cat[c]["total_papers"], 1),
+                -per_cat[c]["total_papers"],
+            ),
+            reverse=True,
+        )
+        order = list(reversed(order))
+        y = np.arange(len(order))
+        eng_pct = np.array([100.0 * per_cat[c]["roles_v1"]["eng_algorithmic_proof"] / per_cat[c]["total_papers"] for c in order])
+        tcs_pct = np.array([100.0 * per_cat[c]["roles_v1"]["pure_math_or_tcs"] / per_cat[c]["total_papers"] for c in order])
+        sys_pct = np.array([100.0 * per_cat[c]["roles_v1"]["operational_system_fv"] / per_cat[c]["total_papers"] for c in order])
+        meta_pct = np.array([100.0 * per_cat[c]["roles_v1"]["meta_formalization_system"] / per_cat[c]["total_papers"] for c in order])
+        tot_pct = eng_pct + tcs_pct + sys_pct + meta_pct
+
+        r_v1 = t2_p15["roles_v1"]
+        fig, ax = plt.subplots(figsize=(8.6, 5.5))
+        n_zeros = sum(1 for c in order if per_cat[c]["confirmed_v1"]["count"] == 0)
+        ax.axhspan(-0.5, n_zeros - 0.5, color="#F3F4F6", alpha=0.88, zorder=0)
+        zero_sum = sum(per_cat[c]["total_papers"] for c in order if per_cat[c]["confirmed_v1"]["count"] == 0)
+        ax.text(
+            10.85,
+            (n_zeros - 1) / 2.0,
+            f"Seven Zero-Adoption T2 Categories\n0 / {zero_sum:,} category-tagged papers (0.00%)\n"
+            f"Incl. 0/752 across eess.SP ∪ IV ∪ AS (100% eess.*)",
+            ha="right",
+            va="center",
+            fontsize=7.9,
+            fontweight="bold",
+            color="#4B5563",
+            bbox=dict(boxstyle="round,pad=0.35", facecolor="white", edgecolor="#D1D5DB", lw=1.0),
+        )
+
+        h = 0.66
+        ax.barh(y, eng_pct, height=h, color="#1D4ED8", label=f"Eng. Algorithmic Proof (n={r_v1['eng_algorithmic_proof']['count']})", zorder=3)
+        ax.barh(y, tcs_pct, left=eng_pct, height=h, color="#D97706", label=f"Pure Math / TCS Cross-List (n={r_v1['pure_math_or_tcs']['count']})", zorder=3)
+        ax.barh(y, sys_pct, left=eng_pct + tcs_pct, height=h, color="#64748B", label=f"Operational SW/DB/Sys FV (n={r_v1['operational_system_fv']['count']})", zorder=3)
+        ax.barh(y, meta_pct, left=eng_pct + tcs_pct + sys_pct, height=h, color="#DC2626", label=f"Meta-Formalization System (n={r_v1['meta_formalization_system']['count']})", zorder=3)
+
+        for idx, c in enumerate(order):
+            k = per_cat[c]["confirmed_v1"]["count"]
+            k_eng = per_cat[c]["roles_v1"]["eng_algorithmic_proof"]
+            n = per_cat[c]["total_papers"]
+            pct = tot_pct[idx]
+            if k > 0:
+                eng_p = 100.0 * k_eng / n
+                lbl = f"{pct:.2f}% ({k}/{n}; eng-alg: {eng_p:.2f}%)"
+                color = "#111827"
+            else:
+                lbl = f"0.00% (0/{n})"
+                color = "#6B7280"
+            ax.text(pct + 0.12, idx, lbl, va="center", ha="left", fontsize=7.6, fontweight="bold" if k > 0 else "normal", color=color)
+
+        ax.set_yticks(y)
+        ax.set_yticklabels([cat_labels[c] for c in order], fontsize=8.0)
+        ax.set_xlabel("Confirmed Lean 4 v1 Adoption (% of category submissions, Nov 1–19, 2026; * = +7 expansion)")
+        ax.set_title("4-Way Stratified Lean 4 Adoption Across All 15 Engineering arXiv Categories (T2)", pad=10)
+        ax.set_xlim(0, 11.2)
+        ax.grid(axis="x", linestyle=":", alpha=0.6, zorder=1)
+        ax.spines["top"].set_visible(False)
+        ax.spines["right"].set_visible(False)
+        ax.legend(loc="center right", bbox_to_anchor=(0.99, 0.56), frameon=True, facecolor="white", edgecolor="#D1D5DB", fontsize=7.8)
+        _save(fig, "fig_category_bifurcation", out_dir=out_dir, save_previews=save_previews)
+        return
+
     cat_labels = {
         "math.OC": "math.OC\n(Opt. & Control)",
         "cs.DC": "cs.DC\n(Distrib. Comp.)",
@@ -436,14 +528,29 @@ def make_paradigms_and_loc(
 
 def make_phase2_heatmap(
     fig_data: dict[str, Any],
+    plus7_audits_path: Path = DEFAULT_PLUS7_AUDITS,
     out_dir: Path = FIG_DIR,
     save_previews: bool = False,
 ) -> None:
     audits = []
+    seen_ids: set[str] = set()
     for raw in fig_data["layer_a_audits"]:
         a = dict(raw)
         a["par"] = (a.get("authoring_paradigm") or "?").split("_")[0]
+        a["_is_plus7"] = False
         audits.append(a)
+        seen_ids.add(a["arxiv_id"])
+
+    if plus7_audits_path.is_file():
+        p7 = json.loads(plus7_audits_path.read_text(encoding="utf-8"))
+        for raw in p7.get("audits", []):
+            if raw["arxiv_id"] in seen_ids:
+                continue
+            a = dict(raw)
+            a["par"] = (a.get("authoring_paradigm") or "?").split("_")[0]
+            a["_is_plus7"] = True
+            audits.append(a)
+            seen_ids.add(a["arxiv_id"])
 
     # Order: material_undisclosed_drift_or_risk (Paper2Lean) at top, then partial, then mostly_faithful, then high_faithful
     fidelity_rank = {
@@ -508,7 +615,7 @@ def make_phase2_heatmap(
     n_rows = len(audits)
     n_cols = len(col_headers)
 
-    fig, ax = plt.subplots(figsize=(10.2, max(5.7, 0.33 * n_rows + 0.1)))
+    fig, ax = plt.subplots(figsize=(10.5, max(6.4, 0.31 * n_rows + 0.1)))
     ax.set_xlim(0, n_cols)
     ax.set_ylim(0, n_rows)
     ax.invert_yaxis()
@@ -528,7 +635,7 @@ def make_phase2_heatmap(
             rect = mpatches.Rectangle((c_idx + 0.03, r_idx + 0.06), 0.94, 0.88, facecolor=bg, edgecolor="white", linewidth=1.2)
             ax.add_patch(rect)
             fw = "bold" if (is_bold or txt in ("Moderate", "Severe", "Minor (undiscl.)")) else "normal"
-            ax.text(c_idx + 0.5, r_idx + 0.5, txt, ha="center", va="center", fontsize=7.6, color=fg, fontweight=fw)
+            ax.text(c_idx + 0.5, r_idx + 0.5, txt, ha="center", va="center", fontsize=7.4, color=fg, fontweight=fw)
 
     # Bold divider separating Paper2Lean (bulk pipeline, row 0) from independent author-owned repos (rows 1..n_rows-1)
     n_indep = sum(1 for a in audits if a["arxiv_id"] != "2611.26272")
@@ -539,39 +646,44 @@ def make_phase2_heatmap(
         "Bulk Pipeline\n(Paper2Lean)",
         ha="left",
         va="center",
-        fontsize=7.6,
+        fontsize=7.5,
         fontweight="bold",
         color="#991B1B",
     )
     ax.text(
         n_cols + 0.08,
         1.0 + (n_rows - 1) / 2.0,
-        f"{n_indep} Independent\nAuthor-Owned\nEngineering Repos\n(0 mod/sev M1/M3/M4)",
+        f"{n_indep} Independent\nAuthor-Owned Repos\n(0 Material Risk;\n0 mod/sev M3/M4)",
         ha="left",
         va="center",
-        fontsize=7.6,
+        fontsize=7.5,
         fontweight="bold",
         color="#166534",
     )
 
     row_labels = []
     for a in audits:
-        suffix = " [BULK]" if a["arxiv_id"] == "2611.26272" else ""
+        if a["arxiv_id"] == "2611.26272":
+            suffix = " [BULK]"
+        elif a.get("_is_plus7"):
+            suffix = " [+7]"
+        else:
+            suffix = ""
         row_labels.append(f"{a['arxiv_id']} ({a['primary_category']}, {a['par']}){suffix}")
 
     ax.set_xticks(np.arange(n_cols) + 0.5)
-    ax.set_xticklabels(col_headers, fontsize=8.2, fontweight="bold")
+    ax.set_xticklabels(col_headers, fontsize=8.1, fontweight="bold")
     ax.xaxis.tick_top()
     ax.set_yticks(np.arange(n_rows) + 0.5)
-    ax.set_yticklabels(row_labels, fontsize=7.8, family="monospace")
+    ax.set_yticklabels(row_labels, fontsize=7.5, family="monospace")
     ax.tick_params(length=0)
     for spine in ax.spines.values():
         spine.set_visible(False)
 
     ax.set_title(
-        f"Phase 2 Adversarial Layer-A Semantic Fidelity Matrix (n = {n_rows} Engineering-Math Repos)",
+        f"Phase 2 Adversarial Layer-A Semantic Fidelity Matrix (n = {n_rows} T2 Repos Across 15 Categories)",
         pad=26,
-        fontsize=10.8,
+        fontsize=10.6,
         fontweight="bold",
     )
 
@@ -580,9 +692,162 @@ def make_phase2_heatmap(
 
 def make_longitudinal_curve(
     summary_path: Path = DEFAULT_LONGITUDINAL_SUMMARY,
+    phase_c1_path: Path = DEFAULT_PHASE_C1,
     out_dir: Path = FIG_DIR,
     save_previews: bool = False,
 ) -> None:
+    if phase_c1_path.is_file():
+        c1 = json.loads(phase_c1_path.read_text(encoding="utf-8"))
+        slices = c1["slices"]
+        p15s = [s["panel_15cat"] for s in slices]
+        x = np.array([0, 1, 2], dtype=float)
+        x_labels = [
+            f"T0: Nov 1–19, 2025\n(n = {p15s[0]['total_papers']:,})",
+            f"T1: May 1–19, 2026\n(n = {p15s[1]['total_papers']:,})",
+            f"T2: Nov 1–19, 2026\n(n = {p15s[2]['total_papers']:,})",
+        ]
+
+        v1_pct = np.array([p["confirmed_v1"]["pct"] for p in p15s])
+        eng_pct = np.array([p["roles_v1"]["eng_algorithmic_proof"]["pct"] for p in p15s])
+        tcs_pct = np.array([p["roles_v1"]["pure_math_or_tcs"]["pct"] for p in p15s])
+        bey_pct = np.array([p["beyond_lean_stage2"]["pct"] for p in p15s])
+
+        def _yerr(blk_list: list[dict[str, Any]]) -> tuple[list[float], list[float]]:
+            lo_l, hi_l = [], []
+            for b in blk_list:
+                pv = b["pct"]
+                lo, hi = b["ci_95_pct"]
+                lo_l.append(max(0.0, pv - lo))
+                hi_l.append(max(0.0, hi - pv))
+            return lo_l, hi_l
+
+        v1_lo, v1_hi = _yerr([p["confirmed_v1"] for p in p15s])
+        eng_lo, eng_hi = _yerr([p["roles_v1"]["eng_algorithmic_proof"] for p in p15s])
+
+        fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(11.9, 4.65), gridspec_kw={"width_ratios": [1.06, 1.16]})
+
+        # --- Panel A: 15-Cat Pooled + 4-Way Stratified Curves vs Beyond-Lean Control ---
+        ax1.plot(
+            x, bey_pct,
+            color="#64748B", linestyle="-.", marker="D", markersize=6.0, linewidth=1.8,
+            label="Stage-2 Beyond-Lean FV control (all other tools)", zorder=3,
+        )
+        ax1.errorbar(
+            x, v1_pct, yerr=[v1_lo, v1_hi],
+            color="#1E3A8A", linestyle="-", marker="o", markersize=7.0, linewidth=2.5,
+            capsize=4, capthick=1.2, elinewidth=1.2,
+            label="15-Cat Pooled Confirmed Lean (v1, 95% CI)", zorder=5,
+        )
+        ax1.plot(
+            x, tcs_pct,
+            color="#D97706", linestyle="--", marker="^", markersize=6.2, linewidth=1.9,
+            label="4-Way: pure_math_or_tcs (v1)", zorder=4,
+        )
+        ax1.errorbar(
+            x, eng_pct, yerr=[eng_lo, eng_hi],
+            color="#0D9488", linestyle="-", marker="s", markersize=6.4, linewidth=2.2,
+            capsize=3.5, capthick=1.1, elinewidth=1.1,
+            label="4-Way: strict eng_algorithmic_proof (v1, 95% CI)", zorder=5,
+        )
+
+        # Annotations (clean vertical spacing)
+        ax1.text(0.0, bey_pct[0] + 0.06, f"{bey_pct[0]:.2f}% (n={p15s[0]['beyond_lean_stage2']['count']})", ha="left", va="bottom", fontsize=7.4, color="#475569")
+        ax1.text(1.0, bey_pct[1] + 0.06, f"{bey_pct[1]:.2f}% (n={p15s[1]['beyond_lean_stage2']['count']})", ha="center", va="bottom", fontsize=7.4, color="#475569")
+        ax1.text(2.05, bey_pct[2] - 0.03, f"{bey_pct[2]:.2f}% (n={p15s[2]['beyond_lean_stage2']['count']})", ha="left", va="center", fontsize=7.4, color="#475569")
+
+        ax1.text(2.05, v1_pct[2] + 0.03, f"1.28% (n=68)", ha="left", va="center", fontsize=7.9, fontweight="bold", color="#1E3A8A")
+        ax1.text(2.05, tcs_pct[2] + 0.03, f"0.66% (n=35)", ha="left", va="center", fontsize=7.6, fontweight="bold", color="#B45309")
+        ax1.text(2.05, eng_pct[2] - 0.06, f"0.49% (n=26)", ha="left", va="center", fontsize=7.7, fontweight="bold", color="#0F766E")
+
+        ax1.text(0.0, -0.09, "0.00% (0 v1)\n[0.06% latest]", ha="center", va="top", fontsize=7.2, fontweight="bold", color="#1E3A8A")
+        ax1.text(1.0, -0.09, "0.17% (7 v1)\n[eng: 0.07%]", ha="center", va="top", fontsize=7.2, fontweight="bold", color="#0F766E")
+
+        mult_all = c1["multipliers"]["panel_15cat_v1_t2_over_t1"]
+        mult_eng = c1["multipliers"]["panel_15cat_eng_alg_v1_t2_over_t1"]
+        ax1.annotate(
+            f"6-mo v1 surge:\nPooled: {mult_all:.1f}× (0.17%→1.28%)\nStrict eng-alg: {mult_eng:.2f}× (0.07%→0.49%)",
+            xy=(1.55, 0.72),
+            xytext=(0.64, 0.80),
+            ha="center",
+            va="center",
+            fontsize=7.2,
+            fontweight="bold",
+            color="#1E3A8A",
+            bbox=dict(boxstyle="round,pad=0.32", facecolor="#EFF6FF", edgecolor="#93C5FD", lw=1.0),
+            arrowprops=dict(arrowstyle="->", color="#2563EB", lw=1.2, connectionstyle="arc3,rad=-0.12"),
+        )
+
+        ax1.set_xticks(x)
+        ax1.set_xticklabels(x_labels, fontsize=8.0)
+        ax1.set_xlim(-0.26, 2.66)
+        ax1.set_ylim(-0.30, 1.98)
+        ax1.set_ylabel("Share of 15-Category Corpus (%)")
+        ax1.set_title("(a) 15-Cat Longitudinal Inflection & 4-Way Stratification", pad=9)
+        ax1.grid(axis="y", linestyle=":", alpha=0.6)
+        ax1.spines["top"].set_visible(False)
+        ax1.spines["right"].set_visible(False)
+        ax1.legend(loc="upper left", frameon=True, facecolor="white", edgecolor="#D1D5DB", fontsize=7.0)
+
+        # --- Panel B: Per-Category Contemporaneous v1 Trajectories across 15 Categories ---
+        cat_styles = [
+            ("cs.GT",           "#B45309", "P", "-", 2.3, "cs.GT* (9.04%; eng 2.41%)"),
+            ("math.DS",         "#9333EA", "X", "-", 2.1, "math.DS* (3.89%; eng 0.56%)"),
+            ("math.OC",         "#1D4ED8", "o", "-", 2.4, "math.OC (2.62%; eng 1.80%)"),
+            ("cs.DC",           "#0F766E", "s", "-", 1.8, "cs.DC (1.79%; 0 eng)"),
+            ("cs.IT",           "#D97706", "^", "-", 1.9, "cs.IT (1.78%; eng 1.18%)"),
+            ("cs.CR",           "#DC2626", "D", "-", 1.8, "cs.CR (1.11%)"),
+            ("physics.flu-dyn", "#0284C7", "h", "--", 1.7, "flu-dyn* (0.72%)"),
+            ("eess.SY",         "#4F46E5", "v", "--", 1.6, "eess.SY (0.41%)"),
+        ]
+        label_y_override = {
+            "cs.GT": 9.04,
+            "math.DS": 4.15,
+            "math.OC": 2.95,
+            "cs.DC": 2.25,
+            "cs.IT": 1.62,
+            "cs.CR": 1.05,
+            "physics.flu-dyn": 0.58,
+            "eess.SY": 0.16,
+        }
+
+        for cat, col, mk, ls, lw, lbl in cat_styles:
+            vals = [p["per_category"][cat]["confirmed_v1"]["pct"] for p in p15s]
+            ax2.plot(x, vals, color=col, marker=mk, linestyle=ls, linewidth=lw, markersize=5.6, zorder=4)
+            ly = label_y_override[cat]
+            ax2.text(2.06, ly, lbl, ha="left", va="center", fontsize=7.1, fontweight="bold" if cat in ("cs.GT", "math.DS", "math.OC") else "normal", color=col)
+            if abs(ly - vals[2]) > 0.12:
+                ax2.plot([2.01, 2.05], [vals[2], ly], color=col, lw=0.75, alpha=0.7)
+
+        # Persistent zero v1 band (6 categories + eess.SP returning to 0)
+        ax2.plot(x, [0.0, 0.0, 0.0], color="#9CA3AF", linestyle="-", linewidth=1.6, zorder=2)
+        ax2.text(2.06, -0.34, "6 cats 0.00% v1 (all 3 slices)\n+ eess.SP (0.24%→0%)", ha="left", va="center", fontsize=6.9, color="#6B7280")
+
+        ax2.annotate(
+            "cs.GT & math.DS surges are\n78.1% pure_math_or_tcs;\nmath.OC leads eng-alg (1.80%)",
+            xy=(1.75, 6.2),
+            xytext=(0.72, 6.65),
+            ha="center",
+            va="center",
+            fontsize=7.1,
+            color="#374151",
+            bbox=dict(boxstyle="round,pad=0.30", facecolor="#FFFBEB", edgecolor="#FCD34D", lw=0.9),
+            arrowprops=dict(arrowstyle="->", color="#B45309", lw=1.0, connectionstyle="arc3,rad=-0.10"),
+        )
+
+        ax2.set_xticks(x)
+        ax2.set_xticklabels(x_labels, fontsize=8.0)
+        ax2.set_xlim(-0.18, 3.08)
+        ax2.set_ylim(-0.78, 9.75)
+        ax2.set_ylabel("Confirmed Lean v1 Adoption (%)")
+        ax2.set_title("(b) Disciplinary Divergence Across All 15 Categories (v1)", pad=9)
+        ax2.grid(axis="y", linestyle=":", alpha=0.6)
+        ax2.spines["top"].set_visible(False)
+        ax2.spines["right"].set_visible(False)
+
+        plt.tight_layout(w_pad=1.6)
+        _save(fig, "fig_longitudinal_curve", out_dir=out_dir, save_previews=save_previews)
+        return
+
     if not summary_path.exists():
         raise FileNotFoundError(f"Longitudinal summary JSON not found: {summary_path}")
     data = json.loads(summary_path.read_text())
@@ -601,7 +866,6 @@ def make_longitudinal_curve(
     cand_pct = np.array([s["stage2_lean_cand_pct"] for s in slices])
     bey_pct = np.array([s["stage2_beyond_any_pct"] for s in slices])
 
-    # 95% error bars for v1 (Clopper-Pearson upper bound at k=0; Wilson CI otherwise)
     yerr_lo = []
     yerr_hi = []
     for s in slices:
@@ -615,59 +879,10 @@ def make_longitudinal_curve(
         yerr_hi.append(max(0.0, hi - p))
 
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(11.6, 4.45), gridspec_kw={"width_ratios": [1.05, 1.12]})
-
-    # --- Panel A: Aggregate Inflection vs Beyond-Lean Control ---
-    ax1.plot(
-        x, bey_pct,
-        color="#64748B", linestyle="-.", marker="D", markersize=6.2, linewidth=1.8,
-        label="Stage-2 Beyond-Lean FV control (all other tools)", zorder=3,
-    )
-    ax1.plot(
-        x, cand_pct,
-        color="#7C3AED", linestyle=":", marker="^", markersize=6.5, linewidth=1.9,
-        label="Stage-2 Lean 4 candidates (full-text)", zorder=4,
-    )
-    ax1.plot(
-        x, vl_pct,
-        color="#0284C7", linestyle="--", marker="s", markersize=5.8, linewidth=1.6,
-        label="Confirmed Lean (incl. retroactive v2 revisions)", zorder=4,
-    )
-    ax1.errorbar(
-        x, v1_pct, yerr=[yerr_lo, yerr_hi],
-        color="#1D4ED8", linestyle="-", marker="o", markersize=7.2, linewidth=2.6,
-        capsize=4, capthick=1.3, elinewidth=1.3,
-        label="Confirmed Lean (contemporaneous v1, 95% CI)", zorder=5,
-    )
-
-    # Direct annotations with carefully separated vertical offsets (zero overlap)
-    ax1.text(0.0, bey_pct[0] - 0.10, f"{bey_pct[0]:.2f}% (n={t0['stage2_beyond_any']})", ha="left", va="top", fontsize=7.6, color="#475569")
-    ax1.text(1.0, bey_pct[1] + 0.07, f"{bey_pct[1]:.2f}% (n={t1['stage2_beyond_any']})", ha="center", va="bottom", fontsize=7.6, color="#475569")
-    ax1.text(2.05, bey_pct[2] - 0.05, f"{bey_pct[2]:.2f}%\n(n={t2['stage2_beyond_any']})", ha="left", va="center", fontsize=7.6, color="#475569")
-
-    ax1.text(-0.02, cand_pct[0] + 0.14, f"{cand_pct[0]:.2f}% (n={t0['stage2_lean_candidates']})", ha="left", va="bottom", fontsize=7.5, color="#6D28D9")
-    ax1.text(0.95, cand_pct[1] + 0.06, f"{cand_pct[1]:.2f}% (n={t1['stage2_lean_candidates']})", ha="right", va="bottom", fontsize=7.6, color="#6D28D9")
-    ax1.text(2.05, cand_pct[2] + 0.08, f"{cand_pct[2]:.2f}%\n(n={t2['stage2_lean_candidates']})", ha="left", va="center", fontsize=7.6, fontweight="bold", color="#6D28D9")
-
-    ax1.text(0.0, -0.08, "0.00% (0 v1)\n[0.04% latest]", ha="center", va="top", fontsize=7.4, fontweight="bold", color="#1E3A8A")
-    ax1.text(1.0, -0.08, "0.15% (5 v1)\n[0.21% latest]", ha="center", va="top", fontsize=7.4, fontweight="bold", color="#1D4ED8")
-    ax1.text(2.05, v1_pct[2] - 0.04, "0.95%\n(n=39)", ha="left", va="center", fontsize=8.0, fontweight="bold", color="#1D4ED8")
-
-    v1_jump = t2["v1"]["pct"] / max(t1["v1"]["pct"], 1e-9)
-    ai_t1_pct = 100.0 * t1["v1"]["ai"].get("explicitly_yes", 0) / max(t1["v1"]["count"], 1)
-    ai_t2_pct = 100.0 * t2["v1"]["ai"].get("explicitly_yes", 0) / max(t2["v1"]["count"], 1)
-    ax1.annotate(
-        f"{v1_jump:.1f}× jump in 6 mo\n(median LoC: {t1['v1']['median_owned_loc']:,} → {t2['v1']['median_owned_loc']/1000:.1f}k;\nAI discl.: {ai_t1_pct:.0f}% → {ai_t2_pct:.1f}%)",
-        xy=(1.58, 0.59),
-        xytext=(0.56, 1.00),
-        ha="center",
-        va="center",
-        fontsize=7.3,
-        fontweight="bold",
-        color="#1E3A8A",
-        bbox=dict(boxstyle="round,pad=0.32", facecolor="#EFF6FF", edgecolor="#93C5FD", lw=1.0),
-        arrowprops=dict(arrowstyle="->", color="#2563EB", lw=1.25, connectionstyle="arc3,rad=-0.16"),
-    )
-
+    ax1.plot(x, bey_pct, color="#64748B", linestyle="-.", marker="D", markersize=6.2, linewidth=1.8, label="Stage-2 Beyond-Lean FV control (all other tools)", zorder=3)
+    ax1.plot(x, cand_pct, color="#7C3AED", linestyle=":", marker="^", markersize=6.5, linewidth=1.9, label="Stage-2 Lean 4 candidates (full-text)", zorder=4)
+    ax1.plot(x, vl_pct, color="#0284C7", linestyle="--", marker="s", markersize=5.8, linewidth=1.6, label="Confirmed Lean (incl. retroactive v2 revisions)", zorder=4)
+    ax1.errorbar(x, v1_pct, yerr=[yerr_lo, yerr_hi], color="#1D4ED8", linestyle="-", marker="o", markersize=7.2, linewidth=2.6, capsize=4, capthick=1.3, elinewidth=1.3, label="Confirmed Lean (contemporaneous v1, 95% CI)", zorder=5)
     ax1.set_xticks(x)
     ax1.set_xticklabels(x_labels, fontsize=8.1)
     ax1.set_xlim(-0.28, 2.48)
@@ -678,64 +893,13 @@ def make_longitudinal_curve(
     ax1.spines["top"].set_visible(False)
     ax1.spines["right"].set_visible(False)
     ax1.legend(loc="upper left", frameon=True, facecolor="white", edgecolor="#D1D5DB", fontsize=7.1)
-
-    # --- Panel B: Per-Category Contemporaneous v1 Trajectories ---
-    cat_styles = [
-        ("math.OC", "#1D4ED8", "o", "-", 2.4, "math.OC (2.62%)"),
-        ("cs.DC",   "#0F766E", "s", "-", 2.0, "cs.DC (1.79%)"),
-        ("cs.IT",   "#D97706", "^", "-", 2.0, "cs.IT (1.78%)"),
-        ("cs.CR",   "#DC2626", "D", "-", 1.9, "cs.CR (1.11%)"),
-        ("eess.SY", "#7C3AED", "v", "--", 1.7, "eess.SY (0.41%)"),
-        ("eess.SP", "#6B7280", "P", ":", 1.5, "eess.SP (0.24%→0%)"),
-    ]
-    label_y_override = {
-        "math.OC": 2.62,
-        "cs.DC":   1.91,
-        "cs.IT":   1.65,
-        "cs.CR":   1.11,
-        "eess.SY": 0.45,
-        "eess.SP": 0.14,
-    }
-
-    for cat, col, mk, ls, lw, lbl in cat_styles:
-        vals = [100.0 * s["v1"]["cat_lean"].get(cat, 0) / max(s["cat_total"].get(cat, 1), 1) for s in slices]
-        ax2.plot(x, vals, color=col, marker=mk, linestyle=ls, linewidth=lw, markersize=6.0, zorder=4)
-        ly = label_y_override[cat]
-        ax2.text(2.06, ly, lbl, ha="left", va="center", fontsize=7.8, fontweight="bold" if vals[2] > 0 else "normal", color=col)
-        if abs(ly - vals[2]) > 0.05:
-            ax2.plot([2.01, 2.05], [vals[2], ly], color=col, lw=0.8, alpha=0.7)
-
-    ax2.plot(x, [0.0, 0.0, 0.0], color="#9CA3AF", linestyle="-", linewidth=1.6, zorder=2)
-    ax2.text(2.06, -0.05, "cs.NI & cs.RO (0.00%)", ha="left", va="center", fontsize=7.6, color="#6B7280")
-
-    ax2.annotate(
-        "Earliest v1 adopters\nin May 2026: cs.CR (0.44%),\ncs.DC (0.32%), eess.SP (0.24%)",
-        xy=(1.0, 0.44),
-        xytext=(0.72, 1.38),
-        ha="center",
-        va="center",
-        fontsize=7.2,
-        color="#374151",
-        bbox=dict(boxstyle="round,pad=0.28", facecolor="#F9FAFB", edgecolor="#D1D5DB", lw=0.9),
-        arrowprops=dict(arrowstyle="->", color="#6B7280", lw=1.0, connectionstyle="arc3,rad=-0.12"),
-    )
-
-    ax2.set_xticks(x)
-    ax2.set_xticklabels(x_labels, fontsize=8.1)
-    ax2.set_xlim(-0.18, 2.78)
-    ax2.set_ylim(-0.20, 2.95)
-    ax2.set_ylabel("Confirmed Lean v1 Adoption (%)")
-    ax2.set_title("(b) Disciplinary Divergence Across Eight Categories (v1)", pad=9)
-    ax2.grid(axis="y", linestyle=":", alpha=0.6)
-    ax2.spines["top"].set_visible(False)
-    ax2.spines["right"].set_visible(False)
-
     plt.tight_layout(w_pad=1.8)
     _save(fig, "fig_longitudinal_curve", out_dir=out_dir, save_previews=save_previews)
 
 
 def make_sandbox_builds(
     sandbox_dir: Path = DEFAULT_SANDBOX_DIR,
+    phase_c2_path: Path = DEFAULT_PHASE_C2,
     out_dir: Path = FIG_DIR,
     save_previews: bool = False,
 ) -> None:
@@ -747,10 +911,24 @@ def make_sandbox_builds(
 
     summary = json.loads(summary_path.read_text(encoding="utf-8"))
     records: list[dict[str, Any]] = []
+    seen_ids: set[str] = set()
     for sl in ("2026-11", "2026-05"):
         rp = sandbox_dir / f"results_{sl}.json"
         if rp.is_file():
-            records.extend(json.loads(rp.read_text(encoding="utf-8")).get("records", []))
+            for rec in json.loads(rp.read_text(encoding="utf-8")).get("records", []):
+                r = dict(rec)
+                r["_is_plus7"] = False
+                records.append(r)
+                seen_ids.add(r["arxiv_id"])
+
+    p7_sb = sandbox_dir / "results_plus7_2026-11.json"
+    if p7_sb.is_file():
+        for rec in json.loads(p7_sb.read_text(encoding="utf-8")).get("records", []):
+            if rec["arxiv_id"] not in seen_ids:
+                r = dict(rec)
+                r["_is_plus7"] = True
+                records.append(r)
+                seen_ids.add(r["arxiv_id"])
 
     if not records:
         return
@@ -776,7 +954,6 @@ def make_sandbox_builds(
         "fail_local_dep": ("#DC2626", None, "OOTB Fail: Missing Local Path Dep"),
     }
 
-    # Sort so clean passes are grouped nicely on top (by build time desc), then nonstd, then packaging, then local dep
     ordered = sorted(
         records,
         key=lambda r: (
@@ -785,10 +962,9 @@ def make_sandbox_builds(
             r["arxiv_id"],
         ),
     )
-    # Reverse for horizontal barh so top item appears at top
     ordered_plot = list(reversed(ordered))
 
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(11.8, 5.2), gridspec_kw={"width_ratios": [1.55, 1.0]})
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12.0, max(5.6, 0.34 * len(records) + 0.2)), gridspec_kw={"width_ratios": [1.58, 1.0]})
 
     # --- Panel (a): Per-repo build wall time (log scale) & axiom outcome ---
     y = np.arange(len(ordered_plot))
@@ -810,7 +986,7 @@ def make_sandbox_builds(
                 else:
                     ann = f"{t_str}  |  {thms:,} thms ({len(nonstd)} custom axioms!)"
                 txt_col = "#92400E"
-            ax1.text(val * 1.14, i, ann, va="center", ha="left", fontsize=7.2, fontweight="bold" if cat == "pass_nonstd" else "normal", color=txt_col)
+            ax1.text(val * 1.14, i, ann, va="center", ha="left", fontsize=7.1, fontweight="bold" if cat == "pass_nonstd" else "normal", color=txt_col)
         elif cat == "fail_packaging":
             syn = r.get("synthetic_env_check") or {}
             syn_t = float(syn.get("wall_time_sec") or 20.0)
@@ -822,7 +998,7 @@ def make_sandbox_builds(
             ax1.text(
                 syn_t * 1.14, i,
                 f"No lakefile  (synth: {syn_t:.1f}s, {syn_thms} thms clean)",
-                va="center", ha="left", fontsize=7.0, style="italic", color="#334155",
+                va="center", ha="left", fontsize=6.9, style="italic", color="#334155",
             )
         else:
             raw_t = float(r.get("wall_time_sec") or 0.86)
@@ -831,7 +1007,7 @@ def make_sandbox_builds(
             ax1.text(
                 val * 1.25, i,
                 f"FAIL {raw_t:.2f}s  (missing ../qanary-* sibling deps)",
-                va="center", ha="left", fontsize=7.1, fontweight="bold", color="#991B1B",
+                va="center", ha="left", fontsize=7.0, fontweight="bold", color="#991B1B",
             )
 
     y_labels = []
@@ -840,29 +1016,32 @@ def make_sandbox_builds(
         tr_s = tier_short.get(r.get("static_verification_tier") or "", "?")
         loc = int(r.get("owned_loc") or 0)
         loc_s = f"{loc/1000:.1f}k" if loc >= 10000 else f"{loc:,}"
-        y_labels.append(f"{r['arxiv_id']} ({sl_s}, {tr_s}, {loc_s})")
+        p7_tag = ",+7" if r.get("_is_plus7") else ""
+        y_labels.append(f"{r['arxiv_id']} ({sl_s},{tr_s},{loc_s}{p7_tag})")
 
     ax1.set_xscale("log")
-    ax1.set_xlim(0.5, 6.5e4)
+    ax1.set_xlim(0.5, 9.5e4)
     ax1.set_yticks(y)
-    ax1.set_yticklabels(y_labels, fontsize=7.3, family="monospace")
+    ax1.set_yticklabels(y_labels, fontsize=7.1, family="monospace")
     ax1.set_xlabel("Isolated Container Wall Time (seconds, log scale; --network=none)")
-    ax1.set_title("(a) Sandboxed Build & Axiom Audit (All 14 Compact Repos <15k LoC)", pad=9)
+    ax1.set_title(f"(a) Sandboxed Build & Axiom Audit (All {len(records)} Compact Repos <15k LoC)", pad=9)
     ax1.grid(axis="x", which="major", linestyle=":", alpha=0.6, zorder=1)
     ax1.spines["top"].set_visible(False)
     ax1.spines["right"].set_visible(False)
 
-    # Subtle divider separating OOTB passes from OOTB failures
     n_fails = sum(1 for r in ordered_plot if r["build_status"] != "pass")
     if 0 < n_fails < len(ordered_plot):
         ax1.axhline(n_fails - 0.5, color="#94A3B8", linestyle="--", linewidth=1.0, zorder=2)
 
     # --- Panel (b): Static Verification Tier vs Dynamic Kernel Ground-Truth ---
+    t3_recs = [r for r in records if r.get("static_verification_tier") == "Tier3_Gold"]
+    t2_recs = [r for r in records if r.get("static_verification_tier") == "Tier2_Silver"]
+    t1_recs = [r for r in records if r.get("static_verification_tier") == "Tier1_Bronze"]
     groups = [
-        ("Tier 3: Gold\n(T2, n=8)", [r for r in records if r.get("static_verification_tier") == "Tier3_Gold"]),
-        ("Tier 2: Silver\n(T1+T2, n=5)", [r for r in records if r.get("static_verification_tier") == "Tier2_Silver"]),
-        ("Tier 1: Bronze\n(T1, n=1)", [r for r in records if r.get("static_verification_tier") == "Tier1_Bronze"]),
-        ("All Compact\n(<15k LoC, n=14)", records),
+        (f"Tier 3: Gold\n(n={len(t3_recs)})", t3_recs),
+        (f"Tier 2: Silver\n(n={len(t2_recs)})", t2_recs),
+        (f"Tier 1: Bronze\n(n={len(t1_recs)})", t1_recs),
+        (f"All Compact\n(<15k, n={len(records)})", records),
     ]
     gx = np.arange(len(groups))
     counts = {k: [] for k in ("pass_clean", "pass_nonstd", "fail_packaging", "fail_local_dep")}
@@ -888,15 +1067,19 @@ def make_sandbox_builds(
     ax2.set_xticks(gx)
     ax2.set_xticklabels([g[0] for g in groups], fontsize=7.8)
     ax2.set_ylabel("Number of Repositories")
-    ax2.set_ylim(0, 19.2)
-    ax2.set_yticks(np.arange(0, 19, 2))
+    ymax = max(22.5, len(records) + 5.5)
+    ax2.set_ylim(0, ymax)
+    ax2.set_yticks(np.arange(0, int(ymax) + 1, 2))
     ax2.set_title("(b) Static Tier vs. Dynamic Kernel Ground Truth", pad=9)
     ax2.grid(axis="y", linestyle=":", alpha=0.6, zorder=1)
     ax2.spines["top"].set_visible(False)
     ax2.spines["right"].set_visible(False)
-    ax2.legend(loc="upper left", frameon=True, facecolor="white", edgecolor="#D1D5DB", fontsize=7.1)
+    ax2.legend(loc="upper left", frameon=True, facecolor="white", edgecolor="#D1D5DB", fontsize=7.0)
 
-    ov = summary["overall"]
+    if phase_c2_path.is_file() and len(records) > summary["overall"]["total_attempted"]:
+        ov = json.loads(phase_c2_path.read_text(encoding="utf-8"))["sandbox_summary"]["all15_t1_t2_compact_all_roles"]
+    else:
+        ov = summary["overall"]
     callout = (
         f"OOTB Pass: {ov['pass_out_of_box']}/{ov['total_attempted']} ({100.0*ov['pass_out_of_box']/ov['total_attempted']:.1f}%)\n"
         f"Theorems audited: {ov['total_theorems_checked_ootb']:,} OOTB ({ov['total_theorems_checked_incl_synthetic']:,} incl. synth.)\n"
@@ -905,12 +1088,12 @@ def make_sandbox_builds(
     )
     ax2.text(
         0.025,
-        0.625,
+        0.64,
         callout,
         transform=ax2.transAxes,
         ha="left",
         va="center",
-        fontsize=6.7,
+        fontsize=6.6,
         color="#1E293B",
         linespacing=1.34,
         bbox=dict(boxstyle="round,pad=0.34", facecolor="#F8FAFC", edgecolor="#94A3B8", lw=0.9),
