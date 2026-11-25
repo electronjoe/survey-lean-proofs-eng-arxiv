@@ -70,7 +70,8 @@ All **54 entries** in [`papers/shared/references.bib`](../papers/shared/referenc
 - [x] Tighten named-finding prose and exact `file:line` / commit citations in [`papers/arxiv-empirical/main.tex`](../papers/arxiv-empirical/main.tex) and verify clean LaTeX + blind-artifact builds.
 - [x] **Human verification of the 4 named critiques** (`2611.26272`, `2611.04876`, `2605.14610`, `2605.02856`) + live GitHub HEAD check (`4/4` unchanged on 2026-11-23); co-reviewed with AI syntax translation (`annotator_1`), tightened `Attouch_Adly` `thm_9.lean` wording in `main.tex` to drop unverified external `$o(1/\ln t)$` claim, and logged in [`artifacts/human_annotations/layer_a_human_verification.json`](../artifacts/human_annotations/layer_a_human_verification.json).
 - [x] **False-negative spot-check on "clean" author-owned repos (`n = 5`):** Co-reviewed 5 of the largest clean author-owned repos (`2611.13872`, `2605.09552`, `2611.08172`, `2611.11713`, `2611.12585`) — **0/5 missed undisclosed drift**; logged in [`artifacts/human_annotations/layer_a_human_verification.json`](../artifacts/human_annotations/layer_a_human_verification.json).
-- [ ] **Optional courtesy outreach:** Notify authors of `2611.26272` (and `2611.04876`, `2605.14610`, `2605.02856`) with exact commit SHAs and `file:line` findings prior to archival submission.
+- [ ] **Guided human co-review of the 2 post-expansion named critiques (`2611.07395`, `2611.14586`):** Exact `file:line` citations are deterministically verified on disk (`274/274`), leaving human sign-off at `4/4` initial critiques; co-reviewing these 2 brings human-signed critique coverage to `6/6 (100%)`.
+- [ ] **Optional courtesy outreach:** Notify authors of `2611.26272` (and `2611.04876`, `2605.14610`, `2605.02856`, `2611.07395`, `2611.14586`) with exact commit SHAs and `file:line` findings prior to archival submission.
 
 ---
 
@@ -111,6 +112,11 @@ All **54 entries** in [`papers/shared/references.bib`](../papers/shared/referenc
   - Stage 5 Layer-A semantic audits (`pro`, 23 runs): **Gemini 4 Hydrogen (Extra High)** (`gemini-4-hydrogen-tiered-xhigh`) via Google Antigravity `run_workflow`
   - All code writing & manuscript drafting (Abstract + Sections 1–7): **Gemini 4 Neon (High)** (`gemini-4-neon-high`) via Google Antigravity CLI harness (with auxiliary interactive sessions on Gemini 4 Neon Medium and Gemini 4 Carbon High).
 - [x] **Verified double-blind review packaging** via `uv run python scripts/export_blind_artifact.py` (`37 files`, `0 leaks`, enforced in CI).
+- [ ] **Post-Unification Packaging & Metadata Hygiene (see [`docs/paper_reorg_plan.md`](paper_reorg_plan.md#8-post-unification-related-efforts--follow-up-tracker)):**
+  - [ ] Include `scripts/` in [`scripts/export_blind_artifact.py`](../scripts/export_blind_artifact.py) so `uv run pytest` passes inside the exported zip, and update `ANONYMIZED_README` to reflect the unified 15-category empirical study and `artifacts/unified_15cat_panel.json`.
+  - [ ] Fix the 4 minor `Overfull \hbox` warnings in [`papers/arxiv-empirical/main.tex`](../papers/arxiv-empirical/main.tex), update [`papers/arxiv-empirical/Makefile`](../papers/arxiv-empirical/Makefile) figure dependencies, and export + test-compile a fresh unified arXiv source tarball.
+  - [ ] Sync [`CITATION.cff`](../CITATION.cff), [`docs/publication_strategy.html`](publication_strategy.html), this audit plan ledger, [`README.md`](../README.md), [`artifacts/slices/manifest.json`](../artifacts/slices/manifest.json), and sandbox READMEs to the unified 15-category / `89`-BibTeX / `23`-sandbox / `250`-recall state.
+- [ ] **Phase B2 Dual-Rater 4-Way IRR Refresh (`47 → 82` papers):** Expand [`artifacts/human_annotations/track1_4way_coding_blank.csv`](../artifacts/human_annotations/track1_4way_coding_blank.csv) from the pre-expansion 47 papers to the unified 82-paper 15-category cohort (or stratified 15-cat sample) for independent dual-rater validation.
 
 ### Downstream Venue-Specific Adaptations (Once Target Peer-Reviewed Venue Is Chosen)
 - [ ] **Select primary downstream venue** (e.g., CACM / IEEE Software vs. ITP 2027 vs. EMSE / ACM TOSEM vs. NeurIPS 2027 D&B) and fork a venue-specific manuscript under `papers/<venue>/`.

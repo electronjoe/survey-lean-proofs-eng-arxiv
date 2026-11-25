@@ -215,3 +215,29 @@ Internal JSON schema keys stay strictly inside `artifacts/*.json` and `scripts/*
 
 - **2026-11-25:** Structural unification choices confirmed (*"Go with recommendations"*: `23/23` all-role compact Docker sandbox, exhaustive `22` engineering + `2` meta-system Layer-A framing with `3` math/TCS contrast, removal of 8-cat parallel reporting, and 1-page focused main-text inventory + 82-paper Appendix A ledger).
 - **2026-11-25:** Full execution approved (including Section 5 Academic Prose & De-Jargoning Guide). **Phases 1, 2, and 3 completed and committed as a clean CI-green checkpoint**; **Phases 4 and 5 completed** with clean unified PDF compilation and all CI gates passing (`0` issues).
+
+---
+
+## 8. Post-Unification Related Efforts & Follow-Up Tracker
+
+Auditing the wider repository after completing Phases 1–5 surfaced three tiers of follow-up efforts directly tied to the unified 15-category, 4-way manuscript:
+
+### Tier 1 — Immediate Post-Reorg Spillover & Packaging Hygiene
+- [ ] **Fix double-blind review artifact (`scripts/export_blind_artifact.py`):** Include `scripts/` in `INCLUDE_DIRS` (with anonymity scan passing and excluding non-repro/identifying files if needed) so `uv run pytest` passes cleanly inside `dist/blind_artifact.zip` (currently 6 test modules import from `scripts.*` and fail inside the exported zip); refresh `ANONYMIZED_README` to drop the legacy *"Longitudinal Survey"* title and document `artifacts/unified_15cat_panel.json`.
+- [ ] **Typographic polish on `papers/arxiv-empirical/main.tex` + `Makefile` dependencies + fresh arXiv tarball:** Resolve the 4 remaining minor `Overfull \hbox` warnings (up to `5.15 pt` in Table 1, Table 4, and the AI-provenance table), wire `papers/arxiv-empirical/Makefile` figure targets to depend on `artifacts/unified_15cat_panel.json` and `src/generate_figures.py` so stale figures rebuild automatically, and export + test-compile a clean unified arXiv source tarball (`dist/arxiv-empirical-unified.tar.gz`).
+- [ ] **Sync companion metadata, secondary registries & docs still on 8-cat / v0.6–v0.7:**
+  - Update `CITATION.cff` away from the legacy *"Longitudinal Survey"* title to match `papers/arxiv-empirical/main.tex`.
+  - Refresh `docs/publication_strategy.html` (currently frozen on v0.6 / 8 categories: `9,837` papers, `23` Layer-A, `14` sandbox) to the unified 15-category state.
+  - Refresh `docs/audit_plan.md` (`89` BibTeX entries, `23` compact sandbox builds, `250`-neg recall), `docs/PROGRESS_AND_NEXT_STEPS.md` Section 2 headline table, and `README.md` artifact/report bullet list.
+  - Consolidate/document 15-category / `n = 23` sandbox / `n = 27` provenance parity in `artifacts/slices/manifest.json`, `artifacts/sandbox_builds/README.md`, `sandbox/README.md`, and `artifacts/phase2_provenance.json` (or document canonical linkage to `unified_15cat_panel.json` without breaking frozen-artifact tests).
+
+### Tier 2 — Substantive Empirical & Human-Validation Efforts Tied to the Unified Paper
+- [ ] **Guided human co-review of the 2 newer named critiques (`2611.07395`, `2611.14586`) + optional courtesy author outreach:** Upgrade human-signed critique coverage in Section 8.2 from `4/4` initial critiques to `6/6 (100%)` across all named critiques in Section 7.2; optionally notify authors of named critiques with pinned commit SHAs and `file:line` references prior to archival submission.
+- [ ] **Phase B2 Dual-Rater Human IRR on the 4-Way Role Taxonomy (Updated for 15 Categories):** Expand/refresh `artifacts/human_annotations/track1_4way_coding_blank.csv` from the original `47` pre-expansion papers to all `82` confirmed 15-category papers (or a stratified 15-category sample) and run independent `annotator_1` + `annotator_2` coding to validate the primary 4-way taxonomy directly.
+- [ ] **Cross-Model & Higher-Reasoning-Tier Audit (`Hydrogen` vs. `Neon` + open-weight judge):** Benchmark Stage-4 classifications (`Gemini 4 Hydrogen High`) and stratified Stage-5 Layer-A spot-checks against higher-intelligence models / deeper thinking budgets and an open-weight judge baseline.
+
+### Tier 3 — Downstream Venue & Follow-On Roadmap Efforts
+- [ ] **Archival venue selection & variant fork (`papers/<venue>/`):** Fork venue-specific manuscript (CACM / IEEE Software vs. EMSE / ACM TOSEM vs. ITP 2027 vs. NeurIPS 2027 D&B), adapting AI-Use disclosure wording/placement and double-blind compliance per publisher policy.
+- [ ] **Scale dynamic verification beyond `<15k` LoC + `lake comparator` replay:** Extend `sandbox/run_sandbox_audit.py` to medium/large repos (`>15k` LoC) and replay `comparator` on `P4` repos.
+- [ ] **Scoped ML-theory arm (`cs.LG` / `stat.ML`) & calendar/conference-deadline confounder check** around May/Nov windows.
+- [ ] **Chartered Operational-FV Spin-Off Study** (`cs.AR`, `cs.DB`, `cs.OS`, `cs.SE`, `cs.PL` — [`docs/operational_fv_spinoff_brief.md`](operational_fv_spinoff_brief.md)) and **automated periodic runner** (`T3: 2027-02`).

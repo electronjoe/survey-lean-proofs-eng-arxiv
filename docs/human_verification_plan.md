@@ -80,3 +80,10 @@ Draw a reproducible, seeded stratified sample of **30 Stage-2 Lean candidates** 
 - [x] Integrated Steps 2–4 results (Section 8: blinded Stage-4 IRR Table + 3-cause reconciliation, guided Stage-5 co-review of 4/4 named critiques and 5/5 clean-cohort spot-checks) into [`papers/arxiv-empirical/main.tex`](../papers/arxiv-empirical/main.tex) (promoted to **v0.6**) and wired programmatic verification into [`scripts/check_paper_numbers.py`](../scripts/check_paper_numbers.py).
 - [x] Updated [`docs/audit_plan.md`](audit_plan.md), [`docs/PROGRESS_AND_NEXT_STEPS.md`](PROGRESS_AND_NEXT_STEPS.md), and refreshed [`docs/publication_strategy.html`](publication_strategy.html).
 - [x] Passed all CI gates (`uv run pytest`, `scripts/audit_bib.py --live`, `scripts/check_paper_numbers.py`, `scripts/export_blind_artifact.py`, clean `make -C papers/arxiv-empirical` with 0 warnings/overfull boxes) and exported & test-compiled the clean arXiv source tarball (`dist/arxiv-empirical-v0.6.tar.gz`).
+
+---
+
+## Post-Unification Follow-Up Items (15-Category Unified Manuscript)
+
+- [ ] **Guided human co-review of the 2 post-expansion named critiques (`2611.07395`, `2611.14586`):** Source lines were deterministically verified on disk during Phase 1 of [`docs/paper_reorg_plan.md`](paper_reorg_plan.md), leaving `artifacts/human_annotations/layer_a_human_verification.json` at `4/4` human-signed initial critiques (`+ 5/5` clean spot-checks). Completing guided co-review on these two repositories brings human-signed critique coverage to `6/6 (100%)`.
+- [ ] **Expand Phase B2 dual-rater 4-way IRR kit from `47` to `82` confirmed 15-category papers:** Refresh [`artifacts/human_annotations/track1_4way_coding_blank.csv`](../artifacts/human_annotations/track1_4way_coding_blank.csv) (currently seeded with the 47 pre-expansion papers) to cover all 82 confirmed 15-category papers (or a stratified 15-category sample) for independent `annotator_1` + `annotator_2` validation of the primary 4-way taxonomy.
