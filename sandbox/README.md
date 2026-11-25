@@ -34,14 +34,17 @@ sandbox/
 # 1. Build the isolated runner image
 docker build -t lean-survey-sandbox:v1 sandbox/
 
-# 2. Run the full 14-repository orig-8 compact (<15k LoC) benchmark across T2 and T1
+# 2. Run the 14-repository initial-8 compact (<15k LoC) benchmark across T2 and T1
 uv run python sandbox/run_sandbox_audit.py
 
-# 3. Run the Phase C2 +7 eng_algorithmic_proof compact (<15k LoC) benchmark (n=3)
+# 3. Run the +7 engineering compact (<15k LoC) benchmark (n=3)
 uv run python sandbox/run_sandbox_audit.py --cohort plus7
+
+# 4. Run the +7 pure_math_or_tcs compact (<15k LoC) benchmark (n=6; completes 23/23 all-role coverage)
+uv run python sandbox/run_sandbox_audit.py --cohort plus7_math
 
 # Or run a subset of arXiv IDs
 uv run python sandbox/run_sandbox_audit.py --only 2611.14756 2611.19551
 ```
 
-Results are written to [`artifacts/sandbox_builds/`](../artifacts/sandbox_builds/README.md) (`results_2026-11.json`, `results_2026-05.json`, `summary.json`, and `results_plus7_2026-11.json`).
+Results are written to [`artifacts/sandbox_builds/`](../artifacts/sandbox_builds/README.md) (`results_2026-11.json`, `results_2026-05.json`, `summary.json`, `results_plus7_2026-11.json`, and `results_plus7_math.json`) and unified into [`artifacts/unified_15cat_panel.json`](../artifacts/unified_15cat_panel.json).

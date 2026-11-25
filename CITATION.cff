@@ -1,6 +1,6 @@
 cff-version: 1.2.0
-message: "If you use this pipeline, curated dataset, or taxonomy in your research, please cite it as below."
-title: "How Are Engineering Papers Adopting Lean? A Longitudinal Survey of arXiv Preprints, Authoring Paradigms, Recall Calibration, and Semantic Fidelity"
+message: "If you use this pipeline, curated 15-category dataset, or taxonomy in your research, please cite it as below."
+title: "How Are Engineering Papers Adopting Lean? A Longitudinal Empirical Study of arXiv Preprints, Authoring Paradigms, Kernel Reproducibility, and Semantic Fidelity"
 type: software
 authors:
   - family-names: Moeller
@@ -18,5 +18,6 @@ keywords:
   - formal verification
   - autoformalization
   - arXiv
-  - empirical survey
+  - empirical study
+  - kernel reproducibility
   - semantic fidelity

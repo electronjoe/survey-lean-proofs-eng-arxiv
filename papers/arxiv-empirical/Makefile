@@ -3,10 +3,11 @@
 ROOT_DIR := ../..
 FIG_DIR := ../shared/figures
 FIG_SENTINEL := $(FIG_DIR)/fig_sandbox_builds.pdf
+FIG_DEPS := $(ROOT_DIR)/artifacts/unified_15cat_panel.json $(ROOT_DIR)/src/generate_figures.py
 
 all: main.pdf
 
-$(FIG_SENTINEL):
+$(FIG_SENTINEL): $(FIG_DEPS)
 	cd $(ROOT_DIR) && uv run python -m src.generate_figures
 
 figures:

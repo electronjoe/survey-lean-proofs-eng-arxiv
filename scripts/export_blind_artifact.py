@@ -3,6 +3,7 @@
 
 Packages:
   - src/
+  - scripts/ (excluding export_blind_artifact.py, which lists forbidden author tokens)
   - workflows/
   - artifacts/
   - sandbox/
@@ -30,8 +31,9 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_OUT = REPO_ROOT / "dist" / "blind_artifact.zip"
 
-INCLUDE_DIRS = ("src", "workflows", "artifacts", "sandbox", "tests")
+INCLUDE_DIRS = ("src", "scripts", "workflows", "artifacts", "sandbox", "tests")
 INCLUDE_FILES = ("pyproject.toml", "uv.lock")
+SKIP_REL_PATHS = {"scripts/export_blind_artifact.py"}
 
 FORBIDDEN_TOKENS = (
     "Moeller",
@@ -41,17 +43,18 @@ FORBIDDEN_TOKENS = (
     "electronjoe",
 )
 
-ANONYMIZED_README = """# Replication Package: Longitudinal Survey of Lean 4 Adoption in Engineering arXiv Preprints
+ANONYMIZED_README = """# Replication Package: Longitudinal Empirical Study of Lean 4 Adoption in Engineering arXiv Preprints
 
 *(Double-blind review artifact — author and institutional identifiers removed.)*
 
 ## Contents
 
-- `src/` — Deterministic, zero-token Python pipeline (OAI-PMH ingestion, HTML5/PDF full-text screening, static LaTeX/GitHub/GitLab/Zenodo profiling, Stage-2 recall calibration, artifact export, longitudinal analysis, and zero-DB figure generation).
-- `workflows/` — Parallel LLM classification (`classify_candidates.py`) and adversarial Layer-A semantic fidelity audit (`audit_layer_a.py`) prompts and strict JSON schemas.
-- `artifacts/` — Version-controlled, license-safe structured outputs (`longitudinal_summary.json`, `slices/manifest.json`, per-slice `classifications.json`, `layer_a_audits.json`, `recall_calibration.json`, and `figure_inputs.json`).
-- `sandbox/` — Security boundary specification for isolated Docker `lake build` and `#print axioms` verification.
-- `tests/` — Unit tests for deterministic Lean/Beyond-Lean regex detectors, the comment-stripping Lean lexer, and LaTeX blueprint/AI-disclosure scanners.
+- `src/` — Deterministic, zero-token Python pipeline (OAI-PMH ingestion, HTML5/PDF full-text screening, static LaTeX/GitHub/GitLab/Zenodo/arXiv-ancillary profiling, Stage-2 recall calibration, artifact export, longitudinal analysis, and zero-DB vector figure generation).
+- `scripts/` — Canonical 15-category artifact synthesizer (`build_unified_15cat_artifacts.py`), paper-to-artifact numeric consistency gate (`check_paper_numbers.py`), BibTeX hygiene auditor (`audit_bib.py`), IRR preparation/scoring (`prepare_stage4_irr.py`, `compute_irr.py`), off-arXiv bibliometric probe (`probe_off_arxiv.py`), and provenance pinning (`pin_phase2_provenance.py`).
+- `workflows/` — Parallel read-only LLM classification (`classify_candidates.py`) and adversarial Layer-A semantic fidelity audit (`audit_layer_a.py`) prompts and strict JSON schemas.
+- `artifacts/` — Version-controlled, license-safe structured outputs centered on the canonical unified 15-category dataset (`unified_15cat_panel.json`: 12,613 preprints across T0/T1/T2, 82 confirmed Lean preprints, 27 Layer-A semantic audits, 23 compact Docker kernel builds, 250-paper Stage-2 recall calibration, 8-paper operational-FV boundary audit, off-arXiv probe, and blinded human IRR), plus per-slice and per-stage JSON logs.
+- `sandbox/` — Clean-room `--network=none` Docker harness (`Dockerfile`, `check_axioms.lean`, `container_entry.py`, `run_sandbox_audit.py`) for dynamic `lake build` and programmatic `Lean.collectAxioms` verification.
+- `tests/` — Unit and integrity test suite covering deterministic detectors, Lean lexer, canonical 15-category panel parity, sandbox logs, off-arXiv classification, IRR scoring, BibTeX hygiene, and numeric gate logic.
 
 ## Quick Verification
 
@@ -61,7 +64,7 @@ uv run pytest
 uv run python -m src.generate_figures --out-dir /tmp/repro_figures
 ```
 
-Note: Heavy ephemeral SQLite databases (`data/*.db`) and cloned third-party Lean repositories (`data/repos/`) are excluded from this archive for size and third-party licensing compliance; all figures regenerate directly from `artifacts/`.
+Note: Heavy ephemeral SQLite databases (`data/*.db`), cloned third-party Lean repositories (`data/repos/`), and non-anonymous manuscript sources (`papers/`, `docs/`) are excluded from this archive for size, double-blind anonymity, and third-party licensing compliance; manuscript-specific file tests skip gracefully when `papers/` is absent, while all pipeline, artifact-parity, sandbox, IRR, and figure-generation checks run directly from `artifacts/`.
 """
 
 SKIP_DIR_NAMES = {"__pycache__", ".venv", ".pytest_cache", ".git", "node_modules"}
@@ -92,6 +95,8 @@ def _iter_source_files(root: Path) -> list[tuple[Path, str]]:
                 continue
             rel = p.relative_to(root)
             if any(part in SKIP_DIR_NAMES for part in rel.parts):
+                continue
+            if rel.as_posix() in SKIP_REL_PATHS:
                 continue
             if p.suffix.lower() in SKIP_SUFFIXES:
                 continue

@@ -4,10 +4,12 @@ This directory stores structured, license-safe JSON logs produced by isolated Do
 
 ## Archived Files & Schema
 
-- `results_2026-11.json` — Isolated build & programmatic `Lean.collectAxioms` logs for all **11** standalone compact (`<15k` LoC) orig-8 T2 repositories (`9/11` OOTB pass, `3,026` theorems audited OOTB + `64` synthetic).
-- `results_2026-05.json` — Isolated build & programmatic `Lean.collectAxioms` logs for all **3** contemporaneous orig-8 T1 scanned repositories (`2/3` OOTB pass, `164` theorems audited OOTB).
-- `summary.json` — Aggregate cross-slice ground-truth metrics for the frozen orig-8 compact cohort (`n = 14`) consumed by `src/generate_figures.py` and `scripts/check_paper_numbers.py`.
-- `results_plus7_2026-11.json` — Phase C2 isolated build & programmatic `Lean.collectAxioms` logs for all **3** newly discovered compact (`<15k` LoC) `+7` `eng_algorithmic_proof` T2 repositories (`3/3` OOTB pass, `361` theorems audited OOTB, `2/3` axiom-clean, `2611.07395` dynamically corroborating 4 custom Julia/Arb axioms, `0/3` `sorryAx` / `Lean.ofReduceBool`). Combined 15-category compact totals (`n = 17`) are archived in [`artifacts/phase_c2_plus7_audits.json`](../phase_c2_plus7_audits.json).
+- `results_2026-11.json` — Isolated build & programmatic `Lean.collectAxioms` logs for all **11** standalone compact (`<15k` LoC) initial-8 T2 repositories (`9/11` OOTB pass, `3,026` theorems audited OOTB + `64` synthetic).
+- `results_2026-05.json` — Isolated build & programmatic `Lean.collectAxioms` logs for all **3** contemporaneous initial-8 T1 scanned repositories (`2/3` OOTB pass, `164` theorems audited OOTB).
+- `summary.json` — Aggregate cross-slice ground-truth metrics for the frozen initial-8 compact cohort (`n = 14`, verified by `tests/test_sandbox_builds.py`).
+- `results_plus7_2026-11.json` — Isolated build & programmatic `Lean.collectAxioms` logs for all **3** compact (`<15k` LoC) `+7` `eng_algorithmic_proof` T2 repositories (`3/3` OOTB pass, `361` theorems audited OOTB, `2/3` axiom-clean, `2611.07395` dynamically corroborating 4 custom Julia/Arb axioms, `0/3` `sorryAx` / `Lean.ofReduceBool`).
+- `results_plus7_math.json` — Isolated build & programmatic `Lean.collectAxioms` logs for all **6** remaining compact (`<15k` LoC) `+7` `pure_math_or_tcs` repositories (`2605.12537`, `2611.11641`, `2611.07494`, `2611.15711`, `2611.17223`, `2611.04575`), completing **`23/23 (100%)`** exhaustive all-role compact Docker kernel verification across all 15 categories (`18/23 = 78.3%` OOTB pass, `14/18` axiom-clean, `5,259` OOTB / `5,339` incl. synthetic theorems, `11/12` Gold OOTB and `11/11` [`100%`] Gold axiom-clean, `0/23` compile errors, `16` distinct toolchains, `1/23` `native_decide` [`2611.15711` Bronze pure-math/TCS; `0/11` engineering]).
+- **Canonical unified 23-repository aggregate:** Synthesized into [`artifacts/unified_15cat_panel.json`](../unified_15cat_panel.json) (`sandbox_builds`) and consumed directly by `src/generate_figures.py` and `scripts/check_paper_numbers.py`.
 
 ### `results_<slice_id>.json`
 One compact record per attempted Lean 4 repository build (strictly metadata and verifier summaries—never third-party source code or `.olean` build caches):

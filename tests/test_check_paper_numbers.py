@@ -7,6 +7,8 @@ import tarfile
 import zipfile
 from pathlib import Path
 
+import pytest
+
 from scripts.check_paper_numbers import (
     DEFAULT_PANEL,
     DEFAULT_TEX,
@@ -16,6 +18,8 @@ from src.profile_artifacts import _extract_arxiv_ancillary_lean
 
 
 def test_repo_paper_numbers_pass_consistency_gate() -> None:
+    if not DEFAULT_TEX.is_file():
+        pytest.skip("Manuscript sources under papers/ are excluded from the blind artifact.")
     errors, stats = run_all_checks(
         tex_path=DEFAULT_TEX,
         panel_path=DEFAULT_PANEL,
@@ -31,6 +35,8 @@ def test_repo_paper_numbers_pass_consistency_gate() -> None:
 
 
 def test_detects_numeric_table_ci_loc_and_schema_drift(tmp_path: Path) -> None:
+    if not DEFAULT_TEX.is_file():
+        pytest.skip("Manuscript sources under papers/ are excluded from the blind artifact.")
     tex = DEFAULT_TEX.read_text(encoding="utf-8")
     mutated = (
         tex.replace("12,613", "12,999")

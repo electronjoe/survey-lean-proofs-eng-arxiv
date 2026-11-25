@@ -1,5 +1,23 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
+  "canonical_unified_panel": "artifacts/unified_15cat_panel.json",
+  "panel_15cat_categories": [
+    "eess.SY",
+    "eess.SP",
+    "eess.IV",
+    "eess.AS",
+    "math.OC",
+    "math.DS",
+    "physics.flu-dyn",
+    "cs.CE",
+    "cs.IT",
+    "cs.NI",
+    "cs.DC",
+    "cs.CR",
+    "cs.RO",
+    "cs.GT",
+    "cs.PF"
+  ],
   "target_categories": [
     "math.OC",
     "cs.DC",
@@ -27,8 +45,18 @@
         "cs.NI",
         "cs.RO"
       ],
+      "plus7_categories": [
+        "eess.IV",
+        "eess.AS",
+        "cs.PF",
+        "cs.GT",
+        "cs.CE",
+        "physics.flu-dyn",
+        "math.DS"
+      ],
       "status": "complete",
       "db_path": "data/slice_2025_11.db",
+      "plus7_db_path": "data/scout_eng_tier12_2025_11.db",
       "artifacts_dir": "artifacts/slices/2025-11",
       "reports_dir": "reports/slices/2025-11",
       "export_figure_inputs": false
@@ -49,8 +77,18 @@
         "cs.NI",
         "cs.RO"
       ],
+      "plus7_categories": [
+        "eess.IV",
+        "eess.AS",
+        "cs.PF",
+        "cs.GT",
+        "cs.CE",
+        "physics.flu-dyn",
+        "math.DS"
+      ],
       "status": "complete",
       "db_path": "data/slice_2026_05.db",
+      "plus7_db_path": "data/scout_eng_tier12_2026_05.db",
       "artifacts_dir": "artifacts/slices/2026-05",
       "reports_dir": "reports/slices/2026-05",
       "export_figure_inputs": false
@@ -71,8 +109,18 @@
         "cs.NI",
         "cs.RO"
       ],
+      "plus7_categories": [
+        "eess.IV",
+        "eess.AS",
+        "cs.PF",
+        "cs.GT",
+        "cs.CE",
+        "physics.flu-dyn",
+        "math.DS"
+      ],
       "status": "complete",
       "db_path": "data/survey.db",
+      "plus7_db_path": "data/scout_eng_tier12_2026_11.db",
       "artifacts_dir": "artifacts/slices/2026-11",
       "reports_dir": "reports/slices/2026-11",
       "export_figure_inputs": true

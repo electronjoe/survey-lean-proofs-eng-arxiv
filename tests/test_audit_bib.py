@@ -4,6 +4,8 @@ from __future__ import annotations
 
 from pathlib import Path
 
+import pytest
+
 from scripts.audit_bib import (
     check_offline_hygiene,
     extract_tex_citations,
@@ -68,6 +70,8 @@ def test_repo_references_bib_passes_offline_audit() -> None:
     repo_root = Path(__file__).resolve().parent.parent
     bib_path = repo_root / "papers" / "shared" / "references.bib"
     tex_path = repo_root / "papers" / "arxiv-empirical" / "main.tex"
+    if not bib_path.is_file() or not tex_path.is_file():
+        pytest.skip("Manuscript sources under papers/ are excluded from the blind artifact.")
     entries, parse_errors = parse_bib(bib_path.read_text(encoding="utf-8"))
     assert parse_errors == []
     assert check_offline_hygiene(entries, [tex_path]) == []
