@@ -14,6 +14,7 @@ from __future__ import annotations
 import argparse
 import io
 import json
+import math
 import random
 import re
 import sqlite3
@@ -1023,15 +1024,112 @@ def run_fetch(
 # Export E2 Inputs & Import/Summarize E2 Outputs
 # ---------------------------------------------------------------------------
 
+def compute_neyman_3stratum_plan(
+    all_rows: list[dict[str, Any]],
+    per_cat_budget: int = 30,
+    cap_none: int = 4,
+    min_formal: int = 10,
+    min_weak: int = 6,
+    seed_prefix: str = "e2_20261126",
+) -> dict[str, Any]:
+    """Build an unbiased independent per-category 3-stratum SRS plan with Neyman allocation.
+
+    Within each of the 15 categories, draws independent SRS samples from the three fetched
+    E1 strata (`E1_formal_thm_proof`, `E1_weak_or_unnumbered_math`, `E1_no_formal_claims`):
+      - `E1_no_formal_claims`: fixed audit floor `min(cap_none, N_N)`
+      - `E1_formal_thm_proof` / `E1_weak_or_unnumbered_math`: floors `min(min_formal, N_F)`
+        and `min(min_weak, N_W)`, with remaining slots up to `per_cat_budget` allocated
+        greedily by marginal finite-population-corrected Neyman variance reduction
+        (conservative within-stratum SDs: 0.50 for formal, 0.40 for weak).
+
+    Cross-listed papers are sampled independently per category (zero ordering bias) and
+    deduplicated in `unique_ids` before LLM dispatch.
+    """
+    strata_keys = (
+        ("E1_formal_thm_proof", "formal"),
+        ("E1_weak_or_unnumbered_math", "weak"),
+        ("E1_no_formal_claims", "none"),
+    )
+    sds = {"E1_formal_thm_proof": 0.50, "E1_weak_or_unnumbered_math": 0.40}
+    per_cat_plan: dict[str, dict[str, Any]] = {}
+    unique_ids: set[str] = set()
+
+    for cat in ALL15_CATS:
+        in_cat = [r for r in all_rows if cat in json.loads(r["matched_15_cats_json"])]
+        pools = {
+            b: sorted(r["arxiv_id"] for r in in_cat if r["e1_bucket"] == b)
+            for b, _ in strata_keys
+        }
+        n_tot = len(in_cat)
+        alloc = {
+            "E1_formal_thm_proof": min(min_formal, len(pools["E1_formal_thm_proof"])),
+            "E1_weak_or_unnumbered_math": min(min_weak, len(pools["E1_weak_or_unnumbered_math"])),
+            "E1_no_formal_claims": min(cap_none, len(pools["E1_no_formal_claims"])),
+        }
+        target_tot = min(per_cat_budget, n_tot)
+        while sum(alloc.values()) < target_tot:
+            best_b = None
+            best_gain = -1.0
+            for b in ("E1_formal_thm_proof", "E1_weak_or_unnumbered_math"):
+                nh_pop = len(pools[b])
+                nh = alloc[b]
+                if nh >= nh_pop or nh == 0:
+                    continue
+                wh = nh_pop / max(n_tot, 1)
+                v0 = (wh**2) * ((nh_pop - nh) / max(nh_pop - 1, 1)) * (sds[b] ** 2 / nh)
+                v1 = (wh**2) * ((nh_pop - nh - 1) / max(nh_pop - 1, 1)) * (sds[b] ** 2 / (nh + 1))
+                if (v0 - v1) > best_gain:
+                    best_gain = v0 - v1
+                    best_b = b
+            if best_b is None:
+                break
+            alloc[best_b] += 1
+
+        cat_strata: dict[str, Any] = {}
+        for b, short_k in strata_keys:
+            rng = random.Random(f"{seed_prefix}_{cat}_{short_k[0].upper()}")
+            picks = sorted(rng.sample(pools[b], alloc[b]))
+            unique_ids.update(picks)
+            cat_strata[b] = {
+                "N_h": len(pools[b]),
+                "n_h": len(picks),
+                "sampled_ids": picks,
+            }
+        per_cat_plan[cat] = {
+            "N_fetched": n_tot,
+            "n_total": sum(alloc.values()),
+            "strata": cat_strata,
+        }
+
+    return {
+        "design": "independent_per_category_3stratum_neyman_srs",
+        "per_cat_budget": per_cat_budget,
+        "cap_none": cap_none,
+        "min_formal": min_formal,
+        "min_weak": min_weak,
+        "seed_prefix": seed_prefix,
+        "total_category_draws": sum(v["n_total"] for v in per_cat_plan.values()),
+        "unique_sampled_ids": sorted(unique_ids),
+        "per_category": per_cat_plan,
+    }
+
+
 def export_e2_inputs(
     db_path: Path = DEFAULT_ELIGIBILITY_DB,
     cohort: str = "pilot_e0",
     out_path: Path = Path("data/eligibility_pilot_e0_in.json"),
-    pos_per_cat: int = 25,
-    neg_per_cat: int = 10,
-    seed: int = 20261126,
+    per_cat_budget: int = 30,
+    cap_none: int = 4,
+    min_formal: int = 10,
+    min_weak: int = 6,
+    seed_prefix: str = "e2_20261126",
+    skip_cached_model: str | None = "flash",
+    plan_out_path: Path | None = None,
 ) -> dict[str, Any]:
     conn = connect_eligibility(db_path)
+    sampling_plan: dict[str, Any] | None = None
+    cached_ids: list[str] = []
+
     if cohort == "pilot_e0":
         rows = conn.execute(
             """
@@ -1064,17 +1162,30 @@ def export_e2_inputs(
                 """
             ).fetchall()
         ]
-        rng = random.Random(seed)
-        chosen: dict[str, dict[str, Any]] = {}
-        for cat in ALL15_CATS:
-            in_cat = [r for r in all_rows if cat in json.loads(r["matched_15_cats_json"])]
-            pos = [r for r in in_cat if r["e1_bucket"] == "E1_formal_thm_proof" and r["arxiv_id"] not in chosen]
-            neg = [r for r in in_cat if r["e1_bucket"] != "E1_formal_thm_proof" and r["arxiv_id"] not in chosen]
-            for r in rng.sample(pos, min(pos_per_cat, len(pos))):
-                chosen[r["arxiv_id"]] = r
-            for r in rng.sample(neg, min(neg_per_cat, len(neg))):
-                chosen[r["arxiv_id"]] = r
-        selected_rows = [chosen[k] for k in sorted(chosen)]
+        by_id = {r["arxiv_id"]: r for r in all_rows}
+        sampling_plan = compute_neyman_3stratum_plan(
+            all_rows,
+            per_cat_budget=per_cat_budget,
+            cap_none=cap_none,
+            min_formal=min_formal,
+            min_weak=min_weak,
+            seed_prefix=seed_prefix,
+        )
+        already_classified: set[str] = set()
+        if skip_cached_model:
+            already_classified = {
+                r["arxiv_id"]
+                for r in conn.execute(
+                    "SELECT arxiv_id FROM eligibility_classifications WHERE model_tier = ?",
+                    (skip_cached_model,),
+                ).fetchall()
+            }
+        unique_ids = sampling_plan["unique_sampled_ids"]
+        cached_ids = [aid for aid in unique_ids if aid in already_classified]
+        selected_rows = [by_id[aid] for aid in unique_ids if aid not in already_classified]
+        if plan_out_path is not None:
+            plan_out_path.parent.mkdir(parents=True, exist_ok=True)
+            plan_out_path.write_text(json.dumps(sampling_plan, indent=2) + "\n")
     else:
         raise ValueError(f"Unknown cohort: {cohort}")
 
@@ -1111,15 +1222,25 @@ def export_e2_inputs(
             }
         )
 
-    payload = {
+    payload: dict[str, Any] = {
         "cohort": cohort,
         "generated_at": utc_now(),
         "count": len(items),
+        "cached_count": len(cached_ids),
+        "cached_ids": cached_ids,
         "items": items,
     }
+    if sampling_plan is not None:
+        payload["sampling_plan"] = sampling_plan
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(payload, indent=2))
-    return {"cohort": cohort, "count": len(items), "out_path": str(out_path)}
+    return {
+        "cohort": cohort,
+        "count": len(items),
+        "cached_count": len(cached_ids),
+        "unique_total": len(items) + len(cached_ids),
+        "out_path": str(out_path),
+    }
 
 
 def import_e2_and_report_pilot(
@@ -1635,8 +1756,13 @@ def main() -> None:
     p_exp.add_argument("--db", type=Path, default=DEFAULT_ELIGIBILITY_DB)
     p_exp.add_argument("--cohort", choices=["pilot_e0", "e2_stratified"], default="pilot_e0")
     p_exp.add_argument("--out", type=Path, default=Path("data/eligibility_pilot_e0_in.json"))
-    p_exp.add_argument("--pos-per-cat", type=int, default=25)
-    p_exp.add_argument("--neg-per-cat", type=int, default=10)
+    p_exp.add_argument("--per-cat-budget", type=int, default=30)
+    p_exp.add_argument("--cap-none", type=int, default=4)
+    p_exp.add_argument("--min-formal", type=int, default=10)
+    p_exp.add_argument("--min-weak", type=int, default=6)
+    p_exp.add_argument("--seed-prefix", type=str, default="e2_20261126")
+    p_exp.add_argument("--skip-cached-model", type=str, default="flash")
+    p_exp.add_argument("--plan-out", type=Path, default=None)
 
     p_imp = sub.add_parser("import-e2", help="Import E2 LLM results and generate Pilot E0 artifact + report.")
     p_imp.add_argument("--db", type=Path, default=DEFAULT_ELIGIBILITY_DB)
@@ -1668,8 +1794,13 @@ def main() -> None:
             db_path=args.db,
             cohort=args.cohort,
             out_path=args.out,
-            pos_per_cat=args.pos_per_cat,
-            neg_per_cat=args.neg_per_cat,
+            per_cat_budget=args.per_cat_budget,
+            cap_none=args.cap_none,
+            min_formal=args.min_formal,
+            min_weak=args.min_weak,
+            seed_prefix=args.seed_prefix,
+            skip_cached_model=args.skip_cached_model or None,
+            plan_out_path=args.plan_out,
         )
         print(json.dumps(res, indent=2))
     elif args.cmd == "import-e2":

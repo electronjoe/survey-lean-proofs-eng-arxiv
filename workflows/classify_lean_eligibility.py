@@ -120,10 +120,44 @@ def make_batch_prompt(batch_items):
 
 batches = list(chunks(items, papers_per_prompt))
 phase("Classify Lean Eligibility (Batched)")
-log(f"Classifying {len(items)} papers in {len(batches)} batches (size={papers_per_prompt}, model={model_tier})...")
 
-all_results = []
-for wave_idx, wave in enumerate(chunks(batches, concurrency), 1):
+# Support resumable wave-level checkpointing so transient failures never lose paid work
+done_by_id = {}
+if outputs_path.exists():
+    try:
+        prev = json.loads(outputs_path.read_text())
+        if prev.get("cohort") == payload.get("cohort") and prev.get("model") == model_tier:
+            for r in prev.get("results", []):
+                if "arxiv_id" in r:
+                    done_by_id[r["arxiv_id"]] = r
+    except Exception:
+        done_by_id = {}
+
+pending_items = [it for it in items if it["arxiv_id"] not in done_by_id]
+pending_batches = list(chunks(pending_items, papers_per_prompt))
+log(
+    f"Classifying {len(pending_items)} pending papers ({len(done_by_id)} resumed from checkpoint) "
+    f"in {len(pending_batches)} batches (size={papers_per_prompt}, model={model_tier}, concurrency={concurrency})..."
+)
+
+
+def _save_checkpoint():
+    ordered = [done_by_id[it["arxiv_id"]] for it in items if it["arxiv_id"] in done_by_id]
+    out_ckpt = {
+        "cohort": payload.get("cohort", "unknown"),
+        "model": model_tier,
+        "papers_per_prompt": papers_per_prompt,
+        "count": len(ordered),
+        "expected_count": len(items),
+        "complete": len(ordered) == len(items),
+        "results": ordered,
+    }
+    outputs_path.parent.mkdir(parents=True, exist_ok=True)
+    outputs_path.write_text(json.dumps(out_ckpt, indent=2))
+    return ordered
+
+
+for wave_idx, wave in enumerate(chunks(pending_batches, concurrency), 1):
     wave_res = await parallel(
         wave,
         lambda b: agent(
@@ -141,19 +175,12 @@ for wave_idx, wave in enumerate(chunks(batches, concurrency), 1):
         if missing:
             raise RuntimeError(f"Batch missing arxiv_ids: {missing}")
         for aid in expected_ids:
-            all_results.append(got[aid])
-    log(f"  Completed wave {wave_idx} ({len(all_results)}/{len(items)} papers)")
+            done_by_id[aid] = got[aid]
+    _save_checkpoint()
+    log(f"  Completed wave {wave_idx} ({len(done_by_id)}/{len(items)} papers)")
 
 phase("Save Outputs")
-out = {
-    "cohort": payload.get("cohort", "unknown"),
-    "model": model_tier,
-    "papers_per_prompt": papers_per_prompt,
-    "count": len(all_results),
-    "results": all_results,
-}
-outputs_path.parent.mkdir(parents=True, exist_ok=True)
-outputs_path.write_text(json.dumps(out, indent=2))
+all_results = _save_checkpoint()
 
 counts = {}
 for r in all_results:
