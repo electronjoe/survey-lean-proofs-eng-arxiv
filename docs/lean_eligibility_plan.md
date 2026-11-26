@@ -79,8 +79,8 @@ Auxiliary structured fields:
 |---|---|---|---|
 | **0. Plan & Pipeline Code** | **Complete** (`2026-11-25`) | `docs/lean_eligibility_plan.md`, `src/screen_math_structure.py`, `workflows/classify_lean_eligibility.py`, `tests/test_math_structure.py` | Deterministic LaTeXML HTML5 + PDF structural parser + 5-per-prompt batched workflow (`3/3` unit tests pass) |
 | **1. Pilot E0 (`45` T2 + `82` pos. controls)** | **Complete** (`2026-11-25`) | `artifacts/lean_eligibility_pilot_e0.json`, `reports/lean_eligibility_pilot_e0.md` | **Gate PASSED:** `127/127` fetched (`117` HTML, `10` PDF, `0` fail); blinded positive-control sensitivity = **`71/71` (`100.0%`)** math roles in `L1∪L2` (`80.3%` `L1`, `19.7%` `L2` frontier) & **`8/8` (`100.0%`)** `operational_system_fv` in `L3`; **`0/82`** unexpected mismatches; `E1_no_formal_claims` specificity = **`14/14` (`100%`)** non-eligible; `E1_formal_thm_proof` purity = **`91/92` (`98.9%`)** `L1∪L2∪L3` |
-| **2. Full T2 E1 Census (`5,303` papers)** | **Ready Next** | `data/eligibility_t2.db`, `artifacts/lean_eligibility_e1_t2_summary.json` | Zero-token full-text structural scan (~35–45 min unattended polite fetch; 0 LLM tokens) |
-| **3. Stratified E2 LLM (`~450` papers)** | Pending | `artifacts/lean_eligibility_t2.json`, `reports/lean_eligibility_analysis.md` | 3-stratum post-stratified estimation (`E1_formal`, `E1_weak`, `E1_none`) + propagated 95% CIs (~500K batched `flash` tokens) |
+| **2. Full T2 E1 Census (`5,303` papers)** | **Complete** (`2026-11-26`) | `data/eligibility_t2.db`, `artifacts/lean_eligibility_e1_t2_summary.json` | **`5,293/5,303` (`99.81%`)** fetched (`4,922` HTML5, `371` PDF, `10` withdrawn HTTP 404s; `0` LLM tokens; 44.2 min). Overall: **`1,969` (`37.13%`)** `E1_formal_thm_proof`, **`1,889` (`35.62%`)** `E1_weak_or_unnumbered_math`, **`1,435` (`27.06%`)** `E1_no_formal_claims`. Per-category `E1_formal` spans **`3.0%`** (`eess.AS`) to **`91.6%`** (`cs.GT`); **`0/69`** T2 confirmed Lean papers sit in `E1_no_formal_claims` (`62/69` formal, `7/69` weak). |
+| **3. Stratified E2 LLM (`~440` papers)** | **Ready Next (awaiting sign-off)** | `artifacts/lean_eligibility_t2.json`, `reports/lean_eligibility_analysis.md` | Proposed 3-stratum independent per-category SRS with Neyman allocation (`30`/cat = `450` draws, `439` unique T2 papers, `11` cached from Pilot E0 → **`428` net-new** `flash` calls in `86` batches of 5; est. `~555K–685K` tokens) + post-stratified 95% CIs. |
 | **4. Human IRR & T0 Spot-Check** | Pending | `artifacts/human_annotations/eligibility_irr.csv` | 45-paper blinded IRR + 150-paper T0 zero-token check |
 | **5. Paper & Figure Integration** | Pending | `fig_eligibility_adjusted_adoption.pdf`, `papers/arxiv-empirical/main.tex` | Table update, paired adoption figure, `check_paper_numbers.py` gate |
 
@@ -110,4 +110,8 @@ uv run python -m src.screen_math_structure import-e2 \
 
 # 6. (After Pilot E0 sign-off) Full T2 zero-token E1 census (5,303 papers, resumable)
 uv run python -m src.screen_math_structure fetch --cohort t2_all --workers 3 --min-interval 0.4
+uv run python -m src.screen_math_structure fetch --cohort t2_all --workers 2 --min-interval 0.6 --retry-failed
+
+# 7. Export compact git-tracked E1 T2 census summary artifact (0 LLM tokens)
+uv run python -m src.screen_math_structure summarize-e1 --out artifacts/lean_eligibility_e1_t2_summary.json
 ```

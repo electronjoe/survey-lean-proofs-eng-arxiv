@@ -2,9 +2,15 @@
 
 from __future__ import annotations
 
+import json
+from pathlib import Path
+
 from src.screen_math_structure import (
     classify_theorem_env,
+    connect_eligibility,
     parse_html_structure,
+    summarize_e1_t2,
+    upsert_math_structure,
 )
 
 SAMPLE_LATEXML_THEORY = """<!DOCTYPE html>
@@ -90,3 +96,42 @@ def test_parse_html_structure_empirical_paper() -> None:
     assert res["has_theory_section"] == 0
     assert res["e1_bucket"] == "E1_no_formal_claims"
     assert "BODY_EXCERPT:" in res["evidence_snippet"]
+
+
+def test_summarize_e1_t2_exports_per_category_counts(tmp_path: Path) -> None:
+    db_path = tmp_path / "elig.db"
+    out_path = tmp_path / "e1_summary.json"
+    conn = connect_eligibility(db_path)
+    papers = [
+        ("2611.00001", "math.OC", ["math.OC", "eess.SY"], 1, "eng_algorithmic_proof", parse_html_structure(SAMPLE_LATEXML_THEORY)),
+        ("2611.00002", "cs.RO", ["cs.RO"], 0, None, parse_html_structure(SAMPLE_LATEXML_EMPIRICAL)),
+    ]
+    with conn:
+        for aid, pcat, mcats, is_lean, role, parsed in papers:
+            conn.execute(
+                """
+                INSERT INTO eligibility_papers (
+                    arxiv_id, version, slice_id, title, abstract, primary_category,
+                    all_categories_json, matched_15_cats_json, submitted_date,
+                    in_t2_census, is_confirmed_lean, confirmed_role_4way
+                ) VALUES (?, 1, '2026-11', 't', 'a', ?, ?, ?, '2026-11-01', 1, ?, ?)
+                """,
+                (aid, pcat, json.dumps(mcats), json.dumps(mcats), is_lean, role),
+            )
+            upsert_math_structure(
+                conn,
+                {"arxiv_id": aid, "version": 1, "fetch_source": "html", "http_status": 200, "error_msg": None, **parsed},
+            )
+    conn.close()
+
+    res = summarize_e1_t2(db_path=db_path, out_path=out_path, panel_path=tmp_path / "nonexistent.json")
+    assert out_path.exists()
+    assert res["overall"]["total_papers"] == 2
+    assert res["overall"]["e1_counts"]["E1_formal_thm_proof"] == 1
+    assert res["overall"]["e1_counts"]["E1_no_formal_claims"] == 1
+    assert res["overall"]["multi_category_15_overlap_papers"] == 1
+    assert res["per_category"]["math.OC"]["total_papers"] == 1
+    assert res["per_category"]["math.OC"]["primary_papers"] == 1
+    assert res["per_category"]["eess.SY"]["total_papers"] == 1
+    assert res["per_category"]["eess.SY"]["cross_list_papers"] == 1
+    assert res["per_category"]["cs.RO"]["e1_counts"]["E1_no_formal_claims"] == 1

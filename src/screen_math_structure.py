@@ -1404,6 +1404,213 @@ def import_e2_and_report_pilot(
 
 
 # ---------------------------------------------------------------------------
+# Stage E1 Full T2 Census Summary Export
+# ---------------------------------------------------------------------------
+
+E1_BUCKETS: tuple[str, ...] = (
+    "E1_formal_thm_proof",
+    "E1_weak_or_unnumbered_math",
+    "E1_no_formal_claims",
+    "E1_fetch_failed",
+)
+
+
+def _bucket_stats(rows: list[dict[str, Any]]) -> dict[str, Any]:
+    total = len(rows)
+    fetch_counts = Counter(r["fetch_source"] for r in rows)
+    bucket_counts = Counter(r["e1_bucket"] for r in rows)
+    fetched = total - fetch_counts["failed"]
+    denom_all = max(total, 1)
+    denom_fetched = max(fetched, 1)
+
+    e1_counts = {b: bucket_counts[b] for b in E1_BUCKETS}
+    e1_shares_of_total = {b: round(100.0 * bucket_counts[b] / denom_all, 2) for b in E1_BUCKETS}
+    e1_shares_of_fetched = {
+        b: round(100.0 * bucket_counts[b] / denom_fetched, 2)
+        for b in E1_BUCKETS
+        if b != "E1_fetch_failed"
+    }
+
+    cue_group_counts: Counter[str] = Counter()
+    cue_detail_counts: Counter[str] = Counter()
+    formal_cue_group_counts: Counter[str] = Counter()
+    for r in rows:
+        cues = r.get("_domain_cues")
+        if cues is None:
+            cues = json.loads(r["domain_cues_json"] or "{}")
+        for grp, hits in cues.items():
+            if hits:
+                cue_group_counts[grp] += 1
+                if r["e1_bucket"] == "E1_formal_thm_proof":
+                    formal_cue_group_counts[grp] += 1
+                for h in hits:
+                    cue_detail_counts[f"{grp}.{h}"] += 1
+
+    return {
+        "total_papers": total,
+        "fetched_papers": fetched,
+        "fetch_coverage_pct": round(100.0 * fetched / denom_all, 2),
+        "fetch_sources": {
+            "html": fetch_counts["html"],
+            "pdf": fetch_counts["pdf"],
+            "failed": fetch_counts["failed"],
+        },
+        "e1_counts": e1_counts,
+        "e1_shares_pct": e1_shares_of_total,
+        "e1_shares_of_fetched_pct": e1_shares_of_fetched,
+        "e1_formal_plus_weak_count": bucket_counts["E1_formal_thm_proof"] + bucket_counts["E1_weak_or_unnumbered_math"],
+        "e1_formal_plus_weak_pct": round(
+            100.0 * (bucket_counts["E1_formal_thm_proof"] + bucket_counts["E1_weak_or_unnumbered_math"]) / denom_all,
+            2,
+        ),
+        "domain_cue_groups_all": {
+            "mathlib_barrier_cues": cue_group_counts["mathlib_barrier_cues"],
+            "tractable_math_cues": cue_group_counts["tractable_math_cues"],
+            "operational_fv_cues": cue_group_counts["operational_fv_cues"],
+        },
+        "domain_cue_groups_in_e1_formal": {
+            "mathlib_barrier_cues": formal_cue_group_counts["mathlib_barrier_cues"],
+            "tractable_math_cues": formal_cue_group_counts["tractable_math_cues"],
+            "operational_fv_cues": formal_cue_group_counts["operational_fv_cues"],
+        },
+        "domain_cue_details": dict(sorted(cue_detail_counts.items())),
+    }
+
+
+def summarize_e1_t2(
+    db_path: Path = DEFAULT_ELIGIBILITY_DB,
+    out_path: Path = Path("artifacts/lean_eligibility_e1_t2_summary.json"),
+    panel_path: Path = UNIFIED_PANEL_PATH,
+) -> dict[str, Any]:
+    """Export a compact git-tracked Stage E1 T2 census summary artifact across all 15 categories."""
+    conn = connect_eligibility(db_path)
+    raw_rows = [
+        dict(r)
+        for r in conn.execute(
+            """
+            SELECT ep.arxiv_id, ep.primary_category, ep.matched_15_cats_json,
+                   ep.is_confirmed_lean, ep.confirmed_role_4way, ep.in_pilot_e0,
+                   ms.fetch_source, ms.http_status, ms.error_msg, ms.text_chars,
+                   ms.n_theorem, ms.n_lemma, ms.n_proposition, ms.n_corollary,
+                   ms.n_claim_or_fact, ms.n_definition, ms.n_property_or_invariant,
+                   ms.n_proof, ms.n_equation, ms.has_theory_section,
+                   ms.has_appendix_proofs, ms.e1_bucket, ms.domain_cues_json
+            FROM eligibility_papers ep
+            LEFT JOIN math_structure ms ON ep.arxiv_id = ms.arxiv_id
+            WHERE ep.in_t2_census = 1
+            ORDER BY ep.arxiv_id ASC
+            """
+        ).fetchall()
+    ]
+    conn.close()
+
+    unfetched = [r["arxiv_id"] for r in raw_rows if r["e1_bucket"] is None]
+    if unfetched:
+        raise RuntimeError(
+            f"{len(unfetched)} T2 papers have not been fetched yet (first 5: {unfetched[:5]}). "
+            "Run `fetch --cohort t2_all` to completion before summarizing."
+        )
+
+    for r in raw_rows:
+        r["_matched_15"] = json.loads(r["matched_15_cats_json"] or "[]")
+        r["_domain_cues"] = json.loads(r["domain_cues_json"] or "{}")
+
+    panel_t2_per_cat: dict[str, Any] = {}
+    if panel_path.exists():
+        panel = json.loads(panel_path.read_text())
+        for sl in panel.get("slices", []):
+            if sl.get("slice_id") == "2026-11":
+                panel_t2_per_cat = sl.get("per_category", {})
+                break
+
+    overall = _bucket_stats(raw_rows)
+    multi_cat_papers = sum(1 for r in raw_rows if len(r["_matched_15"]) > 1)
+
+    confirmed_t2 = [r for r in raw_rows if r["is_confirmed_lean"] == 1]
+    confirmed_t2_by_role: dict[str, dict[str, int]] = defaultdict(lambda: Counter())
+    for r in confirmed_t2:
+        confirmed_t2_by_role[r["confirmed_role_4way"] or "unknown"][r["e1_bucket"]] += 1
+
+    per_category: dict[str, Any] = {}
+    for cat in ALL15_CATS:
+        incl = [r for r in raw_rows if cat in r["_matched_15"]]
+        prim = [r for r in incl if r["primary_category"] == cat]
+        xlist = len(incl) - len(prim)
+        stats = _bucket_stats(incl)
+        prim_stats = _bucket_stats(prim)
+
+        # Remove verbose per-cue details inside per_category to keep artifact compact
+        stats.pop("domain_cue_details", None)
+        entry: dict[str, Any] = {
+            **stats,
+            "primary_papers": len(prim),
+            "cross_list_papers": xlist,
+            "primary_only": {
+                "total_papers": prim_stats["total_papers"],
+                "e1_counts": prim_stats["e1_counts"],
+                "e1_shares_pct": prim_stats["e1_shares_pct"],
+            },
+        }
+        if cat in panel_t2_per_cat:
+            pcat = panel_t2_per_cat[cat]
+            c_v1 = pcat.get("confirmed_v1", {}).get("count", 0)
+            roles_v1 = pcat.get("roles_v1", {})
+            math_alg_v1 = roles_v1.get("eng_algorithmic_proof", 0) + roles_v1.get("pure_math_or_tcs", 0)
+            entry["panel_t2_total_papers"] = pcat.get("total_papers")
+            entry["panel_t2_confirmed_v1"] = c_v1
+            entry["panel_t2_confirmed_v1_math_alg"] = math_alg_v1
+            entry["panel_t2_raw_v1_pct"] = pcat.get("confirmed_v1", {}).get("pct")
+        per_category[cat] = entry
+
+    eess_all_set = {"eess.SY", "eess.SP", "eess.IV", "eess.AS"}
+    eess_non_sy_set = {"eess.SP", "eess.IV", "eess.AS"}
+    eess_all_rows = [r for r in raw_rows if set(r["_matched_15"]) & eess_all_set]
+    eess_non_sy_rows = [r for r in raw_rows if set(r["_matched_15"]) & eess_non_sy_set]
+    eess_all_stats = _bucket_stats(eess_all_rows)
+    eess_all_stats.pop("domain_cue_details", None)
+    eess_non_sy_stats = _bucket_stats(eess_non_sy_rows)
+    eess_non_sy_stats.pop("domain_cue_details", None)
+
+    failed_ids = [
+        {"arxiv_id": r["arxiv_id"], "primary_category": r["primary_category"], "http_status": r["http_status"], "error_msg": r["error_msg"]}
+        for r in raw_rows
+        if r["fetch_source"] == "failed"
+    ]
+
+    summary: dict[str, Any] = {
+        "schema_version": "1.0",
+        "generated_at": utc_now(),
+        "cohort": "t2_all",
+        "slice_id": "2026-11",
+        "notes": (
+            "Zero-token deterministic Stage E1 structural census across all N=5,303 T2 (2026-11) preprints "
+            "in the 15-category engineering & applied-theory panel. Per-category rows use inclusive category "
+            "membership (primary + cross-list, matching artifacts/unified_15cat_panel.json), with primary-only "
+            "sub-breakdowns included for reference. Note: math.OC has 725 inclusive papers here vs 724 in "
+            "unified_15cat_panel.json because 2611.26800 (primary cs.GT, cross-listed math.OC) was harvested "
+            "in scout_eng_tier12_2026_11.db after survey.db; total unique T2 papers (5,303) and all other 14 "
+            "categories match unified_15cat_panel.json identically."
+        ),
+        "overall": {
+            **overall,
+            "multi_category_15_overlap_papers": multi_cat_papers,
+            "t2_confirmed_lean_papers": len(confirmed_t2),
+            "t2_confirmed_lean_by_role_e1": {k: dict(v) for k, v in sorted(confirmed_t2_by_role.items())},
+        },
+        "eess_archive": {
+            "eess_all": eess_all_stats,
+            "eess_non_sy": eess_non_sy_stats,
+        },
+        "per_category": per_category,
+        "failed_fetches": failed_ids,
+    }
+
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(summary, indent=2) + "\n")
+    return summary
+
+
+# ---------------------------------------------------------------------------
 # CLI
 # ---------------------------------------------------------------------------
 
@@ -1438,6 +1645,11 @@ def main() -> None:
     p_imp.add_argument("--artifact", type=Path, default=Path("artifacts/lean_eligibility_pilot_e0.json"))
     p_imp.add_argument("--report", type=Path, default=Path("reports/lean_eligibility_pilot_e0.md"))
 
+    p_sum = sub.add_parser("summarize-e1", help="Export compact Stage E1 T2 census summary artifact.")
+    p_sum.add_argument("--db", type=Path, default=DEFAULT_ELIGIBILITY_DB)
+    p_sum.add_argument("--out", type=Path, default=Path("artifacts/lean_eligibility_e1_t2_summary.json"))
+    p_sum.add_argument("--panel", type=Path, default=UNIFIED_PANEL_PATH)
+
     args = ap.parse_args()
     if args.cmd == "init-db":
         res = init_eligibility_db(db_path=args.db, pilot_per_cat=args.pilot_per_cat, seed=args.seed)
@@ -1470,6 +1682,9 @@ def main() -> None:
         )
         print(json.dumps(res["counts"], indent=2))
         print(json.dumps(res["positive_control_sensitivity"], indent=2))
+    elif args.cmd == "summarize-e1":
+        res = summarize_e1_t2(db_path=args.db, out_path=args.out, panel_path=args.panel)
+        print(json.dumps(res["overall"], indent=2))
 
 
 if __name__ == "__main__":

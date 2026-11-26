@@ -1,0 +1,1119 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-11-26T01:33:48+00:00",
+  "cohort": "t2_all",
+  "slice_id": "2026-11",
+  "notes": "Zero-token deterministic Stage E1 structural census across all N=5,303 T2 (2026-11) preprints in the 15-category engineering & applied-theory panel. Per-category rows use inclusive category membership (primary + cross-list, matching artifacts/unified_15cat_panel.json), with primary-only sub-breakdowns included for reference. Note: math.OC has 725 inclusive papers here vs 724 in unified_15cat_panel.json because 2611.26800 (primary cs.GT, cross-listed math.OC) was harvested in scout_eng_tier12_2026_11.db after survey.db; total unique T2 papers (5,303) and all other 14 categories match unified_15cat_panel.json identically.",
+  "overall": {
+    "total_papers": 5303,
+    "fetched_papers": 5293,
+    "fetch_coverage_pct": 99.81,
+    "fetch_sources": {
+      "html": 4922,
+      "pdf": 371,
+      "failed": 10
+    },
+    "e1_counts": {
+      "E1_formal_thm_proof": 1969,
+      "E1_weak_or_unnumbered_math": 1889,
+      "E1_no_formal_claims": 1435,
+      "E1_fetch_failed": 10
+    },
+    "e1_shares_pct": {
+      "E1_formal_thm_proof": 37.13,
+      "E1_weak_or_unnumbered_math": 35.62,
+      "E1_no_formal_claims": 27.06,
+      "E1_fetch_failed": 0.19
+    },
+    "e1_shares_of_fetched_pct": {
+      "E1_formal_thm_proof": 37.2,
+      "E1_weak_or_unnumbered_math": 35.69,
+      "E1_no_formal_claims": 27.11
+    },
+    "e1_formal_plus_weak_count": 3858,
+    "e1_formal_plus_weak_pct": 72.75,
+    "domain_cue_groups_all": {
+      "mathlib_barrier_cues": 401,
+      "tractable_math_cues": 1560,
+      "operational_fv_cues": 180
+    },
+    "domain_cue_groups_in_e1_formal": {
+      "mathlib_barrier_cues": 235,
+      "tractable_math_cues": 1016,
+      "operational_fv_cues": 55
+    },
+    "domain_cue_details": {
+      "mathlib_barrier_cues.pde_sobolev": 252,
+      "mathlib_barrier_cues.random_matrix_heavy": 16,
+      "mathlib_barrier_cues.stochastic_sde_ito": 145,
+      "mathlib_barrier_cues.viscosity_hjb": 44,
+      "operational_fv_cues.protocol_state_machine": 180,
+      "tractable_math_cues.control_lyapunov_lmi": 580,
+      "tractable_math_cues.game_mech_discrete": 341,
+      "tractable_math_cues.info_coding_crypto": 332,
+      "tractable_math_cues.optimization_bounds": 613
+    },
+    "multi_category_15_overlap_papers": 578,
+    "t2_confirmed_lean_papers": 69,
+    "t2_confirmed_lean_by_role_e1": {
+      "eng_algorithmic_proof": {
+        "E1_formal_thm_proof": 25,
+        "E1_weak_or_unnumbered_math": 1
+      },
+      "meta_formalization_system": {
+        "E1_weak_or_unnumbered_math": 3
+      },
+      "operational_system_fv": {
+        "E1_weak_or_unnumbered_math": 3,
+        "E1_formal_thm_proof": 1
+      },
+      "pure_math_or_tcs": {
+        "E1_formal_thm_proof": 36
+      }
+    }
+  },
+  "eess_archive": {
+    "eess_all": {
+      "total_papers": 1466,
+      "fetched_papers": 1463,
+      "fetch_coverage_pct": 99.8,
+      "fetch_sources": {
+        "html": 1318,
+        "pdf": 145,
+        "failed": 3
+      },
+      "e1_counts": {
+        "E1_formal_thm_proof": 464,
+        "E1_weak_or_unnumbered_math": 609,
+        "E1_no_formal_claims": 390,
+        "E1_fetch_failed": 3
+      },
+      "e1_shares_pct": {
+        "E1_formal_thm_proof": 31.65,
+        "E1_weak_or_unnumbered_math": 41.54,
+        "E1_no_formal_claims": 26.6,
+        "E1_fetch_failed": 0.2
+      },
+      "e1_shares_of_fetched_pct": {
+        "E1_formal_thm_proof": 31.72,
+        "E1_weak_or_unnumbered_math": 41.63,
+        "E1_no_formal_claims": 26.66
+      },
+      "e1_formal_plus_weak_count": 1073,
+      "e1_formal_plus_weak_pct": 73.19,
+      "domain_cue_groups_all": {
+        "mathlib_barrier_cues": 55,
+        "tractable_math_cues": 509,
+        "operational_fv_cues": 28
+      },
+      "domain_cue_groups_in_e1_formal": {
+        "mathlib_barrier_cues": 35,
+        "tractable_math_cues": 287,
+        "operational_fv_cues": 6
+      }
+    },
+    "eess_non_sy": {
+      "total_papers": 752,
+      "fetched_papers": 749,
+      "fetch_coverage_pct": 99.6,
+      "fetch_sources": {
+        "html": 672,
+        "pdf": 77,
+        "failed": 3
+      },
+      "e1_counts": {
+        "E1_formal_thm_proof": 140,
+        "E1_weak_or_unnumbered_math": 344,
+        "E1_no_formal_claims": 265,
+        "E1_fetch_failed": 3
+      },
+      "e1_shares_pct": {
+        "E1_formal_thm_proof": 18.62,
+        "E1_weak_or_unnumbered_math": 45.74,
+        "E1_no_formal_claims": 35.24,
+        "E1_fetch_failed": 0.4
+      },
+      "e1_shares_of_fetched_pct": {
+        "E1_formal_thm_proof": 18.69,
+        "E1_weak_or_unnumbered_math": 45.93,
+        "E1_no_formal_claims": 35.38
+      },
+      "e1_formal_plus_weak_count": 484,
+      "e1_formal_plus_weak_pct": 64.36,
+      "domain_cue_groups_all": {
+        "mathlib_barrier_cues": 14,
+        "tractable_math_cues": 154,
+        "operational_fv_cues": 9
+      },
+      "domain_cue_groups_in_e1_formal": {
+        "mathlib_barrier_cues": 8,
+        "tractable_math_cues": 54,
+        "operational_fv_cues": 2
+      }
+    }
+  },
+  "per_category": {
+    "math.OC": {
+      "total_papers": 725,
+      "fetched_papers": 725,
+      "fetch_coverage_pct": 100.0,
+      "fetch_sources": {
+        "html": 676,
+        "pdf": 49,
+        "failed": 0
+      },
+      "e1_counts": {
+        "E1_formal_thm_proof": 616,
+        "E1_weak_or_unnumbered_math": 91,
+        "E1_no_formal_claims": 18,
+        "E1_fetch_failed": 0
+      },
+      "e1_shares_pct": {
+        "E1_formal_thm_proof": 84.97,
+        "E1_weak_or_unnumbered_math": 12.55,
+        "E1_no_formal_claims": 2.48,
+        "E1_fetch_failed": 0.0
+      },
+      "e1_shares_of_fetched_pct": {
+        "E1_formal_thm_proof": 84.97,
+        "E1_weak_or_unnumbered_math": 12.55,
+        "E1_no_formal_claims": 2.48
+      },
+      "e1_formal_plus_weak_count": 707,
+      "e1_formal_plus_weak_pct": 97.52,
+      "domain_cue_groups_all": {
+        "mathlib_barrier_cues": 138,
+        "tractable_math_cues": 467,
+        "operational_fv_cues": 12
+      },
+      "domain_cue_groups_in_e1_formal": {
+        "mathlib_barrier_cues": 125,
+        "tractable_math_cues": 414,
+        "operational_fv_cues": 10
+      },
+      "primary_papers": 453,
+      "cross_list_papers": 272,
+      "primary_only": {
+        "total_papers": 453,
+        "e1_counts": {
+          "E1_formal_thm_proof": 397,
+          "E1_weak_or_unnumbered_math": 49,
+          "E1_no_formal_claims": 7,
+          "E1_fetch_failed": 0
+        },
+        "e1_shares_pct": {
+          "E1_formal_thm_proof": 87.64,
+          "E1_weak_or_unnumbered_math": 10.82,
+          "E1_no_formal_claims": 1.55,
+          "E1_fetch_failed": 0.0
+        }
+      },
+      "panel_t2_total_papers": 724,
+      "panel_t2_confirmed_v1": 19,
+      "panel_t2_confirmed_v1_math_alg": 16,
+      "panel_t2_raw_v1_pct": 2.6243
+    },
+    "cs.DC": {
+      "total_papers": 335,
+      "fetched_papers": 335,
+      "fetch_coverage_pct": 100.0,
+      "fetch_sources": {
+        "html": 316,
+        "pdf": 19,
+        "failed": 0
+      },
+      "e1_counts": {
+        "E1_formal_thm_proof": 73,
+        "E1_weak_or_unnumbered_math": 98,
+        "E1_no_formal_claims": 164,
+        "E1_fetch_failed": 0
+      },
+      "e1_shares_pct": {
+        "E1_formal_thm_proof": 21.79,
+        "E1_weak_or_unnumbered_math": 29.25,
+        "E1_no_formal_claims": 48.96,
+        "E1_fetch_failed": 0.0
+      },
+      "e1_shares_of_fetched_pct": {
+        "E1_formal_thm_proof": 21.79,
+        "E1_weak_or_unnumbered_math": 29.25,
+        "E1_no_formal_claims": 48.96
+      },
+      "e1_formal_plus_weak_count": 171,
+      "e1_formal_plus_weak_pct": 51.04,
+      "domain_cue_groups_all": {
+        "mathlib_barrier_cues": 8,
+        "tractable_math_cues": 44,
+        "operational_fv_cues": 25
+      },
+      "domain_cue_groups_in_e1_formal": {
+        "mathlib_barrier_cues": 1,
+        "tractable_math_cues": 23,
+        "operational_fv_cues": 9
+      },
+      "primary_papers": 215,
+      "cross_list_papers": 120,
+      "primary_only": {
+        "total_papers": 215,
+        "e1_counts": {
+          "E1_formal_thm_proof": 36,
+          "E1_weak_or_unnumbered_math": 63,
+          "E1_no_formal_claims": 116,
+          "E1_fetch_failed": 0
+        },
+        "e1_shares_pct": {
+          "E1_formal_thm_proof": 16.74,
+          "E1_weak_or_unnumbered_math": 29.3,
+          "E1_no_formal_claims": 53.95,
+          "E1_fetch_failed": 0.0
+        }
+      },
+      "panel_t2_total_papers": 335,
+      "panel_t2_confirmed_v1": 6,
+      "panel_t2_confirmed_v1_math_alg": 5,
+      "panel_t2_raw_v1_pct": 1.791
+    },
+    "cs.IT": {
+      "total_papers": 338,
+      "fetched_papers": 338,
+      "fetch_coverage_pct": 100.0,
+      "fetch_sources": {
+        "html": 318,
+        "pdf": 20,
+        "failed": 0
+      },
+      "e1_counts": {
+        "E1_formal_thm_proof": 260,
+        "E1_weak_or_unnumbered_math": 62,
+        "E1_no_formal_claims": 16,
+        "E1_fetch_failed": 0
+      },
+      "e1_shares_pct": {
+        "E1_formal_thm_proof": 76.92,
+        "E1_weak_or_unnumbered_math": 18.34,
+        "E1_no_formal_claims": 4.73,
+        "E1_fetch_failed": 0.0
+      },
+      "e1_shares_of_fetched_pct": {
+        "E1_formal_thm_proof": 76.92,
+        "E1_weak_or_unnumbered_math": 18.34,
+        "E1_no_formal_claims": 4.73
+      },
+      "e1_formal_plus_weak_count": 322,
+      "e1_formal_plus_weak_pct": 95.27,
+      "domain_cue_groups_all": {
+        "mathlib_barrier_cues": 11,
+        "tractable_math_cues": 156,
+        "operational_fv_cues": 3
+      },
+      "domain_cue_groups_in_e1_formal": {
+        "mathlib_barrier_cues": 9,
+        "tractable_math_cues": 123,
+        "operational_fv_cues": 3
+      },
+      "primary_papers": 223,
+      "cross_list_papers": 115,
+      "primary_only": {
+        "total_papers": 223,
+        "e1_counts": {
+          "E1_formal_thm_proof": 177,
+          "E1_weak_or_unnumbered_math": 42,
+          "E1_no_formal_claims": 4,
+          "E1_fetch_failed": 0
+        },
+        "e1_shares_pct": {
+          "E1_formal_thm_proof": 79.37,
+          "E1_weak_or_unnumbered_math": 18.83,
+          "E1_no_formal_claims": 1.79,
+          "E1_fetch_failed": 0.0
+        }
+      },
+      "panel_t2_total_papers": 338,
+      "panel_t2_confirmed_v1": 6,
+      "panel_t2_confirmed_v1_math_alg": 6,
+      "panel_t2_raw_v1_pct": 1.7751
+    },
+    "cs.CR": {
+      "total_papers": 629,
+      "fetched_papers": 628,
+      "fetch_coverage_pct": 99.84,
+      "fetch_sources": {
+        "html": 583,
+        "pdf": 45,
+        "failed": 1
+      },
+      "e1_counts": {
+        "E1_formal_thm_proof": 156,
+        "E1_weak_or_unnumbered_math": 186,
+        "E1_no_formal_claims": 286,
+        "E1_fetch_failed": 1
+      },
+      "e1_shares_pct": {
+        "E1_formal_thm_proof": 24.8,
+        "E1_weak_or_unnumbered_math": 29.57,
+        "E1_no_formal_claims": 45.47,
+        "E1_fetch_failed": 0.16
+      },
+      "e1_shares_of_fetched_pct": {
+        "E1_formal_thm_proof": 24.84,
+        "E1_weak_or_unnumbered_math": 29.62,
+        "E1_no_formal_claims": 45.54
+      },
+      "e1_formal_plus_weak_count": 342,
+      "e1_formal_plus_weak_pct": 54.37,
+      "domain_cue_groups_all": {
+        "mathlib_barrier_cues": 2,
+        "tractable_math_cues": 133,
+        "operational_fv_cues": 71
+      },
+      "domain_cue_groups_in_e1_formal": {
+        "mathlib_barrier_cues": 2,
+        "tractable_math_cues": 68,
+        "operational_fv_cues": 23
+      },
+      "primary_papers": 480,
+      "cross_list_papers": 149,
+      "primary_only": {
+        "total_papers": 480,
+        "e1_counts": {
+          "E1_formal_thm_proof": 100,
+          "E1_weak_or_unnumbered_math": 145,
+          "E1_no_formal_claims": 234,
+          "E1_fetch_failed": 1
+        },
+        "e1_shares_pct": {
+          "E1_formal_thm_proof": 20.83,
+          "E1_weak_or_unnumbered_math": 30.21,
+          "E1_no_formal_claims": 48.75,
+          "E1_fetch_failed": 0.21
+        }
+      },
+      "panel_t2_total_papers": 629,
+      "panel_t2_confirmed_v1": 7,
+      "panel_t2_confirmed_v1_math_alg": 4,
+      "panel_t2_raw_v1_pct": 1.1129
+    },
+    "eess.SY": {
+      "total_papers": 738,
+      "fetched_papers": 738,
+      "fetch_coverage_pct": 100.0,
+      "fetch_sources": {
+        "html": 667,
+        "pdf": 71,
+        "failed": 0
+      },
+      "e1_counts": {
+        "E1_formal_thm_proof": 331,
+        "E1_weak_or_unnumbered_math": 275,
+        "E1_no_formal_claims": 132,
+        "E1_fetch_failed": 0
+      },
+      "e1_shares_pct": {
+        "E1_formal_thm_proof": 44.85,
+        "E1_weak_or_unnumbered_math": 37.26,
+        "E1_no_formal_claims": 17.89,
+        "E1_fetch_failed": 0.0
+      },
+      "e1_shares_of_fetched_pct": {
+        "E1_formal_thm_proof": 44.85,
+        "E1_weak_or_unnumbered_math": 37.26,
+        "E1_no_formal_claims": 17.89
+      },
+      "e1_formal_plus_weak_count": 606,
+      "e1_formal_plus_weak_pct": 82.11,
+      "domain_cue_groups_all": {
+        "mathlib_barrier_cues": 44,
+        "tractable_math_cues": 360,
+        "operational_fv_cues": 20
+      },
+      "domain_cue_groups_in_e1_formal": {
+        "mathlib_barrier_cues": 29,
+        "tractable_math_cues": 236,
+        "operational_fv_cues": 5
+      },
+      "primary_papers": 467,
+      "cross_list_papers": 271,
+      "primary_only": {
+        "total_papers": 467,
+        "e1_counts": {
+          "E1_formal_thm_proof": 211,
+          "E1_weak_or_unnumbered_math": 177,
+          "E1_no_formal_claims": 79,
+          "E1_fetch_failed": 0
+        },
+        "e1_shares_pct": {
+          "E1_formal_thm_proof": 45.18,
+          "E1_weak_or_unnumbered_math": 37.9,
+          "E1_no_formal_claims": 16.92,
+          "E1_fetch_failed": 0.0
+        }
+      },
+      "panel_t2_total_papers": 738,
+      "panel_t2_confirmed_v1": 3,
+      "panel_t2_confirmed_v1_math_alg": 3,
+      "panel_t2_raw_v1_pct": 0.4065
+    },
+    "eess.SP": {
+      "total_papers": 462,
+      "fetched_papers": 460,
+      "fetch_coverage_pct": 99.57,
+      "fetch_sources": {
+        "html": 417,
+        "pdf": 43,
+        "failed": 2
+      },
+      "e1_counts": {
+        "E1_formal_thm_proof": 132,
+        "E1_weak_or_unnumbered_math": 224,
+        "E1_no_formal_claims": 104,
+        "E1_fetch_failed": 2
+      },
+      "e1_shares_pct": {
+        "E1_formal_thm_proof": 28.57,
+        "E1_weak_or_unnumbered_math": 48.48,
+        "E1_no_formal_claims": 22.51,
+        "E1_fetch_failed": 0.43
+      },
+      "e1_shares_of_fetched_pct": {
+        "E1_formal_thm_proof": 28.7,
+        "E1_weak_or_unnumbered_math": 48.7,
+        "E1_no_formal_claims": 22.61
+      },
+      "e1_formal_plus_weak_count": 356,
+      "e1_formal_plus_weak_pct": 77.06,
+      "domain_cue_groups_all": {
+        "mathlib_barrier_cues": 11,
+        "tractable_math_cues": 138,
+        "operational_fv_cues": 4
+      },
+      "domain_cue_groups_in_e1_formal": {
+        "mathlib_barrier_cues": 8,
+        "tractable_math_cues": 53,
+        "operational_fv_cues": 1
+      },
+      "primary_papers": 313,
+      "cross_list_papers": 149,
+      "primary_only": {
+        "total_papers": 313,
+        "e1_counts": {
+          "E1_formal_thm_proof": 86,
+          "E1_weak_or_unnumbered_math": 160,
+          "E1_no_formal_claims": 65,
+          "E1_fetch_failed": 2
+        },
+        "e1_shares_pct": {
+          "E1_formal_thm_proof": 27.48,
+          "E1_weak_or_unnumbered_math": 51.12,
+          "E1_no_formal_claims": 20.77,
+          "E1_fetch_failed": 0.64
+        }
+      },
+      "panel_t2_total_papers": 462,
+      "panel_t2_confirmed_v1": 0,
+      "panel_t2_confirmed_v1_math_alg": 0,
+      "panel_t2_raw_v1_pct": 0.0
+    },
+    "cs.NI": {
+      "total_papers": 196,
+      "fetched_papers": 196,
+      "fetch_coverage_pct": 100.0,
+      "fetch_sources": {
+        "html": 179,
+        "pdf": 17,
+        "failed": 0
+      },
+      "e1_counts": {
+        "E1_formal_thm_proof": 34,
+        "E1_weak_or_unnumbered_math": 83,
+        "E1_no_formal_claims": 79,
+        "E1_fetch_failed": 0
+      },
+      "e1_shares_pct": {
+        "E1_formal_thm_proof": 17.35,
+        "E1_weak_or_unnumbered_math": 42.35,
+        "E1_no_formal_claims": 40.31,
+        "E1_fetch_failed": 0.0
+      },
+      "e1_shares_of_fetched_pct": {
+        "E1_formal_thm_proof": 17.35,
+        "E1_weak_or_unnumbered_math": 42.35,
+        "E1_no_formal_claims": 40.31
+      },
+      "e1_formal_plus_weak_count": 117,
+      "e1_formal_plus_weak_pct": 59.69,
+      "domain_cue_groups_all": {
+        "mathlib_barrier_cues": 2,
+        "tractable_math_cues": 45,
+        "operational_fv_cues": 10
+      },
+      "domain_cue_groups_in_e1_formal": {
+        "mathlib_barrier_cues": 2,
+        "tractable_math_cues": 14,
+        "operational_fv_cues": 0
+      },
+      "primary_papers": 132,
+      "cross_list_papers": 64,
+      "primary_only": {
+        "total_papers": 132,
+        "e1_counts": {
+          "E1_formal_thm_proof": 16,
+          "E1_weak_or_unnumbered_math": 62,
+          "E1_no_formal_claims": 54,
+          "E1_fetch_failed": 0
+        },
+        "e1_shares_pct": {
+          "E1_formal_thm_proof": 12.12,
+          "E1_weak_or_unnumbered_math": 46.97,
+          "E1_no_formal_claims": 40.91,
+          "E1_fetch_failed": 0.0
+        }
+      },
+      "panel_t2_total_papers": 196,
+      "panel_t2_confirmed_v1": 0,
+      "panel_t2_confirmed_v1_math_alg": 0,
+      "panel_t2_raw_v1_pct": 0.0
+    },
+    "cs.RO": {
+      "total_papers": 1159,
+      "fetched_papers": 1155,
+      "fetch_coverage_pct": 99.65,
+      "fetch_sources": {
+        "html": 1098,
+        "pdf": 57,
+        "failed": 4
+      },
+      "e1_counts": {
+        "E1_formal_thm_proof": 130,
+        "E1_weak_or_unnumbered_math": 576,
+        "E1_no_formal_claims": 449,
+        "E1_fetch_failed": 4
+      },
+      "e1_shares_pct": {
+        "E1_formal_thm_proof": 11.22,
+        "E1_weak_or_unnumbered_math": 49.7,
+        "E1_no_formal_claims": 38.74,
+        "E1_fetch_failed": 0.35
+      },
+      "e1_shares_of_fetched_pct": {
+        "E1_formal_thm_proof": 11.26,
+        "E1_weak_or_unnumbered_math": 49.87,
+        "E1_no_formal_claims": 38.87
+      },
+      "e1_formal_plus_weak_count": 706,
+      "e1_formal_plus_weak_pct": 60.91,
+      "domain_cue_groups_all": {
+        "mathlib_barrier_cues": 23,
+        "tractable_math_cues": 222,
+        "operational_fv_cues": 35
+      },
+      "domain_cue_groups_in_e1_formal": {
+        "mathlib_barrier_cues": 8,
+        "tractable_math_cues": 74,
+        "operational_fv_cues": 3
+      },
+      "primary_papers": 967,
+      "cross_list_papers": 192,
+      "primary_only": {
+        "total_papers": 967,
+        "e1_counts": {
+          "E1_formal_thm_proof": 96,
+          "E1_weak_or_unnumbered_math": 488,
+          "E1_no_formal_claims": 380,
+          "E1_fetch_failed": 3
+        },
+        "e1_shares_pct": {
+          "E1_formal_thm_proof": 9.93,
+          "E1_weak_or_unnumbered_math": 50.47,
+          "E1_no_formal_claims": 39.3,
+          "E1_fetch_failed": 0.31
+        }
+      },
+      "panel_t2_total_papers": 1159,
+      "panel_t2_confirmed_v1": 0,
+      "panel_t2_confirmed_v1_math_alg": 0,
+      "panel_t2_raw_v1_pct": 0.0
+    },
+    "cs.GT": {
+      "total_papers": 166,
+      "fetched_papers": 165,
+      "fetch_coverage_pct": 99.4,
+      "fetch_sources": {
+        "html": 155,
+        "pdf": 10,
+        "failed": 1
+      },
+      "e1_counts": {
+        "E1_formal_thm_proof": 152,
+        "E1_weak_or_unnumbered_math": 7,
+        "E1_no_formal_claims": 6,
+        "E1_fetch_failed": 1
+      },
+      "e1_shares_pct": {
+        "E1_formal_thm_proof": 91.57,
+        "E1_weak_or_unnumbered_math": 4.22,
+        "E1_no_formal_claims": 3.61,
+        "E1_fetch_failed": 0.6
+      },
+      "e1_shares_of_fetched_pct": {
+        "E1_formal_thm_proof": 92.12,
+        "E1_weak_or_unnumbered_math": 4.24,
+        "E1_no_formal_claims": 3.64
+      },
+      "e1_formal_plus_weak_count": 159,
+      "e1_formal_plus_weak_pct": 95.78,
+      "domain_cue_groups_all": {
+        "mathlib_barrier_cues": 4,
+        "tractable_math_cues": 119,
+        "operational_fv_cues": 2
+      },
+      "domain_cue_groups_in_e1_formal": {
+        "mathlib_barrier_cues": 3,
+        "tractable_math_cues": 115,
+        "operational_fv_cues": 1
+      },
+      "primary_papers": 117,
+      "cross_list_papers": 49,
+      "primary_only": {
+        "total_papers": 117,
+        "e1_counts": {
+          "E1_formal_thm_proof": 111,
+          "E1_weak_or_unnumbered_math": 3,
+          "E1_no_formal_claims": 3,
+          "E1_fetch_failed": 0
+        },
+        "e1_shares_pct": {
+          "E1_formal_thm_proof": 94.87,
+          "E1_weak_or_unnumbered_math": 2.56,
+          "E1_no_formal_claims": 2.56,
+          "E1_fetch_failed": 0.0
+        }
+      },
+      "panel_t2_total_papers": 166,
+      "panel_t2_confirmed_v1": 15,
+      "panel_t2_confirmed_v1_math_alg": 15,
+      "panel_t2_raw_v1_pct": 9.0361
+    },
+    "math.DS": {
+      "total_papers": 360,
+      "fetched_papers": 359,
+      "fetch_coverage_pct": 99.72,
+      "fetch_sources": {
+        "html": 350,
+        "pdf": 9,
+        "failed": 1
+      },
+      "e1_counts": {
+        "E1_formal_thm_proof": 323,
+        "E1_weak_or_unnumbered_math": 32,
+        "E1_no_formal_claims": 4,
+        "E1_fetch_failed": 1
+      },
+      "e1_shares_pct": {
+        "E1_formal_thm_proof": 89.72,
+        "E1_weak_or_unnumbered_math": 8.89,
+        "E1_no_formal_claims": 1.11,
+        "E1_fetch_failed": 0.28
+      },
+      "e1_shares_of_fetched_pct": {
+        "E1_formal_thm_proof": 89.97,
+        "E1_weak_or_unnumbered_math": 8.91,
+        "E1_no_formal_claims": 1.11
+      },
+      "e1_formal_plus_weak_count": 355,
+      "e1_formal_plus_weak_pct": 98.61,
+      "domain_cue_groups_all": {
+        "mathlib_barrier_cues": 53,
+        "tractable_math_cues": 82,
+        "operational_fv_cues": 6
+      },
+      "domain_cue_groups_in_e1_formal": {
+        "mathlib_barrier_cues": 46,
+        "tractable_math_cues": 72,
+        "operational_fv_cues": 4
+      },
+      "primary_papers": 219,
+      "cross_list_papers": 141,
+      "primary_only": {
+        "total_papers": 219,
+        "e1_counts": {
+          "E1_formal_thm_proof": 202,
+          "E1_weak_or_unnumbered_math": 16,
+          "E1_no_formal_claims": 0,
+          "E1_fetch_failed": 1
+        },
+        "e1_shares_pct": {
+          "E1_formal_thm_proof": 92.24,
+          "E1_weak_or_unnumbered_math": 7.31,
+          "E1_no_formal_claims": 0.0,
+          "E1_fetch_failed": 0.46
+        }
+      },
+      "panel_t2_total_papers": 360,
+      "panel_t2_confirmed_v1": 14,
+      "panel_t2_confirmed_v1_math_alg": 14,
+      "panel_t2_raw_v1_pct": 3.8889
+    },
+    "physics.flu-dyn": {
+      "total_papers": 278,
+      "fetched_papers": 278,
+      "fetch_coverage_pct": 100.0,
+      "fetch_sources": {
+        "html": 260,
+        "pdf": 18,
+        "failed": 0
+      },
+      "e1_counts": {
+        "E1_formal_thm_proof": 26,
+        "E1_weak_or_unnumbered_math": 222,
+        "E1_no_formal_claims": 30,
+        "E1_fetch_failed": 0
+      },
+      "e1_shares_pct": {
+        "E1_formal_thm_proof": 9.35,
+        "E1_weak_or_unnumbered_math": 79.86,
+        "E1_no_formal_claims": 10.79,
+        "E1_fetch_failed": 0.0
+      },
+      "e1_shares_of_fetched_pct": {
+        "E1_formal_thm_proof": 9.35,
+        "E1_weak_or_unnumbered_math": 79.86,
+        "E1_no_formal_claims": 10.79
+      },
+      "e1_formal_plus_weak_count": 248,
+      "e1_formal_plus_weak_pct": 89.21,
+      "domain_cue_groups_all": {
+        "mathlib_barrier_cues": 114,
+        "tractable_math_cues": 21,
+        "operational_fv_cues": 2
+      },
+      "domain_cue_groups_in_e1_formal": {
+        "mathlib_barrier_cues": 18,
+        "tractable_math_cues": 6,
+        "operational_fv_cues": 1
+      },
+      "primary_papers": 204,
+      "cross_list_papers": 74,
+      "primary_only": {
+        "total_papers": 204,
+        "e1_counts": {
+          "E1_formal_thm_proof": 14,
+          "E1_weak_or_unnumbered_math": 167,
+          "E1_no_formal_claims": 23,
+          "E1_fetch_failed": 0
+        },
+        "e1_shares_pct": {
+          "E1_formal_thm_proof": 6.86,
+          "E1_weak_or_unnumbered_math": 81.86,
+          "E1_no_formal_claims": 11.27,
+          "E1_fetch_failed": 0.0
+        }
+      },
+      "panel_t2_total_papers": 278,
+      "panel_t2_confirmed_v1": 2,
+      "panel_t2_confirmed_v1_math_alg": 2,
+      "panel_t2_raw_v1_pct": 0.7194
+    },
+    "cs.PF": {
+      "total_papers": 94,
+      "fetched_papers": 94,
+      "fetch_coverage_pct": 100.0,
+      "fetch_sources": {
+        "html": 87,
+        "pdf": 7,
+        "failed": 0
+      },
+      "e1_counts": {
+        "E1_formal_thm_proof": 18,
+        "E1_weak_or_unnumbered_math": 27,
+        "E1_no_formal_claims": 49,
+        "E1_fetch_failed": 0
+      },
+      "e1_shares_pct": {
+        "E1_formal_thm_proof": 19.15,
+        "E1_weak_or_unnumbered_math": 28.72,
+        "E1_no_formal_claims": 52.13,
+        "E1_fetch_failed": 0.0
+      },
+      "e1_shares_of_fetched_pct": {
+        "E1_formal_thm_proof": 19.15,
+        "E1_weak_or_unnumbered_math": 28.72,
+        "E1_no_formal_claims": 52.13
+      },
+      "e1_formal_plus_weak_count": 45,
+      "e1_formal_plus_weak_pct": 47.87,
+      "domain_cue_groups_all": {
+        "mathlib_barrier_cues": 3,
+        "tractable_math_cues": 12,
+        "operational_fv_cues": 7
+      },
+      "domain_cue_groups_in_e1_formal": {
+        "mathlib_barrier_cues": 1,
+        "tractable_math_cues": 3,
+        "operational_fv_cues": 1
+      },
+      "primary_papers": 24,
+      "cross_list_papers": 70,
+      "primary_only": {
+        "total_papers": 24,
+        "e1_counts": {
+          "E1_formal_thm_proof": 3,
+          "E1_weak_or_unnumbered_math": 9,
+          "E1_no_formal_claims": 12,
+          "E1_fetch_failed": 0
+        },
+        "e1_shares_pct": {
+          "E1_formal_thm_proof": 12.5,
+          "E1_weak_or_unnumbered_math": 37.5,
+          "E1_no_formal_claims": 50.0,
+          "E1_fetch_failed": 0.0
+        }
+      },
+      "panel_t2_total_papers": 94,
+      "panel_t2_confirmed_v1": 0,
+      "panel_t2_confirmed_v1_math_alg": 0,
+      "panel_t2_raw_v1_pct": 0.0
+    },
+    "eess.IV": {
+      "total_papers": 175,
+      "fetched_papers": 175,
+      "fetch_coverage_pct": 100.0,
+      "fetch_sources": {
+        "html": 146,
+        "pdf": 29,
+        "failed": 0
+      },
+      "e1_counts": {
+        "E1_formal_thm_proof": 9,
+        "E1_weak_or_unnumbered_math": 76,
+        "E1_no_formal_claims": 90,
+        "E1_fetch_failed": 0
+      },
+      "e1_shares_pct": {
+        "E1_formal_thm_proof": 5.14,
+        "E1_weak_or_unnumbered_math": 43.43,
+        "E1_no_formal_claims": 51.43,
+        "E1_fetch_failed": 0.0
+      },
+      "e1_shares_of_fetched_pct": {
+        "E1_formal_thm_proof": 5.14,
+        "E1_weak_or_unnumbered_math": 43.43,
+        "E1_no_formal_claims": 51.43
+      },
+      "e1_formal_plus_weak_count": 85,
+      "e1_formal_plus_weak_pct": 48.57,
+      "domain_cue_groups_all": {
+        "mathlib_barrier_cues": 2,
+        "tractable_math_cues": 18,
+        "operational_fv_cues": 3
+      },
+      "domain_cue_groups_in_e1_formal": {
+        "mathlib_barrier_cues": 0,
+        "tractable_math_cues": 2,
+        "operational_fv_cues": 1
+      },
+      "primary_papers": 126,
+      "cross_list_papers": 49,
+      "primary_only": {
+        "total_papers": 126,
+        "e1_counts": {
+          "E1_formal_thm_proof": 3,
+          "E1_weak_or_unnumbered_math": 60,
+          "E1_no_formal_claims": 63,
+          "E1_fetch_failed": 0
+        },
+        "e1_shares_pct": {
+          "E1_formal_thm_proof": 2.38,
+          "E1_weak_or_unnumbered_math": 47.62,
+          "E1_no_formal_claims": 50.0,
+          "E1_fetch_failed": 0.0
+        }
+      },
+      "panel_t2_total_papers": 175,
+      "panel_t2_confirmed_v1": 0,
+      "panel_t2_confirmed_v1_math_alg": 0,
+      "panel_t2_raw_v1_pct": 0.0
+    },
+    "eess.AS": {
+      "total_papers": 134,
+      "fetched_papers": 133,
+      "fetch_coverage_pct": 99.25,
+      "fetch_sources": {
+        "html": 127,
+        "pdf": 6,
+        "failed": 1
+      },
+      "e1_counts": {
+        "E1_formal_thm_proof": 4,
+        "E1_weak_or_unnumbered_math": 51,
+        "E1_no_formal_claims": 78,
+        "E1_fetch_failed": 1
+      },
+      "e1_shares_pct": {
+        "E1_formal_thm_proof": 2.99,
+        "E1_weak_or_unnumbered_math": 38.06,
+        "E1_no_formal_claims": 58.21,
+        "E1_fetch_failed": 0.75
+      },
+      "e1_shares_of_fetched_pct": {
+        "E1_formal_thm_proof": 3.01,
+        "E1_weak_or_unnumbered_math": 38.35,
+        "E1_no_formal_claims": 58.65
+      },
+      "e1_formal_plus_weak_count": 55,
+      "e1_formal_plus_weak_pct": 41.04,
+      "domain_cue_groups_all": {
+        "mathlib_barrier_cues": 1,
+        "tractable_math_cues": 1,
+        "operational_fv_cues": 2
+      },
+      "domain_cue_groups_in_e1_formal": {
+        "mathlib_barrier_cues": 0,
+        "tractable_math_cues": 0,
+        "operational_fv_cues": 0
+      },
+      "primary_papers": 79,
+      "cross_list_papers": 55,
+      "primary_only": {
+        "total_papers": 79,
+        "e1_counts": {
+          "E1_formal_thm_proof": 0,
+          "E1_weak_or_unnumbered_math": 32,
+          "E1_no_formal_claims": 47,
+          "E1_fetch_failed": 0
+        },
+        "e1_shares_pct": {
+          "E1_formal_thm_proof": 0.0,
+          "E1_weak_or_unnumbered_math": 40.51,
+          "E1_no_formal_claims": 59.49,
+          "E1_fetch_failed": 0.0
+        }
+      },
+      "panel_t2_total_papers": 134,
+      "panel_t2_confirmed_v1": 0,
+      "panel_t2_confirmed_v1_math_alg": 0,
+      "panel_t2_raw_v1_pct": 0.0
+    },
+    "cs.CE": {
+      "total_papers": 146,
+      "fetched_papers": 146,
+      "fetch_coverage_pct": 100.0,
+      "fetch_sources": {
+        "html": 126,
+        "pdf": 20,
+        "failed": 0
+      },
+      "e1_counts": {
+        "E1_formal_thm_proof": 17,
+        "E1_weak_or_unnumbered_math": 83,
+        "E1_no_formal_claims": 46,
+        "E1_fetch_failed": 0
+      },
+      "e1_shares_pct": {
+        "E1_formal_thm_proof": 11.64,
+        "E1_weak_or_unnumbered_math": 56.85,
+        "E1_no_formal_claims": 31.51,
+        "E1_fetch_failed": 0.0
+      },
+      "e1_shares_of_fetched_pct": {
+        "E1_formal_thm_proof": 11.64,
+        "E1_weak_or_unnumbered_math": 56.85,
+        "E1_no_formal_claims": 31.51
+      },
+      "e1_formal_plus_weak_count": 100,
+      "e1_formal_plus_weak_pct": 68.49,
+      "domain_cue_groups_all": {
+        "mathlib_barrier_cues": 23,
+        "tractable_math_cues": 25,
+        "operational_fv_cues": 1
+      },
+      "domain_cue_groups_in_e1_formal": {
+        "mathlib_barrier_cues": 5,
+        "tractable_math_cues": 5,
+        "operational_fv_cues": 0
+      },
+      "primary_papers": 92,
+      "cross_list_papers": 54,
+      "primary_only": {
+        "total_papers": 92,
+        "e1_counts": {
+          "E1_formal_thm_proof": 8,
+          "E1_weak_or_unnumbered_math": 53,
+          "E1_no_formal_claims": 31,
+          "E1_fetch_failed": 0
+        },
+        "e1_shares_pct": {
+          "E1_formal_thm_proof": 8.7,
+          "E1_weak_or_unnumbered_math": 57.61,
+          "E1_no_formal_claims": 33.7,
+          "E1_fetch_failed": 0.0
+        }
+      },
+      "panel_t2_total_papers": 146,
+      "panel_t2_confirmed_v1": 0,
+      "panel_t2_confirmed_v1_math_alg": 0,
+      "panel_t2_raw_v1_pct": 0.0
+    }
+  },
+  "failed_fetches": [
+    {
+      "arxiv_id": "2611.01482",
+      "primary_category": "math.DS",
+      "http_status": 404,
+      "error_msg": "pdf_status=404"
+    },
+    {
+      "arxiv_id": "2611.02076",
+      "primary_category": "cs.CV",
+      "http_status": 404,
+      "error_msg": "pdf_status=404"
+    },
+    {
+      "arxiv_id": "2611.03869",
+      "primary_category": "eess.SP",
+      "http_status": 404,
+      "error_msg": "pdf_status=404"
+    },
+    {
+      "arxiv_id": "2611.11127",
+      "primary_category": "cs.RO",
+      "http_status": 404,
+      "error_msg": "pdf_status=404"
+    },
+    {
+      "arxiv_id": "2611.11714",
+      "primary_category": "cs.MA",
+      "http_status": 404,
+      "error_msg": "pdf_status=404"
+    },
+    {
+      "arxiv_id": "2611.13243",
+      "primary_category": "cs.LG",
+      "http_status": 404,
+      "error_msg": "pdf_status=404"
+    },
+    {
+      "arxiv_id": "2611.17160",
+      "primary_category": "cs.RO",
+      "http_status": 404,
+      "error_msg": "pdf_status=404"
+    },
+    {
+      "arxiv_id": "2611.17654",
+      "primary_category": "eess.SP",
+      "http_status": 404,
+      "error_msg": "pdf_status=404"
+    },
+    {
+      "arxiv_id": "2611.23531",
+      "primary_category": "cs.RO",
+      "http_status": 404,
+      "error_msg": "pdf_status=404"
+    },
+    {
+      "arxiv_id": "2611.24133",
+      "primary_category": "cs.CR",
+      "http_status": 404,
+      "error_msg": "pdf_status=404"
+    }
+  ]
+}
