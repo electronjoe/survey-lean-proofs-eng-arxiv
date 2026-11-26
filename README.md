@@ -111,7 +111,7 @@ uv run pytest
 uv run python scripts/audit_bib.py
 uv run python scripts/check_paper_numbers.py
 
-# Regenerate all 6 vector PDF figures directly from git-tracked artifacts/ (no SQLite DB needed)
+# Regenerate all 7 vector PDF figures directly from git-tracked artifacts/ (no SQLite DB needed)
 uv run python -m src.generate_figures
 
 # Build the empirical paper PDF locally (auto-generates figures if missing)

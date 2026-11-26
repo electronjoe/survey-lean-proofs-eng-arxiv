@@ -23,6 +23,7 @@ import numpy as np
 FIG_DIR = Path("papers/shared/figures")
 PREVIEW_DIR = Path("data/fig_previews")
 DEFAULT_UNIFIED_PANEL = Path("artifacts/unified_15cat_panel.json")
+DEFAULT_ELIGIBILITY_T2 = Path("artifacts/lean_eligibility_t2.json")
 
 # Global clean publication style
 plt.rcParams.update(
@@ -949,11 +950,222 @@ def make_phase2_heatmap(
     _save(fig, "fig_phase2_heatmap", out_dir=out_dir, save_previews=save_previews)
 
 
+def make_eligibility_adjusted_adoption(
+    elig: dict[str, Any],
+    out_dir: Path = FIG_DIR,
+    save_previews: bool = False,
+) -> None:
+    """Two-panel figure: (a) 5-class T2 eligibility composition; (b) Raw vs. Tier-1 conditional adoption."""
+    pc = elig["per_category"]
+    pt = elig["overall_t2_pooled"]
+
+    cat_names = {
+        "cs.GT": "cs.GT (Game Theory / OR)",
+        "math.DS": "math.DS (Dynamical Systems)",
+        "math.OC": "math.OC (Opt. & Control)",
+        "cs.IT": "cs.IT (Information Theory)",
+        "eess.SY": "eess.SY (Systems & Control)",
+        "eess.SP": "eess.SP (Signal Processing)",
+        "cs.CR": "cs.CR (Crypto & Security)",
+        "cs.DC": "cs.DC (Distributed Comp.)",
+        "cs.NI": "cs.NI (Networking)",
+        "cs.PF": "cs.PF (Perf. & Queueing)",
+        "cs.CE": "cs.CE (Comp. Engineering)",
+        "physics.flu-dyn": "physics.flu-dyn (Fluid Dyn.)",
+        "cs.RO": "cs.RO (Robotics)",
+        "eess.IV": "eess.IV (Image & Video)",
+        "eess.AS": "eess.AS (Audio & Speech)",
+    }
+
+    # Order categories top-to-bottom by Tier-1 (L1 + L2) theorem-bearing share descending
+    cats_desc = sorted(
+        cat_names.keys(),
+        key=lambda c: (
+            pc[c]["eligibility_estimates"]["tier1_theorem_bearing"]["pct"],
+            pc[c]["eligibility_estimates"]["L1_lean_amenable_math"]["pct"],
+        ),
+        reverse=True,
+    )
+    # Plot rows bottom-to-top: Pooled T2 at y=0, gap at y=1, then cats_desc reversed at y=2..16
+    rows_meta: list[tuple[str, str, dict[str, Any], dict[str, Any], float]] = []
+    # Add pooled at bottom (y=0)
+    pe = pt["estimates"]
+    pcond = pt["conditional_adoption"]
+    rows_meta.append(("POOLED", "Pooled T2 (N=5,303)", pe, pcond, 0.0))
+    for i, c in enumerate(reversed(cats_desc)):
+        n_c = pc[c]["panel_t2_total_papers"]
+        rows_meta.append((c, f"{cat_names[c]}  (N={n_c})", pc[c]["eligibility_estimates"], pc[c]["conditional_adoption"], float(i + 1.35)))
+
+    fig, (ax1, ax2) = plt.subplots(
+        1, 2,
+        figsize=(12.6, 6.2),
+        gridspec_kw={"width_ratios": [1.22, 1.08]},
+    )
+
+    y_coords = [r[4] for r in rows_meta]
+    y_labels = [r[1] for r in rows_meta]
+
+    # --- Panel (a): 100% Horizontal Stacked Eligibility Composition ---
+    h = 0.68
+    c_l1, c_l2, c_l3, c_l4, c_l5 = "#1D4ED8", "#7C3AED", "#0D9488", "#CBD5E1", "#F1F5F9"
+    for idx, (key, _, ee, _, yv) in enumerate(rows_meta):
+        v1 = ee["L1_lean_amenable_math"]["pct"]
+        v2 = ee["L2_mathlib_blocked_math"]["pct"]
+        v3 = ee["L3_operational_spec_fv"]["pct"]
+        v4 = ee["L4_heuristic_or_numerical_only"]["pct"]
+        v5 = max(0.0, 100.0 - (v1 + v2 + v3 + v4))
+
+        kw_lbl = (idx == 0)
+        ax1.barh(yv, v1, height=h, color=c_l1, edgecolor="white", linewidth=0.5, label="L1: Lean-amenable math" if kw_lbl else None, zorder=3)
+        ax1.barh(yv, v2, left=v1, height=h, color=c_l2, edgecolor="white", linewidth=0.5, label="L2: Mathlib-frontier math" if kw_lbl else None, zorder=3)
+        ax1.barh(yv, v3, left=v1 + v2, height=h, color=c_l3, edgecolor="white", linewidth=0.5, label="L3: Operational-FV spec" if kw_lbl else None, zorder=3)
+        ax1.barh(yv, v4, left=v1 + v2 + v3, height=h, color=c_l4, edgecolor="white", linewidth=0.5, label="L4: Heuristic / numerical" if kw_lbl else None, zorder=3)
+        ax1.barh(yv, v5, left=v1 + v2 + v3 + v4, height=h, color=c_l5, edgecolor="#CBD5E1", linewidth=0.5, label="L5: Empirical / survey" if kw_lbl else None, zorder=3)
+
+        # Clean inside-bar percentage labels for prominent L1/L2/L3 segments
+        if v1 >= 13.0:
+            ax1.text(v1 / 2.0, yv, f"{v1:.0f}%", ha="center", va="center", fontsize=6.9, fontweight="bold", color="white", zorder=4)
+        if v2 >= 10.0:
+            ax1.text(v1 + v2 / 2.0, yv, f"{v2:.0f}%", ha="center", va="center", fontsize=6.9, fontweight="bold", color="white", zorder=4)
+        if v3 >= 12.0:
+            ax1.text(v1 + v2 + v3 / 2.0, yv, f"{v3:.0f}%", ha="center", va="center", fontsize=6.8, fontweight="bold", color="white", zorder=4)
+
+        # Right-margin Tier-1 (L1+L2) summary
+        t1_pct = ee["tier1_theorem_bearing"]["pct"]
+        ax1.text(
+            101.6, yv, f"{t1_pct:.1f}%",
+            ha="left", va="center", fontsize=7.3,
+            fontweight="bold" if (key == "POOLED" or t1_pct >= 30.0) else "normal",
+            color="#1E3A8A" if t1_pct >= 30.0 else "#475569",
+        )
+
+    ax1.axhline(0.68, color="#64748B", linestyle="--", linewidth=0.9, zorder=2)
+    ax1.text(101.6, 16.08, "Tier 1\n(L1+L2)", ha="left", va="bottom", fontsize=7.0, fontweight="bold", color="#1E3A8A")
+    ax1.set_yticks(y_coords)
+    ax1.set_yticklabels(y_labels, fontsize=7.8)
+    ax1.get_yticklabels()[0].set_fontweight("bold")
+    ax1.set_xlim(0, 113.5)
+    ax1.set_xticks([0, 20, 40, 60, 80, 100])
+    ax1.set_xticklabels(["0%", "20%", "40%", "60%", "80%", "100%"], fontsize=7.8)
+    ax1.set_ylim(-0.65, 16.45)
+    ax1.set_xlabel("Post-Stratified Share of T2 Preprints (%)")
+    ax1.set_title("(a) Five-Class Eligibility Composition (T2, N = 5,303)", pad=18)
+    ax1.spines["top"].set_visible(False)
+    ax1.spines["right"].set_visible(False)
+    ax1.legend(
+        loc="upper center",
+        bbox_to_anchor=(0.46, -0.11),
+        ncol=3,
+        frameon=True,
+        facecolor="white",
+        edgecolor="#D1D5DB",
+        fontsize=7.3,
+    )
+
+    # --- Panel (b): Raw Tier-0 v1 vs. Tier-1 Conditional (L1+L2) Adoption ---
+    # Subtle highlight bands for Community Lag (eess.SY, eess.SP) and Composition-Driven Zeros
+    y_by_key = {r[0]: r[4] for r in rows_meta}
+    ax2.axhspan(y_by_key["eess.SP"] - 0.45, y_by_key["eess.SY"] + 0.45, color="#FEF3C7", alpha=0.45, zorder=0)
+    ax2.axhspan(y_by_key["eess.AS"] - 0.45, y_by_key["cs.RO"] + 0.45, color="#F3F4F6", alpha=0.80, zorder=0)
+
+    for idx, (key, _, ee, cond, yv) in enumerate(rows_meta):
+        if key == "POOLED":
+            raw_r = float(cond["raw_tier0_all_v1_pct"])
+            t1_blk = cond["tier1_math_alg_given_thm"]
+            t1_r = float(t1_blk["rate_pct"])
+            ci_lo, ci_hi = t1_blk["ci_95_conservative_pct"]
+            k_t1 = int(t1_blk["numerator"])
+        else:
+            raw_r = float(cond["raw_tier0_all_v1"]["rate_pct"])
+            t1_blk = cond["tier1_math_alg_given_thm"]
+            t1_r = float(t1_blk["rate_pct"])
+            ci_lo, ci_hi = t1_blk["ci_95_propagated_pct"]
+            k_t1 = int(t1_blk["numerator"])
+
+        is_first = (idx == 0)
+        # Propagated 95% CI horizontal bar for Tier-1 conditional rate
+        if k_t1 > 0:
+            ax2.plot([ci_lo, min(ci_hi, 23.0)], [yv, yv], color="#93C5FD", linewidth=2.6, solid_capstyle="round", zorder=2)
+            # Connecting segment from raw to conditional
+            if t1_r > raw_r + 0.15:
+                ax2.plot([raw_r, t1_r], [yv, yv], color="#1D4ED8", linewidth=1.3, alpha=0.85, zorder=3)
+            ax2.scatter(
+                [raw_r], [yv], s=32, color="#94A3B8", edgecolors="#475569", linewidths=0.8,
+                marker="o", zorder=4, label="Raw whole-category v1 rate" if is_first else None,
+            )
+            ax2.scatter(
+                [t1_r], [yv], s=46, color="#1D4ED8", edgecolors="white", linewidths=0.7,
+                marker="D", zorder=5, label="Tier-1 conditional rate (Math+Alg | L1+L2, 95% CI)" if is_first else None,
+            )
+            txt_x = min(ci_hi, 23.0) + 0.45
+            if key == "POOLED":
+                lbl = f"{raw_r:.2f}% → {t1_r:.2f}%"
+                tcol = "#1E3A8A"
+                fw = "bold"
+            elif key in ("cs.DC", "physics.flu-dyn", "cs.CR"):
+                lbl = f"{raw_r:.2f}% → {t1_r:.1f}%"
+                tcol = "#1E3A8A"
+                fw = "bold"
+            else:
+                lbl = f"{t1_r:.1f}% ({k_t1})"
+                tcol = "#1F2937"
+                fw = "bold" if key in ("cs.GT", "math.DS") else "normal"
+            ax2.text(txt_x, yv, lbl, ha="left", va="center", fontsize=7.1, fontweight=fw, color=tcol)
+        else:
+            # Zero-adoption category: show 95% propagated upper bound whisker (capped at x=21.0 with arrow if wider)
+            ub_plot = min(ci_hi, 21.0)
+            ax2.plot([0.0, ub_plot], [yv, yv], color="#CBD5E1", linewidth=1.8, linestyle=":", zorder=2)
+            ax2.scatter([0.0], [yv], s=30, color="white", edgecolors="#64748B", linewidths=1.0, marker="o", zorder=4)
+            ub_txt = f"0.0% (95% UB {ci_hi:.1f}%)" if ci_hi <= 21.0 else f"0.0% (UB {ci_hi:.0f}% →)"
+            ax2.text(ub_plot + 0.45, yv, ub_txt, ha="left", va="center", fontsize=6.8, color="#6B7280")
+
+    ax2.axhline(0.68, color="#64748B", linestyle="--", linewidth=0.9, zorder=2)
+    # Clean non-overlapping narrative callouts inside Panel (b)
+    ax2.text(
+        28.7, (y_by_key["eess.SY"] + y_by_key["eess.SP"]) / 2.0,
+        "Community adoption gap\n(~414 L1 papers; 3 Lean)",
+        ha="right", va="center", fontsize=6.9, fontweight="bold", color="#92400E",
+        bbox=dict(boxstyle="round,pad=0.25", facecolor="#FFFBEB", edgecolor="#FCD34D", lw=0.8),
+    )
+    ax2.text(
+        28.7, y_by_key["cs.RO"] - 0.15,
+        "Composition-driven zeros\n(<6% L1 in RO, IV, AS)",
+        ha="right", va="center", fontsize=6.8, fontweight="bold", color="#4B5563",
+        bbox=dict(boxstyle="round,pad=0.25", facecolor="white", edgecolor="#D1D5DB", lw=0.8),
+    )
+
+    ax2.set_yticks(y_coords)
+    ax2.set_yticklabels([])
+    ax2.set_xlim(-0.7, 29.4)
+    ax2.set_xticks([0, 5, 10, 15, 20])
+    ax2.set_xticklabels(["0%", "5%", "10%", "15%", "20%"], fontsize=7.8)
+    ax2.set_ylim(-0.65, 16.45)
+    ax2.set_xlabel("Confirmed T2 Initial v1 Adoption Rate (%)")
+    ax2.set_title("(b) Raw vs. Theorem-Bearing Conditional Adoption", pad=18)
+    ax2.grid(axis="x", linestyle=":", alpha=0.6, zorder=1)
+    ax2.spines["top"].set_visible(False)
+    ax2.spines["right"].set_visible(False)
+    ax2.legend(
+        loc="upper center",
+        bbox_to_anchor=(0.48, -0.11),
+        ncol=1,
+        frameon=True,
+        facecolor="white",
+        edgecolor="#D1D5DB",
+        fontsize=7.3,
+    )
+
+    plt.tight_layout(w_pad=0.9)
+    fig.subplots_adjust(bottom=0.17)
+    _save(fig, "fig_eligibility_adjusted_adoption", out_dir=out_dir, save_previews=save_previews)
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(
-        description="Generate vector PDF figures from canonical artifacts/unified_15cat_panel.json."
+        description="Generate vector PDF figures from canonical artifacts/unified_15cat_panel.json and lean_eligibility_t2.json."
     )
     ap.add_argument("--unified-panel", type=Path, default=DEFAULT_UNIFIED_PANEL)
+    ap.add_argument("--eligibility-t2", type=Path, default=DEFAULT_ELIGIBILITY_T2)
     ap.add_argument("--out-dir", type=Path, default=FIG_DIR)
     ap.add_argument("--save-previews", action="store_true", help="Also write PNG previews to data/fig_previews/.")
     args = ap.parse_args()
@@ -971,7 +1183,12 @@ def main() -> None:
     make_paradigms_and_loc(panel, out_dir=args.out_dir, save_previews=args.save_previews)
     make_sandbox_builds(panel, out_dir=args.out_dir, save_previews=args.save_previews)
     make_phase2_heatmap(panel, out_dir=args.out_dir, save_previews=args.save_previews)
-    print("All 6 figures generated successfully.")
+    n_figs = 6
+    if args.eligibility_t2.exists():
+        elig = json.loads(args.eligibility_t2.read_text(encoding="utf-8"))
+        make_eligibility_adjusted_adoption(elig, out_dir=args.out_dir, save_previews=args.save_previews)
+        n_figs += 1
+    print(f"All {n_figs} figures generated successfully.")
 
 
 if __name__ == "__main__":

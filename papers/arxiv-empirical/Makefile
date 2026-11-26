@@ -2,8 +2,8 @@
 
 ROOT_DIR := ../..
 FIG_DIR := ../shared/figures
-FIG_SENTINEL := $(FIG_DIR)/fig_sandbox_builds.pdf
-FIG_DEPS := $(ROOT_DIR)/artifacts/unified_15cat_panel.json $(ROOT_DIR)/src/generate_figures.py
+FIG_SENTINEL := $(FIG_DIR)/fig_eligibility_adjusted_adoption.pdf
+FIG_DEPS := $(ROOT_DIR)/artifacts/unified_15cat_panel.json $(ROOT_DIR)/artifacts/lean_eligibility_t2.json $(ROOT_DIR)/src/generate_figures.py
 
 all: main.pdf
 

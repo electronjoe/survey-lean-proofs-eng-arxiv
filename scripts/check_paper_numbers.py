@@ -21,6 +21,8 @@ from typing import Any
 REPO_ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_TEX = REPO_ROOT / "papers" / "arxiv-empirical" / "main.tex"
 DEFAULT_PANEL = REPO_ROOT / "artifacts" / "unified_15cat_panel.json"
+DEFAULT_ELIG_T2 = REPO_ROOT / "artifacts" / "lean_eligibility_t2.json"
+DEFAULT_ELIG_E1 = REPO_ROOT / "artifacts" / "lean_eligibility_e1_t2_summary.json"
 
 ROLE_SHORT = {
     "eng_algorithmic_proof": "Eng. Alg.",
@@ -79,6 +81,14 @@ FORBIDDEN_SCHEMA_TOKENS = (
     "public_lean_repo",
     "broken_or_missing_repo",
     "v_latest",
+    "L1_lean_amenable_math",
+    "L2_mathlib_blocked_math",
+    "L3_operational_spec_fv",
+    "L4_heuristic_or_numerical_only",
+    "L5_empirical_or_survey",
+    "E1_formal_thm_proof",
+    "E1_weak_or_unnumbered_math",
+    "E1_no_formal_claims",
 )
 
 FORBIDDEN_INTERNAL_PATHS = (
@@ -825,9 +835,118 @@ def check_prose_and_style(tex: str, panel: dict[str, Any]) -> list[str]:
     return errors
 
 
+def check_table_eligibility_15cat(
+    tex: str,
+    elig: dict[str, Any],
+    e1_sum: dict[str, Any],
+) -> list[str]:
+    """Verify every cell of `tab:eligibility_15cat` against `lean_eligibility_t2.json` & E1 summary."""
+    errors: list[str] = []
+    tab = extract_table_by_label(tex, "tab:eligibility_15cat")
+    rows = [[clean_tex_cell(c) for c in r] for r in split_tabular_rows(tab)]
+    pc = elig["per_category"]
+    e1_pc = e1_sum["per_category"]
+    pt = elig["overall_t2_pooled"]
+    pe = pt["estimates"]
+    pcond = pt["conditional_adoption"]
+    seen_cats: set[str] = set()
+    saw_pooled = False
+
+    for cells in rows:
+        if len(cells) < 10 or cells[0].startswith("Category"):
+            continue
+        col0 = cells[0]
+        if col0.startswith("Pooled T2"):
+            saw_pooled = True
+            t1_p = pcond["tier1_math_alg_given_thm"]
+            t2a_p = pcond["tier2a_matched_L1_given_L1"]
+            exp_pool = [
+                f"{pt['population_total']:,}",
+                f"{e1_sum['overall']['e1_shares_pct']['E1_formal_thm_proof']:.1f}%",
+                f"{pe['L1_lean_amenable_math']['pct']:.1f}%",
+                f"{pe['L2_mathlib_blocked_math']['pct']:.1f}%",
+                f"{pe['L3_operational_spec_fv']['pct']:.1f}%",
+                f"{pe['tier1_theorem_bearing']['est_count']:,.0f} ({pe['tier1_theorem_bearing']['pct']:.1f}%)",
+                f"{pcond['raw_tier0_all_v1_pct']:.2f}% (68)",
+                f"{t1_p['rate_pct']:.2f}% ({t1_p['numerator']}) [{t1_p['ci_95_conservative_pct'][0]:.1f}, {t1_p['ci_95_conservative_pct'][1]:.1f}]",
+                f"{t2a_p['rate_pct']:.2f}% ({t2a_p['numerator']}) [{t2a_p['ci_95_conservative_pct'][0]:.1f}, {t2a_p['ci_95_conservative_pct'][1]:.1f}]",
+            ]
+            if cells[1:10] != exp_pool:
+                errors.append(f"tab:eligibility_15cat [Pooled]: got {cells[1:10]} != expected {exp_pool}")
+            continue
+
+        m = re.match(r"([a-z]+\.[A-Za-z-]+)\b", col0)
+        if not m or m.group(1) not in pc:
+            continue
+        cat = m.group(1)
+        seen_cats.add(cat)
+        d = pc[cat]
+        ee = d["eligibility_estimates"]
+        ca = d["conditional_adoption"]
+        t1 = ca["tier1_math_alg_given_thm"]
+        t2a = ca["tier2a_matched_L1_given_L1"]
+        dag = "$^\\dagger$" if t2a.get("small_denom_flag") else ""
+        e1_formal_pct = (
+            100.0 * e1_pc[cat]["e1_counts"]["E1_formal_thm_proof"] / max(e1_pc[cat]["total_papers"], 1)
+        )
+        exp_row = [
+            f"{d['panel_t2_total_papers']:,}",
+            f"{e1_formal_pct:.1f}%",
+            f"{ee['L1_lean_amenable_math']['pct']:.1f}%",
+            f"{ee['L2_mathlib_blocked_math']['pct']:.1f}%",
+            f"{ee['L3_operational_spec_fv']['pct']:.1f}%",
+            f"{ee['tier1_theorem_bearing']['est_count']:,.0f} ({ee['tier1_theorem_bearing']['pct']:.1f}%)",
+            f"{ca['raw_tier0_all_v1']['rate_pct']:.2f}% ({ca['raw_tier0_all_v1']['numerator']})",
+            f"{t1['rate_pct']:.1f}% ({t1['numerator']}) [{t1['ci_95_propagated_pct'][0]:.1f}, {t1['ci_95_propagated_pct'][1]:.1f}]",
+            f"{t2a['rate_pct']:.1f}%{dag} ({t2a['numerator']}) [{t2a['ci_95_propagated_pct'][0]:.1f}, {t2a['ci_95_propagated_pct'][1]:.1f}]",
+        ]
+        if cells[1:10] != exp_row:
+            errors.append(f"tab:eligibility_15cat [{cat}]: got {cells[1:10]} != expected {exp_row}")
+
+    missing = sorted(set(pc.keys()) - seen_cats)
+    if missing:
+        errors.append(f"tab:eligibility_15cat missing categories: {missing}")
+    if not saw_pooled:
+        errors.append("tab:eligibility_15cat missing Pooled T2 row")
+    return errors
+
+
+def check_eligibility_prose(
+    tex: str,
+    elig: dict[str, Any],
+    e1_sum: dict[str, Any],
+) -> list[str]:
+    errors: list[str] = []
+    plain_tex = re.sub(r"\\textbf\{([^}]*)\}", r"\1", tex)
+    plain_tex = plain_tex.replace(r"\%", "%").replace("~", " ").replace("{,}", ",")
+
+    def _must(desc: str, pattern: str) -> None:
+        if not re.search(pattern, plain_tex):
+            errors.append(f"Eligibility prose mismatch ({desc}): expected {pattern!r}")
+
+    ov = e1_sum["overall"]
+    pt = elig["overall_t2_pooled"]
+    pe = pt["estimates"]
+    pcond = pt["conditional_adoption"]
+    sd = elig["sampling_design"]
+
+    _must("E1 fetched coverage", rf"{ov['fetched_papers']:,}/{ov['total_papers']:,}\s*\({ov['fetch_coverage_pct']:.2f}%")
+    _must("E2 unique sampled", rf"\b{sd['unique_t2_papers_classified']}\s+unique T2 papers")
+    _must("Pooled Tier 1 %", rf"\b{pe['tier1_theorem_bearing']['pct']:.1f}%")
+    _must("Pooled L1 %", rf"\b{pe['L1_lean_amenable_math']['pct']:.1f}%")
+    _must("Pooled L2 %", rf"\b{pe['L2_mathlib_blocked_math']['pct']:.1f}%")
+    _must("Pooled L3 %", rf"\b{pe['L3_operational_spec_fv']['pct']:.1f}%")
+    _must("Pooled Tier 1 cond rate", rf"\b{pcond['tier1_math_alg_given_thm']['rate_pct']:.2f}%")
+    _must("Pooled matched L1 cond rate", rf"\b{pcond['tier2a_matched_L1_given_L1']['rate_pct']:.2f}%")
+    _must("Pooled matched L1+L3 cond rate", rf"\b{pcond['tier2b_matched_L1_L3_given_L1_L3']['rate_pct']:.2f}%")
+    return errors
+
+
 def run_all_checks(
     tex_path: Path = DEFAULT_TEX,
     panel_path: Path = DEFAULT_PANEL,
+    elig_path: Path = DEFAULT_ELIG_T2,
+    e1_path: Path = DEFAULT_ELIG_E1,
 ) -> tuple[list[str], dict[str, Any]]:
     tex = strip_tex_comments(tex_path.read_text(encoding="utf-8"))
     panel = json.loads(panel_path.read_text(encoding="utf-8"))
@@ -835,6 +954,11 @@ def run_all_checks(
     errors: list[str] = []
     errors.extend(check_table_longitudinal_15cat(tex, panel))
     errors.extend(check_table_categories_15cat(tex, panel))
+    if elig_path.exists() and e1_path.exists():
+        elig = json.loads(elig_path.read_text(encoding="utf-8"))
+        e1_sum = json.loads(e1_path.read_text(encoding="utf-8"))
+        errors.extend(check_table_eligibility_15cat(tex, elig, e1_sum))
+        errors.extend(check_eligibility_prose(tex, elig, e1_sum))
     errors.extend(check_table_off_arxiv(tex, panel))
     errors.extend(check_table_distributions_15cat(tex, panel))
 
